@@ -123,9 +123,9 @@ public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandle
             context.drawTexture(TEXTURE, x + 17, y + 15 + offset, 176, offset,16, handler.getScaledProgress());
         }
         if (mouseX >= x + 17 && mouseX <= x + 32 && mouseY >= y + 15 && mouseY <= y + 67){
-            context.drawTexture(TEXTURE,mouseX+3,mouseY+6,192,24,45,13);
+            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,192,24,45,13);
             context.drawText(textRenderer,String.valueOf(handler.getPower()),
-                    mouseX+6,mouseY+9,0xffffff,false);
+                    mouseX+9,mouseY-13,0xffffff,false);
         }
     }
     @Override

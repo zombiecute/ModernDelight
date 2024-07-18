@@ -3,22 +3,28 @@ package com.zombie_cute.mc.bakingdelight.block.custom;
 import com.zombie_cute.mc.bakingdelight.block.entities.GlassBowlBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.item.custom.ModStewItem;
+import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -29,6 +35,8 @@ import net.minecraft.world.*;
 import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     public static final BooleanProperty HAS_ITEM = BooleanProperty.of("has_item");
     public static final BooleanProperty HAS_WATER = BooleanProperty.of("has_water");
@@ -37,6 +45,18 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
         super(settings);
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(HAS_ITEM, false).with(WATERLOGGED,false).with(HAS_WATER, false));
+    }
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.GLASS_BOWL_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.GLASS_BOWL_2).formatted(Formatting.GOLD));
+        } else {
+            tooltip.add(ModUtil.getShiftText(false));
+        }
+        super.appendTooltip(stack, world, tooltip, options);
     }
     @Override
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {

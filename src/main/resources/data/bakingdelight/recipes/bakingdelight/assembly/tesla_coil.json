@@ -23,6 +23,7 @@
     }
   ],
   "output": {
-    "item": "bakingdelight:tesla_coil"
+    "item": "bakingdelight:tesla_coil",
+    "count": 4
   }
 }

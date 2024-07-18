@@ -4,9 +4,11 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.custom.abstracts.AbstractGasCookingStoveBlock;
 import com.zombie_cute.mc.bakingdelight.block.entities.BurningGasCookingStoveBlockEntity;
+import com.zombie_cute.mc.bakingdelight.util.ModDamageTypes;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -36,15 +38,24 @@ public class BurningGasCookingStoveBlock extends AbstractGasCookingStoveBlock {
             world.addParticle(ParticleTypes.LARGE_SMOKE, d, e, f, 0.0, 0.0, 0.0);
             world.addParticle(ParticleTypes.FLAME, d, e, f, 0.0, 0.0, 0.0);
         }
-    }
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        if (!entity.isFireImmune()) {
-            entity.setFireTicks(entity.getFireTicks() + 1);
-            if (entity.getFireTicks() == 0) {
-                entity.setOnFireFor(8);
+        if (world.getBlockState(pos.up()).getBlock() instanceof LeveledCauldronBlock){
+            for (int i = 0;i < 3; ++i){
+                double d = (double)pos.getX() + world.random.nextDouble();
+                double e = (double)pos.getY() +  world.random.nextDouble() * 0.5 + 2;
+                double f = (double)pos.getZ() +  world.random.nextDouble();
+                world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, d, e, f, -0.0625 + world.random.nextDouble()/8, world.random.nextDouble()/4, -0.0625 + world.random.nextDouble()/8);
             }
         }
-        entity.damage(world.getDamageSources().inFire(), 2);
+    }
+    @Override
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        if (!entity.isFireImmune()) {
+            entity.setFireTicks(entity.getFireTicks() + 2);
+            if (entity.getFireTicks() == 0) {
+                entity.setOnFireFor(10);
+            }
+        }
+        entity.damage(ModDamageTypes.of(entity.getWorld(),ModDamageTypes.TURNED_TO_ASHES), 2);
         super.onSteppedOn(world, pos, state, entity);
     }
     @Override
@@ -53,7 +64,11 @@ public class BurningGasCookingStoveBlock extends AbstractGasCookingStoveBlock {
             world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f,
                     SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,
                     1.2f, world.random.nextFloat()+0.5f);
-            world.setBlockState(pos, ModBlocks.GAS_COOKING_STOVE.getDefaultState());
+            if (state.get(HAS_BRACKET)){
+                world.setBlockState(pos, ModBlocks.GAS_COOKING_STOVE.getDefaultState().with(GasCookingStoveBlock.HAS_BRACKET,true));
+            } else {
+                world.setBlockState(pos, ModBlocks.GAS_COOKING_STOVE.getDefaultState());
+            }
         }
         return ActionResult.SUCCESS;
     }
@@ -69,6 +84,6 @@ public class BurningGasCookingStoveBlock extends AbstractGasCookingStoveBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, ModBlockEntities.BURNING_GAS_COOKING_STOVE_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos,state1));
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 }

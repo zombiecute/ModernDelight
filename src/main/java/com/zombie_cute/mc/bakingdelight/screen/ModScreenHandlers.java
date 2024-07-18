@@ -60,6 +60,12 @@ public class ModScreenHandlers {
     public static final ScreenHandlerType<BambooSteamerScreenHandler> BAMBOO_STEAMER_SCREEN_HANDLER =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(Bakingdelight.MOD_ID, "bamboo_steamer_screen"),
                     new ExtendedScreenHandlerType<>(BambooSteamerScreenHandler::new));
+    public static final ScreenHandlerType<ElectricSteamerScreenHandler> ELECTRIC_STEAMER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(Bakingdelight.MOD_ID, "electric_steamer_screen"),
+                    new ExtendedScreenHandlerType<>(ElectricSteamerScreenHandler::new));
+    public static final ScreenHandlerType<IceCreamMakerScreenHandler> ICE_CREAM_MAKER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(Bakingdelight.MOD_ID, "ice_cream_maker_screen"),
+                    new ExtendedScreenHandlerType<>(IceCreamMakerScreenHandler::new));
     public static void registerScreenHandlers(){
         Bakingdelight.LOGGER.info("Registering Screen Handlers for " + Bakingdelight.MOD_ID);
     }

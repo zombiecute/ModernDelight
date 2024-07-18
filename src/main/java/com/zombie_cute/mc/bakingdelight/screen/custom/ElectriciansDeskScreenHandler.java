@@ -24,7 +24,7 @@ public class ElectriciansDeskScreenHandler extends ScreenHandler {
     public final ElectriciansDeskBlockEntity blockEntity;
     public ElectriciansDeskScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(1));
+                new ArrayPropertyDelegate(2));
     }
     public ElectriciansDeskScreenHandler(int syncId, PlayerInventory playerInventory,
                                          BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate){
@@ -70,6 +70,9 @@ public class ElectriciansDeskScreenHandler extends ScreenHandler {
     }
     public boolean canCraft(){
         return this.propertyDelegate.get(0) != 0 ;
+    }
+    public boolean isOccupied(){
+        return this.propertyDelegate.get(1) != 0 ;
     }
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {

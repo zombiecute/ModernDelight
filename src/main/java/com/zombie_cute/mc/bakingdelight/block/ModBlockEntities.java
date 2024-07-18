@@ -127,6 +127,18 @@ public class ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE, new Identifier(Bakingdelight.MOD_ID, "bamboo_grate_be"),
             FabricBlockEntityTypeBuilder.create(BambooGrateBlockEntity::new, ModBlocks.BAMBOO_GRATE).build(null)
     );
+    public static final BlockEntityType<ElectricSteamerBlockEntity> ELECTRIC_STEAMER_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, new Identifier(Bakingdelight.MOD_ID, "electric_steamer_be"),
+            FabricBlockEntityTypeBuilder.create(ElectricSteamerBlockEntity::new, ModBlocks.ELECTRIC_STEAMER).build(null)
+    );
+    public static final BlockEntityType<IceCreamMakerBlockEntity> ICE_CREAM_MAKER_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, new Identifier(Bakingdelight.MOD_ID, "ice_cream_maker_be"),
+            FabricBlockEntityTypeBuilder.create(IceCreamMakerBlockEntity::new, ModBlocks.ICE_CREAM_MAKER).build(null)
+    );
+    public static final BlockEntityType<FishAndChipsBlockEntity> FISH_AND_CHIPS_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, new Identifier(Bakingdelight.MOD_ID, "fish_and_chips_be"),
+            FabricBlockEntityTypeBuilder.create(FishAndChipsBlockEntity::new, ModBlocks.FISH_AND_CHIPS).build(null)
+    );
     public static void registerBlockEntities(){
         Bakingdelight.LOGGER.info("Registering Mod Block Entities for " + Bakingdelight.MOD_ID);
     }

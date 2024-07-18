@@ -6,7 +6,7 @@
     128
   ],
   "textures": {
-    "particle": "bakingdelight:block/diorite_cabinet"
+    "particle": "bakingdelight:block/fan_blade"
   },
   "display": {
     "thirdperson_righthand": {

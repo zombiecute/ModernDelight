@@ -21,7 +21,7 @@ public class BambooSteamerScreenHandler extends ScreenHandler {
     public int currentLayer;
     private final PropertyDelegate propertyDelegate;
     public BambooSteamerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),buf.readInt(),new ArrayPropertyDelegate(2));
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),buf.readInt(),new ArrayPropertyDelegate(3));
     }
     public BambooSteamerScreenHandler(int syncId, PlayerInventory playerInventory,
                                       BlockEntity blockEntity, int currentLayer, PropertyDelegate arrayPropertyDelegate){
@@ -95,6 +95,9 @@ public class BambooSteamerScreenHandler extends ScreenHandler {
     }
     public boolean isCovered(){
         return propertyDelegate.get(0) != 0;
+    }
+    public int getLayer(){
+        return propertyDelegate.get(2);
     }
     public int getCurrentLayer() {
         return currentLayer;

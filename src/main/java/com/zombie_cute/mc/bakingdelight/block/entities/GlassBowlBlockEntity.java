@@ -3,10 +3,9 @@ package com.zombie_cute.mc.bakingdelight.block.entities;
 import com.google.common.collect.Lists;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ImplementedInventory;
-import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.item.custom.ModStewItem;
-import com.zombie_cute.mc.bakingdelight.recipe.custom.WhiskingRecipe;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.MixWithWaterRecipe;
+import com.zombie_cute.mc.bakingdelight.recipe.custom.WhiskingRecipe;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
 import net.minecraft.block.BlockState;
@@ -52,7 +51,7 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
     public void onUse(@NotNull PlayerEntity player, BlockState state, World world){
         Item offHandItem = player.getOffHandStack().getItem();
         Item mainHandItem = player.getMainHandStack().getItem();
-        // 检测是否有水
+        // Check Water
         if (world.getBlockState(pos).get(HAS_WATER)) {
             SimpleInventory inventory = new SimpleInventory(this.size());
             boolean isMainHand;
@@ -63,7 +62,7 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                 inventory.setStack(0, offHandItem.getDefaultStack());
                 isMainHand = false;
             }
-            // 混合处理
+            // Mix
             Optional<MixWithWaterRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
                     .getFirstMatch(MixWithWaterRecipe.Type.INSTANCE, inventory,this.getWorld());
             if (match.isPresent()){
@@ -89,9 +88,9 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                 playSound(SoundEvents.ITEM_BUCKET_FILL,1.0f);
             }
         } else {
-            // 取出成品
+            // Take the Output
             if (!GLASS_BOWL_INV.get(1).isEmpty()){
-                if (GLASS_BOWL_INV.get(1).getItem() == ModItems.MASHED_POTATO){
+                if (GLASS_BOWL_INV.get(1).getItem() instanceof ModStewItem){
                     if (mainHandItem == Items.BOWL){
                         player.getMainHandStack().split(1);
                         getResultItem(world,state,player,false);
@@ -102,7 +101,7 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                     getResultItem(world,state,player,true);
                 }
             } else {
-                // 没有东西时，往碗里面装水
+                // Storage Water
                 if (GLASS_BOWL_INV.get(0).isEmpty() &&
                         !world.getBlockState(pos).get(HAS_ITEM) &&
                         mainHandItem == Items.POTION){
@@ -118,7 +117,7 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                     world.setBlockState(pos,state.with(HAS_WATER, true));
                     playSound(SoundEvents.ITEM_BUCKET_EMPTY,1.0f);
                 } else {
-                    // 存入物品
+                    // Storage Items
                     if(GLASS_BOWL_INV.get(0).isEmpty()){
                         if (offHandItem == Items.AIR){
                             GLASS_BOWL_INV.set(0, player.getMainHandStack().split(1));
@@ -130,12 +129,10 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                             playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.4F);
                         }
                     } else {
-                        // 判断搅拌器
                         if (isWhisk(mainHandItem)) {
                             if (hasRecipe()){
-                                // 生成空碗
-                                if (GLASS_BOWL_INV.get(0).getItem() == ModItems.CREAM ||
-                                GLASS_BOWL_INV.get(0).getItem() == ModItems.MASHED_POTATO){
+                                // Spawn Empty Bowl
+                                if (GLASS_BOWL_INV.get(0).getItem() instanceof ModStewItem){
                                     ItemScatterer.spawn(Objects.requireNonNull(this.getWorld()),this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),
                                             Items.BOWL.getDefaultStack());
                                 }

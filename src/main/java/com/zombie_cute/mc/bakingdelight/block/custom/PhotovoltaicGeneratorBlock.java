@@ -94,9 +94,20 @@ public class PhotovoltaicGeneratorBlock extends BlockWithEntity {
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(ModUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.PGen_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.PGen_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.PGen_3).formatted(Formatting.GOLD));
+        } else if (Screen.hasAltDown()) {
+            tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(ModUtil.getDCGen("0~50"));
+            tooltip.add(ModUtil.getDCSto("3000"));
         } else {
             tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

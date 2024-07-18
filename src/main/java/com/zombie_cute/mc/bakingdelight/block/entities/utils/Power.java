@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.block.entities.utils;
 
 public class Power {
     private int power = 0;
-    private final int max_power;
+    private int max_power;
 
     public Power(int maxPower) {
         max_power = maxPower;
@@ -29,5 +29,8 @@ public class Power {
     }
     public int getMaxPower(){
         return this.max_power;
+    }
+    public void changeMaxPower(int value){
+        this.max_power = value;
     }
 }

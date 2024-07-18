@@ -42,6 +42,9 @@ public class BakingdelightClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_BOWL, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_PEPPER_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_PEPPER_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GARLIC_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_GARLIC, RenderLayer.getCutout());
 
         EntityRendererRegistry.register(ModEntities.BUTTER, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHERRY_BOMB, FlyingItemEntityRenderer::new);
@@ -63,6 +66,8 @@ public class BakingdelightClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.TESLA_COIL_SCREEN_HANDLER, TeslaCoilScreen::new);
         HandledScreens.register(ModScreenHandlers.ELECTRICIANS_DESK_SCREEN_HANDLER, ElectriciansDeskScreen::new);
         HandledScreens.register(ModScreenHandlers.BAMBOO_STEAMER_SCREEN_HANDLER, BambooSteamerScreen::new);
+        HandledScreens.register(ModScreenHandlers.ELECTRIC_STEAMER_SCREEN_HANDLER, ElectricSteamerScreen::new);
+        HandledScreens.register(ModScreenHandlers.ICE_CREAM_MAKER_SCREEN_HANDLER, IceCreamMakerScreen::new);
 
         BlockEntityRendererFactories.register(ModBlockEntities.GLASS_BOWL_ENTITY, GlassBowlBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.FREEZER_ENTITY, FreezerBlockEntityRenderer::new);
@@ -73,6 +78,8 @@ public class BakingdelightClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.KITCHEN_UTENSIL_HOLDER_BLOCK_ENTITY, KitchenUtensilHolderBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.STERLING_ENGINE_BLOCK_ENTITY, SterlingEngineBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.BAMBOO_GRATE_BLOCK_ENTITY, BambooGrateBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.ICE_CREAM_MAKER_BLOCK_ENTITY, IceCreamMakerBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FISH_AND_CHIPS_BLOCK_ENTITY, FishAndChipsBlockEntityRender::new);
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_CREAM, ModFluid.FLOWING_CREAM,
                 new SimpleFluidRenderHandler(

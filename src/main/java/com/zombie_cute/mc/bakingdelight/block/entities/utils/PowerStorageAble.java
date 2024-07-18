@@ -20,4 +20,7 @@ public interface PowerStorageAble {
     default void setPower(int value){
         getPower().setPowerValue(value);
     }
+    default void changeMaxPower(int value){
+        getPower().changeMaxPower(value);
+    }
 }

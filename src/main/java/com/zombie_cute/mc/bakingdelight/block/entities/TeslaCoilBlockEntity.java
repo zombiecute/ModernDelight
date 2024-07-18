@@ -89,7 +89,7 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
         if (this.showPractical != 0){
             world.setBlockState(pos,state.with(TeslaCoilBlock.SHOW_PARTICLE,true));
         } else world.setBlockState(pos,state.with(TeslaCoilBlock.SHOW_PARTICLE,false));
-        // 伤害生物实体
+        // Attack
         if (this.ticker % 20 == 0){
             if (this.efficiency > 0){
                 Box box = new Box(pos).expand(1.2);

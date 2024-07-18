@@ -56,7 +56,11 @@ public class GasCookingStoveBlock extends AbstractGasCookingStoveBlock {
                 world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f,
                         SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS,
                         1.0f, world.random.nextFloat()+0.5f);
-                world.setBlockState(pos, ModBlocks.BURNING_GAS_COOKING_STOVE.getDefaultState());
+                if (state.get(HAS_BRACKET)){
+                    world.setBlockState(pos, ModBlocks.BURNING_GAS_COOKING_STOVE.getDefaultState().with(BurningGasCookingStoveBlock.HAS_BRACKET,true));
+                } else {
+                    world.setBlockState(pos, ModBlocks.BURNING_GAS_COOKING_STOVE.getDefaultState());
+                }
             }
         }
         return ActionResult.SUCCESS;

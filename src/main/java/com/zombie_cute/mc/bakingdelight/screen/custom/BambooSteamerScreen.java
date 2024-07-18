@@ -71,6 +71,14 @@ public class BambooSteamerScreen extends HandledScreen<BambooSteamerScreenHandle
 
             }
         }
+        if (handler.isHeated()){
+            context.drawTexture(TEXTURE_1, x + 151, y + 65, 176, 0, 18,11);
+        }
+        if (handler.getLayer() != 0){
+            context.drawText(textRenderer,String.valueOf(handler.getLayer()),x + 157, y + 10,0xffffff,true);
+        } else {
+            context.drawText(textRenderer,String.valueOf(0),x + 157, y + 10,0xff0000,true);
+        }
     }
 
     @Override

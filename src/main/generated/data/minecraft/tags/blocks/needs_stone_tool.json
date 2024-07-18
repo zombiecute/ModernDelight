@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "bakingdelight:ice_cream_maker",
+    "bakingdelight:electric_steamer",
     "bakingdelight:silicon_block",
     "bakingdelight:faraday_generator",
     "bakingdelight:intermediate_battery",

@@ -65,6 +65,7 @@ public class AssemblyCategory implements DisplayCategory<AssemblyDisplay> {
         HashSet<ItemConvertible> items = new HashSet<>();
         items.add(Items.INK_SAC);
         items.add(Items.GLOW_INK_SAC);
+        items.add(Items.BLACK_DYE);
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 123,startPoint.y + 27))
                 .entries(EntryIngredients.ofItems(items)));
 

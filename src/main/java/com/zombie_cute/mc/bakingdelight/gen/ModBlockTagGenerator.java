@@ -76,6 +76,8 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.FARADAY_GENERATOR);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.TESLA_COIL);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.SILICON_BLOCK);
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.ELECTRIC_STEAMER);
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.ICE_CREAM_MAKER);
 
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.WOODEN_BASIN);
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.ELECTRICIANS_DESK);
@@ -83,7 +85,8 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.BAMBOO_COVER);
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.BAMBOO_GRATE);
 
-
+        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ICE_CREAM_MAKER);
+        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ELECTRIC_STEAMER);
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.SILICON_BLOCK);
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.FARADAY_GENERATOR);
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.INTERMEDIATE_BATTERY);
@@ -106,6 +109,11 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.BLACK_PEPPER_CROP);
         getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(ModBlocks.BLACK_PEPPER_CROP);
         getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.BLACK_PEPPER_CROP);
+        getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.WILD_PEPPER_CROP);
+        getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.WILD_GARLIC);
+        getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.GARLIC_CROP);
+        getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(ModBlocks.GARLIC_CROP);
+        getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.GARLIC_CROP);
         // Heater
         getOrCreateTagBuilder(ForgeTagKeys.PASSIVE_BOILER_HEATERS).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
         getOrCreateTagBuilder(ForgeTagKeys.HEAT_SOURCES).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
@@ -130,5 +138,9 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).addOptionalTag(BlockTags.CAMPFIRES);
         getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).addOptionalTag(ForgeTagKeys.HEAT_SOURCES);
         getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).addOptionalTag(ForgeTagKeys.PASSIVE_BOILER_HEATERS);
+        // Small Flowers
+        getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_GARLIC);
+        getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_PEPPER_CROP);
+
     }
 }

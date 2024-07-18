@@ -63,9 +63,19 @@ public class FaradayGeneratorBlock extends BlockWithEntity {
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(ModUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.FARADAY_GENERATOR_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.FARADAY_GENERATOR_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.FARADAY_GENERATOR_3).formatted(Formatting.GOLD));
+        } else if (Screen.hasAltDown()) {
+            tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(ModUtil.getACGen("100"));
         } else {
             tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

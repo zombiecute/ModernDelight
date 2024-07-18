@@ -52,9 +52,24 @@ public class ACDCConverterBlock extends BlockWithEntity {
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(ModUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.ACDCC_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ACDCC_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ACDCC_3).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ACDCC_4).formatted(Formatting.GOLD));
+        } else if (Screen.hasAltDown()) {
+            tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(ModUtil.getACCom("0~100"));
+            tooltip.add(ModUtil.getACGen("0~100"));
+            tooltip.add(ModUtil.getDCCom("0~100"));
+            tooltip.add(ModUtil.getDCGen("0~?"));
+            tooltip.add(ModUtil.getDCSto("3000"));
         } else {
             tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

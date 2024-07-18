@@ -22,6 +22,14 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
+        getOrCreateTagBuilder(ForgeTagKeys.TOOLS).addOptionalTag(ModTagKeys.WHISKS);
+        getOrCreateTagBuilder(ForgeTagKeys.TOOLS).addOptionalTag(ModTagKeys.SPATULAS);
+        getOrCreateTagBuilder(ForgeTagKeys.TOOLS).addOptionalTag(ModTagKeys.KNEADING_STICKS);
+        getOrCreateTagBuilder(ForgeTagKeys.TOOLS).addOptionalTag(ModTagKeys.CROWBARS);
+
+
+        getOrCreateTagBuilder(ForgeTagKeys.STORAGE_BLOCKS).add(ModBlocks.SILICON_BLOCK.asItem());
+        getOrCreateTagBuilder(ForgeTagKeys.INGOTS).add(ModItems.SILICON_INGOT);
         getOrCreateTagBuilder(ForgeTagKeys.SILICON).add(ModItems.SILICON_INGOT);
         // Bucket of Oil
         getOrCreateTagBuilder(ForgeTagKeys.BUCKET_OIL).add(ModItems.VEGETABLE_OIL_BUCKET);
@@ -82,7 +90,44 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.POTATO_CHIP);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CHEESE_BALL);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FRIED_DOUGH_STICK);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.STEAMED_BUN);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.DEEP_FRIED_BUN);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.EGG_BOWL);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CHERRY_EGG);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FISH_EGG);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.STEAMED_EGG);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.STEAMED_CHERRY_EGG);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.STEAMED_FISH_EGG);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.BEEF_TOMATO_CUP);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.BUTTERFLY_CRISP);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CARAMEL);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CHEESE_BAKED_POTATO);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CHEESE_RICE_BALL);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CHOCOLATE_SAUCE);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.SHRIMP_PASTE);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.MIXED_SHRIMP_PASTE);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.DEEP_FRIED_SHRIMP_CAKE);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.SEAWEED_FRIED_SHRIMP_CAKE);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.DONUT);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.POTATO_CHIPS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.DEEP_FRIED_POTATO_CHIPS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FRENCH_FRIES);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FRIED_CHICKEN);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FRIED_RED_MUSHROOM);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FRIED_BROWN_MUSHROOM);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CREAM_OF_MUSHROOM_SOUP);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FRENCH_ONION_SOUP);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.RAW_DONUT);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CHOCOLATE_DONUT);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.CHEESE_BURGER);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.FRIED_COD_NUGGET);
 
+
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_CREAMS).add(ModItems.RAW_ICE_CREAM_CONE);
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_CREAMS).add(ModItems.ICE_CREAM_CONE);
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_CREAMS).add(ModItems.ICE_CREAM);
+
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).addOptionalTag(ForgeTagKeys.ICE_LOLLIES);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).addOptionalTag(ForgeTagKeys.BREADS);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).addOptionalTag(ForgeTagKeys.TRUFFLES);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).addOptionalTag(ForgeTagKeys.PUDDINGS);
@@ -102,6 +147,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).addOptionalTag(ForgeTagKeys.PUMPKINS);
         getOrCreateTagBuilder(ForgeTagKeys.SEEDS).addOptionalTag(ForgeTagKeys.SEED_BLACK_PEPPERS);
         getOrCreateTagBuilder(ForgeTagKeys.CROPS).addOptionalTag(ForgeTagKeys.CROP_BLACK_PEPPER);
+        getOrCreateTagBuilder(ForgeTagKeys.SEEDS).addOptionalTag(ForgeTagKeys.SEED_GARLIC);
+        getOrCreateTagBuilder(ForgeTagKeys.CROPS).addOptionalTag(ForgeTagKeys.CROP_GARLIC);
+        getOrCreateTagBuilder(ForgeTagKeys.CROPS).addOptionalTag(ForgeTagKeys.CABBAGE);
         getOrCreateTagBuilder(ForgeTagKeys.C_WHEAT_FLOUR).add(ModItems.WHEAT_FLOUR);
         getOrCreateTagBuilder(ForgeTagKeys.C_FLOUR).add(ModItems.WHEAT_FLOUR);
         getOrCreateTagBuilder(ForgeTagKeys.C_FLOUR).add(ModItems.POTATO_STARCH);
@@ -119,6 +167,12 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ForgeTagKeys.FLOWER_CAKES).add(ModItems.SUNFLOWER_CAKE);
         getOrCreateTagBuilder(ForgeTagKeys.FLOWER_CAKES).add(ModItems.WHITE_TULIP_CAKE);
         getOrCreateTagBuilder(ForgeTagKeys.FLOWER_CAKES).add(ModItems.WITHER_ROSE_CAKE);
+        // Ice Lollies
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_LOLLIES).add(ModItems.ICE_LOLLY);
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_LOLLIES).addOptional(new Identifier("farmersdelight","melon_popsicle"));
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_LOLLIES).add(ModItems.CHERRY_ICE_LOLLY);
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_LOLLIES).add(ModItems.MATCHA_ICE_LOLLY);
+        getOrCreateTagBuilder(ForgeTagKeys.ICE_LOLLIES).add(ModItems.WITHER_ICE_LOLLY);
 
         // Knives
         getOrCreateTagBuilder(ForgeTagKeys.TOOLS_KNIVES).add(ModItems.COPPER_KNIFE);
@@ -171,7 +225,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ForgeTagKeys.TRUFFLES).add(ModItems.BLACK_TRUFFLE);
 
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.BLACK_PEPPER_CORN);
-        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.BLACK_PEPPER_CORN);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.BLACK_PEPPER_DUST);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.GARLIC);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.GARLIC_PETAL);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.SUNFLOWER_SEED);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.MASHED_POTATO);
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.SAUCE_MASHED_POTATO);
@@ -184,6 +240,26 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModBlocks.PIZZA.asItem());
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModBlocks.RAW_PIZZA.asItem());
         getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModBlocks.PIZZA_WIP.asItem());
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.GLOW_SQUID_TENTACLE);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.GLOW_SQUID_TENTACLE_KEBABS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.RAW_GLOW_SQUID_TENTACLE_KEBABS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.SQUID_TENTACLE);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.RAW_SQUID_TENTACLE_KEBABS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.SQUID_TENTACLE_KEBABS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.TURNIP);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).addOptionalTag(ForgeTagKeys.RAW_MEATS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).addOptionalTag(ForgeTagKeys.COOKED_MEATS);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModItems.PORK_CHOP_BURGER);
+        getOrCreateTagBuilder(ForgeTagKeys.FOODS).add(ModBlocks.FISH_AND_CHIPS_ITEM);
+
+        getOrCreateTagBuilder(ForgeTagKeys.RAW_MEATS).addOptionalTag(ForgeTagKeys.RAW_PORK);
+        getOrCreateTagBuilder(ForgeTagKeys.RAW_PORK).add(ModItems.STREAKY_PORK);
+        getOrCreateTagBuilder(ForgeTagKeys.RAW_PORK).add(ModItems.PORK_RIBS);
+        getOrCreateTagBuilder(ForgeTagKeys.RAW_PORK).add(ModItems.PORK_HOOF);
+
+        getOrCreateTagBuilder(ForgeTagKeys.COOKED_MEATS).addOptionalTag(ForgeTagKeys.COOKED_PORK);
+        getOrCreateTagBuilder(ForgeTagKeys.COOKED_PORK).add(ModItems.ROAST_STREAKY_PORK);
+
 
         getOrCreateTagBuilder(ForgeTagKeys.FLOURS).add(ModItems.POTATO_STARCH);
         getOrCreateTagBuilder(ForgeTagKeys.FLOURS).add(ModItems.WHEAT_FLOUR);
@@ -195,9 +271,10 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ForgeTagKeys.PUDDINGS).add(ModItems.APPLE_PUDDING);
         getOrCreateTagBuilder(ForgeTagKeys.PUDDINGS).add(ModItems.MATCHA_PUDDING);
         getOrCreateTagBuilder(ForgeTagKeys.PUDDINGS).add(ModItems.MATCHA_PUDDING);
+        getOrCreateTagBuilder(ForgeTagKeys.PUDDINGS).add(ModItems.CARAMEL_PUDDING);
+        getOrCreateTagBuilder(ForgeTagKeys.PUDDINGS).add(ModItems.CHERRY_PUDDING);
 
         getOrCreateTagBuilder(ForgeTagKeys.CREAMS).add(ModItems.CREAM);
-        getOrCreateTagBuilder(ForgeTagKeys.CREAMS).add(ModItems.CREAM_BUCKET);
         getOrCreateTagBuilder(ForgeTagKeys.CREAMS).add(ModItems.CHERRY_CREAM);
         getOrCreateTagBuilder(ForgeTagKeys.CREAMS).add(ModItems.GOLDEN_APPLE_CREAM);
         getOrCreateTagBuilder(ForgeTagKeys.CREAMS).add(ModItems.CHOCOLATE_CREAM);

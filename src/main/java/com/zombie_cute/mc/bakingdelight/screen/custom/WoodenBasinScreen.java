@@ -36,9 +36,9 @@ public class WoodenBasinScreen extends HandledScreen<WoodenBasinScreenHandler> {
 
         renderFluid(context, x, y);
         if (mouseX >= x + 46 && mouseX <= x + 65 && mouseY >= y + 20 && mouseY <= y + 68){
-            context.drawTexture(TEXTURE,mouseX+3,mouseY+6,194,0,45,13);
-            context.drawText(textRenderer,String.valueOf(handler.getFluidLevel()*1000/81000),
-                    mouseX+6,mouseY+9,0xffffff,false);
+            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,194,0,45,13);
+            context.drawText(textRenderer,String.valueOf(handler.getFluidLevel()),
+                    mouseX+9,mouseY-13,0xffffff,false);
         }
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,194,13,11,11);

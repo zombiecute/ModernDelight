@@ -17,10 +17,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -72,9 +69,19 @@ public class WindTurbineControllerBlock extends BlockWithEntity {
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(ModUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.WTC_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.WTC_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.WTC_3).formatted(Formatting.GOLD));
+        } else if (Screen.hasAltDown()) {
+            tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(ModUtil.getACGen("0~106"));
         } else {
             tooltip.add(ModUtil.getShiftText(false));
+            tooltip.add(ModUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

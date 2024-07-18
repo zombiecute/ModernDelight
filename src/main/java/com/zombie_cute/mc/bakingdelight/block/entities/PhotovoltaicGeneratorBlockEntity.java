@@ -70,7 +70,7 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
             ItemStack itemStack = blockEntity.getStack(0);
             blockEntity.setStack(0,
                     AbstractBatteryBlock.changeBatteryPower(itemStack,blockEntity.getPower(), 20, true));
-            int light = world.getLightLevel(LightType.BLOCK,pos) / 3 - 3;
+            int light = world.getLightLevel(LightType.BLOCK,pos) / 3 - 1;
             if (light > 0){
                 blockEntity.addPower(light);
                 blockEntity.slowMode = 1;
@@ -119,16 +119,16 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
                 !world.getBlockState(pos.up()).isSideSolidFullSquare(world, pos.up(), Direction.DOWN);
     }
     public static boolean isEarlyMorningOrTwilight(World world){
-        long time = world.getTimeOfDay();
-        return (time >= 0 && time <= 450) || (time >= 11834 && time <= 13702) || (time >= 22200 && time < 24000);
+        long timeOfDay = world.getTimeOfDay() % 24000L;
+        return (timeOfDay >= 0 && timeOfDay < 167) || (timeOfDay >= 11617 && timeOfDay < 13702) || (timeOfDay >= 23000);
     }
     public static boolean isMorningOrAfternoon(World world){
-        long time = world.getTimeOfDay();
-        return (time > 450 && time < 4000) || (time > 8000 && time < 11834);
+        long timeOfDay = world.getTimeOfDay() % 24000L;
+        return (timeOfDay >= 167 && timeOfDay < 4283) || (timeOfDay >= 7700 && timeOfDay < 11617);
     }
     public static boolean isNoon(World world){
-        long time = world.getTimeOfDay();
-        return time >= 4000 && time <= 8000;
+        long timeOfDay = world.getTimeOfDay() % 24000L;
+        return timeOfDay >= 4283 && timeOfDay < 7700;
     }
     @Override
     protected void writeNbt(NbtCompound nbt) {

@@ -3,8 +3,9 @@ package com.zombie_cute.mc.bakingdelight.block.entities;
 import com.google.common.collect.Maps;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ACConsumer;
-import com.zombie_cute.mc.bakingdelight.block.entities.utils.ACGenerateAble;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ImplementedInventory;
+import com.zombie_cute.mc.bakingdelight.item.ModItems;
+import com.zombie_cute.mc.bakingdelight.item.custom.JarItem;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.FreezingRecipe;
 import com.zombie_cute.mc.bakingdelight.screen.custom.FreezerScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
@@ -17,10 +18,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
@@ -35,6 +33,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -169,12 +168,15 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
                     markDirty(world, pos, state);
                     if (hasCraftingFinished()){
                         craftItem(entity);
-                        if (getStack(INPUT_SLOT_1).getItem() == Items.WATER_BUCKET ||
-                                getStack(INPUT_SLOT_1).getItem() == Items.LAVA_BUCKET){
-                            setStack(INPUT_SLOT_1, new ItemStack(Items.BUCKET, 3));
-                        } else {
-                            removeStack(INPUT_SLOT_1,1);
+                        for (int i = 0;i < 3;i++){
+                            if (getStack(i).getItem() instanceof JarItem){
+                                ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(ModItems.JAR));
+                            }
+                            if (getStack(i).getItem() instanceof BucketItem){
+                                ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.BUCKET));
+                            }
                         }
+                        removeStack(INPUT_SLOT_1,1);
                         removeStack(INPUT_SLOT_2,1);
                         removeStack(INPUT_SLOT_3,1);
                         resetProgress();
@@ -204,66 +206,18 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
                 this.removeStack(ICE_SLOT,1);
             }
         }
-        if (world.getTime() % 60L == 0L){
-            for (Direction dir : Direction.values()){
-                switch (dir){
-                    case UP -> {
-                        if (world.getBlockEntity(pos.up()) instanceof ACGenerateAble able && able.getEfficiency() >= 15){
-                            if (!this.isCool()){
-                                this.coolTime = 60;
-                            }
-                        }
-                    }
-                    case DOWN -> {
-                        if (world.getBlockEntity(pos.down()) instanceof ACGenerateAble able && able.getEfficiency() >= 15){
-                            if (!this.isCool()){
-                                this.coolTime = 60;
-                            }
-                        }
-                    }
-                    case NORTH -> {
-                        if (world.getBlockEntity(pos.north()) instanceof ACGenerateAble able && able.getEfficiency() >= 15){
-                            if (!this.isCool()){
-                                this.coolTime = 60;
-                            }
-                        }
-                    }
-                    case SOUTH -> {
-                        if (world.getBlockEntity(pos.south()) instanceof ACGenerateAble able && able.getEfficiency() >= 15){
-                            if (!this.isCool()){
-                                this.coolTime = 60;
-                            }
-                        }
-                    }
-                    case WEST -> {
-                        if (world.getBlockEntity(pos.west()) instanceof ACGenerateAble able && able.getEfficiency() >= 15){
-                            if (!this.isCool()){
-                                this.coolTime = 60;
-                            }
-                        }
-                    }
-                    case EAST -> {
-                        if (world.getBlockEntity(pos.east()) instanceof ACGenerateAble able && able.getEfficiency() >= 15){
-                            if (!this.isCool()){
-                                this.coolTime = 60;
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
 
     public static Map<Item, Integer> createCoolTimeMap() {
         LinkedHashMap<Item, Integer> map = Maps.newLinkedHashMap();
-        FreezerBlockEntity.addIce(map, Items.ICE, 60);
-        FreezerBlockEntity.addIce(map, Items.PACKED_ICE, 580);
-        FreezerBlockEntity.addIce(map, Items.BLUE_ICE, 5500);
-        FreezerBlockEntity.addIce(map, Items.SNOW_BLOCK, 50);
-        FreezerBlockEntity.addIce(map, Items.SNOW, 30);
-        FreezerBlockEntity.addIce(map, Items.POWDER_SNOW_BUCKET, 1200);
-        FreezerBlockEntity.addIce(map, ForgeTagKeys.COLD_ITEMS, 10);
+        FreezerBlockEntity.addIce(map, Items.ICE, 20);
+        FreezerBlockEntity.addIce(map, Items.PACKED_ICE, 190);
+        FreezerBlockEntity.addIce(map, Items.BLUE_ICE, 1830);
+        FreezerBlockEntity.addIce(map, Items.SNOW_BLOCK, 15);
+        FreezerBlockEntity.addIce(map, Items.SNOW, 10);
+        FreezerBlockEntity.addIce(map, Items.POWDER_SNOW_BUCKET, 400);
+        FreezerBlockEntity.addIce(map, ForgeTagKeys.COLD_ITEMS, 3);
         return map;
     }
     private static void addIce(Map<Item, Integer> coolTimes, TagKey<Item> tag, int coolTime) {

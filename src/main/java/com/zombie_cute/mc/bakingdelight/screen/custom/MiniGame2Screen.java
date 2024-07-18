@@ -125,6 +125,137 @@ public class MiniGame2Screen extends Screen {
                 }
             }
         }
+        switch (type){
+            case 0 -> {
+                int type1 = 0;
+                int type1_a = 0;
+                int type2 = 0;
+                int type2_a = 0;
+                int type3 = 0;
+                int type3_a = 0;
+                int type4 = 0;
+                int type4_a = 0;
+                for (int i = 0;i < 4;i ++){
+                    for (int j = 0;j < 4;j++){
+                        Pos2 temp = stage0[i][j];
+                        Pos2 temp_a = answerStage0[i][j];
+                        if (temp.getX() == 0 && temp.getY() >=1 && temp.getY() <=2){
+                            type1++;
+                        }
+                        if (temp_a.getX() == 0 && temp_a.getY() >=1 && temp_a.getY() <=2){
+                            type1_a++;
+                        }
+                        if (temp.getX() == 0 && temp.getY() ==3){
+                            type4++;
+                        }
+                        if (temp_a.getX() == 0 && temp_a.getY() ==3){
+                            type4_a++;
+                        }
+                        if (temp.getX() == 1){
+                            type2++;
+                        }
+                        if (temp_a.getX() == 1){
+                            type2_a++;
+                        }
+                        if (temp.getX() == 2){
+                            type3++;
+                        }
+                        if (temp_a.getX() == 2){
+                            type3_a++;
+                        }
+                    }
+                }
+                if (type1 < type1_a || type2 < type2_a || type3 < type3_a || type4 < type4_a){
+                    randomStage(type);
+                }
+            }
+            case 1 -> {
+                int type1 = 0;
+                int type1_a = 0;
+                int type2 = 0;
+                int type2_a = 0;
+                int type3 = 0;
+                int type3_a = 0;
+                int type4 = 0;
+                int type4_a = 0;
+                for (int i = 0;i < 4;i ++){
+                    for (int j = 0;j < 8;j++){
+                        Pos2 temp = stage1[i][j];
+                        Pos2 temp_a = answerStage1[i][j];
+                        if (temp.getX() == 0 && temp.getY() >=1 && temp.getY() <=2){
+                            type1++;
+                        }
+                        if (temp_a.getX() == 0 && temp_a.getY() >=1 && temp_a.getY() <=2){
+                            type1_a++;
+                        }
+                        if (temp.getX() == 0 && temp.getY() ==3){
+                            type4++;
+                        }
+                        if (temp_a.getX() == 0 && temp_a.getY() ==3){
+                            type4_a++;
+                        }
+                        if (temp.getX() == 1){
+                            type2++;
+                        }
+                        if (temp_a.getX() == 1){
+                            type2_a++;
+                        }
+                        if (temp.getX() == 2){
+                            type3++;
+                        }
+                        if (temp_a.getX() == 2){
+                            type3_a++;
+                        }
+                    }
+                }
+                if (type1 < type1_a || type2 < type2_a || type3 < type3_a || type4 < type4_a){
+                    randomStage(type);
+                }
+            }
+            case 2 -> {
+                int type1 = 0;
+                int type1_a = 0;
+                int type2 = 0;
+                int type2_a = 0;
+                int type3 = 0;
+                int type3_a = 0;
+                int type4 = 0;
+                int type4_a = 0;
+                for (int i = 0;i < 8;i ++){
+                    for (int j = 0;j < 8;j++){
+                        Pos2 temp = stage2[i][j];
+                        Pos2 temp_a = answerStage2[i][j];
+                        if (temp.getX() == 0 && temp.getY() >=1 && temp.getY() <=2){
+                            type1++;
+                        }
+                        if (temp_a.getX() == 0 && temp_a.getY() >=1 && temp_a.getY() <=2){
+                            type1_a++;
+                        }
+                        if (temp.getX() == 0 && temp.getY() ==3){
+                            type4++;
+                        }
+                        if (temp_a.getX() == 0 && temp_a.getY() ==3){
+                            type4_a++;
+                        }
+                        if (temp.getX() == 1){
+                            type2++;
+                        }
+                        if (temp_a.getX() == 1){
+                            type2_a++;
+                        }
+                        if (temp.getX() == 2){
+                            type3++;
+                        }
+                        if (temp_a.getX() == 2){
+                            type3_a++;
+                        }
+                    }
+                }
+                if (type1 < type1_a || type2 < type2_a || type3 < type3_a || type4 < type4_a){
+                    randomStage(type);
+                }
+            }
+        }
     }
     private void reset(boolean reduceGoal){
         this.stage = (int)(Math.random() * 3);
@@ -1000,6 +1131,9 @@ public class MiniGame2Screen extends Screen {
     }
     @Override
     public void close() {
+        int[] array = new int[1];
+        array[0] = 4;
+        NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
         Objects.requireNonNull(client).setScreen(parent);
     }
 }

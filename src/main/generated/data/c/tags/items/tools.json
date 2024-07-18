@@ -2,6 +2,22 @@
   "replace": false,
   "values": [
     {
+      "id": "#bakingdelight:whisks",
+      "required": false
+    },
+    {
+      "id": "#bakingdelight:spatulas",
+      "required": false
+    },
+    {
+      "id": "#bakingdelight:kneading_sticks",
+      "required": false
+    },
+    {
+      "id": "#bakingdelight:crowbars",
+      "required": false
+    },
+    {
       "id": "#c:tools/knives",
       "required": false
     },

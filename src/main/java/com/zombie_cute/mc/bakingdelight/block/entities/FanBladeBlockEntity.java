@@ -10,7 +10,6 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.util.RenderUtils;
 
 import java.util.Objects;
 
@@ -21,7 +20,7 @@ public class FanBladeBlockEntity extends BlockEntity implements GeoBlockEntity {
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     private static final RawAnimation IDLE_FAST = RawAnimation.begin().thenPlay("start").thenLoop("idle_fast");
 
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, state -> {
@@ -39,8 +38,4 @@ public class FanBladeBlockEntity extends BlockEntity implements GeoBlockEntity {
         return cache;
     }
 
-    @Override
-    public double getTick(Object blockEntity) {
-        return RenderUtils.getCurrentTick();
-    }
 }

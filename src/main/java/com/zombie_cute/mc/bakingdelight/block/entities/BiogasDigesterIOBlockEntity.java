@@ -38,33 +38,20 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
                 return switch (index) {
                     case 0 -> BiogasDigesterIOBlockEntity.this.progress;
                     case 1 -> BiogasDigesterIOBlockEntity.this.maxProgress;
-                    case 2 -> BiogasDigesterIOBlockEntity.this.gasValue;
+                    case 2 -> BiogasDigesterIOBlockEntity.this.shortGasValue;
                     case 3 -> BiogasDigesterIOBlockEntity.this.checked;
+                    case 4 -> BiogasDigesterIOBlockEntity.this.isSplit;
                     default -> 0;
                 };
             }
 
             @Override
             public void set(int index, int value) {
-                switch (index){
-                    case 0 :{
-                        BiogasDigesterIOBlockEntity.this.progress = value;break;
-                    }
-                    case 1 :{
-                        BiogasDigesterIOBlockEntity.this.maxProgress = value;break;
-                    }
-                    case 2 :{
-                        BiogasDigesterIOBlockEntity.this.gasValue = value;break;
-                    }
-                    case 3 :{
-                        BiogasDigesterIOBlockEntity.this.checked = value;break;
-                    }
-                }
             }
 
             @Override
             public int size() {
-                return 4;
+                return 5;
             }
         };
     }
@@ -74,6 +61,8 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
     private int gasValue = 0;
     private int checked = 0;
     private int counter = 0;
+    private int shortGasValue = 0;
+    private int isSplit = 0;
     protected final PropertyDelegate propertyDelegate;
     @Override
     public DefaultedList<ItemStack> getItems() {
@@ -149,6 +138,13 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
                 blockEntity.checked = 1;
                 blockEntity.gasValue = entity.getGasValue();
                 blockEntity.maxProgress = entity.getCurrentSize();
+                if (gasValue > Short.MAX_VALUE){
+                    shortGasValue = gasValue/19;
+                    isSplit = 1;
+                } else {
+                    shortGasValue = gasValue;
+                    isSplit = 0;
+                }
                 if (!blockEntity.isCrafting){
                     for (int i = 0;i<9;i++){
                         Item item = this.getStack(i).getItem().asItem();

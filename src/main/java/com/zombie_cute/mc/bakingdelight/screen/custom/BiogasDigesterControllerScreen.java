@@ -39,32 +39,10 @@ public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigester
 
         context.drawText(textRenderer,String.valueOf(handler.getSize()),x+70,y+22,0xffffff,true);
         context.drawText(textRenderer,String.valueOf(handler.getGasValue()),x+70,y+38,0x00ff00,true);
-        context.drawText(textRenderer,String.valueOf(handler.getMaxGasValue()),x+70,y+54,0xff0000,true);
+        context.drawText(textRenderer,String.valueOf(handler.getSize() * 1000),x+70,y+54,0xff0000,true);
         if (handler.getChecked()==1){
             context.drawTexture(TEXTURE,x+9,y+58,176,0,25,12);
         }
-//        else {
-//            if (mouseX >= x + 9 && mouseX <= x + 33 && mouseY >= y + 58 && mouseY <= y + 69) {
-//                context.drawText(textRenderer,
-//                        Text.translatable(UNAVAILABLE),
-//                        mouseX + 6, mouseY +9,0x363636,true);
-//            }
-//        }
-//        if (mouseX >= x + 52 && mouseX <= x + 66 && mouseY >= y + 19 && mouseY <= y + 33) {
-//            context.drawText(textRenderer,
-//                    Text.translatable(SIZE),
-//                    mouseX, mouseY,0x363636,true);
-//        }
-//        if (mouseX >= x + 52 && mouseX <= x + 66 && mouseY >= y + 35 && mouseY <= y + 49) {
-//            context.drawText(textRenderer,
-//                    Text.translatable(GAS_VALUE),
-//                    mouseX, mouseY,0x363636,true);
-//        }
-//        if (mouseX >= x + 52 && mouseX <= x + 66 && mouseY >= y + 51 && mouseY <= y + 65) {
-//            context.drawText(textRenderer,
-//                    Text.translatable(MAX_GAS_VALUE),
-//                    mouseX, mouseY,0x363636,true);
-//        }
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,194,13,11,11);
         }
