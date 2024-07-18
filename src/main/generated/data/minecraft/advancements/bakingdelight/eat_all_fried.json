@@ -41,11 +41,85 @@
       },
       "trigger": "minecraft:consume_item"
     },
+    "deep_fried_bun": {
+      "conditions": {
+        "item": {
+          "items": [
+            "bakingdelight:deep_fried_bun"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "deep_fried_potato_chips": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:deep_fried_potato_chips"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "deep_fried_shrimp_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:deep_fried_shrimp_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "dough_stick": {
       "conditions": {
         "item": {
           "items": [
             "bakingdelight:fried_dough_stick"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "french_fries": {
+      "conditions": {
+        "item": {
+          "items": [
+            "bakingdelight:french_fries"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "fried_brown_mushroom": {
+      "conditions": {
+        "item": {
+          "items": [
+            "bakingdelight:fried_brown_mushroom"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "fried_chicken": {
+      "conditions": {
+        "item": {
+          "items": [
+            "bakingdelight:fried_chicken"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "fried_red_mushroom": {
+      "conditions": {
+        "item": {
+          "items": [
+            "bakingdelight:fried_red_mushroom"
           ]
         }
       },
@@ -86,6 +160,16 @@
         "item": {
           "items": [
             "bakingdelight:fried_salmon"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "seaweed_fried_shrimp_cake": {
+      "conditions": {
+        "item": {
+          "items": [
+            "bakingdelight:seaweed_fried_shrimp_cake"
           ]
         }
       },
@@ -134,10 +218,34 @@
     ],
     [
       "chicken_fillet"
+    ],
+    [
+      "fried_red_mushroom"
+    ],
+    [
+      "fried_brown_mushroom"
+    ],
+    [
+      "deep_fried_shrimp_cake"
+    ],
+    [
+      "deep_fried_potato_chips"
+    ],
+    [
+      "french_fries"
+    ],
+    [
+      "deep_fried_bun"
+    ],
+    [
+      "fried_chicken"
+    ],
+    [
+      "seaweed_fried_shrimp_cake"
     ]
   ],
   "rewards": {
-    "experience": 550
+    "experience": 800
   },
   "sends_telemetry_event": true
 }

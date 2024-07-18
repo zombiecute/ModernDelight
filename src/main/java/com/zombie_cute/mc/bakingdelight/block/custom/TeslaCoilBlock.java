@@ -2,16 +2,20 @@ package com.zombie_cute.mc.bakingdelight.block.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.TeslaCoilBlockEntity;
+import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
@@ -19,8 +23,10 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -54,7 +60,21 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(WATERLOGGED,false).with(FACING,Direction.DOWN).with(SHOW_PARTICLE,false).with(IS_OVERLOADED,true));
     }
-
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.TESLA_COIL_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.TESLA_COIL_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.TESLA_COIL_3).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.TESLA_COIL_4).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.TESLA_COIL_5).formatted(Formatting.GOLD));
+        } else {
+            tooltip.add(ModUtil.getShiftText(false));
+        }
+        super.appendTooltip(stack, world, tooltip, options);
+    }
     @Override
     public FluidState getFluidState(BlockState state) {
         return Boolean.TRUE.equals(state.get(WATERLOGGED)) ? Fluids.WATER.getStill(false) : super.getFluidState(state);

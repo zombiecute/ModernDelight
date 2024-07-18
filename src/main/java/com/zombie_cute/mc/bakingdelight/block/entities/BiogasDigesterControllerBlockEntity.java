@@ -29,6 +29,8 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
     private int size = 0;
     private int gasValue = 0;
     private int maxGasValue = 0;
+    private int shortGasValue = 0;
+    private int isSplit = 0;
     public BiogasDigesterControllerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BIOGAS_DIGESTER_CONTROLLER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -37,32 +39,14 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
                 return switch (index){
                     case 0 -> BiogasDigesterControllerBlockEntity.this.checked;
                     case 1 -> BiogasDigesterControllerBlockEntity.this.size;
-                    case 2 -> BiogasDigesterControllerBlockEntity.this.gasValue;
-                    case 3 -> BiogasDigesterControllerBlockEntity.this.maxGasValue;
+                    case 2 -> BiogasDigesterControllerBlockEntity.this.shortGasValue;
+                    case 3 -> BiogasDigesterControllerBlockEntity.this.isSplit;
                     default -> 0;
                 };
             }
 
             @Override
             public void set(int index, int value) {
-                switch (index){
-                    case 0: {
-                        BiogasDigesterControllerBlockEntity.this.checked = value;
-                        break;
-                    }
-                    case 1: {
-                        BiogasDigesterControllerBlockEntity.this.size = value;
-                        break;
-                    }
-                    case 2: {
-                        BiogasDigesterControllerBlockEntity.this.gasValue = value;
-                        break;
-                    }
-                    case 3: {
-                        BiogasDigesterControllerBlockEntity.this.maxGasValue = value;
-                        break;
-                    }
-                }
             }
 
             @Override
@@ -143,6 +127,13 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
         } else {
             maxGasValue = 0;
             markDirty();
+        }
+        if (gasValue >= Short.MAX_VALUE){
+            shortGasValue = gasValue/19;
+            isSplit = 1;
+        } else {
+            shortGasValue = gasValue;
+            isSplit = 0;
         }
         if (gasValue > maxGasValue){
             if (time == 1){

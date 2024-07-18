@@ -43,4 +43,5 @@ public class Pos2 {
     public boolean equals(int x, int y) {
         return x == this.x && y == this.y;
     }
+
 }

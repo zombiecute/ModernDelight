@@ -60,8 +60,8 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
             @Override
             public int get(int index) {
                 return switch (index){
-                    case 0 -> WoodenBasinBlockEntity.this.fluidLevel;
-                    case 1 -> WoodenBasinBlockEntity.this.maxFluidLevel;
+                    case 0 -> WoodenBasinBlockEntity.this.fluidLevel * 1000 / 81000;
+                    case 1 -> WoodenBasinBlockEntity.this.maxFluidLevel * 1000 / 81000;
                     default -> 0;
                 };
             }

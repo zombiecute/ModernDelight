@@ -5,10 +5,12 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.custom.DeepFryerBlock;
 import com.zombie_cute.mc.bakingdelight.block.custom.GasCanisterBlock;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ImplementedInventory;
+import com.zombie_cute.mc.bakingdelight.item.custom.ModStewItem;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.DeepFryingRecipe;
 import com.zombie_cute.mc.bakingdelight.screen.custom.DeepFryerScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
+import com.zombie_cute.mc.bakingdelight.util.ModDamageTypes;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -210,10 +212,10 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
     }
     private void spawnItemAndTryDamage(World world, PlayerEntity player, BlockState state){
         if (isHeated(state)){
-            player.damage(world.getDamageSources().onFire(),1.5f);
+            player.damage(ModDamageTypes.of(world,ModDamageTypes.SCALDED),2.0f);
             player.sendMessage(Text.translatable(TOO_HOT),true);
         } else if (state.get(DeepFryerBlock.HAS_OIL)) {
-            player.damage(world.getDamageSources().onFire(),1.0f);
+            player.damage(ModDamageTypes.of(world,ModDamageTypes.SCALDED),1.0f);
             player.sendMessage(Text.translatable(TOO_HOT),true);
         }
         spawnItem(world);
@@ -319,7 +321,7 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
                 if (hasRecipe(0)){
                     blockEntity.progress1++;
                     if (blockEntity.progress1 == maxProgress){
-                        craft(0);
+                        craft(0, world);
                         decreaseOilLevel(world,state);
                         blockEntity.progress1 = 0;
                         playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
@@ -331,7 +333,7 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
                 if (hasRecipe(1)){
                     blockEntity.progress2++;
                     if (blockEntity.progress2 == maxProgress){
-                        craft(1);
+                        craft(1, world);
                         decreaseOilLevel(world,state);
                         blockEntity.progress2 = 0;
                         playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
@@ -343,7 +345,7 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
                 if (hasRecipe(2)){
                     blockEntity.progress3++;
                     if (blockEntity.progress3 == maxProgress){
-                        craft(2);
+                        craft(2, world);
                         decreaseOilLevel(world,state);
                         blockEntity.progress3 = 0;
                         playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
@@ -355,7 +357,7 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
                 if (hasRecipe(3)) {
                     blockEntity.progress4++;
                     if (blockEntity.progress4 == maxProgress) {
-                        craft(3);
+                        craft(3, world);
                         decreaseOilLevel(world, state);
                         blockEntity.progress4 = 0;
                         playSound(ModSounds.BLOCK_FOOD_FRYING, 1.0f, 2.0f);
@@ -400,11 +402,14 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
             oilLevel = 0;
         }
     }
-    private void craft(int slot){
+    private void craft(int slot, World world){
         SimpleInventory inventory = new SimpleInventory(1);
         inventory.setStack(0,this.getStack(slot));
         Optional<DeepFryingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
                 .getFirstMatch(DeepFryingRecipe.Type.INSTANCE, inventory,this.getWorld());
+        if (this.getStack(slot).getItem() instanceof ModStewItem){
+            ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.BOWL));
+        }
         this.setStack(slot, new ItemStack(match.get().getOutput(null).getItem(),
                 match.get().getOutput(null).getCount()));
     }

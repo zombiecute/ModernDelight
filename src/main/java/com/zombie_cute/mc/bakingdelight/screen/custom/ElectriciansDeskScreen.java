@@ -76,16 +76,20 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
     }
     private void renderButton(DrawContext context, int x, int y, int mouseX, int mouseY) {
         boolean b = mouseX >= x + 112 && mouseY >= y + 24 && mouseX <= x + 131 && mouseY <= y + 43;
-        if (handler.canCraft()){
-            context.drawTexture(TEXTURE, x + 112, y + 24, 176, 0, 20 ,20);
-            if (b){
-                context.drawTexture(TEXTURE,x + 112,y + 24, 196, 0, 20, 20);
-            }
+        if (handler.isOccupied()){
+            context.drawTexture(TEXTURE, x + 112, y + 24, 176, 40, 20,20);
         } else {
-            if (this.hasPaperAndInk() && this.hasRecipe() && handler.blockEntity.getStack(8).isEmpty()){
-                context.drawTexture(TEXTURE,x + 112,y + 24, 176, 20, 20, 20);
+            if (handler.canCraft()){
+                context.drawTexture(TEXTURE, x + 112, y + 24, 176, 0, 20 ,20);
                 if (b){
-                    context.drawTexture(TEXTURE,x + 112,y + 24, 196, 20, 20, 20);
+                    context.drawTexture(TEXTURE,x + 112,y + 24, 196, 0, 20, 20);
+                }
+            } else {
+                if (this.hasPaperAndInk() && this.hasRecipe() && handler.blockEntity.getStack(8).isEmpty()){
+                    context.drawTexture(TEXTURE,x + 112,y + 24, 176, 20, 20, 20);
+                    if (b){
+                        context.drawTexture(TEXTURE,x + 112,y + 24, 196, 20, 20, 20);
+                    }
                 }
             }
         }
@@ -93,7 +97,8 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
     private boolean hasPaperAndInk(){
         return handler.blockEntity.getStack(6).getItem().equals(Items.PAPER) &&
                 (handler.blockEntity.getStack(7).getItem().equals(Items.INK_SAC) ||
-                        handler.blockEntity.getStack(7).getItem().equals(Items.GLOW_INK_SAC));
+                        handler.blockEntity.getStack(7).getItem().equals(Items.GLOW_INK_SAC) ||
+                        handler.blockEntity.getStack(7).getItem().equals(Items.BLACK_DYE));
     }
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
@@ -110,7 +115,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
                         .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
             } else {
-                if (this.hasRecipe() && this.hasPaperAndInk() && handler.blockEntity.getStack(8).isEmpty()){
+                if (this.hasRecipe() && this.hasPaperAndInk() && handler.blockEntity.getStack(8).isEmpty() && !handler.isOccupied()){
                     MinecraftClient.getInstance().getSoundManager()
                             .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                     Screen currentScreen = MinecraftClient.getInstance().currentScreen;

@@ -23,7 +23,7 @@ public class BiogasDigesterIOScreenHandler extends ScreenHandler {
     public final BiogasDigesterIOBlockEntity blockEntity;
     public BiogasDigesterIOScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(4));
+                new ArrayPropertyDelegate(5));
     }
     public BiogasDigesterIOScreenHandler(int syncId, PlayerInventory playerInventory,
                                          BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate){
@@ -58,7 +58,11 @@ public class BiogasDigesterIOScreenHandler extends ScreenHandler {
     }
     @Environment(EnvType.CLIENT)
     public int getGasValue(){
-        return this.propertyDelegate.get(2);
+        int gasValue = this.propertyDelegate.get(2);
+        if (this.propertyDelegate.get(4) != 0){
+            gasValue = gasValue * 19;
+        }
+        return gasValue;
     }
     @Environment(EnvType.CLIENT)
     public boolean isChecked(){

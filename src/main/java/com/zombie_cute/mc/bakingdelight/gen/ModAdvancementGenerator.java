@@ -10,6 +10,7 @@ import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.ConsumeItemCriterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -44,8 +45,6 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
     public static final String GET_POTATO_STARCH_DESC = "advancement.bakingdelight.get_potato_starch_desc";
     public static final String GET_FREEZER_TITLE = "advancement.bakingdelight.get_freezer_title";
     public static final String GET_FREEZER_DESC = "advancement.bakingdelight.get_freezer_desc";
-    public static final String GET_BLUE_ICE_TITLE = "advancement.bakingdelight.get_blue_ice_title";
-    public static final String GET_BLUE_ICE_DESC = "advancement.bakingdelight.get_blue_ice_desc";
     public static final String GET_OVEN_TITLE = "advancement.bakingdelight.get_oven_title";
     public static final String GET_OVEN_DESC = "advancement.bakingdelight.get_oven_desc";
     public static final String GET_EGG_TART_TITLE = "advancement.bakingdelight.get_egg_tart_title";
@@ -235,7 +234,47 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 )
                 .criterion("potato_starch", InventoryChangedCriterion.Conditions.items(ModItems.POTATO_STARCH))
                 .build(consumer, Bakingdelight.MOD_ID + "/got_potato_starch");
-        Advancement getFreezer = Advancement.Builder.create().parent(getStart)
+        Advancement getElectriciansDesk = Advancement.Builder.create().parent(getStart)
+                .display(
+                        ModBlocks.ELECTRICIANS_DESK,
+                        Text.translatable("advancement.bakingdelight.electricians_desk.title"),
+                        Text.translatable("advancement.bakingdelight.electricians_desk.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("electricians_desk", InventoryChangedCriterion.Conditions.items(ModBlocks.ELECTRICIANS_DESK))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_electricians_desk");
+        Advancement getTeslaCoil = Advancement.Builder.create().parent(getElectriciansDesk)
+                .display(
+                        ModBlocks.TESLA_COIL,
+                        Text.translatable("advancement.bakingdelight.tesla_coil.title"),
+                        Text.translatable("advancement.bakingdelight.tesla_coil.desc"),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true,
+                        false,
+                        false
+                )
+                .criterion("tesla_coil", InventoryChangedCriterion.Conditions.items(ModBlocks.TESLA_COIL))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_tesla_coil");
+        Advancement getWind = Advancement.Builder.create().parent(getTeslaCoil)
+                .display(
+                        ModBlocks.FAN_BLADE,
+                        Text.translatable("advancement.bakingdelight.wind.title"),
+                        Text.translatable("advancement.bakingdelight.wind.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("wind_turbine_controller", InventoryChangedCriterion.Conditions.items(ModBlocks.WIND_TURBINE_CONTROLLER))
+                .criterion("fan_blade", InventoryChangedCriterion.Conditions.items(ModBlocks.FAN_BLADE))
+                .build(consumer, Bakingdelight.MOD_ID + "/wind");
+        Advancement getFreezer = Advancement.Builder.create().parent(getWind)
                 .display(
                         ModBlocks.FREEZER,
                         Text.translatable(GET_FREEZER_TITLE),
@@ -248,19 +287,6 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 )
                 .criterion("freezer", InventoryChangedCriterion.Conditions.items(ModBlocks.FREEZER))
                 .build(consumer, Bakingdelight.MOD_ID + "/got_freezer");
-        Advancement getBlueIce = Advancement.Builder.create().parent(getFreezer)
-                .display(
-                        Items.BLUE_ICE,
-                        Text.translatable(GET_BLUE_ICE_TITLE),
-                        Text.translatable(GET_BLUE_ICE_DESC),
-                        null,
-                        AdvancementFrame.GOAL,
-                        true,
-                        true,
-                        false
-                )
-                .criterion("blue_ice", InventoryChangedCriterion.Conditions.items(Items.BLUE_ICE))
-                .build(consumer, Bakingdelight.MOD_ID + "/got_blue_ice");
         Advancement getAdvanceFurnace = Advancement.Builder.create().parent(getStart)
                 .display(
                         ModBlocks.ADVANCE_FURNACE,
@@ -391,6 +417,8 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 )
                 .criterion("apple_pudding", InventoryChangedCriterion.Conditions.items(ModItems.APPLE_PUDDING))
                 .criterion("matcha_pudding", InventoryChangedCriterion.Conditions.items(ModItems.MATCHA_PUDDING))
+                .criterion("caramel_pudding", InventoryChangedCriterion.Conditions.items(ModItems.CARAMEL_PUDDING))
+                .criterion("cherry_pudding", InventoryChangedCriterion.Conditions.items(ModItems.CHERRY_PUDDING))
                 .build(consumer, Bakingdelight.MOD_ID + "/got_all_pudding");
         Advancement getMousseWIP = Advancement.Builder.create().parent(getFreezer)
                 .display(
@@ -632,7 +660,7 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                         true,
                         false
                 )
-                .rewards(AdvancementRewards.Builder.experience(550))
+                .rewards(AdvancementRewards.Builder.experience(800))
                 .criterion("potato_chip", ConsumeItemCriterion.Conditions.item(ModItems.POTATO_CHIP))
                 .criterion("onion_ring", ConsumeItemCriterion.Conditions.item(ModItems.ONION_RING))
                 .criterion("salmon", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_SALMON))
@@ -642,6 +670,14 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 .criterion("apple", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_APPLE))
                 .criterion("cheese_ball", ConsumeItemCriterion.Conditions.item(ModItems.CHEESE_BALL))
                 .criterion("chicken_fillet", ConsumeItemCriterion.Conditions.item(ModItems.CHICKEN_FILLET))
+                .criterion("fried_red_mushroom", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_RED_MUSHROOM))
+                .criterion("fried_brown_mushroom", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_BROWN_MUSHROOM))
+                .criterion("deep_fried_shrimp_cake", InventoryChangedCriterion.Conditions.items(ModItems.DEEP_FRIED_SHRIMP_CAKE))
+                .criterion("deep_fried_potato_chips", InventoryChangedCriterion.Conditions.items(ModItems.DEEP_FRIED_POTATO_CHIPS))
+                .criterion("french_fries", ConsumeItemCriterion.Conditions.item(ModItems.FRENCH_FRIES))
+                .criterion("deep_fried_bun", ConsumeItemCriterion.Conditions.item(ModItems.DEEP_FRIED_BUN))
+                .criterion("fried_chicken", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_CHICKEN))
+                .criterion("seaweed_fried_shrimp_cake", ConsumeItemCriterion.Conditions.item(ModItems.SEAWEED_FRIED_SHRIMP_CAKE))
                 .build(consumer, Bakingdelight.MOD_ID + "/eat_all_fried");
         Advancement eatWitherCake = Advancement.Builder.create().parent(getStart)
                 .display(
@@ -696,5 +732,235 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 )
                 .criterion("cuisine_table", InventoryChangedCriterion.Conditions.items(ModBlocks.CUISINE_TABLE))
                 .build(consumer, Bakingdelight.MOD_ID + "/got_cuisine_table");
+        Advancement getBambooSteamer = Advancement.Builder.create().parent(getGasCookingStove)
+                .display(
+                        ModBlocks.BAMBOO_GRATE,
+                        Text.translatable("advancement.bakingdelight.bamboo_steamer.title"),
+                        Text.translatable("advancement.bakingdelight.bamboo_steamer.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("bamboo_grate", InventoryChangedCriterion.Conditions.items(ModBlocks.BAMBOO_GRATE))
+                .criterion("bamboo_cover", InventoryChangedCriterion.Conditions.items(ModBlocks.BAMBOO_COVER))
+                .criterion("cauldron", InventoryChangedCriterion.Conditions.items(Blocks.CAULDRON))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_bamboo_steamer");
+        Advancement getElectricSteamer = Advancement.Builder.create().parent(getBambooSteamer)
+                .display(
+                        ModBlocks.ELECTRIC_STEAMER,
+                        Text.translatable("advancement.bakingdelight.electric_steamer.title"),
+                        Text.translatable("advancement.bakingdelight.electric_steamer.desc"),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("electric_steamer", InventoryChangedCriterion.Conditions.items(ModBlocks.ELECTRIC_STEAMER))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_electric_steamer");
+        Advancement getSteamedBun = Advancement.Builder.create().parent(getBambooSteamer)
+                .display(
+                        ModItems.STEAMED_BUN,
+                        Text.translatable("advancement.bakingdelight.steamed_bun.title"),
+                        Text.translatable("advancement.bakingdelight.steamed_bun.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("steamed_bun", InventoryChangedCriterion.Conditions.items(ModItems.STEAMED_BUN))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_steamed_bun");
+        Advancement getSiliconIngot = Advancement.Builder.create().parent(getWind)
+                .display(
+                        ModItems.SILICON_INGOT,
+                        Text.translatable("advancement.bakingdelight.silicon_ingot.title"),
+                        Text.translatable("advancement.bakingdelight.silicon_ingot.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        false,
+                        false
+                )
+                .criterion("silicon_ingot", InventoryChangedCriterion.Conditions.items(ModItems.SILICON_INGOT))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_silicon_ingot");
+        Advancement getACDCC = Advancement.Builder.create().parent(getSiliconIngot)
+                .display(
+                        ModBlocks.AC_DC_CONVERTER,
+                        Text.translatable("advancement.bakingdelight.acdcc.title"),
+                        Text.translatable("advancement.bakingdelight.acdcc.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("acdcc", InventoryChangedCriterion.Conditions.items(ModBlocks.AC_DC_CONVERTER))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_acdcc");
+        Advancement getBattery1 = Advancement.Builder.create().parent(getACDCC)
+                .display(
+                        ModBlocks.SIMPLE_BATTERY,
+                        Text.translatable("advancement.bakingdelight.battery1.title"),
+                        Text.translatable("advancement.bakingdelight.battery1.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        false,
+                        false
+                )
+                .criterion("battery1", InventoryChangedCriterion.Conditions.items(ModBlocks.SIMPLE_BATTERY))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_battery1");
+        Advancement thermalPowerGeneration = Advancement.Builder.create().parent(getSiliconIngot)
+                .display(
+                        ModBlocks.STERLING_ENGINE,
+                        Text.translatable("advancement.bakingdelight.thermal_power_generation.title"),
+                        Text.translatable("advancement.bakingdelight.thermal_power_generation.desc"),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("sterling_engine", InventoryChangedCriterion.Conditions.items(ModBlocks.STERLING_ENGINE))
+                .criterion("faraday_generator", InventoryChangedCriterion.Conditions.items(ModBlocks.FARADAY_GENERATOR))
+                .build(consumer, Bakingdelight.MOD_ID + "/thermal_power_generation");
+        Advancement getBattery2 = Advancement.Builder.create().parent(getBattery1)
+                .display(
+                        ModBlocks.INTERMEDIATE_BATTERY,
+                        Text.translatable("advancement.bakingdelight.battery2.title"),
+                        Text.translatable("advancement.bakingdelight.battery2.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        false,
+                        false
+                )
+                .criterion("battery2", InventoryChangedCriterion.Conditions.items(ModBlocks.INTERMEDIATE_BATTERY))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_battery2");
+        Advancement getBattery3 = Advancement.Builder.create().parent(getBattery2)
+                .display(
+                        ModBlocks.ADVANCE_BATTERY,
+                        Text.translatable("advancement.bakingdelight.battery3.title"),
+                        Text.translatable("advancement.bakingdelight.battery3.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        false,
+                        false
+                )
+                .criterion("battery3", InventoryChangedCriterion.Conditions.items(ModBlocks.ADVANCE_BATTERY))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_battery3");
+        Advancement getBattery4 = Advancement.Builder.create().parent(getBattery3)
+                .display(
+                        ModBlocks.ADVANCE_BATTERY,
+                        Text.translatable("advancement.bakingdelight.battery4.title"),
+                        Text.translatable("advancement.bakingdelight.battery4.desc"),
+                        null,
+                        AdvancementFrame.CHALLENGE,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("battery4", InventoryChangedCriterion.Conditions.items(ModBlocks.DIMENSION_BATTERY))
+                .rewards(AdvancementRewards.Builder.experience(1500))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_battery4");
+        Advancement getPG = Advancement.Builder.create().parent(getBattery3)
+                .display(
+                        ModBlocks.PHOTOVOLTAIC_GENERATOR,
+                        Text.translatable("advancement.bakingdelight.pg.title"),
+                        Text.translatable("advancement.bakingdelight.pg.desc"),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("pg", InventoryChangedCriterion.Conditions.items(ModBlocks.PHOTOVOLTAIC_GENERATOR))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_pg");
+        Advancement getIceCreamMaker = Advancement.Builder.create().parent(getFreezer)
+                .display(
+                        ModBlocks.ICE_CREAM_MAKER,
+                        Text.translatable("advancement.bakingdelight.ice_cream_maker.title"),
+                        Text.translatable("advancement.bakingdelight.ice_cream_maker.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("ice_cream_maker", InventoryChangedCriterion.Conditions.items(ModBlocks.ICE_CREAM_MAKER))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_ice_cream_maker");
+        Advancement getIceCream = Advancement.Builder.create().parent(getIceCreamMaker)
+                .display(
+                        ModItems.ICE_CREAM,
+                        Text.translatable("advancement.bakingdelight.ice_cream.title"),
+                        Text.translatable("advancement.bakingdelight.ice_cream.desc"),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("ice_cream", InventoryChangedCriterion.Conditions.items(ModItems.ICE_CREAM))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_ice_cream");
+        Advancement getGarlic = Advancement.Builder.create().parent(getStart)
+                .display(
+                        ModItems.GARLIC,
+                        Text.translatable("advancement.bakingdelight.garlic.title"),
+                        Text.translatable("advancement.bakingdelight.garlic.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        false,
+                        false
+                )
+                .criterion("garlic", InventoryChangedCriterion.Conditions.items(ModItems.GARLIC))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_garlic");
+        Advancement getKebabs = Advancement.Builder.create().parent(getCuttlebone)
+                .display(
+                        ModItems.SQUID_TENTACLE_KEBABS,
+                        Text.translatable("advancement.bakingdelight.kebabs.title"),
+                        Text.translatable("advancement.bakingdelight.kebabs.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("glow_kebabs", InventoryChangedCriterion.Conditions.items(ModItems.GLOW_SQUID_TENTACLE_KEBABS))
+                .criterion("kebabs", InventoryChangedCriterion.Conditions.items(ModItems.SQUID_TENTACLE_KEBABS))
+                .requirements(new String[][]{new String[]{"glow_kebabs","kebabs"}})
+                .build(consumer, Bakingdelight.MOD_ID + "/got_kebabs");
+        Advancement getFishAndChips = Advancement.Builder.create().parent(getDeepFryer)
+                .display(
+                        ModBlocks.FISH_AND_CHIPS_ITEM,
+                        Text.translatable("advancement.bakingdelight.fish_and_chips.title"),
+                        Text.translatable("advancement.bakingdelight.fish_and_chips.desc"),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("fish_and_chips", InventoryChangedCriterion.Conditions.items(ModBlocks.FISH_AND_CHIPS_ITEM))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_fish_and_chips");
+        Advancement getAllIceLolly = Advancement.Builder.create().parent(getFreezer)
+                .display(
+                        ModItems.ICE_LOLLY,
+                        Text.translatable("advancement.bakingdelight.all_ice_lolly.title"),
+                        Text.translatable("advancement.bakingdelight.all_ice_lolly.desc"),
+                        null,
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("ice_lolly", InventoryChangedCriterion.Conditions.items(ModItems.ICE_LOLLY))
+                .criterion("cherry_ice_lolly", InventoryChangedCriterion.Conditions.items(ModItems.CHERRY_ICE_LOLLY))
+                .criterion("matcha_ice_lolly", InventoryChangedCriterion.Conditions.items(ModItems.MATCHA_ICE_LOLLY))
+                .criterion("wither_ice_lolly", InventoryChangedCriterion.Conditions.items(ModItems.WITHER_ICE_LOLLY))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_all_ice_lolly");
     }
 }

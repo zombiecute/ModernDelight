@@ -3,6 +3,8 @@ package com.zombie_cute.mc.bakingdelight.gen;
 import com.zombie_cute.mc.bakingdelight.BakingdelightClient;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.custom.BoxedCherriesBlock;
+import com.zombie_cute.mc.bakingdelight.block.custom.CaramelPuddingBlock;
+import com.zombie_cute.mc.bakingdelight.block.custom.CuisineTableBlock;
 import com.zombie_cute.mc.bakingdelight.block.custom.FreezerBlock;
 import com.zombie_cute.mc.bakingdelight.block.custom.abstracts.AbstractBatteryBlock;
 import com.zombie_cute.mc.bakingdelight.block.entities.*;
@@ -17,6 +19,7 @@ import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
+import com.zombie_cute.mc.bakingdelight.util.Flavor;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -29,7 +32,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
         translationBuilder.add(ModUtil.SHIFT_FRONT, "Hold ");
-        translationBuilder.add(ModUtil.SHIFT_END, " to view summary");
+        translationBuilder.add(ModUtil.SHIFT_END, " for summary");
         translationBuilder.add(ModUtil.WHISK_1, "A whisk that can be used to mix ingredients,");
         translationBuilder.add(ModUtil.WHISK_2, "or... whisk the brains of monsters?");
         translationBuilder.add(ModUtil.BUTTER_1, "Sticky texture...Maybe it's used ");
@@ -47,22 +50,76 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModUtil.BDI_2, "underneath it, at which point you just need to fill it with any food");
         translationBuilder.add(ModUtil.BDI_3, "to start fermenting it to produce biogas. If a gas canister attached to");
         translationBuilder.add(ModUtil.BDI_4, "the side of it, it will allow you to fill the gas canister with biogas.");
-        translationBuilder.add(ModUtil.GAS_COOKING_STOVE_1, "When it is flanked by a gas canister containing gas, right-click to activate it,");
-        translationBuilder.add(ModUtil.GAS_COOKING_STOVE_2, "and when activated, it can heat up the block above it, including baking tray,");
-        translationBuilder.add(ModUtil.GAS_COOKING_STOVE_3, "oven, and advance furnace, all of which are compatible.");
+        translationBuilder.add(ModUtil.GAS_COOKING_STOVE_1, "When it is flanked by a gas canister containing gas, right-click to");
+        translationBuilder.add(ModUtil.GAS_COOKING_STOVE_2, "activate it, and when activated, it can heat up the block above it, including");
+        translationBuilder.add(ModUtil.GAS_COOKING_STOVE_3, "baking tray, oven, and advance furnace, all of which are compatible.");
         translationBuilder.add(ModUtil.CROWBAR, "The Holy Sword of Physics");
         translationBuilder.add(ModUtil.PIZZA_INGREDIENTS, "Ingredients: ");
         translationBuilder.add(ModUtil.BAKING_TRAY_1, "A small, easy-to-use iron plate that can be used for upgrading an Advanced Furnace");
         translationBuilder.add(ModUtil.BAKING_TRAY_2, "or for stir-frying: with a Gas Cooking Stove underneath it to heat it up, ");
         translationBuilder.add(ModUtil.BAKING_TRAY_3, "place the food on top of it and use a spatula to stir-fry it five times to cook the food.");
-        translationBuilder.add(ModUtil.DEEP_FRYER_1, "A deep fryer can be used to deep fry a variety of foods. Pour in cooking oil and it will start to consume the gas and heat up,");
-        translationBuilder.add(ModUtil.DEEP_FRYER_2, "place a Gas Canister at the back of the fryer, then press the button on the front of the fryer,");
-        translationBuilder.add(ModUtil.DEEP_FRYER_3, "then add the food to it to start frying, hold down Shift and right-click on the fryer to check its detailed status.");
+        translationBuilder.add(ModUtil.DEEP_FRYER_1, "A deep fryer can be used to deep fry a variety of foods. Pour in cooking oil and");
+        translationBuilder.add(ModUtil.DEEP_FRYER_2, "it will start to consume the gas and heat up, place a Gas Canister at the back of the fryer,");
+        translationBuilder.add(ModUtil.DEEP_FRYER_3, "then press the button on the front of the fryer, then add the food to it to start");
+        translationBuilder.add(ModUtil.DEEP_FRYER_4, "frying, hold down Shift and right-click on the fryer to check its detailed status.");
         translationBuilder.add(ModUtil.WOODEN_BASIN_1, "A Wooden Basin that can be used to extract vegetable oil, put in an oil crop");
-        translationBuilder.add(ModUtil.WOODEN_BASIN_2, "(e.g. stir-fried sunflower seeds) and a filter, then stand on it and jump to extract the oil,");
-        translationBuilder.add(ModUtil.WOODEN_BASIN_3, "you can use a glass bottle or a bucket to take out the oil.");
+        translationBuilder.add(ModUtil.WOODEN_BASIN_2, "(e.g. stir-fried sunflower seeds) and a filter, then stand on it and jump to");
+        translationBuilder.add(ModUtil.WOODEN_BASIN_3, "extract the oil, you can use a glass bottle or a bucket to take out the oil.");
         translationBuilder.add(ModUtil.DFB, "For safe and harmless removal of the contents of the Deep Fryer");
-
+        translationBuilder.add(ModUtil.ALT_END, " for electricity usage");
+        translationBuilder.add(ModUtil.ACDCC_1, "A device that converts DC and AC power freely, in the \"AC->DC\" mode, converts");
+        translationBuilder.add(ModUtil.ACDCC_2, "AC to DC and caches when connected to any AC power generator, batteries can be plugged in");
+        translationBuilder.add(ModUtil.ACDCC_3, "and charged, in the \"DC->AC\" mode, it can convert cached DC power or DC power from internal");
+        translationBuilder.add(ModUtil.ACDCC_4, "battery into AC power and output it, its efficiency can be adjusted in the GUI.");
+        translationBuilder.add(ModUtil.ALT_ACGen, "[AC power generation]");
+        translationBuilder.add(ModUtil.ALT_ACCom, "[AC power consumption]");
+        translationBuilder.add(ModUtil.ALT_DCSto, "[Maximum DC storage]");
+        translationBuilder.add(ModUtil.ALT_DCGen, "[DC power generation]");
+        translationBuilder.add(ModUtil.ALT_DCCom, "[DC power consumption]");
+        translationBuilder.add(ModUtil.BAMBOO_STEAMER_1, "A simple bamboo steamer, requires a cover, basket drawers, and a gas cooking stove heated");
+        translationBuilder.add(ModUtil.BAMBOO_STEAMER_2, "cauldron filled with water, add the ingredients and it will start the process, a Steamer");
+        translationBuilder.add(ModUtil.BAMBOO_STEAMER_3, "can be stacked 3 blocks high, each block can hold 4 layers.");
+        translationBuilder.add(ModUtil.CUISINE_TABLE_1, "The cuisine table allows you to deepen the ingredients and use it");
+        translationBuilder.add(ModUtil.CUISINE_TABLE_2, "with a tool that breaks down the ingredients into more parts.");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_1, "The electrician's desk allows you to synthesize and process some complex circuit components or");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_2, "appliances, after placing the material correctly into the desk, click on the output button that");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_3, "appears in the GUI to start the synthesis. There are 3 different types of mini-games:");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_4, "1. 2048 (by pressing WASD to synthesize the specified number); 2. Splicing of ");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_5, "the circuit board (reproduce the pattern of the \"?\" screen, the screwdriver");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_6, "can remove the pattern); 3. Hanno's Tower (just move the left tower to the right");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_7, ", narrow blocks can only be placed on wide blocks); Finish the mini-game");
+        translationBuilder.add(ModUtil.ELECTRICIANS_DESK_8, "and then press that output button again to get the finished product.");
+        translationBuilder.add(ModUtil.ELECTRIC_STEAMER_1, "Like a regular steamer, but it consumes AC power and can only process 8 ingredients at once,");
+        translationBuilder.add(ModUtil.ELECTRIC_STEAMER_2, "it has the advantage of taking up little space and does not require additional heating equipment.");
+        translationBuilder.add(ModUtil.FARADAY_GENERATOR_1, "When properly mounted behind the flywheel of a Stirling engine, AC power is generated, ");
+        translationBuilder.add(ModUtil.FARADAY_GENERATOR_2, "be sure that the flywheel of the Stirling engine and the generator must");
+        translationBuilder.add(ModUtil.FARADAY_GENERATOR_3, "look like they are just able to be connected in order to generate power.");
+        translationBuilder.add(ModUtil.FAN_BLADE_1, "A fan blade for wind power generation, which can be mounted on the");
+        translationBuilder.add(ModUtil.FAN_BLADE_2, "wind turbine controller or placed elsewhere for decorative purposes,");
+        translationBuilder.add(ModUtil.FAN_BLADE_3, "its rotation speed depends on the current altitude and weather conditions.");
+        translationBuilder.add(ModUtil.FREEZER_1, "A simple freezer, which can be used for storing items");
+        translationBuilder.add(ModUtil.FREEZER_2, "or cold processing some ingredients, can be cooled by consuming");
+        translationBuilder.add(ModUtil.FREEZER_3, "some refrigerants, such as ice, or by directly consuming AC electricity");
+        translationBuilder.add(ModUtil.GLASS_BOWL_1, "A container for processing and whisking ingredients that needs to be used with");
+        translationBuilder.add(ModUtil.GLASS_BOWL_2, "a whisk, water can also be poured into it for \"mixing with water\".");
+        translationBuilder.add(ModUtil.PGen_1, "A photovoltaic generator converts light energy into DC electrical energy and stores it, ");
+        translationBuilder.add(ModUtil.PGen_2, "batteries can be plugged in and charged, and the amount of power generated depends on factors");
+        translationBuilder.add(ModUtil.PGen_3, "such as current altitude, time of day, weather, block light and sky light.");
+        translationBuilder.add(ModUtil.STERLING_ENGINE_1, "The Stirling engine needed to be mounted on a burning furnace, blast furnace,");
+        translationBuilder.add(ModUtil.STERLING_ENGINE_2, "smoker, advanced furnace or oven to work, and it came with a large flywheel for");
+        translationBuilder.add(ModUtil.STERLING_ENGINE_3, "connecting to a Faraday generator to produce AC Power.");
+        translationBuilder.add(ModUtil.TESLA_COIL_1, "The Tesla Coil can transmit AC power remotely, and when placed on a device that generates AC power");
+        translationBuilder.add(ModUtil.TESLA_COIL_2, "it spreads the power over an area of 8 blocks to the the east, south, west, north, up, and down,");
+        translationBuilder.add(ModUtil.TESLA_COIL_3, "and you can turn on the visualization button in the GUI to visualize this 48 blocks area,");
+        translationBuilder.add(ModUtil.TESLA_COIL_4, "and the AC appliances and other Tesla Coils within the area are energized, and mob that get too");
+        translationBuilder.add(ModUtil.TESLA_COIL_5, "close to an energized Tesla Coil can receive an electric shock that can damage them.");
+        translationBuilder.add(ModUtil.WTC_1, "When the fan blade are properly installed, the controller will");
+        translationBuilder.add(ModUtil.WTC_2, "begin to operate and generate AC power, the amount of power");
+        translationBuilder.add(ModUtil.WTC_3, "generated depends on the current altitude and weather conditions.");
+        translationBuilder.add(ModUtil.ICE_CREAM_MAKER_1, "Hold down Shift and right click to open the GUI screen, put any flavor of");
+        translationBuilder.add(ModUtil.ICE_CREAM_MAKER_2, "cream, sugar and eggs in it and provide AC power to start working, the");
+        translationBuilder.add(ModUtil.ICE_CREAM_MAKER_3, "different flavors of ice cream made will be stored in it, after checking the flavors");
+        translationBuilder.add(ModUtil.ICE_CREAM_MAKER_4, "you want to mix, hold the ice cream cone and right click on it to take out the ice cream.");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"Click to gain experiences");
 
@@ -197,7 +254,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.FRIED_MILK, "Deep-fried Milk");
         translationBuilder.add(ModItems.FRIED_APPLE, "Deep-fried Apple");
         translationBuilder.add(ModItems.RAW_POTATO_CHIP, "Sliced Raw Potato");
-        translationBuilder.add(ModItems.POTATO_CHIP, "Potato Chip");
+        translationBuilder.add(ModItems.POTATO_CHIP, "Deep-fried Potato Chip");
         translationBuilder.add(ModItems.CHEESE_BALL, "Cheese Ball");
         translationBuilder.add(ModItems.FRIED_DOUGH_STICK, "Deep-fried Dough Stick");
         translationBuilder.add(ModItems.RAW_CHICKEN_FILLET, "Raw Chicken Fillet");
@@ -209,6 +266,10 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.PIZZA, "Pizza");
         translationBuilder.add(ModBlocks.RAW_PIZZA, "Raw Pizza");
         translationBuilder.add(ModBlocks.PIZZA_WIP, "Pizza (Work In Progress)");
+
+        translationBuilder.add(ModItems.STEAMED_BUN, "Steamed Bun");
+        translationBuilder.add(ModItems.DEEP_FRIED_BUN, "Deep-fried Bun");
+
 
         translationBuilder.add(ModBlocks.GLASS_BOWL, "Glass Bowl");
         translationBuilder.add(GlassBowlWhiskingCategory.GLASS_BOWL_NAME, "Whisk");
@@ -250,6 +311,77 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(CabinetBlockEntity.CABINET_NAME, "Cabinet");
         translationBuilder.add(ModItems.ANCIENT_SCRAP, "Ancient Scrap");
 
+        translationBuilder.add(ModItems.EGG_BOWL, "Egg in Bowl");
+        translationBuilder.add(ModItems.CHERRY_EGG, "Egg with Cherry");
+        translationBuilder.add(ModItems.FISH_EGG, "Egg with Sea Food");
+        translationBuilder.add(ModItems.STEAMED_EGG, "Steamed Egg");
+        translationBuilder.add(ModItems.STEAMED_CHERRY_EGG, "Steamed Egg with Cherry");
+        translationBuilder.add(ModItems.STEAMED_FISH_EGG, "Steamed Egg with Sea Food");
+        translationBuilder.add(ModItems.BEEF_TOMATO_CUP, "Beef and Tomato Cup");
+        translationBuilder.add(ModItems.BUTTERFLY_CRISP, "Butterfly Crisp");
+        translationBuilder.add(ModItems.JAR, "Jar");
+        translationBuilder.add(ModItems.CARAMEL, "Caramel");
+        translationBuilder.add(ModItems.CARAMEL_PUDDING, "Caramel Pudding");
+        translationBuilder.add(CaramelPuddingBlock.CAN_PLACE, "Can Place");
+        translationBuilder.add(ModItems.CHEESE_BAKED_POTATO, "Cheese Baked Potato");
+        translationBuilder.add(ModItems.CHEESE_RICE_BALL, "Cheese Rice Ball");
+        translationBuilder.add(ModItems.CHOCOLATE_SAUCE, "Chocolate Sauce");
+        translationBuilder.add(ModItems.SHRIMP_PASTE, "Shrimp Paste");
+        translationBuilder.add(ModItems.MIXED_SHRIMP_PASTE, "Mixed Shrimp Paste");
+        translationBuilder.add(ModItems.DEEP_FRIED_SHRIMP_CAKE, "Deep-fried Shrimp Cake");
+        translationBuilder.add(ModItems.SEAWEED_FRIED_SHRIMP_CAKE, "Seaweed Fried Shrimp Cake");
+        translationBuilder.add(ModItems.DONUT, "Donut");
+        translationBuilder.add(ModItems.CHERRY_PUDDING, "Cherry Pudding");
+        translationBuilder.add(ModItems.ICE_LOLLY, "Ice Lolly");
+        translationBuilder.add(ModItems.PACKAGING_BAG, "Packaging Bag");
+        translationBuilder.add(ModItems.DIRTY_PACKAGING_BAG, "Dirty Packaging Bag");
+        translationBuilder.add(ModItems.POTATO_CHIPS, "Potato Chips");
+        translationBuilder.add(ModItems.DEEP_FRIED_POTATO_CHIPS, "Deep-fried Potato Chips");
+        translationBuilder.add(ModItems.FRENCH_FRIES, "French Fries");
+        translationBuilder.add(ModItems.FRIED_CHICKEN, "Deep-fried Chicken");
+        translationBuilder.add(ModItems.FRIED_RED_MUSHROOM, "Deep-fried Red Mushroom");
+        translationBuilder.add(ModItems.FRIED_BROWN_MUSHROOM, "Deep-fried Brown Mushroom");
+        translationBuilder.add(ModItems.CREAM_OF_MUSHROOM_SOUP, "Cream of Mushroom Soup");
+        translationBuilder.add(ModItems.FRENCH_ONION_SOUP, "French Onion Soup");
+        translationBuilder.add(ModItems.CHERRY_ICE_LOLLY, "Cherry Ice Lolly");
+        translationBuilder.add(ModItems.MATCHA_ICE_LOLLY, "Matcha Ice Lolly");
+        translationBuilder.add(ModItems.WITHER_ICE_LOLLY, "Wither Ice Lolly");
+        translationBuilder.add(ModItems.GLOW_SQUID_TENTACLE, "Glow Squid Tentacle");
+        translationBuilder.add(ModItems.GLOW_SQUID_TENTACLE_KEBABS, "Glow Squid Tentacle Kebab");
+        translationBuilder.add(ModItems.RAW_GLOW_SQUID_TENTACLE_KEBABS, "Raw Glow Squid Tentacle Kebab");
+        translationBuilder.add(ModItems.SQUID_TENTACLE, "Squid Tentacle");
+        translationBuilder.add(ModItems.RAW_SQUID_TENTACLE_KEBABS, "Raw Squid Tentacle Kebab");
+        translationBuilder.add(ModItems.SQUID_TENTACLE_KEBABS, "Squid Tentacle Kebab");
+        translationBuilder.add(ModItems.STREAKY_PORK, "Streaky Pork");
+        translationBuilder.add(ModItems.TURNIP, "Rutabaga");
+        translationBuilder.add(ModUtil.TURNIP, "A slight grudge from the author.");
+        translationBuilder.add(ModItems.RAW_DONUT, "Raw Donut");
+        translationBuilder.add(ModItems.CHOCOLATE_DONUT, "Chocolate Donut");
+        translationBuilder.add(ModItems.CHEESE_BURGER, "Cheese Burger");
+        translationBuilder.add(ModItems.ROAST_STREAKY_PORK, "Roast Streaky Pork");
+        translationBuilder.add(ModItems.PORK_CHOP_BURGER, "Pork Chop Burger");
+        translationBuilder.add(ModItems.FRIED_COD_NUGGET, "Deep-fried Cod Nugget");
+        translationBuilder.add(ModItems.PORK_RIBS, "Pork Ribs");
+        translationBuilder.add(ModItems.PORK_HOOF, "Pork Hoof");
+        translationBuilder.add(ModBlocks.FISH_AND_CHIPS_ITEM, "Fish and Chips");
+        translationBuilder.add(ModBlocks.WILD_PEPPER_CROP, "Wild Black Pepper");
+        translationBuilder.add(ModItems.GARLIC, "Garlic");
+        translationBuilder.add(ModItems.GARLIC_PETAL, "Garlic Petal");
+        translationBuilder.add(ModBlocks.WILD_GARLIC, "Wild Garlic");
+
+        translationBuilder.add(ModItems.ICE_CREAM_CONE, "Ice Cream Cone");
+        translationBuilder.add(ModItems.RAW_ICE_CREAM_CONE, "Ice Cream Cone (Work In Progress)");
+        translationBuilder.add(ModItems.ICE_CREAM, "Ice Cream");
+
+        translationBuilder.add(Flavor.TRANSLATION_KEY, "Flavors");
+        translationBuilder.add(Flavor.NULL.getTranslationKey(), "Unknown");
+        translationBuilder.add(Flavor.PLAIN.getTranslationKey(), "Plain");
+        translationBuilder.add(Flavor.APPLE.getTranslationKey(), "Apple Flavored");
+        translationBuilder.add(Flavor.CHERRY.getTranslationKey(), "Cherry Flavored");
+        translationBuilder.add(Flavor.CHOCOLATE.getTranslationKey(), "Chocolate Flavored");
+        translationBuilder.add(Flavor.GOLDEN_APPLE.getTranslationKey(), "Golden Apple Flavored");
+        translationBuilder.add(Flavor.MATCHA.getTranslationKey(), "Matcha Flavored");
+        translationBuilder.add(Flavor.PUMPKIN.getTranslationKey(), "Pumpkin Flavored");
 
         translationBuilder.add(OvenBlockEntity.OVEN_NAME, "Baking");
         translationBuilder.add(AdvanceFurnaceBlockEntity.ADVANCE_FURNACE_NAME, "Advance Furnace");
@@ -259,12 +391,12 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(OvenTransformCategory.TRANSFORM_TITLE, "Transform");
         translationBuilder.add(PhotovoltaicGeneratorBlockEntity.PHOTOVOLTAIC_GENERATOR_NAME, "Photovoltaic Power Generation");
         translationBuilder.add(ModBlocks.PHOTOVOLTAIC_GENERATOR, "Photovoltaic Generator");
-        translationBuilder.add(PhotovoltaicGeneratorScreen.GREEN_TIP_1, "High efficiency model:");
-        translationBuilder.add(PhotovoltaicGeneratorScreen.GREEN_TIP_2, "Daytime only and");
-        translationBuilder.add(PhotovoltaicGeneratorScreen.GREEN_TIP_3, "open air only");
-        translationBuilder.add(PhotovoltaicGeneratorScreen.YELLOW_TIP_1, "Inefficiency model:");
-        translationBuilder.add(PhotovoltaicGeneratorScreen.YELLOW_TIP_2, "Activated when there is");
-        translationBuilder.add(PhotovoltaicGeneratorScreen.YELLOW_TIP_3, "sufficient light nearby");
+        translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.GREEN_TIP_1, "High efficiency mode:");
+        translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.GREEN_TIP_2, "Daytime only and");
+        translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.GREEN_TIP_3, "open air only");
+        translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_1, "Inefficiency mode:");
+        translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_2, "Activated when there is");
+        translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_3, "sufficient light nearby");
         translationBuilder.add(ModBlocks.GAS_PIPE, "Gas Pipe");
         translationBuilder.add(ModBlocks.AC_DC_CONVERTER, "AC/DC Converter");
         translationBuilder.add(ModBlocks.FAN_BLADE_ITEM, "Wind Turbine Blades");
@@ -272,9 +404,9 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.SIMPLE_BATTERY, "Simple Battery");
         translationBuilder.add(ModBlocks.INTERMEDIATE_BATTERY, "Intermediate Battery");
         translationBuilder.add(ModBlocks.ADVANCE_BATTERY, "Advance Battery");
-        translationBuilder.add(ModBlocks.DIMENSION_BATTERY, "Dimension Battery");
+        translationBuilder.add(ModBlocks.DIMENSION_BATTERY, "Dimensional Battery");
         translationBuilder.add(AbstractBatteryBlock.TOOLTIP_TEXT, "Quantity of electric charge or power: ");
-        translationBuilder.add(ModBlocks.STERLING_ENGINE_ITEM, "Sterling Engine");
+        translationBuilder.add(ModBlocks.STERLING_ENGINE_ITEM, "Stirling Engine");
         translationBuilder.add(ModBlocks.FARADAY_GENERATOR, "Faraday Generator");
         translationBuilder.add(ACDCConverterScreen.SPEED_NAME, "Working Speed");
         translationBuilder.add(ModBlocks.TESLA_COIL, "Tesla Coil");
@@ -282,10 +414,18 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.BOXED_CHERRIES, "Cherries Crate");
         translationBuilder.add(BoxedCherriesBlock.TIP, "You'll need at least 32 gunpowder to activate it.");
         translationBuilder.add(ModBlocks.BAMBOO_COVER, "Bamboo Steamer Cover");
-        translationBuilder.add(ModBlocks.BAMBOO_GRATE, "Bamboo Steamer Grate");
-        translationBuilder.add(BambooGrateBlockEntity.NAME, "Bamboo Steamer");
+        translationBuilder.add(ModBlocks.BAMBOO_GRATE, "Bamboo Steamer Basket Drawer");
+        translationBuilder.add(BambooGrateBlockEntity.NAME, "Steamer");
+        translationBuilder.add(ModBlocks.ELECTRIC_STEAMER, "Electric Steamer");
+        translationBuilder.add(ModBlocks.ICE_CREAM_MAKER, "Ice Cream Maker");
+        translationBuilder.add(IceCreamMakerBlockEntity.NEED_CONE, "Please use an ice cream cone to pick up the ice cream.");
+        translationBuilder.add(IceCreamMakerBlockEntity.NEED_SELECT, "Please select a flavor in the GUI screen or insufficient ice cream left.");
+        translationBuilder.add(CuisineTableBlock.CANT_OPEN, "The Cuisine Table is occupied by other player and cannot be opened.");
+
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s was electrocuted!");
+        translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s turned to ashes");
+        translationBuilder.add("death.attack.bakingdelight_scalded","%1$s scalded to death");
 
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "Cream");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "Vegetable Oil");
@@ -327,6 +467,22 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItemGroups.GROUPS_TAB_NAME, "Modern Kitchen");
 
+        translationBuilder.add("emi.category.bakingdelight.mix_with_water","Mix with Water");
+        translationBuilder.add("emi.category.bakingdelight.whisking","Whisking");
+        translationBuilder.add("emi.category.bakingdelight.assembly","Electrician's Desk");
+        translationBuilder.add("emi.category.bakingdelight.stir_frying","Stir Frying");
+        translationBuilder.add("emi.category.bakingdelight.biogas_fermentation","Biogas Fermentation");
+        translationBuilder.add("emi.category.bakingdelight.cuisine","Cuisine");
+        translationBuilder.add("emi.category.bakingdelight.deep_frying","Deep Frying");
+        translationBuilder.add("emi.category.bakingdelight.freezing","Freezing");
+        translationBuilder.add("emi.category.bakingdelight.baking","Baking");
+        translationBuilder.add("emi.category.bakingdelight.pizza_making","Pizza Making");
+        translationBuilder.add("emi.category.bakingdelight.steaming","Steaming");
+        translationBuilder.add("emi.category.bakingdelight.advance_furnace_transforming","Transform");
+        translationBuilder.add("emi.category.bakingdelight.oven_transforming","Transform");
+        translationBuilder.add("emi.category.bakingdelight.oil_extraction","Oil Extraction");
+        translationBuilder.add("emi.category.bakingdelight.ice_cream_making","Ice Cream Making");
+
         translationBuilder.add("sounds.bakingdelight.entity_butter_hit", "Butter: Hit");
         translationBuilder.add("sounds.bakingdelight.entity_butter_shoot", "Butter: Shoot");
         translationBuilder.add("sounds.bakingdelight.entity_cherry_bomb_explosion", "Cherry: Explosion");
@@ -340,7 +496,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("sounds.bakingdelight.item_crowbar_attack", "Crowbar: Attack");
         translationBuilder.add("sounds.bakingdelight.block_gas_canister_filling", "Gas Canister: Filling");
         translationBuilder.add("sounds.bakingdelight.block_gas_cooking_stove_ignite", "Gas Cooking Stove: Try to Ignite");
-        translationBuilder.add("sounds.bakingdelight.block_sterling_engine", "Sterling Engine: Running");
+        translationBuilder.add("sounds.bakingdelight.block_sterling_engine", "Stirling Engine: Running");
         translationBuilder.add("sounds.bakingdelight.block_tesla_coil", "Tesla Coil: Electroshock");
 
         translationBuilder.add(BakingdelightClient.ORE_UI_DARK, "Ore UI Style (Dark)");
@@ -367,9 +523,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModAdvancementGenerator.GET_POTATO_STARCH_TITLE, "Complete Powder");
         translationBuilder.add(ModAdvancementGenerator.GET_POTATO_STARCH_DESC, "Put the mashed potato in a glass bowl and whisk with a whisk to obtain the potato starch.");
         translationBuilder.add(ModAdvancementGenerator.GET_FREEZER_TITLE, "Cool Down");
-        translationBuilder.add(ModAdvancementGenerator.GET_FREEZER_DESC, "What a great freezer, it actually needs to \"burn\" ice.");
-        translationBuilder.add(ModAdvancementGenerator.GET_BLUE_ICE_TITLE, "Optimal \"Fuel\"");
-        translationBuilder.add(ModAdvancementGenerator.GET_BLUE_ICE_DESC, "A good helper for the freezer.");
+        translationBuilder.add(ModAdvancementGenerator.GET_FREEZER_DESC, "It's time to let the ingredients cool down a bit, and this freezer can cold process quite a few things!");
         translationBuilder.add(ModAdvancementGenerator.GET_OVEN_TITLE, "\"Hot\" Topic");
         translationBuilder.add(ModAdvancementGenerator.GET_OVEN_DESC, "The oven will help you bake better food.");
         translationBuilder.add(ModAdvancementGenerator.GET_EGG_TART_TITLE, "Sweety!");
@@ -399,8 +553,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.get_raw_pizza.desc", "First, add the cheese to the flattened dough, then add 5 of your favorite ingredients and finish with a cheese.");
         translationBuilder.add("advancement.bakingdelight.get_pizza.title", "PIZZA!");
         translationBuilder.add("advancement.bakingdelight.get_pizza.desc", "Place in the oven in the order of black pepper dust, sugar, black pepper dust, raw pizza.");
-        translationBuilder.add("advancement.bakingdelight.get_black_pepper.title", "Underchest");
-        translationBuilder.add("advancement.bakingdelight.get_black_pepper.desc", "Finding new crops in villagers' homes or ruins.");
+        translationBuilder.add("advancement.bakingdelight.get_black_pepper.title", "Tropical Species");
+        translationBuilder.add("advancement.bakingdelight.get_black_pepper.desc", "Discovery of new crops in villagers' homes or jungle.");
         translationBuilder.add("advancement.bakingdelight.get_cheese.title", "Not Sour");
         translationBuilder.add("advancement.bakingdelight.get_cheese.desc", "Put the milk in the oven to cook.");
         translationBuilder.add("advancement.bakingdelight.get_advance_furnace.title", "4x speed");
@@ -435,7 +589,45 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.kuh.desc", "Make a Kitchen Utensil Holder");
         translationBuilder.add("advancement.bakingdelight.cuisine_table.title", "Break Down Everything");
         translationBuilder.add("advancement.bakingdelight.cuisine_table.desc", "Make a Cuisine Table, with the top slot for tools and the bottom slot for items, you can break down a lot of items.");
-
-
+        translationBuilder.add("advancement.bakingdelight.electricians_desk.title", "Towards Modernization");
+        translationBuilder.add("advancement.bakingdelight.electricians_desk.desc", "Make an electrician's desk, and it'll be with you for a long time to come.");
+        translationBuilder.add("advancement.bakingdelight.tesla_coil.title", "New Start");
+        translationBuilder.add("advancement.bakingdelight.tesla_coil.desc", "Make a Tesla coil, which will allow you to get rid of the wires and solve the transmission troubles!");
+        translationBuilder.add("advancement.bakingdelight.wind.title", "The Wind is Passing by");
+        translationBuilder.add("advancement.bakingdelight.wind.desc", "Make a fan blade and a wind turbine controller and start feeling the power from nature!");
+        translationBuilder.add("advancement.bakingdelight.bamboo_steamer.title", "Dense Water Vapor");
+        translationBuilder.add("advancement.bakingdelight.bamboo_steamer.desc", "Get ready to build a traditional steamer with a bamboo steamer basket drawer, bamboo steamer cover, and cauldron!");
+        translationBuilder.add("advancement.bakingdelight.electric_steamer.title", "Has Technology Really Changed Life?");
+        translationBuilder.add("advancement.bakingdelight.electric_steamer.desc", "An electric steamer allows you to get rid of the complexity of building a traditional steamer, but you have to provide enough electricity for this purpose.");
+        translationBuilder.add("advancement.bakingdelight.steamed_bun.title", "Simple and Unadorned");
+        translationBuilder.add("advancement.bakingdelight.steamed_bun.desc", "Take the dough directly to the steamer and make a steamed bun.");
+        translationBuilder.add("advancement.bakingdelight.silicon_ingot.title", "Source Material for Advancement");
+        translationBuilder.add("advancement.bakingdelight.silicon_ingot.desc", "Smelting quartz in a blast furnace to obtain silicon ingots");
+        translationBuilder.add("advancement.bakingdelight.acdcc.title", "AC & DC");
+        translationBuilder.add("advancement.bakingdelight.acdcc.desc", "Make an AC/DC converter which will convert these two types of power with losses.");
+        translationBuilder.add("advancement.bakingdelight.battery1.title", "Introduction to Electricity Storage");
+        translationBuilder.add("advancement.bakingdelight.battery1.desc", "Make a simple battery, which is the beginning of all power storage.");
+        translationBuilder.add("advancement.bakingdelight.thermalPowerGeneration.title", "Industrial Revolution");
+        translationBuilder.add("advancement.bakingdelight.thermalPowerGeneration.desc", "Make a Stirling Engine and Faraday Generator, mount the Stirling Engine on any working furnace, connect the flywheel which is a part of the Stirling Engine to the Faraday Generator, and start mass-producing electricity!");
+        translationBuilder.add("advancement.bakingdelight.battery2.title", "Advanced Power Storage");
+        translationBuilder.add("advancement.bakingdelight.battery2.desc", "Make an intermediate battery and you'll be able to store more power again!");
+        translationBuilder.add("advancement.bakingdelight.battery3.title", "I need more electricity!");
+        translationBuilder.add("advancement.bakingdelight.battery3.desc", "Make an advance battery which can really store lots and lots of electricity!");
+        translationBuilder.add("advancement.bakingdelight.battery4.title", "King of the Power Storage");
+        translationBuilder.add("advancement.bakingdelight.battery4.desc", "Make a dimensional battery, now you don't have to worry about storing power anymore!");
+        translationBuilder.add("advancement.bakingdelight.pg.title", "Environmentally Friendly");
+        translationBuilder.add("advancement.bakingdelight.pg.desc", "Make a photovoltaic generator that's portable and eco-friendly");
+        translationBuilder.add("advancement.bakingdelight.ice_cream_maker.title", "Who can resist ice cream?");
+        translationBuilder.add("advancement.bakingdelight.ice_cream_maker.desc", "Make an ice cream maker. When you take out the ice cream, you can definitely double your excitement!");
+        translationBuilder.add("advancement.bakingdelight.ice_cream.title", "Total victory！");
+        translationBuilder.add("advancement.bakingdelight.ice_cream.desc", "Witness an ice cream being made!");
+        translationBuilder.add("advancement.bakingdelight.garlic.title", "The vampire's pet hate");
+        translationBuilder.add("advancement.bakingdelight.garlic.desc", "Find garlic in villagers' houses or in the forest.");
+        translationBuilder.add("advancement.bakingdelight.kebabs.title", "Have a Kebab");
+        translationBuilder.add("advancement.bakingdelight.kebabs.desc", "Grill a squid tentacle kebab. It's delicious and healthy.");
+        translationBuilder.add("advancement.bakingdelight.fish_and_chips.title", "The most convenient take-out food");
+        translationBuilder.add("advancement.bakingdelight.fish_and_chips.desc", "Make a portion of fish and chips, excellent!");
+        translationBuilder.add("advancement.bakingdelight.all_ice_lolly.title", "Ice Lolly Expert");
+        translationBuilder.add("advancement.bakingdelight.all_ice_lolly.desc", "Make all the Ice Lollies");
     }
 }

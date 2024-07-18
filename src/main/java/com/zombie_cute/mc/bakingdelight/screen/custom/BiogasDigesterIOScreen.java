@@ -36,17 +36,10 @@ public class BiogasDigesterIOScreen extends HandledScreen<BiogasDigesterIOScreen
         if (handler.isChecked()){
             context.drawTexture(TEXTURE,x+123,y+60,176,0,25,12);
         }
-//        else {
-//            if (mouseX >= x + 123 && mouseX <= x + 147 && mouseY >= y + 60 && mouseY <= y + 71){
-//                context.drawText(textRenderer,
-//                        Text.translatable(UNAVAILABLE),
-//                        mouseX, mouseY,0x363636,true);
-//            }
-//        }
         if (mouseX >= x + 108 && mouseX <= x + 121 && mouseY >= y + 60 && mouseY <= y + 71){
-            context.drawTexture(TEXTURE,mouseX+3,mouseY+6,176,12,50,13);
+            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,176,12,50,13);
             context.drawText(textRenderer,String.valueOf(handler.getGasValue()),
-                    mouseX+6,mouseY+9, 0xffffff,false);
+                    mouseX+9,mouseY-13, 0xffffff,false);
         }
     }
 

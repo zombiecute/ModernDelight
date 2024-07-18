@@ -45,7 +45,12 @@ public class ModLootTableModifies {
             = new Identifier("minecraft", "blocks/ice");
     public static final Identifier PACKED_ICE_ID
             = new Identifier("minecraft", "blocks/packed_ice");
-
+    public static final Identifier VILLAGE_BUTCHER_ID
+            = new Identifier("minecraft", "chests/village/village_butcher");
+    public static final Identifier VILLAGE_PLAINS_HOUSE_ID
+            = new Identifier("minecraft", "chests/village/village_plains_house");
+    public static final Identifier PILLAGER_OUTPOST_ID
+            = new Identifier("minecraft", "chests/pillager_outpost");
     public static void modifyLootTables () {
         LootTableEvents.MODIFY.register(ModLootTableModifies::modifyLootTable);
     }
@@ -176,6 +181,35 @@ public class ModLootTableModifies {
                     .conditionally(RandomChanceLootCondition.builder(0.4f))
                     .with(ItemEntry.builder(ModItems.PRAWN))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f,1.0f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if(VILLAGE_BUTCHER_ID.equals(id)){
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(RandomChanceLootCondition.builder(0.8f))
+                    .with(ItemEntry.builder(ModItems.GARLIC))
+                    .with(ItemEntry.builder(ModItems.BUTTER))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.2f,3.5f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if(VILLAGE_PLAINS_HOUSE_ID.equals(id)){
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(RandomChanceLootCondition.builder(0.7f))
+                    .with(ItemEntry.builder(ModItems.GARLIC))
+                    .with(ItemEntry.builder(ModItems.GARLIC_PETAL))
+                    .with(ItemEntry.builder(ModItems.BUTTER))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.8f,2.5f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if(PILLAGER_OUTPOST_ID.equals(id)){
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(2))
+                    .conditionally(RandomChanceLootCondition.builder(0.5f))
+                    .with(ItemEntry.builder(ModItems.REDSTONE_COMPONENT))
+                    .with(ItemEntry.builder(ModItems.GARLIC_PETAL))
+                    .with(ItemEntry.builder(ModItems.SILICON_INGOT))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.8f,2.5f)).build());
             tableBuilder.pool(poolBuilder.build());
         }
     }

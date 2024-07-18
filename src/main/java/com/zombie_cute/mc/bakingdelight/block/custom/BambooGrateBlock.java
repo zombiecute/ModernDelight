@@ -9,6 +9,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -17,7 +19,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -29,6 +33,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class BambooGrateBlock extends BlockWithEntity {
     public BambooGrateBlock() {
@@ -47,7 +53,19 @@ public class BambooGrateBlock extends BlockWithEntity {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LAYER,COVERED);
     }
-
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.BAMBOO_STEAMER_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.BAMBOO_STEAMER_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.BAMBOO_STEAMER_3).formatted(Formatting.GOLD));
+        } else {
+            tooltip.add(ModUtil.getShiftText(false));
+        }
+        super.appendTooltip(stack, world, tooltip, options);
+    }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;

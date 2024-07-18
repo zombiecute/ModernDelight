@@ -27,23 +27,35 @@ public class ElectriciansDeskBlockEntity extends BlockEntity implements Extended
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
-                return ElectriciansDeskBlockEntity.this.canCraft;
+                return switch (index){
+                    case 0 -> ElectriciansDeskBlockEntity.this.canCraft;
+                    case 1 -> ElectriciansDeskBlockEntity.this.isOccupied;
+                    default -> 0;
+                };
             }
 
             @Override
             public void set(int index, int value) {
-                ElectriciansDeskBlockEntity.this.canCraft = value;
             }
 
             @Override
             public int size() {
-                return 1;
+                return 2;
             }
         };
     }
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9,ItemStack.EMPTY);
     private int canCraft = 0;
+    private int isOccupied = 0;
     private final PropertyDelegate propertyDelegate;
+
+    public void setOccupied(boolean b){
+        if (b){
+            this.isOccupied = 1;
+        } else {
+            this.isOccupied = 0;
+        }
+    }
     @Override
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
         buf.writeBlockPos(pos);

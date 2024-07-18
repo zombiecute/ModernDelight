@@ -1,15 +1,20 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.entities.CuisineTableBlockEntity;
+import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +22,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CuisineTableBlock extends BlockWithEntity {
     public CuisineTableBlock() {
@@ -27,6 +34,18 @@ public class CuisineTableBlock extends BlockWithEntity {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPED;
+    }
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.CUISINE_TABLE_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.CUISINE_TABLE_2).formatted(Formatting.GOLD));
+        } else {
+            tooltip.add(ModUtil.getShiftText(false));
+        }
+        super.appendTooltip(stack, world, tooltip, options);
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -70,14 +89,19 @@ public class CuisineTableBlock extends BlockWithEntity {
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new CuisineTableBlockEntity(pos, state);
     }
-
+    public static final String CANT_OPEN = "bakingdelight.cuisine_table.cant_open";
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         } else {
             if (world.getBlockEntity(pos) instanceof CuisineTableBlockEntity entity){
-                player.openHandledScreen(entity);
+                if (entity.canOpen()){
+                    player.openHandledScreen(entity);
+                    entity.setCanOpen(false);
+                } else {
+                    player.sendMessage(Text.translatable(CANT_OPEN),true);
+                }
             }
             return ActionResult.CONSUME;
         }

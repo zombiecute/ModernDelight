@@ -467,6 +467,9 @@ public class MiniGame1Screen extends Screen {
 
     @Override
     public void close() {
+        int[] array = new int[1];
+        array[0] = 4;
+        NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
         Objects.requireNonNull(client).setScreen(parent);
     }
 }

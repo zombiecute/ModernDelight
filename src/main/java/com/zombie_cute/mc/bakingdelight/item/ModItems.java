@@ -5,13 +5,26 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.custom.*;
 import com.zombie_cute.mc.bakingdelight.item.enumeration.ModToolMaterials;
+import com.zombie_cute.mc.bakingdelight.util.Flavor;
+import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.block.ComposterBlock;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Objects;
 
 public class ModItems {
     public static final Item EGG_TART = registerItem("egg_tart",new ModStewItem(new FabricItemSettings()
@@ -36,7 +49,7 @@ public class ModItems {
             new WhiskItem(1.5F, -3.0F, ToolMaterials.NETHERITE, new FabricItemSettings().fireproof()));
     public static final Item APPLE_PETAL = registerItem("apple_petal", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).snack().build())));
-    public static final Item APPLE_CREAM = registerItem("apple_cream", new ModStewItem(new FabricItemSettings()
+    public static final Item APPLE_CREAM = registerItem("apple_cream", new CreamItem(Flavor.APPLE,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build())
             .recipeRemainder(Items.BOWL)
             .maxCount(16)));
@@ -49,13 +62,13 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(1).saturationModifier(0.3F).snack().build())));
     public static final Item CHERRY = registerItem("cherry", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build())));
-    public static final Item CHERRY_CREAM = registerItem("cherry_cream", new ModStewItem(new FabricItemSettings()
+    public static final Item CHERRY_CREAM = registerItem("cherry_cream", new CreamItem(Flavor.CHERRY,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build())
             .recipeRemainder(Items.BOWL)
             .maxCount(16)));
     public static final Item CHERRY_MOUSSE = registerItem("cherry_mousse", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.8F).build())));
-    public static final Item CHOCOLATE_CREAM = registerItem("chocolate_cream", new ModStewItem(new FabricItemSettings()
+    public static final Item CHOCOLATE_CREAM = registerItem("chocolate_cream", new CreamItem(Flavor.CHOCOLATE,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.8F).build())
             .recipeRemainder(Items.BOWL)
             .maxCount(16)));
@@ -63,7 +76,7 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.8F).build())));
     public static final Item PRAWN = registerItem("prawn", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.2F).build())));
-    public static final Item CREAM = registerItem("cream", new ModStewItem(new FabricItemSettings()
+    public static final Item CREAM = registerItem("cream", new CreamItem(Flavor.PLAIN,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).build())
             .maxCount(16)));
 
@@ -81,7 +94,7 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F).meat().build())));
     public static final Item LITTLE_OCTOPUS_SAUSAGE = registerItem("little_octopus_sausage", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(10).saturationModifier(0.5F).meat().build())));
-    public static final Item GOLDEN_APPLE_CREAM = registerItem("golden_apple_cream", new ModStewItem(new FabricItemSettings()
+    public static final Item GOLDEN_APPLE_CREAM = registerItem("golden_apple_cream", new CreamItem(Flavor.GOLDEN_APPLE,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.8F)
                     .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F)
                     .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F)
@@ -94,7 +107,7 @@ public class ModItems {
                     .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 4800, 1), 1.0F)
                     .alwaysEdible().build())
             .maxCount(16)));
-    public static final Item MATCHA_CREAM = registerItem("matcha_cream", new ModStewItem(new FabricItemSettings()
+    public static final Item MATCHA_CREAM = registerItem("matcha_cream", new CreamItem(Flavor.MATCHA,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5F)
                     .statusEffect(new StatusEffectInstance(StatusEffects.LUCK, 600, 0), 0.7F).build())
             .recipeRemainder(Items.BOWL)
@@ -108,7 +121,7 @@ public class ModItems {
                     .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 0), 0.4F).build())));
     public static final Item POTATO_STARCH = registerItem("potato_starch", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).build())));
-    public static final Item PUMPKIN_CREAM = registerItem("pumpkin_cream", new ModStewItem(new FabricItemSettings()
+    public static final Item PUMPKIN_CREAM = registerItem("pumpkin_cream", new CreamItem(Flavor.PUMPKIN,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.4F).build())
             .recipeRemainder(Items.BOWL)
             .maxCount(16)));
@@ -182,11 +195,11 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5F).meat().build())));
     public static final Item SUNFLOWER_SEED_PULP = registerItem("sunflower_seed_pulp", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).snack().build())));
-    public static final Item CROWBAR = registerItem("crowbar", new CrowbarItem(ToolMaterials.IRON,7.5f,-3.5f));
+    public static final Item CROWBAR = registerItem("crowbar", new CrowbarItem(ToolMaterials.IRON,7.5f,-3.6f));
     public static final Item SPATULA = registerItem("spatula", new SpatulaItem(ToolMaterials.IRON,2.5f,-2.8f));
     public static final Item ROASTED_SUNFLOWER_SEED = registerItem("roasted_sunflower_seed", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(3).snack().saturationModifier(0.2f).build())));
-    public static final Item FILTER = registerItem("filter", new FilterItem(ToolMaterials.WOOD,
+    public static final Item FILTER = registerItem("filter", new FilterItem(ModToolMaterials.STRING,
             new FabricItemSettings()));
     public static final Item OIL_IMPURITY = registerItem("oil_impurity",new Item(new FabricItemSettings()));
     public static final Item VEGETABLE_OIL_BOTTLE = registerItem("vegetable_oil_bottle",new Item(new FabricItemSettings()
@@ -295,10 +308,218 @@ public class ModItems {
     public static final Item DIAMOND_COMPONENT = registerItem("diamond_component",new Item(
             new FabricItemSettings())
     );
+    public static final Item RAW_ICE_CREAM_CONE = registerItem("raw_ice_cream_cone",new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(1).saturationModifier(0.1f).snack().build())
+    ));
+    public static final Item ICE_CREAM_CONE = registerItem("ice_cream_cone",new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).saturationModifier(0.1f).snack().build())
+    ));
+    public static final Item ICE_CREAM = registerItem("ice_cream",new IceCreamItem());
+    public static final Item STEAMED_BUN = registerItem("steamed_bun",new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).saturationModifier(0.1f).snack().build())
+    ));
+    public static final Item DEEP_FRIED_BUN = registerItem("deep_fried_bun",new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).saturationModifier(0.2f).snack().build())
+    ));
+    public static final Item EGG_BOWL = registerItem("egg_bowl",new ModStewItem(
+            new FabricItemSettings().maxCount(16).food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())
+    ));
+    public static final Item CHERRY_EGG = registerItem("cherry_egg",new ModStewItem(
+            new FabricItemSettings().maxCount(16).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.1f).build())
+    ));
+    public static final Item FISH_EGG = registerItem("fish_egg",new ModStewItem(
+            new FabricItemSettings().maxCount(16).food(new FoodComponent.Builder().hunger(5).saturationModifier(0.1f).build())
+    ));
+    public static final Item STEAMED_EGG = registerItem("steamed_egg",new ModStewItem(
+            new FabricItemSettings().maxCount(16).food(new FoodComponent.Builder().hunger(5).saturationModifier(0.3f).build())
+    ));
+    public static final Item STEAMED_CHERRY_EGG = registerItem("steamed_cherry_egg",new ModStewItem(
+            new FabricItemSettings().maxCount(16).food(new FoodComponent.Builder().hunger(7).saturationModifier(0.3f).build())
+    ));
+    public static final Item STEAMED_FISH_EGG = registerItem("steamed_fish_egg",new ModStewItem(
+            new FabricItemSettings().maxCount(16).food(new FoodComponent.Builder().hunger(10).saturationModifier(0.4f).build())
+    ));
+    public static final Item BEEF_TOMATO_CUP = registerItem("beef_tomato_cup",new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(13).saturationModifier(0.6f).meat().build())
+    ));
+    public static final Item BUTTERFLY_CRISP = registerItem("butterfly_crisp",new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.1f).snack().build())
+    ));
+    public static final Item JAR = registerItem("jar",new Item(
+            new FabricItemSettings().maxCount(16))
+    );
+    public static final Item CARAMEL = registerItem("caramel",new JarItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.JAR).food(new FoodComponent.Builder().hunger(3).saturationModifier(0.2f).build()))
+    );
+    public static final Item CARAMEL_PUDDING = registerItem("caramel_pudding", new BlockItem(ModBlocks.CARAMEL_PUDDING,new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.4F).snack().build())));
+    public static final Item CHEESE_BAKED_POTATO = registerItem("cheese_baked_potato", new ModStewItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.4F).snack().build())));
+    public static final Item CHEESE_RICE_BALL = registerItem("cheese_rice_ball", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(9).saturationModifier(0.5F).snack().build())));
+    public static final Item CHOCOLATE_SAUCE = registerItem("chocolate_sauce", new JarItem(new FabricItemSettings()
+            .maxCount(16).food(new FoodComponent.Builder().hunger(5).saturationModifier(0.3F).build())));
+    public static final Item SHRIMP_PASTE = registerItem("shrimp_paste", new ModStewItem(new FabricItemSettings()
+            .maxCount(16).food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build())));
+    public static final Item MIXED_SHRIMP_PASTE = registerItem("mixed_shrimp_paste", new ModStewItem(new FabricItemSettings()
+            .maxCount(16).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.1F).build())));
+    public static final Item DEEP_FRIED_SHRIMP_CAKE = registerItem("deep_fried_shrimp_cake", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(9).saturationModifier(0.3F).build())));
+    public static final Item SEAWEED_FRIED_SHRIMP_CAKE = registerItem("seaweed_fried_shrimp_cake", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(11).saturationModifier(0.4F).build())));
+    public static final Item DONUT = registerItem("donut", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.2F).build())));
+    public static final Item CHERRY_PUDDING = registerItem("cherry_pudding", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.3F).snack().build())));
+    public static final Item ICE_LOLLY = registerItem("ice_lolly", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.2F).build())));
+    public static final Item PACKAGING_BAG = registerItem("packaging_bag", new Item(new FabricItemSettings()));
+    public static final Item DIRTY_PACKAGING_BAG = registerItem("dirty_packaging_bag", new Item(new FabricItemSettings()));
+    public static final Item POTATO_CHIPS = registerItem("potato_chips", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).snack().build())));
+    public static final Item DEEP_FRIED_POTATO_CHIPS = registerItem("deep_fried_potato_chips", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).snack().build())));
+    public static final Item FRENCH_FRIES = registerItem("french_fries", new PackagedItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F).snack().build())));
+    public static final Item FRIED_CHICKEN = registerItem("fried_chicken", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(11).saturationModifier(0.5F).meat().build())));
+    public static final Item FRIED_BROWN_MUSHROOM = registerItem("fried_brown_mushroom", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.2F).build())));
+    public static final Item FRIED_RED_MUSHROOM = registerItem("fried_red_mushroom", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3F).build())));
+    public static final Item CREAM_OF_MUSHROOM_SOUP = registerItem("cream_of_mushroom_soup", new ModStewItem(new FabricItemSettings()
+            .maxCount(16).food(new FoodComponent.Builder().hunger(12).saturationModifier(0.5F).build())));
+    public static final Item FRENCH_ONION_SOUP = registerItem("french_onion_soup", new ModStewItem(new FabricItemSettings()
+            .maxCount(16).food(new FoodComponent.Builder().hunger(10).saturationModifier(0.6F).build())));
+    public static final Item CHERRY_ICE_LOLLY = registerItem("cherry_ice_lolly", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F).build())));
+    public static final Item MATCHA_ICE_LOLLY = registerItem("matcha_ice_lolly", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.LUCK,30*20,0),1.0f)
+                    .build())));
+    public static final Item WITHER_ICE_LOLLY = registerItem("wither_ice_lolly", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.WITHER,200,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,300,1),1.0f)
+                    .build())));
+    public static final Item GLOW_SQUID_TENTACLE = registerItem("glow_squid_tentacle", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING,100,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION,100,0),1.0f)
+                    .build())));
+    public static final Item GLOW_SQUID_TENTACLE_KEBABS = registerItem("glow_squid_tentacle_kebabs", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.3F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING,20*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION,20*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,20*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING,20*20,0),1.0f)
+                    .build())));
+    public static final Item RAW_GLOW_SQUID_TENTACLE_KEBABS = registerItem("raw_glow_squid_tentacle_kebabs", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.2F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING,10*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION,10*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,10*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING,10*20,0),1.0f)
+                    .build())));
+    public static final Item SQUID_TENTACLE = registerItem("squid_tentacle", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F)
+                    .build())));
+    public static final Item SQUID_TENTACLE_KEBABS = registerItem("squid_tentacle_kebabs", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.3F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,20*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING,20*20,0),1.0f)
+                    .build())));
+    public static final Item RAW_SQUID_TENTACLE_KEBABS = registerItem("raw_squid_tentacle_kebabs", new StickFoodItem(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.2F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,10*20,0),1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING,10*20,0),1.0f)
+                    .build())));
+    public static final Item STREAKY_PORK = registerItem("streaky_pork", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).meat()
+                    .build())));
 
+    public static final Item TURNIP = registerItem("turnip",
+            new Item(new FabricItemSettings()
+                    .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.BAD_OMEN,100,0),0.03f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS,100,0),0.2f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.DARKNESS,100,0),0.2f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.LUCK,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.LEVITATION,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.POISON,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.SPEED,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.HASTE,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.HERO_OF_THE_VILLAGE,100,0),0.03f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.UNLUCK,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.WITHER,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS,100,0),0.1f)
+                            .statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING,100,0),0.1f)
+                            .alwaysEdible().build())){
+                @Override
+                public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+                    tooltip.add(Text.translatable(ModUtil.TURNIP).formatted(Formatting.DARK_RED));
+                    super.appendTooltip(stack, world, tooltip, context);
+                }
+                @Override
+                public ActionResult useOnBlock(ItemUsageContext context) {
+                    World world = context.getWorld();
+                    BlockPos pos = context.getBlockPos();
+                    if (world.getBlockState(pos).getBlock() instanceof ComposterBlock){
+                        Objects.requireNonNull(context.getPlayer()).getActiveItem().decrement(1);
+                        world.createExplosion(context.getPlayer(), pos.getX(), pos.getY(), pos.getZ(),1.2f,true, World.ExplosionSourceType.BLOCK);
+                    }
+                    return super.useOnBlock(context);
+                }
+            });
+    public static final Item CHEESE_BURGER = registerItem("cheese_burger", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(14).saturationModifier(0.4F)
+                    .build())));
+    public static final Item RAW_DONUT = registerItem("raw_donut", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.2F)
+                    .build())));
+    public static final Item CHOCOLATE_DONUT = registerItem("chocolate_donut", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.3F)
+                    .build())));
+    public static final Item ROAST_STREAKY_PORK = registerItem("roast_streaky_pork", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(10).saturationModifier(0.5F).meat()
+                    .build())));
+    public static final Item PORK_CHOP_BURGER = registerItem("pork_chop_burger", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(18).saturationModifier(0.5F).meat()
+                    .build())));
+    public static final Item FRIED_COD_NUGGET = registerItem("fried_cod_nugget", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F)
+                    .build())));
+    public static final Item PORK_RIBS = registerItem("pork_ribs", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).meat()
+                    .build())));
+    public static final Item PORK_HOOF = registerItem("pork_hoof", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.1F).meat()
+                    .build())));
+    public static final Item GARLIC = registerItem("garlic", new AliasedBlockItem(ModBlocks.GARLIC_CROP,
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
+    public static final Item GARLIC_PETAL = registerItem("garlic_petal", new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(1).saturationModifier(0.3f).build())));
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(Bakingdelight.MOD_ID,name),item);
     }
+
     public static void registerModItems(){
         Bakingdelight.LOGGER.info("Registering Mod Items for " + Bakingdelight.MOD_ID);
     }

@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.entity.custom;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
+import com.zombie_cute.mc.bakingdelight.util.ModDamageTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -57,7 +58,7 @@ public class CherryBombEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(getDamageSources().thrown(this, getOwner()), 10.5f);
+        entity.damage(ModDamageTypes.of(entity.getWorld(),ModDamageTypes.TURNED_TO_ASHES), 10.5f);
         playSound(ModSounds.ENTITY_CHERRY_BOMB_EXPLOSION, 4.0f, (random.nextFloat() - random.nextFloat()) * 2.f + 1.f);
     }
 }

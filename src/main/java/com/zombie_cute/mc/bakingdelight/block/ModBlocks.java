@@ -3,21 +3,20 @@ package com.zombie_cute.mc.bakingdelight.block;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.custom.*;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
+import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidBlock;
-import net.minecraft.block.MapColor;
+import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 public class ModBlocks {
     public static final Block SILICON_BLOCK = registerBlock("silicon_block",
@@ -97,8 +96,40 @@ public class ModBlocks {
     public static final Block BOXED_CHERRIES = registerBlock("boxed_cherries",new BoxedCherriesBlock());
     public static final Block BAMBOO_GRATE = registerBlock("bamboo_grate",new BambooGrateBlock());
     public static final Block BAMBOO_COVER = registerBlock("bamboo_cover",new BambooCoverBlock());
+    public static final Block ELECTRIC_STEAMER = registerBlock("electric_steamer",new ElectricSteamerBlock());
+    public static final Block ICE_CREAM_MAKER = registerBlockWithoutItem("ice_cream_maker", new IceCreamMakerBlock());
+    public static final Block CARAMEL_PUDDING = registerBlockWithoutItem("caramel_pudding", new CaramelPuddingBlock());
+    public static final Block FISH_AND_CHIPS = registerBlockWithoutItem("fish_and_chips", new FishAndChipsBlock());
+    public static final Block WILD_PEPPER_CROP = registerBlock("wild_pepper_crop",new PlantBlock(
+            FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
+    ));
+    public static final Block GARLIC_CROP = registerBlockWithoutItem("garlic_crop",
+            new GarlicCropBlock(FabricBlockSettings.copyOf(Blocks.POTATOES)));
+    public static final Block WILD_GARLIC = registerBlock("wild_garlic",new PlantBlock(
+            FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
+    ));
 
     // Block Items
+    public static final BlockItem FISH_AND_CHIPS_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"fish_and_chips"),
+            new BlockItem(FISH_AND_CHIPS,new FabricItemSettings().maxCount(16).food(
+                    new FoodComponent.Builder().hunger(20).saturationModifier(0.6f).build()
+            )){
+                @Override
+                public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+                    if (user instanceof PlayerEntity player){
+                        if (stack.getCount() == 1){
+                            player.setStackInHand(player.getActiveHand(), Items.BOWL.getDefaultStack());
+                            player.giveItemStack(new ItemStack(ModItems.DIRTY_PACKAGING_BAG,2));
+                        } else {
+                            player.giveItemStack(Items.BOWL.getDefaultStack());
+                            player.giveItemStack(new ItemStack(ModItems.DIRTY_PACKAGING_BAG,2));
+                        }
+                    }
+                    return super.finishUsing(stack, world, user);
+                }
+            });
+    public static final BlockItem ICE_CREAM_MAKER_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"ice_cream_maker"),
+            new IceCreamMakerBlockItem());
     public static final BlockItem STERLING_ENGINE_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"sterling_engine"),
             new BlockItem(STERLING_ENGINE,new FabricItemSettings().maxCount(16)));
     public static final BlockItem FAN_BLADE_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"fan_blade"),

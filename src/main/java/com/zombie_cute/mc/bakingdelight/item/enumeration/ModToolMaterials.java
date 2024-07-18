@@ -8,6 +8,7 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
+    STRING(1, 59, 3.f, 1.0f, 3, () -> Ingredient.ofItems(Items.STRING)),
     COPPER(1, 171, 5.f, 1.5f, 5, () -> Ingredient.ofItems(Items.COPPER_INGOT)),
     AMETHYST(3, 720, 7.f, 2.f, 10, () -> Ingredient.ofItems(Items.AMETHYST_SHARD));
     private final int miningLevel;

@@ -17,6 +17,7 @@ import com.zombie_cute.mc.bakingdelight.util.ModBrewingRecipe;
 import com.zombie_cute.mc.bakingdelight.util.ModCompostingChances;
 import com.zombie_cute.mc.bakingdelight.util.ModFuels;
 import com.zombie_cute.mc.bakingdelight.util.ModLootTableModifies;
+import com.zombie_cute.mc.bakingdelight.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -64,6 +65,7 @@ public class Bakingdelight implements ModInitializer {
 		ModBrewingRecipe.registerModBrewingRecipe();
 		ModEffectsAndPotions.registerModEffectsAndPotions();
 		ModFluid.registerModFluid();
+		ModWorldGeneration.generateModWorldGen();
 
 
 		DispenserBlock.registerBehavior(ModItems.BUTTER, new ProjectileDispenserBehavior() {
@@ -122,7 +124,19 @@ public class Bakingdelight implements ModInitializer {
 					case 3 -> {
 						electriciansDeskBlockEntity.removeStack(6, 1);
 						electriciansDeskBlockEntity.removeStack(7, 1);
+						electriciansDeskBlockEntity.setOccupied(true);
 					}
+					case 4 -> electriciansDeskBlockEntity.setOccupied(false);
+				}
+			} else if (blockEntity instanceof IceCreamMakerBlockEntity iceCreamMakerBlockEntity) {
+				switch (array[0]){
+					case 1 -> iceCreamMakerBlockEntity.changeIceCream1();
+					case 2 -> iceCreamMakerBlockEntity.changeIceCream2();
+					case 3 -> iceCreamMakerBlockEntity.changeIceCream3();
+				}
+			} else if (blockEntity instanceof CuisineTableBlockEntity cuisineTableBlockEntity) {
+				switch (array[0]){
+					case 1 -> cuisineTableBlockEntity.setCanOpen(true);
 				}
 			}
 		});

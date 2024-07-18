@@ -1,15 +1,20 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.entities.ElectriciansDeskBlockEntity;
+import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -18,13 +23,33 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class ElectriciansDeskBlock extends BlockWithEntity {
     public ElectriciansDeskBlock() {
         super(FabricBlockSettings.copyOf(Blocks.CHERRY_PLANKS).nonOpaque());
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,14,16);
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(ModUtil.getShiftText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_3).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_4).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_5).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_6).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_7).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.ELECTRICIANS_DESK_8).formatted(Formatting.GOLD));
 
+        } else {
+            tooltip.add(ModUtil.getShiftText(false));
+        }
+        super.appendTooltip(stack, world, tooltip, options);
+    }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPED;

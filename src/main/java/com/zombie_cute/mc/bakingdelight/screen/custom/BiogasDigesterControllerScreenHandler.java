@@ -43,11 +43,11 @@ public class BiogasDigesterControllerScreenHandler extends ScreenHandler {
     }
     @Environment(EnvType.CLIENT)
     public int getGasValue(){
-        return this.propertyDelegate.get(2);
-    }
-    @Environment(EnvType.CLIENT)
-    public int getMaxGasValue(){
-        return this.propertyDelegate.get(3);
+        int gasValue = this.propertyDelegate.get(2);
+        if (this.propertyDelegate.get(3) != 0){
+            gasValue = gasValue * 19;
+        }
+        return gasValue;
     }
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {

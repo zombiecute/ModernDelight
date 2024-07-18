@@ -14,9 +14,9 @@
 		"Vinight"
 	],
 	"contact": {
-		"homepage": "https://github.com/zombiecute/BakingDelight",
-		"sources": "https://github.com/zombiecute/BakingDelight",
-		"issues": "https://github.com/zombiecute/BakingDelight/issues"
+		"homepage": "https://github.com/zombiecute/ModernKitchen",
+		"sources": "https://github.com/zombiecute/ModernKitchen",
+		"issues": "https://github.com/zombiecute/ModernKitchen/issues"
 	},
 	"license": "MIT ",
 	"icon": "assets/bakingdelight/icon.png",
@@ -33,6 +33,9 @@
 		],
 		"rei_client": [
 			"com.zombie_cute.mc.bakingdelight.compat.rei.BakingDelightREIClientPlugin"
+		],
+		"emi": [
+			"com.zombie_cute.mc.bakingdelight.compat.emi.BakingDelightEMIPlugin"
 		]
 	},
 	"mixins": [
@@ -45,6 +48,6 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"another-mod": "geckolib"
 	}
 }

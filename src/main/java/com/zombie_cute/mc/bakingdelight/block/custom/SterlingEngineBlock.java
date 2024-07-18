@@ -18,6 +18,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -40,6 +41,9 @@ public class SterlingEngineBlock extends BlockWithEntity {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(ModUtil.STERLING_ENGINE_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.STERLING_ENGINE_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.STERLING_ENGINE_3).formatted(Formatting.GOLD));
         } else {
             tooltip.add(ModUtil.getShiftText(false));
         }

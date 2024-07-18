@@ -58,6 +58,7 @@ public class DeepFryerBlock extends BlockWithEntity {
             return TYPE_SOUTH;
         }
     }
+
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = state.get(FACING);
@@ -147,6 +148,7 @@ public class DeepFryerBlock extends BlockWithEntity {
             tooltip.add(Text.translatable(ModUtil.DEEP_FRYER_1).formatted(Formatting.GOLD));
             tooltip.add(Text.translatable(ModUtil.DEEP_FRYER_2).formatted(Formatting.GOLD));
             tooltip.add(Text.translatable(ModUtil.DEEP_FRYER_3).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(ModUtil.DEEP_FRYER_4).formatted(Formatting.GOLD));
         } else {
             tooltip.add(ModUtil.getShiftText(false));
         }

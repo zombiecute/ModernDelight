@@ -25,6 +25,16 @@ public class CuisineTableBlockEntity extends BlockEntity implements ExtendedScre
     }
     public static final String CUISINE_TABLE_NAME = "display_name.bakingdelight.cuisine_table_name";
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3,ItemStack.EMPTY);
+
+    public boolean canOpen() {
+        return canOpen;
+    }
+
+    public void setCanOpen(boolean canOpen) {
+        this.canOpen = canOpen;
+    }
+
+    private boolean canOpen = true;
     @Override
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
         buf.writeBlockPos(pos);

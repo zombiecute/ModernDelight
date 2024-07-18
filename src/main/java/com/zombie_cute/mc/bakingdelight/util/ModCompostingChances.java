@@ -64,6 +64,34 @@ public class ModCompostingChances {
         CompostingChanceRegistry.INSTANCE.add(ModItems.POTATO_CHIP, 0.4f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_BALL, 0.4f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_DOUGH_STICK, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.RAW_ICE_CREAM_CONE, 0.2f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.ICE_CREAM_CONE, 0.4f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.ICE_CREAM, 1.0f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.BEEF_TOMATO_CUP, 1.0f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.BUTTERFLY_CRISP, 0.5f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_BAKED_POTATO, 0.9f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_RICE_BALL, 0.9f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.DEEP_FRIED_SHRIMP_CAKE, 1.0f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.SEAWEED_FRIED_SHRIMP_CAKE, 1.0f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.DONUT, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CARAMEL_PUDDING, 0.8f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CHERRY_PUDDING, 0.75f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.ICE_LOLLY, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.POTATO_CHIPS, 0.15f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.DEEP_FRIED_POTATO_CHIPS, 0.4f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.FRENCH_FRIES, 0.6f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_RED_MUSHROOM, 0.4f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_BROWN_MUSHROOM, 0.4f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CHERRY_ICE_LOLLY, 0.5f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.MATCHA_ICE_LOLLY, 0.8f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.WITHER_ICE_LOLLY, 0.4f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_BURGER, 1.0f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CHOCOLATE_DONUT, 0.5f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.RAW_DONUT, 0.4f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.PORK_CHOP_BURGER, 1.0f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.TURNIP, 1.0f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.GARLIC, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.GARLIC_PETAL, 0.2f);
 
     }
 }

@@ -2,7 +2,11 @@
   "replace": false,
   "values": [
     {
-      "id": "#c:seeds/lack_peppers",
+      "id": "#c:seeds/black_peppers",
+      "required": false
+    },
+    {
+      "id": "#c:seeds/garlics",
       "required": false
     }
   ]

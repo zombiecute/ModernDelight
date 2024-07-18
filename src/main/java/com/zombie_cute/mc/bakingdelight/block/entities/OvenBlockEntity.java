@@ -5,6 +5,7 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.custom.AdvanceFurnaceBlock;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
+import com.zombie_cute.mc.bakingdelight.item.custom.JarItem;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.BakingRecipe;
 import com.zombie_cute.mc.bakingdelight.screen.custom.OvenScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -16,10 +17,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
@@ -220,13 +218,18 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
                 markDirty(world, pos, state);
                 if (hasCraftingFinished()){
                     this.craftItem(entity);
-                    if (this.getStack(INPUT_SLOT_1).getItem() == Items.MILK_BUCKET){
-                        this.setStack(INPUT_SLOT_1, new ItemStack(Items.BUCKET, 4));
-                    } else if (this.getStack(INPUT_SLOT_1).getItem() == ModItems.CREAM_BUCKET){
-                        this.setStack(INPUT_SLOT_1, new ItemStack(Items.BUCKET, 1));
-                    } else {
-                        this.removeStack(INPUT_SLOT_1,1);
+                    for (int i = 0; i < 4; i++){
+                        if (this.getStack(i).getItem() instanceof BucketItem){
+                            ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.BUCKET));
+                        }
+                        if (this.getStack(i).getItem() instanceof JarItem){
+                            ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(ModItems.JAR));
+                        }
+                        if (this.getStack(i).getItem().getRecipeRemainder() == Items.GLASS_BOTTLE){
+                            ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.GLASS_BOTTLE));
+                        }
                     }
+                    this.removeStack(INPUT_SLOT_1,1);
                     this.removeStack(INPUT_SLOT_2,1);
                     this.removeStack(INPUT_SLOT_3,1);
                     this.removeStack(INPUT_SLOT_4,1);

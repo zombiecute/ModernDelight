@@ -13,12 +13,20 @@ public class ForgeTagKeys {
     // Farmer's Delight Mod
     public static final TagKey<Block> HEAT_SOURCES = fdModBlockTag("heat_sources");
     // C
+    public static final TagKey<Item> STORAGE_BLOCKS = forgeItemTag("storage_blocks");
+    public static final TagKey<Item> INGOTS = forgeItemTag("ingots");
     public static final TagKey<Item> SILICON = forgeItemTag("silicon");
     public static final TagKey<Item> C_WHEAT_FLOUR = forgeItemTag("wheat_flour");
     public static final TagKey<Item> C_FLOUR = forgeItemTag("flour");
     public static final TagKey<Item> C_WHEAT_DOUGH = forgeItemTag("wheat_dough");
     public static final TagKey<Item> C_DOUGH = forgeItemTag("dough");
     public static final TagKey<Item> FOODS = forgeItemTag("foods");
+        public static final TagKey<Item> COOKED_MEATS = forgeItemTag("foods/cooked_meats");
+            public static final TagKey<Item> COOKED_PORK = forgeItemTag("foods/cooked_meats/cooked_pork");
+        public static final TagKey<Item> RAW_MEATS = forgeItemTag("foods/raw_meats");
+            public static final TagKey<Item> RAW_PORK = forgeItemTag("foods/raw_meats/raw_pork");
+        public static final TagKey<Item> ICE_LOLLIES = forgeItemTag("foods/ice_lollies");
+        public static final TagKey<Item> ICE_CREAMS = forgeItemTag("foods/ice_creams");
         public static final TagKey<Item> BUCKET_OIL = forgeItemTag("foods/bucket_of_oil");
         public static final TagKey<Item> BOTTLE_OIL = forgeItemTag("foods/bottle_of_oil");
         public static final TagKey<Item> FLOWER_CAKES = forgeItemTag("flower_cakes");
@@ -47,9 +55,14 @@ public class ForgeTagKeys {
         public static final TagKey<Item> TOOLS_KNIVES = forgeItemTag("tools/knives");
     public static final TagKey<Item> COLD_ITEMS = forgeItemTag("cold_items");
     public static final TagKey<Item> SEEDS = forgeItemTag("seeds");
-        public static final TagKey<Item> SEED_BLACK_PEPPERS = forgeItemTag("seeds/lack_peppers");
+        public static final TagKey<Item> SEED_BLACK_PEPPERS = forgeItemTag("seeds/black_peppers");
+        public static final TagKey<Item> SEED_GARLIC = forgeItemTag("seeds/garlics");
     public static final TagKey<Item> CROPS = forgeItemTag("crops");
         public static final TagKey<Item> CROP_BLACK_PEPPER = forgeItemTag("crops/black_peppers");
+        public static final TagKey<Item> CROP_GARLIC = forgeItemTag("crops/garlics");
+        public static final TagKey<Item> CABBAGE = forgeItemTag("crops/cabbage");
+
+    public static final TagKey<Item> MILKS = forgeItemTag("milks");
     private static TagKey<Block> forgeBlockTag(String path) {
         // Change namespace to 'c'. Porting Lib does this too.
         return TagKey.of(RegistryKeys.BLOCK, new Identifier("c", path));

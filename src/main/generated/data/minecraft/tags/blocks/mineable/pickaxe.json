@@ -32,6 +32,8 @@
     "bakingdelight:sterling_engine",
     "bakingdelight:faraday_generator",
     "bakingdelight:tesla_coil",
-    "bakingdelight:silicon_block"
+    "bakingdelight:silicon_block",
+    "bakingdelight:electric_steamer",
+    "bakingdelight:ice_cream_maker"
   ]
 }

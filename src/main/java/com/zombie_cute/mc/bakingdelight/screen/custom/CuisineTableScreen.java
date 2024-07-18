@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.CuisineRecipe;
+import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -236,5 +237,13 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
         renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
+    }
+
+    @Override
+    public void close() {
+        int[] array = new int[1];
+        array[0] = 1;
+        NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(), array);
+        super.close();
     }
 }

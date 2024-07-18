@@ -18,7 +18,10 @@ repositories {
 	// for more information about repositories.\
 
 	maven { url = "https://maven.shedaniel.me" } // REI, Cloth Config
-	maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	} // Mod Menu & EMI
 	maven {
 		name = 'GeckoLib'
 		url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
@@ -68,6 +71,9 @@ dependencies {
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	// Mod Menu
 	modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
+	// EMI
+	modCompileOnly "dev.emi:emi-fabric:${emi_version}+${minecraft_version}:api"
+	modLocalRuntime "dev.emi:emi-fabric:${emi_version}+${minecraft_version}"
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 	modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"

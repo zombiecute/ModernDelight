@@ -13,6 +13,30 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "caramel_pudding": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:caramel_pudding"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cherry_pudding": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:cherry_pudding"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "matcha_pudding": {
       "conditions": {
         "items": [
@@ -47,6 +71,12 @@
     ],
     [
       "matcha_pudding"
+    ],
+    [
+      "caramel_pudding"
+    ],
+    [
+      "cherry_pudding"
     ]
   ],
   "sends_telemetry_event": true

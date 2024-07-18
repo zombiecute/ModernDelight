@@ -76,19 +76,19 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
         }
 
         if (mouseX >= x + 82 && mouseX <= x + 130 && mouseY >= y + 25 && mouseY <= y + 50){
-            context.drawTexture(TEXTURE,mouseX+3,mouseY+6,194,0,36,13);
+            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,194,0,36,13);
             if (gasValue<1000){
                 context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+6,mouseY+9, 5635925,false);
+                        mouseX+9,mouseY-13, 5635925,false);
             } else if (gasValue<3000) {
                 context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+6,mouseY+9, 16777045,false);
+                        mouseX+9,mouseY-13, 16777045,false);
             } else if (gasValue<5000) {
                 context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+6,mouseY+9, 16755200,false);
+                        mouseX+9,mouseY-13, 16755200,false);
             } else {
                 context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+6,mouseY+9, 16733525,false);
+                        mouseX+9,mouseY-13, 16733525,false);
             }
         }
     }
