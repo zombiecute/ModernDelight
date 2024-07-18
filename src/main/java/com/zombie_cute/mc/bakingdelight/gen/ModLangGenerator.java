@@ -607,8 +607,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.acdcc.desc", "Make an AC/DC converter which will convert these two types of power with losses.");
         translationBuilder.add("advancement.bakingdelight.battery1.title", "Introduction to Electricity Storage");
         translationBuilder.add("advancement.bakingdelight.battery1.desc", "Make a simple battery, which is the beginning of all power storage.");
-        translationBuilder.add("advancement.bakingdelight.thermalPowerGeneration.title", "Industrial Revolution");
-        translationBuilder.add("advancement.bakingdelight.thermalPowerGeneration.desc", "Make a Stirling Engine and Faraday Generator, mount the Stirling Engine on any working furnace, connect the flywheel which is a part of the Stirling Engine to the Faraday Generator, and start mass-producing electricity!");
+        translationBuilder.add("advancement.bakingdelight.thermal_power_generation.title", "Industrial Revolution");
+        translationBuilder.add("advancement.bakingdelight.thermal_power_generation.desc", "Make a Stirling Engine and Faraday Generator, mount the Stirling Engine on any working furnace, connect the flywheel which is a part of the Stirling Engine to the Faraday Generator, and start mass-producing electricity!");
         translationBuilder.add("advancement.bakingdelight.battery2.title", "Advanced Power Storage");
         translationBuilder.add("advancement.bakingdelight.battery2.desc", "Make an intermediate battery and you'll be able to store more power again!");
         translationBuilder.add("advancement.bakingdelight.battery3.title", "I need more electricity!");
@@ -629,5 +629,6 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.fish_and_chips.desc", "Make a portion of fish and chips, excellent!");
         translationBuilder.add("advancement.bakingdelight.all_ice_lolly.title", "Ice Lolly Expert");
         translationBuilder.add("advancement.bakingdelight.all_ice_lolly.desc", "Make all the Ice Lollies");
+
     }
 }
