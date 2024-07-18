@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_ice_cream_maker",
+  "criteria": {
+    "ice_cream": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:ice_cream"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.ice_cream.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:ice_cream"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.ice_cream.title"
+    }
+  },
+  "requirements": [
+    [
+      "ice_cream"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

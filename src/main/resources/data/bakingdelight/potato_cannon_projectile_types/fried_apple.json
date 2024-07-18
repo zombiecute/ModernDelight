@@ -1,0 +1,10 @@
+{
+  "items": [
+    "bakingdelight:fried_apple"
+  ],
+  "damage": 3,
+  "reload_ticks": 10,
+  "knockback": 1.0,
+  "velocity_multiplier": 3.5,
+  "sound_pitch": 2.8
+}

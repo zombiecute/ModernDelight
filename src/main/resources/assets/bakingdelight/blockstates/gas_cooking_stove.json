@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "has_bracket=false": {
+      "model": "bakingdelight:block/gas_cooking_stove"
+    },
+    "has_bracket=true": {
+      "model": "bakingdelight:block/gas_cooking_stove2"
+    }
+  }
+}

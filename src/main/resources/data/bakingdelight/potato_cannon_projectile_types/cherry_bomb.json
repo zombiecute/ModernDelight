@@ -1,0 +1,10 @@
+{
+  "items": [
+    "bakingdelight:cherry_bomb"
+  ],
+  "damage": 15,
+  "reload_ticks": 20,
+  "knockback": 1.8,
+  "velocity_multiplier": 2.0,
+  "sound_pitch": 0.8
+}

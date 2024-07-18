@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "bakingdelight:redstone_component"
+    }
+  },
+  "pattern": [
+    "IGI",
+    "IGI",
+    "IRI"
+  ],
+  "result": {
+    "item": "bakingdelight:electric_steamer"
+  },
+  "show_notification": true
+}

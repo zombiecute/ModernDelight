@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/dirty_packaging_bag"
+  }
+}

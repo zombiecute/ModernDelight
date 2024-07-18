@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_battery3",
+  "criteria": {
+    "pg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:photovoltaic_generator"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.pg.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:photovoltaic_generator"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.pg.title"
+    }
+  },
+  "requirements": [
+    [
+      "pg"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

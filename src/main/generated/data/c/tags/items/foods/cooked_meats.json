@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:foods/cooked_meats/cooked_pork",
+      "required": false
+    }
+  ]
+}

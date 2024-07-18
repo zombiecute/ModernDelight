@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:raw_ice_cream_cone"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "bakingdelight:raw_ice_cream_cone"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:ice_cream_cone",
+    "count": 2
+  }
+}

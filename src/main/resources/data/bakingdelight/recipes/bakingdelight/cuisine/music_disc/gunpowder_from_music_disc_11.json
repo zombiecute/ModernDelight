@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_11"
+    },
+    {
+      "tag": "bakingdelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:gunpowder",
+    "count": 18
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/glow_squid_tentacle_kebabs"
+  }
+}

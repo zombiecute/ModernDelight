@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:ice_lolly",
+    {
+      "id": "farmersdelight:melon_popsicle",
+      "required": false
+    },
+    "bakingdelight:cherry_ice_lolly",
+    "bakingdelight:matcha_ice_lolly",
+    "bakingdelight:wither_ice_lolly"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_electricians_desk",
+  "criteria": {
+    "tesla_coil": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:tesla_coil"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.tesla_coil.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:tesla_coil"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.tesla_coil.title"
+    }
+  },
+  "requirements": [
+    [
+      "tesla_coil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

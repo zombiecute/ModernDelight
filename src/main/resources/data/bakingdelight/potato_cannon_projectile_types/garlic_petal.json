@@ -1,0 +1,10 @@
+{
+  "items": [
+    "bakingdelight:garlic_petal"
+  ],
+  "damage": 0.5,
+  "reload_ticks": 5,
+  "knockback": 0.8,
+  "velocity_multiplier": 3.0,
+  "sound_pitch": 2.8
+}

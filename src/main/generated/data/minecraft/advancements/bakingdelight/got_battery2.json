@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_battery1",
+  "criteria": {
+    "battery2": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:intermediate_battery"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.battery2.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:intermediate_battery"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.battery2.title"
+    }
+  },
+  "requirements": [
+    [
+      "battery2"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/seaweed_fried_shrimp_cake"
+  }
+}

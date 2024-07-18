@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:whisking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:prawn"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:shrimp_paste"
+  }
+}

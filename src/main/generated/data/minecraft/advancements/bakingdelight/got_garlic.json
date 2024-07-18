@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "garlic": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:garlic"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.garlic.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:garlic"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.garlic.title"
+    }
+  },
+  "requirements": [
+    [
+      "garlic"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,10 @@
+{
+  "items": [
+    "bakingdelight:turnip"
+  ],
+  "damage": 10,
+  "reload_ticks": 100,
+  "knockback": 2.0,
+  "velocity_multiplier": 2.0,
+  "sound_pitch": 0.3
+}

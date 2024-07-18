@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "bakingdelight:block/ice_cream_maker",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "bakingdelight:block/ice_cream_maker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "bakingdelight:block/ice_cream_maker",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "bakingdelight:block/ice_cream_maker",
+      "y": 90
+    }
+  }
+}

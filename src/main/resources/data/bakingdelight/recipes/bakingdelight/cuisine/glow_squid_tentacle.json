@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "bakingdelight:glow_squid"
+    },
+    {
+      "tag": "c:tools/knives"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:glow_squid_tentacle",
+    "count": 2
+  }
+}

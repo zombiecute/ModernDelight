@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:wild_garlic"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "count": 2,
+      "item": "bakingdelight:garlic"
+    },
+    {
+      "chance": 0.6,
+      "item": "minecraft:magenta_dye"
+    },
+    {
+      "chance": 0.2,
+      "item": "minecraft:lime_dye"
+    }
+  ]
+}

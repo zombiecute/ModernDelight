@@ -1,0 +1,10 @@
+{
+  "items": [
+    "bakingdelight:apple_petal"
+  ],
+  "damage": 1,
+  "reload_ticks": 5,
+  "knockback": 0.5,
+  "velocity_multiplier": 2.5,
+  "sound_pitch": 3.0
+}
