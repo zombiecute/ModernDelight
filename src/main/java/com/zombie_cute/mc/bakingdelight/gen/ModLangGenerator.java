@@ -425,6 +425,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s was electrocuted!");
         translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s turned to ashes");
+        translationBuilder.add("death.attack.bakingdelight_turned_to_ashes。player","%1$s turned to ashes");
         translationBuilder.add("death.attack.bakingdelight_scalded","%1$s scalded to death");
 
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "Cream");

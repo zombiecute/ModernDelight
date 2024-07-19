@@ -301,6 +301,7 @@
   "death.attack.bakingdelight_electroshock": "%1$s was electrocuted!",
   "death.attack.bakingdelight_scalded": "%1$s scalded to death",
   "death.attack.bakingdelight_turned_to_ashes": "%1$s turned to ashes",
+  "death.attack.bakingdelight_turned_to_ashes。player": "%1$s turned to ashes",
   "display_name.bakingdelight.advance_furnace_name": "Advance Furnace",
   "display_name.bakingdelight.baking_tray_name": "Stir-fried Dish",
   "display_name.bakingdelight.biogas_fermentation_name": "Biogas Fermentation",

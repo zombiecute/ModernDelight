@@ -301,6 +301,7 @@
   "death.attack.bakingdelight_electroshock": "%1$s 触电身亡！",
   "death.attack.bakingdelight_scalded": "%1$s 被烫死了",
   "death.attack.bakingdelight_turned_to_ashes": "%1$s 化为了灰烬",
+  "death.attack.bakingdelight_turned_to_ashes。player": "%1$s 化为了灰烬",
   "display_name.bakingdelight.advance_furnace_name": "高级熔炉",
   "display_name.bakingdelight.baking_tray_name": "炒菜",
   "display_name.bakingdelight.biogas_fermentation_name": "沼气发酵",

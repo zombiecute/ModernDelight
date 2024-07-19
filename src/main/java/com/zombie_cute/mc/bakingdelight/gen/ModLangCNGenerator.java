@@ -424,6 +424,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s 触电身亡！");
         translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s 化为了灰烬");
+        translationBuilder.add("death.attack.bakingdelight_turned_to_ashes。player","%1$s 化为了灰烬");
         translationBuilder.add("death.attack.bakingdelight_scalded","%1$s 被烫死了");
 
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "奶油");

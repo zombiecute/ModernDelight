@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-18T15:19:42.4127299	Modern Kitchen/Block Loot Tables
+// 1.20.1	2024-07-19T15:42:18.2692566	Modern Kitchen/Block Loot Tables
 e48a883b07142ee0b286b4de2c440dc9f48c639b data\bakingdelight\loot_tables\blocks\basalt_cabinet.json
 0072465164633218abf2a61b82924bfa3b8f8c04 data\bakingdelight\loot_tables\blocks\glass_bowl.json
 776b0fa836b1392d51808c7911995d6bb2547947 data\bakingdelight\loot_tables\blocks\fan_blade.json
@@ -35,11 +35,11 @@ e05e3ea3ad5f325cb555b8ff9c7c436901c62c99 data\bakingdelight\loot_tables\blocks\b
 fca2134a2c73ab061853ae87244cc19ce5dbf535 data\bakingdelight\loot_tables\blocks\garlic_crop.json
 5b14b85eb7194c9b2991982409a8b2062cca0477 data\bakingdelight\loot_tables\blocks\wild_garlic.json
 2c9489b9d0a7e11f17e2ddf4fe87ea36fa14f671 data\bakingdelight\loot_tables\blocks\wheat_dough.json
-01b1311bc3545f4154408c0ae321fd7d3332c821 data\bakingdelight\loot_tables\blocks\diorite_cabinet.json
 01f45291ffbe1a0fb17e00c29c82207c552c3eb9 data\bakingdelight\loot_tables\blocks\wild_pepper_crop.json
-5214f1180e711eff859fd0a8ac32bc8992de2258 data\bakingdelight\loot_tables\blocks\caramel_pudding.json
+01b1311bc3545f4154408c0ae321fd7d3332c821 data\bakingdelight\loot_tables\blocks\diorite_cabinet.json
 e225af4b38c95b037a0c81d90eabdeefb269d57c data\bakingdelight\loot_tables\blocks\freezer.json
+5214f1180e711eff859fd0a8ac32bc8992de2258 data\bakingdelight\loot_tables\blocks\caramel_pudding.json
 8a8a66760dabd429bad3639a41aae24a4f75b7c5 data\bakingdelight\loot_tables\blocks\advance_furnace.json
-fa0e88f0a2981fa22b90029005e4776e7cdfa4cf data\bakingdelight\loot_tables\blocks\deepslate_cabinet.json
 ed532899dbc81475c69f4a3b9f101ed2fb503db0 data\bakingdelight\loot_tables\blocks\tesla_coil.json
+fa0e88f0a2981fa22b90029005e4776e7cdfa4cf data\bakingdelight\loot_tables\blocks\deepslate_cabinet.json
 4daee4180f0241dcf85d6c0672df620624ffd155 data\bakingdelight\loot_tables\blocks\deep_fry_basket.json
