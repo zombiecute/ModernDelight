@@ -27,15 +27,14 @@ public class BatteryBlockEntity extends BlockEntity implements PowerStorageAble 
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        nbt.putInt("battery.power",this.getPowerValue());
         nbt.putInt("battery.maxPower",this.getPower().getMaxPower());
+        nbt.putInt("battery.power",this.getPowerValue());
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.setPower(nbt.getInt("battery.power"));
-        this.changeMaxPower(nbt.getInt("battery.maxPower"));
+        this.setCachedPower(nbt.getInt("battery.power"),nbt.getInt("battery.maxPower"));
     }
 
     @Override

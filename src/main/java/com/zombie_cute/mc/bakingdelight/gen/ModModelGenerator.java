@@ -88,6 +88,7 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModBlocks.BAMBOO_GRATE.asItem(), registerItemBlockModel(ModBlocks.BAMBOO_GRATE));
         itemModelGenerator.register(ModBlocks.ELECTRIC_STEAMER.asItem(), registerItemBlockModel(ModBlocks.ELECTRIC_STEAMER));
         itemModelGenerator.register(ModBlocks.ICE_CREAM_MAKER.asItem(), registerItemBlockModel(ModBlocks.ICE_CREAM_MAKER));
+        itemModelGenerator.register(ModBlocks.CHARGING_POST.asItem(), registerItemBlockModel(ModBlocks.CHARGING_POST));
 
         itemModelGenerator.register(ModItems.GARLIC_PETAL, Models.GENERATED);
         itemModelGenerator.register(ModBlocks.FISH_AND_CHIPS_ITEM, Models.GENERATED);

@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-19T15:42:18.2527746	Modern Kitchen/Model Definitions
+// 1.20.1	2024-07-27T18:23:34.8089039	Modern Kitchen/Model Definitions
 e143d34d1133e86ddea7b69cc56444a293cd9592 assets\bakingdelight\models\item\wheat_dough.json
 a91623af1beecbb55314e24b9b6d7a4455307360 assets\bakingdelight\models\item\redstone_component.json
 d905a19315e8a287374dcf7083b2c05697138f4d assets\bakingdelight\models\item\pink_tulip_cake.json
@@ -110,6 +110,7 @@ d0c94242e384c060e1537b7f2c86d3ca460be48c assets\bakingdelight\models\item\boxed_
 300474e67c4bf934f7b8d611418a600148f989c6 assets\bakingdelight\models\item\gas_pipe.json
 7a9ac3f4457e41b9aa5ff071de9ba23935777b88 assets\bakingdelight\models\item\raw_donut.json
 23472109aea0022bfd4a211a56e33f28e20cbb5c assets\bakingdelight\models\item\mashed_potato_block.json
+88d8907b05668e2f161cf02d36341957fbde5799 assets\bakingdelight\models\item\charging_post.json
 ff6d420476c8c2a135342876678530736347adcb assets\bakingdelight\models\block\black_pepper_crop_stage1.json
 e3acd41e50d9a4b361b73c60b14ef5dfeb35bbdc assets\bakingdelight\models\item\bamboo_grate.json
 fd6fd8901890052db067d1a68284484a7649ca29 assets\bakingdelight\models\item\lilac_cake.json
@@ -229,8 +230,8 @@ eec692bd86e9923e7e5d6ed71df84441d24236fb assets\bakingdelight\models\item\truffl
 9d2472b2305ddbe3f8e1f5d3dd658bed122fb6d0 assets\bakingdelight\blockstates\black_pepper_crop.json
 2b0ceac6d1fd13eda249fc198fb810cb1bfacfad assets\bakingdelight\models\block\garlic_crop_stage4.json
 fed7c569b5923fb722840d000d3018216a4f2fa9 assets\bakingdelight\models\item\matcha_mousse.json
-439d9d92d44c276fce276a1cf9e30693a6edc9a1 assets\bakingdelight\models\item\deep_fried_potato_chips.json
 ecce95e07fdfd452289f39fe1e715a418d70ebfa assets\bakingdelight\models\item\chocolate_donut.json
+439d9d92d44c276fce276a1cf9e30693a6edc9a1 assets\bakingdelight\models\item\deep_fried_potato_chips.json
 370341d7512b6aeb8f01df1ef72da4ec8c0e503a assets\bakingdelight\blockstates\advance_battery.json
 846090fbb640c6b373a9bc8c13b95ffdef6b081f assets\bakingdelight\blockstates\bamboo_cover.json
 02e587484ceafa38e8e673fe4f74b07050dd0cc7 assets\bakingdelight\models\item\wild_garlic.json

@@ -22,6 +22,7 @@ public class ModSounds {
     public static final SoundEvent BLOCK_GAS_COOKING_STOVE_IGNITE = registerSound("block_gas_cooking_stove_ignite");
     public static final SoundEvent BLOCK_STERLING_ENGINE = registerSound("block_sterling_engine");
     public static final SoundEvent BLOCK_TESLA_COIL = registerSound("block_tesla_coil");
+    public static final SoundEvent ITEM_ELECTRIC_WHISK_WORKING = registerSound("item_electric_whisk_working");
 
     public static SoundEvent registerSound(String name){
         Identifier id = new Identifier(Bakingdelight.MOD_ID, name);

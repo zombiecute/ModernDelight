@@ -779,5 +779,14 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(Items.GLASS),
                         FabricRecipeProvider.conditionsFromItem(Items.GLASS))
                 .offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.ELECTRIC_WHISK,1)
+                .pattern("IRI")
+                .pattern("  W")
+                .input('I', Items.IRON_INGOT)
+                .input('R', ModItems.REDSTONE_COMPONENT)
+                .input('W', ModItems.IRON_WHISK)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.REDSTONE_COMPONENT),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.REDSTONE_COMPONENT))
+                .offerTo(exporter);
     }
 }

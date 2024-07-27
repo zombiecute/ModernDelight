@@ -96,5 +96,11 @@
       "bakingdelight:tesla_coil_2",
       "bakingdelight:tesla_coil_3"
     ]
+  },
+  "item_electric_whisk_working": {
+    "subtitle": "sounds.bakingdelight.item_electric_whisk_working",
+    "sounds": [
+      "bakingdelight:electric_whisk"
+    ]
   }
 }

@@ -30,7 +30,8 @@ public class Power {
     public int getMaxPower(){
         return this.max_power;
     }
-    public void changeMaxPower(int value){
-        this.max_power = value;
+    public void setCachedPower(int value, int maxPower){
+        this.power = value;
+        this.max_power = maxPower;
     }
 }

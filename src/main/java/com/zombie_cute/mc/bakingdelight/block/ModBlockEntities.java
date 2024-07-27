@@ -139,6 +139,10 @@ public class ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE, new Identifier(Bakingdelight.MOD_ID, "fish_and_chips_be"),
             FabricBlockEntityTypeBuilder.create(FishAndChipsBlockEntity::new, ModBlocks.FISH_AND_CHIPS).build(null)
     );
+    public static final BlockEntityType<ChargingPostBlockEntity> CHARGING_POST_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, new Identifier(Bakingdelight.MOD_ID, "charging_post_be"),
+            FabricBlockEntityTypeBuilder.create(ChargingPostBlockEntity::new, ModBlocks.CHARGING_POST).build(null)
+    );
     public static void registerBlockEntities(){
         Bakingdelight.LOGGER.info("Registering Mod Block Entities for " + Bakingdelight.MOD_ID);
     }

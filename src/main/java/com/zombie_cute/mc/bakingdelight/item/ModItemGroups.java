@@ -19,6 +19,7 @@ public class ModItemGroups {
                     .icon(()->new ItemStack(ModBlocks.GLASS_BOWL))
                     .entries((displayContext, entries) -> {
                         // Whisks & Glass Bowl
+                        entries.add(ModItems.ELECTRIC_WHISK);
                         entries.add(ModItems.WOODEN_WHISK);
                         entries.add(ModItems.STONE_WHISK);
                         entries.add(ModItems.COPPER_WHISK);
@@ -74,6 +75,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.INTERMEDIATE_BATTERY);
                         entries.add(ModBlocks.ADVANCE_BATTERY);
                         entries.add(ModBlocks.DIMENSION_BATTERY);
+                        entries.add(ModBlocks.CHARGING_POST);
                         // Materials
                         entries.add(ModItems.SILICON_INGOT);
                         entries.add(ModBlocks.SILICON_BLOCK);

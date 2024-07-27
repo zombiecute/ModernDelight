@@ -121,6 +121,15 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModUtil.ICE_CREAM_MAKER_2, "奶油，糖和鸡蛋并提供交流电后就会开始工作，制成的不");
         translationBuilder.add(ModUtil.ICE_CREAM_MAKER_3, "同口味的冰淇淋会存储在它里面，在勾选想要混合的口");
         translationBuilder.add(ModUtil.ICE_CREAM_MAKER_4, "味后，手持冰淇淋脆筒右键便可以将冰淇淋取出。");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_MSG, "电量不足！");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_NEED_BOWL, "此物品只能通过配合玻璃碗来加工！");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_1, "和普通的搅拌器一样，都可以用于搭配玻璃碗来实现");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_2, "搅拌食物，不过它会对直流电的进行消耗，");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_3, "此外它还对地上的掉落物也能够生效。");
+        translationBuilder.add(ModUtil.CHARGING_POST_1, "一款可以给直流用电器充电的装置，");
+        translationBuilder.add(ModUtil.CHARGING_POST_2, "右键打开GUI后，左边的两格为电池放");
+        translationBuilder.add(ModUtil.CHARGING_POST_3, "置槽，你可以在这里放置至少一个电池，");
+        translationBuilder.add(ModUtil.CHARGING_POST_4, "右边的槽为待充电的直流用电器。");
 
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"点击以获取经验值");
@@ -324,6 +333,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.GARLIC, "大蒜");
         translationBuilder.add(ModItems.GARLIC_PETAL, "蒜瓣");
         translationBuilder.add(ModBlocks.WILD_GARLIC, "野生大蒜");
+        translationBuilder.add(ModItems.ELECTRIC_WHISK, "电动搅拌器");
 
 
         translationBuilder.add(ModEntities.BUTTER,"黄油");
@@ -420,6 +430,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(IceCreamMakerBlockEntity.NEED_CONE, "请使用冰淇淋脆筒来接取冰淇淋");
         translationBuilder.add(IceCreamMakerBlockEntity.NEED_SELECT, "请在GUI界面中选择一种口味或剩余冰淇淋量不足");
         translationBuilder.add(CuisineTableBlock.CANT_OPEN, "料理台已被其他玩家占用，无法打开");
+        translationBuilder.add(ModBlocks.CHARGING_POST, "充电桩");
 
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s 触电身亡！");
@@ -465,7 +476,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("item.minecraft.tipped_arrow.effect.glow_squid_power_long_potion","发光鱿鱼之箭");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.glow_squid_power_strong_potion","发光鱿鱼之箭");
 
-        translationBuilder.add(ModItemGroups.GROUPS_TAB_NAME, "现代厨房");
+        translationBuilder.add(ModItemGroups.GROUPS_TAB_NAME, "现代乐事");
 
         translationBuilder.add("emi.category.bakingdelight.mix_with_water","与水混合");
         translationBuilder.add("emi.category.bakingdelight.whisking","搅拌");
@@ -499,6 +510,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("sounds.bakingdelight.block_gas_cooking_stove_ignite", "燃气灶：尝试点燃");
         translationBuilder.add("sounds.bakingdelight.block_sterling_engine", "斯特林引擎：运行");
         translationBuilder.add("sounds.bakingdelight.block_tesla_coil", "特斯拉线圈：电击");
+        translationBuilder.add("sounds.bakingdelight.item_electric_whisk_working", "电动搅拌器：工作");
 
         translationBuilder.add(BakingdelightClient.ORE_UI_DARK, "Ore UI 风格资源包（深色）");
         translationBuilder.add(BakingdelightClient.ORE_UI_BRIGHT, "Ore UI 风格资源包（浅色）");
@@ -630,5 +642,9 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.fish_and_chips.desc", "制作一份炸鱼薯条，绝佳的美味");
         translationBuilder.add("advancement.bakingdelight.all_ice_lolly.title", "冰棍专家");
         translationBuilder.add("advancement.bakingdelight.all_ice_lolly.desc", "做出所有的冰棍");
+        translationBuilder.add("advancement.bakingdelight.charging_post.title", "最伟大的发明");
+        translationBuilder.add("advancement.bakingdelight.charging_post.desc", "合成一个充电桩，它可以为一些直流用电器充电！");
+        translationBuilder.add("advancement.bakingdelight.electric_whisk.title", "懒人厨房");
+        translationBuilder.add("advancement.bakingdelight.electric_whisk.desc", "普通的搅拌器搭配玻璃碗手动搅拌的速度太慢？试试电动搅拌器！它可以直接对地上的掉落物生效！");
     }
 }

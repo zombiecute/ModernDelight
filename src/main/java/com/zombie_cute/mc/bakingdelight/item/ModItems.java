@@ -516,6 +516,7 @@ public class ModItems {
             new FabricItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
     public static final Item GARLIC_PETAL = registerItem("garlic_petal", new Item(
             new FabricItemSettings().food(new FoodComponent.Builder().hunger(1).saturationModifier(0.3f).build())));
+    public static final Item ELECTRIC_WHISK = registerItem("electric_whisk",new ElectricWhiskItem());
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(Bakingdelight.MOD_ID,name),item);
     }

@@ -3,11 +3,14 @@ package com.zombie_cute.mc.bakingdelight.block.entities;
 import com.google.common.collect.Lists;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ImplementedInventory;
+import com.zombie_cute.mc.bakingdelight.item.ModItems;
+import com.zombie_cute.mc.bakingdelight.item.custom.ElectricWhiskItem;
 import com.zombie_cute.mc.bakingdelight.item.custom.ModStewItem;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.MixWithWaterRecipe;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.WhiskingRecipe;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
@@ -129,7 +132,7 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                             playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.4F);
                         }
                     } else {
-                        if (isWhisk(mainHandItem)) {
+                        if (isWhisk(player.getMainHandStack(), world,player)) {
                             if (hasRecipe()){
                                 // Spawn Empty Bowl
                                 if (GLASS_BOWL_INV.get(0).getItem() instanceof ModStewItem){
@@ -173,8 +176,19 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
     public void playSound(SoundEvent sound, float volume) {
         Objects.requireNonNull(world).playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, sound, SoundCategory.BLOCKS, volume, world.random.nextFloat()+0.1f);
     }
-    private boolean isWhisk(@NotNull Item item) {
-        ItemStack stack = item.getDefaultStack();
+    private boolean isWhisk(@NotNull ItemStack stack, World world, PlayerEntity player) {
+        if (stack.isOf(ModItems.ELECTRIC_WHISK)){
+            if (ElectricWhiskItem.getNBTPower(stack) >= 2){
+                ElectricWhiskItem.reduceNBTPower(stack,2);
+                ElectricWhiskItem.playAnimation(stack);
+                world.playSound(null,pos.getX(),pos.getY(),pos.getZ(),
+                        ModSounds.ITEM_ELECTRIC_WHISK_WORKING, SoundCategory.PLAYERS,1.0f,1.0f);
+                return true;
+            } else {
+                player.sendMessage(Text.translatable(ModUtil.ELECTRIC_WHISK_MSG),true);
+                return false;
+            }
+        }
         ArrayList<Item> list = Lists.newArrayList();
         for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.WHISKS)) {
             list.add(registryEntry.value());

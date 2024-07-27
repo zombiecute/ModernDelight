@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-19T15:42:18.2632671	Modern Kitchen/Advancements
+// 1.20.1	2024-07-27T18:23:34.8143969	Modern Kitchen/Advancements
 48f116dfdf7da715c9664c9692edf38274de4984 data\minecraft\advancements\bakingdelight\got_pudding_wip_2.json
 9184a161498027b757fe046621de17145002b4f0 data\minecraft\advancements\bakingdelight\got_kebabs.json
 e8f9c1e4885e1bd61386e8cecb3653d56bdc0637 data\minecraft\advancements\bakingdelight\got_vegetable_oil.json
@@ -13,6 +13,7 @@ cc8b20b3c04868c9270ac053d4260385012c4795 data\minecraft\advancements\bakingdelig
 f79f3d1c131fa4af2b878f9c5bc92b861c0ddc00 data\minecraft\advancements\bakingdelight\got_fish_and_chips.json
 56edb7456fd0b54487e11237fe7de2192ecc0925 data\minecraft\advancements\bakingdelight\got_deep_fry_basket.json
 02c1cc535c617420dedbbd4860ff630194f7b805 data\minecraft\advancements\bakingdelight\got_egg_tart.json
+46359b31a81b6a76bb6e136367791d48aa864871 data\minecraft\advancements\bakingdelight\got_electric_whisk.json
 9e2b563d30b86497d0cf3af2e71f4b7c4a04f087 data\minecraft\advancements\bakingdelight\got_advance_furnace.json
 6f41a908bc7cc939ed1deee0929fae16f6e6982b data\minecraft\advancements\bakingdelight\got_cheese.json
 848a4a5387fd6c69da3f31c065451d3c86d93ee9 data\minecraft\advancements\bakingdelight\got_battery4.json
@@ -23,6 +24,7 @@ a5a3345db832a59642a6fa38c2a2685dd38adb59 data\minecraft\advancements\bakingdelig
 bd52b18d3dd47567f76f8894e64b62bb0cb159ce data\minecraft\advancements\bakingdelight\got_ice_cream_maker.json
 1a22271804bad258e4648634a41de1889c4f69ca data\minecraft\advancements\bakingdelight\got_pudding_wip_1.json
 6147cfce488f418e196a56748df573396fc81a8b data\minecraft\advancements\bakingdelight\got_raw_pizza.json
+b86d625eacf0e7b29db48c3c9868fdbee1082464 data\minecraft\advancements\bakingdelight\got_charging_post.json
 6d3f9edc52b8c13a4223064f3c59ffb4379aa23f data\minecraft\advancements\bakingdelight\got_mousse_wip.json
 c7ad45f1f2ea347a4d3aac17674d05492553978d data\minecraft\advancements\bakingdelight\got_kuh.json
 56541d56d9c0c09f769d3cabb19a6434daf10862 data\minecraft\advancements\bakingdelight\got_bdc_bdi.json

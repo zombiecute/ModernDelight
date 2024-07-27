@@ -120,6 +120,15 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModUtil.ICE_CREAM_MAKER_2, "cream, sugar and eggs in it and provide AC power to start working, the");
         translationBuilder.add(ModUtil.ICE_CREAM_MAKER_3, "different flavors of ice cream made will be stored in it, after checking the flavors");
         translationBuilder.add(ModUtil.ICE_CREAM_MAKER_4, "you want to mix, hold the ice cream cone and right click on it to take out the ice cream.");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_MSG, "Low battery!");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_NEED_BOWL, "This item can only be processed by matching the glass bowl!");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_1, "Like a regular whisk, it can be used with a glass bowl to enable whisking");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_2, "of food, but it will consume DC power and you will need a charging post");
+        translationBuilder.add(ModUtil.ELECTRIC_WHISK_3, "to charge it. In addition, it is also effective to the drops on the ground.");
+        translationBuilder.add(ModUtil.CHARGING_POST_1, "A device that can charge DC appliances, after right clicking");
+        translationBuilder.add(ModUtil.CHARGING_POST_2, "to open the GUI, the left two slot are battery placement slots");
+        translationBuilder.add(ModUtil.CHARGING_POST_3, "where you can place at least one battery, and the");
+        translationBuilder.add(ModUtil.CHARGING_POST_4, "right slot is for the DC appliance to be charged.");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"Click to gain experiences");
 
@@ -368,6 +377,9 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.GARLIC, "Garlic");
         translationBuilder.add(ModItems.GARLIC_PETAL, "Garlic Petal");
         translationBuilder.add(ModBlocks.WILD_GARLIC, "Wild Garlic");
+        translationBuilder.add(ModItems.ELECTRIC_WHISK, "Electric Whisk");
+        translationBuilder.add(ModBlocks.CHARGING_POST, "Charging Post");
+
 
         translationBuilder.add(ModItems.ICE_CREAM_CONE, "Ice Cream Cone");
         translationBuilder.add(ModItems.RAW_ICE_CREAM_CONE, "Ice Cream Cone (Work In Progress)");
@@ -466,7 +478,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("item.minecraft.tipped_arrow.effect.glow_squid_power_long_potion","Arrow of the Glow Squid Power");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.glow_squid_power_strong_potion","Arrow of the Glow Squid Power");
 
-        translationBuilder.add(ModItemGroups.GROUPS_TAB_NAME, "Modern Kitchen");
+        translationBuilder.add(ModItemGroups.GROUPS_TAB_NAME, "Modern Delight");
 
         translationBuilder.add("emi.category.bakingdelight.mix_with_water","Mix with Water");
         translationBuilder.add("emi.category.bakingdelight.whisking","Whisking");
@@ -499,6 +511,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("sounds.bakingdelight.block_gas_cooking_stove_ignite", "Gas Cooking Stove: Try to Ignite");
         translationBuilder.add("sounds.bakingdelight.block_sterling_engine", "Stirling Engine: Running");
         translationBuilder.add("sounds.bakingdelight.block_tesla_coil", "Tesla Coil: Electroshock");
+        translationBuilder.add("sounds.bakingdelight.item_electric_whisk_working", "Electric Whisk: Working");
 
         translationBuilder.add(BakingdelightClient.ORE_UI_DARK, "Ore UI Style (Dark)");
         translationBuilder.add(BakingdelightClient.ORE_UI_BRIGHT, "Ore UI Style (Bright)");
@@ -629,7 +642,10 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.fish_and_chips.title", "The most convenient take-out food");
         translationBuilder.add("advancement.bakingdelight.fish_and_chips.desc", "Make a portion of fish and chips, excellent!");
         translationBuilder.add("advancement.bakingdelight.all_ice_lolly.title", "Ice Lolly Expert");
-        translationBuilder.add("advancement.bakingdelight.all_ice_lolly.desc", "Make all the Ice Lollies");
-
+        translationBuilder.add("advancement.bakingdelight.all_ice_lolly.desc", "Make all the Ice Lollies.");
+        translationBuilder.add("advancement.bakingdelight.charging_post.title", "Greatest Invention");
+        translationBuilder.add("advancement.bakingdelight.charging_post.desc", "Make a charging post which can charge a DC appliances!");
+        translationBuilder.add("advancement.bakingdelight.electric_whisk.title", "The Lazy Kitchen");
+        translationBuilder.add("advancement.bakingdelight.electric_whisk.desc", "Regular whisk with glass bowl is too slow to mix manually? Try an electric whisk! It works directly on drops!");
     }
 }

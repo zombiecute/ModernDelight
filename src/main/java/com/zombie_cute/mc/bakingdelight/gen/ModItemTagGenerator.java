@@ -69,6 +69,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTagKeys.WHISKS).add(ModItems.GOLDEN_WHISK);
         getOrCreateTagBuilder(ModTagKeys.WHISKS).add(ModItems.DIAMOND_WHISK);
         getOrCreateTagBuilder(ModTagKeys.WHISKS).add(ModItems.NETHERITE_WHISK);
+        getOrCreateTagBuilder(ModTagKeys.WHISKS).add(ModItems.ELECTRIC_WHISK);
         // Tools
         getOrCreateTagBuilder(ForgeTagKeys.TOOLS).addOptionalTag(ForgeTagKeys.TOOLS_KNIVES);
         getOrCreateTagBuilder(ForgeTagKeys.TOOLS).addOptionalTag(ForgeTagKeys.TOOLS_AXES);

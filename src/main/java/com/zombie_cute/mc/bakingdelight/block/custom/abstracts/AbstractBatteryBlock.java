@@ -34,7 +34,51 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
     public AbstractBatteryBlock(Settings settings) {
         super(settings);
     }
-
+    public static int getBatteryPower(ItemStack batteryItem){
+        if (batteryItem.getItem() instanceof BlockItem blockItem){
+            if (blockItem.getBlock() instanceof AbstractBatteryBlock){
+                NbtCompound nbt = BlockItem.getBlockEntityNbt(batteryItem);
+                if (nbt != null && nbt.contains("battery.power")) {
+                    return nbt.getInt("battery.power");
+                }
+            }
+        }
+        return 0;
+    }
+    public static void changeBatteryPower(ItemStack batteryItem,int value,boolean isAdd){
+        if (batteryItem.getItem() instanceof BlockItem blockItem){
+            if (blockItem.getBlock() instanceof AbstractBatteryBlock){
+                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(batteryItem);
+                if (nbtCompound != null) {
+                    if (nbtCompound.contains("battery.power")) {
+                        int batteryPower = nbtCompound.getInt("battery.power");
+                        int maxBatteryPower = nbtCompound.getInt("battery.maxPower");
+                        if (isAdd){
+                            if (batteryPower + value < maxBatteryPower){
+                                batteryPower += value;
+                                changeBatteryNBT(nbtCompound, batteryPower, batteryItem);
+                            } else if (batteryPower < maxBatteryPower){
+                                batteryPower ++;
+                                changeBatteryNBT(nbtCompound, batteryPower, batteryItem);
+                            }
+                        } else {
+                            if (batteryPower - value > 0){
+                                batteryPower -= value;
+                                changeBatteryNBT(nbtCompound, batteryPower, batteryItem);
+                            } else if (batteryPower > 0){
+                                batteryPower --;
+                                changeBatteryNBT(nbtCompound, batteryPower, batteryItem);
+                            }
+                        }
+                    }
+                } else {
+                    NbtCompound newNBT = initNbtCompound(blockItem);
+                    BlockItem.setBlockEntityNbt(batteryItem,ModBlockEntities.BATTERY_BLOCK_ENTITY,newNBT);
+                    changeBatteryPower(batteryItem,value,isAdd);
+                }
+            }
+        }
+    }
     public static ItemStack changeBatteryPower(ItemStack oldBatteryItemStack, Power thisPower, int value, boolean isAddBatteryPower) {
         if (value < 0){
             Bakingdelight.LOGGER.error("Exception battery power value: \"{}\" is not a positive number!", value);
@@ -70,8 +114,9 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
                         }
                     }
                 } else {
-                    NbtCompound newNBT = getNbtCompound(blockItem);
+                    NbtCompound newNBT = initNbtCompound(blockItem);
                     BlockItem.setBlockEntityNbt(newStack,ModBlockEntities.BATTERY_BLOCK_ENTITY,newNBT);
+                    return changeBatteryPower(newStack,thisPower,value,isAddBatteryPower);
                 }
             }
         }
@@ -83,7 +128,7 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
         BlockItem.setBlockEntityNbt(newStack, ModBlockEntities.BATTERY_BLOCK_ENTITY, nbtCompound);
     }
 
-    private static @NotNull NbtCompound getNbtCompound(BlockItem blockItem) {
+    private static @NotNull NbtCompound initNbtCompound(BlockItem blockItem) {
         NbtCompound newNBT = new NbtCompound();
         newNBT.putInt("battery.power", 0);
         if (blockItem.getBlock() instanceof SimpleBatteryBlock){
@@ -97,7 +142,6 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
         } else newNBT.putInt("battery.maxPower", 5000);
         return newNBT;
     }
-
     @Override
     public boolean shouldDropItemsOnExplosion(Explosion explosion) {
         return false;

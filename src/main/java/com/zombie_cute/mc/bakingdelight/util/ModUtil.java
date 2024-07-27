@@ -102,7 +102,15 @@ public class ModUtil {
     public static final String ICE_CREAM_MAKER_3 = "bakingdelight.tooltips.ice_cream_maker_3";
     public static final String ICE_CREAM_MAKER_4 = "bakingdelight.tooltips.ice_cream_maker_4";
     public static final String TURNIP = "bakingdelight.tooltips.turnip";
-
+    public static final String ELECTRIC_WHISK_MSG = "bakingdelight.msg.electric_whisk";
+    public static final String ELECTRIC_WHISK_NEED_BOWL = "bakingdelight.msg.electric_whisk.need_bowl";
+    public static final String ELECTRIC_WHISK_1 = "bakingdelight.tooltips.electric_whisk_1";
+    public static final String ELECTRIC_WHISK_2 = "bakingdelight.tooltips.electric_whisk_2";
+    public static final String ELECTRIC_WHISK_3 = "bakingdelight.tooltips.electric_whisk_3";
+    public static final String CHARGING_POST_1 = "bakingdelight.tooltips.charging_post_1";
+    public static final String CHARGING_POST_2 = "bakingdelight.tooltips.charging_post_2";
+    public static final String CHARGING_POST_3 = "bakingdelight.tooltips.charging_post_3";
+    public static final String CHARGING_POST_4 = "bakingdelight.tooltips.charging_post_4";
 
 
     public static MutableText getShiftText(boolean hasDown){

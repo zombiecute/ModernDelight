@@ -108,6 +108,7 @@ public class ModBlocks {
     public static final Block WILD_GARLIC = registerBlock("wild_garlic",new PlantBlock(
             FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
     ));
+    public static final Block CHARGING_POST = registerBlock("charging_post", new ChargingPostBlock());
 
     // Block Items
     public static final BlockItem FISH_AND_CHIPS_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"fish_and_chips"),

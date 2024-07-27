@@ -66,6 +66,9 @@ public class ModScreenHandlers {
     public static final ScreenHandlerType<IceCreamMakerScreenHandler> ICE_CREAM_MAKER_SCREEN_HANDLER =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(Bakingdelight.MOD_ID, "ice_cream_maker_screen"),
                     new ExtendedScreenHandlerType<>(IceCreamMakerScreenHandler::new));
+    public static final ScreenHandlerType<ChargingPostScreenHandler> CHARGING_POST_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(Bakingdelight.MOD_ID, "charging_post_screen"),
+                    new ExtendedScreenHandlerType<>(ChargingPostScreenHandler::new));
     public static void registerScreenHandlers(){
         Bakingdelight.LOGGER.info("Registering Screen Handlers for " + Bakingdelight.MOD_ID);
     }

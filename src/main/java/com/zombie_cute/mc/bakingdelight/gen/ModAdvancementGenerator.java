@@ -962,5 +962,31 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 .criterion("matcha_ice_lolly", InventoryChangedCriterion.Conditions.items(ModItems.MATCHA_ICE_LOLLY))
                 .criterion("wither_ice_lolly", InventoryChangedCriterion.Conditions.items(ModItems.WITHER_ICE_LOLLY))
                 .build(consumer, Bakingdelight.MOD_ID + "/got_all_ice_lolly");
+        Advancement getChargingPost = Advancement.Builder.create().parent(getBattery1)
+                .display(
+                        ModBlocks.CHARGING_POST,
+                        Text.translatable("advancement.bakingdelight.charging_post.title"),
+                        Text.translatable("advancement.bakingdelight.charging_post.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("charging_post", InventoryChangedCriterion.Conditions.items(ModBlocks.CHARGING_POST))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_charging_post");
+        Advancement getElectricWhisk = Advancement.Builder.create().parent(getChargingPost)
+                .display(
+                        ModItems.ELECTRIC_WHISK,
+                        Text.translatable("advancement.bakingdelight.electric_whisk.title"),
+                        Text.translatable("advancement.bakingdelight.electric_whisk.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        false,
+                        false
+                )
+                .criterion("electric_whisk", InventoryChangedCriterion.Conditions.items(ModItems.ELECTRIC_WHISK))
+                .build(consumer, Bakingdelight.MOD_ID + "/got_electric_whisk");
     }
 }

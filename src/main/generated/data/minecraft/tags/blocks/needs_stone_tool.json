@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "bakingdelight:charging_post",
     "bakingdelight:ice_cream_maker",
     "bakingdelight:electric_steamer",
     "bakingdelight:silicon_block",

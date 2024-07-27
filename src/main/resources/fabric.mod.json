@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "bakingdelight",
 	"version": "${version}",
-	"name": "Modern Kitchen",
+	"name": "Modern Delight",
 	"description": "Allow Minecraft to have a more enriched way of processing ingredients.",
 	"authors": [
 		"zombie_cute",

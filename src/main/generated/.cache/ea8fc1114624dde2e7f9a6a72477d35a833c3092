@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-19T15:42:18.2703071	Modern Kitchen/Tags for minecraft:item
+// 1.20.1	2024-07-27T18:23:34.8245281	Modern Kitchen/Tags for minecraft:item
 24efe6f2c005546072bac148c571d0ec54644e08 data\c\tags\items\crops.json
 b8b686c049882d222584068e3223840a9668aac6 data\c\tags\items\ingots.json
 ef7fbccd6ea6a25c375cba913b2d5b15b82c391f data\c\tags\items\foods\cooked_meats\cooked_pork.json
@@ -14,7 +14,7 @@ b1253ee07af587dc5e15d593f13c221ea6c9e3da data\c\tags\items\seeds.json
 b817329d5dda7c8b716a6540349234a02040b5b1 data\minecraft\tags\items\piglin_loved.json
 bbc960a3d422a8501e1b7f6bc0ce71dd8727c1e1 data\c\tags\items\foods\doughs.json
 286d1af4eddb1e09432cf2021b74da04453116cf data\bakingdelight\tags\items\flat_on_baking_tray.json
-67b8c4dae85b6b7e76341eae66ab4d076f7abec9 data\bakingdelight\tags\items\whisks.json
+7fddba5abf7e19b5f92937ed45f6bd7936d6a1e5 data\bakingdelight\tags\items\whisks.json
 87be407534fe93ba4f7a4debfb40aff4d1f37d78 data\c\tags\items\foods\raw_meats\raw_pork.json
 e15cdb6d155fa82a16f1a8512bc3bfa086454016 data\c\tags\items\foods\ice_lollies.json
 b1225d564805596e6a257f2a63b83ea9ad99e067 data\c\tags\items\foods\pizza_ingredients.json

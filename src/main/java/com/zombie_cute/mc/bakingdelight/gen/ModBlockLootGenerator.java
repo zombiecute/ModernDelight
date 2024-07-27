@@ -62,6 +62,7 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.ELECTRIC_STEAMER);
         addDrop(ModBlocks.ICE_CREAM_MAKER);
         addDrop(ModBlocks.CARAMEL_PUDDING);
+        addDrop(ModBlocks.CHARGING_POST);
         addDrop(ModBlocks.FISH_AND_CHIPS,block -> new LootTable.Builder()
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
