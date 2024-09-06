@@ -61,7 +61,7 @@ public class PhotovoltaicGeneratorScreenHandler extends ScreenHandler {
         int progress = this.propertyDelegate.get(1);
         int maxProgress = this.propertyDelegate.get(2); // Max Progress
         int progressArrowSize = 53;// Arrow's Width
-        return progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        return progress != 0 && maxProgress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
