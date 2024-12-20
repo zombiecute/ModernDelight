@@ -45,6 +45,10 @@
     "bakingdelight:cheese_burger",
     "bakingdelight:fried_cod_nugget",
     {
+      "id": "#c:foods/milk",
+      "required": false
+    },
+    {
       "id": "#c:foods/ice_lollies",
       "required": false
     },

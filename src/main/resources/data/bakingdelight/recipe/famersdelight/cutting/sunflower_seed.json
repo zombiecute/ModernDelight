@@ -14,8 +14,7 @@
     }
   ],
   "tool": {
-    "type": "farmersdelight:tool",
-    "tag": "c:tools/knives"
+    "tag": "c:tools/knife"
   },
   "result": [
     {

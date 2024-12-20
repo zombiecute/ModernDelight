@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-20T14:54:00.0442901	Modern Delight/Tags for minecraft:item
+// 1.21.1	2024-12-20T16:24:26.3086158	Modern Delight/Tags for minecraft:item
 f802a129564140839c3a6daceaf0cd551afb5088 data\c\tags\item\foods\pizza_ingredients.json
 3287fd4a3c8202d9826b0006a1213297ac0be00c data\c\tags\item\foods\flours.json
 f9d042dcb95a11833c2bbb1f901805057f4f3f86 data\c\tags\item\foods\puddings.json
@@ -19,9 +19,9 @@ bd90e5433c37f5e729e02f1d32a113c237add335 data\c\tags\item\foods\mousses.json
 4297026fe7e01f8596e8de7735a973b0b1141e04 data\create\tags\item\upright_on_belt.json
 58db89acfd07ce984736ec6a52466a99ad9f27ec data\c\tags\item\tools\whisk.json
 568e8923091566f1d34d2e2a9f790b5717cde14f data\c\tags\item\foods\doughs\wheat.json
-1ad4144b426f3ed8036779afb30a2977dfc989f3 data\c\tags\item\foods\ice_lollies.json
 2795a530db57fb1c27afdc01f9756c97c4f8f066 data\c\tags\item\cold_items.json
 3b03102c3a9c1aff053c5ef067bf815cf2483e4e data\c\tags\item\foods\raw_fishes\squids.json
+a70e04431ce63dad028e2dea26e6b76f3e9e4bce data\c\tags\item\foods\ice_lollies.json
 e5ab13648394a64134847eae18ca7d67b2a47a5e data\minecraft\tags\item\axes.json
 a31b3c66d1c1fe993e780d0b62c3579c8ffa5dae data\minecraft\tags\item\villager_plantable_seeds.json
 50489b8c762bba542022a1e6b9463027f810b7c0 data\c\tags\item\storage_blocks.json
@@ -32,7 +32,7 @@ df7e6f5ac604801305aaef3d6afd72144e575ccd data\c\tags\item\foods\raw_meats.json
 f49f294b5b8da5b9a6af13b19d0690ff286b982d data\c\tags\item\foods\pumpkins.json
 360cf89076e223dc0b4031db1b3267b2757360f5 data\c\tags\item\crops.json
 caeccc5c43fd18510110b524190ce4d11ca5fded data\farmersdelight\tags\item\tools\knives.json
-49b65c7b46fbe73ae6a3d3444998f1b9acc91097 data\c\tags\item\foods.json
+5b52976f744086c60d096cf67baca7bfa4fda9a3 data\c\tags\item\foods.json
 9a9ae3195464ae0dc3800dd70f3051eea4023c8e data\c\tags\item\foods\bottle_of_oil.json
 f0bfee64cbd3252d97cdc038436ba64f00dbaf8d data\c\tags\item\tools\spatula.json
 568e8923091566f1d34d2e2a9f790b5717cde14f data\c\tags\item\wheat_dough.json
@@ -62,3 +62,4 @@ a31b3c66d1c1fe993e780d0b62c3579c8ffa5dae data\c\tags\item\crops\black_peppers.js
 12ac8a924ed17e152289fba35a75bdb741184a3f data\c\tags\item\foods\cooked_meats\cooked_pork.json
 6b4aec42b40efa4fa47d8ba81bb6b649cbc39bc2 data\c\tags\item\seeds.json
 900f735f470b4ad355329241b94758e2eb82d992 data\c\tags\item\foods\bucket_of_oil.json
+7ddb06bcd276804c112cf407a80970faabb671d5 data\c\tags\item\foods\milk.json

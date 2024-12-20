@@ -117,6 +117,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.CHOCOLATE_DONUT);
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.CHEESE_BURGER);
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.FRIED_COD_NUGGET);
+        getOrCreateTagBuilder(TagKeys.FOODS).addOptionalTag(TagKeys.MILKS);
 
 
         getOrCreateTagBuilder(TagKeys.ICE_CREAMS).add(ModItems.RAW_ICE_CREAM_CONE);
@@ -170,8 +171,8 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).add(ModItems.MATCHA_ICE_LOLLY);
         getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).add(ModItems.WITHER_ICE_LOLLY);
         // Milks
-        getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).add(Items.MILK_BUCKET);
-        getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).addOptional(Identifier.of("farmersdelight","milk_bottle"));
+        getOrCreateTagBuilder(TagKeys.MILKS).add(Items.MILK_BUCKET);
+        getOrCreateTagBuilder(TagKeys.MILKS).addOptional(Identifier.of("farmersdelight","milk_bottle"));
 
         // Knives
         getOrCreateTagBuilder(TagKeys.TOOLS_KNIVES).add(ModItems.COPPER_KNIFE);

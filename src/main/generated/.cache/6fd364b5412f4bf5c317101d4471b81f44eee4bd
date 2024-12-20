@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-20T14:54:00.0388631	Modern Delight/Recipes
+// 1.21.1	2024-12-20T16:24:26.3007663	Modern Delight/Recipes
 479e1ee68f3a3285b59b8df970c67a0ef89ee860 data\bakingdelight\advancement\recipes\misc\deep_fry_basket.json
 2435b0cef7ab3a66b02ed04e7b2519a6ccd3779c data\bakingdelight\advancement\recipes\tools\spatula.json
 ab23b2b02a21994dcf76e0c98137fb74cb7a0635 data\bakingdelight\advancement\recipes\tools\diamond_whisk.json
@@ -61,7 +61,7 @@ da42b1efeded1c398dec2442a0c85cca6a7bfeae data\bakingdelight\recipe\rose_cake.jso
 f11b656b9e00d629411fd30db8f72ea6dfbc7683 data\bakingdelight\recipe\empty_cake.json
 660b53ecbc73764dab3e6698d2e83497e3d3a58a data\bakingdelight\recipe\biogas_digester_controller.json
 797b1fa93973512ede85e1ed9d2c075a474c9a6e data\bakingdelight\recipe\packaging_bag.json
-ed8743763ca538ca99812d5450f0e702e7f963f8 data\bakingdelight\recipe\chocolate_sauce.json
+c8c1bc516f6aa4b6429996015c21a266da257591 data\bakingdelight\recipe\chocolate_sauce.json
 54b261a8fcea23cf7f79cc7b5efba413b8b1af96 data\bakingdelight\advancement\recipes\food\raw_glow_squid_tentacle_kebabs.json
 d354e28830652c6cc68afee670be41306e9c3b30 data\bakingdelight\recipe\french_fries.json
 fa67967d682627c7dc4c458ce8e724c254d18048 data\bakingdelight\advancement\recipes\misc\granite_cabinet.json

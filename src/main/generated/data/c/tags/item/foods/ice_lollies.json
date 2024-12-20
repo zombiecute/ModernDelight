@@ -7,11 +7,6 @@
     },
     "bakingdelight:cherry_ice_lolly",
     "bakingdelight:matcha_ice_lolly",
-    "bakingdelight:wither_ice_lolly",
-    "minecraft:milk_bucket",
-    {
-      "id": "farmersdelight:milk_bottle",
-      "required": false
-    }
+    "bakingdelight:wither_ice_lolly"
   ]
 }

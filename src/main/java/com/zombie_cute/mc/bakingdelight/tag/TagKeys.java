@@ -63,7 +63,7 @@ public class TagKeys {
     public static final TagKey<Item> CROP_BLACK_PEPPER = addCommonItemTag("crops/black_peppers");
     public static final TagKey<Item> CROP_GARLIC = addCommonItemTag("crops/garlics");
     public static final TagKey<Item> CABBAGE = addCommonItemTag("crops/cabbage");
-    public static final TagKey<Item> MILKS = addCommonItemTag("milks");
+    public static final TagKey<Item> MILKS = addCommonItemTag("foods/milk");
     public static final TagKey<Item> WHISKS = addCommonItemTag("tools/whisk");
     public static final TagKey<Item> ROLLING_PINS = addCommonItemTag("tools/rolling_pins");
     public static final TagKey<Item> CROWBARS = addCommonItemTag("tools/crowbar");

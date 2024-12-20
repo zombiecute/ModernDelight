@@ -22,6 +22,7 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.MilkBucketItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -222,6 +223,9 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
                         if (this.getStack(i).getItem() instanceof BucketItem){
                             ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.BUCKET));
                         }
+                        if (this.getStack(i).getItem() instanceof MilkBucketItem){
+                            ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.BUCKET));
+                        }
                         if (this.getStack(i).getItem() instanceof JarItem){
                             ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(ModItems.JAR));
                         }
@@ -305,8 +309,11 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
         if (match.isPresent()){
             ItemStack output = match.get().value().getResult(null);
             int count = output.getCount();
+            if (this.getStack(OUTPUT_SLOT).getItem() != output.getItem() && !this.getStack(OUTPUT_SLOT).isEmpty()){
+                return false;
+            }
             return this.getStack(OUTPUT_SLOT).getCount() + count <= this.getStack(OUTPUT_SLOT).getMaxCount() ||
-                    this.getStack(OUTPUT_SLOT).isEmpty() && this.getStack(OUTPUT_SLOT).getItem() != output.getItem();
+                    this.getStack(OUTPUT_SLOT).isEmpty();
         }
         return false;
     }
