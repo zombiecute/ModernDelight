@@ -8,7 +8,7 @@ Welcome to Modern Delight (Formerly known as: Modern Kitchen/Baking Delight)
 
 ### This mod is currently under development, backup your saves often.
 
-Report any issues you find to [GitHub Issues](https://github.com/zombiecute/ModernKitchen/issues) that is really helpful for us.
+Report any issues you find to [GitHub Issues](https://github.com/zombiecute/ModernDelight/issues) that is really helpful for us.
 
 Getting Started
 ---------------
@@ -20,4 +20,4 @@ It is recommended to use through the REI or EMI to get more help!
 Links
 -----
 
-[GitHub](https://github.com/zombiecute/ModernKitchen)
+[GitHub](https://github.com/zombiecute/ModernDelight)
