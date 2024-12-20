@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "cookingtime": 200,
-  "experience": 0.1,
-  "ingredient": {
-    "item": "bakingdelight:golden_whisk"
-  },
-  "result": "minecraft:gold_nugget"
-}

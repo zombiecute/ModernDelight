@@ -3,8 +3,8 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.entities.IceCreamMakerBlockEntity;
-import com.zombie_cute.mc.bakingdelight.util.Flavor;
 import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
+import com.zombie_cute.mc.bakingdelight.util.components.cumstom.FlavorComponent;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -16,7 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/ice_cream_maker_gui.png");
     public IceCreamMakerScreen(IceCreamMakerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -76,8 +76,8 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream1.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 93 && mouseY >= y + 65 && mouseX <= x + 101 && mouseY <= y + 73;
-        if (iceCream1.getFlavor() != Flavor.NULL){
-            context.drawTexture(TEXTURE,x + 87,y + 17 + fix,21 * iceCream1.getFlavor().getId(),166,21,height);
+        if (iceCream1.getFlavor() != FlavorComponent.NULL){
+            context.drawTexture(TEXTURE,x + 87,y + 17 + fix,21 * iceCream1.getFlavor().getID(),166,21,height);
         }
         if (iceCream1.isSelected()){
             context.drawTexture(TEXTURE,x+93,y+65,185,0,9,9);
@@ -94,8 +94,8 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream2.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 120 && mouseY >= y + 65 && mouseX <= x + 128 && mouseY <= y + 73;
-        if (iceCream2.getFlavor() != Flavor.NULL){
-            context.drawTexture(TEXTURE,x + 114,y + 17 + fix,21 * iceCream2.getFlavor().getId(),166,21,height);
+        if (iceCream2.getFlavor() != FlavorComponent.NULL){
+            context.drawTexture(TEXTURE,x + 114,y + 17 + fix,21 * iceCream2.getFlavor().getID(),166,21,height);
         }
         if (iceCream2.isSelected()){
             context.drawTexture(TEXTURE,x+120,y+65,185,0,9,9);
@@ -112,8 +112,8 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream3.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 147 && mouseY >= y + 65 && mouseX <= x + 155 && mouseY <= y + 73;
-        if (iceCream3.getFlavor() != Flavor.NULL){
-            context.drawTexture(TEXTURE,x + 141,y + 17 + fix,21 * iceCream3.getFlavor().getId(),166,21,height);
+        if (iceCream3.getFlavor() != FlavorComponent.NULL){
+            context.drawTexture(TEXTURE,x + 141,y + 17 + fix,21 * iceCream3.getFlavor().getID(),166,21,height);
         }
         if (iceCream3.isSelected()){
             context.drawTexture(TEXTURE,x+147,y+65,185,0,9,9);
@@ -136,7 +136,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         boolean area1 = mouseX >= x + 93 && mouseY >= y + 65 && mouseX <= x + 101 && mouseY <= y + 73;
         boolean area2 = mouseX >= x + 120 && mouseY >= y + 65 && mouseX <= x + 128 && mouseY <= y + 73;
         boolean area3 = mouseX >= x + 147 && mouseY >= y + 65 && mouseX <= x + 155 && mouseY <= y + 73;
-        int[] array = new int[1];
+        byte[] array = new byte[1];
         if (area1){
             array[0] = 1;
             MinecraftClient.getInstance().getSoundManager()
@@ -162,7 +162,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

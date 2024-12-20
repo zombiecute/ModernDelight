@@ -1,64 +1,60 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import net.minecraft.inventory.SimpleInventory;
+import com.zombie_cute.mc.bakingdelight.recipe.recipeInput.MultiStackRecipeInput;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class CuisineRecipe implements Recipe<SimpleInventory> {
-    private final Identifier id;
+import java.util.List;
+
+public class CuisineRecipe implements Recipe<MultiStackRecipeInput> {
     private final ItemStack output;
-    private final DefaultedList<Ingredient> recipeItems;
-    public CuisineRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack itemStack){
-        this.id = id;
-        this.output = itemStack;
-        this.recipeItems = ingredients;
+    private final List<Ingredient> recipeItem;
+    public CuisineRecipe(List<Ingredient> recipeItem,ItemStack output){
+        this.output = output;
+        this.recipeItem = recipeItem;
     }
 
     @Override
-    public boolean matches(SimpleInventory inventory, World world) {
-        return recipeItems.get(0).test(inventory.getStack(0)) &&
-                recipeItems.get(1).test(inventory.getStack(1));
+    public boolean matches(MultiStackRecipeInput inventory, World world) {
+        return recipeItem.get(0).test(inventory.getStackInSlot(0)) &&
+                recipeItem.get(1).test(inventory.getStackInSlot(1));
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
-        return output;
+    public ItemStack craft(MultiStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+        return output.copy();
     }
-
     @Override
     public boolean fits(int width, int height) {
         return true;
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
-        return output;
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+        return output.copy();
     }
-
     @Override
     public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());
-        list.addAll(recipeItems);
+        DefaultedList<Ingredient> list = DefaultedList.ofSize(recipeItem.size());
+        list.addAll(recipeItem);
         return list;
     }
 
     @Override
     public ItemStack createIcon() {
         return ModBlocks.CUISINE_TABLE.asItem().getDefaultStack();
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -80,37 +76,43 @@ public class CuisineRecipe implements Recipe<SimpleInventory> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "cuisine";
 
-        @Override
-        public CuisineRecipe read(Identifier id, JsonObject json) {
-            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json,"output"));
-            JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
+        public static final MapCodec<CuisineRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
+                                .flatXmap(ingredients ->{
+                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+                                    if (ingredients1.length == 0){
+                                        return DataResult.error(()->"No ingredients");
+                                    }
+                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
+                                },DataResult::success).forGetter(CuisineRecipe::getIngredients)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
+                ).apply(instance, CuisineRecipe::new)
+        );
+        public static final PacketCodec<RegistryByteBuf, CuisineRecipe> PACKET_CODEC = PacketCodec.ofStatic(CuisineRecipe.Serializer::write, CuisineRecipe.Serializer::read);
 
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2,Ingredient.EMPTY);
-
-            for(int i=0;i<inputs.size();i++){
-                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new CuisineRecipe(id, inputs, output);
-        }
-
-        @Override
-        public CuisineRecipe read(Identifier id, PacketByteBuf buf) {
+        private static CuisineRecipe read(RegistryByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
+            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
+            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
+            return new CuisineRecipe(inputs,output);
+        }
 
-            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
-
-            ItemStack output = buf.readItemStack();
-            return new CuisineRecipe(id, inputs, output);
+        private static void write(RegistryByteBuf buf, CuisineRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for (Ingredient ingredient : recipe.getIngredients()){
+                Ingredient.PACKET_CODEC.encode(buf,ingredient);
+            }
+            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
         }
 
         @Override
-        public void write(PacketByteBuf buf, CuisineRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for(Ingredient ingredient : recipe.getIngredients()){
-                ingredient.write(buf);
-            }
-            buf.writeItemStack(recipe.output);
+        public MapCodec<CuisineRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public PacketCodec<RegistryByteBuf, CuisineRecipe> packetCodec() {
+            return PACKET_CODEC;
         }
     }
 }

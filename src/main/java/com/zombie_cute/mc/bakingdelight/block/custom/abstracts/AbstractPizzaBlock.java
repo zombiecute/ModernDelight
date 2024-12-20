@@ -1,30 +1,27 @@
 package com.zombie_cute.mc.bakingdelight.block.custom.abstracts;
 
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.BlockItem;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ContainerComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public abstract class AbstractPizzaBlock extends BlockWithEntity {
     public AbstractPizzaBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.REPEATER).burnable().sounds(BlockSoundGroup.HONEY)
+        super(AbstractBlock.Settings.copy(Blocks.REPEATER).burnable().sounds(BlockSoundGroup.HONEY)
                 .jumpVelocityMultiplier(0.5f).mapColor(MapColor.YELLOW).nonOpaque());
     }
     private static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,1,15);
@@ -52,24 +49,15 @@ public abstract class AbstractPizzaBlock extends BlockWithEntity {
                 : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        super.appendTooltip(stack, world, tooltip, options);
-        NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
-        if (nbtCompound != null) {
-            if (nbtCompound.contains("Items", 9)) {
-                DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(5, ItemStack.EMPTY);
-                Inventories.readNbt(nbtCompound, defaultedList);
-                tooltip.add(Text.translatable(ModUtil.PIZZA_INGREDIENTS).formatted(Formatting.DARK_GRAY));
-                for (ItemStack itemStack : defaultedList) {
-                    if (!itemStack.isEmpty()) {
-                        tooltip.add(
-                                Text.translatable(
-                                        String.valueOf(itemStack.getTranslationKey())
-                                ).formatted(Formatting.GRAY)
-                        );
-                    }
-                }
-            }
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+        super.appendTooltip(stack, context, tooltip, options);
+        tooltip.add(Text.translatable(ModUtil.PIZZA_INGREDIENTS).formatted(Formatting.DARK_GRAY));
+        for (ItemStack itemStack : stack.getOrDefault(DataComponentTypes.CONTAINER, ContainerComponent.DEFAULT).iterateNonEmpty()) {
+            tooltip.add(
+                    Text.translatable(
+                            String.valueOf(itemStack.getTranslationKey())
+                    ).formatted(Formatting.GRAY)
+            );
         }
     }
 

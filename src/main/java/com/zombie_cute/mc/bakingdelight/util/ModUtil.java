@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.util;
 
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -23,7 +23,7 @@ public class ModUtil {
     public static final String TRUFFLE = "bakingdelight.tooltips.truffle";
     public static final String FILTER_1 = "bakingdelight.tooltips.filter_1";
     public static final String FILTER_2 = "bakingdelight.tooltips.filter_2";
-    public static final String KNEADING_STICK = "bakingdelight.tooltips.kneading_stick";
+    public static final String ROLLING_PIN = "bakingdelight.tooltips.kneading_stick";
     public static final String SPATULA = "bakingdelight.tooltips.spatula";
     public static final String BDC_1 = "bakingdelight.tooltips.bdc_1";
     public static final String BDC_2 = "bakingdelight.tooltips.bdc_2";
@@ -170,7 +170,7 @@ public class ModUtil {
     public static boolean isCrowbar(PlayerEntity player) {
         Item item = player.getMainHandStack().getItem();
         HashSet<Item> items = new HashSet<>();
-        for (RegistryEntry<Item> registryEntry: Registries.ITEM.iterateEntries(ModTagKeys.CROWBARS)){
+        for (RegistryEntry<Item> registryEntry: Registries.ITEM.iterateEntries(TagKeys.CROWBARS)){
             items.add(registryEntry.value());
         }
         return items.contains(item);

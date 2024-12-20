@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_ward"
+    },
+    {
+      "tag": "c:tools/crowbar"
+    }
+  ],
+  "output": {
+    "id": "minecraft:slime_ball",
+    "count": 8
+  }
+}

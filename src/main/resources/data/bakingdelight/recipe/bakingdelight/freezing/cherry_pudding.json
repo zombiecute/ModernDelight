@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cherry"
+    },
+    {
+      "item": "bakingdelight:pudding_wip_2"
+    },
+    {
+      "item": "bakingdelight:cherry"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:cherry_pudding"
+  }
+}

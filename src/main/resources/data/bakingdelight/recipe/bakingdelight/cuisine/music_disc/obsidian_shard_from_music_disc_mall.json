@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_mall"
+    },
+    {
+      "tag": "c:tools/crowbar"
+    }
+  ],
+  "output": {
+    "id": "minecraft:obsidian",
+    "count": 18
+  }
+}

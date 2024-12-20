@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:bakingdelight/got_glass_bowl",
+  "criteria": {
+    "cream": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:cream_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.get_cream_bucket_desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:cream_bucket"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_cream_bucket_title"
+    }
+  },
+  "requirements": [
+    [
+      "cream"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

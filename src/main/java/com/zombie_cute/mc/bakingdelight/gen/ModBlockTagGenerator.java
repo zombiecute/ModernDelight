@@ -1,8 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.gen;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
@@ -20,29 +19,6 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        // Whisk Mineable
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(ModBlocks.MASHED_POTATO_BLOCK);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.DIRT);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.DIRT_PATH);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.GRASS_BLOCK);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.SAND);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.RED_SAND);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.SOUL_SAND);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.SOUL_SOIL);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.COARSE_DIRT);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.MYCELIUM);
-        getOrCreateTagBuilder(ModTagKeys.WHISK_MINEABLE)
-                .add(Blocks.PODZOL);
         // Mineable
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.OVEN);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.FREEZER);
@@ -64,7 +40,6 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.BLACKSTONE_CABINET);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.OBSIDIAN_CABINET);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.GAS_PIPE);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.AC_DC_CONVERTER);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.FAN_BLADE);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.WIND_TURBINE_CONTROLLER);
@@ -117,29 +92,28 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(ModBlocks.GARLIC_CROP);
         getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.GARLIC_CROP);
         // Heater
-        getOrCreateTagBuilder(ForgeTagKeys.PASSIVE_BOILER_HEATERS).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
-        getOrCreateTagBuilder(ForgeTagKeys.HEAT_SOURCES).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
+        getOrCreateTagBuilder(TagKeys.PASSIVE_BOILER_HEATERS).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
+        getOrCreateTagBuilder(TagKeys.HEAT_SOURCES).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
         // Crowbar Destroyable
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).add(Blocks.IRON_BARS);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).add(ModBlocks.GAS_PIPE);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).add(ModBlocks.AC_DC_CONVERTER);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.TRAPDOORS);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.DOORS);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.FENCES);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.FENCE_GATES);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.RAILS);
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptional(new Identifier("create:andesite_bars"));
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptional(new Identifier("create:brass_bars"));
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptional(new Identifier("create:copper_bars"));
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).add(Blocks.IRON_BARS);
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).add(ModBlocks.AC_DC_CONVERTER);
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.TRAPDOORS);
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.DOORS);
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.FENCES);
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.FENCE_GATES);
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(BlockTags.RAILS);
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptional(Identifier.of("create:andesite_bars"));
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptional(Identifier.of("create:brass_bars"));
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptional(Identifier.of("create:copper_bars"));
 
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptionalTag(new Identifier("c:glass_panes"));
-        getOrCreateTagBuilder(ModTagKeys.CROWBAR_DESTROYABLE).addOptionalTag(new Identifier("c:glasses"));
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(Identifier.of("c:glass_panes"));
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(Identifier.of("c:glasses"));
         // Baking Tray Heat Sources
-        getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).add(Blocks.LAVA);
-        getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).add(Blocks.MAGMA_BLOCK);
-        getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).addOptionalTag(BlockTags.CAMPFIRES);
-        getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).addOptionalTag(ForgeTagKeys.HEAT_SOURCES);
-        getOrCreateTagBuilder(ModTagKeys.DANGER_BLOCKS).addOptionalTag(ForgeTagKeys.PASSIVE_BOILER_HEATERS);
+        getOrCreateTagBuilder(TagKeys.DANGER_BLOCKS).add(Blocks.LAVA);
+        getOrCreateTagBuilder(TagKeys.DANGER_BLOCKS).add(Blocks.MAGMA_BLOCK);
+        getOrCreateTagBuilder(TagKeys.DANGER_BLOCKS).addOptionalTag(BlockTags.CAMPFIRES);
+        getOrCreateTagBuilder(TagKeys.DANGER_BLOCKS).addOptionalTag(TagKeys.HEAT_SOURCES);
+        getOrCreateTagBuilder(TagKeys.DANGER_BLOCKS).addOptionalTag(TagKeys.PASSIVE_BOILER_HEATERS);
         // Small Flowers
         getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_GARLIC);
         getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_PEPPER_CROP);

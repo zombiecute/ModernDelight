@@ -18,7 +18,7 @@ import java.util.List;
 
 public class GlassBowlMixWithWaterCategory implements DisplayCategory<GlassBowlMixWithWaterDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
     public static final CategoryIdentifier<GlassBowlMixWithWaterDisplay> MIX_WITH_WATER =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "mix_with_water");
     public static final String WATER_GLASS_BOWL_NAME = "display_name.bakingdelight.water_glass_bowl_name";
@@ -35,7 +35,7 @@ public class GlassBowlMixWithWaterCategory implements DisplayCategory<GlassBowlM
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(Items.WATER_BUCKET);
+        return EntryStacks.of(Items.WATER_BUCKET,1);
     }
 
     @Override

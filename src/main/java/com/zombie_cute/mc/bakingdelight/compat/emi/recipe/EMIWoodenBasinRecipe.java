@@ -4,7 +4,7 @@ import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -18,18 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIWoodenBasinRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/wooden_basin.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/wooden_basin.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.WOODEN_BASIN);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "oil_extraction"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "oil_extraction"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIWoodenBasinRecipe() {
         List<EmiIngredient> inputs = new ArrayList<>();
-        inputs.add(EmiIngredient.of(ModTagKeys.OIL_PLANTS));
-        inputs.add(EmiIngredient.of(ModTagKeys.FILTERS));
+        inputs.add(EmiIngredient.of(TagKeys.OIL_PLANTS));
+        inputs.add(EmiIngredient.of(TagKeys.FILTERS));
         this.input = inputs;
         this.output = List.of(EmiStack.of(ModFluid.STILL_VEGETABLE_OIL),EmiStack.of(ModItems.OIL_IMPURITY));
     }
@@ -40,7 +40,7 @@ public class EMIWoodenBasinRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return new Identifier(Bakingdelight.MOD_ID,"oil_extraction");
+        return Identifier.of(Bakingdelight.MOD_ID,"oil_extraction");
     }
 
     @Override
@@ -66,8 +66,8 @@ public class EMIWoodenBasinRecipe implements EmiRecipe {
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(TEXTURE,5,5,142,67,4,4);
-        widgets.addSlot(EmiIngredient.of(ModTagKeys.OIL_PLANTS), 84, 4);
-        widgets.addSlot(EmiIngredient.of(ModTagKeys.FILTERS), 84, 36);
+        widgets.addSlot(EmiIngredient.of(TagKeys.OIL_PLANTS), 84, 4);
+        widgets.addSlot(EmiIngredient.of(TagKeys.FILTERS), 84, 36);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModItems.OIL_IMPURITY)), 129, 36).recipeContext(this);
         widgets.addSlot(EmiStack.of(ModFluid.STILL_VEGETABLE_OIL), 39, 36).recipeContext(this);
     }

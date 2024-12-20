@@ -1,18 +1,19 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.entities.BambooGrateBlockEntity;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -38,9 +39,14 @@ import java.util.List;
 
 public class BambooGrateBlock extends BlockWithEntity {
     public BambooGrateBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque());
+        super(AbstractBlock.Settings.copy(Blocks.BAMBOO_PLANKS).nonOpaque());
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(LAYER, 1).with(COVERED,false));
+    }
+    public static final MapCodec<BambooGrateBlock> CODEC = createCodec(settings -> new BambooGrateBlock());
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
     public static final IntProperty LAYER = IntProperty.of("layer",1,4);
     public static final BooleanProperty COVERED = BooleanProperty.of("covered");
@@ -54,7 +60,7 @@ public class BambooGrateBlock extends BlockWithEntity {
         builder.add(LAYER,COVERED);
     }
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -64,7 +70,7 @@ public class BambooGrateBlock extends BlockWithEntity {
         } else {
             tooltip.add(ModUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
@@ -110,7 +116,7 @@ public class BambooGrateBlock extends BlockWithEntity {
     }
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient){
             int layer = state.get(LAYER);
             if (state.get(COVERED)){
@@ -124,6 +130,7 @@ public class BambooGrateBlock extends BlockWithEntity {
             }
         }
         super.onBreak(world,pos,state,player);
+        return state;
     }
 
     @Override
@@ -151,7 +158,8 @@ public class BambooGrateBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         if (!world.isClient){
             if(world.getBlockEntity(pos) instanceof BambooGrateBlockEntity blockEntity){
                 if (ModUtil.isCrowbar(player)){
@@ -221,7 +229,6 @@ public class BambooGrateBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.BAMBOO_GRATE_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+        return world.isClient ? null : validateTicker(type,ModBlockEntities.BAMBOO_GRATE_BLOCK_ENTITY, BambooGrateBlockEntity::tick);
     }
 }

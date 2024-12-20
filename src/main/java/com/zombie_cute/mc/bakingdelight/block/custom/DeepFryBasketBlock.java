@@ -1,12 +1,12 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -26,7 +26,7 @@ import java.util.List;
 public class DeepFryBasketBlock extends Block {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public DeepFryBasketBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.DIRT)
+        super(AbstractBlock.Settings.copy(Blocks.DIRT)
                 .nonOpaque().breakInstantly().sounds(BlockSoundGroup.LANTERN));
     }
     private static final VoxelShape TYPE_WEST = Block.createCuboidShape(1,0,1,16,8,15);
@@ -46,8 +46,9 @@ public class DeepFryBasketBlock extends Block {
             return TYPE_SOUTH;
         }
     }
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -55,7 +56,7 @@ public class DeepFryBasketBlock extends Block {
         } else {
             tooltip.add(ModUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

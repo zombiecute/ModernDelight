@@ -6,12 +6,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
 
 public class FishAndChipsBlockEntity extends BlockEntity implements GeoBlockEntity {
     public FishAndChipsBlockEntity(BlockPos pos, BlockState state) {
@@ -21,10 +20,6 @@ public class FishAndChipsBlockEntity extends BlockEntity implements GeoBlockEnti
     private static final RawAnimation STATE_2 = RawAnimation.begin().thenLoop("state2");
     private static final RawAnimation STATE_3 = RawAnimation.begin().thenLoop("state3");
     private static final RawAnimation STATE_4 = RawAnimation.begin().thenLoop("state4");
-    @Override
-    public double getTick(Object blockEntity) {
-        return RenderUtils.getCurrentTick();
-    }
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {

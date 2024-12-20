@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:barrel"
+    },
+    "D": {
+      "item": "minecraft:polished_deepslate_slab"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "QCQ",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:deepslate_cabinet"
+  }
+}

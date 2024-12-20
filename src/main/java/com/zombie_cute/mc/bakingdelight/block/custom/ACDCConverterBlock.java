@@ -1,18 +1,19 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.ACDCConverterBlockEntity;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -30,7 +31,12 @@ import java.util.List;
 
 public class ACDCConverterBlock extends BlockWithEntity {
     public ACDCConverterBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(AbstractBlock.Settings.copy(Blocks.IRON_BARS));
+    }
+    public static final MapCodec<ACDCConverterBlock> CODEC = createCodec((settings) -> new ACDCConverterBlock());
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final VoxelShape TYPE_X = Block.createCuboidShape(2,0,0,14,9,16);
@@ -49,7 +55,7 @@ public class ACDCConverterBlock extends BlockWithEntity {
         }
     }
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(ModUtil.getAltText(false));
@@ -71,7 +77,7 @@ public class ACDCConverterBlock extends BlockWithEntity {
             tooltip.add(ModUtil.getShiftText(false));
             tooltip.add(ModUtil.getAltText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -86,9 +92,8 @@ public class ACDCConverterBlock extends BlockWithEntity {
             return TYPE_Z;
         }
     }
-
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
@@ -149,7 +154,6 @@ public class ACDCConverterBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.AC_DC_CONVERTER_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, blockEntity,state1));
+        return world.isClient ? null : validateTicker(type,ModBlockEntities.AC_DC_CONVERTER_BLOCK_ENTITY,ACDCConverterBlockEntity::tick);
     }
 }

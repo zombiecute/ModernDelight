@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.AssemblyRecipe;
+import com.zombie_cute.mc.bakingdelight.recipe.recipeInput.MultiStackRecipeInput;
 import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,19 +15,21 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/electricians_desk_gui.png");
     public ElectriciansDeskScreen(ElectriciansDeskScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -55,17 +58,17 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
         }
     }
     public boolean hasRecipe(){
-        SimpleInventory tempINV = new SimpleInventory(6);
-        for (int i=0;i<tempINV.size();i++){
-            tempINV.setStack(i,handler.blockEntity.getStack(i));
+        List<ItemStack> tempINV = new ArrayList<>(6);
+        for (int i=0;i<6;i++){
+            tempINV.add(handler.blockEntity.getStack(i));
         }
-        Optional<AssemblyRecipe> match = Objects.requireNonNull(handler.blockEntity.getWorld()).getRecipeManager()
-                .getFirstMatch(AssemblyRecipe.Type.INSTANCE, tempINV, handler.blockEntity.getWorld());
+        Optional<RecipeEntry<AssemblyRecipe>> match = Objects.requireNonNull(handler.blockEntity.getWorld())
+                .getRecipeManager().getFirstMatch(AssemblyRecipe.Type.INSTANCE, new MultiStackRecipeInput(tempINV,tempINV.size()),handler.blockEntity.getWorld());
         if (match.isPresent()){
-            this.outputItem = new ItemStack(match.get().getOutput(null).getItem(),
-                    match.get().getOutput(null).getCount());
-            this.miniGmeType = match.get().getMiniGameType();
-            this.goal = match.get().getGoal();
+            this.outputItem = new ItemStack(match.get().value().getResult(null).getItem(),
+                    match.get().value().getResult(null).getCount());
+            this.miniGmeType = match.get().value().getMiniGameType();
+            this.goal = match.get().value().getGoal();
             return true;
         } else {
             this.outputItem = ItemStack.EMPTY;
@@ -107,9 +110,13 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
         boolean b = mouseX >= x + 112 && mouseY >= y + 24 && mouseX <= x + 131 && mouseY <= y + 43;
         if (b){
             if (handler.canCraft()){
-                int[] array = new int[1];
+                byte[] array = new byte[1];
                 array[0] = 2;
-                NetworkHandler.sendUpdateInventoryPacket(handler.blockEntity.getPos(),this.outputItem);
+                if (this.outputItem == ItemStack.EMPTY){
+                    NetworkHandler.sendUpdateInventoryPacket(handler.blockEntity.getPos(),Items.AIR.toString());
+                } else {
+                    NetworkHandler.sendUpdateInventoryPacket(handler.blockEntity.getPos(),this.outputItem.getItem().toString(),this.outputItem.getCount());
+                }
                 NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
                 MinecraftClient.getInstance().getSoundManager()
                         .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
@@ -119,7 +126,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
                     MinecraftClient.getInstance().getSoundManager()
                             .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                     Screen currentScreen = MinecraftClient.getInstance().currentScreen;
-                    int [] array = new int[1];
+                    byte [] array = new byte[1];
                     array[0] = 3;
                     NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
                     switch (this.miniGmeType){
@@ -141,7 +148,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

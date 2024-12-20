@@ -1,0 +1,20 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "create:dough"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:fried_dough_stick",
+    "count": 3
+  }
+}

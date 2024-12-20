@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_creator"
+    },
+    {
+      "tag": "c:tools/crowbar"
+    }
+  ],
+  "output": {
+    "id": "minecraft:raw_copper",
+    "count": 24
+  }
+}

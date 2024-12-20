@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "electricians_desk": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:electricians_desk"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.electricians_desk.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:electricians_desk"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.electricians_desk.title"
+    }
+  },
+  "requirements": [
+    [
+      "electricians_desk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

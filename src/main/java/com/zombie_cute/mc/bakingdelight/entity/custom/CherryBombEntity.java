@@ -10,8 +10,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.EntityTrackerEntry;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -60,5 +64,9 @@ public class CherryBombEntity extends ThrownItemEntity {
         Entity entity = entityHitResult.getEntity();
         entity.damage(ModDamageTypes.of(entity.getWorld(),ModDamageTypes.TURNED_TO_ASHES), 10.5f);
         playSound(ModSounds.ENTITY_CHERRY_BOMB_EXPLOSION, 4.0f, (random.nextFloat() - random.nextFloat()) * 2.f + 1.f);
+    }
+    @Override
+    public Packet<ClientPlayPacketListener> createSpawnPacket(EntityTrackerEntry entityTrackerEntry) {
+        return new EntitySpawnS2CPacket(this, entityTrackerEntry);
     }
 }

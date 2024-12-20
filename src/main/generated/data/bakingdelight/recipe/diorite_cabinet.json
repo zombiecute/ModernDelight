@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:polished_diorite_slab"
+    },
+    "C": {
+      "item": "minecraft:barrel"
+    },
+    "D": {
+      "item": "minecraft:polished_deepslate_slab"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "QCQ",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:diorite_cabinet"
+  }
+}

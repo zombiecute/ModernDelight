@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_vegetable_oil",
+  "criteria": {
+    "deep_fryer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:deep_fryer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.deep_fryer.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:deep_fryer"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.deep_fryer.title"
+    }
+  },
+  "requirements": [
+    [
+      "deep_fryer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "tag": "minecraft:leaves"
+    },
+    {
+      "item": "bakingdelight:pudding_wip_2"
+    },
+    {
+      "tag": "minecraft:leaves"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:matcha_pudding"
+  }
+}

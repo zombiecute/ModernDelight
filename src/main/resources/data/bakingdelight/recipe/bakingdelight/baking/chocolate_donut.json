@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:raw_donut"
+    },
+    {
+      "item": "bakingdelight:chocolate_sauce"
+    },
+    {
+      "item": "bakingdelight:chocolate_sauce"
+    },
+    {
+      "item": "bakingdelight:raw_donut"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:chocolate_donut",
+    "count": 2
+  }
+}

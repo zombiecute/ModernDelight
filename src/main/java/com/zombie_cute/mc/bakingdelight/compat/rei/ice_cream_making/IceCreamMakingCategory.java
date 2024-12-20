@@ -3,7 +3,7 @@ package com.zombie_cute.mc.bakingdelight.compat.rei.ice_cream_making;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class IceCreamMakingCategory implements DisplayCategory<IceCreamMakingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/ice_cream.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/ice_cream.png");
     public static final String TITLE = "emi.category.bakingdelight.ice_cream_making";
     public static final CategoryIdentifier<IceCreamMakingDisplay> ICE_CREAM_MAKING =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "ice_cream_making");
@@ -38,7 +38,7 @@ public class IceCreamMakingCategory implements DisplayCategory<IceCreamMakingDis
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.PIZZA.asItem().getDefaultStack());
+        return EntryStacks.of(ModBlocks.PIZZA.asItem(),1);
     }
     @Override
     public List<Widget> setupDisplay(IceCreamMakingDisplay display, Rectangle bounds) {
@@ -47,18 +47,18 @@ public class IceCreamMakingCategory implements DisplayCategory<IceCreamMakingDis
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,90)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 44,startPoint.y + 9))
-                .entries(EntryIngredients.ofItemTag(ForgeTagKeys.CREAMS)));
+                .entries(EntryIngredients.ofItemTag(TagKeys.CREAMS)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 44,startPoint.y + 27))
-                .entry(EntryStacks.of(Items.SUGAR.getDefaultStack())));
+                .entry(EntryStacks.of(Items.SUGAR,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 44,startPoint.y + 45))
-                .entry(EntryStacks.of(Items.EGG.getDefaultStack())));
+                .entry(EntryStacks.of(Items.EGG,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 33,startPoint.y + 69))
-                .entry(EntryStacks.of(ModItems.ICE_CREAM_CONE.getDefaultStack())));
+                .entry(EntryStacks.of(ModItems.ICE_CREAM_CONE,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 66,startPoint.y + 69))
-                .entry(EntryStacks.of(ModBlocks.ICE_CREAM_MAKER.asItem().getDefaultStack())));
+                .entry(EntryStacks.of(ModBlocks.ICE_CREAM_MAKER.asItem(),1)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 100,startPoint.y + 69))
-                .markOutput().entry(EntryStacks.of(ModItems.ICE_CREAM.getDefaultStack())));
+                .markOutput().entry(EntryStacks.of(ModItems.ICE_CREAM,1)));
 
         return widgets;
     }

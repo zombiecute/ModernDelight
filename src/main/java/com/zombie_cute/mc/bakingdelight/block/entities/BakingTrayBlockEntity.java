@@ -4,11 +4,11 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
@@ -19,13 +19,15 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.CampfireCookingRecipe;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -79,7 +81,8 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
                     this.setStack(i,inventory.getStack(i));
                 }
                 playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,true);
-                player.getMainHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.MAIN_HAND));
+
+                player.getMainHandStack().damage(1, player, EquipmentSlot.MAINHAND);
             }
         } else {
             if (player.isSneaking()){
@@ -115,7 +118,7 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
 
     private boolean isSpatulaItem(PlayerEntity player) {
         List<Item> items = new ArrayList<>();
-        for (RegistryEntry<Item> registryEntry :  Registries.ITEM.iterateEntries(ModTagKeys.SPATULAS)){
+        for (RegistryEntry<Item> registryEntry :  Registries.ITEM.iterateEntries(TagKeys.SPATULAS)){
             items.add(registryEntry.value());
         }
         return items.contains(player.getMainHandStack().getItem());
@@ -146,17 +149,19 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, INV);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, INV,registryLookup);
         nbt.putInt("baking_tray.stir_fry_times", stir_fry_times);
     }
+
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, INV);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, INV, registryLookup);
         stir_fry_times = nbt.getInt("baking_tray.stir_fry_times");
     }
+
     @Override
     public void markDirty() {
         if (world != null) {
@@ -174,9 +179,10 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
+
 
     public ItemStack getRendererStack1() {
         return this.getStack(0);
@@ -192,31 +198,31 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
     }
     private boolean isFlat(Item item) {
         List<Item> items = new ArrayList<>();
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.FLAT_ON_BAKING_TRAY)){
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.FLAT_ON_BAKING_TRAY)){
             items.add(registryEntry.value());
         }
         return items.contains(item);
     }
-    public void tick(World world, BlockPos pos) {
-        if (coolTime!=0){
-            coolTime--;
+    public static void tick(World world, BlockPos pos, BlockState state, BakingTrayBlockEntity blockEntity) {
+        if (blockEntity.coolTime!=0){
+            blockEntity.coolTime--;
         }
-        if (isHeated(world,pos)){
-            if (!isFlat(this.getStack(0).getItem())){
-                if (stir_fry_times == max_stir_fry_times){
-                    if (hasCampfireRecipe(this.getStack(0))){
-                        craftCampfireItem(this.getStack(0),0,world);
+        if (blockEntity.isHeated(world,pos)){
+            if (!blockEntity.isFlat(blockEntity.getStack(0).getItem())){
+                if (blockEntity.stir_fry_times == blockEntity.max_stir_fry_times){
+                    if (blockEntity.hasCampfireRecipe(blockEntity.getStack(0))){
+                        blockEntity.craftCampfireItem(blockEntity.getStack(0),0,world);
                     }
-                    if (hasCampfireRecipe(this.getStack(1))){
-                        craftCampfireItem(this.getStack(1),1,world);
+                    if (blockEntity.hasCampfireRecipe(blockEntity.getStack(1))){
+                        blockEntity.craftCampfireItem(blockEntity.getStack(1),1,world);
                     }
-                    if (hasCampfireRecipe(this.getStack(2))){
-                        craftCampfireItem(this.getStack(2),2,world);
+                    if (blockEntity.hasCampfireRecipe(blockEntity.getStack(2))){
+                        blockEntity.craftCampfireItem(blockEntity.getStack(2),2,world);
                     }
-                    if (hasCampfireRecipe(this.getStack(3))){
-                        craftCampfireItem(this.getStack(3),3,world);
+                    if (blockEntity.hasCampfireRecipe(blockEntity.getStack(3))){
+                        blockEntity.craftCampfireItem(blockEntity.getStack(3),3,world);
                     }
-                    stir_fry_times = 0;
+                    blockEntity.stir_fry_times = 0;
                 }
             }
         }
@@ -227,24 +233,22 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
             this.setStack(slot,ItemStack.EMPTY);
             return;
         }
-        SimpleInventory inventory = new SimpleInventory(1);
-        inventory.setStack(0,stack);
-        Optional<CampfireCookingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,inventory,world);
-        ItemScatterer.spawn(world,pos.getX(), pos.getY(), pos.getZ(),
-                new ItemStack(match.get().getOutput(null).getItem()));
-        this.setStack(slot,ItemStack.EMPTY);
-        int exp = (int)match.get().getExperience();
-        if (exp == 0) exp=1;
-        ExperienceOrbEntity xp = new ExperienceOrbEntity(world,pos.getX(),pos.getY(),pos.getZ(),exp);
-        world.spawnEntity(xp);
-        markDirty();
+        Optional<RecipeEntry<CampfireCookingRecipe>> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
+                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,new SingleStackRecipeInput(stack),world);
+        if (match.isPresent()){
+            ItemScatterer.spawn(world,pos.getX(), pos.getY(), pos.getZ(),
+                    new ItemStack(match.get().value().getResult(null).getItem()));
+            this.setStack(slot,ItemStack.EMPTY);
+            int exp = (int)match.get().value().getExperience();
+            if (exp == 0) exp=1;
+            ExperienceOrbEntity xp = new ExperienceOrbEntity(world,pos.getX(),pos.getY(),pos.getZ(),exp);
+            world.spawnEntity(xp);
+            markDirty();
+        }
     }
     private boolean hasCampfireRecipe(ItemStack stack) {
-        SimpleInventory inventory = new SimpleInventory(1);
-        inventory.setStack(0,stack);
-        Optional<CampfireCookingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,inventory,world);
+        Optional<RecipeEntry<CampfireCookingRecipe>> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
+                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,new SingleStackRecipeInput(stack),world);
         return match.isPresent();
     }
 }

@@ -1,0 +1,36 @@
+{
+  "values": [
+    {
+      "id": "#c:tools/knife",
+      "required": false
+    },
+    {
+      "id": "#c:tools/mining_tools",
+      "required": false
+    },
+    {
+      "id": "#c:tools/melee_weapons",
+      "required": false
+    },
+    {
+      "id": "#c:tools/filter",
+      "required": false
+    },
+    {
+      "id": "#c:tools/whisk",
+      "required": false
+    },
+    {
+      "id": "#c:tools/rolling_pins",
+      "required": false
+    },
+    {
+      "id": "#c:tools/crowbar",
+      "required": false
+    },
+    {
+      "id": "#c:tools/spatula",
+      "required": false
+    }
+  ]
+}

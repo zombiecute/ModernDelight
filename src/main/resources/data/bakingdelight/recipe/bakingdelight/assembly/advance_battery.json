@@ -1,0 +1,28 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 3,
+  "goal": 6,
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "bakingdelight:silicon_component"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "bakingdelight:redstone_component"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:advance_battery"
+  }
+}

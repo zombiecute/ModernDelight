@@ -1,61 +1,42 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import net.minecraft.inventory.SimpleInventory;
+import com.zombie_cute.mc.bakingdelight.recipe.recipeInput.MultiStackRecipeInput;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class BakingRecipe implements Recipe<SimpleInventory> {
-    private final Identifier id;
+import java.util.List;
+
+public class BakingRecipe implements Recipe<MultiStackRecipeInput> {
     private final ItemStack output;
-    private final DefaultedList<Ingredient> recipeItems;
-    public BakingRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack itemStack){
-        this.id = id;
+    private final List<Ingredient> recipeItems;
+    public BakingRecipe(List<Ingredient> ingredients, ItemStack itemStack){
         this.output = itemStack;
         this.recipeItems = ingredients;
     }
 
     @Override
-    public boolean matches(SimpleInventory inventory, World world) {
-        if (world.isClient){
-            return false;
-        }
-//        boolean[] a = {true,true,true,true};
-//        for (int j = 0;j < 4;j++){
-//            for (int i = 0;i < 4;i++){
-//                for (;i < 4; i++){
-//                    if (a[i]){
-//                        break;
-//                    }
-//                }
-//                if(recipeItems.get(i).test(inventory.getStack(j))){
-//                    a[i] = false;
-//                    break;
-//                }
-//            }
-//        }
-//        int count = 0;
-//        for (int i = 0; i < 4; i++){
-//            if (!a[i])count++;
-//        }
-//        return count == 4;
-        return recipeItems.get(0).test(inventory.getStack(0)) &&
-                recipeItems.get(1).test(inventory.getStack(1)) &&
-                recipeItems.get(2).test(inventory.getStack(2)) &&
-                recipeItems.get(3).test(inventory.getStack(3));
+    public boolean matches(MultiStackRecipeInput inventory, World world) {
+        return recipeItems.get(0).test(inventory.getStackInSlot(0)) &&
+                recipeItems.get(1).test(inventory.getStackInSlot(1)) &&
+                recipeItems.get(2).test(inventory.getStackInSlot(2)) &&
+                recipeItems.get(3).test(inventory.getStackInSlot(3));
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
-        return output;
+    public ItemStack craft(MultiStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+        return output.copy();
     }
 
     @Override
@@ -64,8 +45,8 @@ public class BakingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
-        return output;
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+        return output.copy();
     }
 
     @Override
@@ -78,11 +59,6 @@ public class BakingRecipe implements Recipe<SimpleInventory> {
     @Override
     public ItemStack createIcon() {
         return ModBlocks.OVEN.asItem().getDefaultStack();
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -103,38 +79,43 @@ public class BakingRecipe implements Recipe<SimpleInventory> {
 
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "oven_baking";
+        public static final MapCodec<BakingRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
+                                .flatXmap(ingredients ->{
+                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+                                    if (ingredients1.length == 0){
+                                        return DataResult.error(()->"No ingredients");
+                                    }
+                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
+                                },DataResult::success).forGetter(BakingRecipe::getIngredients)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
+                ).apply(instance, BakingRecipe::new)
+        );
+        public static final PacketCodec<RegistryByteBuf, BakingRecipe> PACKET_CODEC = PacketCodec.ofStatic(BakingRecipe.Serializer::write, BakingRecipe.Serializer::read);
 
-        @Override
-        public BakingRecipe read(Identifier id, JsonObject json) {
-            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json,"output"));
-            JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
-
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(4,Ingredient.EMPTY);
-
-            for(int i=0;i<inputs.size();i++){
-                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new BakingRecipe(id, inputs, output);
-        }
-
-        @Override
-        public BakingRecipe read(Identifier id, PacketByteBuf buf) {
+        private static BakingRecipe read(RegistryByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
+            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
+            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
+            return new BakingRecipe(inputs,output);
+        }
 
-            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
-
-            ItemStack output = buf.readItemStack();
-            return new BakingRecipe(id, inputs, output);
+        private static void write(RegistryByteBuf buf, BakingRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for (Ingredient ingredient : recipe.getIngredients()){
+                Ingredient.PACKET_CODEC.encode(buf,ingredient);
+            }
+            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
         }
 
         @Override
-        public void write(PacketByteBuf buf, BakingRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for(Ingredient ingredient : recipe.getIngredients()){
-                ingredient.write(buf);
-            }
-            buf.writeItemStack(recipe.output);
+        public MapCodec<BakingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public PacketCodec<RegistryByteBuf, BakingRecipe> packetCodec() {
+            return PACKET_CODEC;
         }
     }
 }

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_whisk",
+  "criteria": {
+    "glass_bowl": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:glass_bowl"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_glass_bowl_desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:glass_bowl"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_glass_bowl_title"
+    }
+  },
+  "requirements": [
+    [
+      "glass_bowl"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

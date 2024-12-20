@@ -1,0 +1,28 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 2,
+  "goal": 3,
+  "ingredients": [
+    {
+      "item": "bakingdelight:silicon_component"
+    },
+    {
+      "item": "minecraft:daylight_detector"
+    },
+    {
+      "item": "bakingdelight:silicon_component"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "bakingdelight:advance_battery"
+    },
+    {
+      "item": "bakingdelight:diamond_component"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:photovoltaic_generator"
+  }
+}

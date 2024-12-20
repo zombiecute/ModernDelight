@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.entities.renderer;
 
 import com.zombie_cute.mc.bakingdelight.block.entities.BakingTrayBlockEntity;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
@@ -102,7 +102,7 @@ public class BakingTrayBlockEntityRenderer implements BlockEntityRenderer<Baking
 
     private boolean isFlat(Item item) {
         List<Item> items = new ArrayList<>();
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.FLAT_ON_BAKING_TRAY)){
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.FLAT_ON_BAKING_TRAY)){
             items.add(registryEntry.value());
         }
         return items.contains(item);

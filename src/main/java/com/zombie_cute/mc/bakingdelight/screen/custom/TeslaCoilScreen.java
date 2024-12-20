@@ -14,7 +14,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/tesla_coil_gui.png");
 
     public TeslaCoilScreen(TeslaCoilScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -67,7 +67,7 @@ public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         boolean b = mouseX >= x + 152 && mouseY >= y + 58 && mouseX <= x + 166 && mouseY <= y + 68;
-        int[] array = new int[2];
+        byte[] array = new byte[2];
         if (handler.getShowParticle()){
             if (b && button == 0){
                 array[0] = 1;
@@ -89,7 +89,7 @@ public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

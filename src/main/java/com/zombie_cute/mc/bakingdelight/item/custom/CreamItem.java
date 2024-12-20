@@ -1,16 +1,16 @@
 package com.zombie_cute.mc.bakingdelight.item.custom;
 
-import com.zombie_cute.mc.bakingdelight.util.Flavor;
+import com.zombie_cute.mc.bakingdelight.util.components.cumstom.FlavorComponent;
 
 public class CreamItem extends ModStewItem{
-    public CreamItem(Flavor flavor, Settings settings) {
+    public CreamItem(FlavorComponent flavorComponent, Settings settings) {
         super(settings);
-        this.flavor = flavor;
+        this.flavorComponent = flavorComponent;
     }
 
-    public Flavor getFlavor() {
-        return flavor;
+    public FlavorComponent getFlavor() {
+        return flavorComponent;
     }
 
-    private final Flavor flavor;
+    private final FlavorComponent flavorComponent;
 }

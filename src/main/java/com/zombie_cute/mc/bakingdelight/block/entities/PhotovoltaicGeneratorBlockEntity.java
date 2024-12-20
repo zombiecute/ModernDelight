@@ -14,7 +14,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -26,7 +26,7 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, PowerStorageAble {
+public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, PowerStorageAble {
     public PhotovoltaicGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.PHOTOVOLTAIC_GENERATOR_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -62,7 +62,7 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
     private int isWorking = 0;
     private int slowMode = 0;
     public static final String PHOTOVOLTAIC_GENERATOR_NAME = "display_name.bakingdelight.photovoltaic_generator_name";
-    public void tick(World world, PhotovoltaicGeneratorBlockEntity blockEntity) {
+    public static void tick(World world,BlockPos pos,BlockState state, PhotovoltaicGeneratorBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
@@ -75,7 +75,7 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
                 blockEntity.addPower(light);
                 blockEntity.slowMode = 1;
             } else blockEntity.slowMode = 0;
-            if (isInOpenAir(world)){
+            if (blockEntity.isInOpenAir(world)){
                 if (isEarlyMorningOrTwilight(world)){
                     blockEntity.addPowerAndCheck(1,world);
                     if (world.isThundering() || world.isRaining()) blockEntity.isWorking = 0;
@@ -89,7 +89,7 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
                     blockEntity.isWorking = 1;
                 } else blockEntity.isWorking = 0;
             } else blockEntity.isWorking = 0;
-            markDirty();
+            blockEntity.markDirty();
         }
     }
 
@@ -130,27 +130,25 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
         long timeOfDay = world.getTimeOfDay() % 24000L;
         return timeOfDay >= 4283 && timeOfDay < 7700;
     }
+
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt,inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt,inventory,registryLookup);
         nbt.putInt("photovoltaic_generator.power", this.getPower().getPowerValue());
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt,inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt,inventory,registryLookup);
         this.setPower(nbt.getInt("photovoltaic_generator.power"));
         markDirty();
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
-    }
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     @Override
@@ -172,5 +170,10 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
     @Override
     public Power getPower() {
         return power;
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

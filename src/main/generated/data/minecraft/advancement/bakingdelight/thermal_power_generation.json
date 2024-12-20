@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:bakingdelight/got_silicon_ingot",
+  "criteria": {
+    "faraday_generator": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:faraday_generator"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sterling_engine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:sterling_engine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.thermal_power_generation.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:sterling_engine"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.thermal_power_generation.title"
+    }
+  },
+  "requirements": [
+    [
+      "sterling_engine"
+    ],
+    [
+      "faraday_generator"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

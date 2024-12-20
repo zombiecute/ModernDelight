@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -63,22 +64,22 @@ public class KitchenUtensilHolderBlockEntity extends BlockEntity implements Impl
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, INV);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt,registryLookup);
+        Inventories.writeNbt(nbt, INV,registryLookup);
     }
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, INV);
+    public void readNbt(NbtCompound nbt,RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt,registryLookup);
+        Inventories.readNbt(nbt, INV,registryLookup);
     }
 
     public DefaultedList<ItemStack> getItems() {
         return INV;
     }
 
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     private void spawnItem(int slot){

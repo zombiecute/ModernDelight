@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:crops/tomato"
+    },
+    {
+      "item": "bakingdelight:cheese"
+    },
+    {
+      "tag": "c:foods/raw_beef"
+    },
+    {
+      "tag": "c:crops/onion"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:beef_tomato_cup",
+    "count": 1
+  }
+}

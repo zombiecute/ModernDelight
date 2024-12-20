@@ -5,19 +5,19 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.custom.GasCanisterBlock;
 import com.zombie_cute.mc.bakingdelight.screen.custom.GasCanisterScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -26,7 +26,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -36,7 +35,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory{
+public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
     private int gasValue = 0;
     private final int maxGasValue = 6000;
     private int cycleInt = 0;
@@ -76,27 +75,27 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
         };
     }
     private int tick = 20;
-    public void tick(World world, BlockPos pos, BlockState state, GasCanisterBlockEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state, GasCanisterBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
         blockEntity.tick--;
-        switch (tick){
-            case 20, 3: cycleInt = 0;break;
-            case 17, 7: cycleInt = 1;break;
-            case 15, 10: cycleInt = 2;break;
-            case 12: cycleInt = 3;break;
-            case 0 : tick = 20;
+        switch (blockEntity.tick){
+            case 20, 3: blockEntity.cycleInt = 0;break;
+            case 17, 7: blockEntity.cycleInt = 1;break;
+            case 15, 10: blockEntity.cycleInt = 2;break;
+            case 12: blockEntity.cycleInt = 3;break;
+            case 0 : blockEntity.tick = 20;
         }
-        if(isDangerBlock(world.getBlockState(pos.down()).getBlock())||
-                isDangerBlock(world.getBlockState(pos.up()).getBlock())||
-                isDangerBlock(world.getBlockState(pos.north()).getBlock())||
-                isDangerBlock(world.getBlockState(pos.south()).getBlock())||
-                isDangerBlock(world.getBlockState(pos.west()).getBlock())||
-                isDangerBlock(world.getBlockState(pos.east()).getBlock())){
-            randomExplode(world);
+        if(blockEntity.isDangerBlock(world.getBlockState(pos.down()).getBlock())||
+                blockEntity.isDangerBlock(world.getBlockState(pos.up()).getBlock())||
+                blockEntity.isDangerBlock(world.getBlockState(pos.north()).getBlock())||
+                blockEntity.isDangerBlock(world.getBlockState(pos.south()).getBlock())||
+                blockEntity.isDangerBlock(world.getBlockState(pos.west()).getBlock())||
+                blockEntity.isDangerBlock(world.getBlockState(pos.east()).getBlock())){
+            blockEntity.randomExplode(world);
         } else if (world.getRegistryKey() == World.NETHER) {
-            randomExplode(world);
+            blockEntity.randomExplode(world);
         } else if (blockEntity.gasValue > blockEntity.maxGasValue){
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 5, true, World.ExplosionSourceType.BLOCK);
@@ -129,21 +128,21 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
         if (world.getBlockState(facingBlock).getBlock().equals(ModBlocks.BIOGAS_DIGESTER_IO) &&
                 world.getBlockEntity(underBlock) instanceof BiogasDigesterControllerBlockEntity entity){
             if (entity.getGasValue()>=5){
-                playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
+                blockEntity.playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
                 entity.reduceGas(5);
                 blockEntity.gasValue += 5;
-                markDirty();
+                blockEntity.markDirty();
             } else if (entity.getGasValue() > 0){
-                playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
+                blockEntity.playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
                 entity.reduceGas(1);
                 blockEntity.gasValue += 1;
-                markDirty();
+                blockEntity.markDirty();
             }
         }
     }
     public boolean isDangerBlock(Block block){
         Set<Block> blockHashSet = new HashSet<>();
-        for (RegistryEntry<Block> registryEntry : Registries.BLOCK.iterateEntries(ModTagKeys.DANGER_BLOCKS)){
+        for (RegistryEntry<Block> registryEntry : Registries.BLOCK.iterateEntries(TagKeys.DANGER_BLOCKS)){
             blockHashSet.add(registryEntry.value());
         }
         blockHashSet.remove(Blocks.CAULDRON);
@@ -170,11 +169,11 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
     public void onUse(PlayerEntity player, World world) {
         if (gasValue > 999){
             if (player.getOffHandStack().getItem().equals(Items.FLINT_AND_STEEL)){
-                player.getOffHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.MAIN_HAND));
+                player.getOffHandStack().damage(1, player, EquipmentSlot.OFFHAND);
                 playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE,1.0f,1.0f);
                 explode(world);
             } else if (player.getMainHandStack().getItem().equals(Items.FLINT_AND_STEEL)){
-                player.getMainHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.OFF_HAND));
+                player.getMainHandStack().damage(1, player, EquipmentSlot.MAINHAND);
                 playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE,1.0f,1.0f);
                 explode(world);
             } else if (player.getOffHandStack().getItem().equals(Items.FIRE_CHARGE)){
@@ -195,26 +194,21 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
         nbt.putInt("gas_canister.gasValue", gasValue);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt,registryLookup);
         gasValue = nbt.getInt("gas_canister.gasValue");
         markDirty();
     }
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
-    }
-
     @Override
     public Text getDisplayName() {
         return Text.translatable(GAS_CANISTER_NAME);
@@ -240,5 +234,10 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
             world.updateListeners(pos, getCachedState(), getCachedState(), 3);
         }
         super.markDirty();
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

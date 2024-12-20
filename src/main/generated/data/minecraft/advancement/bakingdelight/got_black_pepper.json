@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "black_pepper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:black_pepper_corn"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_black_pepper.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:black_pepper_corn"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_black_pepper.title"
+    }
+  },
+  "requirements": [
+    [
+      "black_pepper"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

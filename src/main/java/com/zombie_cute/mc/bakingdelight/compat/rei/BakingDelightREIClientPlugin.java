@@ -64,56 +64,55 @@ public class BakingDelightREIClientPlugin implements REIClientPlugin {
                 new SteamingCategory(),
                 new IceCreamMakingCategory()
         );
-        registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.OVEN));
-        registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.GAS_CANISTER));
-        registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.GAS_COOKING_STOVE));
-        registry.addWorkstations(FreezerFreezingCategory.FREEZING, EntryStacks.of(ModBlocks.FREEZER));
-        registry.addWorkstations(GlassBowlWhiskingCategory.WHISKING, EntryStacks.of(ModBlocks.GLASS_BOWL));
-        registry.addWorkstations(GlassBowlMixWithWaterCategory.MIX_WITH_WATER, EntryStacks.of(ModBlocks.GLASS_BOWL));
-        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/smelting"),EntryStacks.of(ModBlocks.ADVANCE_FURNACE));
-        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/smelting"),EntryStacks.of(ModBlocks.GAS_CANISTER));
-        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/smelting"),EntryStacks.of(ModBlocks.GAS_COOKING_STOVE));
-        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/fuel"),EntryStacks.of(ModBlocks.ADVANCE_FURNACE));
-        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/fuel"),EntryStacks.of(ModBlocks.OVEN));
-        registry.addWorkstations(BakingTrayCategory.STIR_FRYING, EntryStacks.of(ModBlocks.BAKING_TRAY));
-        registry.addWorkstations(BakingTrayCategory.STIR_FRYING, EntryStacks.of(ModBlocks.GAS_CANISTER));
-        registry.addWorkstations(BakingTrayCategory.STIR_FRYING, EntryStacks.of(ModBlocks.GAS_COOKING_STOVE));
-        registry.addWorkstations(WoodenBasinCategory.WOODEN_BASIN,EntryStacks.of(ModBlocks.WOODEN_BASIN));
-        registry.addWorkstations(BiogasFermentationCategory.BIOGAS_FERMENTATION, EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_IO));
-        registry.addWorkstations(BiogasFermentationCategory.BIOGAS_FERMENTATION, EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_CONTROLLER));
-        registry.addWorkstations(DeepFryingCategory.DEEP_FRYING, EntryStacks.of(ModBlocks.DEEP_FRYER));
-        registry.addWorkstations(DeepFryingCategory.DEEP_FRYING, EntryStacks.of(ModBlocks.DEEP_FRY_BASKET));
-        registry.addWorkstations(DeepFryingCategory.DEEP_FRYING, EntryStacks.of(ModBlocks.GAS_CANISTER));
-        registry.addWorkstations(CuisineCategory.CUISINE, EntryStacks.of(ModBlocks.CUISINE_TABLE));
-        registry.addWorkstations(AssemblyCategory.ASSEMBLY, EntryStacks.of(ModBlocks.ELECTRICIANS_DESK));
-        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.ELECTRIC_STEAMER));
-        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.BAMBOO_COVER));
-        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.BAMBOO_GRATE));
-        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(Blocks.CAULDRON));
-        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.GAS_COOKING_STOVE));
-        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.GAS_CANISTER));
-        registry.addWorkstations(IceCreamMakingCategory.ICE_CREAM_MAKING, EntryStacks.of(ModBlocks.ICE_CREAM_MAKER));
+        registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.OVEN,1));
+        registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.GAS_CANISTER,1));
+        registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.GAS_COOKING_STOVE,1));
+        registry.addWorkstations(FreezerFreezingCategory.FREEZING, EntryStacks.of(ModBlocks.FREEZER,1));
+        registry.addWorkstations(GlassBowlWhiskingCategory.WHISKING, EntryStacks.of(ModBlocks.GLASS_BOWL,1));
+        registry.addWorkstations(GlassBowlMixWithWaterCategory.MIX_WITH_WATER, EntryStacks.of(ModBlocks.GLASS_BOWL,1));
+        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/smelting"),EntryStacks.of(ModBlocks.ADVANCE_FURNACE,1));
+        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/smelting"),EntryStacks.of(ModBlocks.GAS_CANISTER,1));
+        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/smelting"),EntryStacks.of(ModBlocks.GAS_COOKING_STOVE,1));
+        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/fuel"),EntryStacks.of(ModBlocks.ADVANCE_FURNACE,1));
+        registry.addWorkstations(CategoryIdentifier.of("minecraft:plugins/fuel"),EntryStacks.of(ModBlocks.OVEN,1));
+        registry.addWorkstations(BakingTrayCategory.STIR_FRYING, EntryStacks.of(ModBlocks.BAKING_TRAY,1));
+        registry.addWorkstations(BakingTrayCategory.STIR_FRYING, EntryStacks.of(ModBlocks.GAS_CANISTER,1));
+        registry.addWorkstations(BakingTrayCategory.STIR_FRYING, EntryStacks.of(ModBlocks.GAS_COOKING_STOVE,1));
+        registry.addWorkstations(WoodenBasinCategory.WOODEN_BASIN,EntryStacks.of(ModBlocks.WOODEN_BASIN,1));
+        registry.addWorkstations(BiogasFermentationCategory.BIOGAS_FERMENTATION, EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_IO,1));
+        registry.addWorkstations(BiogasFermentationCategory.BIOGAS_FERMENTATION, EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_CONTROLLER,1));
+        registry.addWorkstations(DeepFryingCategory.DEEP_FRYING, EntryStacks.of(ModBlocks.DEEP_FRYER,1));
+        registry.addWorkstations(DeepFryingCategory.DEEP_FRYING, EntryStacks.of(ModBlocks.DEEP_FRY_BASKET,1));
+        registry.addWorkstations(DeepFryingCategory.DEEP_FRYING, EntryStacks.of(ModBlocks.GAS_CANISTER,1));
+        registry.addWorkstations(CuisineCategory.CUISINE, EntryStacks.of(ModBlocks.CUISINE_TABLE,1));
+        registry.addWorkstations(AssemblyCategory.ASSEMBLY, EntryStacks.of(ModBlocks.ELECTRICIANS_DESK,1));
+        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.ELECTRIC_STEAMER,1));
+        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.BAMBOO_COVER,1));
+        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.BAMBOO_GRATE,1));
+        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(Blocks.CAULDRON,1));
+        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.GAS_COOKING_STOVE,1));
+        registry.addWorkstations(SteamingCategory.STEAMING, EntryStacks.of(ModBlocks.GAS_CANISTER,1));
+        registry.addWorkstations(IceCreamMakingCategory.ICE_CREAM_MAKING, EntryStacks.of(ModBlocks.ICE_CREAM_MAKER,1));
 
     }
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.registerRecipeFiller(BakingRecipe.class, BakingRecipe.Type.INSTANCE, OvenBakingDisplay::new);
-        registry.registerRecipeFiller(FreezingRecipe.class, FreezingRecipe.Type.INSTANCE, FreezerFreezingDisplay::new);
-        registry.registerRecipeFiller(WhiskingRecipe.class, WhiskingRecipe.Type.INSTANCE, GlassBowlWhiskingDisplay::new);
-        registry.registerRecipeFiller(MixWithWaterRecipe.class, MixWithWaterRecipe.Type.INSTANCE, GlassBowlMixWithWaterDisplay::new);
+        registry.registerRecipeFiller(BakingRecipe.class, BakingRecipe.Type.INSTANCE, (entry) -> new OvenBakingDisplay(entry.value()));
+        registry.registerRecipeFiller(FreezingRecipe.class, FreezingRecipe.Type.INSTANCE, (entry) -> new FreezerFreezingDisplay(entry.value()));
+        registry.registerRecipeFiller(WhiskingRecipe.class, WhiskingRecipe.Type.INSTANCE, (entry) -> new GlassBowlWhiskingDisplay(entry.value()));
+        registry.registerRecipeFiller(MixWithWaterRecipe.class, MixWithWaterRecipe.Type.INSTANCE, (entry) -> new GlassBowlMixWithWaterDisplay(entry.value()));
         registry.add(new PizzaMakingDisplay());
         registry.add(new OvenTransformDisplay());
         registry.add(new AdvanceFurnaceTransformDisplay());
-        registry.registerRecipeFiller(CampfireCookingRecipe.class, RecipeType.CAMPFIRE_COOKING, BakingTrayDisplay::new);
+        registry.registerRecipeFiller(CampfireCookingRecipe.class, RecipeType.CAMPFIRE_COOKING, (entry) -> new BakingTrayDisplay(entry.value()));
         registry.add(new WoodenBasinDisplay());
         registry.add(new BiogasFermentationDisplay());
-        registry.registerRecipeFiller(DeepFryingRecipe.class, DeepFryingRecipe.Type.INSTANCE, DeepFryingDisplay::new);
-        registry.registerRecipeFiller(CuisineRecipe.class, CuisineRecipe.Type.INSTANCE, CuisineDisplay::new);
-        registry.registerRecipeFiller(AssemblyRecipe.class, AssemblyRecipe.Type.INSTANCE, AssemblyDisplay::new);
-        registry.registerRecipeFiller(SteamingRecipe.class, SteamingRecipe.Type.INSTANCE, SteamingDisplay::new);
+        registry.registerRecipeFiller(DeepFryingRecipe.class, DeepFryingRecipe.Type.INSTANCE, (entry) -> new DeepFryingDisplay(entry.value()));
+        registry.registerRecipeFiller(CuisineRecipe.class, CuisineRecipe.Type.INSTANCE, (entry) -> new CuisineDisplay(entry.value()));
+        registry.registerRecipeFiller(AssemblyRecipe.class, AssemblyRecipe.Type.INSTANCE, (entry) -> new AssemblyDisplay(entry.value()));
+        registry.registerRecipeFiller(SteamingRecipe.class, SteamingRecipe.Type.INSTANCE, (entry) -> new SteamingDisplay(entry.value()));
         registry.add(new IceCreamMakingDisplay());
-
     }
 
     @Override

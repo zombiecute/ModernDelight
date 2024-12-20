@@ -1,18 +1,19 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.DeepFryerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -36,11 +37,15 @@ public class DeepFryerBlock extends BlockWithEntity {
     public static final BooleanProperty HAS_OIL = BooleanProperty.of("has_oil");
     public static final BooleanProperty RUNNING = BooleanProperty.of("running");
     public DeepFryerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.BRICKS).nonOpaque());
+        super(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque());
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(HAS_OIL, false).with(RUNNING, false));
     }
-
+    public static final MapCodec<DeepFryerBlock> CODEC = createCodec(settings -> new DeepFryerBlock());
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
     private static final VoxelShape TYPE_WEST = Block.createCuboidShape(1,1,0,15,11,16);
     private static final VoxelShape TYPE_EAST = Block.createCuboidShape(1,1,0,15,11,16);
     private static final VoxelShape TYPE_SOUTH = Block.createCuboidShape(0,1,1,16,11,15);
@@ -124,7 +129,7 @@ public class DeepFryerBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof DeepFryerBlockEntity entity){
             if (player.isSneaking()){
                 player.openHandledScreen(entity);
@@ -140,8 +145,9 @@ public class DeepFryerBlock extends BlockWithEntity {
         }
         return ActionResult.SUCCESS;
     }
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -152,12 +158,12 @@ public class DeepFryerBlock extends BlockWithEntity {
         } else {
             tooltip.add(ModUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.DEEP_FRYER_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, state1, blockEntity));
+        return world.isClient ? null : validateTicker(type,ModBlockEntities.DEEP_FRYER_BLOCK_ENTITY, DeepFryerBlockEntity::tick);
     }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:apple_petal"
+    },
+    {
+      "item": "bakingdelight:pudding_wip_2"
+    },
+    {
+      "item": "bakingdelight:apple_petal"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:apple_pudding"
+  }
+}

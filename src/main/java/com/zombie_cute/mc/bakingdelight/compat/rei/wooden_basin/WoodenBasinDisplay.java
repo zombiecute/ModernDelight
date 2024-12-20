@@ -1,9 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.wooden_basin;
 
 import com.zombie_cute.mc.bakingdelight.block.entities.WoodenBasinBlockEntity;
-import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -25,7 +24,7 @@ public class WoodenBasinDisplay implements Display {
         for (Item item:WoodenBasinBlockEntity.createOilMap().keySet()){
             stacks.add(item.getDefaultStack());
         }
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.FILTERS)) {
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.FILTERS)) {
             stacks.add(registryEntry.value().getDefaultStack());
         }
         return List.of(EntryIngredients.ofItemStacks(stacks));
@@ -34,8 +33,8 @@ public class WoodenBasinDisplay implements Display {
     @Override
     public List<EntryIngredient> getOutputEntries() {
         List<EntryIngredient> ingredients = new ArrayList<>();
-        ingredients.add(EntryIngredients.of(ModFluid.STILL_VEGETABLE_OIL));
-        ingredients.add(EntryIngredients.of(ModItems.OIL_IMPURITY));
+        ingredients.add(EntryIngredients.ofFluidTag(TagKeys.OIL));
+        ingredients.add(EntryIngredients.of(ModItems.OIL_IMPURITY,1));
         return ingredients;
     }
 

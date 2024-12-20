@@ -17,17 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIDeepFryingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/deep_fryer.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/deep_fryer.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.DEEP_FRYER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "deep_frying"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "deep_frying"), WORKSTATION);
 
     private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIDeepFryingRecipe(DeepFryingRecipe recipe) {
-        this.id = recipe.getId();
+        this.id = Identifier.of(Bakingdelight.MOD_ID,recipe.getResult(null).getTranslationKey()+recipe.hashCode());
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
@@ -35,7 +35,7 @@ public class EMIDeepFryingRecipe implements EmiRecipe {
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.DEEP_FRY_BASKET)));
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {

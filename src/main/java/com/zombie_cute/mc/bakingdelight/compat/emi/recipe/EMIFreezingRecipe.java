@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIFreezingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/freezer.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/freezer.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.FREEZER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "freezing"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "freezing"), WORKSTATION);
 
     private final Identifier id;
     private final List<EmiIngredient> input;
@@ -29,7 +29,7 @@ public class EMIFreezingRecipe implements EmiRecipe {
     private final List<EmiIngredient> coolItems = new ArrayList<>();
 
     public EMIFreezingRecipe(FreezingRecipe recipe) {
-        this.id = recipe.getId();
+        this.id = Identifier.of(Bakingdelight.MOD_ID,recipe.getResult(null).getTranslationKey()+recipe.hashCode());
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
@@ -39,7 +39,7 @@ public class EMIFreezingRecipe implements EmiRecipe {
             coolItems.add(EmiIngredient.of(Ingredient.ofItems(item)));
         }
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {

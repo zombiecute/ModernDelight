@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#c:tools/spatula",
+      "required": false
+    },
+    {
+      "id": "#c:tools/rolling_pins",
+      "required": false
+    },
+    {
+      "id": "#c:tools/crowbar",
+      "required": false
+    }
+  ]
+}

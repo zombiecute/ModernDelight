@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cream_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:cream_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:mousse_wip"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cream_bucket"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:mousse_wip"
+    ]
+  }
+}

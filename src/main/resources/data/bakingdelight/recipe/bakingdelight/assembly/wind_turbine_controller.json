@@ -1,0 +1,28 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 1,
+  "goal": 128,
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "bakingdelight:redstone_component"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone_torch"
+    },
+    {
+      "item": "minecraft:piston"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:wind_turbine_controller"
+  }
+}

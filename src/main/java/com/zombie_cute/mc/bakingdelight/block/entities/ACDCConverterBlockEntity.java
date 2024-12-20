@@ -16,7 +16,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,7 +27,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, PowerStorageAble, ACGenerateAble, ACConsumer {
+public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, PowerStorageAble, ACGenerateAble, ACConsumer {
     public ACDCConverterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.AC_DC_CONVERTER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -88,7 +88,7 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
             workSpeed = 0;
         } else workSpeed -= value;
     }
-    public void tick(World world, ACDCConverterBlockEntity blockEntity, BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, ACDCConverterBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
@@ -166,30 +166,26 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
         return false;
     }
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, INV);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt,registryLookup);
+        Inventories.writeNbt(nbt, INV, registryLookup);
         nbt.putInt("acdcc.power", this.getPowerValue());
         nbt.putInt("acdcc.isOpen",this.isACMode);
         nbt.putInt("acdcc.workSpeed",this.workSpeed);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, INV);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, INV,registryLookup);
         this.setPower(nbt.getInt("acdcc.power"));
         this.workSpeed = nbt.getInt("acdcc.workSpeed");
         this.isACMode = nbt.getInt("acdcc.isOpen");
         markDirty();
     }
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
-    }
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     @Override
@@ -231,5 +227,10 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
     @Override
     public void energize() {
         this.addPower((int)(this.workSpeed * 10 * (1.0 - (float)this.workSpeed / 20.0)) * 3);
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

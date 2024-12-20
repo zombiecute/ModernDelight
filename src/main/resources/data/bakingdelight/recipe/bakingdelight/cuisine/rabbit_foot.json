@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "tag": "c:tools/knife"
+    }
+  ],
+  "output": {
+    "id": "minecraft:rabbit_foot",
+    "count": 2
+  }
+}

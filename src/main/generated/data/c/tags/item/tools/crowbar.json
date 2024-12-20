@@ -1,0 +1,9 @@
+{
+  "values": [
+    "bakingdelight:crowbar",
+    {
+      "id": "create:wrench",
+      "required": false
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
@@ -23,8 +23,8 @@ public class CuisineTableScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public final CuisineTableBlockEntity blockEntity;
 
-    public CuisineTableScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()));
+    public CuisineTableScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos));
     }
     public CuisineTableScreenHandler(int syncId, PlayerInventory playerInventory,
                                      BlockEntity blockEntity){
@@ -98,7 +98,10 @@ public class CuisineTableScreenHandler extends ScreenHandler {
         return newStack;
     }
     public void populateResult(ItemStack itemStack){
-        NetworkHandler.sendUpdateInventoryPacket(this.blockEntity.getPos(), itemStack);
+        if (itemStack.isEmpty()){
+            NetworkHandler.sendUpdateInventoryPacket(this.blockEntity.getPos(), Items.AIR.toString());
+        }
+        NetworkHandler.sendUpdateInventoryPacket(this.blockEntity.getPos(), itemStack.getItem().toString(),itemStack.getCount());
     }
     @Override
     public ScreenHandlerType<?> getType() {

@@ -19,7 +19,7 @@ public class BurningGasCookingStoveBlockEntity extends BlockEntity {
     public BurningGasCookingStoveBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BURNING_GAS_COOKING_STOVE_BLOCK_ENTITY, pos, state);
     }
-    public void tick(World world, BlockPos pos,BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, BurningGasCookingStoveBlockEntity stoveBlockEntity) {
         if (world.isClient){
             return;
         }

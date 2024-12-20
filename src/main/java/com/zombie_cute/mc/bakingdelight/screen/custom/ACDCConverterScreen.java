@@ -14,7 +14,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/acdcc_gui.png");
     public ACDCConverterScreen(ACDCConverterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -47,7 +47,7 @@ public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandle
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         boolean b = mouseX >= x + 42 && mouseY >= y + 56 && mouseX <= x + 56 && mouseY <= y + 66;
-        int[] array = new int[2];
+        byte[] array = new byte[2];
         if (handler.isACMode()){
             if (b && button == 0){
                 array[1] = 1;
@@ -130,7 +130,7 @@ public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandle
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

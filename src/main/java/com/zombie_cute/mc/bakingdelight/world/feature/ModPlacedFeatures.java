@@ -43,6 +43,6 @@ public class ModPlacedFeatures {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
     }
     public static RegistryKey<PlacedFeature> registerKey(String name) {
-        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(Bakingdelight.MOD_ID,name));
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(Bakingdelight.MOD_ID,name));
     }
 }

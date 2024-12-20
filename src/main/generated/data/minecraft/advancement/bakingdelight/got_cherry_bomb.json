@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "cherry_bomb": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:cherry_bomb"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.get_cherry_bomb_desc"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:cherry"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_cherry_bomb_title"
+    }
+  },
+  "requirements": [
+    [
+      "cherry_bomb"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

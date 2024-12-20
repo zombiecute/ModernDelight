@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 import java.util.Objects;
 @Environment(EnvType.CLIENT)
 public class OvenScreen extends HandledScreen<OvenScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/oven_gui.png");
     public OvenScreen(OvenScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -93,7 +93,7 @@ public class OvenScreen extends HandledScreen<OvenScreenHandler> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

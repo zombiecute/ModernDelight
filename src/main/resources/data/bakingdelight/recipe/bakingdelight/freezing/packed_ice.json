@@ -1,0 +1,18 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:ice"
+    }
+  ],
+  "output": {
+    "id": "minecraft:packed_ice",
+    "count": 4
+  }
+}

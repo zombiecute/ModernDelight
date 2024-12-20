@@ -3,6 +3,8 @@ package com.zombie_cute.mc.bakingdelight.effects.custom_effects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 
 public class StickyEffect extends StatusEffect {
@@ -16,11 +18,12 @@ public class StickyEffect extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (!entity.getWorld().getBlockState(entity.getBlockPos().down()).isAir()){
             entity.setVelocity(0,0,0);
+            entity.setStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS,1,amplifier + 1),entity);
         }
-        entity.getWorld().addParticle(ParticleTypes.LANDING_HONEY,true,entity.getX(),entity.getY() + 1,entity.getZ(),1,1,1);
-        super.applyUpdateEffect(entity, amplifier);
+        entity.getWorld().addParticle(ParticleTypes.LANDING_HONEY,true,entity.getX(),entity.getY() + 0.5,entity.getZ(),1,1,1);
+        return super.applyUpdateEffect(entity, amplifier);
     }
 }

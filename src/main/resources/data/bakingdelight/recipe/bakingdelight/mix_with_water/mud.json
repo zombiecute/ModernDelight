@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:mix_with_water",
+  "recipeItem": [
+    {
+      "tag": "minecraft:dirt"
+    }
+  ],
+  "output": {
+    "id": "minecraft:mud"
+  }
+}

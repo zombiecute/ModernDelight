@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:potato_starch"
+    },
+    {
+      "tag": "c:foods/doughs/wheat"
+    }
+  ],
+  "result": {
+    "id": "bakingdelight:mixed_dough",
+    "count": 2
+  }
+}

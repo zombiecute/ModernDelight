@@ -3,7 +3,7 @@ package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIIceCreamRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/ice_cream.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/ice_cream.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.ICE_CREAM_MAKER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "ice_cream_making"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "ice_cream_making"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIIceCreamRecipe() {
         List<EmiIngredient> inputs = new ArrayList<>();
-        inputs.add(EmiIngredient.of(ForgeTagKeys.CREAMS));
+        inputs.add(EmiIngredient.of(TagKeys.CREAMS));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(Items.SUGAR)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(Items.EGG)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModItems.ICE_CREAM_CONE)));
@@ -42,7 +42,7 @@ public class EMIIceCreamRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return new Identifier(Bakingdelight.MOD_ID,"ice_cream_making");
+        return Identifier.of(Bakingdelight.MOD_ID,"ice_cream_making");
     }
 
     @Override
@@ -68,7 +68,7 @@ public class EMIIceCreamRecipe implements EmiRecipe {
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(TEXTURE,5,5,142,83,4,4);
-        widgets.addSlot(EmiIngredient.of(ForgeTagKeys.CREAMS), 44, 9);
+        widgets.addSlot(EmiIngredient.of(TagKeys.CREAMS), 44, 9);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(Items.SUGAR)), 44, 27);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(Items.EGG)), 44, 45);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModItems.ICE_CREAM_CONE)), 33, 69);

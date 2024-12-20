@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.CuisineRecipe;
+import com.zombie_cute.mc.bakingdelight.recipe.recipeInput.MultiStackRecipeInput;
 import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,23 +13,24 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/cuisine_table_gui.png");
     private int selectedRecipe;
-    private List<CuisineRecipe> availableRecipes;
+    private List<RecipeEntry<CuisineRecipe>> availableRecipes;
     private int index;
     private int totalPage;
     private boolean prePageBtn;
@@ -69,16 +71,16 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
         }
     }
     public boolean hasRecipe(){
-        SimpleInventory tempINV = new SimpleInventory(2);
-        for (int i=0;i<tempINV.size();i++){
-            tempINV.setStack(i,handler.blockEntity.getStack(i));
+        List<ItemStack> tempINV = new ArrayList<>();
+        for (int i=0;i<2;i++){
+            tempINV.add(i,handler.blockEntity.getStack(i));
         }
-        Optional<CuisineRecipe> match = Objects.requireNonNull(handler.blockEntity.getWorld()).getRecipeManager()
-                .getFirstMatch(CuisineRecipe.Type.INSTANCE, tempINV, handler.blockEntity.getWorld());
+        Optional<RecipeEntry<CuisineRecipe>> match = Objects.requireNonNull(handler.blockEntity.getWorld()).getRecipeManager()
+                .getFirstMatch(CuisineRecipe.Type.INSTANCE, new MultiStackRecipeInput(tempINV,tempINV.size()), handler.blockEntity.getWorld());
         if (match.isPresent()){
             this.availableRecipes = Objects.requireNonNull(handler.blockEntity.getWorld())
                     .getRecipeManager().getAllMatches(
-                            CuisineRecipe.Type.INSTANCE, tempINV, handler.blockEntity.getWorld());
+                            CuisineRecipe.Type.INSTANCE, new MultiStackRecipeInput(tempINV,tempINV.size()), handler.blockEntity.getWorld());
             return true;
         } else return false;
     }
@@ -106,7 +108,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
     public int getSelectedRecipe(){
         return this.selectedRecipe;
     }
-    public List<CuisineRecipe> getAvailableRecipes(){
+    public List<RecipeEntry<CuisineRecipe>> getAvailableRecipes(){
         return availableRecipes;
     }
     public int getAvailableRecipeCounts(){
@@ -127,7 +129,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
             int offsetX = (i % 4) * 18;
             int offsetY = (i / 4) * 18;
             if (isInBounds(i + index * 8)){
-                context.drawItem(this.getAvailableRecipes().get(i + index * 8).getOutput(Objects.requireNonNull(Objects.requireNonNull(this.client).world).getRegistryManager()).copy(),
+                context.drawItem(this.getAvailableRecipes().get(i + index * 8).value().getResult(Objects.requireNonNull(Objects.requireNonNull(this.client).world).getRegistryManager()).copy(),
                         x + 49 + offsetX, y + 17 + offsetY);
             } else {
                 resetAll();
@@ -152,7 +154,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
     private void popRes(){
         if (this.getSelectedRecipe() >= 0){
             if (isInBounds(this.getSelectedRecipe() + 8 * index)){
-                handler.populateResult(this.getAvailableRecipes().get(this.getSelectedRecipe() + 8 * index).getOutput(null).copy());
+                handler.populateResult(this.getAvailableRecipes().get(this.getSelectedRecipe() + 8 * index).value().getResult(null).copy());
             } else {
                 resetAll();
             }
@@ -206,7 +208,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
                             .play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
                     this.selectedRecipe = i;
                     if (isInBounds(i + 8 * index)){
-                        handler.populateResult(this.getAvailableRecipes().get(i + 8 * index).getOutput(null).copy());
+                        handler.populateResult(this.getAvailableRecipes().get(i + 8 * index).value().getResult(null).copy());
                     } else resetAll();
                     return true;
                 }
@@ -234,14 +236,14 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override
     public void close() {
-        int[] array = new int[1];
+        byte[] array = new byte[1];
         array[0] = 1;
         NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(), array);
         super.close();

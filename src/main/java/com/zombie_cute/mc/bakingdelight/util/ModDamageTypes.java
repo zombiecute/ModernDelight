@@ -10,11 +10,11 @@ import net.minecraft.world.World;
 
 public class ModDamageTypes {
     public static final RegistryKey<DamageType> ELECTROSHOCK = RegistryKey.of(
-            RegistryKeys.DAMAGE_TYPE, new Identifier(Bakingdelight.MOD_ID, "electroshock"));
+            RegistryKeys.DAMAGE_TYPE, Identifier.of(Bakingdelight.MOD_ID, "electroshock"));
     public static final RegistryKey<DamageType> TURNED_TO_ASHES = RegistryKey.of(
-            RegistryKeys.DAMAGE_TYPE, new Identifier(Bakingdelight.MOD_ID, "turned_to_ashes"));
+            RegistryKeys.DAMAGE_TYPE, Identifier.of(Bakingdelight.MOD_ID, "turned_to_ashes"));
     public static final RegistryKey<DamageType> SCALDED = RegistryKey.of(
-            RegistryKeys.DAMAGE_TYPE, new Identifier(Bakingdelight.MOD_ID, "scalded"));
+            RegistryKeys.DAMAGE_TYPE, Identifier.of(Bakingdelight.MOD_ID, "scalded"));
     public static DamageSource of(World world, RegistryKey<DamageType> key) {
         return new DamageSource(world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(key));
     }

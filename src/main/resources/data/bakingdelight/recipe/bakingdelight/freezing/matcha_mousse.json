@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "tag": "minecraft:leaves"
+    },
+    {
+      "item": "bakingdelight:mousse_wip"
+    },
+    {
+      "tag": "minecraft:leaves"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:matcha_mousse"
+  }
+}

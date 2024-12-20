@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "I": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "P": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "IPI",
+    "SQS",
+    "CRC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:gas_cooking_stove"
+  }
+}

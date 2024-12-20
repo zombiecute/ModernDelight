@@ -1,0 +1,28 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 1,
+  "goal": 256,
+  "ingredients": [
+    {
+      "item": "minecraft:piston"
+    },
+    {
+      "item": "minecraft:piston"
+    },
+    {
+      "item": "minecraft:iron_trapdoor"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "bakingdelight:diamond_component"
+    },
+    {
+      "item": "minecraft:comparator"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:sterling_engine"
+  }
+}

@@ -9,7 +9,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.sound.SoundEvents;
@@ -47,7 +46,7 @@ public class MiniGame3Screen extends Screen {
     private boolean isSelectedMode = false;
     private final boolean[] selectedLine = {false,false,false};
     private int selectedNum = 0;
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/mini_game_3_gui.png");
     @Override
     protected void init() {
@@ -60,9 +59,8 @@ public class MiniGame3Screen extends Screen {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1f,1f,1f,1f);
-        RenderSystem.setShaderTexture(0,TEXTURE);
+        super.render(context, mouseX, mouseY, delta);
+
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
         renderDoneButton(context,mouseX,mouseY);
         renderBlocks(context,mouseX,mouseY);
@@ -71,7 +69,6 @@ public class MiniGame3Screen extends Screen {
 
 
         RenderSystem.disableDepthTest();
-        super.render(context, mouseX, mouseY, delta);
         context.getMatrices().push();
         context.getMatrices().translate(x, y, 0.0F);
     }
@@ -143,7 +140,7 @@ public class MiniGame3Screen extends Screen {
         boolean gameEndButton = mouseX >= x + 149 && mouseY >= y + 133 && mouseX <= x + 159 && mouseY <= y + 143;
         if (isGameEnd){
             if (gameEndButton){
-                int[] array = new int[1];
+                byte[] array = new byte[1];
                 array[0] = 1;
                 NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
                 MinecraftClient.getInstance().getSoundManager()
@@ -261,7 +258,7 @@ public class MiniGame3Screen extends Screen {
         if (client != null){
             if (isGameEnd){
                 if (keyCode == InputUtil.GLFW_KEY_ENTER || keyCode == InputUtil.GLFW_KEY_KP_ENTER){
-                    int[] array = new int[1];
+                    byte[] array = new byte[1];
                     array[0] = 1;
                     NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
                     MinecraftClient.getInstance().getSoundManager()
@@ -280,7 +277,7 @@ public class MiniGame3Screen extends Screen {
 
     @Override
     public void close() {
-        int[] array = new int[1];
+        byte[] array = new byte[1];
         array[0] = 4;
         NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
         Objects.requireNonNull(client).setScreen(parent);

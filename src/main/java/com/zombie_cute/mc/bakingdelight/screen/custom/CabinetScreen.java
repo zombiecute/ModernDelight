@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class CabinetScreen extends HandledScreen<CabinetScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/cabinet_gui.png");
     public CabinetScreen(CabinetScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -33,7 +33,7 @@ public class CabinetScreen extends HandledScreen<CabinetScreenHandler> {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

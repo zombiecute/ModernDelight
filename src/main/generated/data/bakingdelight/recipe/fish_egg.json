@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:egg_bowl"
+    },
+    {
+      "tag": "c:foods/raw_fishes"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:fish_egg"
+  }
+}

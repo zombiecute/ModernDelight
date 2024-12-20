@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:bakingdelight/got_battery3",
+  "criteria": {
+    "battery4": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:dimension_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.battery4.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:advance_battery"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.battery4.title"
+    }
+  },
+  "requirements": [
+    [
+      "battery4"
+    ]
+  ],
+  "rewards": {
+    "experience": 1500
+  },
+  "sends_telemetry_event": true
+}

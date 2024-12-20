@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    "A A"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:fan_blade"
+  }
+}

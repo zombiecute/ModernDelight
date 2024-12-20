@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_11"
+    },
+    {
+      "tag": "c:tools/crowbar"
+    }
+  ],
+  "output": {
+    "id": "minecraft:iron_nugget",
+    "count": 12
+  }
+}

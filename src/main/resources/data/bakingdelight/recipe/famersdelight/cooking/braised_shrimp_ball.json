@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "bakingdelight:black_pepper_corn"
+    },
+    {
+      "tag": "c:crops/cabbage"
+    },
+    {
+      "item": "bakingdelight:prawn"
+    },
+    {
+      "item": "bakingdelight:mixed_dough"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "id": "bakingdelight:braised_shrimp_ball"
+  }
+}

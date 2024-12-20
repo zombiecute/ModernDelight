@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 100,
+  "experience": 0.8,
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "bakingdelight:starch_sausage"
+    },
+    {
+      "item": "bakingdelight:black_pepper_dust"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "id": "bakingdelight:grilled_starch_sausage"
+  }
+}

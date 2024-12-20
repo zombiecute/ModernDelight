@@ -6,7 +6,7 @@ import com.zombie_cute.mc.bakingdelight.block.custom.WoodenBasinBlock;
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.WoodenBasinScreenHandler;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -19,8 +19,8 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory, SidedInventory {
+public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>, SidedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5,ItemStack.EMPTY);
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
@@ -86,28 +86,26 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
             }
         };
     }
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
-    }
 
     @Override
-    public void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt,inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt,inventory, registryLookup);
         nbt.putInt("wooden_basin.fluidLevel", fluidLevel);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt,inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt,inventory, registryLookup);
         fluidLevel = nbt.getInt("wooden_basin.fluidLevel");
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
+
     @Override
     public int[] getAvailableSlots(Direction side) {
         int[] result = new int[getItems().size()];
@@ -147,7 +145,7 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
     }
     private boolean isFilter(Item item){
         List<Item> filterItems = new ArrayList<>();
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.FILTERS)){
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.FILTERS)){
             filterItems.add(registryEntry.value());
         }
         return filterItems.contains(item);
@@ -197,41 +195,41 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
         }
         super.markDirty();
     }
-    public void tick(World world, BlockPos pos, BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, WoodenBasinBlockEntity blockEntity) {
         if(world.isClient){
             return;
         }
-        if (fluidLevel==0){
+        if (blockEntity.fluidLevel==0){
             world.setBlockState(pos,state.with(WoodenBasinBlock.HAS_OIL,false));
         } else {
             world.setBlockState(pos,state.with(WoodenBasinBlock.HAS_OIL,true));
         }
-        if (getStack(INPUT_SLOT).getItem().equals(Items.BUCKET) &&
-                fluidLevel==maxFluidLevel &&
-                getStack(OUTPUT_SLOT).isEmpty()){
-            fluidLevel = 0;
-            removeStack(INPUT_SLOT,1);
-            setStack(OUTPUT_SLOT,ModItems.VEGETABLE_OIL_BUCKET.getDefaultStack());
+        if (blockEntity.getStack(INPUT_SLOT).getItem().equals(Items.BUCKET) &&
+                blockEntity.fluidLevel == blockEntity.maxFluidLevel &&
+                blockEntity.getStack(OUTPUT_SLOT).isEmpty()){
+            blockEntity.fluidLevel = 0;
+            blockEntity.removeStack(INPUT_SLOT,1);
+            blockEntity.setStack(OUTPUT_SLOT,ModItems.VEGETABLE_OIL_BUCKET.getDefaultStack());
         } else if (
-                getStack(INPUT_SLOT).getItem().equals(Items.GLASS_BOTTLE) && fluidLevel >= 27000 &&
+                blockEntity.getStack(INPUT_SLOT).getItem().equals(Items.GLASS_BOTTLE) && blockEntity.fluidLevel >= 27000 &&
                 (
-                        getStack(OUTPUT_SLOT).isEmpty()||
+                        blockEntity.getStack(OUTPUT_SLOT).isEmpty()||
                         (
-                                getStack(OUTPUT_SLOT).getItem().equals(ModItems.VEGETABLE_OIL_BOTTLE) &&
-                                        getStack(OUTPUT_SLOT).getCount()<16
+                                blockEntity.getStack(OUTPUT_SLOT).getItem().equals(ModItems.VEGETABLE_OIL_BOTTLE) &&
+                                        blockEntity.getStack(OUTPUT_SLOT).getCount()<16
                         )
                 )
         ){
-            fluidLevel-=27000;
-            removeStack(INPUT_SLOT,1);
-            int count = getStack(OUTPUT_SLOT).getCount();
-            setStack(OUTPUT_SLOT,new ItemStack(ModItems.VEGETABLE_OIL_BOTTLE,count+1));
+            blockEntity.fluidLevel-=27000;
+            blockEntity.removeStack(INPUT_SLOT,1);
+            int count = blockEntity.getStack(OUTPUT_SLOT).getCount();
+            blockEntity.setStack(OUTPUT_SLOT,new ItemStack(ModItems.VEGETABLE_OIL_BOTTLE,count+1));
         }
-        markDirty();
+        blockEntity.markDirty();
     }
     public static Map<Item, Integer> createOilMap() {
         LinkedHashMap<Item, Integer> map = Maps.newLinkedHashMap();
-        WoodenBasinBlockEntity.addOil(map, ModTagKeys.OIL_PLANTS, 9000);
+        WoodenBasinBlockEntity.addOil(map, TagKeys.OIL_PLANTS, 9000);
         return map;
     }
     private static void addOil(Map<Item, Integer> coolTimes, TagKey<Item> tag, int oil) {
@@ -256,5 +254,10 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
 
     public ItemStack getRendererStack() {
         return getStack(FILTER_SLOT);
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

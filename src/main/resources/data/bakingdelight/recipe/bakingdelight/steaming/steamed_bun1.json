@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:steaming",
+  "maxProgress": 6,
+  "ingredients": [
+    {
+      "tag": "c:dough"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:steamed_bun"
+  }
+}

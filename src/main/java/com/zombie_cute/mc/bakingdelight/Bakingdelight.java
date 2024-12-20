@@ -3,10 +3,9 @@ package com.zombie_cute.mc.bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.entities.*;
-import com.zombie_cute.mc.bakingdelight.effects.ModEffectsAndPotions;
+import com.zombie_cute.mc.bakingdelight.effects.ModEffects;
+import com.zombie_cute.mc.bakingdelight.effects.ModPotions;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
-import com.zombie_cute.mc.bakingdelight.entity.custom.ButterEntity;
-import com.zombie_cute.mc.bakingdelight.entity.custom.CherryBombEntity;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
@@ -17,26 +16,27 @@ import com.zombie_cute.mc.bakingdelight.util.ModBrewingRecipe;
 import com.zombie_cute.mc.bakingdelight.util.ModCompostingChances;
 import com.zombie_cute.mc.bakingdelight.util.ModFuels;
 import com.zombie_cute.mc.bakingdelight.util.ModLootTableModifies;
+import com.zombie_cute.mc.bakingdelight.util.components.ModComponents;
+import com.zombie_cute.mc.bakingdelight.util.custom_pay_load.ChangeBlockEntityDataPayLoad;
+import com.zombie_cute.mc.bakingdelight.util.custom_pay_load.SpawnXPPayLoad;
+import com.zombie_cute.mc.bakingdelight.util.custom_pay_load.UpdateInventoryPayLoad;
 import com.zombie_cute.mc.bakingdelight.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,9 +45,9 @@ public class Bakingdelight implements ModInitializer {
 
 	public static final String MOD_ID = "bakingdelight";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final Identifier UPDATE_INVENTORY_PACKET_ID = new Identifier(MOD_ID,"update_inventory");
-	public static final Identifier SPAWN_XP_PACKET_ID = new Identifier(MOD_ID,"spawn_xp");
-	public static final Identifier CHANGE_BLOCK_ENTITY_DATA_PACKET_ID = new Identifier(MOD_ID,"change_block_entity_data");
+	public static final Identifier UPDATE_INVENTORY_PACKET_ID = Identifier.of(MOD_ID,"update_inventory");
+	public static final Identifier SPAWN_XP_PACKET_ID = Identifier.of(MOD_ID,"spawn_xp");
+	public static final Identifier CHANGE_BLOCK_ENTITY_DATA_PACKET_ID = Identifier.of(MOD_ID,"change_block_entity_data");
 
 	@Override
 	public void onInitialize() {
@@ -63,23 +63,15 @@ public class Bakingdelight implements ModInitializer {
 		ModFuels.registerFuels();
 		ModCompostingChances.registerCompostingChances();
 		ModBrewingRecipe.registerModBrewingRecipe();
-		ModEffectsAndPotions.registerModEffectsAndPotions();
+		ModPotions.registerModPotions();
+		ModEffects.registerModEffects();
 		ModFluid.registerModFluid();
 		ModWorldGeneration.generateModWorldGen();
+		ModComponents.init();
 
+		DispenserBlock.registerBehavior(ModItems.BUTTER, new ProjectileDispenserBehavior(ModItems.BUTTER));
+		DispenserBlock.registerBehavior(ModItems.CHERRY_BOMB, new ProjectileDispenserBehavior(ModItems.CHERRY_BOMB));
 
-		DispenserBlock.registerBehavior(ModItems.BUTTER, new ProjectileDispenserBehavior() {
-			@Override
-			protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-				return new ButterEntity(world,position.getX(),position.getY(),position.getZ());
-			}
-		});
-		DispenserBlock.registerBehavior(ModItems.CHERRY_BOMB, new ProjectileDispenserBehavior() {
-			@Override
-			protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-				return new CherryBombEntity(world,position.getX(),position.getY(),position.getZ());
-			}
-		});
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
 			ItemStack itemStack = player.getStackInHand(hand);
 			if (itemStack.getItem().equals(ModItems.CROWBAR)){
@@ -90,16 +82,22 @@ public class Bakingdelight implements ModInitializer {
 			return ActionResult.PASS;
 		});
 
-		ServerPlayNetworking.registerGlobalReceiver(UPDATE_INVENTORY_PACKET_ID, this::handleUpdateInventoryPacket);
+		PayloadTypeRegistry.playC2S().register(UpdateInventoryPayLoad.ID, UpdateInventoryPayLoad.CODEC);
+		ServerPlayNetworking.registerGlobalReceiver(UpdateInventoryPayLoad.ID,(payload, context) ->
+				handleUpdateInventoryPacket(context.server(),context.player(),payload.pos(),payload.item(),payload.count()));
         LOGGER.info("Registering C2S receiver with id {}", UPDATE_INVENTORY_PACKET_ID);
-		ServerPlayNetworking.registerGlobalReceiver(SPAWN_XP_PACKET_ID, this::handleSpawnXPPacket);
+
+		PayloadTypeRegistry.playC2S().register(SpawnXPPayLoad.ID, SpawnXPPayLoad.CODEC);
+		ServerPlayNetworking.registerGlobalReceiver(SpawnXPPayLoad.ID,(payload, context) ->
+				handleSpawnXPPacket(context.server(),context.player(),payload.pos()));
 		LOGGER.info("Registering C2S receiver with id {}", SPAWN_XP_PACKET_ID);
-		ServerPlayNetworking.registerGlobalReceiver(CHANGE_BLOCK_ENTITY_DATA_PACKET_ID, this::handleSetGasPumpStatePacket);
+
+		PayloadTypeRegistry.playC2S().register(ChangeBlockEntityDataPayLoad.ID, ChangeBlockEntityDataPayLoad.CODEC);
+		ServerPlayNetworking.registerGlobalReceiver(ChangeBlockEntityDataPayLoad.ID,(payload, context) ->
+				handleChangeBlockEntityData(context.server(),context.player(),payload.pos(),payload.array()));
 		LOGGER.info("Registering C2S receiver with id {}", CHANGE_BLOCK_ENTITY_DATA_PACKET_ID);
 	}
-	private void handleSetGasPumpStatePacket(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
-		BlockPos pos = buf.readBlockPos();
-		int[] array = buf.readIntArray();
+	private void handleChangeBlockEntityData(MinecraftServer server, ServerPlayerEntity player, BlockPos pos, byte[] array) {
 		server.execute(() -> {
 			BlockEntity blockEntity = player.getWorld().getBlockEntity(pos);
 			if (blockEntity instanceof TeslaCoilBlockEntity teslaCoilBlockEntity){
@@ -141,11 +139,15 @@ public class Bakingdelight implements ModInitializer {
 			}
 		});
 	}
-	private void handleUpdateInventoryPacket(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
-		BlockPos pos = buf.readBlockPos();
-		ItemStack itemStack = buf.readItemStack();
+	private void handleUpdateInventoryPacket(MinecraftServer server, ServerPlayerEntity player, BlockPos pos, String item, int count) {
 		server.execute(() -> {
 			BlockEntity blockEntity = player.getWorld().getBlockEntity(pos);
+			ItemStack itemStack;
+			try {
+				itemStack = new ItemStack(Registries.ITEM.get(Identifier.of(item)), count);
+			} catch (Exception e){
+				itemStack = ItemStack.EMPTY;
+			}
 			if (blockEntity instanceof CuisineTableBlockEntity cuisineTableBlockEntity) {
 				cuisineTableBlockEntity.getItems().set(2, itemStack);
 				blockEntity.markDirty();
@@ -154,8 +156,7 @@ public class Bakingdelight implements ModInitializer {
 			}
 		});
 	}
-	private void handleSpawnXPPacket(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
-		BlockPos pos = buf.readBlockPos();
+	private void handleSpawnXPPacket(MinecraftServer server, ServerPlayerEntity player, BlockPos pos) {
 		server.execute(() -> {
 			World world = player.getWorld();
 			BlockEntity blockEntity = world.getBlockEntity(pos);

@@ -12,7 +12,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,7 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class WindTurbineControllerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ACGenerateAble {
+public class WindTurbineControllerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ACGenerateAble {
     public WindTurbineControllerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.WIND_TURBINE_CONTROLLER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -58,51 +58,46 @@ public class WindTurbineControllerBlockEntity extends BlockEntity implements Ext
         return efficiency;
     }
 
-    public void tick(World world, BlockPos pos, BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, WindTurbineControllerBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
         switch (state.get(WindTurbineControllerBlock.FACING)){
-            case EAST -> facingBlock = pos.east();
-            case SOUTH -> facingBlock = pos.south();
-            case WEST -> facingBlock = pos.west();
-            case NORTH -> facingBlock = pos.north();
+            case EAST -> blockEntity.facingBlock = pos.east();
+            case SOUTH -> blockEntity.facingBlock = pos.south();
+            case WEST -> blockEntity.facingBlock = pos.west();
+            case NORTH -> blockEntity.facingBlock = pos.north();
         }
-        if (world.getBlockEntity(facingBlock) instanceof FanBladeBlockEntity){
-            if (world.getBlockState(facingBlock).get(FanBladeBlock.FACING) == state.get(WindTurbineControllerBlock.FACING)){
-                this.isWorking = 1;
+        if (world.getBlockEntity(blockEntity.facingBlock) instanceof FanBladeBlockEntity){
+            if (world.getBlockState(blockEntity.facingBlock).get(FanBladeBlock.FACING) == state.get(WindTurbineControllerBlock.FACING)){
+                blockEntity.isWorking = 1;
                 if (world.isThundering()){
-                    this.efficiency = Math.max(pos.getY() / 3, 3);
+                    blockEntity.efficiency = Math.max(pos.getY() / 3, 3);
                 } else if (world.isRaining()){
-                    this.efficiency = Math.max(pos.getY() / 4, 2);
+                    blockEntity.efficiency = Math.max(pos.getY() / 4, 2);
                 } else {
-                    this.efficiency = Math.max(pos.getY() / 5, 1);
+                    blockEntity.efficiency = Math.max(pos.getY() / 5, 1);
                 }
                 return;
             }
         }
-        this.isWorking = 0;
-        this.efficiency = 0;
+        blockEntity.isWorking = 0;
+        blockEntity.efficiency = 0;
     }
+
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
         nbt.putInt("wind_turbine_controller.isWorking",this.isWorking);
         nbt.putInt("wind_turbine_controller.efficiency",this.efficiency);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
         this.isWorking = nbt.getInt("wind_turbine_controller.isWorking");
         this.efficiency = nbt.getInt("wind_turbine_controller.efficiency");
     }
-
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
-    }
-
     @Override
     public Text getDisplayName() {
         return ModBlocks.WIND_TURBINE_CONTROLLER.getName();
@@ -112,5 +107,10 @@ public class WindTurbineControllerBlockEntity extends BlockEntity implements Ext
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new WindTurbineControllerScreenHandler(syncId,playerInventory,this,this.propertyDelegate);
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

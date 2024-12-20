@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:foods/raw_fishes/prawns",
+      "required": false
+    },
+    {
+      "id": "#c:foods/raw_fishes/squids",
+      "required": false
+    }
+  ]
+}

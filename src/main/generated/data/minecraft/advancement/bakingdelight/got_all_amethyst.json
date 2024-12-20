@@ -1,0 +1,112 @@
+{
+  "parent": "minecraft:bakingdelight/got_amethyst_tool",
+  "criteria": {
+    "amethyst_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:amethyst_axe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "amethyst_hoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:amethyst_hoe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "amethyst_knife": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:amethyst_knife"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "amethyst_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:amethyst_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "amethyst_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:amethyst_shovel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "amethyst_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:amethyst_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "amethyst_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:amethyst_whisk"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_all_amethyst_desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:amethyst_shard"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_all_amethyst_title"
+    }
+  },
+  "requirements": [
+    [
+      "amethyst_whisk"
+    ],
+    [
+      "amethyst_sword"
+    ],
+    [
+      "amethyst_pickaxe"
+    ],
+    [
+      "amethyst_axe"
+    ],
+    [
+      "amethyst_shovel"
+    ],
+    [
+      "amethyst_hoe"
+    ],
+    [
+      "amethyst_knife"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "minecraft:red_mushroom"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:fried_red_mushroom"
+  }
+}

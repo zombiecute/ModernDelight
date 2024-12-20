@@ -1,0 +1,133 @@
+{
+  "values": [
+    "bakingdelight:sunflower_seed_pulp",
+    "bakingdelight:empty_cake",
+    "bakingdelight:raw_onion_ring",
+    "bakingdelight:onion_ring",
+    "bakingdelight:fried_cod",
+    "bakingdelight:fried_salmon",
+    "bakingdelight:fried_milk_wip",
+    "bakingdelight:fried_milk",
+    "bakingdelight:fried_apple",
+    "bakingdelight:raw_potato_chip",
+    "bakingdelight:potato_chip",
+    "bakingdelight:cheese_ball",
+    "bakingdelight:fried_dough_stick",
+    "bakingdelight:steamed_bun",
+    "bakingdelight:deep_fried_bun",
+    "bakingdelight:egg_bowl",
+    "bakingdelight:cherry_egg",
+    "bakingdelight:fish_egg",
+    "bakingdelight:steamed_egg",
+    "bakingdelight:steamed_cherry_egg",
+    "bakingdelight:steamed_fish_egg",
+    "bakingdelight:beef_tomato_cup",
+    "bakingdelight:butterfly_crisp",
+    "bakingdelight:caramel",
+    "bakingdelight:cheese_baked_potato",
+    "bakingdelight:cheese_rice_ball",
+    "bakingdelight:chocolate_sauce",
+    "bakingdelight:shrimp_paste",
+    "bakingdelight:mixed_shrimp_paste",
+    "bakingdelight:deep_fried_shrimp_cake",
+    "bakingdelight:seaweed_fried_shrimp_cake",
+    "bakingdelight:donut",
+    "bakingdelight:potato_chips",
+    "bakingdelight:deep_fried_potato_chips",
+    "bakingdelight:french_fries",
+    "bakingdelight:fried_chicken",
+    "bakingdelight:fried_red_mushroom",
+    "bakingdelight:fried_brown_mushroom",
+    "bakingdelight:cream_of_mushroom_soup",
+    "bakingdelight:french_onion_soup",
+    "bakingdelight:raw_donut",
+    "bakingdelight:chocolate_donut",
+    "bakingdelight:cheese_burger",
+    "bakingdelight:fried_cod_nugget",
+    {
+      "id": "#c:foods/ice_lollies",
+      "required": false
+    },
+    {
+      "id": "#c:foods/breads",
+      "required": false
+    },
+    {
+      "id": "#c:foods/truffles",
+      "required": false
+    },
+    {
+      "id": "#c:foods/puddings",
+      "required": false
+    },
+    {
+      "id": "#c:foods/flours",
+      "required": false
+    },
+    {
+      "id": "#c:foods/doughs",
+      "required": false
+    },
+    {
+      "id": "#c:foods/creams",
+      "required": false
+    },
+    {
+      "id": "#c:foods/mousses",
+      "required": false
+    },
+    {
+      "id": "#c:foods/raw_fishes",
+      "required": false
+    },
+    {
+      "id": "#c:foods/cuttlebones",
+      "required": false
+    },
+    {
+      "id": "#c:flower_cakes",
+      "required": false
+    },
+    {
+      "id": "#c:foods/pizza_ingredients",
+      "required": false
+    },
+    {
+      "id": "#c:foods/pumpkins",
+      "required": false
+    },
+    "bakingdelight:black_pepper_corn",
+    "bakingdelight:black_pepper_dust",
+    "bakingdelight:garlic",
+    "bakingdelight:garlic_petal",
+    "bakingdelight:sunflower_seed",
+    "bakingdelight:mashed_potato",
+    "bakingdelight:sauce_mashed_potato",
+    "bakingdelight:apple_petal",
+    "bakingdelight:cherry",
+    "bakingdelight:cheese",
+    "bakingdelight:egg_tart",
+    "bakingdelight:truffle_egg_tart",
+    "bakingdelight:braised_shrimp_ball",
+    "bakingdelight:pizza",
+    "bakingdelight:raw_pizza",
+    "bakingdelight:pizza_wip",
+    "bakingdelight:glow_squid_tentacle",
+    "bakingdelight:glow_squid_tentacle_kebabs",
+    "bakingdelight:raw_glow_squid_tentacle_kebabs",
+    "bakingdelight:squid_tentacle",
+    "bakingdelight:raw_squid_tentacle_kebabs",
+    "bakingdelight:squid_tentacle_kebabs",
+    "bakingdelight:turnip",
+    {
+      "id": "#c:foods/raw_meats",
+      "required": false
+    },
+    {
+      "id": "#c:foods/cooked_meats",
+      "required": false
+    },
+    "bakingdelight:pork_chop_burger",
+    "bakingdelight:fish_and_chips"
+  ]
+}

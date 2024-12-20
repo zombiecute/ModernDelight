@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "minecraft:cobblestone"
+    },
+    "N": {
+      "item": "minecraft:cobblestone_slab"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "I",
+    "N",
+    "S"
+  ],
+  "result": {
+    "id": "bakingdelight:stone_whisk"
+  }
+}

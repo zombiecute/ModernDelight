@@ -16,23 +16,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIBakingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/oven.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/oven.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.OVEN);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "baking"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "baking"), WORKSTATION);
 
     private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIBakingRecipe(BakingRecipe recipe) {
-        this.id = recipe.getId();
+        this.id = Identifier.of(Bakingdelight.MOD_ID,recipe.getResult(null).getTranslationKey()+recipe.hashCode());
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
         }
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {

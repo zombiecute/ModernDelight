@@ -1,0 +1,14 @@
+// 1.21.1	2024-12-20T14:54:00.0376208	Modern Delight/Tags for minecraft:block
+d05d989ea8ff9d2c4cb3e21c374e882be2b349d1 data\minecraft\tags\block\bee_growables.json
+73020f0b3d1a2d1f38a649058079fbde184c1c6a data\minecraft\tags\block\mineable\axe.json
+6830d36c19fccc70e7eceb9df67a1f28c2d24cc8 data\minecraft\tags\block\needs_iron_tool.json
+3887fb95e55451b74d23a869472bcb5452c18c65 data\minecraft\tags\block\maintains_farmland.json
+7ca7019ca20dcae56d5adb98a20be2e92ac62de2 data\bakingdelight\tags\block\crowbar_destroyable.json
+479eb484d1f202470a40057148be2fe820daed98 data\minecraft\tags\block\needs_diamond_tool.json
+d05d989ea8ff9d2c4cb3e21c374e882be2b349d1 data\minecraft\tags\block\crops.json
+4928f60af2ed32d6a1f73f487067b9e5198c4c7a data\farmersdelight\tags\block\heat_sources.json
+88bd37e8c401a8bf29a552bfa8773530229368da data\bakingdelight\tags\block\danger_blocks.json
+4928f60af2ed32d6a1f73f487067b9e5198c4c7a data\create\tags\block\passive_boiler_heaters.json
+1010a922555f4da29ce2dadd900f38ee77d11a3d data\minecraft\tags\block\small_flowers.json
+de35518da59ca920e058dcf4b43571ff2760ea4d data\minecraft\tags\block\needs_stone_tool.json
+ed586c14a68a2bf28f14b025565fcda6ee1fbe0f data\minecraft\tags\block\mineable\pickaxe.json

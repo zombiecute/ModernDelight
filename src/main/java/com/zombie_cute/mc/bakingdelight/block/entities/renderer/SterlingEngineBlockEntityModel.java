@@ -8,16 +8,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class SterlingEngineBlockEntityModel extends GeoModel<SterlingEngineBlockEntity> {
     @Override
     public Identifier getModelResource(SterlingEngineBlockEntity animatable) {
-        return new Identifier(Bakingdelight.MOD_ID,"geo/sterling_engine.geo.json");
+        return Identifier.of(Bakingdelight.MOD_ID,"geo/sterling_engine.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(SterlingEngineBlockEntity animatable) {
-        return new Identifier(Bakingdelight.MOD_ID, "textures/block/sterling_engine.png");
+        return Identifier.of(Bakingdelight.MOD_ID, "textures/block/sterling_engine.png");
     }
 
     @Override
     public Identifier getAnimationResource(SterlingEngineBlockEntity animatable) {
-        return new Identifier(Bakingdelight.MOD_ID, "animations/sterling_engine.animation.json");
+        return Identifier.of(Bakingdelight.MOD_ID, "animations/sterling_engine.animation.json");
     }
 }

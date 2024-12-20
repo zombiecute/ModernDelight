@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 import java.util.Objects;
 @Environment(EnvType.CLIENT)
 public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/advance_furnace_gui.png");
     public static final String TOOLTIP = "tooltips.bakingdelight.advance_furnace_exp_tooltip";
     public AdvanceFurnaceScreen(AdvanceFurnaceScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -116,7 +116,7 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

@@ -1,20 +1,21 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.BiogasDigesterIOBlockEntity;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -22,7 +23,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -38,14 +38,18 @@ import java.util.List;
 
 public class BiogasDigesterIOBlock extends BlockWithEntity implements Waterloggable{
     public BiogasDigesterIOBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK).nonOpaque());
+        super(AbstractBlock.Settings.copy(Blocks.LAPIS_BLOCK).nonOpaque());
         setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED,false));
     }
     private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,16,14);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-
+    public static final MapCodec<BiogasDigesterIOBlock> CODEC = createCodec(settings -> new BiogasDigesterIOBlock());
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
+    @Override
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -56,7 +60,7 @@ public class BiogasDigesterIOBlock extends BlockWithEntity implements Waterlogga
         }else {
             tooltip.add(ModUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
 
     @Override
@@ -100,8 +104,9 @@ public class BiogasDigesterIOBlock extends BlockWithEntity implements Waterlogga
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new BiogasDigesterIOBlockEntity(pos, state);
     }
+
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient){
             NamedScreenHandlerFactory screenHandlerFactory = ((BiogasDigesterIOBlockEntity) world.getBlockEntity(pos));
             if (screenHandlerFactory != null){
@@ -124,7 +129,6 @@ public class BiogasDigesterIOBlock extends BlockWithEntity implements Waterlogga
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.BIOGAS_DIGESTER_IO_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, blockEntity));
+        return world.isClient ? null : validateTicker(type,ModBlockEntities.BIOGAS_DIGESTER_IO_BLOCK_ENTITY, BiogasDigesterIOBlockEntity::tick);
     }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:whisking",
+  "recipeItem": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:mashed_potato"
+  }
+}

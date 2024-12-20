@@ -14,10 +14,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -31,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class BambooGrateBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory, SidedInventory {
+public class BambooGrateBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>, SidedInventory {
     public BambooGrateBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BAMBOO_GRATE_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -72,19 +73,21 @@ public class BambooGrateBlockEntity extends BlockEntity implements ImplementedIn
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
+
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, inventory,registryLookup);
         nbt.putInt("bamboo_grate.currentLayer",currentLayer);
         nbt.putInt("bamboo_grate.isHeated",isHeated);
         nbt.putInt("bamboo_grate.isCovered",isCovered);
         nbt.putIntArray("bamboo_grate.progresses",progresses);
     }
+
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, inventory, registryLookup);
         this.currentLayer = nbt.getInt("bamboo_grate.currentLayer");
         this.isHeated = nbt.getInt("bamboo_grate.isHeated");
         this.isCovered = nbt.getInt("bamboo_grate.isCovered");
@@ -95,14 +98,10 @@ public class BambooGrateBlockEntity extends BlockEntity implements ImplementedIn
         }
         System.arraycopy(temp, 0, progresses, 0, max);
     }
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
-    }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
-        buf.writeInt(player.getWorld().getBlockState(pos).get(BambooGrateBlock.LAYER));
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     @Override
@@ -117,75 +116,74 @@ public class BambooGrateBlockEntity extends BlockEntity implements ImplementedIn
             return new BambooSteamerScreenHandler(syncId,playerInventory,this,world.getBlockState(pos).get(BambooGrateBlock.LAYER),propertyDelegate);
         } else return null;
     }
-    public void tick(World world, BlockPos pos, BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, BambooGrateBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
         if (world.getTime() % 20L == 0L){
-            this.availableSlots = state.get(BambooGrateBlock.LAYER) * 4;
-            if (this.isHeated !=0 && this.isCovered !=0){
-                for (int i = 0;i < availableSlots;i++){
-                    SimpleInventory inventory = new SimpleInventory(this.getStack(i));
-                    Optional<SteamingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                            .getFirstMatch(SteamingRecipe.Type.INSTANCE, inventory,this.getWorld());
+            blockEntity.availableSlots = state.get(BambooGrateBlock.LAYER) * 4;
+            if (blockEntity.isHeated !=0 && blockEntity.isCovered !=0){
+                for (int i = 0;i < blockEntity.availableSlots;i++){
+                    Optional<RecipeEntry<SteamingRecipe>> match = Objects.requireNonNull(blockEntity.getWorld()).getRecipeManager()
+                            .getFirstMatch(SteamingRecipe.Type.INSTANCE, new SingleStackRecipeInput(blockEntity.getStack(i)),blockEntity.getWorld());
                     if (match.isPresent()){
-                        int maxProgress = match.get().getMaxProgress();
-                        int count = this.getStack(i).getCount();
-                        if (this.progresses[i] < maxProgress * count){
-                            this.progresses[i]++;
+                        int maxProgress = match.get().value().getMaxProgress();
+                        int count = blockEntity.getStack(i).getCount();
+                        if (blockEntity.progresses[i] < maxProgress * count){
+                            blockEntity.progresses[i]++;
                         } else {
-                            this.progresses[i] = 0;
-                            this.setStack(i,new ItemStack(match.get().getOutput(null).getItem(),count));
+                            blockEntity.progresses[i] = 0;
+                            blockEntity.setStack(i,new ItemStack(match.get().value().getResult(null).getItem(),count));
                         }
                     } else {
-                        this.progresses[i] = 0;
+                        blockEntity.progresses[i] = 0;
                     }
                 }
             }
             if (!(world.getBlockEntity(pos.down()) instanceof BambooGrateBlockEntity) &&
                     world.getBlockEntity(pos.down(2)) instanceof BurningGasCookingStoveBlockEntity &&
                     world.getBlockState(pos.down()).getBlock().equals(Blocks.WATER_CAULDRON)){
-                    this.isHeated = 1;
+                blockEntity.isHeated = 1;
             } else {
-                if (world.getBlockEntity(pos.down()) instanceof BambooGrateBlockEntity blockEntity){
-                    if (blockEntity.isHeated == 1 && blockEntity.currentLayer != 0 &&
+                if (world.getBlockEntity(pos.down()) instanceof BambooGrateBlockEntity entity){
+                    if (entity.isHeated == 1 && entity.currentLayer != 0 &&
                     world.getBlockState(pos.down()).get(BambooGrateBlock.LAYER) == 4){
-                        this.isHeated = 1;
-                    } else this.isHeated = 0;
-                } else this.isHeated = 0;
+                        blockEntity.isHeated = 1;
+                    } else blockEntity.isHeated = 0;
+                } else blockEntity.isHeated = 0;
             }
             if(state.get(BambooGrateBlock.COVERED)){
-                this.isCovered = 1;
-                this.currentLayer = 1;
+                blockEntity.isCovered = 1;
+                blockEntity.currentLayer = 1;
             } else {
                 if (world.getBlockState(pos.up()).getBlock().equals(ModBlocks.BAMBOO_GRATE)
                         && state.get(BambooGrateBlock.LAYER) == 4){
                     if (world.getBlockState(pos.up()).get(BambooGrateBlock.COVERED)){
-                        this.isCovered = 1;
-                        this.currentLayer = 2;
+                        blockEntity.isCovered = 1;
+                        blockEntity.currentLayer = 2;
                     } else {
                         if (world.getBlockState(pos.up(2)).getBlock().equals(ModBlocks.BAMBOO_GRATE) &&
                                 world.getBlockState(pos.up()).get(BambooGrateBlock.LAYER) == 4){
                             if (world.getBlockState(pos.up(2)).get(BambooGrateBlock.COVERED)){
-                                this.isCovered = 1;
-                                this.currentLayer = 3;
+                                blockEntity.isCovered = 1;
+                                blockEntity.currentLayer = 3;
                             } else {
-                                this.isCovered = 0;
+                                blockEntity.isCovered = 0;
                                 if (world.getBlockState(pos.up(3)).getBlock().equals(ModBlocks.BAMBOO_GRATE)){
-                                    this.currentLayer = 0;
-                                } else this.currentLayer = 3;
+                                    blockEntity.currentLayer = 0;
+                                } else blockEntity.currentLayer = 3;
                             }
                         } else {
-                            this.isCovered = 0;
-                            this.currentLayer = 2;
+                            blockEntity.isCovered = 0;
+                            blockEntity.currentLayer = 2;
                         }
                     }
                 } else {
-                    this.isCovered = 0;
-                    this.currentLayer = 1;
+                    blockEntity.isCovered = 0;
+                    blockEntity.currentLayer = 1;
                 }
             }
-            markDirty();
+            blockEntity.markDirty();
         }
     }
 
@@ -206,5 +204,10 @@ public class BambooGrateBlockEntity extends BlockEntity implements ImplementedIn
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction dir) {
         return true;
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

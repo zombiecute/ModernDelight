@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIAssemblyRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/assembly.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/assembly.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.ELECTRICIANS_DESK);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "assembly"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "assembly"), WORKSTATION);
 
     private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIAssemblyRecipe(AssemblyRecipe recipe) {
-        this.id = recipe.getId();
+        this.id = Identifier.of(Bakingdelight.MOD_ID,recipe.getResult(null).getTranslationKey()+recipe.hashCode());
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
@@ -36,7 +36,7 @@ public class EMIAssemblyRecipe implements EmiRecipe {
         inputs.add(EmiIngredient.of(Ingredient.ofItems(Items.PAPER)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(Items.INK_SAC,Items.GLOW_INK_SAC,Items.BLACK_DYE)));
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {

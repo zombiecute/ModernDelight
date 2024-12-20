@@ -3,8 +3,7 @@ package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -18,18 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIPizzaRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/pizza.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/pizza.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.WHEAT_DOUGH);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "pizza_making"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "pizza_making"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIPizzaRecipe() {
         List<EmiIngredient> inputs = new ArrayList<>();
-        inputs.add(EmiIngredient.of(ModTagKeys.KNEADING_STICKS));
-        inputs.add(EmiIngredient.of(ForgeTagKeys.PIZZA_INGREDIENTS));
+        inputs.add(EmiIngredient.of(TagKeys.ROLLING_PINS));
+        inputs.add(EmiIngredient.of(TagKeys.PIZZA_INGREDIENTS));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModItems.CHEESE)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.PIZZA_WIP)));
         this.input = inputs;
@@ -42,7 +41,7 @@ public class EMIPizzaRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return new Identifier(Bakingdelight.MOD_ID,"pizza_making");
+        return Identifier.of(Bakingdelight.MOD_ID,"pizza_making");
     }
 
     @Override
@@ -69,10 +68,10 @@ public class EMIPizzaRecipe implements EmiRecipe {
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(TEXTURE,5,5,142,47,4,4);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.WHEAT_DOUGH)), 5, 10);
-        widgets.addSlot(EmiIngredient.of(ModTagKeys.KNEADING_STICKS), 24, 29);
+        widgets.addSlot(EmiIngredient.of(TagKeys.ROLLING_PINS), 24, 29);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModItems.CHEESE)), 44, 29);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.PIZZA_WIP)), 67, 10);
-        widgets.addSlot(EmiIngredient.of(ForgeTagKeys.PIZZA_INGREDIENTS), 86, 29);
+        widgets.addSlot(EmiIngredient.of(TagKeys.PIZZA_INGREDIENTS), 86, 29);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModItems.CHEESE)), 106, 29);
 
 

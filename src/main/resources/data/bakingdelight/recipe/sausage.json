@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:potato_starch"
+    },
+    {
+      "tag": "c:foods/raw_meats/raw_pork"
+    }
+  ],
+  "result": {
+    "id": "bakingdelight:sausage",
+    "count": 2
+  }
+}

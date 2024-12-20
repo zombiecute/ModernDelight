@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#c:crops/black_peppers",
+      "required": false
+    },
+    {
+      "id": "#c:crops/garlics",
+      "required": false
+    },
+    {
+      "id": "#c:crops/cabbage",
+      "required": false
+    }
+  ]
+}

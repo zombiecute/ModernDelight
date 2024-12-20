@@ -9,7 +9,9 @@ import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
@@ -20,7 +22,7 @@ import java.util.List;
 
 public class BiogasFermentationCategory implements DisplayCategory<BiogasFermentationDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
     public static final CategoryIdentifier<BiogasFermentationDisplay> BIOGAS_FERMENTATION =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "biogas_fermentation");
     public static final String FOOD = "bakingdelight.rei_plugin.biogas_fermentation.food";
@@ -37,26 +39,26 @@ public class BiogasFermentationCategory implements DisplayCategory<BiogasFerment
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_IO.asItem().getDefaultStack());
+        return EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_IO.asItem(),1);
     }
     @Override
     public List<Widget> setupDisplay(BiogasFermentationDisplay display, Rectangle bounds) {
         final Point startPoint = new Point(bounds.getCenterX() - 77, bounds.getCenterY() - 35);
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,122)));
-        ItemStack food = new ItemStack(Items.APPLE);
-        food.setCustomName(Text.translatable(FOOD));
+        ItemStack stack = new ItemStack(Items.APPLE);
+        stack.set(DataComponentTypes.CUSTOM_NAME,Text.translatable(BiogasFermentationCategory.FOOD));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 49,startPoint.y + 13))
-                .entry(EntryStacks.of(food)));
+                .entries(EntryIngredients.ofItemStacks(List.of(stack))));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 67,startPoint.y + 34))
-                .markInput().entry(EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_IO.asItem().getDefaultStack())));
+                .markInput().entry(EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_IO.asItem(),1)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 67,startPoint.y + 52))
-                .markInput().entry(EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_CONTROLLER.asItem().getDefaultStack())));
+                .markInput().entry(EntryStacks.of(ModBlocks.BIOGAS_DIGESTER_CONTROLLER.asItem(),1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 85,startPoint.y + 34))
-                .markOutput().entry(EntryStacks.of(ModBlocks.GAS_CANISTER.asItem().getDefaultStack())));
+                .markOutput().entry(EntryStacks.of(ModBlocks.GAS_CANISTER.asItem(),1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 31,startPoint.y + 34))
-                .markOutput().entry(EntryStacks.of(Items.BONE_MEAL.getDefaultStack())));
+                .markOutput().entry(EntryStacks.of(Items.BONE_MEAL,1)));
 
         return widgets;
     }

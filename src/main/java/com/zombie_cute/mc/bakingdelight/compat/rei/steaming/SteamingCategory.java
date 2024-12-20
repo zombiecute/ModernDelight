@@ -22,7 +22,7 @@ import java.util.List;
 
 public class SteamingCategory implements DisplayCategory<SteamingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/steaming.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/steaming.png");
     public static final CategoryIdentifier<SteamingDisplay> STEAMING =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "steaming");
 
@@ -38,7 +38,7 @@ public class SteamingCategory implements DisplayCategory<SteamingDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.BAMBOO_GRATE);
+        return EntryStacks.of(ModBlocks.BAMBOO_GRATE,1);
     }
 
     @Override
@@ -47,17 +47,17 @@ public class SteamingCategory implements DisplayCategory<SteamingDisplay> {
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,95)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 23,startPoint.y + 6))
-                .entries(EntryIngredients.of(ModBlocks.BAMBOO_COVER)));
+                .entries(EntryIngredients.of(ModBlocks.BAMBOO_COVER,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 23,startPoint.y + 24))
-                .entries(EntryIngredients.of(ModBlocks.BAMBOO_GRATE)));
+                .entries(EntryIngredients.of(ModBlocks.BAMBOO_GRATE,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 23,startPoint.y + 55))
-                .entries(EntryIngredients.of(Blocks.CAULDRON)));
+                .entries(EntryIngredients.of(Blocks.CAULDRON,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 61,startPoint.y + 55))
-                .entries(EntryIngredients.of(Fluids.WATER)));
+                .entries(EntryIngredients.of(Fluids.WATER,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 23,startPoint.y + 73))
-                .entries(EntryIngredients.of(ModBlocks.GAS_COOKING_STOVE)));
+                .entries(EntryIngredients.of(ModBlocks.GAS_COOKING_STOVE,1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 41,startPoint.y + 73))
-                .entries(EntryIngredients.of(ModBlocks.GAS_CANISTER)));
+                .entries(EntryIngredients.of(ModBlocks.GAS_CANISTER,1)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 52,startPoint.y + 15))
                 .entries(display.getInputEntries().get(0)));

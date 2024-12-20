@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:sunflower"
+    },
+    {
+      "tag": "c:tools/knife"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:sunflower_seed",
+    "count": 4
+  }
+}

@@ -88,7 +88,8 @@ public class MashedPotatoBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         if (!world.isClient){
             if (player.getStackInHand(hand).getItem().equals(Items.BOWL)){
                 int i = state.get(LEVEL);
@@ -126,11 +127,11 @@ public class MashedPotatoBlock extends Block {
             }
         } else {
             if (player.isCreative()) return ActionResult.SUCCESS;
-           if (player.getHungerManager().isNotFull()){
-               return ActionResult.SUCCESS;
-           } else {
-               return ActionResult.FAIL;
-           }
+            if (player.getHungerManager().isNotFull()){
+                return ActionResult.SUCCESS;
+            } else {
+                return ActionResult.FAIL;
+            }
         }
     }
 }

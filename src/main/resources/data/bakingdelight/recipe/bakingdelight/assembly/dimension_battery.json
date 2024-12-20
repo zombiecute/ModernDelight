@@ -1,0 +1,28 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 2,
+  "goal": 5,
+  "ingredients": [
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "bakingdelight:diamond_component"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "bakingdelight:silicon_component"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:dimension_battery"
+  }
+}

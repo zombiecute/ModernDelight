@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_advance_furnace",
+  "criteria": {
+    "baking_tray": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:baking_tray"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_baking_tray.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:baking_tray"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_baking_tray.title"
+    }
+  },
+  "requirements": [
+    [
+      "baking_tray"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_baking_tray",
+  "criteria": {
+    "oven": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:oven"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_oven_desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:oven"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_oven_title"
+    }
+  },
+  "requirements": [
+    [
+      "oven"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

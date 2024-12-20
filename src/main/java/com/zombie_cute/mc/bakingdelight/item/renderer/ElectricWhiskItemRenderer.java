@@ -1,6 +1,5 @@
 package com.zombie_cute.mc.bakingdelight.item.renderer;
 
-import com.zombie_cute.mc.bakingdelight.block.custom.IceCreamMakerBlockItem;
 import com.zombie_cute.mc.bakingdelight.item.custom.ElectricWhiskItem;
 import software.bernie.geckolib.renderer.GeoItemRenderer;
 

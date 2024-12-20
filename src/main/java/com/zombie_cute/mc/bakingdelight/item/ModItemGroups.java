@@ -14,7 +14,7 @@ public class ModItemGroups {
     public static final String GROUPS_TAB_NAME = "itemgroup.bakingdelight";
     public static final ItemGroup ITEM_GROUP = Registry.register(
             Registries.ITEM_GROUP,
-            new Identifier(Bakingdelight.MOD_ID,"bakingdelight_itemgroup"),
+            Identifier.of(Bakingdelight.MOD_ID,"bakingdelight_itemgroup"),
             FabricItemGroup.builder().displayName(Text.translatable(GROUPS_TAB_NAME))
                     .icon(()->new ItemStack(ModBlocks.GLASS_BOWL))
                     .entries((displayContext, entries) -> {
@@ -40,7 +40,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SPATULA);
                         entries.add(ModBlocks.BAKING_TRAY);
                         // Pizza Making & Oven
-                        entries.add(ModItems.KNEADING_STICK);
+                        entries.add(ModItems.ROLLING_PIN);
                         entries.add(ModBlocks.WHEAT_DOUGH);
                         entries.add(ModBlocks.PIZZA_WIP);
                         entries.add(ModBlocks.RAW_PIZZA);

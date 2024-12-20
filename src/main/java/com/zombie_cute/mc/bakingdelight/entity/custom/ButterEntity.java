@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.entity.custom;
 
-import com.zombie_cute.mc.bakingdelight.effects.ModEffectsAndPotions;
+import com.zombie_cute.mc.bakingdelight.effects.ModEffects;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
@@ -14,8 +14,13 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.EntityTrackerEntry;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -28,7 +33,6 @@ public class ButterEntity extends ThrownItemEntity {
     public ButterEntity(EntityType<ButterEntity> entityType, World world) {
         super(entityType, world);
     }
-
     public ButterEntity(World world, LivingEntity entity) {
         super(ModEntities.BUTTER, entity, world);
     }
@@ -60,7 +64,7 @@ public class ButterEntity extends ThrownItemEntity {
             Box box = this.getBoundingBox().expand(3.0, 2.0, 3.0);
             List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, box);
             Entity entity2 = this.getEffectCause();
-            StatusEffectInstance sticky = new StatusEffectInstance(ModEffectsAndPotions.STICKY,80,0);
+            StatusEffectInstance sticky = new StatusEffectInstance(ModEffects.STICKY,80,0);
             StatusEffectInstance mining_fatigue = new StatusEffectInstance(StatusEffects.MINING_FATIGUE,80,9);
             StatusEffectInstance weakness = new StatusEffectInstance(StatusEffects.WEAKNESS,80,9);
             for (LivingEntity livingEntity : list) {
@@ -68,15 +72,15 @@ public class ButterEntity extends ThrownItemEntity {
                 if (!livingEntity.isAffectedBySplashPotions() || !((d = this.squaredDistanceTo(livingEntity)) < 16.0))
                     continue;
                 double e = livingEntity == entity ? 1.0 : 1.0 - Math.sqrt(d) / 4.0;
-                StatusEffect STICKY = sticky.getEffectType();
-                StatusEffect MINING_FATIGUE = mining_fatigue.getEffectType();
-                StatusEffect WEAKNESS = weakness.getEffectType();
+                StatusEffect STICKY = sticky.getEffectType().value();
+                StatusEffect MINING_FATIGUE = mining_fatigue.getEffectType().value();
+                StatusEffect WEAKNESS = weakness.getEffectType().value();
                 int i2 = sticky.mapDuration(i -> (int) (e * (double) i + 0.5));
                 int i3 = mining_fatigue.mapDuration(i -> (int) (e * (double) i + 0.5));
                 int i4 = weakness.mapDuration(i -> (int) (e * (double) i + 0.5));
-                StatusEffectInstance Sticky = new StatusEffectInstance(STICKY, i2, sticky.getAmplifier(), sticky.isAmbient(), true);
-                StatusEffectInstance MiningFatigue = new StatusEffectInstance(MINING_FATIGUE, i3, mining_fatigue.getAmplifier(), mining_fatigue.isAmbient(), false);
-                StatusEffectInstance Weakness = new StatusEffectInstance(WEAKNESS, i4, weakness.getAmplifier(), weakness.isAmbient(), false);
+                StatusEffectInstance Sticky = new StatusEffectInstance(RegistryEntry.of(STICKY), i2, sticky.getAmplifier(), sticky.isAmbient(), true);
+                StatusEffectInstance MiningFatigue = new StatusEffectInstance(RegistryEntry.of(MINING_FATIGUE), i3, mining_fatigue.getAmplifier(), mining_fatigue.isAmbient(), false);
+                StatusEffectInstance Weakness = new StatusEffectInstance(RegistryEntry.of(WEAKNESS), i4, weakness.getAmplifier(), weakness.isAmbient(), false);
                 if (Sticky.isDurationBelow(20)||
                         MiningFatigue.isDurationBelow(20)||
                         Weakness.isDurationBelow(20)) continue;
@@ -104,5 +108,9 @@ public class ButterEntity extends ThrownItemEntity {
             playSound(ModSounds.ENTITY_BUTTER_HIT, 1.0f, (random.nextFloat() - random.nextFloat()) * 2.f + 1.f);
             discard();
         }
+    }
+    @Override
+    public Packet<ClientPlayPacketListener> createSpawnPacket(EntityTrackerEntry entityTrackerEntry) {
+        return new EntitySpawnS2CPacket(this, entityTrackerEntry);
     }
 }

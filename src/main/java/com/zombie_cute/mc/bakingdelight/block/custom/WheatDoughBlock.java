@@ -3,9 +3,9 @@ package com.zombie_cute.mc.bakingdelight.block.custom;
 import com.google.common.collect.Lists;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -82,7 +81,7 @@ public class WheatDoughBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
@@ -93,7 +92,7 @@ public class WheatDoughBlock extends Block {
             if (random < 0.4){
                 world.setBlockState(pos,state.with(CRAFT_STATE,currentState + 1));
             }
-            player.getMainHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.MAIN_HAND));
+            player.getMainHandStack().damage(1, player, EquipmentSlot.MAINHAND);
             world.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_BREAK, SoundCategory.BLOCKS,1.0f,world.random.nextFloat()+0.1f,true);
             return ActionResult.SUCCESS;
         } else if (currentState == 3){
@@ -112,7 +111,7 @@ public class WheatDoughBlock extends Block {
     private boolean isKneadingStick(@NotNull Item item) {
         ItemStack stack = item.getDefaultStack();
         ArrayList<Item> list = Lists.newArrayList();
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.KNEADING_STICKS)) {
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.ROLLING_PINS)) {
             list.add(registryEntry.value());
         }
         return list.contains(stack.getItem());

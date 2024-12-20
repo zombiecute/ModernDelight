@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:bakingdelight/got_butter",
+  "criteria": {
+    "pudding_wip_1": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:pudding_wip_1"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.get_pudding_wip_1_desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:pudding_wip_1"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_pudding_wip_1_title"
+    }
+  },
+  "requirements": [
+    [
+      "pudding_wip_1"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

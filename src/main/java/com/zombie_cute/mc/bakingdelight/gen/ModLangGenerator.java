@@ -14,23 +14,27 @@ import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlMixWithWa
 import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlWhiskingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.pizza.PizzaMakingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.transform.OvenTransformCategory;
-import com.zombie_cute.mc.bakingdelight.effects.ModEffectsAndPotions;
+import com.zombie_cute.mc.bakingdelight.effects.ModEffects;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
-import com.zombie_cute.mc.bakingdelight.util.Flavor;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
+import com.zombie_cute.mc.bakingdelight.util.components.cumstom.FlavorComponent;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModLangGenerator extends FabricLanguageProvider {
-    public ModLangGenerator(FabricDataOutput dataOutput) {
-        super(dataOutput, "en_us");
+    public ModLangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, "en_us",registryLookup);
     }
 
     @Override
-    public void generateTranslations(TranslationBuilder translationBuilder) {
+    public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(ModUtil.SHIFT_FRONT, "Hold ");
         translationBuilder.add(ModUtil.SHIFT_END, " for summary");
         translationBuilder.add(ModUtil.WHISK_1, "A whisk that can be used to mix ingredients,");
@@ -41,7 +45,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModUtil.CUTTLEBONE, "It can be dropped when a squid killed by an amethyst tool");
         translationBuilder.add(ModUtil.FILTER_1, "A filter made of string that can be placed");
         translationBuilder.add(ModUtil.FILTER_2, "in a wooden basin to filter oil and slags");
-        translationBuilder.add(ModUtil.KNEADING_STICK, "It beats and kneads people");
+        translationBuilder.add(ModUtil.ROLLING_PIN, "It beats and kneads people");
         translationBuilder.add(ModUtil.SPATULA, "It can be used with a heated tray to stir-fry foods");
         translationBuilder.add(ModUtil.BDC_1, "It is the core component that makes up the biogas digester,");
         translationBuilder.add(ModUtil.BDC_2, "and when a flat and completely sealed cuboid area exists underneath it,");
@@ -150,7 +154,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.COPPER_KNIFE, "Copper Knife");
         translationBuilder.add(ModItems.AMETHYST_KNIFE, "Amethyst Knife");
 
-        translationBuilder.add(ModItems.KNEADING_STICK, "Kneading Stick");
+        translationBuilder.add(ModItems.ROLLING_PIN, "Rolling Pin");
         translationBuilder.add(ModItems.CROWBAR, "Crowbar");
         translationBuilder.add(ModItems.SPATULA, "Spatula");
         translationBuilder.add(ModItems.FILTER, "Filter");
@@ -279,6 +283,63 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.STEAMED_BUN, "Steamed Bun");
         translationBuilder.add(ModItems.DEEP_FRIED_BUN, "Deep-fried Bun");
 
+        translationBuilder.add(TagKeys.AMETHYST_TOOLS,"Amethyst Tools");
+        translationBuilder.add(TagKeys.BOTTLE_OIL,"Bottles of Oil");
+        translationBuilder.add(TagKeys.BREADS,"Bread");
+        translationBuilder.add(TagKeys.BREAD_WHEAT,"Wheat Bread");
+        translationBuilder.add(TagKeys.BUCKET_OIL,"Buckets of Oil");
+        translationBuilder.add(TagKeys.C_DOUGH,"Dough");
+        translationBuilder.add(TagKeys.C_FLOUR,"Flour");
+        translationBuilder.add(TagKeys.CABBAGE,"Cabbage");
+        translationBuilder.add(TagKeys.C_WHEAT_DOUGH,"Wheat Dough");
+        translationBuilder.add(TagKeys.COLD_ITEMS,"Refrigerants");
+        translationBuilder.add(TagKeys.C_WHEAT_FLOUR,"Wheat Flour");
+        translationBuilder.add(TagKeys.COOKED_MEATS,"Cooked Meat");
+        translationBuilder.add(TagKeys.COOKED_PORK,"Cooked Pork");
+        translationBuilder.add(TagKeys.CREAMS,"Creams");
+        translationBuilder.add(TagKeys.CROP_BLACK_PEPPER,"Black Pepper Crop");
+        translationBuilder.add(TagKeys.CROP_GARLIC,"Garlic Crop");
+        translationBuilder.add(TagKeys.CROPS,"Crops");
+        translationBuilder.add(TagKeys.CROWBAR_DESTROYABLE,"Blocks that can be destroyed with crowbar");
+        translationBuilder.add(TagKeys.CROWBARS,"Crowbars");
+        translationBuilder.add(TagKeys.CUTTLEBONES,"Cuttlebones");
+        translationBuilder.add(TagKeys.DANGER_BLOCKS,"Dangerous Blocks");
+        translationBuilder.add(TagKeys.DOUGHS,"Dough");
+        translationBuilder.add(TagKeys.DOUGH_WHEAT,"Wheat Dough");
+        translationBuilder.add(TagKeys.FILTERS,"Filters");
+        translationBuilder.add(TagKeys.FOODS,"Foods");
+        translationBuilder.add(TagKeys.FLOWER_CAKES,"Flower Cakes");
+        translationBuilder.add(TagKeys.FLOURS,"Flours");
+        translationBuilder.add(TagKeys.FLAT_ON_BAKING_TRAY,"Items that lie flat on baking tray");
+        translationBuilder.add(TagKeys.HEAT_SOURCES,"Heat Sources");
+        translationBuilder.add(TagKeys.ICE_CREAMS,"Ice Creams");
+        translationBuilder.add(TagKeys.INGOTS,"Ingots");
+        translationBuilder.add(TagKeys.ICE_LOLLIES,"Ice Lollies");
+        translationBuilder.add(TagKeys.ROLLING_PINS,"Rolling Pins");
+        translationBuilder.add(TagKeys.MILKS,"Milk");
+        translationBuilder.add(TagKeys.MOUSSES,"Mousses");
+        translationBuilder.add(TagKeys.OIL,"Oil");
+        translationBuilder.add(TagKeys.OIL_PLANTS,"Oil-bearing Crops");
+        translationBuilder.add(TagKeys.PRAWNS,"Prawns");
+        translationBuilder.add(TagKeys.PIZZA_INGREDIENTS,"Pizza Ingredients");
+        translationBuilder.add(TagKeys.PUMPKINS,"Pumpkins");
+        translationBuilder.add(TagKeys.PUDDINGS,"Puddings");
+        translationBuilder.add(TagKeys.PASSIVE_BOILER_HEATERS,"Passive Boiler Heaters");
+        translationBuilder.add(TagKeys.RAW_FISHES,"Raw Fishes");
+        translationBuilder.add(TagKeys.RAW_MEATS,"Raw Meat");
+        translationBuilder.add(TagKeys.RAW_PORK,"Raw Pork");
+        translationBuilder.add(TagKeys.SAUSAGES,"Sausages");
+        translationBuilder.add(TagKeys.SILICON,"Silicon");
+        translationBuilder.add(TagKeys.SEED_GARLIC,"Garlic Seed");
+        translationBuilder.add(TagKeys.SPATULAS,"Spatulas");
+        translationBuilder.add(TagKeys.SEEDS,"Seeds");
+        translationBuilder.add(TagKeys.SQUIDS,"Squids");
+        translationBuilder.add(TagKeys.SEED_BLACK_PEPPERS,"Black Pepper Seeds");
+        translationBuilder.add(TagKeys.STORAGE_BLOCKS,"Storage Blocks");
+        translationBuilder.add(TagKeys.TOOLS,"Tools");
+        translationBuilder.add(TagKeys.TOOLS_KNIVES,"Knives");
+        translationBuilder.add(TagKeys.TRUFFLES,"Truffles");
+        translationBuilder.add(TagKeys.WHISKS,"Whisks");
 
         translationBuilder.add(ModBlocks.GLASS_BOWL, "Glass Bowl");
         translationBuilder.add(GlassBowlWhiskingCategory.GLASS_BOWL_NAME, "Whisk");
@@ -385,15 +446,15 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.RAW_ICE_CREAM_CONE, "Ice Cream Cone (Work In Progress)");
         translationBuilder.add(ModItems.ICE_CREAM, "Ice Cream");
 
-        translationBuilder.add(Flavor.TRANSLATION_KEY, "Flavors");
-        translationBuilder.add(Flavor.NULL.getTranslationKey(), "Unknown");
-        translationBuilder.add(Flavor.PLAIN.getTranslationKey(), "Plain");
-        translationBuilder.add(Flavor.APPLE.getTranslationKey(), "Apple Flavored");
-        translationBuilder.add(Flavor.CHERRY.getTranslationKey(), "Cherry Flavored");
-        translationBuilder.add(Flavor.CHOCOLATE.getTranslationKey(), "Chocolate Flavored");
-        translationBuilder.add(Flavor.GOLDEN_APPLE.getTranslationKey(), "Golden Apple Flavored");
-        translationBuilder.add(Flavor.MATCHA.getTranslationKey(), "Matcha Flavored");
-        translationBuilder.add(Flavor.PUMPKIN.getTranslationKey(), "Pumpkin Flavored");
+        translationBuilder.add(FlavorComponent.TRANSLATION_KEY, "Flavors");
+        translationBuilder.add(FlavorComponent.NULL.getTranslationKey(), "Unknown");
+        translationBuilder.add(FlavorComponent.PLAIN.getTranslationKey(), "Plain");
+        translationBuilder.add(FlavorComponent.APPLE.getTranslationKey(), "Apple Flavored");
+        translationBuilder.add(FlavorComponent.CHERRY.getTranslationKey(), "Cherry Flavored");
+        translationBuilder.add(FlavorComponent.CHOCOLATE.getTranslationKey(), "Chocolate Flavored");
+        translationBuilder.add(FlavorComponent.GOLDEN_APPLE.getTranslationKey(), "Golden Apple Flavored");
+        translationBuilder.add(FlavorComponent.MATCHA.getTranslationKey(), "Matcha Flavored");
+        translationBuilder.add(FlavorComponent.PUMPKIN.getTranslationKey(), "Pumpkin Flavored");
 
         translationBuilder.add(OvenBlockEntity.OVEN_NAME, "Baking");
         translationBuilder.add(AdvanceFurnaceBlockEntity.ADVANCE_FURNACE_NAME, "Advance Furnace");
@@ -409,7 +470,6 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_1, "Inefficiency mode:");
         translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_2, "Activated when there is");
         translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_3, "sufficient light nearby");
-        translationBuilder.add(ModBlocks.GAS_PIPE, "Gas Pipe");
         translationBuilder.add(ModBlocks.AC_DC_CONVERTER, "AC/DC Converter");
         translationBuilder.add(ModBlocks.FAN_BLADE_ITEM, "Wind Turbine Blades");
         translationBuilder.add(ModBlocks.WIND_TURBINE_CONTROLLER, "Wind Turbine Controller");
@@ -443,34 +503,26 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "Cream");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "Vegetable Oil");
 
-        translationBuilder.add(ModEffectsAndPotions.STICKY,"Sticky");
+        translationBuilder.add(ModEffects.STICKY.value(),"Sticky");
 
-        translationBuilder.add("item.minecraft.potion.effect.sticky_potion","Potion of Sticky");
-        translationBuilder.add("item.minecraft.potion.effect.sticky_long_potion","Potion of Sticky");
         translationBuilder.add("item.minecraft.potion.effect.squid_power_potion","Potion of the Squid Power");
         translationBuilder.add("item.minecraft.potion.effect.squid_power_long_potion","Potion of the Squid Power");
         translationBuilder.add("item.minecraft.potion.effect.squid_power_strong_potion","Potion of the Squid Power");
         translationBuilder.add("item.minecraft.potion.effect.glow_squid_power_potion","Potion of the Glow Squid Power");
         translationBuilder.add("item.minecraft.potion.effect.glow_squid_power_long_potion","Potion of the Glow Squid Power");
         translationBuilder.add("item.minecraft.potion.effect.glow_squid_power_strong_potion","Potion of the Glow Squid Power");
-        translationBuilder.add("item.minecraft.splash_potion.effect.sticky_potion","Splash Potion of Sticky");
-        translationBuilder.add("item.minecraft.splash_potion.effect.sticky_long_potion","Splash Potion of Sticky");
         translationBuilder.add("item.minecraft.splash_potion.effect.squid_power_potion","Splash Potion of the Squid Power");
         translationBuilder.add("item.minecraft.splash_potion.effect.squid_power_long_potion","Splash Potion of the Squid Power");
         translationBuilder.add("item.minecraft.splash_potion.effect.squid_power_strong_potion","Splash Potion of the Squid Power");
         translationBuilder.add("item.minecraft.splash_potion.effect.glow_squid_power_potion","Splash Potion of the Glow Squid Power");
         translationBuilder.add("item.minecraft.splash_potion.effect.glow_squid_power_long_potion","Splash Potion of the Glow Squid Power");
         translationBuilder.add("item.minecraft.splash_potion.effect.glow_squid_power_strong_potion","Splash Potion of the Glow Squid Power");
-        translationBuilder.add("item.minecraft.lingering_potion.effect.sticky_potion","Lingering Potion of Sticky");
-        translationBuilder.add("item.minecraft.lingering_potion.effect.sticky_long_potion","Lingering Potion of Sticky");
         translationBuilder.add("item.minecraft.lingering_potion.effect.squid_power_potion","Lingering Potion of the Squid Power");
         translationBuilder.add("item.minecraft.lingering_potion.effect.squid_power_long_potion","Lingering Potion of the Squid Power");
         translationBuilder.add("item.minecraft.lingering_potion.effect.squid_power_strong_potion","Lingering Potion of the Squid Power");
         translationBuilder.add("item.minecraft.lingering_potion.effect.glow_squid_power_potion","Lingering Potion of the Glow Squid Power");
         translationBuilder.add("item.minecraft.lingering_potion.effect.glow_squid_power_long_potion","Lingering Potion of the Glow Squid Power");
         translationBuilder.add("item.minecraft.lingering_potion.effect.glow_squid_power_strong_potion","Lingering Potion of the Glow Squid Power");
-        translationBuilder.add("item.minecraft.tipped_arrow.effect.sticky_potion","Arrow of Sticky");
-        translationBuilder.add("item.minecraft.tipped_arrow.effect.sticky_long_potion","Arrow of Sticky");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.squid_power_potion","Arrow of the Squid Power");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.squid_power_long_potion","Arrow of the Squid Power");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.squid_power_strong_potion","Arrow of the Squid Power");
@@ -557,12 +609,12 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModAdvancementGenerator.GET_BUTTER_TITLE, "Sticky and Sweet");
         translationBuilder.add(ModAdvancementGenerator.GET_BUTTER_DESC, "Put the cream in a glass bowl and whisk with a whisk to obtain the butter.");
         translationBuilder.add("advancement.bakingdelight.get_start_desc", "After eating this piece of bread, does it seem too mediocre? It's time to prepare some brand new food!");
-        translationBuilder.add("advancement.bakingdelight.get_kneading_stick.title", "Grandma's Kneading Stick");
+        translationBuilder.add("advancement.bakingdelight.get_kneading_stick.title", "Grandma's Rolling Pin");
         translationBuilder.add("advancement.bakingdelight.get_kneading_stick.desc", "It's just an ordinary wooden stick.");
         translationBuilder.add("advancement.bakingdelight.get_wheat_flour.title", "Better Bread Making");
         translationBuilder.add("advancement.bakingdelight.get_wheat_flour.desc", "Whisk wheat to obtain the wheat flour.");
         translationBuilder.add("advancement.bakingdelight.get_wheat_dough.title", "Sticky Mess");
-        translationBuilder.add("advancement.bakingdelight.get_wheat_dough.desc", "Pour the water into a glass bowl, add the wheat flour and turn it into a dough! You can roll out with a kneading stick and flatten it, or you can go bake bread.");
+        translationBuilder.add("advancement.bakingdelight.get_wheat_dough.desc", "Pour the water into a glass bowl, add the wheat flour and turn it into a dough! You can roll out with a rolling pin and flatten it, or you can go bake bread.");
         translationBuilder.add("advancement.bakingdelight.get_raw_pizza.title", "Getting ready to open a pizzeria!");
         translationBuilder.add("advancement.bakingdelight.get_raw_pizza.desc", "First, add the cheese to the flattened dough, then add 5 of your favorite ingredients and finish with a cheese.");
         translationBuilder.add("advancement.bakingdelight.get_pizza.title", "PIZZA!");

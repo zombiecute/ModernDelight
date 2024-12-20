@@ -14,12 +14,11 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
 
 public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEntity {
     public SterlingEngineBlockEntity(BlockPos pos, BlockState state) {
@@ -29,7 +28,7 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
     private static final RawAnimation STOPPING = RawAnimation.begin().thenPlay("stop");
     private static final RawAnimation STOP = RawAnimation.begin();
 
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private boolean isWorking = false;
 
     public boolean isWorking() {
@@ -68,27 +67,23 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
-    @Override
-    public double getTick(Object blockEntity) {
-        return RenderUtils.getCurrentTick();
-    }
-    public void tick(World world, BlockPos pos) {
+    public static void tick(World world, BlockPos pos, BlockState state, SterlingEngineBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
-        if (this.isWorking && world.getTime() % 60L == 0L){
+        if (blockEntity.isWorking && world.getTime() % 60L == 0L){
             world.playSound(null,pos.getX(),pos.getY(),pos.getZ(), ModSounds.BLOCK_STERLING_ENGINE, SoundCategory.BLOCKS,0.8f,1.0f);
         }
         if (world.getBlockState(pos.down()).getBlock() instanceof FurnaceBlock){
-            this.isWorking = world.getBlockState(pos.down()).get(FurnaceBlock.LIT);
+            blockEntity.isWorking = world.getBlockState(pos.down()).get(FurnaceBlock.LIT);
         } else if (world.getBlockState(pos.down()).getBlock() instanceof BlastFurnaceBlock){
-            this.isWorking = world.getBlockState(pos.down()).get(BlastFurnaceBlock.LIT);
+            blockEntity.isWorking = world.getBlockState(pos.down()).get(BlastFurnaceBlock.LIT);
         } else if (world.getBlockState(pos.down()).getBlock() instanceof SmokerBlock){
-            this.isWorking = world.getBlockState(pos.down()).get(SmokerBlock.LIT);
+            blockEntity.isWorking = world.getBlockState(pos.down()).get(SmokerBlock.LIT);
         } else if (world.getBlockState(pos.down()).getBlock() instanceof OvenBlock){
-            this.isWorking = world.getBlockState(pos.down()).get(OvenBlock.OVEN_BURNING);
+            blockEntity.isWorking = world.getBlockState(pos.down()).get(OvenBlock.OVEN_BURNING);
         } else if (world.getBlockState(pos.down()).getBlock() instanceof AdvanceFurnaceBlock){
-            this.isWorking = world.getBlockState(pos.down()).get(AdvanceFurnaceBlock.BURNING);
-        } else this.isWorking = world.getBlockState(pos.down()).getBlock() instanceof BurningGasCookingStoveBlock;
+            blockEntity.isWorking = world.getBlockState(pos.down()).get(AdvanceFurnaceBlock.BURNING);
+        } else blockEntity.isWorking = world.getBlockState(pos.down()).getBlock() instanceof BurningGasCookingStoveBlock;
     }
 }

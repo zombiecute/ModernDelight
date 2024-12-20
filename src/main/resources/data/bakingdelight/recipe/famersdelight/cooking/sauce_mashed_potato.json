@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "tag": "c:crops/cabbage"
+    },
+    {
+      "item": "bakingdelight:mashed_potato"
+    },
+    {
+      "item": "bakingdelight:black_pepper_dust"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "bakingdelight:sauce_mashed_potato"
+  }
+}

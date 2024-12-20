@@ -1,0 +1,20 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cream"
+    },
+    {
+      "item": "bakingdelight:mixed_dough"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:egg_tart"
+  }
+}

@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.entities.renderer;
 
-import com.zombie_cute.mc.bakingdelight.block.custom.IceCreamMakerBlockItem;
+import com.zombie_cute.mc.bakingdelight.block.custom.blockItem.IceCreamMakerBlockItem;
 import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class IceCreamMakerBlockItemRenderer extends GeoItemRenderer<IceCreamMakerBlockItem> {

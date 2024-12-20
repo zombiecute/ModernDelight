@@ -36,7 +36,7 @@ public abstract class ModAbstractFluid extends FlowableFluid {
     }
 
     @Override
-    protected int getFlowSpeed(WorldView world) {
+    protected int getNextTickDelay(World world, BlockPos pos, FluidState oldState, FluidState newState) {
         return 3;
     }
 

@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:foods/doughs"
+    },
+    {
+      "tag": "c:foods/doughs"
+    },
+    {
+      "tag": "c:foods/doughs"
+    },
+    {
+      "tag": "c:foods/doughs"
+    }
+  ],
+  "output": {
+    "id": "minecraft:bread",
+    "count": 16
+  }
+}

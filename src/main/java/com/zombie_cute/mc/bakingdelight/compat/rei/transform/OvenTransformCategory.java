@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.compat.rei.transform;
 
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -21,7 +21,7 @@ import java.util.List;
 
 public class OvenTransformCategory implements DisplayCategory<OvenTransformDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/transform.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/transform.png");
     public static final String TRANSFORM_TITLE = "display_name.bakingdelight.transform_name";
     public static final CategoryIdentifier<OvenTransformDisplay> OVEN_TRANSFORMING =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "oven_transforming");
@@ -37,7 +37,7 @@ public class OvenTransformCategory implements DisplayCategory<OvenTransformDispl
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(Items.GRASS_BLOCK);
+        return EntryStacks.of(Items.GRASS_BLOCK,1);
     }
     @Override
     public List<Widget> setupDisplay(OvenTransformDisplay display, Rectangle bounds) {
@@ -45,14 +45,14 @@ public class OvenTransformCategory implements DisplayCategory<OvenTransformDispl
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,52)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 22,startPoint.y + 18))
-                .entry(EntryStacks.of(ModBlocks.OVEN.asItem().getDefaultStack())));
+                .entry(EntryStacks.of(ModBlocks.OVEN.asItem(),1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 55,startPoint.y + 6))
-                .entries(EntryIngredients.ofItemTag(ModTagKeys.CROWBARS)));
+                .entries(EntryIngredients.ofItemTag(TagKeys.CROWBARS)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 101,startPoint.y + 18))
-                .markOutput().entry(EntryStacks.of(ModBlocks.ADVANCE_FURNACE.asItem().getDefaultStack())));
+                .markOutput().entry(EntryStacks.of(ModBlocks.ADVANCE_FURNACE.asItem(),1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 119,startPoint.y + 18))
-                .markOutput().entry(EntryStacks.of(ModBlocks.BAKING_TRAY.asItem().getDefaultStack())));
+                .markOutput().entry(EntryStacks.of(ModBlocks.BAKING_TRAY.asItem(),1)));
         return widgets;
     }
     @Override

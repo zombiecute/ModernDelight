@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:polished_andesite"
+    },
+    "C": {
+      "item": "minecraft:trapped_chest"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "pattern": [
+    "SAQ",
+    "PCP",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:cuisine_table"
+  }
+}

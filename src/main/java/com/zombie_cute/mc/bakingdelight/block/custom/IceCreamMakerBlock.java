@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.IceCreamMakerBlockEntity;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,7 +14,10 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -24,8 +27,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class IceCreamMakerBlock extends BlockWithEntity {
     public IceCreamMakerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(AbstractBlock.Settings.copy(Blocks.IRON_BARS));
         setDefaultState(this.getStateManager().getDefaultState().with(START,false));
+    }
+    public static final MapCodec<IceCreamMakerBlock> CODEC = createCodec((settings -> new IceCreamMakerBlock()));
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty START = BooleanProperty.of("start");
@@ -78,7 +86,7 @@ public class IceCreamMakerBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
@@ -95,7 +103,6 @@ public class IceCreamMakerBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.ICE_CREAM_MAKER_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+        return world.isClient ? null : validateTicker(type,ModBlockEntities.ICE_CREAM_MAKER_BLOCK_ENTITY, IceCreamMakerBlockEntity::tick);
     }
 }

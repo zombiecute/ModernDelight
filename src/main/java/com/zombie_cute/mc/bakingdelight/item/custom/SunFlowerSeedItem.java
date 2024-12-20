@@ -1,7 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.item.custom;
 
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +16,7 @@ import net.minecraft.world.World;
 
 public class SunFlowerSeedItem extends Item {
     public SunFlowerSeedItem() {
-        super(new FabricItemSettings());
+        super(new Item.Settings());
     }
 
     @Override
@@ -26,7 +25,7 @@ public class SunFlowerSeedItem extends Item {
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack) {
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return 10;
     }
 

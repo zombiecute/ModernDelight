@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:vegetable_oil_bottle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_vegetable_oil_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:vegetable_oil_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_vegetable_oil_bucket"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:vegetable_oil_bottle"
+    ]
+  }
+}

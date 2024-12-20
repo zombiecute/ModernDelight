@@ -33,7 +33,7 @@ public class AdvanceFurnaceTransformCategory implements DisplayCategory<AdvanceF
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(Items.GRASS_BLOCK.getDefaultStack());
+        return EntryStacks.of(Items.GRASS_BLOCK,1);
     }
     @Override
     public List<Widget> setupDisplay(AdvanceFurnaceTransformDisplay display, Rectangle bounds) {
@@ -41,12 +41,12 @@ public class AdvanceFurnaceTransformCategory implements DisplayCategory<AdvanceF
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,52)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 22,startPoint.y + 18))
-                .entry(EntryStacks.of(ModBlocks.ADVANCE_FURNACE.asItem().getDefaultStack())));
+                .entry(EntryStacks.of(ModBlocks.ADVANCE_FURNACE.asItem(),1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 55,startPoint.y + 6))
-                .entry(EntryStacks.of(ModBlocks.BAKING_TRAY.asItem().getDefaultStack())));
+                .entry(EntryStacks.of(ModBlocks.BAKING_TRAY.asItem(),1)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 101,startPoint.y + 18))
-                .markOutput().entry(EntryStacks.of(ModBlocks.OVEN.asItem().getDefaultStack())));
+                .markOutput().entry(EntryStacks.of(ModBlocks.OVEN.asItem(),1)));
 
         return widgets;
     }

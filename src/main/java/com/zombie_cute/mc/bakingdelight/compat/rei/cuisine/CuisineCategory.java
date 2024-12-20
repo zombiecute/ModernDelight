@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CuisineCategory implements DisplayCategory<CuisineDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/cuisine.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/cuisine.png");
     public static final CategoryIdentifier<CuisineDisplay> CUISINE =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "cuisine");
 
@@ -35,7 +35,7 @@ public class CuisineCategory implements DisplayCategory<CuisineDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.CUISINE_TABLE);
+        return EntryStacks.of(ModBlocks.CUISINE_TABLE,1);
     }
 
     @Override

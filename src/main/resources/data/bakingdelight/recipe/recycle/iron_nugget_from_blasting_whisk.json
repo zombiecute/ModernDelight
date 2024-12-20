@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "bakingdelight:iron_whisk"
+  },
+  "result": {
+    "id": "minecraft:iron_nugget"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "tag": "minecraft:wool_carpets"
+    },
+    {
+      "item": "minecraft:shears"
+    }
+  ],
+  "output": {
+    "id": "minecraft:string",
+    "count": 2
+  }
+}

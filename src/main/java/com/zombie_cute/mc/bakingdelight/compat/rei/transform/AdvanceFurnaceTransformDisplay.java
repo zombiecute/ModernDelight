@@ -22,7 +22,7 @@ public class AdvanceFurnaceTransformDisplay implements Display {
 
     @Override
     public List<EntryIngredient> getOutputEntries() {
-        return List.of(EntryIngredients.of(ModBlocks.OVEN.asItem().getDefaultStack()));
+        return List.of(EntryIngredients.of(ModBlocks.OVEN.asItem(),1));
     }
 
     @Override

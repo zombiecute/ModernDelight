@@ -1,0 +1,46 @@
+{
+  "values": [
+    "minecraft:iron_bars",
+    "bakingdelight:ac_dc_converter",
+    {
+      "id": "#minecraft:trapdoors",
+      "required": false
+    },
+    {
+      "id": "#minecraft:doors",
+      "required": false
+    },
+    {
+      "id": "#minecraft:fences",
+      "required": false
+    },
+    {
+      "id": "#minecraft:fence_gates",
+      "required": false
+    },
+    {
+      "id": "#minecraft:rails",
+      "required": false
+    },
+    {
+      "id": "create:andesite_bars",
+      "required": false
+    },
+    {
+      "id": "create:brass_bars",
+      "required": false
+    },
+    {
+      "id": "create:copper_bars",
+      "required": false
+    },
+    {
+      "id": "#c:glass_panes",
+      "required": false
+    },
+    {
+      "id": "#c:glasses",
+      "required": false
+    }
+  ]
+}

@@ -3,16 +3,20 @@ package com.zombie_cute.mc.bakingdelight.item.custom;
 import com.zombie_cute.mc.bakingdelight.entity.custom.CherryBombEntity;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ProjectileItem;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 
-public class CherryBombItem extends Item {
-    public CherryBombItem(Settings settings) {
+public class CherryBombItem extends Item implements ProjectileItem {
+    public CherryBombItem(Item.Settings settings) {
         super(settings);
     }
     @Override
@@ -34,5 +38,10 @@ public class CherryBombItem extends Item {
         }
 
         return TypedActionResult.success(heldStack, world.isClient());
+    }
+
+    @Override
+    public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
+        return new CherryBombEntity(world,pos.getX(),pos.getY(),pos.getZ());
     }
 }

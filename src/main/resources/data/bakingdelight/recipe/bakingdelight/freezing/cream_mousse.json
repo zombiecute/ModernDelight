@@ -1,0 +1,18 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:mousse_wip"
+    },
+    {
+      "item": "bakingdelight:mousse_wip"
+    },
+    {
+      "item": "bakingdelight:mousse_wip"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:cream_mousse",
+    "count": 3
+  }
+}

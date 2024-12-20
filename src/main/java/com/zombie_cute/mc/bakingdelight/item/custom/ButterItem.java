@@ -4,23 +4,26 @@ import com.zombie_cute.mc.bakingdelight.entity.custom.ButterEntity;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ProjectileItem;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ButterItem extends Item {
-    public ButterItem(Settings settings) {
+public class ButterItem extends Item implements ProjectileItem {
+    public ButterItem(Item.Settings settings) {
         super(settings);
     }
     @Override
@@ -43,7 +46,9 @@ public class ButterItem extends Item {
 
         return TypedActionResult.success(heldStack, world.isClient());
     }
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -52,6 +57,11 @@ public class ButterItem extends Item {
         }else {
             tooltip.add(ModUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, context);
+        super.appendTooltip(stack, context, tooltip, type);
+    }
+
+    @Override
+    public ProjectileEntity createEntity(World world, Position position, ItemStack stack, Direction direction) {
+        return new ButterEntity(world,position.getX(),position.getY(),position.getZ());
     }
 }

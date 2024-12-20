@@ -25,7 +25,7 @@ public class ModSounds {
     public static final SoundEvent ITEM_ELECTRIC_WHISK_WORKING = registerSound("item_electric_whisk_working");
 
     public static SoundEvent registerSound(String name){
-        Identifier id = new Identifier(Bakingdelight.MOD_ID, name);
+        Identifier id = Identifier.of(Bakingdelight.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
     public static void registerModSounds(){

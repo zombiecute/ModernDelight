@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:crops/black_peppers"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:black_pepper_dust"
+  }
+}

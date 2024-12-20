@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:shears"
+    }
+  ],
+  "output": {
+    "id": "minecraft:rabbit_hide",
+    "count": 3
+  }
+}

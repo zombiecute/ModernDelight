@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "minecraft:shears"
+    }
+  ],
+  "output": {
+    "id": "minecraft:bone_meal",
+    "count": 1
+  }
+}

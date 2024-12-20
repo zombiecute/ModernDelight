@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:flour"
+    },
+    {
+      "tag": "c:foods/raw_meats/raw_chicken"
+    },
+    {
+      "tag": "c:foods/raw_meats/raw_chicken"
+    },
+    {
+      "tag": "c:foods/vegetables/onion"
+    }
+  ],
+  "result": {
+    "id": "bakingdelight:raw_onion_ring",
+    "count": 6
+  }
+}

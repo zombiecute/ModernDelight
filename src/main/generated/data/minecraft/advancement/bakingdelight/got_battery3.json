@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:bakingdelight/got_battery2",
+  "criteria": {
+    "battery3": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:advance_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.battery3.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:advance_battery"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.battery3.title"
+    }
+  },
+  "requirements": [
+    [
+      "battery3"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

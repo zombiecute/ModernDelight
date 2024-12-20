@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.entities.KitchenUtensilHolderBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -10,7 +11,6 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +28,11 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
         super(settings);
         setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
-
+    public static final MapCodec<KitchenUtensilHolderBlock> CODEC = createCodec((KitchenUtensilHolderBlock::new));
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final VoxelShape SHAPED_SOUTH = Block.createCuboidShape(1,8,0,15,12,3);
     private static final VoxelShape SHAPED_NORTH = Block.createCuboidShape(1,8,13,15,12,16);
@@ -102,7 +106,7 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof KitchenUtensilHolderBlockEntity container){
             container.onUse(player);
             return ActionResult.SUCCESS;

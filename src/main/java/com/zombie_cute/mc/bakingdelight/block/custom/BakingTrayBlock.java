@@ -1,22 +1,23 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.entities.BakingTrayBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.entities.BurningGasCookingStoveBlockEntity;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -24,7 +25,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -42,10 +42,14 @@ import java.util.List;
 public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public BakingTrayBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_TRAPDOOR));
+        super(AbstractBlock.Settings.copy(Blocks.IRON_TRAPDOOR));
         setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED,false));
     }
-
+    public static final MapCodec<BakingTrayBlock> CODEC = createCodec(settings -> new BakingTrayBlock());
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED);
@@ -93,8 +97,9 @@ public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
         return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
     }
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -104,8 +109,9 @@ public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
         } else {
             tooltip.add(ModUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
+
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (world.getBlockEntity(pos) instanceof BakingTrayBlockEntity entity &&
@@ -145,7 +151,7 @@ public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof BakingTrayBlockEntity container) {
             container.onUse(player, world);
             return ActionResult.SUCCESS;
@@ -156,7 +162,6 @@ public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.BAKING_TRAY_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos));
+        return validateTicker(type,ModBlockEntities.BAKING_TRAY_BLOCK_ENTITY, BakingTrayBlockEntity::tick);
     }
 }

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "bakingdelight:fried_cod_nugget"
+    },
+    {
+      "item": "bakingdelight:fried_cod_nugget"
+    },
+    {
+      "item": "bakingdelight:french_fries"
+    },
+    {
+      "item": "bakingdelight:french_fries"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:fish_and_chips"
+  }
+}

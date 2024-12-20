@@ -1,14 +1,15 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.entities.FanBladeBlockEntity;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -33,10 +34,16 @@ public class FanBladeBlock extends BlockWithEntity {
     private static final VoxelShape SHAPED_EAST = Block.createCuboidShape(0,6,6,9,11,11);
     private static final VoxelShape SHAPED_WEST = Block.createCuboidShape(7,6,6,16,11,11);
     public FanBladeBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(AbstractBlock.Settings.copy(Blocks.IRON_BARS));
     }
+    public static final MapCodec<FanBladeBlock> CODEC = createCodec((settings -> new FanBladeBlock()));
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(ModUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -46,7 +53,7 @@ public class FanBladeBlock extends BlockWithEntity {
         } else {
             tooltip.add(ModUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
     @Nullable
     @Override

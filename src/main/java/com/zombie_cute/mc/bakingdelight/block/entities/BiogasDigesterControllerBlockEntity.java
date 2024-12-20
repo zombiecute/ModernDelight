@@ -9,7 +9,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class BiogasDigesterControllerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
+public class BiogasDigesterControllerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
     protected final PropertyDelegate propertyDelegate;
     private int yCounter = 1;
     private int maxXCounter = 0;
@@ -57,11 +57,12 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
         nbt.putInt("biogas_digester_controller.gasValue",gasValue);
         nbt.putInt("biogas_digester_controller.maxGasValue",maxGasValue);
     }
+
     public boolean isChecked(){
         return checked != 0;
     }
@@ -81,20 +82,17 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
     public int getCurrentSize(){
         return size;
     }
+
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
         gasValue = nbt.getInt("biogas_digester_controller.gasValue");
         maxGasValue = nbt.getInt("biogas_digester_controller.maxGasValue");
     }
-    @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
-    }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
 
     @Override
@@ -107,42 +105,42 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
         return new BiogasDigesterControllerScreenHandler(syncId, playerInventory,this,this.propertyDelegate);
     }
     private int time = 60;
-    public void tick(World world, BlockPos pos) {
+    public static void tick(World world, BlockPos pos, BlockState state, BiogasDigesterControllerBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
-        time--;
-        if (time == 10) {
-            if (check(world)){
-                checked = 1;
+        blockEntity.time--;
+        if (blockEntity.time == 10) {
+            if (blockEntity.check(world)){
+                blockEntity.checked = 1;
             } else {
-                checked = 0;
-                size = 0;
+                blockEntity.checked = 0;
+                blockEntity.size = 0;
             }
-            restAll();
+            blockEntity.restAll();
         }
-        if (checked==1){
-            maxGasValue = size * 1000;
-            markDirty();
+        if (blockEntity.checked==1){
+            blockEntity.maxGasValue = blockEntity.size * 1000;
+            blockEntity.markDirty();
         } else {
-            maxGasValue = 0;
-            markDirty();
+            blockEntity.maxGasValue = 0;
+            blockEntity.markDirty();
         }
-        if (gasValue >= Short.MAX_VALUE){
-            shortGasValue = gasValue/19;
-            isSplit = 1;
+        if (blockEntity.gasValue >= Short.MAX_VALUE){
+            blockEntity.shortGasValue = blockEntity.gasValue/19;
+            blockEntity.isSplit = 1;
         } else {
-            shortGasValue = gasValue;
-            isSplit = 0;
+            blockEntity.shortGasValue = blockEntity.gasValue;
+            blockEntity.isSplit = 0;
         }
-        if (gasValue > maxGasValue){
-            if (time == 1){
+        if (blockEntity.gasValue > blockEntity.maxGasValue){
+            if (blockEntity.time == 1){
                 world.createExplosion(null,pos.getX(),pos.getY(),pos.getZ(),3.5f,true, World.ExplosionSourceType.BLOCK);
-                markDirty();
+                blockEntity.markDirty();
             }
         }
-        if (time <= 0){
-            time = 60;
+        if (blockEntity.time <= 0){
+            blockEntity.time = 60;
         }
     }
     private boolean check(World world){
@@ -287,5 +285,10 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
         maxZCounter = 0;
         minXCounter = 0;
         minZCounter = 0;
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

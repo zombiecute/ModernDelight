@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_wheat_dough",
+  "criteria": {
+    "kneading_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:kneading_stick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_kneading_stick.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:kneading_stick"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_kneading_stick.title"
+    }
+  },
+  "requirements": [
+    [
+      "kneading_stick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -21,7 +21,7 @@ import static com.zombie_cute.mc.bakingdelight.block.entities.FreezerBlockEntity
 
 public class FreezerFreezingCategory implements DisplayCategory<FreezerFreezingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/freezer.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/freezer.png");
     public static final CategoryIdentifier<FreezerFreezingDisplay> FREEZING =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "freezing");
 
@@ -37,7 +37,7 @@ public class FreezerFreezingCategory implements DisplayCategory<FreezerFreezingD
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.FREEZER.asItem().getDefaultStack());
+        return EntryStacks.of(ModBlocks.FREEZER.asItem(),1);
     }
 
     @Override

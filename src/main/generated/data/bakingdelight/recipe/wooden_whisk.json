@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "tag": "minecraft:planks"
+    },
+    "N": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "I",
+    "N",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:wooden_whisk"
+  }
+}

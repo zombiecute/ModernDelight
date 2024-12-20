@@ -1,22 +1,24 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.entities.GasCanisterBlockEntity;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
@@ -27,7 +29,6 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -44,8 +45,13 @@ import java.util.List;
 
 public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
     public GasCanisterBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque());
+        super(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).nonOpaque());
         setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED,false));
+    }
+    public static final MapCodec<GasCanisterBlock> CODEC = createCodec((settings -> new GasCanisterBlock()));
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
@@ -79,29 +85,32 @@ public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
         }
     }
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (world.getBlockEntity(pos) instanceof GasCanisterBlockEntity blockEntity) {
             if (!world.isClient) {
                 ItemStack itemStack = new ItemStack(ModBlocks.GAS_CANISTER_ITEM);
-                blockEntity.setStackNbt(itemStack);
+                blockEntity.setStackNbt(itemStack,world.getRegistryManager());
                 ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
             }
         }
         super.onBreak(world, pos, state, player);
+        return state;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        super.appendTooltip(stack, world, tooltip, options);
-        NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
-        if (nbtCompound != null) {
-            if (nbtCompound.contains("gas_canister.gasValue")) {
-                int gasValue = nbtCompound.getInt("gas_canister.gasValue");
-                MutableText mutableText = getMutableText(gasValue);
-                tooltip.add(mutableText);
-            }
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+        super.appendTooltip(stack, context, tooltip, options);
+        NbtComponent nbtComponent = stack.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,NbtComponent.DEFAULT);
+        NbtCompound nbt = nbtComponent.copyNbt();
+        if (!nbt.isEmpty() && nbt.contains("gas_canister.gasValue")) {
+            int gasValue = nbt.getInt("gas_canister.gasValue");
+            MutableText mutableText = getMutableText(gasValue);
+            tooltip.add(mutableText);
+        } else {
+            MutableText mutableText = getMutableText(0);
+            tooltip.add(mutableText);
         }
     }
 
@@ -163,7 +172,7 @@ public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient){
             NamedScreenHandlerFactory screenHandlerFactory = ((GasCanisterBlockEntity) world.getBlockEntity(pos));
             if (player.getMainHandStack().getItem().equals(Items.FLINT_AND_STEEL)||
@@ -182,7 +191,6 @@ public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.GAS_CANISTER_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1, blockEntity));
+        return world.isClient ? null : validateTicker(type,ModBlockEntities.GAS_CANISTER_BLOCK_ENTITY, GasCanisterBlockEntity::tick);
     }
 }

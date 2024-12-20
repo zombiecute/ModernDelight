@@ -1,0 +1,29 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 2,
+  "goal": 2,
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "bakingdelight:silicon_component"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:diamond_component",
+    "count": 4
+  }
+}

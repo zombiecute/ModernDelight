@@ -9,7 +9,7 @@ import com.zombie_cute.mc.bakingdelight.item.custom.ModStewItem;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.DeepFryingRecipe;
 import com.zombie_cute.mc.bakingdelight.screen.custom.DeepFryerScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import com.zombie_cute.mc.bakingdelight.util.ModDamageTypes;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
@@ -20,16 +20,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -48,7 +49,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory, SidedInventory {
+public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>, SidedInventory {
     public DeepFryerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DEEP_FRYER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -121,7 +122,7 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
     }
     public boolean isBottleOil(Item item){
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ForgeTagKeys.BOTTLE_OIL)){
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.BOTTLE_OIL)){
             if (item == registryEntry.value()){
                 return true;
             }
@@ -129,7 +130,7 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         return false;
     }
     public boolean isBucketOil(Item item){
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ForgeTagKeys.BUCKET_OIL)){
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.BUCKET_OIL)){
             if (item == registryEntry.value()){
                 return true;
             }
@@ -206,9 +207,10 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         markDirty();
         world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
     private void spawnItemAndTryDamage(World world, PlayerEntity player, BlockState state){
         if (isHeated(state)){
@@ -269,16 +271,16 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         oilLevel = 10;
     }
     int maxProgress = 300;
-    public void tick(World world, BlockState state, DeepFryerBlockEntity blockEntity) {
+    public static void tick(World world,BlockPos pos, BlockState state, DeepFryerBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
-        if (progress1 != 0 || progress2 !=0 || progress3 != 0 || progress4 != 0){
-            playSound(ModSounds.BLOCK_FOOD_FRYING,0.4f,1.0f);
+        if (blockEntity.progress1 != 0 || blockEntity.progress2 !=0 || blockEntity.progress3 != 0 || blockEntity.progress4 != 0){
+            blockEntity.playSound(ModSounds.BLOCK_FOOD_FRYING,0.4f,1.0f);
         }
-        if (isHeated(state)){
-            isHeated = 1;
-            playSound(SoundEvents.BLOCK_FIRE_AMBIENT,0.3f,1.0f);
+        if (blockEntity.isHeated(state)){
+            blockEntity.isHeated = 1;
+            blockEntity.playSound(SoundEvents.BLOCK_FIRE_AMBIENT,0.3f,1.0f);
             Direction dir = state.get(DeepFryerBlock.FACING);
             BlockState neighborState = Blocks.AIR.getDefaultState();
             BlockPos neighborPos = pos;
@@ -306,72 +308,72 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
                     if (neighborBlockEntity instanceof GasCanisterBlockEntity entity && entity.getGasValue() != 0) {
                         entity.reduceGas();
                     } else {
-                        playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,1.0f,1.0f);
+                        blockEntity.playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,1.0f,1.0f);
                         world.setBlockState(pos,state.with(DeepFryerBlock.RUNNING,false));
                     }
                 } else {
-                    playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,1.0f,1.0f);
+                    blockEntity.playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,1.0f,1.0f);
                     world.setBlockState(pos,state.with(DeepFryerBlock.RUNNING,false));
                 }
             } else {
-                playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,1.0f,1.0f);
+                blockEntity.playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,1.0f,1.0f);
                 world.setBlockState(pos,state.with(DeepFryerBlock.RUNNING,false));
             }
-            if (getOilLevel() != 0){
-                if (hasRecipe(0)){
+            if (blockEntity.getOilLevel() != 0){
+                if (blockEntity.hasRecipe(0)){
                     blockEntity.progress1++;
-                    if (blockEntity.progress1 == maxProgress){
-                        craft(0, world);
-                        decreaseOilLevel(world,state);
+                    if (blockEntity.progress1 == blockEntity.maxProgress){
+                        blockEntity.craft(0, world);
+                        blockEntity.decreaseOilLevel(world,state);
                         blockEntity.progress1 = 0;
-                        playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
-                        markDirty();
+                        blockEntity.playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
+                        blockEntity.markDirty();
                     }
                 } else {
                     blockEntity.progress1 = 0;
                 }
-                if (hasRecipe(1)){
+                if (blockEntity.hasRecipe(1)){
                     blockEntity.progress2++;
-                    if (blockEntity.progress2 == maxProgress){
-                        craft(1, world);
-                        decreaseOilLevel(world,state);
+                    if (blockEntity.progress2 == blockEntity.maxProgress){
+                        blockEntity.craft(1, world);
+                        blockEntity.decreaseOilLevel(world,state);
                         blockEntity.progress2 = 0;
-                        playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
-                        markDirty();
+                        blockEntity.playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
+                        blockEntity.markDirty();
                     }
                 } else {
                     blockEntity.progress2 = 0;
                 }
-                if (hasRecipe(2)){
+                if (blockEntity.hasRecipe(2)){
                     blockEntity.progress3++;
-                    if (blockEntity.progress3 == maxProgress){
-                        craft(2, world);
-                        decreaseOilLevel(world,state);
+                    if (blockEntity.progress3 == blockEntity.maxProgress){
+                        blockEntity.craft(2, world);
+                        blockEntity.decreaseOilLevel(world,state);
                         blockEntity.progress3 = 0;
-                        playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
-                        markDirty();
+                        blockEntity.playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,2.0f);
+                        blockEntity.markDirty();
                     }
                 } else {
                     blockEntity.progress3 = 0;
                 }
-                if (hasRecipe(3)) {
+                if (blockEntity.hasRecipe(3)) {
                     blockEntity.progress4++;
-                    if (blockEntity.progress4 == maxProgress) {
-                        craft(3, world);
-                        decreaseOilLevel(world, state);
+                    if (blockEntity.progress4 == blockEntity.maxProgress) {
+                        blockEntity.craft(3, world);
+                        blockEntity.decreaseOilLevel(world, state);
                         blockEntity.progress4 = 0;
-                        playSound(ModSounds.BLOCK_FOOD_FRYING, 1.0f, 2.0f);
-                        markDirty();
+                        blockEntity.playSound(ModSounds.BLOCK_FOOD_FRYING, 1.0f, 2.0f);
+                        blockEntity.markDirty();
                     }
                 } else {
                     blockEntity.progress4 = 0;
                 }
             } else {
-                resetAllProgress();
+                blockEntity.resetAllProgress();
             }
         } else {
-            resetAllProgress();
-            isHeated = 0;
+            blockEntity.resetAllProgress();
+            blockEntity.isHeated = 0;
         }
     }
     private void resetAllProgress(){
@@ -403,46 +405,42 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         }
     }
     private void craft(int slot, World world){
-        SimpleInventory inventory = new SimpleInventory(1);
-        inventory.setStack(0,this.getStack(slot));
-        Optional<DeepFryingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                .getFirstMatch(DeepFryingRecipe.Type.INSTANCE, inventory,this.getWorld());
+        Optional<RecipeEntry<DeepFryingRecipe>> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
+                .getFirstMatch(DeepFryingRecipe.Type.INSTANCE, new SingleStackRecipeInput(this.getStack(slot)),this.getWorld());
         if (this.getStack(slot).getItem() instanceof ModStewItem){
             ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.BOWL));
         }
-        this.setStack(slot, new ItemStack(match.get().getOutput(null).getItem(),
-                match.get().getOutput(null).getCount()));
+        this.setStack(slot, new ItemStack(match.get().value().getResult(null).getItem(),
+                match.get().value().getResult(null).getCount()));
     }
     private boolean hasRecipe(int slot) {
-        SimpleInventory inventory = new SimpleInventory(1);
-        inventory.setStack(0,this.getStack(slot));
-        Optional<DeepFryingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                .getFirstMatch(DeepFryingRecipe.Type.INSTANCE, inventory,this.getWorld());
+        Optional<RecipeEntry<DeepFryingRecipe>> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
+                .getFirstMatch(DeepFryingRecipe.Type.INSTANCE, new SingleStackRecipeInput(this.getStack(slot)),this.getWorld());
         return match.isPresent();
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        Inventories.writeNbt(nbt, inventory, registryLookup);
         nbt.putInt("deep_fryer.progress1",progress1);
         nbt.putInt("deep_fryer.progress2",progress2);
         nbt.putInt("deep_fryer.progress3",progress3);
         nbt.putInt("deep_fryer.progress4",progress4);
         nbt.putInt("deep_fryer.oilLevel",oilLevel);
         nbt.putInt("deep_fryer.isHeated",isHeated);
+        super.writeNbt(nbt, registryLookup);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        Inventories.readNbt(nbt, inventory, registryLookup);
         progress1 = nbt.getInt("deep_fryer.progress1");
         progress2 = nbt.getInt("deep_fryer.progress2");
         progress3 = nbt.getInt("deep_fryer.progress3");
         progress4 = nbt.getInt("deep_fryer.progress4");
         oilLevel = nbt.getInt("deep_fryer.oilLevel");
         isHeated = nbt.getInt("deep_fryer.isHeated");
+        super.readNbt(nbt, registryLookup);
     }
     @Nullable
     @Override
@@ -455,10 +453,6 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
             world.updateListeners(pos, getCachedState(), getCachedState(), 3);
         }
         super.markDirty();
-    }
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
     }
 
     @Override
@@ -487,4 +481,8 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         return false;
     }
 
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
+    }
 }

@@ -3,8 +3,8 @@ package com.zombie_cute.mc.bakingdelight.compat.rei.wooden_basin;
 import com.zombie_cute.mc.bakingdelight.Bakingdelight;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.entities.WoodenBasinBlockEntity;
-import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -25,7 +25,7 @@ import java.util.List;
 
 public class WoodenBasinCategory implements DisplayCategory<WoodenBasinDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/wooden_basin.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/wooden_basin.png");
     public static final CategoryIdentifier<WoodenBasinDisplay> WOODEN_BASIN =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "wooden_basin");
     @Override
@@ -40,7 +40,7 @@ public class WoodenBasinCategory implements DisplayCategory<WoodenBasinDisplay> 
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.WOODEN_BASIN.asItem().getDefaultStack());
+        return EntryStacks.of(ModBlocks.WOODEN_BASIN.asItem(),1);
     }
     @Override
     public List<Widget> setupDisplay(WoodenBasinDisplay display, Rectangle bounds) {
@@ -53,12 +53,12 @@ public class WoodenBasinCategory implements DisplayCategory<WoodenBasinDisplay> 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 84,startPoint.y + 4))
                 .entries(EntryIngredients.ofItems(itemCollection)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 84,startPoint.y + 36))
-                .markInput().entry(EntryStacks.of(ModItems.FILTER.getDefaultStack())));
+                .markInput().entry(EntryStacks.of(ModItems.FILTER,1)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 39,startPoint.y + 36))
-                .markOutput().entry(EntryStacks.of(ModFluid.STILL_VEGETABLE_OIL)));
+                .markOutput().entries(EntryIngredients.ofFluidTag(TagKeys.OIL)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 129,startPoint.y + 36))
-                .markOutput().entry(EntryStacks.of(ModItems.OIL_IMPURITY)));
+                .markOutput().entry(EntryStacks.of(ModItems.OIL_IMPURITY,1)));
 
         return widgets;
     }

@@ -7,18 +7,16 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 
 public class CabinetScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public final CabinetBlockEntity blockEntity;
-    public CabinetScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos())
+    public CabinetScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos)
         );
     }
     public CabinetScreenHandler(int syncId, PlayerInventory playerInventory,
@@ -83,7 +81,7 @@ public class CabinetScreenHandler extends ScreenHandler {
 
     @Override
     public void onClosed(PlayerEntity player) {
-        player.playSound(SoundEvents.BLOCK_BARREL_CLOSE,SoundCategory.BLOCKS,1.0f,1.0f);
+        player.playSound(SoundEvents.BLOCK_BARREL_CLOSE);
         super.onClosed(player);
     }
 }

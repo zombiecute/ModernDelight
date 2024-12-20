@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:whisking",
+  "recipeItem": [
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:wheat_flour"
+  }
+}

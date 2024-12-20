@@ -14,7 +14,7 @@ public class ModFluid {
     public static final FlowableFluid FLOWING_VEGETABLE_OIL = registerFluid("flowing_vegetable_oil", new VegetableOilFluid.Flowing());
     public static final FlowableFluid STILL_VEGETABLE_OIL = registerFluid("still_vegetable_oil", new VegetableOilFluid.Still());
     public static FlowableFluid registerFluid(String name, FlowableFluid fluid){
-         return Registry.register(Registries.FLUID, new Identifier(Bakingdelight.MOD_ID,name),fluid);
+         return Registry.register(Registries.FLUID, Identifier.of(Bakingdelight.MOD_ID,name),fluid);
     }
     public static void registerModFluid(){
          Bakingdelight.LOGGER.info("Registering Mod Fluid for " + Bakingdelight.MOD_ID);

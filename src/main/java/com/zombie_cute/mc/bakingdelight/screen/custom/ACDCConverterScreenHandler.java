@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -18,18 +17,18 @@ public class ACDCConverterScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     public final ACDCConverterBlockEntity blockEntity;
-    public ACDCConverterScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(6));
+
+    public ACDCConverterScreenHandler(int i, PlayerInventory playerInventory, BlockPos pos) {
+        this(i,playerInventory, playerInventory.player.getWorld().getBlockEntity(pos),new ArrayPropertyDelegate(6));
     }
     public ACDCConverterScreenHandler(int syncId, PlayerInventory playerInventory,
                                       BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate){
         super(ModScreenHandlers.ACDC_CONVERTER_SCREEN_HANDLER,syncId);
-        checkSize(((Inventory) blockEntity),1);
-        this.inventory = ((Inventory) blockEntity);
+        checkSize((Inventory) blockEntity,1);
+        this.inventory = (Inventory) blockEntity;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = arrayPropertyDelegate;
-        this.blockEntity = ((ACDCConverterBlockEntity) blockEntity);
+        this.blockEntity = (ACDCConverterBlockEntity) blockEntity;
 
         this.addSlot(new Slot(inventory,0,152,52));
 

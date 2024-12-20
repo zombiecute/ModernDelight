@@ -72,7 +72,6 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModBlocks.BLACKSTONE_CABINET.asItem(),registerItemBlockModel(ModBlocks.BLACKSTONE_CABINET));
         itemModelGenerator.register(ModBlocks.OBSIDIAN_CABINET.asItem(),registerItemBlockModel(ModBlocks.OBSIDIAN_CABINET));
         itemModelGenerator.register(ModBlocks.PHOTOVOLTAIC_GENERATOR.asItem(),registerItemBlockModel(ModBlocks.PHOTOVOLTAIC_GENERATOR));
-        itemModelGenerator.register(ModBlocks.GAS_PIPE.asItem(),registerItemBlockModel(ModBlocks.GAS_PIPE));
         itemModelGenerator.register(ModBlocks.AC_DC_CONVERTER.asItem(),registerItemBlockModel(ModBlocks.AC_DC_CONVERTER));
         itemModelGenerator.register(ModBlocks.WIND_TURBINE_CONTROLLER.asItem(),registerItemBlockModel(ModBlocks.WIND_TURBINE_CONTROLLER));
         itemModelGenerator.register(ModBlocks.SIMPLE_BATTERY.asItem(),registerItemBlockModel(ModBlocks.SIMPLE_BATTERY));
@@ -161,7 +160,7 @@ public class ModModelGenerator extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.AMETHYST_KNIFE, Models.HANDHELD);
 
-        itemModelGenerator.register(ModItems.KNEADING_STICK, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.ROLLING_PIN, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SPATULA, Models.HANDHELD);
         itemModelGenerator.register(ModItems.FILTER, Models.GENERATED);
 
@@ -278,6 +277,6 @@ public class ModModelGenerator extends FabricModelProvider {
     }
     private static Model registerItemBlockModel(Block parent, TextureKey ... requiredTextureKeys) {
         String name = ModelIds.getBlockModelId(parent).getPath();
-        return new Model(Optional.of(new Identifier(Bakingdelight.MOD_ID, name)), Optional.empty(), requiredTextureKeys);
+        return new Model(Optional.of(Identifier.of(Bakingdelight.MOD_ID, name)), Optional.empty(), requiredTextureKeys);
     }
 }

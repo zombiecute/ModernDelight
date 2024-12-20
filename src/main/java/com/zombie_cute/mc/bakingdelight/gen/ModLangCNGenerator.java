@@ -14,24 +14,27 @@ import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlMixWithWa
 import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlWhiskingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.pizza.PizzaMakingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.transform.OvenTransformCategory;
-import com.zombie_cute.mc.bakingdelight.effects.ModEffectsAndPotions;
+import com.zombie_cute.mc.bakingdelight.effects.ModEffects;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
-import com.zombie_cute.mc.bakingdelight.util.Flavor;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import com.zombie_cute.mc.bakingdelight.util.ModUtil;
+import com.zombie_cute.mc.bakingdelight.util.components.cumstom.FlavorComponent;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModLangCNGenerator extends FabricLanguageProvider {
-    public ModLangCNGenerator(FabricDataOutput dataOutput) {
-        super(dataOutput, "zh_cn");
+    public ModLangCNGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, "zh_cn", registryLookup);
     }
 
     @Override
-    public void generateTranslations(@NotNull TranslationBuilder translationBuilder) {
+    public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(ModUtil.SHIFT_FRONT, "按住 ");
         translationBuilder.add(ModUtil.SHIFT_END, " 以查看概要");
         translationBuilder.add(ModUtil.WHISK_1, "一款搅拌器可以用于搅拌或打发食材");
@@ -42,7 +45,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModUtil.CUTTLEBONE, "被紫水晶工具击杀时掉落");
         translationBuilder.add(ModUtil.FILTER_1, "一款由线织成的过滤器，可以");
         translationBuilder.add(ModUtil.FILTER_2, "放在木盆中用于过滤油和渣");
-        translationBuilder.add(ModUtil.KNEADING_STICK, "打人与擀面兼备");
+        translationBuilder.add(ModUtil.ROLLING_PIN, "打人与擀面兼备");
         translationBuilder.add(ModUtil.SPATULA, "可以搭配受热的烤盘一起使用来炒菜");
         translationBuilder.add(ModUtil.BDC_1, "它是构成沼气池的核心部件，当它下有一个平");
         translationBuilder.add(ModUtil.BDC_2, "整的完全密封的长方体区域时，这块区域就会");
@@ -151,7 +154,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.COPPER_KNIFE, "铜刀");
         translationBuilder.add(ModItems.AMETHYST_KNIFE, "紫水晶刀");
-        translationBuilder.add(ModItems.KNEADING_STICK, "擀面杖");
+        translationBuilder.add(ModItems.ROLLING_PIN, "擀面杖");
         translationBuilder.add(ModItems.CROWBAR, "撬棍");
         translationBuilder.add(ModItems.SPATULA, "锅铲");
         translationBuilder.add(ModItems.FILTER, "过滤网");
@@ -344,15 +347,15 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.PIZZA_WIP, "披萨（半成品）");
         translationBuilder.add(ModItems.ANCIENT_SCRAP, "远古残片");
 
-        translationBuilder.add(Flavor.TRANSLATION_KEY, "口味");
-        translationBuilder.add(Flavor.NULL.getTranslationKey(), "未知");
-        translationBuilder.add(Flavor.PLAIN.getTranslationKey(), "原味");
-        translationBuilder.add(Flavor.APPLE.getTranslationKey(), "苹果味");
-        translationBuilder.add(Flavor.CHERRY.getTranslationKey(), "樱桃味");
-        translationBuilder.add(Flavor.CHOCOLATE.getTranslationKey(), "巧克力味");
-        translationBuilder.add(Flavor.GOLDEN_APPLE.getTranslationKey(), "金苹果味");
-        translationBuilder.add(Flavor.MATCHA.getTranslationKey(), "抹茶味");
-        translationBuilder.add(Flavor.PUMPKIN.getTranslationKey(), "南瓜味");
+        translationBuilder.add(FlavorComponent.TRANSLATION_KEY, "口味");
+        translationBuilder.add(FlavorComponent.NULL.getTranslationKey(), "未知");
+        translationBuilder.add(FlavorComponent.PLAIN.getTranslationKey(), "原味");
+        translationBuilder.add(FlavorComponent.APPLE.getTranslationKey(), "苹果味");
+        translationBuilder.add(FlavorComponent.CHERRY.getTranslationKey(), "樱桃味");
+        translationBuilder.add(FlavorComponent.CHOCOLATE.getTranslationKey(), "巧克力味");
+        translationBuilder.add(FlavorComponent.GOLDEN_APPLE.getTranslationKey(), "金苹果味");
+        translationBuilder.add(FlavorComponent.MATCHA.getTranslationKey(), "抹茶味");
+        translationBuilder.add(FlavorComponent.PUMPKIN.getTranslationKey(), "南瓜味");
 
         translationBuilder.add(ModBlocks.GLASS_BOWL, "玻璃碗");
         translationBuilder.add(GlassBowlWhiskingCategory.GLASS_BOWL_NAME, "搅拌");
@@ -406,7 +409,6 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_1, "低效率模式：");
         translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_2, "附近有足够的光照时启动");
         translationBuilder.add(PhotovoltaicGeneratorScreen.TipScreen.YELLOW_TIP_3, " ");
-        translationBuilder.add(ModBlocks.GAS_PIPE, "燃气管道");
         translationBuilder.add(ModBlocks.AC_DC_CONVERTER, "交流/直流转换器");
         translationBuilder.add(ModBlocks.FAN_BLADE_ITEM, "风力发电机叶片");
         translationBuilder.add(ModBlocks.WIND_TURBINE_CONTROLLER, "风力发电机控制器");
@@ -441,34 +443,84 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "奶油");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "植物油");
 
-        translationBuilder.add(ModEffectsAndPotions.STICKY,"黏糊糊");
+        translationBuilder.add(ModEffects.STICKY.value(),"黏糊糊");
 
-        translationBuilder.add("item.minecraft.potion.effect.sticky_potion","黏脚药水");
-        translationBuilder.add("item.minecraft.potion.effect.sticky_long_potion","黏脚药水");
+        translationBuilder.add(TagKeys.AMETHYST_TOOLS,"紫水晶工具");
+        translationBuilder.add(TagKeys.BOTTLE_OIL,"瓶装食用油");
+        translationBuilder.add(TagKeys.BREADS,"面包");
+        translationBuilder.add(TagKeys.BREAD_WHEAT,"小麦面包");
+        translationBuilder.add(TagKeys.BUCKET_OIL,"桶装食用油");
+        translationBuilder.add(TagKeys.C_DOUGH,"面团");
+        translationBuilder.add(TagKeys.C_FLOUR,"面粉");
+        translationBuilder.add(TagKeys.CABBAGE,"卷心菜");
+        translationBuilder.add(TagKeys.C_WHEAT_DOUGH,"小麦面团");
+        translationBuilder.add(TagKeys.COLD_ITEMS,"制冷剂");
+        translationBuilder.add(TagKeys.C_WHEAT_FLOUR,"小麦面粉");
+        translationBuilder.add(TagKeys.COOKED_MEATS,"熟肉");
+        translationBuilder.add(TagKeys.COOKED_PORK,"熟猪肉");
+        translationBuilder.add(TagKeys.CREAMS,"奶油");
+        translationBuilder.add(TagKeys.CROP_BLACK_PEPPER,"黑胡椒作物");
+        translationBuilder.add(TagKeys.CROP_GARLIC,"大蒜作物");
+        translationBuilder.add(TagKeys.CROPS,"作物");
+        translationBuilder.add(TagKeys.CROWBAR_DESTROYABLE,"撬棍可拆除的方块");
+        translationBuilder.add(TagKeys.CROWBARS,"撬棍");
+        translationBuilder.add(TagKeys.CUTTLEBONES,"鱿鱼骨");
+        translationBuilder.add(TagKeys.DANGER_BLOCKS,"危险的方块");
+        translationBuilder.add(TagKeys.DOUGHS,"面团");
+        translationBuilder.add(TagKeys.DOUGH_WHEAT,"小麦面团");
+        translationBuilder.add(TagKeys.FILTERS,"过滤器");
+        translationBuilder.add(TagKeys.FOODS,"食物");
+        translationBuilder.add(TagKeys.FLOWER_CAKES,"鲜花饼");
+        translationBuilder.add(TagKeys.FLOURS,"面粉");
+        translationBuilder.add(TagKeys.FLAT_ON_BAKING_TRAY,"在烤盘上平躺的物品");
+        translationBuilder.add(TagKeys.HEAT_SOURCES,"加热源");
+        translationBuilder.add(TagKeys.ICE_CREAMS,"冰淇淋");
+        translationBuilder.add(TagKeys.INGOTS,"锭");
+        translationBuilder.add(TagKeys.ICE_LOLLIES,"冰棍");
+        translationBuilder.add(TagKeys.ROLLING_PINS,"擀面杖");
+        translationBuilder.add(TagKeys.MILKS,"牛奶");
+        translationBuilder.add(TagKeys.MOUSSES,"慕斯");
+        translationBuilder.add(TagKeys.OIL,"食用油");
+        translationBuilder.add(TagKeys.OIL_PLANTS,"油料作物");
+        translationBuilder.add(TagKeys.PRAWNS,"虾");
+        translationBuilder.add(TagKeys.PIZZA_INGREDIENTS,"披萨原材料");
+        translationBuilder.add(TagKeys.PUMPKINS,"南瓜");
+        translationBuilder.add(TagKeys.PUDDINGS,"布丁");
+        translationBuilder.add(TagKeys.PASSIVE_BOILER_HEATERS,"锅炉被动热源");
+        translationBuilder.add(TagKeys.RAW_FISHES,"生鱼");
+        translationBuilder.add(TagKeys.RAW_MEATS,"生肉");
+        translationBuilder.add(TagKeys.RAW_PORK,"生猪肉");
+        translationBuilder.add(TagKeys.SAUSAGES,"香肠");
+        translationBuilder.add(TagKeys.SILICON,"硅");
+        translationBuilder.add(TagKeys.SEED_GARLIC,"大蒜种子");
+        translationBuilder.add(TagKeys.SPATULAS,"锅铲");
+        translationBuilder.add(TagKeys.SEEDS,"种子");
+        translationBuilder.add(TagKeys.SQUIDS,"鱿鱼");
+        translationBuilder.add(TagKeys.SEED_BLACK_PEPPERS,"黑胡椒种子");
+        translationBuilder.add(TagKeys.STORAGE_BLOCKS,"存储方块");
+        translationBuilder.add(TagKeys.TOOLS,"工具");
+        translationBuilder.add(TagKeys.TOOLS_KNIVES,"刀");
+        translationBuilder.add(TagKeys.TRUFFLES,"松露");
+        translationBuilder.add(TagKeys.WHISKS,"搅拌器");
+
         translationBuilder.add("item.minecraft.potion.effect.squid_power_potion","鱿鱼药水");
         translationBuilder.add("item.minecraft.potion.effect.squid_power_long_potion","鱿鱼药水");
         translationBuilder.add("item.minecraft.potion.effect.squid_power_strong_potion","鱿鱼药水");
         translationBuilder.add("item.minecraft.potion.effect.glow_squid_power_potion","发光鱿鱼药水");
         translationBuilder.add("item.minecraft.potion.effect.glow_squid_power_long_potion","发光鱿鱼药水");
         translationBuilder.add("item.minecraft.potion.effect.glow_squid_power_strong_potion","发光鱿鱼药水");
-        translationBuilder.add("item.minecraft.splash_potion.effect.sticky_potion","喷溅型黏脚药水");
-        translationBuilder.add("item.minecraft.splash_potion.effect.sticky_long_potion","喷溅型黏脚药水");
         translationBuilder.add("item.minecraft.splash_potion.effect.squid_power_potion","喷溅型鱿鱼药水");
         translationBuilder.add("item.minecraft.splash_potion.effect.squid_power_long_potion","喷溅型鱿鱼药水");
         translationBuilder.add("item.minecraft.splash_potion.effect.squid_power_strong_potion","喷溅型鱿鱼药水");
         translationBuilder.add("item.minecraft.splash_potion.effect.glow_squid_power_potion","喷溅型发光鱿鱼药水");
         translationBuilder.add("item.minecraft.splash_potion.effect.glow_squid_power_long_potion","喷溅型发光鱿鱼药水");
         translationBuilder.add("item.minecraft.splash_potion.effect.glow_squid_power_strong_potion","喷溅型发光鱿鱼药水");
-        translationBuilder.add("item.minecraft.lingering_potion.effect.sticky_potion","滞留型黏脚药水");
-        translationBuilder.add("item.minecraft.lingering_potion.effect.sticky_long_potion","滞留型黏脚药水");
         translationBuilder.add("item.minecraft.lingering_potion.effect.squid_power_potion","滞留型鱿鱼药水");
         translationBuilder.add("item.minecraft.lingering_potion.effect.squid_power_long_potion","滞留型鱿鱼药水");
         translationBuilder.add("item.minecraft.lingering_potion.effect.squid_power_strong_potion","滞留型鱿鱼药水");
         translationBuilder.add("item.minecraft.lingering_potion.effect.glow_squid_power_potion","滞留型发光鱿鱼药水");
         translationBuilder.add("item.minecraft.lingering_potion.effect.glow_squid_power_long_potion","滞留型发光鱿鱼药水");
         translationBuilder.add("item.minecraft.lingering_potion.effect.glow_squid_power_strong_potion","滞留型发光鱿鱼药水");
-        translationBuilder.add("item.minecraft.tipped_arrow.effect.sticky_potion","黏脚之箭");
-        translationBuilder.add("item.minecraft.tipped_arrow.effect.sticky_long_potion","黏脚之箭");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.squid_power_potion","鱿鱼之箭");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.squid_power_long_potion","鱿鱼之箭");
         translationBuilder.add("item.minecraft.tipped_arrow.effect.squid_power_strong_potion","鱿鱼之箭");

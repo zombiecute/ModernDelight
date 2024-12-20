@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "bakingdelight:sausage"
+    },
+    {
+      "tag": "c:tools/knife"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:sectioned_sausage",
+    "count": 1
+  }
+}

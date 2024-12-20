@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "bdc": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:biogas_digester_controller"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "bdi": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:biogas_digester_io"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.bdc_bdi.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:biogas_digester_io"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.bdc_bdi.title"
+    }
+  },
+  "requirements": [
+    [
+      "bdc"
+    ],
+    [
+      "bdi"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

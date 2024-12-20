@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "cookingtime": 100,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "bakingdelight:raw_squid_tentacle_kebabs"
+  },
+  "result": {
+    "id": "bakingdelight:squid_tentacle_kebabs"
+  }
+}

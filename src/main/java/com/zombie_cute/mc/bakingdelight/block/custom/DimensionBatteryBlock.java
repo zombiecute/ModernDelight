@@ -1,10 +1,12 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.custom.abstracts.AbstractBatteryBlock;
 import com.zombie_cute.mc.bakingdelight.block.entities.BatteryBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +17,11 @@ import org.jetbrains.annotations.Nullable;
 public class DimensionBatteryBlock extends AbstractBatteryBlock {
     public DimensionBatteryBlock(Settings settings) {
         super(settings);
+    }
+    public static final MapCodec<DimensionBatteryBlock> CODEC = createCodec(DimensionBatteryBlock::new);
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
     public static int getMaxPower(){
         return 300000;

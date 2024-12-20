@@ -1,0 +1,28 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 3,
+  "goal": 3,
+  "ingredients": [
+    {
+      "tag": "c:zinc_ingots"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "tag": "c:zinc_ingots"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:simple_battery"
+  }
+}

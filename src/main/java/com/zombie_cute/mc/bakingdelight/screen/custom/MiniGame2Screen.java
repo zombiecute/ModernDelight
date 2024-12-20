@@ -10,7 +10,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.sound.SoundEvents;
@@ -18,7 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.*;
+import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
 public class MiniGame2Screen extends Screen {
@@ -55,7 +54,7 @@ public class MiniGame2Screen extends Screen {
     private Pos2 selectedPos2;
     private Pos2 tempPos2;
     boolean canNextChange = true;
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/mini_game_2_gui.png");
     private void randomStage(int type){
         switch (type){
@@ -281,9 +280,8 @@ public class MiniGame2Screen extends Screen {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1f,1f,1f,1f);
-        RenderSystem.setShaderTexture(0,TEXTURE);
+        super.render(context, mouseX, mouseY, delta);
+
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight,512,512);
         renderDoneButton(context,mouseX,mouseY);
         renderResetButton(context,mouseX,mouseY);
@@ -299,7 +297,6 @@ public class MiniGame2Screen extends Screen {
         renderBluePrintButton(context,mouseX,mouseY);
 
         RenderSystem.disableDepthTest();
-        super.render(context, mouseX, mouseY, delta);
         context.getMatrices().push();
         context.getMatrices().translate(x, y, 0.0F);
     }
@@ -1085,7 +1082,7 @@ public class MiniGame2Screen extends Screen {
                 .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
     }
     private void handleEndingGame() {
-        int[] array = new int[1];
+        byte[] array = new byte[1];
         array[0] = 1;
         NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
         MinecraftClient.getInstance().getSoundManager()
@@ -1131,7 +1128,7 @@ public class MiniGame2Screen extends Screen {
     }
     @Override
     public void close() {
-        int[] array = new int[1];
+        byte[] array = new byte[1];
         array[0] = 4;
         NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
         Objects.requireNonNull(client).setScreen(parent);

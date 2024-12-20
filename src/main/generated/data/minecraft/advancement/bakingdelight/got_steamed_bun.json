@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_bamboo_steamer",
+  "criteria": {
+    "steamed_bun": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:steamed_bun"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.steamed_bun.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:steamed_bun"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.steamed_bun.title"
+    }
+  },
+  "requirements": [
+    [
+      "steamed_bun"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

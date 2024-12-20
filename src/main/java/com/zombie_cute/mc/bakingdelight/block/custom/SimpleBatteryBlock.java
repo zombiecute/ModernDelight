@@ -1,10 +1,12 @@
 package com.zombie_cute.mc.bakingdelight.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.custom.abstracts.AbstractBatteryBlock;
 import com.zombie_cute.mc.bakingdelight.block.entities.BatteryBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +18,11 @@ public class SimpleBatteryBlock extends AbstractBatteryBlock {
     public SimpleBatteryBlock(Settings settings) {
         super(settings);
     }
-
+    public static final MapCodec<SimpleBatteryBlock> CODEC = createCodec((SimpleBatteryBlock::new));
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
     @Override
     protected Block getBlock() {
         return ModBlocks.SIMPLE_BATTERY;

@@ -1,0 +1,29 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 1,
+  "goal": 64,
+  "ingredients": [
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "minecraft:amethyst_block"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "minecraft:repeater"
+    },
+    {
+      "item": "minecraft:comparator"
+    },
+    {
+      "item": "minecraft:repeater"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:redstone_component",
+    "count": 4
+  }
+}

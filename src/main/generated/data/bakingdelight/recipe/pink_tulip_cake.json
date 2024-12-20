@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:pink_tulip"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "bakingdelight:empty_cake"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:pink_tulip_cake"
+  }
+}

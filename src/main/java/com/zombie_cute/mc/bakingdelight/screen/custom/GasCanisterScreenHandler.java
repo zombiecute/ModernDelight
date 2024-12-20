@@ -8,7 +8,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -18,8 +17,8 @@ import net.minecraft.util.math.BlockPos;
 public class GasCanisterScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
     public final GasCanisterBlockEntity blockEntity;
-    public GasCanisterScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
+    public GasCanisterScreenHandler(int i, PlayerInventory playerInventory, BlockPos pos) {
+        this(i, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos),
                 new ArrayPropertyDelegate(2));
     }
     public GasCanisterScreenHandler(int syncId, PlayerInventory playerInventory,

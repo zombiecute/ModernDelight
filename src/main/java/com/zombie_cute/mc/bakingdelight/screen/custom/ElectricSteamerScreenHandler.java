@@ -10,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +17,8 @@ import net.minecraft.util.math.BlockPos;
 public class ElectricSteamerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public final ElectricSteamerBlockEntity blockEntity;
-    public ElectricSteamerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()));
+    public ElectricSteamerScreenHandler(int i, PlayerInventory playerInventory, BlockPos pos) {
+        this(i, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos));
     }
     public ElectricSteamerScreenHandler(int syncId, PlayerInventory playerInventory,
                                         BlockEntity blockEntity){

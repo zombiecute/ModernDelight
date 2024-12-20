@@ -8,6 +8,8 @@ import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
@@ -21,20 +23,20 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
+@Environment(EnvType.CLIENT)
 public class BakingdelightClient implements ClientModInitializer {
     public static final String ORE_UI_DARK = "bakingdelight.builtInResourcePack.ore_ui_dark";
     public static final String ORE_UI_BRIGHT = "bakingdelight.builtInResourcePack.ore_ui_bright";
     @Override
     public void onInitializeClient() {
         ResourceManagerHelper.registerBuiltinResourcePack(
-                new Identifier(Bakingdelight.MOD_ID, "ore_ui_dark"),
+                Identifier.of(Bakingdelight.MOD_ID, "ore_ui_dark"),
                 FabricLoader.getInstance().getModContainer(Bakingdelight.MOD_ID).orElseThrow(),
                 Text.translatable(ORE_UI_DARK),
                 ResourcePackActivationType.NORMAL
         );
         ResourceManagerHelper.registerBuiltinResourcePack(
-                new Identifier(Bakingdelight.MOD_ID, "ore_ui_bright"),
+                Identifier.of(Bakingdelight.MOD_ID, "ore_ui_bright"),
                 FabricLoader.getInstance().getModContainer(Bakingdelight.MOD_ID).orElseThrow(),
                 Text.translatable(ORE_UI_BRIGHT),
                 ResourcePackActivationType.NORMAL
@@ -86,15 +88,15 @@ public class BakingdelightClient implements ClientModInitializer {
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_CREAM, ModFluid.FLOWING_CREAM,
                 new SimpleFluidRenderHandler(
-                new Identifier(Bakingdelight.MOD_ID,"block/cream_still"),
-                new Identifier(Bakingdelight.MOD_ID,"block/cream_flow")
+                Identifier.of(Bakingdelight.MOD_ID,"block/cream_still"),
+                Identifier.of(Bakingdelight.MOD_ID,"block/cream_flow")
         ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
                 ModFluid.STILL_CREAM, ModFluid.FLOWING_CREAM);
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_VEGETABLE_OIL, ModFluid.FLOWING_VEGETABLE_OIL,
                 new SimpleFluidRenderHandler(
-                        new Identifier(Bakingdelight.MOD_ID,"block/vegetable_oil_still"),
-                        new Identifier(Bakingdelight.MOD_ID,"block/vegetable_oil_flow")
+                        Identifier.of(Bakingdelight.MOD_ID,"block/vegetable_oil_still"),
+                        Identifier.of(Bakingdelight.MOD_ID,"block/vegetable_oil_flow")
                 ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluid.STILL_VEGETABLE_OIL, ModFluid.FLOWING_VEGETABLE_OIL);

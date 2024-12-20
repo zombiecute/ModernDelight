@@ -10,15 +10,19 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
 
-    public ModBlockLootGenerator(FabricDataOutput dataOutput) {
-        super(dataOutput);
+    public ModBlockLootGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput,registryLookup);
     }
 
     @Override
@@ -47,7 +51,6 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.DIORITE_CABINET);
         addDrop(ModBlocks.OBSIDIAN_CABINET);
         addDrop(ModBlocks.PHOTOVOLTAIC_GENERATOR);
-        addDrop(ModBlocks.GAS_PIPE);
         addDrop(ModBlocks.AC_DC_CONVERTER);
         addDrop(ModBlocks.FAN_BLADE);
         addDrop(ModBlocks.WIND_TURBINE_CONTROLLER);
@@ -65,35 +68,35 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CHARGING_POST);
         addDrop(ModBlocks.FISH_AND_CHIPS,block -> new LootTable.Builder()
                 .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
+                        .rolls(ConstantLootNumberProvider.create(2))
                         .with(ItemEntry.builder(ModItems.DIRTY_PACKAGING_BAG))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 2.0f)).build()))
+                )
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .with(ItemEntry.builder(Items.BOWL))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())));
+                        ));
         addDrop(ModBlocks.WILD_PEPPER_CROP,block -> new LootTable.Builder()
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
+                        .conditionally(createWithoutShearsOrSilkTouchCondition())
                         .with(ItemEntry.builder(ModItems.BLACK_PEPPER_CORN))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build()))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f,2.0f))))
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(WITH_SILK_TOUCH_OR_SHEARS)
+                        .conditionally(createWithShearsOrSilkTouchCondition())
                         .with(ItemEntry.builder(ModBlocks.WILD_PEPPER_CROP))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())));
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)))));
         addDrop(ModBlocks.WILD_GARLIC,block -> new LootTable.Builder()
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
+                        .conditionally(createWithoutShearsOrSilkTouchCondition())
                         .with(ItemEntry.builder(ModItems.GARLIC))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build()))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f))))
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(WITH_SILK_TOUCH_OR_SHEARS)
+                        .conditionally(createWithShearsOrSilkTouchCondition())
                         .with(ItemEntry.builder(ModBlocks.WILD_GARLIC))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())));
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)))));
 
         this.addDrop(ModBlocks.BLACK_PEPPER_CROP,
                 this.cropDrops(ModBlocks.BLACK_PEPPER_CROP, Items.STICK, ModItems.BLACK_PEPPER_CORN,

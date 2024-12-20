@@ -22,7 +22,7 @@ import java.util.List;
 
 public class AssemblyCategory implements DisplayCategory<AssemblyDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/assembly.png");
+            Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/assembly.png");
     public static final CategoryIdentifier<AssemblyDisplay> ASSEMBLY =
             CategoryIdentifier.of(Bakingdelight.MOD_ID, "assembly");
 
@@ -38,11 +38,10 @@ public class AssemblyCategory implements DisplayCategory<AssemblyDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.ELECTRICIANS_DESK.asItem().getDefaultStack());
+        return EntryStacks.of(ModBlocks.ELECTRICIANS_DESK,1);
     }
-
     @Override
-    public List<Widget> setupDisplay(AssemblyDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(AssemblyDisplay display, me.shedaniel.math.Rectangle bounds) {
         final Point startPoint = new Point(bounds.getCenterX() - 77, bounds.getCenterY() - 35);
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,70)));
@@ -61,7 +60,7 @@ public class AssemblyCategory implements DisplayCategory<AssemblyDisplay> {
                 .entries(display.getInputEntries().get(5)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 123,startPoint.y + 9))
-                .entries(EntryIngredients.of(Items.PAPER)));
+                .entries(EntryIngredients.of(Items.PAPER,1)));
         HashSet<ItemConvertible> items = new HashSet<>();
         items.add(Items.INK_SAC);
         items.add(Items.GLOW_INK_SAC);

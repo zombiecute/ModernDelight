@@ -8,6 +8,7 @@ import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.block.Blocks;
 import net.minecraft.recipe.CampfireCookingRecipe;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
 
@@ -70,34 +71,34 @@ public class BakingDelightEMIPlugin implements EmiPlugin {
 
 
         RecipeManager manager = registry.getRecipeManager();
-        for (MixWithWaterRecipe recipe : manager.listAllOfType(MixWithWaterRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMIMixWithWaterRecipe(recipe));
+        for (RecipeEntry<MixWithWaterRecipe> recipe : manager.listAllOfType(MixWithWaterRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIMixWithWaterRecipe(recipe.value()));
         }
-        for (WhiskingRecipe recipe : manager.listAllOfType(WhiskingRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMIWhiskingRecipe(recipe));
+        for (RecipeEntry<WhiskingRecipe> recipe : manager.listAllOfType(WhiskingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIWhiskingRecipe(recipe.value()));
         }
-        for (AssemblyRecipe recipe : manager.listAllOfType(AssemblyRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMIAssemblyRecipe(recipe));
+        for (RecipeEntry<AssemblyRecipe> recipe : manager.listAllOfType(AssemblyRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIAssemblyRecipe(recipe.value()));
         }
-        for (CampfireCookingRecipe recipe : manager.listAllOfType(RecipeType.CAMPFIRE_COOKING)) {
-            registry.addRecipe(new EMIBakingTrayRecipe(recipe));
+        for (RecipeEntry<CampfireCookingRecipe> recipe : manager.listAllOfType(RecipeType.CAMPFIRE_COOKING)) {
+            registry.addRecipe(new EMIBakingTrayRecipe(recipe.value()));
         }
         registry.addRecipe(new EMIBiogasFermentationRecipe());
-        for (CuisineRecipe recipe : manager.listAllOfType(CuisineRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMICuisineRecipe(recipe));
+        for (RecipeEntry<CuisineRecipe> recipe : manager.listAllOfType(CuisineRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMICuisineRecipe(recipe.value()));
         }
-        for (DeepFryingRecipe recipe : manager.listAllOfType(DeepFryingRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMIDeepFryingRecipe(recipe));
+        for (RecipeEntry<DeepFryingRecipe> recipe : manager.listAllOfType(DeepFryingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIDeepFryingRecipe(recipe.value()));
         }
-        for (FreezingRecipe recipe : manager.listAllOfType(FreezingRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMIFreezingRecipe(recipe));
+        for (RecipeEntry<FreezingRecipe> recipe : manager.listAllOfType(FreezingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIFreezingRecipe(recipe.value()));
         }
-        for (BakingRecipe recipe : manager.listAllOfType(BakingRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMIBakingRecipe(recipe));
+        for (RecipeEntry<BakingRecipe> recipe : manager.listAllOfType(BakingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIBakingRecipe(recipe.value()));
         }
         registry.addRecipe(new EMIPizzaRecipe());
-        for (SteamingRecipe recipe : manager.listAllOfType(SteamingRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new EMISteamingRecipe(recipe));
+        for (RecipeEntry<SteamingRecipe> recipe : manager.listAllOfType(SteamingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMISteamingRecipe(recipe.value()));
         }
         registry.addRecipe(new EMIAdvanceFurnaceRecipe());
         registry.addRecipe(new EMIOvenRecipe());

@@ -14,18 +14,18 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class EMIMixWithWaterRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
+    public static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.GLASS_BOWL);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "mix_with_water"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(Bakingdelight.MOD_ID, "mix_with_water"), WORKSTATION);
     private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIMixWithWaterRecipe(MixWithWaterRecipe recipe) {
-        this.id = recipe.getId();
+        this.id = Identifier.of(Bakingdelight.MOD_ID,recipe.getResult(null).getTranslationKey()+recipe.hashCode());
         this.input = List.of(EmiIngredient.of(recipe.getIngredients().get(0)));
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {

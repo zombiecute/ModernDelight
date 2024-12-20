@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.Objects;
 
 public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGeneratorScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
             "textures/gui/photovoltaic_generator_gui.png");
     public PhotovoltaicGeneratorScreen(PhotovoltaicGeneratorScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -39,7 +39,6 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
         RenderSystem.setShaderTexture(0,TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
         renderYText(context, x, y);
         renderPowerLevel(context,x,y);
@@ -120,7 +119,7 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }
@@ -132,7 +131,7 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
             this.parent = parent;
             this.blockEntity = blockEntity;
         }
-        private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+        private static final Identifier TEXTURE = Identifier.of(Bakingdelight.MOD_ID,
                 "textures/gui/photovoltaic_generator_gui.png");
         private final int backgroundWidth = 176;
         private final int backgroundHeight = 77;
@@ -156,9 +155,7 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
         }
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-            RenderSystem.setShaderColor(1f,1f,1f,1f);
-            RenderSystem.setShaderTexture(0,TEXTURE);
+            super.render(context, mouseX, mouseY, delta);
             context.drawTexture(TEXTURE, x, y, 0, 166, backgroundWidth,backgroundHeight);
             if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
                 context.drawTexture(TEXTURE,x+161,y+5,176,171,11,11);
@@ -175,7 +172,6 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
                     x+19,y+48,0xffffff,true);
             context.drawText(textRenderer,Text.translatable(YELLOW_TIP_3),
                     x+19,y+58,0xffffff,true);
-            super.render(context, mouseX, mouseY, delta);
         }
 
         @Override

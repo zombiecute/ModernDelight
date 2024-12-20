@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "tag": "c:tools/knife"
+    }
+  ],
+  "output": {
+    "id": "bakingdelight:streaky_pork",
+    "count": 1
+  }
+}

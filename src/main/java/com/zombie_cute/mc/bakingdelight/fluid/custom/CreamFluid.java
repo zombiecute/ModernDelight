@@ -45,6 +45,11 @@ public abstract class CreamFluid extends ModAbstractFluid {
         }
 
         @Override
+        protected int getMaxFlowDistance(WorldView world) {
+            return 6;
+        }
+
+        @Override
         public int getLevel(FluidState fluidState) {
             return fluidState.get(LEVEL);
         }
@@ -55,6 +60,11 @@ public abstract class CreamFluid extends ModAbstractFluid {
         }
     }
     public static class Still extends CreamFluid {
+        @Override
+        protected int getMaxFlowDistance(WorldView world) {
+            return 6;
+        }
+
         @Override
         public int getLevel(FluidState fluidState) {
             return 5;

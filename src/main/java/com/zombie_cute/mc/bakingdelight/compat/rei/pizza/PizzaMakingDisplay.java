@@ -2,8 +2,7 @@ package com.zombie_cute.mc.bakingdelight.compat.rei.pizza;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -24,10 +23,10 @@ public class PizzaMakingDisplay implements Display {
         stacks.add(ModItems.CHEESE.getDefaultStack());
         stacks.add(ModBlocks.PIZZA_WIP.asItem().getDefaultStack());
         stacks.add(ModBlocks.WHEAT_DOUGH.asItem().getDefaultStack());
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.KNEADING_STICKS)) {
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.ROLLING_PINS)) {
             stacks.add(registryEntry.value().getDefaultStack());
         }
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ForgeTagKeys.PIZZA_INGREDIENTS)) {
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.PIZZA_INGREDIENTS)) {
             stacks.add(registryEntry.value().getDefaultStack());
         }
         return List.of(EntryIngredients.ofItemStacks(stacks));

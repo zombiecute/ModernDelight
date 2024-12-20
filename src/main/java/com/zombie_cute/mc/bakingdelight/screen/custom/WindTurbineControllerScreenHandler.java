@@ -8,7 +8,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -18,8 +17,8 @@ import net.minecraft.util.math.BlockPos;
 public class WindTurbineControllerScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
     public final WindTurbineControllerBlockEntity blockEntity;
-    public WindTurbineControllerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
+    public WindTurbineControllerScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos),
                 new ArrayPropertyDelegate(3));
     }
     public WindTurbineControllerScreenHandler(int syncId, PlayerInventory playerInventory,

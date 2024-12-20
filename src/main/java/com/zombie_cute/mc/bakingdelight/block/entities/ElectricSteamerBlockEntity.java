@@ -13,10 +13,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -29,24 +30,26 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, ACConsumer, SidedInventory {
+public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, ACConsumer, SidedInventory {
     public ElectricSteamerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ELECTRIC_STEAMER_BLOCK_ENTITY, pos, state);
     }
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(8,ItemStack.EMPTY);
     private int cachedPower = 0;
     private final int[] progresses = new int[8];
+
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, inventory,registryLookup);
         nbt.putInt("electric_steamer.cachedPower",cachedPower);
         nbt.putIntArray("electric_steamer.progresses",progresses);
     }
+
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, inventory, registryLookup);
         cachedPower = nbt.getInt("electric_steamer.cachedPower");
         int[] temp = nbt.getIntArray("electric_steamer.progresses");
         int max = progresses.length;
@@ -55,37 +58,37 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
         }
         System.arraycopy(temp, 0, progresses, 0, max);
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
-    public void tick(World world, BlockPos pos, BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, ElectricSteamerBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
-        if (cachedPower > 0){
-            cachedPower--;
+        if (blockEntity.cachedPower > 0){
+            blockEntity.cachedPower--;
             world.setBlockState(pos,state.with(ElectricSteamerBlock.IS_WORKING,true));
         } else world.setBlockState(pos,state.with(ElectricSteamerBlock.IS_WORKING,false));
         if (world.getTime() %20L == 0L){
             for (int i = 0; i < 8; i++){
-                SimpleInventory inventory = new SimpleInventory(this.getStack(i));
-                Optional<SteamingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                        .getFirstMatch(SteamingRecipe.Type.INSTANCE, inventory,this.getWorld());
+                Optional<RecipeEntry<SteamingRecipe>> match = Objects.requireNonNull(blockEntity.getWorld()).getRecipeManager()
+                        .getFirstMatch(SteamingRecipe.Type.INSTANCE, new SingleStackRecipeInput(blockEntity.getStack(i)),blockEntity.getWorld());
                 if (match.isPresent()){
-                    int maxProgress = match.get().getMaxProgress();
-                    int count = this.getStack(i).getCount();
-                    if (this.progresses[i] < maxProgress * count){
-                        this.progresses[i]++;
+                    int maxProgress = match.get().value().getMaxProgress();
+                    int count = blockEntity.getStack(i).getCount();
+                    if (blockEntity.progresses[i] < maxProgress * count){
+                        blockEntity.progresses[i]++;
                     } else {
-                        this.progresses[i] = 0;
-                        this.setStack(i,new ItemStack(match.get().getOutput(null).getItem(),count));
+                        blockEntity.progresses[i] = 0;
+                        blockEntity.setStack(i,new ItemStack(match.get().value().getResult(null).getItem(),count));
                     }
                 } else {
-                    this.progresses[i] = 0;
+                    blockEntity.progresses[i] = 0;
                 }
             }
-            markDirty();
+            blockEntity.markDirty();
         }
     }
 
@@ -107,11 +110,6 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
     @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
-    }
-
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
     }
 
     @Override
@@ -142,5 +140,10 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction dir) {
         return true;
+    }
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 }

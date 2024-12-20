@@ -44,7 +44,8 @@ public class BlackPepperCropBlock extends CropBlock {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         int age = state.get(getAgeProperty());
         boolean isMature = age == getMaxAge();
         if (!isMature && player.getStackInHand(hand).isOf(Items.BONE_MEAL)) {
@@ -56,7 +57,7 @@ public class BlackPepperCropBlock extends CropBlock {
             player.playSound(SoundEvents.BLOCK_CROP_BREAK, 1.0F, 1.0F);
             return ActionResult.SUCCESS;
         }else {
-            return super.onUse(state, world, pos, player, hand, hit);
+            return super.onUse(state, world, pos, player, hit);
         }
     }
 }
