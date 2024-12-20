@@ -3,12 +3,12 @@
 # certain platforms or Java versions, and provides a first line of defence
 # against bad commits.
 
-name: BakingDelight
+name: ModernDelight
 on: [pull_request, push]
 env:
-  MINECRAFT_VERSION: 1.20.1
-  JAVA_VERSION: 17
-  VERSION: 0.1.0+1.20.1
+  MINECRAFT_VERSION: 1.21.1
+  JAVA_VERSION: 21
+  VERSION: 0.5.3+1.21.1
 
 jobs:
   build:
