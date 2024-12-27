@@ -71,7 +71,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModUtil.ACDCC_1, "一款可以自由转换直流电和交流电的装置，“AC->DC”模式下，与任意的");
         translationBuilder.add(ModUtil.ACDCC_2, "交流电发电装置连接时可将交流电转化为直流电并缓存，可以在里面接入电池");
         translationBuilder.add(ModUtil.ACDCC_3, "并为电池充电，“DC->AC”模式下，可以将缓存的直流电或接入电池的直流电转化");
-        translationBuilder.add(ModUtil.ACDCC_4, "为交流电并输出，可以在GUI中调节它的工作效率。");
+        translationBuilder.add(ModUtil.ACDCC_4, "为交流电并输出，可以在GUI中调节它的工作效率。此外还可以用于于FE/RF/AE的转化。");
         translationBuilder.add(ModUtil.ALT_ACGen, "[交流电发电量]");
         translationBuilder.add(ModUtil.ALT_ACCom, "[交流电耗电量]");
         translationBuilder.add(ModUtil.ALT_DCSto, "[最大直流电存储量]");

@@ -9,6 +9,7 @@ import com.zombie_cute.mc.bakingdelight.block.custom.abstracts.AbstractBatteryBl
 import com.zombie_cute.mc.bakingdelight.block.entities.utils.*;
 import com.zombie_cute.mc.bakingdelight.screen.custom.ACDCConverterScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,6 +27,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import team.reborn.energy.api.EnergyStorage;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, PowerStorageAble, ACGenerateAble, ACConsumer {
     public ACDCConverterBlockEntity(BlockPos pos, BlockState state) {
@@ -63,6 +66,12 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
     private int efficiency = 0;
     private final Power power = new Power(3000);
     private final DefaultedList<ItemStack> INV = DefaultedList.ofSize(1,ItemStack.EMPTY);
+    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(30000,1000,1000){
+        @Override
+        protected void onFinalCommit() {
+            markDirty();
+        }
+    };
     private int isACMode = 0;
     private int workSpeed = 0;
     private final int MAX_WORK_SPEED = 10;
@@ -92,32 +101,56 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
         if (world.isClient){
             return;
         }
+        blockEntity.getPower().setPowerValue((int)energyStorage.amount / 10);
         if (world.getTime() % 20L == 0L){
             ItemStack itemStack = blockEntity.getStack(0);
             if (blockEntity.getIsACMode()){
                 blockEntity.setStack(0,
-                        AbstractBatteryBlock.changeBatteryPower(itemStack,blockEntity.getPower(),
+                        AbstractBatteryBlock.changeBatteryPower(itemStack,blockEntity.energyStorage,
                                 10 * blockEntity.workSpeed, false));
+                Direction thisDir = state.get(ACDCConverterBlock.FACING);
+                switch (thisDir){
+                    case EAST, WEST -> {
+                        EnergyStorage maybeStorage1 = EnergyStorage.SIDED.find(world, pos.offset(Direction.NORTH), Direction.NORTH.getOpposite());
+                        EnergyStorage maybeStorage2 = EnergyStorage.SIDED.find(world, pos.offset(Direction.SOUTH), Direction.SOUTH.getOpposite());
+//                        if (maybeStorage1 != null) {
+//                            extract(blockEntity, maybeStorage1);
+//                        } else if (maybeStorage2 != null) {
+//                            extract(blockEntity, maybeStorage2);
+//                        }
+                    }
+                    case SOUTH, NORTH -> {
+                        EnergyStorage maybeStorage1 = EnergyStorage.SIDED.find(world, pos.offset(Direction.WEST), Direction.WEST.getOpposite());
+                        EnergyStorage maybeStorage2 = EnergyStorage.SIDED.find(world, pos.offset(Direction.EAST), Direction.EAST.getOpposite());
+//                        if (maybeStorage1 != null) {
+//                            extract(blockEntity, maybeStorage1);
+//                        } else if (maybeStorage2 != null) {
+//                            extract(blockEntity, maybeStorage2);
+//                        }
+                    }
+                }
                 if (blockEntity.getPowerValue() == 0){
                     blockEntity.efficiency = 0;
                 } else {
                     if (blockEntity.getPowerValue() - blockEntity.workSpeed * 10 > 0){
-                        blockEntity.reducePower(blockEntity.workSpeed * 10);
+                        blockEntity.reduceEnergy(blockEntity.workSpeed * 10L  * 10L);
                         blockEntity.efficiency = blockEntity.workSpeed * 10;
                     } else {
-                        blockEntity.reducePower(1);
+                        blockEntity.reduceEnergy(10);
                         blockEntity.efficiency = 1;
                     }
                 }
             } else {
                 blockEntity.efficiency = 0;
                 blockEntity.setStack(0,
-                        AbstractBatteryBlock.changeBatteryPower(itemStack,blockEntity.getPower(),
+                        AbstractBatteryBlock.changeBatteryPower(itemStack,blockEntity.energyStorage,
                                 10 * blockEntity.workSpeed, true));
                 Direction thisDir = state.get(ACDCConverterBlock.FACING);
                 ACGenerateAble inputBlock = null;
                 switch (thisDir){
                     case EAST, WEST -> {
+                        EnergyStorage maybeStorage1 = EnergyStorage.SIDED.find(world, pos.offset(Direction.NORTH), Direction.NORTH.getOpposite());
+                        EnergyStorage maybeStorage2 = EnergyStorage.SIDED.find(world, pos.offset(Direction.SOUTH), Direction.SOUTH.getOpposite());
                         if (world.getBlockEntity(pos.north()) instanceof ACGenerateAble entity && entity.getEfficiency() != 0){
                             if (blockEntity.checkCGeneratorType(world.getBlockEntity(pos.north()),world,Direction.NORTH)){
                                 inputBlock = entity;
@@ -127,8 +160,15 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
                                 inputBlock = entity;
                             }
                         }
+//                        if (maybeStorage1 != null) {
+//                            transEnergy(blockEntity,maybeStorage1);
+//                        } else if (maybeStorage2 != null) {
+//                            transEnergy(blockEntity,maybeStorage2);
+//                        }
                     }
                     case SOUTH, NORTH -> {
+                        EnergyStorage maybeStorage1 = EnergyStorage.SIDED.find(world, pos.offset(Direction.WEST), Direction.WEST.getOpposite());
+                        EnergyStorage maybeStorage2 = EnergyStorage.SIDED.find(world, pos.offset(Direction.EAST), Direction.EAST.getOpposite());
                         if (world.getBlockEntity(pos.west()) instanceof ACGenerateAble entity && entity.getEfficiency() != 0){
                             if (blockEntity.checkCGeneratorType(world.getBlockEntity(pos.west()),world,Direction.WEST)){
                                 inputBlock = entity;
@@ -138,14 +178,53 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
                                 inputBlock = entity;
                             }
                         }
+//                        if (maybeStorage1 != null) {
+//                            transEnergy(blockEntity, maybeStorage1);
+//                        } else if (maybeStorage2 != null) {
+//                            transEnergy(blockEntity, maybeStorage2);
+//                        }
                     }
                 }
                 if (inputBlock != null && blockEntity.workSpeed != 0){
-                    blockEntity.addPower((int)(inputBlock.getEfficiency() * (1.0 - (float)blockEntity.workSpeed / 10.0)));
+                    blockEntity.addEnergy((long)(inputBlock.getEfficiency() * (1.0 - (float)blockEntity.workSpeed / 10.0)  * 10L));
                 }
             }
         }
     }
+
+    private boolean extract(ACDCConverterBlockEntity blockEntity,EnergyStorage maybeStorage) {
+        try (Transaction transaction = Transaction.openOuter()) {
+            long amountExtracted = maybeStorage.extract(workSpeed * 10L, transaction);
+            if (amountExtracted == workSpeed * 10L) {
+                transaction.commit();
+                blockEntity.addEnergy((int) (workSpeed * 10 * (1.0 - (float) blockEntity.workSpeed / 10.0))  * 10L);
+                return true;
+            } else return false;
+        }
+    }
+
+    public boolean transEnergy(ACDCConverterBlockEntity blockEntity, EnergyStorage maybeStorage) {
+        try (Transaction transaction = Transaction.openOuter()) {
+            long insert = (long) (workSpeed * 10 * (1.0 - (float) blockEntity.workSpeed / 10.0));
+            if (blockEntity.energyStorage.amount > workSpeed * 10L){
+                long amount = maybeStorage.insert(insert, transaction);
+                if (amount == insert) {
+                    transaction.commit();
+                    reduceEnergy(workSpeed * 10L  * 10L);
+                    return true;
+                }
+            } else if (blockEntity.energyStorage.amount > 0) {
+                long amount = maybeStorage.insert(1, transaction);
+                if (amount == 1) {
+                    transaction.commit();
+                    reduceEnergy(10);
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     private boolean checkCGeneratorType(BlockEntity blockEntity, World world, Direction dirType){
         if (blockEntity instanceof FaradayGeneratorBlockEntity) {
             return world.getBlockState(blockEntity.getPos()).get(FaradayGeneratorBlock.FACING) == dirType.getOpposite();
@@ -170,6 +249,7 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, INV);
         nbt.putInt("acdcc.power", this.getPowerValue());
+        nbt.putLong("acdcc.energy",this.energyStorage.amount);
         nbt.putInt("acdcc.isOpen",this.isACMode);
         nbt.putInt("acdcc.workSpeed",this.workSpeed);
     }
@@ -181,6 +261,7 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
         this.setPower(nbt.getInt("acdcc.power"));
         this.workSpeed = nbt.getInt("acdcc.workSpeed");
         this.isACMode = nbt.getInt("acdcc.isOpen");
+        this.energyStorage.amount = nbt.getLong("acdcc.energy");
         markDirty();
     }
     @Override
@@ -230,6 +311,20 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
 
     @Override
     public void energize() {
-        this.addPower((int)(this.workSpeed * 10 * (1.0 - (float)this.workSpeed / 20.0)) * 3);
+        addEnergy((long)(this.workSpeed * 10 * (1.0 - (float)this.workSpeed / 20.0)) * 3);
+    }
+    public void addEnergy(long value){
+        if (this.energyStorage.amount + value < this.energyStorage.capacity){
+            this.energyStorage.amount += value;
+        } else {
+            this.energyStorage.amount = this.energyStorage.capacity;
+        }
+    }
+    public void reduceEnergy(long value){
+        if (this.energyStorage.amount - value > 0){
+            this.energyStorage.amount -= value;
+        } else {
+            this.energyStorage.amount = 0;
+        }
     }
 }

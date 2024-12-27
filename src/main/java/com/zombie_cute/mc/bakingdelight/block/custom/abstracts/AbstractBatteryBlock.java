@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.List;
 
@@ -109,6 +110,63 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
                             } else if (batteryPower > 0 && thisPower.getPowerValue() != thisPower.getMaxPower()){
                                 batteryPower --;
                                 thisPower.addPower(1);
+                                changeBatteryNBT(nbtCompound, batteryPower, newStack);
+                            }
+                        }
+                    }
+                } else {
+                    NbtCompound newNBT = initNbtCompound(blockItem);
+                    BlockItem.setBlockEntityNbt(newStack,ModBlockEntities.BATTERY_BLOCK_ENTITY,newNBT);
+                    return changeBatteryPower(newStack,thisPower,value,isAddBatteryPower);
+                }
+            }
+        }
+        return newStack;
+    }
+    public static void addEnergy(long value, SimpleEnergyStorage energyStorage){
+        if (energyStorage.amount + value < energyStorage.capacity){
+            energyStorage.amount += value;
+        } else {
+            energyStorage.amount = energyStorage.capacity;
+        }
+    }
+    public static void reduceEnergy(long value, SimpleEnergyStorage energyStorage){
+        if (energyStorage.amount - value > 0){
+            energyStorage.amount -= value;
+        } else {
+            energyStorage.amount = 0;
+        }
+    }
+    public static ItemStack changeBatteryPower(ItemStack oldBatteryItemStack, SimpleEnergyStorage thisPower, int value, boolean isAddBatteryPower) {
+        if (value < 0){
+            Bakingdelight.LOGGER.error("Exception battery energy value: \"{}\" is not a positive number!", value);
+        }
+        ItemStack newStack = oldBatteryItemStack.copy();
+        if (oldBatteryItemStack.getItem() instanceof BlockItem blockItem){
+            if (blockItem.getBlock() instanceof AbstractBatteryBlock){
+                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(oldBatteryItemStack);
+                if (nbtCompound != null) {
+                    if (nbtCompound.contains("battery.power")) {
+                        int batteryPower = nbtCompound.getInt("battery.power");
+                        int maxBatteryPower = nbtCompound.getInt("battery.maxPower");
+                        if (isAddBatteryPower){
+                            if (batteryPower + value < maxBatteryPower && thisPower.amount >= value){
+                                batteryPower += value;
+                                reduceEnergy(value * 10L,thisPower);
+                                changeBatteryNBT(nbtCompound, batteryPower, newStack);
+                            } else if (batteryPower < maxBatteryPower && thisPower.amount >= 1){
+                                batteryPower ++;
+                                reduceEnergy(10,thisPower);
+                                changeBatteryNBT(nbtCompound, batteryPower, newStack);
+                            }
+                        } else {
+                            if (batteryPower - value > 0 && thisPower.amount + value <= thisPower.capacity){
+                                batteryPower -= value;
+                                addEnergy(value * 10L,thisPower);
+                                changeBatteryNBT(nbtCompound, batteryPower, newStack);
+                            } else if (batteryPower > 0 && thisPower.amount != thisPower.capacity){
+                                batteryPower --;
+                                addEnergy(10,thisPower);
                                 changeBatteryNBT(nbtCompound, batteryPower, newStack);
                             }
                         }

@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-27T18:23:34.8089039	Modern Kitchen/Model Definitions
+// 1.20.1	2024-12-27T20:40:23.5772229	Modern Delight/Model Definitions
 e143d34d1133e86ddea7b69cc56444a293cd9592 assets\bakingdelight\models\item\wheat_dough.json
 a91623af1beecbb55314e24b9b6d7a4455307360 assets\bakingdelight\models\item\redstone_component.json
 d905a19315e8a287374dcf7083b2c05697138f4d assets\bakingdelight\models\item\pink_tulip_cake.json
@@ -175,8 +175,8 @@ ed20e59a5a8b940ec4e79aefd49eca3e1b8e8b6f assets\bakingdelight\models\item\fan_bl
 370c8dca5010ac125360418be6a0d2a2048fa5d2 assets\bakingdelight\models\item\donut.json
 8434ba654378a5cf882ad2e8c95f5edb8ab7c927 assets\bakingdelight\models\item\wither_ice_lolly.json
 2051091cbb25b6e17c14cc3d25ba844a70939cc0 assets\bakingdelight\models\item\squid_tentacle_kebabs.json
-c4425f91758b9816c0b6a8c0a0e1b7da4f8cdad1 assets\bakingdelight\models\item\cherry_pudding.json
 046106812ad142cd2e57eb0c9cb5c610f5479e78 assets\bakingdelight\models\item\filter.json
+c4425f91758b9816c0b6a8c0a0e1b7da4f8cdad1 assets\bakingdelight\models\item\cherry_pudding.json
 806d24850bc5192b2f75fc7a8679ab9cb4a8f34c assets\bakingdelight\models\item\deep_fryer.json
 6ac398fe3c5eb1ef46a31c08044635b7213b7e86 assets\bakingdelight\models\item\fried_apple.json
 13b505647421db11b71b09aa8fe41c57ffaea079 assets\bakingdelight\models\item\egg_bowl.json
@@ -230,11 +230,11 @@ eec692bd86e9923e7e5d6ed71df84441d24236fb assets\bakingdelight\models\item\truffl
 9d2472b2305ddbe3f8e1f5d3dd658bed122fb6d0 assets\bakingdelight\blockstates\black_pepper_crop.json
 2b0ceac6d1fd13eda249fc198fb810cb1bfacfad assets\bakingdelight\models\block\garlic_crop_stage4.json
 fed7c569b5923fb722840d000d3018216a4f2fa9 assets\bakingdelight\models\item\matcha_mousse.json
-ecce95e07fdfd452289f39fe1e715a418d70ebfa assets\bakingdelight\models\item\chocolate_donut.json
 439d9d92d44c276fce276a1cf9e30693a6edc9a1 assets\bakingdelight\models\item\deep_fried_potato_chips.json
+ecce95e07fdfd452289f39fe1e715a418d70ebfa assets\bakingdelight\models\item\chocolate_donut.json
 370341d7512b6aeb8f01df1ef72da4ec8c0e503a assets\bakingdelight\blockstates\advance_battery.json
-846090fbb640c6b373a9bc8c13b95ffdef6b081f assets\bakingdelight\blockstates\bamboo_cover.json
 02e587484ceafa38e8e673fe4f74b07050dd0cc7 assets\bakingdelight\models\item\wild_garlic.json
+846090fbb640c6b373a9bc8c13b95ffdef6b081f assets\bakingdelight\blockstates\bamboo_cover.json
 842676d0abbfeaaf493f7f4c6accb7a667c3eb4a assets\bakingdelight\models\item\stone_whisk.json
 fd64d84dcc96080b564da5f3b84ef56fb94ecd14 assets\bakingdelight\models\item\ice_brick.json
 dee9aaf149f3ab417212c247777074835641cd3f assets\bakingdelight\models\item\deep_fried_shrimp_cake.json

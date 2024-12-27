@@ -67,10 +67,10 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModUtil.WOODEN_BASIN_3, "extract the oil, you can use a glass bottle or a bucket to take out the oil.");
         translationBuilder.add(ModUtil.DFB, "For safe and harmless removal of the contents of the Deep Fryer");
         translationBuilder.add(ModUtil.ALT_END, " for electricity usage");
-        translationBuilder.add(ModUtil.ACDCC_1, "A device that converts DC and AC power freely, in the \"AC->DC\" mode, converts");
-        translationBuilder.add(ModUtil.ACDCC_2, "AC to DC and caches when connected to any AC power generator, batteries can be plugged in");
-        translationBuilder.add(ModUtil.ACDCC_3, "and charged, in the \"DC->AC\" mode, it can convert cached DC power or DC power from internal");
-        translationBuilder.add(ModUtil.ACDCC_4, "battery into AC power and output it, its efficiency can be adjusted in the GUI.");
+        translationBuilder.add(ModUtil.ACDCC_1, "A device that converts DC and AC power freely, in the \"AC->DC\" mode, converts AC to DC");
+        translationBuilder.add(ModUtil.ACDCC_2, "and caches when connected to any AC power generator, batteries can be plugged in and charged,");
+        translationBuilder.add(ModUtil.ACDCC_3, "in the \"DC->AC\" mode, it can convert cached DC power or DC power from internal battery into AC power");
+        translationBuilder.add(ModUtil.ACDCC_4, "and output it, its efficiency can be adjusted in the GUI. It can also be used for FE/RF/AE conversion.");
         translationBuilder.add(ModUtil.ALT_ACGen, "[AC power generation]");
         translationBuilder.add(ModUtil.ALT_ACCom, "[AC power consumption]");
         translationBuilder.add(ModUtil.ALT_DCSto, "[Maximum DC storage]");

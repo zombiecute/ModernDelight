@@ -19,6 +19,12 @@ repositories {
 
 	maven { url = "https://maven.shedaniel.me" } // REI, Cloth Config
 	maven {
+		url "https://cursemaven.com"
+		content {
+			includeGroup("curse.maven")
+		}
+	} // Curse Maven
+	maven {
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com/"
 	} // Mod Menu & EMI
@@ -80,6 +86,11 @@ dependencies {
 
 	modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
 	implementation("com.eliotlash.mclib:mclib:20")
+	// EnergyStorage
+	include modApi('teamreborn:energy:3.0.0')
+	// Tech Reborn
+	modImplementation("curse.maven:reborncore-237903:4708961")
+	modImplementation("curse.maven:techreborn-233564:4708962")
 }
 
 processResources {

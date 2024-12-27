@@ -160,7 +160,7 @@
   "bakingdelight.tooltips.acdcc_1": "一款可以自由转换直流电和交流电的装置，“AC->DC”模式下，与任意的",
   "bakingdelight.tooltips.acdcc_2": "交流电发电装置连接时可将交流电转化为直流电并缓存，可以在里面接入电池",
   "bakingdelight.tooltips.acdcc_3": "并为电池充电，“DC->AC”模式下，可以将缓存的直流电或接入电池的直流电转化",
-  "bakingdelight.tooltips.acdcc_4": "为交流电并输出，可以在GUI中调节它的工作效率。",
+  "bakingdelight.tooltips.acdcc_4": "为交流电并输出，可以在GUI中调节它的工作效率。此外还可以用于于FE/RF/AE的转化。",
   "bakingdelight.tooltips.alt_end": " 以查看用电概况",
   "bakingdelight.tooltips.baking_tray_1": "一款简易的小铁盘，可以用于升级高级熔炉，也可以用于炒菜：",
   "bakingdelight.tooltips.baking_tray_2": "在其下方有燃气灶为其加热的条件下，将食物放在烤盘的上方，",

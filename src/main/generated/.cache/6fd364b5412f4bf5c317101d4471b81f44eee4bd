@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-27T18:23:34.7990474	Modern Kitchen/Recipes
+// 1.20.1	2024-12-27T20:40:23.5692386	Modern Delight/Recipes
 23d7e943eda40bea72ffcb560fc71270408ba06a data\bakingdelight\recipes\amethyst_axe.json
 741aeaa33cfe73704e24f36b96eeef11b731b4ee data\bakingdelight\advancements\recipes\food\black_pepper_dust.json
 d9fdff3181dad4766bf49f3149a3568269b565d7 data\bakingdelight\advancements\recipes\misc\ancient_debris.json
@@ -80,8 +80,8 @@ c42a444e4b2f7dbd2c6fa17f70c953b7f3b05102 data\bakingdelight\recipes\freezer.json
 6eb6ddec0ba8c9fca2e16be7fadf962e567bbc46 data\bakingdelight\recipes\packaging_bag.json
 6896b7116bd74b8d8979ebb5e605389e5d501259 data\bakingdelight\recipes\fan_blade.json
 d4ee9263593b198fa7fdc812117f9f564ad86639 data\bakingdelight\advancements\recipes\misc\obsidian_cabinet.json
-3af9507ee4640e9f1f5f85172e83ddc5b43464ae data\bakingdelight\advancements\recipes\food\french_fries.json
 c3ba5fae79a2badfdf6354001328a2520871f6d4 data\bakingdelight\recipes\fish_and_chips.json
+3af9507ee4640e9f1f5f85172e83ddc5b43464ae data\bakingdelight\advancements\recipes\food\french_fries.json
 844de6614b4f95d42a89da1ce76437953ee64875 data\bakingdelight\recipes\lilac_cake.json
 53295f3808fea8d24937c1a0de9902900fec58ca data\bakingdelight\recipes\orange_tulip_cake.json
 4311e63b2436baaa07431fdc7f0df3f60141ab0a data\bakingdelight\recipes\diorite_cabinet.json
@@ -109,8 +109,8 @@ d646c53cea27c40081107de4eb6496af73f7b824 data\bakingdelight\recipes\apple_cream.
 49fbd2db22816c40ad72a6113e931c76992b53ec data\bakingdelight\advancements\recipes\food\pink_tulip_cake.json
 bcbdcbbd57af88e1dffb43d58fba9c530c2696dc data\bakingdelight\recipes\biogas_digester_io.json
 950e2cf7f8bf9cc7bdc782f3c4a59949b1616bc7 data\bakingdelight\recipes\raw_glow_squid_tentacle_kebabs.json
-176e64e2d956e858aab2e4b9ca015daa22327fb0 data\bakingdelight\advancements\recipes\tools\kneading_stick.json
 cda5f0433d6c70ee792b066ea5e730f72b338f66 data\bakingdelight\advancements\recipes\misc\deepslate_cabinet.json
+176e64e2d956e858aab2e4b9ca015daa22327fb0 data\bakingdelight\advancements\recipes\tools\kneading_stick.json
 795c73efed41e24a4e96e222b11875391d58eb5e data\bakingdelight\advancements\recipes\food\fried_milk_wip.json
 7cf7b814b879c9dc7a90f655165f2e4410b575e8 data\bakingdelight\recipes\diamond_whisk.json
 e268893d5d947658d00cca89d0573fcbf63d4387 data\bakingdelight\advancements\recipes\tools\copper_knife.json

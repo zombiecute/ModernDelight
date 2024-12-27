@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-27T18:23:34.8143969	Modern Kitchen/Advancements
+// 1.20.1	2024-12-27T20:40:23.5833627	Modern Delight/Advancements
 48f116dfdf7da715c9664c9692edf38274de4984 data\minecraft\advancements\bakingdelight\got_pudding_wip_2.json
 9184a161498027b757fe046621de17145002b4f0 data\minecraft\advancements\bakingdelight\got_kebabs.json
 e8f9c1e4885e1bd61386e8cecb3653d56bdc0637 data\minecraft\advancements\bakingdelight\got_vegetable_oil.json
@@ -49,8 +49,8 @@ e4de9685ad4176f3bef6fd618581da7d571b0b73 data\minecraft\advancements\bakingdelig
 956754dc978bb5bf29df7ce82fc1b138e19c568e data\minecraft\advancements\bakingdelight\got_potato_starch.json
 6c3464ebf338f7f4d7e48d7a6f76370a98556685 data\minecraft\advancements\bakingdelight\got_bamboo_steamer.json
 c268a248f879161459c19dc2aa4222a177dd9beb data\minecraft\advancements\bakingdelight\got_silicon_ingot.json
-66356ffc393305e7053d24d66584b464cfbfe530 data\minecraft\advancements\bakingdelight\got_black_pepper.json
 46ca2328881c8ab1be485566b470b5c0cb8198c4 data\minecraft\advancements\bakingdelight\got_gas_cooking_stove.json
+66356ffc393305e7053d24d66584b464cfbfe530 data\minecraft\advancements\bakingdelight\got_black_pepper.json
 97f1452da2d4bd93638b0d7800cdae062d10b1ca data\minecraft\advancements\bakingdelight\got_pg.json
 7567d80a9b799177148e83e1824f8fc6f0a946cf data\minecraft\advancements\bakingdelight\got_oven.json
 e8c5ed6f7eabca088cd251b080d270991ae2a495 data\minecraft\advancements\bakingdelight\eat_wither_rose_cake.json

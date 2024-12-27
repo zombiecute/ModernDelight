@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import team.reborn.energy.api.EnergyStorage;
 
 public class ModBlockEntities {
     public static final BlockEntityType<OvenBlockEntity> OVEN_BLOCK_ENTITY =
@@ -144,6 +145,8 @@ public class ModBlockEntities {
             FabricBlockEntityTypeBuilder.create(ChargingPostBlockEntity::new, ModBlocks.CHARGING_POST).build(null)
     );
     public static void registerBlockEntities(){
+        EnergyStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
+                ((ACDCConverterBlockEntity) blockEntity).energyStorage),AC_DC_CONVERTER_BLOCK_ENTITY);
         Bakingdelight.LOGGER.info("Registering Mod Block Entities for " + Bakingdelight.MOD_ID);
     }
 }
