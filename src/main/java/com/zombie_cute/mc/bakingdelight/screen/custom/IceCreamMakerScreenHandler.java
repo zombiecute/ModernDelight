@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.zombie_cute.mc.bakingdelight.block.entities.IceCreamMakerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
-import com.zombie_cute.mc.bakingdelight.util.Flavor;
+import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -14,6 +14,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class IceCreamMakerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -54,21 +55,21 @@ public class IceCreamMakerScreenHandler extends ScreenHandler {
     }
     public IceCreamMakerBlockEntity.IceCream getIceCream1(){
         IceCreamMakerBlockEntity.IceCream iceCream = new IceCreamMakerBlockEntity.IceCream(
-                Flavor.getFlavorByID(this.propertyDelegate.get(2)),this.propertyDelegate.get(3)
+                CreamFlavor.getFlavorByID(this.propertyDelegate.get(2)),this.propertyDelegate.get(3)
         );
         iceCream.setSelected(this.propertyDelegate.get(4));
         return iceCream;
     }
     public IceCreamMakerBlockEntity.IceCream getIceCream2(){
         IceCreamMakerBlockEntity.IceCream iceCream = new IceCreamMakerBlockEntity.IceCream(
-                Flavor.getFlavorByID(this.propertyDelegate.get(5)),this.propertyDelegate.get(6)
+                CreamFlavor.getFlavorByID(this.propertyDelegate.get(5)),this.propertyDelegate.get(6)
         );
         iceCream.setSelected(this.propertyDelegate.get(7));
         return iceCream;
     }
     public IceCreamMakerBlockEntity.IceCream getIceCream3(){
         IceCreamMakerBlockEntity.IceCream iceCream = new IceCreamMakerBlockEntity.IceCream(
-                Flavor.getFlavorByID(this.propertyDelegate.get(8)),this.propertyDelegate.get(9)
+                CreamFlavor.getFlavorByID(this.propertyDelegate.get(8)),this.propertyDelegate.get(9)
         );
         iceCream.setSelected(this.propertyDelegate.get(10));
         return iceCream;
@@ -100,10 +101,9 @@ public class IceCreamMakerScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        BlockPos pos1 = player.getBlockPos();
-        BlockPos pos2 = blockEntity.getPos();
-        double distance = Math.sqrt(Math.pow(pos2.getX()-pos1.getX(),2)+Math.pow(pos2.getY()-pos1.getY(),2)+Math.pow(pos2.getZ()-pos1.getZ(),2));
-        return this.inventory.canPlayerUse(player) && distance < 7 && !blockEntity.isRemoved();
+        BlockPos pos = blockEntity.getPos();
+        Vec3d v = new Vec3d(pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5);
+        return !blockEntity.isRemoved() && v.isInRange(player.getPos(), 8.0);
     }
     private void addPlayerInventory(PlayerInventory playerInventory){
         for (int i = 0; i < 3; ++i){

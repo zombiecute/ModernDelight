@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "cups=1": {
+      "model": "bakingdelight:block/single_glass_cup"
+    },
+    "cups=2": {
+      "model": "bakingdelight:block/double_glass_cups"
+    },
+    "cups=3": {
+      "model": "bakingdelight:block/three_glass_cups"
+    },
+    "cups=4": {
+      "model": "bakingdelight:block/four_glass_cups"
+    }
+  }
+}

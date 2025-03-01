@@ -86,7 +86,23 @@
   "block_sterling_engine": {
     "subtitle": "sounds.bakingdelight.block_sterling_engine",
     "sounds": [
-      "bakingdelight:sterling_engine"
+      "bakingdelight:sterling_engine_1",
+      "bakingdelight:sterling_engine_2",
+      "bakingdelight:sterling_engine_3",
+      "bakingdelight:sterling_engine_4",
+      "bakingdelight:sterling_engine_5"
+    ]
+  },
+  "block_sterling_engine_start": {
+    "subtitle": "sounds.bakingdelight.block_sterling_engine_start",
+    "sounds": [
+      "bakingdelight:sterling_engine_start"
+    ]
+  },
+  "block_sterling_engine_stop": {
+    "subtitle": "sounds.bakingdelight.block_sterling_engine_stop",
+    "sounds": [
+      "bakingdelight:sterling_engine_stop"
     ]
   },
   "block_tesla_coil": {
@@ -101,6 +117,37 @@
     "subtitle": "sounds.bakingdelight.item_electric_whisk_working",
     "sounds": [
       "bakingdelight:electric_whisk"
+    ]
+  },
+  "block_juice_extractor_working": {
+    "subtitle": "sounds.bakingdelight.block_juice_extractor_working",
+    "sounds": [
+      "bakingdelight:juicer_work"
+    ]
+  },
+  "block_juice_extractor_scream": {
+    "subtitle": "sounds.bakingdelight.block_juice_extractor_scream",
+    "sounds": [
+      "bakingdelight:juicer_scream_1",
+      "bakingdelight:juicer_scream_2",
+      "bakingdelight:juicer_scream_3",
+      "bakingdelight:juicer_scream_4",
+      "bakingdelight:juicer_scream_5",
+      "bakingdelight:juicer_scream_6"
+    ]
+  },
+  "block_juice_extractor_stop": {
+    "subtitle": "sounds.bakingdelight.block_juice_extractor_stop",
+    "sounds": [
+      "bakingdelight:juicer_stop"
+    ]
+  },
+  "item_stone_mortar_working": {
+    "subtitle": "sounds.bakingdelight.item_stone_mortar_working",
+    "sounds": [
+      "bakingdelight:stone_mortar_1",
+      "bakingdelight:stone_mortar_2",
+      "bakingdelight:stone_mortar_3"
     ]
   }
 }

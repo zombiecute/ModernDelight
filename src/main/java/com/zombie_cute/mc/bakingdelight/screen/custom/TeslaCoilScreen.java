@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
-import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -14,7 +14,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/tesla_coil_gui.png");
 
     public TeslaCoilScreen(TeslaCoilScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -73,7 +73,7 @@ public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
                 array[0] = 1;
                 MinecraftClient.getInstance().getSoundManager()
                         .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-                NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
+                ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
                 return true;
             }
         } else {
@@ -81,7 +81,7 @@ public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
                 array[0] = 2;
                 MinecraftClient.getInstance().getSoundManager()
                         .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-                NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
+                ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
                 return true;
             }
         }

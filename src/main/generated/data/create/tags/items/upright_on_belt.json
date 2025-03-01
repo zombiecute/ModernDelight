@@ -9,6 +9,10 @@
     "#c:foods/creams",
     "minecraft:bowl",
     "bakingdelight:mashed_potato",
-    "bakingdelight:sauce_mashed_potato"
+    "bakingdelight:sauce_mashed_potato",
+    "bakingdelight:liquefied_biogas_bucket",
+    "bakingdelight:vegetable_oil_bucket",
+    "bakingdelight:cream_bucket",
+    "#c:foods/juice"
   ]
 }

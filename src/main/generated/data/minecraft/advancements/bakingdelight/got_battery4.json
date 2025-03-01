@@ -22,7 +22,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "bakingdelight:advance_battery"
+      "item": "bakingdelight:dimension_battery"
     },
     "show_toast": true,
     "title": {

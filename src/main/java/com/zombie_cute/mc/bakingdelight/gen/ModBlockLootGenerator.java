@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.gen;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.block.custom.BlackPepperCropBlock;
+import com.zombie_cute.mc.bakingdelight.block.crops.BlackPepperCropBlock;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -36,7 +36,6 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.BIOGAS_DIGESTER_IO);
         addDrop(ModBlocks.GAS_COOKING_STOVE);
         addDrop(ModBlocks.BURNING_GAS_COOKING_STOVE,ModBlocks.GAS_COOKING_STOVE);
-        addDrop(ModBlocks.DEEP_FRY_BASKET);
         addDrop(ModBlocks.KITCHEN_UTENSIL_HOLDER);
         addDrop(ModBlocks.CUISINE_TABLE);
         addDrop(ModBlocks.ANDESITE_CABINET);
@@ -47,7 +46,6 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.DIORITE_CABINET);
         addDrop(ModBlocks.OBSIDIAN_CABINET);
         addDrop(ModBlocks.PHOTOVOLTAIC_GENERATOR);
-        addDrop(ModBlocks.GAS_PIPE);
         addDrop(ModBlocks.AC_DC_CONVERTER);
         addDrop(ModBlocks.FAN_BLADE);
         addDrop(ModBlocks.WIND_TURBINE_CONTROLLER);
@@ -63,15 +61,11 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.ICE_CREAM_MAKER);
         addDrop(ModBlocks.CARAMEL_PUDDING);
         addDrop(ModBlocks.CHARGING_POST);
-        addDrop(ModBlocks.FISH_AND_CHIPS,block -> new LootTable.Builder()
-                .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(ModItems.DIRTY_PACKAGING_BAG))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 2.0f)).build()))
-                .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(Items.BOWL))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())));
+        addDrop(ModBlocks.JUICE_EXTRACTOR);
+        addDrop(ModBlocks.ROSE_ICE_TEA);
+        addDrop(ModBlocks.CHERRY_MILK_TEA);
+        addDrop(ModBlocks.WOODEN_PLATE);
+        addDrop(ModBlocks.FISH_AND_CHIPS,ModBlocks.WOODEN_PLATE);
         addDrop(ModBlocks.WILD_PEPPER_CROP,block -> new LootTable.Builder()
                 .pool(LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))

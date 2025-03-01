@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "bakingdelight:wooden_plate"
+    },
+    "D": {
+      "item": "bakingdelight:mixed_dough"
+    },
+    "K": {
+      "item": "minecraft:dried_kelp"
+    },
+    "M": {
+      "tag": "c:crops/cabbage"
+    }
+  },
+  "pattern": [
+    "KDK",
+    "DMD",
+    "BBB"
+  ],
+  "result": {
+    "count": 3,
+    "item": "bakingdelight:vegetable_steamed_stuffed_bun_wip"
+  },
+  "show_notification": true
+}

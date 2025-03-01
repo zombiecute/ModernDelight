@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.transform;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -20,7 +20,7 @@ public class OvenTransformDisplay implements Display {
     public List<EntryIngredient> getInputEntries() {
         Collection<ItemStack> stacks = new ArrayList<>();
         stacks.add(ModBlocks.OVEN.asItem().getDefaultStack());
-        for (RegistryEntry<Item> registryKey : Registries.ITEM.iterateEntries(ModTagKeys.CROWBARS)){
+        for (RegistryEntry<Item> registryKey : Registries.ITEM.iterateEntries(TagKeys.CROWBARS)){
             stacks.add(registryKey.value().getDefaultStack());
         }
         return List.of(EntryIngredients.ofItemStacks(stacks));

@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.assembly;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -22,9 +22,9 @@ import java.util.List;
 
 public class AssemblyCategory implements DisplayCategory<AssemblyDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/assembly.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/assembly.png");
     public static final CategoryIdentifier<AssemblyDisplay> ASSEMBLY =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "assembly");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "assembly");
 
     @Override
     public CategoryIdentifier<? extends AssemblyDisplay> getCategoryIdentifier() {

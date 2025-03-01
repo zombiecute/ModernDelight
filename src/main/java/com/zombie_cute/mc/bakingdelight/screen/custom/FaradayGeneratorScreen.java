@@ -1,7 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -10,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class FaradayGeneratorScreen extends HandledScreen<FaradayGeneratorScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/faraday_generator_gui.png");
 
     public FaradayGeneratorScreen(FaradayGeneratorScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -33,7 +34,11 @@ public class FaradayGeneratorScreen extends HandledScreen<FaradayGeneratorScreen
 
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
         if (handler.getChecked()==1){
-            context.drawText(textRenderer,"100 EP/S",x + 70,y + 38,0xffffff,true);
+            int value = ModConfig.energyGeneratedByFaradayGenerator;
+            if (value < 1){
+                value = 200;
+            }
+            context.drawText(textRenderer, value+" EP/S",x + 70,y + 38,0xffffff,true);
             context.drawTexture(TEXTURE,x+9,y+58,176,0,25,12);
         } else context.drawText(textRenderer,"0 EP/S",x + 70,y + 38,0xffffff,true);
     }

@@ -1,16 +1,17 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigesterControllerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/biogas_digester_controller_gui.png");
     public static final String UNAVAILABLE = "tooltips.bakingdelight.biogas_digester_controller.unavailable";
     public static final String SIZE = "tooltips.bakingdelight.biogas_digester_controller.size";
@@ -40,8 +41,21 @@ public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigester
         context.drawText(textRenderer,String.valueOf(handler.getSize()),x+70,y+22,0xffffff,true);
         context.drawText(textRenderer,String.valueOf(handler.getGasValue()),x+70,y+38,0x00ff00,true);
         context.drawText(textRenderer,String.valueOf(handler.getSize() * 1000),x+70,y+54,0xff0000,true);
+        if (mouseX >= x + 52 && mouseY >= y + 19 && mouseX <= x + 65 && mouseY <= y + 33){
+            context.drawTooltip(textRenderer,Text.translatable(SIZE).formatted(Formatting.WHITE),mouseX,mouseY);
+        }
+        if (mouseX >= x + 52 && mouseY >= y + 35 && mouseX <= x + 65 && mouseY <= y + 49){
+            context.drawTooltip(textRenderer,Text.translatable(GAS_VALUE).formatted(Formatting.GREEN),mouseX,mouseY);
+        }
+        if (mouseX >= x + 52 && mouseY >= y + 51 && mouseX <= x + 65 && mouseY <= y + 65){
+            context.drawTooltip(textRenderer,Text.translatable(MAX_GAS_VALUE).formatted(Formatting.RED),mouseX,mouseY);
+        }
         if (handler.getChecked()==1){
             context.drawTexture(TEXTURE,x+9,y+58,176,0,25,12);
+        } else {
+            if (mouseX >= x + 9 && mouseY >= y + 58 && mouseX <= x + 33 && mouseY <= y + 69){
+                context.drawTooltip(textRenderer,Text.translatable(UNAVAILABLE).formatted(Formatting.RED),mouseX,mouseY);
+            }
         }
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,194,13,11,11);

@@ -1,0 +1,28 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/portable_pot_with_noodles"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "bakingdelight:noodle_type": 0.1
+      }, "model": "bakingdelight:item/stewed_chicken_noodle_with_mushroom"
+    },
+    {
+      "predicate": {
+        "bakingdelight:noodle_type": 0.2
+      }, "model": "bakingdelight:item/braised_beef_noodle_soup"
+    },
+    {
+      "predicate": {
+        "bakingdelight:noodle_type": 0.3
+      }, "model": "bakingdelight:item/tonkotsu_ramen"
+    },
+    {
+      "predicate": {
+        "bakingdelight:noodle_type": 0.9
+      }, "model": "bakingdelight:item/unhealthy_noodles"
+    }
+  ]
+}

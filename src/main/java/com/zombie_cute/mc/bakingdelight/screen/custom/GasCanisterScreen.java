@@ -1,16 +1,18 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlockEntity;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/gas_canister_gui.png");
     public GasCanisterScreen(GasCanisterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -19,7 +21,7 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
     @Override
     protected void init() {
         super.init();
-        titleX = (backgroundWidth - textRenderer.getWidth(title))*2 / 3;
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
 
     @Override
@@ -33,39 +35,40 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
 
         int gasValue = handler.getGasValue();
-        if (gasValue>0 && gasValue<333){
+        int maxGasValue = GasCanisterBlockEntity.getMaxCapacity();
+        if (gasValue>0 && gasValue<maxGasValue/18){
             context.drawTexture(TEXTURE,x+81,y+24,176,13,51,28);
-        } else if (gasValue >= 333 && gasValue < 666) {
+        } else if (gasValue >= maxGasValue/18 && gasValue < maxGasValue*2/18) {
             context.drawTexture(TEXTURE,x+81,y+24,176,41,51,28);
-        } else if (gasValue >= 666 && gasValue < 1000) {
+        } else if (gasValue >= maxGasValue*2/18 && gasValue < maxGasValue*3/18) {
             context.drawTexture(TEXTURE,x+81,y+24,176,69,51,28);
-        } else if (gasValue >= 1000 && gasValue < 1333) {
+        } else if (gasValue >= maxGasValue*3/18 && gasValue < maxGasValue*4/18) {
             context.drawTexture(TEXTURE,x+81,y+24,176,97,51,28);
-        } else if (gasValue >= 1333 && gasValue < 1666) {
+        } else if (gasValue >= maxGasValue*4/18 && gasValue < maxGasValue*5/18) {
             context.drawTexture(TEXTURE,x+81,y+24,176,125,51,28);
-        } else if (gasValue >= 1666 && gasValue < 2000) {
+        } else if (gasValue >= maxGasValue*5/18 && gasValue < maxGasValue*6/18) {
             context.drawTexture(TEXTURE,x+81,y+24,0,166,51,28);
-        } else if (gasValue >= 2000 && gasValue < 2333) {
+        } else if (gasValue >= maxGasValue*6/18 && gasValue < maxGasValue*7/18) {
             context.drawTexture(TEXTURE,x+81,y+24,51,166,51,28);
-        } else if (gasValue >= 2333 && gasValue < 2666) {
+        } else if (gasValue >= maxGasValue*7/18 && gasValue < maxGasValue*8/18) {
             context.drawTexture(TEXTURE,x+81,y+24,102,166,51,28);
-        } else if (gasValue >= 2666 && gasValue < 3000) {
+        } else if (gasValue >= maxGasValue*8/18 && gasValue < maxGasValue*9/18) {
             context.drawTexture(TEXTURE,x+81,y+24,153,166,51,28);
-        } else if (gasValue >= 3000 && gasValue < 3333) {
+        } else if (gasValue >= maxGasValue*9/18 && gasValue < maxGasValue*10/18) {
             context.drawTexture(TEXTURE,x+81,y+24,204,166,51,28);
-        } else if (gasValue >= 3333 && gasValue < 3666) {
+        } else if (gasValue >= maxGasValue*10/18 && gasValue < maxGasValue*11/18) {
             context.drawTexture(TEXTURE,x+81,y+24,0,194,51,28);
-        } else if (gasValue >= 3666 && gasValue < 4000) {
+        } else if (gasValue >= maxGasValue*11/18 && gasValue < maxGasValue*12/18) {
             context.drawTexture(TEXTURE,x+81,y+24,51,194,51,28);
-        } else if (gasValue >= 4000 && gasValue < 4333) {
+        } else if (gasValue >= maxGasValue*12/18 && gasValue < maxGasValue*13/18) {
             context.drawTexture(TEXTURE,x+81,y+24,102,194,51,28);
-        } else if (gasValue >= 4333 && gasValue < 4666) {
+        } else if (gasValue >= maxGasValue*13/18 && gasValue < maxGasValue*14/18) {
             context.drawTexture(TEXTURE,x+81,y+24,153,194,51,28);
-        } else if (gasValue >= 4666 && gasValue < 5000) {
+        } else if (gasValue >= maxGasValue*14/18 && gasValue < maxGasValue*15/18) {
             context.drawTexture(TEXTURE,x+81,y+24,204,194,51,28);
-        } else if (gasValue >= 5000 && gasValue < 5333) {
+        } else if (gasValue >= maxGasValue*15/18 && gasValue < maxGasValue*16/18) {
             context.drawTexture(TEXTURE,x+81,y+24,0,222,51,28);
-        } else if (gasValue >= 5333){
+        } else if (gasValue >= maxGasValue*16/18){
             int cycle = handler.getCycleInt();
             switch (cycle){
                 case 0: context.drawTexture(TEXTURE,x+81,y+24,51,222,51,28);break;
@@ -76,19 +79,18 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
         }
 
         if (mouseX >= x + 82 && mouseX <= x + 130 && mouseY >= y + 25 && mouseY <= y + 50){
-            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,194,0,36,13);
-            if (gasValue<1000){
-                context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+9,mouseY-13, 5635925,false);
-            } else if (gasValue<3000) {
-                context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+9,mouseY-13, 16777045,false);
-            } else if (gasValue<5000) {
-                context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+9,mouseY-13, 16755200,false);
+            if (gasValue<maxGasValue/6){
+                context.drawTooltip(textRenderer,Text.literal(gasValue+" mB").formatted(Formatting.GREEN),
+                        mouseX,mouseY);
+            } else if (gasValue<maxGasValue/2) {
+                context.drawTooltip(textRenderer,Text.literal(gasValue+" mB").formatted(Formatting.YELLOW),
+                        mouseX,mouseY);
+            } else if (gasValue<maxGasValue*5/6) {
+                context.drawTooltip(textRenderer,Text.literal(gasValue+" mB").formatted(Formatting.GOLD),
+                        mouseX,mouseY);
             } else {
-                context.drawText(textRenderer,String.valueOf(gasValue),
-                        mouseX+9,mouseY-13, 16733525,false);
+                context.drawTooltip(textRenderer,Text.literal(gasValue+" mB").formatted(Formatting.RED),
+                        mouseX,mouseY);
             }
         }
     }

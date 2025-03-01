@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.mixin;
 
-import com.zombie_cute.mc.bakingdelight.item.custom.*;
+import com.zombie_cute.mc.bakingdelight.item.tools.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
@@ -22,34 +22,40 @@ public abstract class EnchantmentHelperEnhancementMixin {
 
         if (stack.getItem() instanceof WhiskItem) {
             WhiskItem.ALLOWED_ENCHANTMENTS.stream()
-                    .filter(enchantment -> !containsEnchantment(possibleEnchantmentList, enchantment))
+                    .filter(enchantment -> containsEnchantment(possibleEnchantmentList, enchantment))
                     .forEach(enchantment -> addEntry(possibleEnchantmentList, power, enchantment));
             possibleEnchantmentList.removeIf(enchantmentLevelEntry ->
                     !WhiskItem.ALLOWED_ENCHANTMENTS.contains(enchantmentLevelEntry.enchantment));
         } else if (stack.getItem() instanceof KnifeItem) {
             KnifeItem.ALLOWED_ENCHANTMENTS.stream()
-                    .filter(enchantment -> !containsEnchantment(possibleEnchantmentList, enchantment))
+                    .filter(enchantment -> containsEnchantment(possibleEnchantmentList, enchantment))
                     .forEach(enchantment -> addEntry(possibleEnchantmentList, power, enchantment));
             possibleEnchantmentList.removeIf(enchantmentLevelEntry ->
                     !KnifeItem.ALLOWED_ENCHANTMENTS.contains(enchantmentLevelEntry.enchantment));
         } else if (stack.getItem() instanceof KneadingStickItem) {
             KneadingStickItem.ALLOWED_ENCHANTMENTS.stream()
-                    .filter(enchantment -> !containsEnchantment(possibleEnchantmentList, enchantment))
+                    .filter(enchantment -> containsEnchantment(possibleEnchantmentList, enchantment))
                     .forEach(enchantment -> addEntry(possibleEnchantmentList, power, enchantment));
             possibleEnchantmentList.removeIf(enchantmentLevelEntry ->
                     !KneadingStickItem.ALLOWED_ENCHANTMENTS.contains(enchantmentLevelEntry.enchantment));
         } else if (stack.getItem() instanceof CrowbarItem) {
             CrowbarItem.ALLOWED_ENCHANTMENTS.stream()
-                    .filter(enchantment -> !containsEnchantment(possibleEnchantmentList, enchantment))
+                    .filter(enchantment -> containsEnchantment(possibleEnchantmentList, enchantment))
                     .forEach(enchantment -> addEntry(possibleEnchantmentList, power, enchantment));
             possibleEnchantmentList.removeIf(enchantmentLevelEntry ->
                     !CrowbarItem.ALLOWED_ENCHANTMENTS.contains(enchantmentLevelEntry.enchantment));
         } else if (stack.getItem() instanceof SpatulaItem) {
             SpatulaItem.ALLOWED_ENCHANTMENTS.stream()
-                    .filter(enchantment -> !containsEnchantment(possibleEnchantmentList, enchantment))
+                    .filter(enchantment -> containsEnchantment(possibleEnchantmentList, enchantment))
                     .forEach(enchantment -> addEntry(possibleEnchantmentList, power, enchantment));
             possibleEnchantmentList.removeIf(enchantmentLevelEntry ->
                     !SpatulaItem.ALLOWED_ENCHANTMENTS.contains(enchantmentLevelEntry.enchantment));
+        } else if (stack.getItem() instanceof StoneMortarItem) {
+            StoneMortarItem.ALLOWED_ENCHANTMENTS.stream()
+                    .filter(enchantment -> containsEnchantment(possibleEnchantmentList, enchantment))
+                    .forEach(enchantment -> addEntry(possibleEnchantmentList, power, enchantment));
+            possibleEnchantmentList.removeIf(enchantmentLevelEntry ->
+                    !StoneMortarItem.ALLOWED_ENCHANTMENTS.contains(enchantmentLevelEntry.enchantment));
         }
     }
 
@@ -65,6 +71,6 @@ public abstract class EnchantmentHelperEnhancementMixin {
 
     @Unique
     private static boolean containsEnchantment(List<EnchantmentLevelEntry> entries, Enchantment enchantment) {
-        return entries.stream().anyMatch(enchantmentLevelEntry -> enchantmentLevelEntry.enchantment == enchantment);
+        return entries.stream().noneMatch(enchantmentLevelEntry -> enchantmentLevelEntry.enchantment == enchantment);
     }
 }

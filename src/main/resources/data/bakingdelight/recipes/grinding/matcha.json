@@ -1,0 +1,16 @@
+{
+  "type": "bakingdelight:grinding",
+  "ingredients": [
+    {
+      "tag": "minecraft:leaves"
+    }
+  ],
+  "output": {
+    "item": "minecraft:air"
+  },
+  "chance": 0.4,
+  "extra": {
+    "item": "bakingdelight:matcha",
+    "count": 1
+  }
+}

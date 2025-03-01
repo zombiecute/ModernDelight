@@ -1,16 +1,17 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class DeepFryerScreen extends HandledScreen<DeepFryerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/deep_fryer_gui.png");
     public DeepFryerScreen(DeepFryerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -42,13 +43,14 @@ public class DeepFryerScreen extends HandledScreen<DeepFryerScreenHandler> {
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,194,13,11,11);
         }
+        if (mouseX >= x + 126 && mouseX <= x + 131 && mouseY >= y + 20 && mouseY <= y + 45){
+            context.drawTooltip(textRenderer,Text.literal(handler.getOil()+" mB").formatted(Formatting.WHITE),mouseX,mouseY);
+        }
     }
     private void renderOilLevel(DrawContext context, int x, int y) {
         if (handler.hasOil()){
             int offset = 24 - handler.getScaledOilLevel();
             context.drawTexture(TEXTURE, x + 127, y + 21 + offset,
-                    176, offset, 4, handler.getScaledOilLevel());
-            context.drawTexture(TEXTURE, x + 47, y + 21 + offset,
                     176, offset, 4, handler.getScaledOilLevel());
         }
     }

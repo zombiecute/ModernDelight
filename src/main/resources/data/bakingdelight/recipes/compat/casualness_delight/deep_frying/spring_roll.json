@@ -1,0 +1,20 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "casualness_delight"
+      ]
+    }
+  ],
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "casualness_delight:raw_spring_roll"
+    }
+  ],
+  "output": {
+    "item": "casualness_delight:spring_roll",
+    "count": 3
+  }
+}

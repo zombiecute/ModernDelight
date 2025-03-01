@@ -1,8 +1,10 @@
 package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import com.zombie_cute.mc.bakingdelight.block.biogas.BiogasDigesterIOBlockEntity;
 import com.zombie_cute.mc.bakingdelight.compat.rei.biogas_fermentation.BiogasFermentationCategory;
+import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -19,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIBiogasFermentationRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "biogas_fermentation"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "biogas_fermentation"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
@@ -33,7 +35,9 @@ public class EMIBiogasFermentationRecipe implements EmiRecipe {
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.BIOGAS_DIGESTER_CONTROLLER)));
         this.input = inputs;
-        this.output = List.of(EmiStack.of(Items.BONE_MEAL));
+        List<EmiStack> lists = new ArrayList<>(List.of(EmiStack.of(BiogasDigesterIOBlockEntity.getDigestate())));
+        lists.add(EmiStack.of(ModFluid.STILL_LIQUEFIED_BIOGAS));
+        this.output = lists;
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -42,7 +46,7 @@ public class EMIBiogasFermentationRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return new Identifier(Bakingdelight.MOD_ID,"biogas_fermentation");
+        return new Identifier(ModernDelightMain.MOD_ID,"biogas_fermentation");
     }
 
     @Override
@@ -76,6 +80,7 @@ public class EMIBiogasFermentationRecipe implements EmiRecipe {
         widgets.addSlot(EmiIngredient.of(Ingredient.ofStacks(stack)), 49, 13);
 
         widgets.addSlot(output.get(0), 31, 34).recipeContext(this);
+        widgets.addSlot(output.get(1), 121, 34).recipeContext(this);
     }
 
 }

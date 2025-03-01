@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.ice_cream_making;
 
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -24,7 +24,7 @@ public class IceCreamMakingDisplay implements Display {
         stacks.add(ModItems.ICE_CREAM_CONE.getDefaultStack());
         stacks.add(Items.EGG.getDefaultStack());
         stacks.add(Items.SUGAR.getDefaultStack());
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ForgeTagKeys.CREAMS)) {
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.CREAMS)) {
             stacks.add(registryEntry.value().getDefaultStack());
         }
         return List.of(EntryIngredients.ofItemStacks(stacks));

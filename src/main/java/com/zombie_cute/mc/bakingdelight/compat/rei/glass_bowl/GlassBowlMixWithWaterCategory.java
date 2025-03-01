@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -18,9 +18,9 @@ import java.util.List;
 
 public class GlassBowlMixWithWaterCategory implements DisplayCategory<GlassBowlMixWithWaterDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
     public static final CategoryIdentifier<GlassBowlMixWithWaterDisplay> MIX_WITH_WATER =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "mix_with_water");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "mix_with_water");
     public static final String WATER_GLASS_BOWL_NAME = "display_name.bakingdelight.water_glass_bowl_name";
 
     @Override

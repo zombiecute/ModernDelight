@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "bakingdelight:block/steamed_pumpkin"
+    },
+    "bites=1": {
+      "model": "bakingdelight:block/steamed_pumpkin_1"
+    },
+    "bites=2": {
+      "model": "bakingdelight:block/steamed_pumpkin_2"
+    },
+    "bites=3": {
+      "model": "bakingdelight:block/steamed_pumpkin_3"
+    }
+  }
+}

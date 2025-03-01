@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.steaming;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.block.entities.BambooGrateBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.BambooGrateBlockEntity;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -22,9 +22,9 @@ import java.util.List;
 
 public class SteamingCategory implements DisplayCategory<SteamingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/steaming.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming.png");
     public static final CategoryIdentifier<SteamingDisplay> STEAMING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "steaming");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "steaming");
 
     @Override
     public CategoryIdentifier<? extends SteamingDisplay> getCategoryIdentifier() {

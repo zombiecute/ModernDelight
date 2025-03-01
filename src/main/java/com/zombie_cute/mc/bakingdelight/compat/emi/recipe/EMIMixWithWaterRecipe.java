@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.MixWithWaterRecipe;
 import dev.emi.emi.api.recipe.EmiRecipe;
@@ -14,10 +14,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class EMIMixWithWaterRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.GLASS_BOWL);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "mix_with_water"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "mix_with_water"), WORKSTATION);
     private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;

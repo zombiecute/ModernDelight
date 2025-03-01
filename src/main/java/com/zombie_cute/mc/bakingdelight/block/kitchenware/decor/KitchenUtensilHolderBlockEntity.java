@@ -1,0 +1,96 @@
+package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
+
+import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
+import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
+import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventories;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
+public class KitchenUtensilHolderBlockEntity extends BlockEntity implements ImplementedInventory {
+    public KitchenUtensilHolderBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.KITCHEN_UTENSIL_HOLDER_BLOCK_ENTITY,pos, state);
+    }
+    public final DefaultedList<ItemStack> INV = DefaultedList.ofSize(4, ItemStack.EMPTY);
+
+
+    public void onUse(@NotNull PlayerEntity player, Hand hand) {
+        ItemStack item = player.getStackInHand(hand);
+        if(!item.isEmpty()) {
+            int item_index = 0;
+            while (item_index < 4) {
+                if (getStack(item_index).isEmpty()) {
+                    setStack(item_index, item.split(1));
+                    playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.4F);
+                    break;
+                }
+                else{
+                    item_index++;
+                }
+            }
+        } else{
+            int item_index = 3;
+            while (item_index > -1) {
+                if (!getStack(item_index).isEmpty()) {
+                    spawnItem(item_index);
+                    playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.8F);
+                    break;
+                }
+                else{
+                    item_index--;
+                }
+            }
+        }
+        markDirty();
+    }
+
+    @Override
+    public void markDirty() {
+        if (world != null) {
+            ItemStackSyncS2CPacket.send(pos,getItems(),world);
+        }
+        super.markDirty();
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, INV);
+    }
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt, INV);
+    }
+
+    public DefaultedList<ItemStack> getItems() {
+        return INV;
+    }
+
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
+    }
+
+    private void spawnItem(int slot){
+        ItemScatterer.spawn(Objects.requireNonNull(this.getWorld()),this.getPos().getX(),this.getPos().getY(),this.getPos().getZ(),
+                INV.get(slot));
+        INV.set(slot, ItemStack.EMPTY);
+    }
+    public void playSound(SoundEvent sound, float volume) {
+        Objects.requireNonNull(world).playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, sound, SoundCategory.BLOCKS, volume, world.random.nextFloat()+0.1f);
+    }
+
+}

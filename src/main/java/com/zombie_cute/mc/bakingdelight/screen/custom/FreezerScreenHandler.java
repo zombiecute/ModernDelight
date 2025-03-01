@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.zombie_cute.mc.bakingdelight.block.custom.FreezerBlock;
-import com.zombie_cute.mc.bakingdelight.block.entities.FreezerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.screen.slot.OnlyExtractSlot;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,6 +15,8 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+
 public class FreezerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
@@ -99,10 +101,9 @@ public class FreezerScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        BlockPos pos1 = player.getBlockPos();
-        BlockPos pos2 = blockEntity.getPos();
-        double distance = Math.sqrt(Math.pow(pos2.getX()-pos1.getX(),2)+Math.pow(pos2.getY()-pos1.getY(),2)+Math.pow(pos2.getZ()-pos1.getZ(),2));
-        return this.inventory.canPlayerUse(player) && distance < 7 && !blockEntity.isRemoved() && blockEntity.getCachedState().get(FreezerBlock.IS_OPEN);
+        BlockPos pos = blockEntity.getPos();
+        Vec3d v = new Vec3d(pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5);
+        return !blockEntity.isRemoved() && v.isInRange(player.getPos(), 8.0) && blockEntity.getCachedState().get(FreezerBlock.IS_OPEN);
     }
     private void addPlayerInventory(PlayerInventory playerInventory){
         for (int i = 0; i < 3; ++i){

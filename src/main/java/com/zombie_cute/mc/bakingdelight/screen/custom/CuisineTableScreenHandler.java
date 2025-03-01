@@ -1,8 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.zombie_cute.mc.bakingdelight.block.entities.CuisineTableBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.CuisineTableBlockEntity;
+import com.zombie_cute.mc.bakingdelight.networking.packet.UpdateInventoryC2SPacket;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
-import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
+import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -16,6 +17,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -56,16 +58,9 @@ public class CuisineTableScreenHandler extends ScreenHandler {
                             world.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         }
                     } else {
-                        if (tool.getTranslationKey().equals("item.create.wrench")){
-                            if (world.random.nextDouble() < 0.15){
-                                CuisineTableScreenHandler.this.blockEntity.setStack(1,ItemStack.EMPTY);
-                                world.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                            }
-                        } else {
-                            CuisineTableScreenHandler.this.blockEntity.removeStack(1,1);
-                        }
+                        CuisineTableScreenHandler.this.blockEntity.removeStack(1,1);
                     }
-                    world.playSound(null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos, ModSounds.ITEM_STONE_MORTAR_WORKING, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
 
                 super.onTakeItem(player, stack);
@@ -98,7 +93,7 @@ public class CuisineTableScreenHandler extends ScreenHandler {
         return newStack;
     }
     public void populateResult(ItemStack itemStack){
-        NetworkHandler.sendUpdateInventoryPacket(this.blockEntity.getPos(), itemStack);
+        UpdateInventoryC2SPacket.send(this.blockEntity.getPos(), itemStack);
     }
     @Override
     public ScreenHandlerType<?> getType() {
@@ -106,10 +101,9 @@ public class CuisineTableScreenHandler extends ScreenHandler {
     }
     @Override
     public boolean canUse(@NotNull PlayerEntity player) {
-        BlockPos pos1 = player.getBlockPos();
-        BlockPos pos2 = blockEntity.getPos();
-        double distance = Math.sqrt(Math.pow(pos2.getX()-pos1.getX(),2)+Math.pow(pos2.getY()-pos1.getY(),2)+Math.pow(pos2.getZ()-pos1.getZ(),2));
-        return this.inventory.canPlayerUse(player) && distance < 7 && !blockEntity.isRemoved();
+        BlockPos pos = blockEntity.getPos();
+        Vec3d v = new Vec3d(pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5);
+        return !blockEntity.isRemoved() && v.isInRange(player.getPos(), 8.0);
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory){
@@ -127,6 +121,14 @@ public class CuisineTableScreenHandler extends ScreenHandler {
 
     @Override
     public void onClosed(PlayerEntity player) {
+        if (player instanceof ServerPlayerEntity serverPlayer){
+            World world = serverPlayer.getWorld();
+            BlockPos pos = blockEntity.getPos();
+            if (world.getBlockEntity(pos) instanceof CuisineTableBlockEntity entity){
+                entity.setStack(2,ItemStack.EMPTY);
+                entity.setCanOpen(true);
+            }
+        }
         super.onClosed(player);
     }
 }

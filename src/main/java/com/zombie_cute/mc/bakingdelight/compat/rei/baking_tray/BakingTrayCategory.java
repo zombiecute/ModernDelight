@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.baking_tray;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -21,9 +21,9 @@ import java.util.List;
 
 public class BakingTrayCategory implements DisplayCategory<BakingTrayDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/baking_tray.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/baking_tray.png");
     public static final CategoryIdentifier<BakingTrayDisplay> STIR_FRYING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "baking_tray");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "baking_tray");
     public static final String BAKING_TRAY_NAME = "display_name.bakingdelight.baking_tray_name";
     @Override
     public CategoryIdentifier<? extends BakingTrayDisplay> getCategoryIdentifier() {
@@ -55,7 +55,7 @@ public class BakingTrayCategory implements DisplayCategory<BakingTrayDisplay> {
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 19,startPoint.y + 52))
                 .markInput().entry(EntryStacks.of(ModBlocks.GAS_CANISTER)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 66,startPoint.y + 43))
-                .markInput().entries(EntryIngredients.ofItemTag(ModTagKeys.SPATULAS)));
+                .markInput().entries(EntryIngredients.ofItemTag(TagKeys.SPATULAS)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 97,startPoint.y + 5))
                 .markOutput().entries(display.getOutputEntries().get(0)));
 

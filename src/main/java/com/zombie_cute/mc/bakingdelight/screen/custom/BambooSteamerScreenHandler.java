@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.zombie_cute.mc.bakingdelight.block.custom.BambooGrateBlock;
-import com.zombie_cute.mc.bakingdelight.block.entities.BambooGrateBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.BambooGrateBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.BambooGrateBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +14,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class BambooSteamerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -21,7 +22,7 @@ public class BambooSteamerScreenHandler extends ScreenHandler {
     public int currentLayer;
     private final PropertyDelegate propertyDelegate;
     public BambooSteamerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),buf.readInt(),new ArrayPropertyDelegate(3));
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),buf.readInt(),new ArrayPropertyDelegate(35));
     }
     public BambooSteamerScreenHandler(int syncId, PlayerInventory playerInventory,
                                       BlockEntity blockEntity, int currentLayer, PropertyDelegate arrayPropertyDelegate){
@@ -91,16 +92,24 @@ public class BambooSteamerScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory,index,x,y));
     }
     public boolean isHeated(){
-        return propertyDelegate.get(1) != 0;
+        return propertyDelegate.get(33) != 0;
     }
     public boolean isCovered(){
-        return propertyDelegate.get(0) != 0;
+        return propertyDelegate.get(32) != 0;
     }
     public int getLayer(){
-        return propertyDelegate.get(2);
+        return propertyDelegate.get(34);
     }
     public int getCurrentLayer() {
-        return currentLayer;
+        return blockEntity.getCachedState().get(BambooGrateBlock.LAYER);
+    }
+
+    public int getScaledProgress(int slot){
+        int progress = this.propertyDelegate.get(slot);
+        int maxProgress = this.propertyDelegate.get(slot+16); // Max Progress
+        int progressArrowSize = 16;// Arrow's Width
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     @Override
@@ -130,12 +139,10 @@ public class BambooSteamerScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        BlockPos pos1 = player.getBlockPos();
-        BlockPos pos2 = blockEntity.getPos();
-        double distance = Math.sqrt(Math.pow(pos2.getX()-pos1.getX(),2)+Math.pow(pos2.getY()-pos1.getY(),2)+Math.pow(pos2.getZ()-pos1.getZ(),2));
-        return this.inventory.canPlayerUse(player) && distance < 7 &&
-                !blockEntity.isRemoved() &&
-                player.getWorld().getBlockState(pos2).get(BambooGrateBlock.LAYER) == this.currentLayer;
+        BlockPos pos = blockEntity.getPos();
+        Vec3d v = new Vec3d(pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5);
+        return !blockEntity.isRemoved() && v.isInRange(player.getPos(), 8.0) &&
+                player.getWorld().getBlockState(pos).get(BambooGrateBlock.LAYER) == this.currentLayer;
     }
     private void addPlayerInventory(PlayerInventory playerInventory){
         for (int i = 0; i < 3; ++i){

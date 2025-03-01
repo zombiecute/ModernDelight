@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:bowl"
+      "item": "bakingdelight:wooden_plate"
     },
     {
       "item": "bakingdelight:fried_cod_nugget"
@@ -12,10 +12,10 @@
       "item": "bakingdelight:fried_cod_nugget"
     },
     {
-      "item": "bakingdelight:french_fries"
+      "item": "bakingdelight:deep_fried_potato_chips"
     },
     {
-      "item": "bakingdelight:french_fries"
+      "item": "bakingdelight:deep_fried_potato_chips"
     }
   ],
   "result": {

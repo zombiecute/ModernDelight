@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "S": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "G G",
+    "GGG",
+    " S "
+  ],
+  "result": {
+    "count": 6,
+    "item": "bakingdelight:glass_cup"
+  },
+  "show_notification": true
+}

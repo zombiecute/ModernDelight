@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=1": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=2": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=3": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=4": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=5": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=6": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=7": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=8": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=9": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=10": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=11": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=12": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=13": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=14": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    },
+    "level=15": {
+      "model": "bakingdelight:block/liquefied_biogas_fluid"
+    }
+  }
+}

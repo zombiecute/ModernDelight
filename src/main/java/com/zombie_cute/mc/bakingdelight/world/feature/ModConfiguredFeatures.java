@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.world.feature;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -26,7 +26,7 @@ public class ModConfiguredFeatures {
         ));
     }
     public static RegistryKey<ConfiguredFeature<?,?>> registerKey(String name){
-        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE,new Identifier(Bakingdelight.MOD_ID,name));
+        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE,new Identifier(ModernDelightMain.MOD_ID,name));
     }
 
     private static <FC extends FeatureConfig,F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?,?>> context,

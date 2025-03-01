@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.wooden_basin;
 
-import com.zombie_cute.mc.bakingdelight.block.entities.WoodenBasinBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlockEntity;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -25,7 +25,7 @@ public class WoodenBasinDisplay implements Display {
         for (Item item:WoodenBasinBlockEntity.createOilMap().keySet()){
             stacks.add(item.getDefaultStack());
         }
-        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(ModTagKeys.FILTERS)) {
+        for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.FILTERS)) {
             stacks.add(registryEntry.value().getDefaultStack());
         }
         return List.of(EntryIngredients.ofItemStacks(stacks));

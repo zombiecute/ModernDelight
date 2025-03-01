@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:glass_bowl",
+    "bakingdelight:photovoltaic_generator",
+    "bakingdelight:ac_dc_converter",
+    "bakingdelight:wind_turbine_controller",
+    "bakingdelight:fan_blade",
+    "bakingdelight:sterling_engine",
+    "bakingdelight:faraday_generator",
+    "bakingdelight:biogas_digester_controller",
+    "bakingdelight:biogas_digester_io",
+    "bakingdelight:gas_cooking_stove",
+    "bakingdelight:burning_gas_cooking_stove",
+    "bakingdelight:deep_fryer",
+    "bakingdelight:deep_fry_basket",
+    "bakingdelight:wooden_basin",
+    "bakingdelight:baking_tray",
+    "bakingdelight:ice_cream_maker",
+    "bakingdelight:juice_extractor",
+    "bakingdelight:electric_steamer",
+    "bakingdelight:advance_furnace",
+    "bakingdelight:oven",
+    "bakingdelight:cuisine_table",
+    "bakingdelight:freezer",
+    "bakingdelight:charging_post",
+    "bakingdelight:electricians_desk",
+    "bakingdelight:tesla_coil"
+  ]
+}

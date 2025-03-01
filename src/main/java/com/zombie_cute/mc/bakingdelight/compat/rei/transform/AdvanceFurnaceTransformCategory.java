@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.transform;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -20,7 +20,7 @@ import java.util.List;
 public class AdvanceFurnaceTransformCategory implements DisplayCategory<AdvanceFurnaceTransformDisplay> {
     public static final Identifier TEXTURE = OvenTransformCategory.TEXTURE;
     public static final CategoryIdentifier<AdvanceFurnaceTransformDisplay> ADVANCE_FURNACE_TRANSFORMING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "advance_furnace_transforming");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "advance_furnace_transforming");
     @Override
     public CategoryIdentifier<? extends AdvanceFurnaceTransformDisplay> getCategoryIdentifier() {
         return ADVANCE_FURNACE_TRANSFORMING;

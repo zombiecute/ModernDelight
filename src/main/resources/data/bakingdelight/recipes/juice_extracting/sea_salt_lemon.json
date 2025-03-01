@@ -1,0 +1,23 @@
+{
+  "type": "bakingdelight:juice_extracting",
+  "progress": 310,
+  "container": "bakingdelight:glass_cup",
+  "ingredients": [
+    {
+      "item": "bakingdelight:sea_salt"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "bakingdelight:ice_brick"
+    },
+    {
+      "tag": "c:foods/fruits/lemon"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:sea_salt_lemon",
+    "count": 3
+  }
+}

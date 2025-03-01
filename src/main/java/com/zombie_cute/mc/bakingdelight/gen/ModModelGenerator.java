@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.gen;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.block.custom.BlackPepperCropBlock;
-import com.zombie_cute.mc.bakingdelight.block.custom.GarlicCropBlock;
+import com.zombie_cute.mc.bakingdelight.block.crops.BlackPepperCropBlock;
+import com.zombie_cute.mc.bakingdelight.block.crops.GarlicCropBlock;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -32,6 +32,9 @@ public class ModModelGenerator extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleState(ModBlocks.BAMBOO_COVER);
         blockStateModelGenerator.registerSimpleState(ModBlocks.CARAMEL_PUDDING);
         blockStateModelGenerator.registerSimpleState(ModBlocks.FISH_AND_CHIPS);
+        blockStateModelGenerator.registerSimpleState(ModBlocks.CHERRY_MILK_TEA);
+        blockStateModelGenerator.registerSimpleState(ModBlocks.ROSE_ICE_TEA);
+        blockStateModelGenerator.registerSimpleState(ModBlocks.WOODEN_PLATE);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SILICON_BLOCK);
 
@@ -72,7 +75,6 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModBlocks.BLACKSTONE_CABINET.asItem(),registerItemBlockModel(ModBlocks.BLACKSTONE_CABINET));
         itemModelGenerator.register(ModBlocks.OBSIDIAN_CABINET.asItem(),registerItemBlockModel(ModBlocks.OBSIDIAN_CABINET));
         itemModelGenerator.register(ModBlocks.PHOTOVOLTAIC_GENERATOR.asItem(),registerItemBlockModel(ModBlocks.PHOTOVOLTAIC_GENERATOR));
-        itemModelGenerator.register(ModBlocks.GAS_PIPE.asItem(),registerItemBlockModel(ModBlocks.GAS_PIPE));
         itemModelGenerator.register(ModBlocks.AC_DC_CONVERTER.asItem(),registerItemBlockModel(ModBlocks.AC_DC_CONVERTER));
         itemModelGenerator.register(ModBlocks.WIND_TURBINE_CONTROLLER.asItem(),registerItemBlockModel(ModBlocks.WIND_TURBINE_CONTROLLER));
         itemModelGenerator.register(ModBlocks.SIMPLE_BATTERY.asItem(),registerItemBlockModel(ModBlocks.SIMPLE_BATTERY));
@@ -192,6 +194,7 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.OIL_IMPURITY, Models.GENERATED);
         itemModelGenerator.register(ModItems.VEGETABLE_OIL_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.VEGETABLE_OIL_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.LIQUEFIED_BIOGAS_BUCKET, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.TRUFFLE_EGG_TART, Models.GENERATED);
 
@@ -275,9 +278,41 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.CHICKEN_FILLET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_CHICKEN_FILLET, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.SWEET_BERRIES_JUICE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TOMATO_JUICE, Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.GLASS_CUP.asItem(), Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.ROSE_ICE_TEA_TEA_ITEM, Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.CHERRY_MILK_TEA_ITEM, Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.WOODEN_PLATE.asItem(), Models.GENERATED);
+        itemModelGenerator.register(ModItems.FRIED_NOODLES, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MULTIFUNCTIONAL_WRAPPING_PAPER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.QUICKLIME, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PACKAGED_INSTANT_NOODLES, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DIRTY_WRAPPING_PAPER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.HONEY_CRYSTALLIZATION, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SEA_SALT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GARLIC_PUREE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.STONE_MORTAR, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MATCHA, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MANGO_MILK_TEA, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SEA_SALT_LEMON, Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.STEAMED_PUMPKIN_ITEM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.STEAMED_PUMPKIN_IN_BOWL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.STEAMED_PUMPKIN_WIP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHOCOLATE_CRUNCH_ICE_LOLLY, Models.GENERATED);
+        itemModelGenerator.register(ModItems.STEAMED_STUFFED_BUN_WIP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.STEAMED_STUFFED_BUN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.VEGETABLE_STEAMED_STUFFED_BUN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SHAOMAI, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SHAOMAI_WIP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BLACK_PEPPER_STEAK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.HOLDER_UP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.HOLDER, Models.GENERATED);
+
     }
     private static Model registerItemBlockModel(Block parent, TextureKey ... requiredTextureKeys) {
         String name = ModelIds.getBlockModelId(parent).getPath();
-        return new Model(Optional.of(new Identifier(Bakingdelight.MOD_ID, name)), Optional.empty(), requiredTextureKeys);
+        return new Model(Optional.of(new Identifier(ModernDelightMain.MOD_ID, name)), Optional.empty(), requiredTextureKeys);
     }
 }

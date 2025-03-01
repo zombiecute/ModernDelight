@@ -1,9 +1,10 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.deep_frying;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.block.entities.DeepFryerBlockEntity;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.DeepFryerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.item.ModItems;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -21,9 +22,9 @@ import java.util.List;
 
 public class DeepFryingCategory implements DisplayCategory<DeepFryingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/deep_fryer.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/deep_fryer.png");
     public static final CategoryIdentifier<DeepFryingDisplay> DEEP_FRYING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "deep_frying");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "deep_frying");
     @Override
     public CategoryIdentifier<? extends DeepFryingDisplay> getCategoryIdentifier() {
         return DEEP_FRYING;
@@ -45,18 +46,18 @@ public class DeepFryingCategory implements DisplayCategory<DeepFryingDisplay> {
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,73)));
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 19,startPoint.y + 9))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 20,startPoint.y + 10))
                 .entries(display.getInputEntries().get(0)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 19,startPoint.y + 33))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 20,startPoint.y + 34))
                 .markInput().entry(EntryStacks.of(ModBlocks.GAS_CANISTER)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 77,startPoint.y + 51))
-                .markInput().entry(EntryStacks.of(ModBlocks.DEEP_FRY_BASKET)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 56,startPoint.y + 9))
-                .markInput().entries(EntryIngredients.ofFluidTag(ModTagKeys.OIL)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 37,startPoint.y + 33))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 78,startPoint.y + 52))
+                .markInput().entry(EntryStacks.of(ModItems.HOLDER)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 57,startPoint.y + 10))
+                .markInput().entries(EntryIngredients.ofFluidTag(TagKeys.OIL)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 38,startPoint.y + 34))
                 .markInput().entry(EntryStacks.of(ModBlocks.DEEP_FRYER)));
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 114,startPoint.y + 33))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 115,startPoint.y + 34))
                 .markOutput().entries(display.getOutputEntries().get(0)));
 
         return widgets;

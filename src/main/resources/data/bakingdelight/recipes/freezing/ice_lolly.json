@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:ice_brick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "tag": "c:milks"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:ice_lolly"
+  }
+}

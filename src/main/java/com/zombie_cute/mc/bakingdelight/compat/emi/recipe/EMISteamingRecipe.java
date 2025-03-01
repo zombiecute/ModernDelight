@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.SteamingRecipe;
 import dev.emi.emi.api.recipe.EmiRecipe;
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMISteamingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/steaming.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.BAMBOO_GRATE);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "steaming"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "steaming"), WORKSTATION);
 
     private final Identifier id;
     private final List<EmiIngredient> input;

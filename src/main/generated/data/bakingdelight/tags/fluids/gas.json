@@ -1,0 +1,51 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:still_liquefied_biogas",
+    "bakingdelight:flowing_liquefied_biogas",
+    {
+      "id": "#c:biofuel",
+      "required": false
+    },
+    {
+      "id": "techreborn:hydrogen",
+      "required": false
+    },
+    {
+      "id": "techreborn:deuterium",
+      "required": false
+    },
+    {
+      "id": "techreborn:tritium",
+      "required": false
+    },
+    {
+      "id": "techreborn:diesel",
+      "required": false
+    },
+    {
+      "id": "techreborn:methane",
+      "required": false
+    },
+    {
+      "id": "techreborn:methane",
+      "required": false
+    },
+    {
+      "id": "techreborn:nitro_diesel",
+      "required": false
+    },
+    {
+      "id": "techreborn:nitrocoal_fuel",
+      "required": false
+    },
+    {
+      "id": "techreborn:nitrofuel",
+      "required": false
+    },
+    {
+      "id": "techreborn:biofuel",
+      "required": false
+    }
+  ]
+}

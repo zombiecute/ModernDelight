@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.9.2'
 	id 'maven-publish'
 }
 
@@ -16,7 +16,23 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.\
-
+	maven {
+		name = "Greenhouse Maven"
+		url = 'https://repo.greenhouse.house/releases/'
+	}
+	maven { url "https://mvn.devos.one/releases/" } // Porting Lib
+	maven {
+		url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
+	maven {
+		url "https://jitpack.io/" // Fabric ASM
+		content {
+			excludeGroup "io.github.fabricators_of_create"
+		}
+	}
 	maven { url = "https://maven.shedaniel.me" } // REI, Cloth Config
 	maven {
 		url "https://cursemaven.com"
@@ -29,13 +45,17 @@ repositories {
 		url = "https://maven.terraformersmc.com/"
 	} // Mod Menu & EMI
 	maven {
+		name 'Xander Maven'
+		url 'https://maven.isxander.dev/releases'
+	} // YACL
+	maven {
 		name = 'GeckoLib'
 		url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
 		content {
 			includeGroupByRegex("software\\.bernie.*")
 			includeGroup("com.eliotlash.mclib")
 		}
-	}
+	} // GeckoLib
 }
 
 fabricApi {
@@ -69,28 +89,28 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
+	// Fabric API
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 	// REI
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	// Mod Menu
+	modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
 	modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
 	// EMI
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}+${minecraft_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}+${minecraft_version}"
-	// Uncomment the following line to enable the deprecated Fabric API modules. 
-	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
-	modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
-
+	// Geckolib
 	modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
 	implementation("com.eliotlash.mclib:mclib:20")
 	// EnergyStorage
 	include modApi('teamreborn:energy:3.0.0')
 	// Tech Reborn
-	modImplementation("curse.maven:reborncore-237903:4708961")
-	modImplementation("curse.maven:techreborn-233564:4708962")
+	modLocalRuntime("curse.maven:reborncore-237903:4708961")
+	modLocalRuntime("curse.maven:techreborn-233564:4708962")
+	// YACL
+	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
 }
 
 processResources {

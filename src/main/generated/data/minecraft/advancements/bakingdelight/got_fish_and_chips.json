@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:bakingdelight/got_deep_fryer",
+  "parent": "minecraft:bakingdelight/got_fried_noodles",
   "criteria": {
     "fish_and_chips": {
       "conditions": {
@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancement.bakingdelight.fish_and_chips.desc"
     },
-    "frame": "goal",
+    "frame": "task",
     "hidden": false,
     "icon": {
       "item": "bakingdelight:fish_and_chips"

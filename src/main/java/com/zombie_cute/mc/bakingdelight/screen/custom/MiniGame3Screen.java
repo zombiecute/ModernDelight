@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
-import com.zombie_cute.mc.bakingdelight.block.entities.ElectriciansDeskBlockEntity;
-import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlockEntity;
+import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -47,7 +47,7 @@ public class MiniGame3Screen extends Screen {
     private boolean isSelectedMode = false;
     private final boolean[] selectedLine = {false,false,false};
     private int selectedNum = 0;
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/mini_game_3_gui.png");
     @Override
     protected void init() {
@@ -145,7 +145,7 @@ public class MiniGame3Screen extends Screen {
             if (gameEndButton){
                 int[] array = new int[1];
                 array[0] = 1;
-                NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
+                ChangeBlockEntityDataC2SPacket.send(blockEntity.getPos(),array);
                 MinecraftClient.getInstance().getSoundManager()
                         .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 this.close();
@@ -263,7 +263,7 @@ public class MiniGame3Screen extends Screen {
                 if (keyCode == InputUtil.GLFW_KEY_ENTER || keyCode == InputUtil.GLFW_KEY_KP_ENTER){
                     int[] array = new int[1];
                     array[0] = 1;
-                    NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
+                    ChangeBlockEntityDataC2SPacket.send(blockEntity.getPos(),array);
                     MinecraftClient.getInstance().getSoundManager()
                             .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                     this.close();
@@ -282,7 +282,7 @@ public class MiniGame3Screen extends Screen {
     public void close() {
         int[] array = new int[1];
         array[0] = 4;
-        NetworkHandler.sendChangeBlockEntityDataPacket(blockEntity.getPos(),array);
+        ChangeBlockEntityDataC2SPacket.send(blockEntity.getPos(),array);
         Objects.requireNonNull(client).setScreen(parent);
     }
 }

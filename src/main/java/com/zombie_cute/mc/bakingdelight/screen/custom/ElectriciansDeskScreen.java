@@ -1,10 +1,11 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
+import com.zombie_cute.mc.bakingdelight.networking.packet.UpdateInventoryC2SPacket;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.AssemblyRecipe;
-import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -26,7 +27,7 @@ import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/electricians_desk_gui.png");
     public ElectriciansDeskScreen(ElectriciansDeskScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -109,8 +110,8 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
             if (handler.canCraft()){
                 int[] array = new int[1];
                 array[0] = 2;
-                NetworkHandler.sendUpdateInventoryPacket(handler.blockEntity.getPos(),this.outputItem);
-                NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
+                UpdateInventoryC2SPacket.send(handler.blockEntity.getPos(),this.outputItem);
+                ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
                 MinecraftClient.getInstance().getSoundManager()
                         .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
@@ -121,7 +122,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
                     Screen currentScreen = MinecraftClient.getInstance().currentScreen;
                     int [] array = new int[1];
                     array[0] = 3;
-                    NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
+                    ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
                     switch (this.miniGmeType){
                         case 1 -> MinecraftClient.getInstance().setScreen(
                                 new MiniGame1Screen(ModBlocks.ELECTRICIANS_DESK.getName(),

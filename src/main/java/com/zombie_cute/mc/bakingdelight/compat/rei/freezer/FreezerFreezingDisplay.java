@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.freezer;
 
 import com.google.common.collect.ImmutableList;
-import com.zombie_cute.mc.bakingdelight.block.entities.FreezerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.FreezingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;

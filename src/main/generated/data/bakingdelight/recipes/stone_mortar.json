@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:wooden_shovel"
+    },
+    "I": {
+      "item": "minecraft:stone"
+    }
+  },
+  "pattern": [
+    "IBI",
+    "III"
+  ],
+  "result": {
+    "item": "bakingdelight:stone_mortar"
+  },
+  "show_notification": true
+}

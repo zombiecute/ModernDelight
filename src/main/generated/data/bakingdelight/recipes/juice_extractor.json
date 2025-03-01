@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "bakingdelight:redstone_component"
+    },
+    "S": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "IGI",
+    "SRS"
+  ],
+  "result": {
+    "item": "bakingdelight:juice_extractor"
+  },
+  "show_notification": true
+}

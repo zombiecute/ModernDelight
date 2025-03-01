@@ -1,0 +1,13 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/portable_pot"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "bakingdelight:pot_state": 0.1
+      }, "model": "bakingdelight:item/portable_pot_at_work"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
-import com.zombie_cute.mc.bakingdelight.block.entities.IceCreamMakerBlockEntity;
-import com.zombie_cute.mc.bakingdelight.util.Flavor;
-import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
+import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -13,10 +13,11 @@ import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/ice_cream_maker_gui.png");
     public IceCreamMakerScreen(IceCreamMakerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -49,19 +50,16 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         renderIceCream2(context,x,y,mouseX,mouseY);
         renderIceCream3(context,x,y,mouseX,mouseY);
         if (mouseX >= x + 87 && mouseX <= x + 107 && mouseY >= y + 17 && mouseY <= y + 62){
-            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,176,9,50,13);
-            context.drawText(textRenderer,String.valueOf(iceCream1.getAmount()),
-                    mouseX+9,mouseY-13,iceCream1.getFlavor().getColor(),false);
+            context.drawTooltip(textRenderer,Text.literal(iceCream1.getAmount()+" mL").formatted(Formatting.WHITE),
+                    mouseX,mouseY);
         }
         if (mouseX >= x + 114 && mouseX <= x + 134 && mouseY >= y + 17 && mouseY <= y + 62){
-            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,176,9,50,13);
-            context.drawText(textRenderer,String.valueOf(iceCream2.getAmount()),
-                    mouseX+9,mouseY-13,iceCream2.getFlavor().getColor(),false);
+            context.drawTooltip(textRenderer,Text.literal(iceCream2.getAmount()+" mL").formatted(Formatting.WHITE),
+                    mouseX,mouseY);
         }
         if (mouseX >= x + 141 && mouseX <= x + 161 && mouseY >= y + 17 && mouseY <= y + 62) {
-            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,176,9,50,13);
-            context.drawText(textRenderer,String.valueOf(iceCream3.getAmount()),
-                    mouseX+9,mouseY-13,iceCream3.getFlavor().getColor(),false);
+            context.drawTooltip(textRenderer,Text.literal(iceCream3.getAmount()+" mL").formatted(Formatting.WHITE),
+                    mouseX,mouseY);
         }
     }
     private void renderPower(DrawContext context,int x,int y){
@@ -76,7 +74,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream1.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 93 && mouseY >= y + 65 && mouseX <= x + 101 && mouseY <= y + 73;
-        if (iceCream1.getFlavor() != Flavor.NULL){
+        if (iceCream1.getFlavor() != CreamFlavor.NULL){
             context.drawTexture(TEXTURE,x + 87,y + 17 + fix,21 * iceCream1.getFlavor().getId(),166,21,height);
         }
         if (iceCream1.isSelected()){
@@ -94,7 +92,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream2.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 120 && mouseY >= y + 65 && mouseX <= x + 128 && mouseY <= y + 73;
-        if (iceCream2.getFlavor() != Flavor.NULL){
+        if (iceCream2.getFlavor() != CreamFlavor.NULL){
             context.drawTexture(TEXTURE,x + 114,y + 17 + fix,21 * iceCream2.getFlavor().getId(),166,21,height);
         }
         if (iceCream2.isSelected()){
@@ -112,7 +110,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream3.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 147 && mouseY >= y + 65 && mouseX <= x + 155 && mouseY <= y + 73;
-        if (iceCream3.getFlavor() != Flavor.NULL){
+        if (iceCream3.getFlavor() != CreamFlavor.NULL){
             context.drawTexture(TEXTURE,x + 141,y + 17 + fix,21 * iceCream3.getFlavor().getId(),166,21,height);
         }
         if (iceCream3.isSelected()){
@@ -141,21 +139,21 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
             array[0] = 1;
             MinecraftClient.getInstance().getSoundManager()
                     .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-            NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
+            ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
             return true;
         }
         if (area2){
             array[0] = 2;
             MinecraftClient.getInstance().getSoundManager()
                     .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-            NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
+            ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
             return true;
         }
         if (area3){
             array[0] = 3;
             MinecraftClient.getInstance().getSoundManager()
                     .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-            NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(),array);
+            ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
             return true;
         }
         return super.mouseClicked(mouseX, mouseY, button);

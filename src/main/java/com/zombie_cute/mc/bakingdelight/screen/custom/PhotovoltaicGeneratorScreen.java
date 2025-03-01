@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.block.entities.PhotovoltaicGeneratorBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.PhotovoltaicGeneratorBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.entity.BlockEntity;
@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.Objects;
 
 public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGeneratorScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/photovoltaic_generator_gui.png");
     public PhotovoltaicGeneratorScreen(PhotovoltaicGeneratorScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -51,9 +51,8 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
             context.drawTexture(TEXTURE, x + 135,y + 14,192,12,12,12);
         }
         if (mouseX >= x + 17 && mouseX <= x + 32 && mouseY >= y + 15 && mouseY <= y + 67){
-            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,192,24,45,13);
-            context.drawText(textRenderer,String.valueOf(handler.getPower()),
-                    mouseX+9,mouseY-13,0xffffff,false);
+            context.drawTooltip(textRenderer,Text.literal(handler.getPower()+" EP"),
+                    mouseX,mouseY);
         }
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,192,37,11,11);
@@ -132,7 +131,7 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
             this.parent = parent;
             this.blockEntity = blockEntity;
         }
-        private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+        private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
                 "textures/gui/photovoltaic_generator_gui.png");
         private final int backgroundWidth = 176;
         private final int backgroundHeight = 77;

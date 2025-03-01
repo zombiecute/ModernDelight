@@ -21,7 +21,6 @@
     "bakingdelight:blackstone_cabinet",
     "bakingdelight:obsidian_cabinet",
     "bakingdelight:photovoltaic_generator",
-    "bakingdelight:gas_pipe",
     "bakingdelight:ac_dc_converter",
     "bakingdelight:fan_blade",
     "bakingdelight:wind_turbine_controller",
@@ -35,6 +34,7 @@
     "bakingdelight:silicon_block",
     "bakingdelight:electric_steamer",
     "bakingdelight:ice_cream_maker",
-    "bakingdelight:charging_post"
+    "bakingdelight:charging_post",
+    "bakingdelight:juice_extractor"
   ]
 }

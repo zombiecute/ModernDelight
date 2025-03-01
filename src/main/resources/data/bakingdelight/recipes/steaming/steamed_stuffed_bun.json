@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:steaming",
+  "maxProgress": 6,
+  "ingredients": [
+    {
+      "item": "bakingdelight:steamed_stuffed_bun_wip"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:steamed_stuffed_bun"
+  }
+}

@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.transform;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -21,10 +21,10 @@ import java.util.List;
 
 public class OvenTransformCategory implements DisplayCategory<OvenTransformDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/transform.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/transform.png");
     public static final String TRANSFORM_TITLE = "display_name.bakingdelight.transform_name";
     public static final CategoryIdentifier<OvenTransformDisplay> OVEN_TRANSFORMING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "oven_transforming");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "oven_transforming");
     @Override
     public CategoryIdentifier<? extends OvenTransformDisplay> getCategoryIdentifier() {
         return OVEN_TRANSFORMING;
@@ -47,7 +47,7 @@ public class OvenTransformCategory implements DisplayCategory<OvenTransformDispl
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 22,startPoint.y + 18))
                 .entry(EntryStacks.of(ModBlocks.OVEN.asItem().getDefaultStack())));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 55,startPoint.y + 6))
-                .entries(EntryIngredients.ofItemTag(ModTagKeys.CROWBARS)));
+                .entries(EntryIngredients.ofItemTag(TagKeys.CROWBARS)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 101,startPoint.y + 18))
                 .markOutput().entry(EntryStacks.of(ModBlocks.ADVANCE_FURNACE.asItem().getDefaultStack())));

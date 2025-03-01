@@ -7,6 +7,26 @@
     "bakingdelight:amethyst_axe",
     "bakingdelight:amethyst_shovel",
     "bakingdelight:amethyst_hoe",
-    "bakingdelight:amethyst_knife"
+    "bakingdelight:amethyst_knife",
+    {
+      "id": "anvilcraft:amethyst_sword",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_pickaxe",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_axe",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_shovel",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_hoe",
+      "required": false
+    }
   ]
 }

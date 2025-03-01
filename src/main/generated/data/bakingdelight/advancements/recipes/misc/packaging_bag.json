@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_paper": {
+    "has_multifunctional_wrapping_paper": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:paper"
+              "bakingdelight:multifunctional_wrapping_paper"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_paper",
+      "has_multifunctional_wrapping_paper",
       "has_the_recipe"
     ]
   ],

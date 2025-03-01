@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIAdvanceFurnaceRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/transform.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/transform.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.BAKING_TRAY);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "advance_furnace_transforming"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "advance_furnace_transforming"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
@@ -37,7 +37,7 @@ public class EMIAdvanceFurnaceRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return new Identifier(Bakingdelight.MOD_ID,"advance_furnace_transforming");
+        return new Identifier(ModernDelightMain.MOD_ID,"advance_furnace_transforming");
     }
 
     @Override

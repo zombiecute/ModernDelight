@@ -1,0 +1,33 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "brewinandchewin"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cheese"
+    },
+    {
+      "item": "bakingdelight:cheese"
+    },
+    {
+      "item": "bakingdelight:cheese"
+    },
+    {
+      "item": "bakingdelight:cheese"
+    },
+    {
+      "tag": "c:mushrooms"
+    }
+  ],
+  "result": {
+    "item": "brewinandchewin:flaxen_cheese_wedge",
+    "count": 1
+  }
+}

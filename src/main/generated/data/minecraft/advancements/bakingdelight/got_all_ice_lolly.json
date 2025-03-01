@@ -13,6 +13,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "chocolate_crunch_ice_lolly": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:chocolate_crunch_ice_lolly"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "ice_lolly": {
       "conditions": {
         "items": [
@@ -74,6 +86,9 @@
     ],
     [
       "matcha_ice_lolly"
+    ],
+    [
+      "chocolate_crunch_ice_lolly"
     ],
     [
       "wither_ice_lolly"

@@ -3,7 +3,7 @@ package com.zombie_cute.mc.bakingdelight.entity.custom;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
-import com.zombie_cute.mc.bakingdelight.util.ModDamageTypes;
+import com.zombie_cute.mc.bakingdelight.util.registry_util.ModDamageTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.item;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -14,7 +14,7 @@ public class ModItemGroups {
     public static final String GROUPS_TAB_NAME = "itemgroup.bakingdelight";
     public static final ItemGroup ITEM_GROUP = Registry.register(
             Registries.ITEM_GROUP,
-            new Identifier(Bakingdelight.MOD_ID,"bakingdelight_itemgroup"),
+            new Identifier(ModernDelightMain.MOD_ID,"bakingdelight_itemgroup"),
             FabricItemGroup.builder().displayName(Text.translatable(GROUPS_TAB_NAME))
                     .icon(()->new ItemStack(ModBlocks.GLASS_BOWL))
                     .entries((displayContext, entries) -> {
@@ -39,6 +39,7 @@ public class ModItemGroups {
                         entries.add(ModItems.COPPER_KNIFE);
                         entries.add(ModItems.SPATULA);
                         entries.add(ModBlocks.BAKING_TRAY);
+                        entries.add(ModItems.STONE_MORTAR);
                         // Pizza Making & Oven
                         entries.add(ModItems.KNEADING_STICK);
                         entries.add(ModBlocks.WHEAT_DOUGH);
@@ -57,11 +58,13 @@ public class ModItemGroups {
                         entries.add(ModItems.OIL_IMPURITY);
                         entries.add(ModBlocks.DEEP_FRYER);
                         entries.add(ModBlocks.DEEP_FRY_BASKET);
+                        entries.add(ModItems.HOLDER);
                         // Gas System
                         entries.add(ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
                         entries.add(ModBlocks.BIOGAS_DIGESTER_IO);
                         entries.add(ModBlocks.GAS_CANISTER);
                         entries.add(ModBlocks.GAS_COOKING_STOVE);
+                        entries.add(ModItems.LIQUEFIED_BIOGAS_BUCKET);
                         // Power System
                         entries.add(ModBlocks.ELECTRICIANS_DESK);
                         entries.add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
@@ -94,6 +97,15 @@ public class ModItemGroups {
                         entries.add(ModItems.RAW_ICE_CREAM_CONE);
                         entries.add(ModItems.ICE_CREAM_CONE);
                         entries.add(ModItems.ICE_CREAM);
+                        // Juice
+                        entries.add(ModBlocks.JUICE_EXTRACTOR);
+                        entries.add(ModItems.TOMATO_JUICE);
+                        entries.add(ModItems.SWEET_BERRIES_JUICE);
+                        entries.add(ModBlocks.GLASS_CUP);
+                        entries.add(ModBlocks.CHERRY_MILK_TEA);
+                        entries.add(ModBlocks.ROSE_ICE_TEA);
+                        entries.add(ModItems.MANGO_MILK_TEA);
+                        entries.add(ModItems.SEA_SALT_LEMON);
                         // Cuisine & Storage
                         entries.add(ModBlocks.CUISINE_TABLE);
                         entries.add(ModBlocks.DEEPSLATE_CABINET);
@@ -105,12 +117,24 @@ public class ModItemGroups {
                         entries.add(ModBlocks.BASALT_CABINET);
                         // Building
                         entries.add(ModBlocks.KITCHEN_UTENSIL_HOLDER);
+                        entries.add(ModBlocks.WOODEN_PLATE);
+                        // Instant Noodles
+                        entries.add(ModItems.FRIED_NOODLES);
+                        entries.add(ModItems.MULTIFUNCTIONAL_WRAPPING_PAPER);
+                        entries.add(ModItems.DIRTY_WRAPPING_PAPER);
+                        entries.add(ModItems.PACKAGED_INSTANT_NOODLES);
+                        entries.add(ModItems.PORTABLE_POT);
+                        entries.add(ModItems.COOKED_PORTABLE_POT);
+                        entries.add(ModItems.QUICKLIME);
                         // Misc
                         entries.add(ModItems.ANCIENT_SCRAP);
+                        entries.add(ModItems.HONEY_CRYSTALLIZATION);
+                        entries.add(ModItems.MATCHA);
                         // Jars
                         entries.add(ModItems.JAR);
                         entries.add(ModItems.CARAMEL);
                         entries.add(ModItems.CHOCOLATE_SAUCE);
+                        entries.add(ModItems.SEA_SALT);
                         // Truffles
                         entries.add(ModItems.BLACK_TRUFFLE);
                         entries.add(ModItems.WHITE_TRUFFLE);
@@ -123,6 +147,7 @@ public class ModItemGroups {
                         // Garlic
                         entries.add(ModItems.GARLIC);
                         entries.add(ModItems.GARLIC_PETAL);
+                        entries.add(ModItems.GARLIC_PUREE);
                         // Starch
                         entries.add(ModItems.POTATO_STARCH);
                         entries.add(ModItems.WHEAT_FLOUR);
@@ -151,8 +176,6 @@ public class ModItemGroups {
                         entries.add(ModItems.FRIED_MILK_WIP);
                         entries.add(ModItems.FRIED_MILK);
 
-
-
                         entries.add(ModItems.CHEESE_BALL);
                         entries.add(ModItems.FRIED_DOUGH_STICK);
                         entries.add(ModItems.STEAMED_BUN);
@@ -177,11 +200,21 @@ public class ModItemGroups {
                         entries.add(ModItems.ROASTED_SUNFLOWER_SEED);
 
                         entries.add(ModItems.EGG_BOWL);
-                        entries.add(ModItems.CHERRY_EGG);
-                        entries.add(ModItems.FISH_EGG);
                         entries.add(ModItems.STEAMED_EGG);
+                        entries.add(ModItems.CHERRY_EGG);
                         entries.add(ModItems.STEAMED_CHERRY_EGG);
+                        entries.add(ModItems.FISH_EGG);
                         entries.add(ModItems.STEAMED_FISH_EGG);
+                        entries.add(ModItems.STEAMED_STUFFED_BUN_WIP);
+                        entries.add(ModItems.STEAMED_STUFFED_BUN);
+                        entries.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP);
+                        entries.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN);
+                        entries.add(ModItems.SHAOMAI_WIP);
+                        entries.add(ModItems.SHAOMAI);
+
+                        entries.add(ModItems.STEAMED_PUMPKIN_WIP);
+                        entries.add(ModBlocks.STEAMED_PUMPKIN);
+                        entries.add(ModItems.STEAMED_PUMPKIN_IN_BOWL);
                         // Puddings
                         entries.add(ModItems.PUDDING_WIP_1);
                         entries.add(ModItems.PUDDING_WIP_2);
@@ -194,7 +227,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CHERRY_ICE_LOLLY);
                         entries.add(ModItems.MATCHA_ICE_LOLLY);
                         entries.add(ModItems.WITHER_ICE_LOLLY);
-
+                        entries.add(ModItems.CHOCOLATE_CRUNCH_ICE_LOLLY);
                         // Bread
                         entries.add(ModItems.BREAD_SLICE);
                         entries.add(ModItems.BUTTER_BREAD_SLICE);
@@ -230,6 +263,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CHEESE_BURGER);
                         entries.add(ModItems.PORK_CHOP_BURGER);
                         entries.add(ModBlocks.FISH_AND_CHIPS_ITEM);
+                        entries.add(ModItems.BLACK_PEPPER_STEAK);
                         // Pork
                         entries.add(ModItems.STREAKY_PORK);
                         entries.add(ModItems.ROAST_STREAKY_PORK);
@@ -283,6 +317,6 @@ public class ModItemGroups {
                         entries.add(ModItems.TURNIP);
                     }).build());
     public static void registerItemGroup(){
-        Bakingdelight.LOGGER.info("Registering Item Group for " + Bakingdelight.MOD_ID);
+        ModernDelightMain.LOGGER.info("Registering Item Group for " + ModernDelightMain.MOD_ID);
     }
 }

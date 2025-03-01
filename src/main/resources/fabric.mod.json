@@ -15,40 +15,57 @@
 		"喵awa"
 	],
 	"contact": {
-		"homepage": "https://github.com/zombiecute/ModernKitchen",
-		"sources": "https://github.com/zombiecute/ModernKitchen",
-		"issues": "https://github.com/zombiecute/ModernKitchen/issues"
+		"homepage": "https://github.com/zombiecute/ModernDelight",
+		"sources": "https://github.com/zombiecute/ModernDelight",
+		"issues": "https://github.com/zombiecute/ModernDelight/issues"
 	},
 	"license": "MIT ",
 	"icon": "assets/bakingdelight/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.zombie_cute.mc.bakingdelight.Bakingdelight"
+          "com.zombie_cute.mc.bakingdelight.ModernDelightMain"
 		],
 		"client": [
-			"com.zombie_cute.mc.bakingdelight.BakingdelightClient"
+			"com.zombie_cute.mc.bakingdelight.ModernDelightClient"
 		],
 		"fabric-datagen": [
-			"com.zombie_cute.mc.bakingdelight.BakingdelightDataGenerator"
+			"com.zombie_cute.mc.bakingdelight.ModernDelightDataGenerator"
 		],
 		"rei_client": [
 			"com.zombie_cute.mc.bakingdelight.compat.rei.BakingDelightREIClientPlugin"
 		],
 		"emi": [
 			"com.zombie_cute.mc.bakingdelight.compat.emi.BakingDelightEMIPlugin"
+		],
+		"modmenu": [
+			"com.zombie_cute.mc.bakingdelight.compat.modmenu.ModernDelightModMenuApiImpl"
 		]
 	},
 	"mixins": [
 		"bakingdelight.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.6",
+		"fabricloader": ">=0.16.3",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": "*",
+		"geckolib": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.com/invite/b3RrpnWWYk"
+			},
+			"update_checker": true
+		}
 	},
 	"suggests": {
-		"another-mod": "geckolib"
-	}
+		"another-mod": ["modmenu", "create", "farmersdelight"]
+	},
+	"resources": [
+		"assets/bakingdelight/models/item",
+		"assets/bakingdelight/textures/item"
+	]
 }

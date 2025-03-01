@@ -1,7 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.assembly;
 
 import com.google.common.collect.ImmutableList;
-import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.AssemblyRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
@@ -23,7 +22,6 @@ public class AssemblyDisplay extends BasicDisplay {
     @Override
     public List<EntryIngredient> getInputEntries() {
         List<EntryIngredient> inputEntryList = new ArrayList<>(super.getInputEntries());
-        inputEntryList.add(EntryIngredients.of(ModBlocks.BAMBOO_COVER));
         inputEntryList.add(EntryIngredients.of(Items.INK_SAC));
         inputEntryList.add(EntryIngredients.of(Items.GLOW_INK_SAC));
         inputEntryList.add(EntryIngredients.of(Items.BLACK_DYE));

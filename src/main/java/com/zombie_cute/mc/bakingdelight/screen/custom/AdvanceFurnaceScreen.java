@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
-import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.networking.packet.SpawnXPC2SPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -14,11 +14,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-
-import java.util.Objects;
 @Environment(EnvType.CLIENT)
 public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/advance_furnace_gui.png");
     public static final String TOOLTIP = "tooltips.bakingdelight.advance_furnace_exp_tooltip";
     public AdvanceFurnaceScreen(AdvanceFurnaceScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -47,9 +45,9 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
             if (mc.player != null && !mc.player.isSpectator()) {
                 if (handler.getExperiences()/10 != 0){
                     mc.player.playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON,1.0f,1.0f);
-                    NetworkHandler.sendSpawnXPPacket(handler.blockEntity.getPos());
+                    SpawnXPC2SPacket.send(handler.blockEntity.getPos());
                 } else {
-                    mc.player.playSound(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF,1.0f,1.6f);
+                    return false;
                 }
             }
             return true;
@@ -74,9 +72,7 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
         renderBurnTime(context, x, y);
         if (mouseX >= x + 7 && mouseX <= x + 41 && mouseY >= y + 51 && mouseY <= y + 62){
             context.drawTexture(TEXTURE, x + 6, y + 50, 176, 38, 36,13);
-            if (handler.getExperiences()/10 != 0){
-                context.drawTooltip(Objects.requireNonNull(client).textRenderer,Text.translatable(TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
-            }
+            context.drawTooltip(this.textRenderer,Text.translatable(TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
         }
         if (handler.getExperiences()/10 <= 9999){
             context.drawText(textRenderer,String.valueOf(handler.getExperiences()/10),x+8,y+52, 0x82fd64,true);

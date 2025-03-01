@@ -5,6 +5,10 @@
     {
       "id": "create:wrench",
       "required": false
+    },
+    {
+      "id": "techreborn:wrench",
+      "required": false
     }
   ]
 }

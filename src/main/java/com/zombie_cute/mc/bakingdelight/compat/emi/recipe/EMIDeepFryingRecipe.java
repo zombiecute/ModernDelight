@@ -1,8 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
+import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.DeepFryingRecipe;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIDeepFryingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/deep_fryer.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/deep_fryer.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.DEEP_FRYER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(Bakingdelight.MOD_ID, "deep_frying"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "deep_frying"), WORKSTATION);
 
     private final Identifier id;
     private final List<EmiIngredient> input;
@@ -33,7 +34,7 @@ public class EMIDeepFryingRecipe implements EmiRecipe {
             inputs.add(EmiIngredient.of(ingredient));
         }
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)));
-        inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.DEEP_FRY_BASKET)));
+        inputs.add(EmiIngredient.of(Ingredient.ofItems(ModItems.HOLDER)));
         this.input = inputs;
         this.output = List.of(EmiStack.of(recipe.getOutput(null)));
     }
@@ -74,7 +75,7 @@ public class EMIDeepFryingRecipe implements EmiRecipe {
         widgets.addSlot(EmiStack.of(ModFluid.STILL_VEGETABLE_OIL),57,10);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.DEEP_FRYER)),38,34);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)),20,34);
-        widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.DEEP_FRY_BASKET)),78,52);
+        widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModItems.HOLDER)),78,52);
 
 
         widgets.addSlot(output.get(0), 115, 34).recipeContext(this);

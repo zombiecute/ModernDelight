@@ -1,16 +1,17 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class BiogasDigesterIOScreen extends HandledScreen<BiogasDigesterIOScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/biogas_digester_io_gui.png");
     public static final String UNAVAILABLE = "tooltips.bakingdelight.biogas_digester_io.unavailable";
     public BiogasDigesterIOScreen(BiogasDigesterIOScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -37,9 +38,7 @@ public class BiogasDigesterIOScreen extends HandledScreen<BiogasDigesterIOScreen
             context.drawTexture(TEXTURE,x+123,y+60,176,0,25,12);
         }
         if (mouseX >= x + 108 && mouseX <= x + 121 && mouseY >= y + 60 && mouseY <= y + 71){
-            context.drawTexture(TEXTURE,mouseX+6,mouseY-16,176,12,50,13);
-            context.drawText(textRenderer,String.valueOf(handler.getGasValue()),
-                    mouseX+9,mouseY-13, 0xffffff,false);
+            context.drawTooltip(textRenderer,Text.literal(handler.getGasValue() + " L").formatted(Formatting.WHITE),mouseX,mouseY);
         }
     }
 

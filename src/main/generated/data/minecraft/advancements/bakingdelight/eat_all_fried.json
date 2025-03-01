@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:bakingdelight/got_deep_fryer",
+  "parent": "minecraft:bakingdelight/got_fried_noodles",
   "criteria": {
     "apple": {
       "conditions": {
@@ -115,6 +115,18 @@
       },
       "trigger": "minecraft:consume_item"
     },
+    "fried_noodles": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:fired_noodles"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "fried_red_mushroom": {
       "conditions": {
         "item": {
@@ -192,6 +204,9 @@
     }
   },
   "requirements": [
+    [
+      "fried_noodles"
+    ],
     [
       "potato_chip"
     ],

@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:steaming",
+  "maxProgress": 9,
+  "ingredients": [
+    {
+      "item": "bakingdelight:shaomai_wip"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:shaomai"
+  }
+}

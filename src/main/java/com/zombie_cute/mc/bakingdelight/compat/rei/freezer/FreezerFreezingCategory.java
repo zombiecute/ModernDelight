@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.freezer;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -17,13 +17,13 @@ import net.minecraft.util.Identifier;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.zombie_cute.mc.bakingdelight.block.entities.FreezerBlockEntity.FREEZER_NAME;
+import static com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEntity.FREEZER_NAME;
 
 public class FreezerFreezingCategory implements DisplayCategory<FreezerFreezingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/freezer.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/freezer.png");
     public static final CategoryIdentifier<FreezerFreezingDisplay> FREEZING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "freezing");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "freezing");
 
     @Override
     public CategoryIdentifier<? extends FreezerFreezingDisplay> getCategoryIdentifier() {

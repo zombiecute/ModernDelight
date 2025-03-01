@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.mixin;
 
-import com.zombie_cute.mc.bakingdelight.item.custom.*;
+import com.zombie_cute.mc.bakingdelight.item.tools.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,6 +48,14 @@ public class EnchantmentEnhancementMixin {
             cir.setReturnValue(canBeEnchanted);
         } else if (stack.getItem() instanceof SpatulaItem) {
             for (Enchantment enchantment : SpatulaItem.ALLOWED_ENCHANTMENTS) {
+                if ((Object)this == enchantment) {
+                    canBeEnchanted = true;
+                    break;
+                }
+            }
+            cir.setReturnValue(canBeEnchanted);
+        } else if (stack.getItem() instanceof StoneMortarItem) {
+            for (Enchantment enchantment : StoneMortarItem.ALLOWED_ENCHANTMENTS) {
                 if ((Object)this == enchantment) {
                     canBeEnchanted = true;
                     break;

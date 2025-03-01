@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "minecraft:logs"
+    },
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "pattern": [
+    "GSG"
+  ],
+  "result": {
+    "count": 16,
+    "item": "bakingdelight:wooden_plate"
+  },
+  "show_notification": true
+}

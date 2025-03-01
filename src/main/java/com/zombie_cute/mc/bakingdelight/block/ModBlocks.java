@@ -1,9 +1,47 @@
 package com.zombie_cute.mc.bakingdelight.block;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
-import com.zombie_cute.mc.bakingdelight.block.custom.*;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.block.biogas.BiogasDigesterControllerBlock;
+import com.zombie_cute.mc.bakingdelight.block.biogas.BiogasDigesterIOBlock;
+import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlock;
+import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlockItem;
+import com.zombie_cute.mc.bakingdelight.block.crops.BlackPepperCropBlock;
+import com.zombie_cute.mc.bakingdelight.block.crops.GarlicCropBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.*;
+import com.zombie_cute.mc.bakingdelight.block.food.fish_and_chips.FishAndChipsBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.pizza.PizzaBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.pizza.PizzaWIPBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.pizza.RawPizzaBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.pizza.WheatDoughBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.*;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.CabinetBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.GlassCupBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.KitchenUtensilHolderBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.WoodenPlateBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.BakingTrayBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.DeepFryBasketBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.DeepFryerBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooking_stove.BurningGasCookingStoveBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooking_stove.GasCookingStoveBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockItem;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.juice_extractor.JuiceExtractorBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.juice_extractor.JuiceExtractorBlockItem;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.BambooCoverBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.BambooGrateBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.ElectricSteamerBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.ChargingPostBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.TeslaCoilBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.ACDCConverterBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.PhotovoltaicGeneratorBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.FaradayGeneratorBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.SterlingEngineBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.FanBladeBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTurbineControllerBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.batteries.*;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
-import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -11,7 +49,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.FoodComponent;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -43,11 +83,11 @@ public class ModBlocks {
     public static final Block BAKING_TRAY = registerBlock("baking_tray", new BakingTrayBlock());
     public static final Block DEEP_FRYER = registerBlock("deep_fryer", new DeepFryerBlock());
     public static final Block ADVANCE_FURNACE = registerBlock("advance_furnace", new AdvanceFurnaceBlock());
-    public static final Block CREAM_FLUID_BLOCK = registerBlockWithoutItem("cream_fluid_block",
+    public static final Block CREAM_FLUID_BLOCK = registerBlockWithoutItem("cream_fluid",
             new FluidBlock(ModFluid.STILL_CREAM,FabricBlockSettings.copyOf(Blocks.WATER)));
     public static final Block WOODEN_BASIN = registerBlock("wooden_basin",
             new WoodenBasinBlock());
-    public static final Block VEGETABLE_OIL_FLUID_BLOCK = registerBlockWithoutItem("vegetable_oil_fluid_block",
+    public static final Block VEGETABLE_OIL_FLUID_BLOCK = registerBlockWithoutItem("vegetable_oil_fluid",
             new FluidBlock(ModFluid.STILL_VEGETABLE_OIL,FabricBlockSettings.copyOf(Blocks.WATER)));
     public static final Block GAS_CANISTER = registerBlockWithoutItem("gas_canister",
             new GasCanisterBlock());
@@ -69,19 +109,18 @@ public class ModBlocks {
     public static final Block DIORITE_CABINET = registerBlock("diorite_cabinet",new CabinetBlock());
     public static final Block GRANITE_CABINET = registerBlock("granite_cabinet",new CabinetBlock());
     public static final Block DEEPSLATE_CABINET = registerBlock("deepslate_cabinet",new CabinetBlock(
-            FabricBlockSettings.copyOf(Blocks.DEEPSLATE)
+            FabricBlockSettings.copyOf(Blocks.DEEPSLATE).nonOpaque()
     ));
     public static final Block BLACKSTONE_CABINET = registerBlock("blackstone_cabinet",new CabinetBlock(
-            FabricBlockSettings.copyOf(Blocks.BLACKSTONE)
+            FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()
     ));
     public static final Block BASALT_CABINET = registerBlock("basalt_cabinet",new CabinetBlock(
-            FabricBlockSettings.copyOf(Blocks.BASALT)
+            FabricBlockSettings.copyOf(Blocks.BASALT).nonOpaque()
     ));
     public static final Block OBSIDIAN_CABINET = registerBlock("obsidian_cabinet",new CabinetBlock(
-            FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
+            FabricBlockSettings.copyOf(Blocks.OBSIDIAN).nonOpaque()
     ));
     public static final Block PHOTOVOLTAIC_GENERATOR = registerBlock("photovoltaic_generator",new PhotovoltaicGeneratorBlock());
-    public static final Block GAS_PIPE = registerBlock("gas_pipe", new GasPipeBlock());
     public static final Block AC_DC_CONVERTER = registerBlock("ac_dc_converter", new ACDCConverterBlock());
     public static final Block FAN_BLADE = registerBlockWithoutItem("fan_blade", new FanBladeBlock());
     public static final Block WIND_TURBINE_CONTROLLER = registerBlock("wind_turbine_controller", new WindTurbineControllerBlock());
@@ -109,9 +148,25 @@ public class ModBlocks {
             FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
     ));
     public static final Block CHARGING_POST = registerBlock("charging_post", new ChargingPostBlock());
+    public static final Block JUICE_EXTRACTOR = registerBlockWithoutItem("juice_extractor", new JuiceExtractorBlock());
+    public static final Block GLASS_CUP = registerBlock("glass_cup", new GlassCupBlock());
+    public static final Block CHERRY_MILK_TEA = registerBlockWithoutItem("cherry_milk_tea",
+            new GlassCupOfTeaBlock(5,0.3f,
+                    new StatusEffectInstance(StatusEffects.STRENGTH,10 * 20,0),
+                    new StatusEffectInstance(StatusEffects.HASTE,60 * 20,0)));
+    public static final Block ROSE_ICE_TEA = registerBlockWithoutItem("rose_ice_tea",
+            new GlassCupOfTeaBlock(5,0.3f,
+                    new StatusEffectInstance(StatusEffects.RESISTANCE,20 * 20,0),
+                    new StatusEffectInstance(StatusEffects.SPEED,60 * 20,0)));
+    public static final Block LIQUEFIED_BIOGAS_FLUID_BLOCK = registerBlockWithoutItem("liquefied_biogas_fluid",
+            new FluidBlock(ModFluid.STILL_LIQUEFIED_BIOGAS,FabricBlockSettings.copyOf(Blocks.WATER)));
+    public static final Block WOODEN_PLATE = registerBlock("wooden_plate",
+            new WoodenPlateBlock());
+    public static final Block STEAMED_PUMPKIN = registerBlockWithoutItem("steamed_pumpkin",
+            new SteamedPumpkinBlock());
 
     // Block Items
-    public static final BlockItem FISH_AND_CHIPS_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"fish_and_chips"),
+    public static final BlockItem FISH_AND_CHIPS_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"fish_and_chips"),
             new BlockItem(FISH_AND_CHIPS,new FabricItemSettings().maxCount(16).food(
                     new FoodComponent.Builder().hunger(20).saturationModifier(0.6f).build()
             )){
@@ -119,62 +174,67 @@ public class ModBlocks {
                 public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
                     if (user instanceof PlayerEntity player){
                         if (stack.getCount() == 1){
-                            player.setStackInHand(player.getActiveHand(), Items.BOWL.getDefaultStack());
-                            player.giveItemStack(new ItemStack(ModItems.DIRTY_PACKAGING_BAG,2));
+                            player.setStackInHand(player.getActiveHand(), WOODEN_PLATE.asItem().getDefaultStack());
                         } else {
-                            player.giveItemStack(Items.BOWL.getDefaultStack());
-                            player.giveItemStack(new ItemStack(ModItems.DIRTY_PACKAGING_BAG,2));
+                            player.giveItemStack(WOODEN_PLATE.asItem().getDefaultStack());
                         }
                     }
                     return super.finishUsing(stack, world, user);
                 }
             });
-    public static final BlockItem ICE_CREAM_MAKER_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"ice_cream_maker"),
+    public static final BlockItem ICE_CREAM_MAKER_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"ice_cream_maker"),
             new IceCreamMakerBlockItem());
-    public static final BlockItem STERLING_ENGINE_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"sterling_engine"),
+    public static final BlockItem STERLING_ENGINE_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"sterling_engine"),
             new BlockItem(STERLING_ENGINE,new FabricItemSettings().maxCount(16)));
-    public static final BlockItem FAN_BLADE_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"fan_blade"),
+    public static final BlockItem FAN_BLADE_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"fan_blade"),
             new BlockItem(FAN_BLADE,new FabricItemSettings().maxCount(16)));
-    public static final BlockItem SIMPLE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"simple_battery"),
-            new BlockItem(SIMPLE_BATTERY,new FabricItemSettings().maxCount(1)));
-    public static final BlockItem INTERMEDIATE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"intermediate_battery"),
-            new BlockItem(INTERMEDIATE_BATTERY,new FabricItemSettings().maxCount(1)));
-    public static final BlockItem ADVANCE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"advance_battery"),
-            new BlockItem(ADVANCE_BATTERY,new FabricItemSettings().maxCount(1)));
-    public static final BlockItem DIMENSION_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"dimension_battery"),
-            new BlockItem(DIMENSION_BATTERY,new FabricItemSettings().maxCount(1)));
-    public static final BlockItem DEEP_FRY_BASKET_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"deep_fry_basket"),
+    public static final BlockItem SIMPLE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"simple_battery"),
+            new BatteryBlockItem(SIMPLE_BATTERY));
+    public static final BlockItem INTERMEDIATE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"intermediate_battery"),
+            new BatteryBlockItem(INTERMEDIATE_BATTERY));
+    public static final BlockItem ADVANCE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"advance_battery"),
+            new BatteryBlockItem(ADVANCE_BATTERY));
+    public static final BlockItem DIMENSION_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"dimension_battery"),
+            new BatteryBlockItem(DIMENSION_BATTERY));
+    public static final BlockItem DEEP_FRY_BASKET_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"deep_fry_basket"),
             new BlockItem(DEEP_FRY_BASKET,new FabricItemSettings().maxCount(1)));
-    public static final BlockItem GAS_CANISTER_ITEM = Registry.register(Registries.ITEM,new Identifier(Bakingdelight.MOD_ID,"gas_canister"),
-            new BlockItem(GAS_CANISTER,new FabricItemSettings().maxCount(1)));
-    public static final BlockItem PIZZA_ITEM = Registry.register(Registries.ITEM, new Identifier(Bakingdelight.MOD_ID, "pizza"),
+    public static final BlockItem GAS_CANISTER_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"gas_canister"),
+            new GasCanisterBlockItem());
+    public static final BlockItem PIZZA_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "pizza"),
             new BlockItem(PIZZA, new FabricItemSettings().maxCount(1)));
-    public static final BlockItem RAW_PIZZA_ITEM = Registry.register(Registries.ITEM, new Identifier(Bakingdelight.MOD_ID, "raw_pizza"),
+    public static final BlockItem RAW_PIZZA_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "raw_pizza"),
             new BlockItem(RAW_PIZZA, new FabricItemSettings()
                     .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.1f)
                             .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,200,0),0.4f).build()).maxCount(1)));
-    public static final BlockItem PIZZA_WIP_ITEM = Registry.register(Registries.ITEM, new Identifier(Bakingdelight.MOD_ID, "pizza_wip"),
+    public static final BlockItem PIZZA_WIP_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "pizza_wip"),
             new BlockItem(PIZZA_WIP, new FabricItemSettings()
                     .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.1f)
                             .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,200,0),0.3f).build()).maxCount(1)));
-    public static final BlockItem WHEAT_DOUGH_ITEM = Registry.register(Registries.ITEM, new Identifier(Bakingdelight.MOD_ID, "wheat_dough"),
+    public static final BlockItem WHEAT_DOUGH_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "wheat_dough"),
             new BlockItem(WHEAT_DOUGH, new FabricItemSettings()
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f)
                             .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,200,0),0.5f).build())));
-
+    public static final BlockItem JUICE_EXTRACTOR_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "juice_extractor"),
+            new JuiceExtractorBlockItem());
+    public static final BlockItem CHERRY_MILK_TEA_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "cherry_milk_tea"),
+            new GlassCupOfTeaBlockItem(CHERRY_MILK_TEA));
+    public static final BlockItem ROSE_ICE_TEA_TEA_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "rose_ice_tea"),
+            new GlassCupOfTeaBlockItem(ROSE_ICE_TEA));
+    public static final BlockItem STEAMED_PUMPKIN_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "steamed_pumpkin"),
+            new BlockItem(STEAMED_PUMPKIN, new FabricItemSettings().maxCount(16).recipeRemainder(WOODEN_PLATE.asItem())));
 
     private static Block registerBlockWithoutItem(String name,Block block){
-        return Registry.register(Registries.BLOCK,new Identifier(Bakingdelight.MOD_ID,name),block);
+        return Registry.register(Registries.BLOCK,new Identifier(ModernDelightMain.MOD_ID,name),block);
     }
     private static Block registerBlock(String name,Block block){
         registerBlockItem(name,block);
-        return Registry.register(Registries.BLOCK,new Identifier(Bakingdelight.MOD_ID,name),block);
+        return Registry.register(Registries.BLOCK,new Identifier(ModernDelightMain.MOD_ID,name),block);
     }
-    private static Item registerBlockItem(String name, Block block){
-        return Registry.register(Registries.ITEM, new Identifier(Bakingdelight.MOD_ID, name),
+    private static void registerBlockItem(String name, Block block){
+        Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
     }
     public static void registerModBlocks(){
-        Bakingdelight.LOGGER.info("Registering Mod Blocks for " + Bakingdelight.MOD_ID);
+        ModernDelightMain.LOGGER.info("Registering Mod Blocks for " + ModernDelightMain.MOD_ID);
     }
 }

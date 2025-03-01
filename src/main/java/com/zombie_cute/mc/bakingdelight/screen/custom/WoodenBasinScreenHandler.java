@@ -1,8 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.zombie_cute.mc.bakingdelight.block.entities.WoodenBasinBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.screen.slot.OnlyExtractSlot;
+import com.zombie_cute.mc.bakingdelight.util.FluidUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.entity.BlockEntity;
@@ -16,6 +17,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class WoodenBasinScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -50,11 +52,11 @@ public class WoodenBasinScreenHandler extends ScreenHandler {
         return this.propertyDelegate.get(0);
     }
     @Environment(EnvType.CLIENT)
-    public int getScaledProgress(){
+    public int getScaledFluidLevel(){
         int progress = this.propertyDelegate.get(0);
-        int maxProgress = this.propertyDelegate.get(1); // Max Progress
+        int maxProgress = (int) FluidUtil.convertDropletsToMb(WoodenBasinBlockEntity.MAX_FLUID_LEVEL); // Max Progress
         int progressArrowSize = 47;// Arrow's Width
-        return progress != 0 && maxProgress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        return progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     @Override
@@ -84,10 +86,9 @@ public class WoodenBasinScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        BlockPos pos1 = player.getBlockPos();
-        BlockPos pos2 = blockEntity.getPos();
-        double distance = Math.sqrt(Math.pow(pos2.getX()-pos1.getX(),2)+Math.pow(pos2.getY()-pos1.getY(),2)+Math.pow(pos2.getZ()-pos1.getZ(),2));
-        return this.inventory.canPlayerUse(player) && distance < 7 && !blockEntity.isRemoved();
+        BlockPos pos = blockEntity.getPos();
+        Vec3d v = new Vec3d(pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5);
+        return !blockEntity.isRemoved() && v.isInRange(player.getPos(), 8.0);
     }
     private void addPlayerInventory(PlayerInventory playerInventory){
         for (int i = 0; i < 3; ++i){

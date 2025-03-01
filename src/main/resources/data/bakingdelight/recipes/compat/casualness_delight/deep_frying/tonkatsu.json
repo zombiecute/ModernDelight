@@ -1,0 +1,20 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "casualness_delight"
+      ]
+    }
+  ],
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "minecraft:porkchop"
+    }
+  ],
+  "output": {
+    "item": "casualness_delight:tonkatsu",
+    "count": 3
+  }
+}

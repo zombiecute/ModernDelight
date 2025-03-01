@@ -45,6 +45,13 @@
     "bakingdelight:chocolate_donut",
     "bakingdelight:cheese_burger",
     "bakingdelight:fried_cod_nugget",
+    "bakingdelight:steamed_stuffed_bun_wip",
+    "bakingdelight:steamed_stuffed_bun",
+    "bakingdelight:vegetable_steamed_stuffed_bun",
+    "bakingdelight:vegetable_steamed_stuffed_bun_wip",
+    "bakingdelight:shaomai",
+    "bakingdelight:shaomai_wip",
+    "bakingdelight:black_pepper_steak",
     {
       "id": "#c:foods/ice_lollies",
       "required": false
@@ -129,6 +136,18 @@
       "required": false
     },
     "bakingdelight:pork_chop_burger",
-    "bakingdelight:fish_and_chips"
+    "bakingdelight:fish_and_chips",
+    "bakingdelight:fired_noodles",
+    "bakingdelight:packaged_instant_noodles",
+    "bakingdelight:matcha",
+    "bakingdelight:garlic_puree",
+    "bakingdelight:steamed_pumpkin_in_bowl",
+    "bakingdelight:steamed_pumpkin",
+    "bakingdelight:steamed_pumpkin_wip",
+    {
+      "id": "#c:foods/fruits",
+      "required": false
+    },
+    "#c:foods/juice"
   ]
 }

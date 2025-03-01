@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "stone_mortar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:stone_mortar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.stone_mortar.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:stone_mortar",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.stone_mortar.title"
+    }
+  },
+  "requirements": [
+    [
+      "stone_mortar"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

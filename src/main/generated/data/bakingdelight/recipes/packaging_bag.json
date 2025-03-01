@@ -3,20 +3,20 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:paper"
+      "item": "bakingdelight:multifunctional_wrapping_paper"
     },
     {
-      "item": "minecraft:paper"
+      "item": "bakingdelight:multifunctional_wrapping_paper"
     },
     {
-      "item": "minecraft:paper"
+      "item": "bakingdelight:multifunctional_wrapping_paper"
     },
     {
       "item": "minecraft:red_dye"
     }
   ],
   "result": {
-    "count": 3,
+    "count": 6,
     "item": "bakingdelight:packaging_bag"
   }
 }

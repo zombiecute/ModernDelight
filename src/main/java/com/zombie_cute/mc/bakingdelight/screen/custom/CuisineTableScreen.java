@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.CuisineRecipe;
-import com.zombie_cute.mc.bakingdelight.util.NetworkHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Bakingdelight.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/cuisine_table_gui.png");
     private int selectedRecipe;
     private List<CuisineRecipe> availableRecipes;
@@ -243,7 +243,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
     public void close() {
         int[] array = new int[1];
         array[0] = 1;
-        NetworkHandler.sendChangeBlockEntityDataPacket(handler.blockEntity.getPos(), array);
+        ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(), array);
         super.close();
     }
 }

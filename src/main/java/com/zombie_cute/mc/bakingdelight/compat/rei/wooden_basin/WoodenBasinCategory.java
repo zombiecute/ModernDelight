@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.wooden_basin;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.block.entities.WoodenBasinBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlockEntity;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import me.shedaniel.math.Point;
@@ -25,9 +25,9 @@ import java.util.List;
 
 public class WoodenBasinCategory implements DisplayCategory<WoodenBasinDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/wooden_basin.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/wooden_basin.png");
     public static final CategoryIdentifier<WoodenBasinDisplay> WOODEN_BASIN =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "wooden_basin");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "wooden_basin");
     @Override
     public CategoryIdentifier<? extends WoodenBasinDisplay> getCategoryIdentifier() {
         return WOODEN_BASIN;

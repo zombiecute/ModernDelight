@@ -22,7 +22,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "bakingdelight:deep_fry_basket"
+      "item": "bakingdelight:holder"
     },
     "show_toast": true,
     "title": {

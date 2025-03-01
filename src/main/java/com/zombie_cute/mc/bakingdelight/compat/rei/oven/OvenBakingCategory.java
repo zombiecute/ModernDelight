@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.oven;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -16,13 +16,13 @@ import net.minecraft.util.Identifier;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.zombie_cute.mc.bakingdelight.block.entities.OvenBlockEntity.OVEN_NAME;
+import static com.zombie_cute.mc.bakingdelight.block.kitchenware.OvenBlockEntity.OVEN_NAME;
 
 public class OvenBakingCategory implements DisplayCategory<OvenBakingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/oven.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/oven.png");
     public static final CategoryIdentifier<OvenBakingDisplay> OVEN_BAKING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "oven_baking");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "oven_baking");
 
     @Override
     public CategoryIdentifier<? extends OvenBakingDisplay> getCategoryIdentifier() {

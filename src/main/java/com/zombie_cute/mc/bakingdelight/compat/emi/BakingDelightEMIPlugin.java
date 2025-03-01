@@ -26,11 +26,14 @@ public class BakingDelightEMIPlugin implements EmiPlugin {
         registry.addCategory(EMIBakingRecipe.CATEGORY);
         registry.addCategory(EMIPizzaRecipe.CATEGORY);
         registry.addCategory(EMISteamingRecipe.CATEGORY);
+        registry.addCategory(EMISteamingElectricRecipe.CATEGORY);
         registry.addCategory(EMIAdvanceFurnaceRecipe.CATEGORY);
         registry.addCategory(EMIOvenRecipe.CATEGORY);
         registry.addCategory(EMIWoodenBasinRecipe.CATEGORY);
         registry.addCategory(EMIIceCreamRecipe.CATEGORY);
-
+        registry.addCategory(EMIJuiceExtractingRecipe.CATEGORY);
+        registry.addCategory(EMIInstantNoodlesMakingRecipe.CATEGORY);
+        registry.addCategory(EMIGrindingRecipe.CATEGORY);
 
         registry.addWorkstation(EMIMixWithWaterRecipe.CATEGORY, EMIMixWithWaterRecipe.WORKSTATION);
 
@@ -56,7 +59,7 @@ public class BakingDelightEMIPlugin implements EmiPlugin {
         registry.addWorkstation(EMIBakingRecipe.CATEGORY, EmiStack.of(ModBlocks.GAS_CANISTER));
         registry.addWorkstation(EMIBakingRecipe.CATEGORY, EmiStack.of(ModBlocks.GAS_COOKING_STOVE));
 
-        registry.addWorkstation(EMISteamingRecipe.CATEGORY, EmiStack.of(ModBlocks.ELECTRIC_STEAMER));
+        registry.addWorkstation(EMISteamingElectricRecipe.CATEGORY, EmiStack.of(ModBlocks.ELECTRIC_STEAMER));
         registry.addWorkstation(EMISteamingRecipe.CATEGORY, EmiStack.of(ModBlocks.BAMBOO_COVER));
         registry.addWorkstation(EMISteamingRecipe.CATEGORY, EMISteamingRecipe.WORKSTATION);
         registry.addWorkstation(EMISteamingRecipe.CATEGORY, EmiStack.of(Blocks.CAULDRON));
@@ -67,7 +70,9 @@ public class BakingDelightEMIPlugin implements EmiPlugin {
 
         registry.addWorkstation(EMIIceCreamRecipe.CATEGORY, EMIIceCreamRecipe.WORKSTATION);
 
+        registry.addWorkstation(EMIJuiceExtractingRecipe.CATEGORY, EMIJuiceExtractingRecipe.WORKSTATION);
 
+        registry.addWorkstation(EMIInstantNoodlesMakingRecipe.CATEGORY, EMIInstantNoodlesMakingRecipe.WORKSTATION);
 
         RecipeManager manager = registry.getRecipeManager();
         for (MixWithWaterRecipe recipe : manager.listAllOfType(MixWithWaterRecipe.Type.INSTANCE)) {
@@ -98,10 +103,18 @@ public class BakingDelightEMIPlugin implements EmiPlugin {
         registry.addRecipe(new EMIPizzaRecipe());
         for (SteamingRecipe recipe : manager.listAllOfType(SteamingRecipe.Type.INSTANCE)) {
             registry.addRecipe(new EMISteamingRecipe(recipe));
+            registry.addRecipe(new EMISteamingElectricRecipe(recipe));
         }
         registry.addRecipe(new EMIAdvanceFurnaceRecipe());
         registry.addRecipe(new EMIOvenRecipe());
         registry.addRecipe(new EMIWoodenBasinRecipe());
         registry.addRecipe(new EMIIceCreamRecipe());
+        for (JuiceExtractingRecipe recipe : manager.listAllOfType(JuiceExtractingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIJuiceExtractingRecipe(recipe));
+        }
+        registry.addRecipe(new EMIInstantNoodlesMakingRecipe());
+        for (GrindingRecipe recipe : manager.listAllOfType(GrindingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIGrindingRecipe(recipe));
+        }
     }
 }

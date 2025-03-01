@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.zombie_cute.mc.bakingdelight.block.custom.ElectricSteamerBlock;
-import com.zombie_cute.mc.bakingdelight.block.entities.ElectricSteamerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.ElectricSteamerBlock;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.ElectricSteamerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,32 +11,43 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class ElectricSteamerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public final ElectricSteamerBlockEntity blockEntity;
+    private final PropertyDelegate propertyDelegate;
     public ElectricSteamerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()));
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),new ArrayPropertyDelegate(27));
     }
     public ElectricSteamerScreenHandler(int syncId, PlayerInventory playerInventory,
-                                        BlockEntity blockEntity){
+                                        BlockEntity blockEntity, PropertyDelegate propertyDelegate){
         super(ModScreenHandlers.ELECTRIC_STEAMER_SCREEN_HANDLER,syncId);
         this.inventory = (Inventory) blockEntity;
         this.blockEntity = ((ElectricSteamerBlockEntity) blockEntity);
-        addSlot(new Slot(inventory,0,53,25));
-        addSlot(new Slot(inventory,1,71,25));
-        addSlot(new Slot(inventory,2,89,25));
-        addSlot(new Slot(inventory,3,107,25));
-        addSlot(new Slot(inventory,4,53,43));
-        addSlot(new Slot(inventory,5,71,43));
-        addSlot(new Slot(inventory,6,89,43));
-        addSlot(new Slot(inventory,7,107,43));
+        this.propertyDelegate = propertyDelegate;
+        addSlot(new Slot(inventory,0,54,8));
+        addSlot(new Slot(inventory,1,72,8));
+        addSlot(new Slot(inventory,2,36,26));
+        addSlot(new Slot(inventory,3,54,26));
+        addSlot(new Slot(inventory,4,72,26));
+        addSlot(new Slot(inventory,5,90,26));
+        addSlot(new Slot(inventory,6,36,44));
+        addSlot(new Slot(inventory,7,54,44));
+        addSlot(new Slot(inventory,8,72,44));
+        addSlot(new Slot(inventory,9,90,44));
+        addSlot(new Slot(inventory,10,54,62));
+        addSlot(new Slot(inventory,11,72,62));
+        addSlot(new Slot(inventory,12,152,61));
 
         addPlayerHotbar(playerInventory);
         addPlayerInventory(playerInventory);
+        addProperties(propertyDelegate);
     }
     @Environment(EnvType.CLIENT)
     public boolean isWorking(){
@@ -44,6 +55,42 @@ public class ElectricSteamerScreenHandler extends ScreenHandler {
             return blockEntity.getWorld().getBlockState(blockEntity.getPos()).get(ElectricSteamerBlock.IS_WORKING);
         }
         return false;
+    }
+    @Environment(EnvType.CLIENT)
+    public int getScaledProgress(int slot){
+        int progress = this.propertyDelegate.get(slot);
+        int maxProgress = this.propertyDelegate.get(slot+12); // Max Progress
+        int progressArrowSize = 16;// Arrow's Width
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+    @Environment(EnvType.CLIENT)
+    public int getScaledSteamProgress(){
+        int progress = this.propertyDelegate.get(26);
+        int maxProgress = ElectricSteamerBlockEntity.MAX_STEAM_PROGRESS; // Max Progress
+        int progressArrowSize = 24;// Arrow's Width
+
+        return progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+    @Environment(EnvType.CLIENT)
+    public int getScaledSteam(){
+        int progress = this.propertyDelegate.get(25);
+        int maxProgress = ElectricSteamerBlockEntity.MAX_WATER_OR_STEAM; // Max Progress
+        int progressArrowSize = 70;// Arrow's Width
+
+        return progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+    @Environment(EnvType.CLIENT)
+    public int getScaledWater(){
+        int progress = this.propertyDelegate.get(24);
+        int maxProgress = ElectricSteamerBlockEntity.MAX_WATER_OR_STEAM; // Max Progress
+        int progressArrowSize = 41;// Arrow's Width
+
+        return progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+    @Environment(EnvType.CLIENT)
+    public int getWaterAmount(){
+        return this.propertyDelegate.get(24);
     }
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
@@ -71,10 +118,9 @@ public class ElectricSteamerScreenHandler extends ScreenHandler {
     }
     @Override
     public boolean canUse(PlayerEntity player) {
-        BlockPos pos1 = player.getBlockPos();
-        BlockPos pos2 = blockEntity.getPos();
-        double distance = Math.sqrt(Math.pow(pos2.getX()-pos1.getX(),2)+Math.pow(pos2.getY()-pos1.getY(),2)+Math.pow(pos2.getZ()-pos1.getZ(),2));
-        return distance < 7 && !blockEntity.isRemoved();
+        BlockPos pos = blockEntity.getPos();
+        Vec3d v = new Vec3d(pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5);
+        return !blockEntity.isRemoved() && v.isInRange(player.getPos(), 8.0);
     }
     private void addPlayerInventory(PlayerInventory playerInventory){
         for (int i = 0; i < 3; ++i){

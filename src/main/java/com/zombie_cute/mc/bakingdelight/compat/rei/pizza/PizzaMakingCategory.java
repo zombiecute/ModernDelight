@@ -1,10 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.pizza;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -22,10 +21,10 @@ import java.util.List;
 
 public class PizzaMakingCategory implements DisplayCategory<PizzaMakingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/pizza.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/pizza.png");
     public static final String PIZZA_TITLE = "display_name.bakingdelight.pizza_name";
     public static final CategoryIdentifier<PizzaMakingDisplay> PIZZA_MAKING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "pizza_making");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "pizza_making");
     @Override
     public CategoryIdentifier<? extends PizzaMakingDisplay> getCategoryIdentifier() {
         return PIZZA_MAKING;
@@ -49,13 +48,13 @@ public class PizzaMakingCategory implements DisplayCategory<PizzaMakingDisplay> 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 5,startPoint.y + 10))
                 .entry(EntryStacks.of(ModBlocks.WHEAT_DOUGH.asItem().getDefaultStack())));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 24,startPoint.y + 29))
-                .entries(EntryIngredients.ofItemTag(ModTagKeys.KNEADING_STICKS)));
+                .entries(EntryIngredients.ofItemTag(TagKeys.KNEADING_STICKS)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 44,startPoint.y + 29))
                 .entry(EntryStacks.of(ModItems.CHEESE.getDefaultStack())));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 67,startPoint.y + 10))
                 .entry(EntryStacks.of(ModBlocks.PIZZA_WIP.asItem().getDefaultStack())));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 86,startPoint.y + 29))
-                .entries(EntryIngredients.ofItemTag(ForgeTagKeys.PIZZA_INGREDIENTS)));
+                .entries(EntryIngredients.ofItemTag(TagKeys.PIZZA_INGREDIENTS)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 106,startPoint.y + 29))
                 .entry(EntryStacks.of(ModItems.CHEESE.getDefaultStack())));
 

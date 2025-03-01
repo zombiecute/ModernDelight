@@ -1,8 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.deep_frying;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.DeepFryingRecipe;
-import com.zombie_cute.mc.bakingdelight.tag.ModTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -22,9 +23,9 @@ public class DeepFryingDisplay extends BasicDisplay {
     @Override
     public List<EntryIngredient> getInputEntries() {
         List<EntryIngredient> ingredients = new ArrayList<>(super.getInputEntries());
-        ingredients.add(EntryIngredients.ofFluidTag(ModTagKeys.OIL));
+        ingredients.add(EntryIngredients.ofFluidTag(TagKeys.OIL));
         ingredients.add(EntryIngredients.of(ModBlocks.GAS_CANISTER));
-        ingredients.add(EntryIngredients.of(ModBlocks.DEEP_FRY_BASKET));
+        ingredients.add(EntryIngredients.of(ModItems.HOLDER));
         return ingredients;
     }
 

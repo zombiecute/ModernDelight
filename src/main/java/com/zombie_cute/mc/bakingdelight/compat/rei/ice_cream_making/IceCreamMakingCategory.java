@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.ice_cream_making;
 
-import com.zombie_cute.mc.bakingdelight.Bakingdelight;
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.tag.ForgeTagKeys;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -22,10 +22,10 @@ import java.util.List;
 
 public class IceCreamMakingCategory implements DisplayCategory<IceCreamMakingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(Bakingdelight.MOD_ID, "textures/gui/compats/ice_cream.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/ice_cream.png");
     public static final String TITLE = "emi.category.bakingdelight.ice_cream_making";
     public static final CategoryIdentifier<IceCreamMakingDisplay> ICE_CREAM_MAKING =
-            CategoryIdentifier.of(Bakingdelight.MOD_ID, "ice_cream_making");
+            CategoryIdentifier.of(ModernDelightMain.MOD_ID, "ice_cream_making");
     @Override
     public CategoryIdentifier<? extends IceCreamMakingDisplay> getCategoryIdentifier() {
         return ICE_CREAM_MAKING;
@@ -47,7 +47,7 @@ public class IceCreamMakingCategory implements DisplayCategory<IceCreamMakingDis
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,90)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 44,startPoint.y + 9))
-                .entries(EntryIngredients.ofItemTag(ForgeTagKeys.CREAMS)));
+                .entries(EntryIngredients.ofItemTag(TagKeys.CREAMS)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 44,startPoint.y + 27))
                 .entry(EntryStacks.of(Items.SUGAR.getDefaultStack())));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 44,startPoint.y + 45))
