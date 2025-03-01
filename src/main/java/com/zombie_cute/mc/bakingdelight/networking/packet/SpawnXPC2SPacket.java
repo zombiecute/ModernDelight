@@ -5,6 +5,8 @@ import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.OvenBlockEntity;
 import com.zombie_cute.mc.bakingdelight.networking.NetworkHandler;
 import io.netty.buffer.Unpooled;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.block.entity.BlockEntity;
@@ -43,6 +45,7 @@ public class SpawnXPC2SPacket {
             }
         });
     }
+    @Environment(EnvType.CLIENT)
     public static void send(BlockPos pos) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         buf.writeBlockPos(pos);

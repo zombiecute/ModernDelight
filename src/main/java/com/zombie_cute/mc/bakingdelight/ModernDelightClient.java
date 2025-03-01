@@ -47,7 +47,7 @@ public class ModernDelightClient implements ClientModInitializer {
     public static final String ORE_UI_BRIGHT = "bakingdelight.builtInResourcePack.ore_ui_bright";
     @Override
     public void onInitializeClient() {
-        NetworkHandler.registerC2SPacket();
+        NetworkHandler.registerS2CPacket();
 
         ResourceManagerHelper.registerBuiltinResourcePack(
                 new Identifier(ModernDelightMain.MOD_ID, "ore_ui_dark"),

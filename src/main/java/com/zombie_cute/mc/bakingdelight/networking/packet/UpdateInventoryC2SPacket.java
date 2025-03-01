@@ -4,6 +4,8 @@ import com.zombie_cute.mc.bakingdelight.block.kitchenware.CuisineTableBlockEntit
 import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlockEntity;
 import com.zombie_cute.mc.bakingdelight.networking.NetworkHandler;
 import io.netty.buffer.Unpooled;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.block.entity.BlockEntity;
@@ -29,6 +31,7 @@ public class UpdateInventoryC2SPacket {
             }
         });
     }
+    @Environment(EnvType.CLIENT)
     public static void send(BlockPos pos, ItemStack itemStack) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         buf.writeBlockPos(pos);

@@ -93,6 +93,8 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
                 ItemScatterer.spawn(world ,pos, blockEntity);
                 world.updateComparators(pos,this);
             }
+        } else {
+            updateBlock(state, world, pos);
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }
@@ -110,24 +112,30 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos,
                                                 BlockPos posFrom) {
+        updateBlock(state, world, pos);
+        return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState()
+                : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
+    }
+
+    private static void updateBlock(BlockState state, WorldAccess world, BlockPos pos) {
         if (Boolean.TRUE.equals(state.get(WATERLOGGED))) {
             world.getFluidTickScheduler().scheduleTick(OrderedTick.create(Fluids.WATER, pos));
         }
         if (world.getBlockEntity(pos) instanceof GlassBowlBlockEntity blockEntity){
             if (state.get(WATERLOGGED)){
-                world.setBlockState(pos,state.with(HAS_WATER,true),3);
+                world.setBlockState(pos, state.with(HAS_WATER,true),3);
                 if (!blockEntity.getStack(0).isEmpty()){
-                    ItemScatterer.spawn((World) world,pos.getX(),pos.getY(),pos.getZ(),
+                    ItemScatterer.spawn((World) world, pos.getX(), pos.getY(), pos.getZ(),
                             blockEntity.getStack(0));
                     blockEntity.setStack(0, ItemStack.EMPTY);
                     blockEntity.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.8F);
                     blockEntity.markDirty();
                 }
-                if (!blockEntity.getStack(1).isEmpty()){
-                    if (!(blockEntity.getStack(1).getItem() instanceof PackagedItem)) {
-                        ItemScatterer.spawn((World) world,pos.getX(),pos.getY(),pos.getZ(),
-                                blockEntity.getStack(1));
-                        blockEntity.setStack(1, ItemStack.EMPTY);
+                if (!blockEntity.getOutputStack().isEmpty()){
+                    if (!(blockEntity.getOutputStack().getItem() instanceof PackagedItem)) {
+                        ItemScatterer.spawn((World) world, pos.getX(), pos.getY(), pos.getZ(),
+                                blockEntity.getOutputStack().copy());
+                        blockEntity.setOutputStack(ItemStack.EMPTY);
                         blockEntity.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.8F);
                         blockEntity.markDirty();
                     }
@@ -135,11 +143,11 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
                 }
             }
             if (state.get(HAS_WATER)){
-                if (!blockEntity.getStack(1).isEmpty()){
-                    if (!(blockEntity.getStack(1).getItem() instanceof PackagedItem)) {
-                        ItemScatterer.spawn((World) world,pos.getX(),pos.getY(),pos.getZ(),
-                                blockEntity.getStack(1));
-                        blockEntity.setStack(1, ItemStack.EMPTY);
+                if (!blockEntity.getOutputStack().isEmpty()){
+                    if (!(blockEntity.getOutputStack().getItem() instanceof PackagedItem)) {
+                        ItemScatterer.spawn((World) world, pos.getX(), pos.getY(), pos.getZ(),
+                                blockEntity.getOutputStack().copy());
+                        blockEntity.setOutputStack(ItemStack.EMPTY);
                         blockEntity.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.8F);
                         blockEntity.markDirty();
                     }
@@ -148,8 +156,6 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
                 world.setBlockState(pos, state.with(HAS_ITEM,false),3);
             }
         }
-        return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState()
-                : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
     }
 
     public static void destroyGlassBowl(World world, BlockPos pos) {

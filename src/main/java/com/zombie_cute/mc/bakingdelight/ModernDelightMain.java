@@ -64,7 +64,7 @@ public class ModernDelightMain implements ModInitializer {
 		ModEffectsAndPotions.registerModEffectsAndPotions();
 		ModFluid.registerModFluid();
 		ModWorldGeneration.generateModWorldGen();
-		NetworkHandler.registerS2CPacket();
+		NetworkHandler.registerC2SPacket();
 		ModConfig.INSTANCE.load();
 		// DispenserBlock
 		DispenserBlock.registerBehavior(ModItems.BUTTER, new ProjectileDispenserBehavior() {

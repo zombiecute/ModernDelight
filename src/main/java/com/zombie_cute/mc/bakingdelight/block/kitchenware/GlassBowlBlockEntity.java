@@ -54,6 +54,15 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
     }
     public final DefaultedList<ItemStack> GLASS_BOWL_INV = DefaultedList.ofSize(1, ItemStack.EMPTY);
     public ItemStack outputStack = ItemStack.EMPTY;
+
+    public ItemStack getOutputStack() {
+        return outputStack;
+    }
+
+    public void setOutputStack(ItemStack outputStack) {
+        this.outputStack = outputStack;
+    }
+
     public void onUse(@NotNull PlayerEntity player, BlockState state, World world){
         if (world.isClient()){
             return;

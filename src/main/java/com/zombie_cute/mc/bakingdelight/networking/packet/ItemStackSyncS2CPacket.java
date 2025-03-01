@@ -2,6 +2,8 @@ package com.zombie_cute.mc.bakingdelight.networking.packet;
 
 import com.zombie_cute.mc.bakingdelight.networking.NetworkHandler;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -17,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemStackSyncS2CPacket {
+    @Environment(EnvType.CLIENT)
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender sender){
         int size = buf.readInt();

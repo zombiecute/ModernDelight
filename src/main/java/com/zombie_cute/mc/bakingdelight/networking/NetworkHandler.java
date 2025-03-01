@@ -5,6 +5,8 @@ import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC
 import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.bakingdelight.networking.packet.SpawnXPC2SPacket;
 import com.zombie_cute.mc.bakingdelight.networking.packet.UpdateInventoryC2SPacket;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
@@ -21,6 +23,7 @@ public class NetworkHandler {
         ServerPlayNetworking.registerGlobalReceiver(SPAWN_XP_PACKET_ID, SpawnXPC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(CHANGE_BLOCK_ENTITY_DATA_PACKET_ID, ChangeBlockEntityDataC2SPacket::receive);
     }
+    @Environment(EnvType.CLIENT)
     public static void registerS2CPacket(){
         ModernDelightMain.LOGGER.info("Registering S2C receivers for {}", ModernDelightMain.MOD_ID);
         ClientPlayNetworking.registerGlobalReceiver(ITEM_SYNC, ItemStackSyncS2CPacket::receive);
