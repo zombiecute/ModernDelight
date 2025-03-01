@@ -334,7 +334,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.GAS_COOKING_STOVE, "Gas Cooking Stove");
         translationBuilder.add(ModBlocks.DEEP_FRY_BASKET, "Deep Fry Basket");
         translationBuilder.add(DeepFryerBlockEntity.ADD_OIL, "You need to add cooking oil to it.");
-        translationBuilder.add(DeepFryerBlockEntity.TOO_HOT, "It's too hot! Please hold the holder to remove the items");
+        translationBuilder.add(DeepFryerBlockEntity.TOO_HOT, "It's too hot! Please hold the tongs to remove the items");
         translationBuilder.add(DeepFryerBlockEntity.DEEP_FRYER_NAME, "Deep Frying");
         translationBuilder.add(ModBlocks.KITCHEN_UTENSIL_HOLDER, "Kitchen Utensil Holder");
         translationBuilder.add(ModBlocks.CUISINE_TABLE, "Cuisine Table");
@@ -360,7 +360,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.JAR, "Jar");
         translationBuilder.add(ModItems.CARAMEL, "Caramel");
         translationBuilder.add(ModItems.CARAMEL_PUDDING, "Caramel Pudding");
-        translationBuilder.add(MiscUtil.CAN_PLACE, "Can Place");
+        translationBuilder.add(MiscUtil.CAN_PLACE, "Placeable");
         translationBuilder.add(ModItems.CHEESE_BAKED_POTATO, "Cheese Baked Potato");
         translationBuilder.add(ModItems.CHEESE_RICE_BALL, "Cheese Rice Ball");
         translationBuilder.add(ModItems.CHOCOLATE_SAUCE, "Chocolate Sauce");
@@ -467,8 +467,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SWEET_BERRIES_JUICE, "Sweet Berry Juice");
         translationBuilder.add(ModItems.TOMATO_JUICE, "Tomato Juice");
         translationBuilder.add(ModBlocks.GLASS_CUP, "Glass Cup");
-        translationBuilder.add(ModBlocks.CHERRY_MILK_TEA, "Cherry Milk Tea");
-        translationBuilder.add(ModBlocks.ROSE_ICE_TEA, "Rose Ice Tea");
+        translationBuilder.add(ModBlocks.CHERRY_MILK_TEA, "Sakura Milk Tea");
+        translationBuilder.add(ModBlocks.ROSE_ICE_TEA, "Rose Iced Tea");
         translationBuilder.add(ModItems.LIQUEFIED_BIOGAS_BUCKET, "Liquefied Biogas Bucket");
         translationBuilder.add(ModBlocks.WOODEN_PLATE, "Wooden Plate");
         translationBuilder.add(ModItems.FRIED_NOODLES, "Fried Noodles");
@@ -481,9 +481,9 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.PORTABLE_POT, "Portable Pot");
         translationBuilder.add(ModItems.COOKED_PORTABLE_POT, "Cooked Instant Noodles");
         translationBuilder.add(ModItems.DIRTY_WRAPPING_PAPER, "Dirty Wrapping Paper");
-        translationBuilder.add(ModItems.HONEY_CRYSTALLIZATION, "Honey Crystallization");
+        translationBuilder.add(ModItems.HONEY_CRYSTALLIZATION, "Honey Crystal");
         translationBuilder.add(ModItems.SEA_SALT, "Sea Salt");
-        translationBuilder.add(ModItems.GARLIC_PUREE, "Garlic Puree");
+        translationBuilder.add(ModItems.GARLIC_PUREE, "Garlic Powder");
         translationBuilder.add(ModItems.STONE_MORTAR, "Stone Mortar");
         translationBuilder.add(ModItems.MATCHA, "Matcha");
         translationBuilder.add(ModItems.MANGO_MILK_TEA, "Mango Milk Tea");
@@ -496,11 +496,11 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.STEAMED_STUFFED_BUN, "Steamed Stuffed Bun");
         translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP, "Vegetable Steamed Stuffed Bun (Work In Progress)");
         translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN, "Vegetable Steamed Stuffed Bun");
-        translationBuilder.add(ModItems.SHAOMAI_WIP, "Shaomai (Work In Progress)");
-        translationBuilder.add(ModItems.SHAOMAI, "Shaomai");
+        translationBuilder.add(ModItems.SHAOMAI_WIP, "Shumai (Work In Progress)");
+        translationBuilder.add(ModItems.SHAOMAI, "Shumai");
         translationBuilder.add(ModItems.BLACK_PEPPER_STEAK, "Black Pepper Steak");
-        translationBuilder.add(ModItems.HOLDER, "Holder");
-        translationBuilder.add(ModItems.HOLDER_UP, "Half Holder");
+        translationBuilder.add(ModItems.HOLDER, "Tongs");
+        translationBuilder.add(ModItems.HOLDER_UP, "Half Tongs");
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s was electrocuted!");
         translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s turned to ashes");
@@ -511,7 +511,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "Vegetable Oil");
         translationBuilder.add(ModBlocks.LIQUEFIED_BIOGAS_FLUID_BLOCK, "Liquefied Biogas");
 
-        translationBuilder.add(ModEnchantments.FINE_GRINDING,"Fine Grinding");
+        translationBuilder.add(ModEnchantments.FINE_GRINDING,"Precision Grinding");
         translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","The stone mortar will have additional output when grinding.");
 
         translationBuilder.add(ModEffectsAndPotions.STICKY,"Sticky");
@@ -698,7 +698,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.deep_fryer.title", "Ordeal (For Food)");
         translationBuilder.add("advancement.bakingdelight.deep_fryer.desc", "Right click to put in oil or take out or deposit an item, sneak and right click to see its status. It must be oiled and have a gas canister connection in order to work");
         translationBuilder.add("advancement.bakingdelight.deep_fry_basket.title", "Watch out for hot oil");
-        translationBuilder.add("advancement.bakingdelight.deep_fry_basket.desc", "Remember to use a holder to get items out of the deep fryer, beware of fryer killers!");
+        translationBuilder.add("advancement.bakingdelight.deep_fry_basket.desc", "Remember to use a tongs to get items out of the deep fryer, beware of fryer killers!");
         translationBuilder.add("advancement.bakingdelight.all_fried.title", "All Fried");
         translationBuilder.add("advancement.bakingdelight.all_fried.desc", "Savor all the fried foods!");
         translationBuilder.add("advancement.bakingdelight.wither_rose_cake.title", "Bloom & Doom");
