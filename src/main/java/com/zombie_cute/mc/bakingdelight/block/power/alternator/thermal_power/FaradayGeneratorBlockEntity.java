@@ -75,7 +75,7 @@ public class FaradayGeneratorBlockEntity extends BlockEntity implements Extended
                         return;
                     }}
                 }
-                if (engineBlockEntity.isWorking()){
+                if (engineBlockEntity.getCachedState().get(SterlingEngineBlock.IS_WORKING)){
                     this.isWorking = 1;
                 } else this.isWorking = 0;
             } else this.isWorking = 0;
@@ -98,14 +98,18 @@ public class FaradayGeneratorBlockEntity extends BlockEntity implements Extended
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new FaradayGeneratorScreenHandler(syncId,playerInventory,this, this.propertyDelegate);
     }
-
+    public static long getEnergyEfficiency(){
+        try {
+            int val = ModConfig.energyGeneratedByFaradayGenerator;
+            if (val >= 1){
+                return val;
+            } else return 200;
+        } catch (Throwable e){
+            return 200;
+        }
+    }
     @Override
     public long getEfficiency() {
-        if (this.isWorking != 0){
-            int value = ModConfig.energyGeneratedByFaradayGenerator;
-            if (value < 1){
-                return 200;
-            } else return value;
-        } else return 0;
+        return getEnergyEfficiency();
     }
 }

@@ -189,13 +189,13 @@ public class ModBlocks {
     public static final BlockItem FAN_BLADE_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"fan_blade"),
             new BlockItem(FAN_BLADE,new FabricItemSettings().maxCount(16)));
     public static final BlockItem SIMPLE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"simple_battery"),
-            new BatteryBlockItem(SIMPLE_BATTERY));
+            new BatteryBlockItem((AbstractBatteryBlock) SIMPLE_BATTERY));
     public static final BlockItem INTERMEDIATE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"intermediate_battery"),
-            new BatteryBlockItem(INTERMEDIATE_BATTERY));
+            new BatteryBlockItem((AbstractBatteryBlock) INTERMEDIATE_BATTERY));
     public static final BlockItem ADVANCE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"advance_battery"),
-            new BatteryBlockItem(ADVANCE_BATTERY));
+            new BatteryBlockItem((AbstractBatteryBlock) ADVANCE_BATTERY));
     public static final BlockItem DIMENSION_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"dimension_battery"),
-            new BatteryBlockItem(DIMENSION_BATTERY));
+            new BatteryBlockItem((AbstractBatteryBlock) DIMENSION_BATTERY));
     public static final BlockItem DEEP_FRY_BASKET_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"deep_fry_basket"),
             new BlockItem(DEEP_FRY_BASKET,new FabricItemSettings().maxCount(1)));
     public static final BlockItem GAS_CANISTER_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"gas_canister"),

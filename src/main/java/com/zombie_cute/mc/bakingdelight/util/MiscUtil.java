@@ -208,7 +208,7 @@ public class MiscUtil {
         if (nbt != null) {
             try {
                 List<Item> seasoning = new ArrayList<>();
-                for (int i = 1; i <= ModConfig.maxSeasonings; i++){
+                for (int i = 1; i <= SeasoningItem.getMaxSeasoning(); i++){
                     if (nbt.contains("seasoning_"+i)){
                         String name = nbt.getString("seasoning_"+i);
                         seasoning.add(Registries.ITEM.get(new Identifier(name)));

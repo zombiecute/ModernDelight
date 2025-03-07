@@ -1,10 +1,11 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.juice_extractor;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
-import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
-import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
+import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.JuiceExtractingRecipe;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
+import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
+import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -96,8 +97,6 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
                 return state.setAndContinue(WORK);
             } else if (state.getAnimatable().getCachedState().get(JuiceExtractorBlock.IS_FULL)){
                 return state.setAndContinue(FULL);
-            } else if (state.getAnimatable().getCachedState().get(JuiceExtractorBlock.HAS_ITEM)){
-                return state.setAndContinue(HAS_ITEM);
             } else {
                 return state.setAndContinue(IDLE);
             }
@@ -151,9 +150,6 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
                     world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 0.6f);
                     getStack(slot).decrement(1);
                     markDirty();
-                    if (slot == SLOT_1 && world.getBlockState(pos).getBlock() instanceof JuiceExtractorBlock){
-                        world.setBlockState(pos,world.getBlockState(pos).with(JuiceExtractorBlock.HAS_ITEM,false));
-                    }
                     return; // 弹出一次后直接返回
                 }
             }
@@ -198,7 +194,6 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
             for (int slot = SLOT_1; slot <= SLOT_4; slot++) {
                 if (getStack(slot).isEmpty()) {
                     setStack(slot, player.getStackInHand(hand).split(1));
-                    setState(world,pos,JuiceExtractorBlock.HAS_ITEM,true);
                     world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     markDirty();
                     return;
@@ -245,7 +240,6 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
 
     private void setWorking(World world) {
         if (world.getBlockState(pos).getBlock() instanceof JuiceExtractorBlock) {
-            world.setBlockState(pos, world.getBlockState(pos).with(JuiceExtractorBlock.HAS_ITEM,false));
             world.setBlockState(pos, world.getBlockState(pos).with(JuiceExtractorBlock.IS_WORKING,true));
         }
     }
@@ -256,6 +250,7 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
                 ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),this.getStack(i).getRecipeRemainder().copy());
             }
             setStack(i,ItemStack.EMPTY);
+            markDirty();
         }
     }
 
@@ -305,6 +300,15 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
                 markDirty();
             }
         }
+    }
+
+    @Override
+    public void markDirty() {
+        if (world != null) {
+            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+            ItemStackSyncS2CPacket.send(pos,getItems(),world);
+        }
+        super.markDirty();
     }
 
     private static void setState(World world, BlockPos pos, BooleanProperty booleanProperty, boolean value) {

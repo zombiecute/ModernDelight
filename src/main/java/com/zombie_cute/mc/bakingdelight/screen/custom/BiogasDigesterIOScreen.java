@@ -23,6 +23,7 @@ public class BiogasDigesterIOScreen extends HandledScreen<BiogasDigesterIOScreen
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -37,9 +38,15 @@ public class BiogasDigesterIOScreen extends HandledScreen<BiogasDigesterIOScreen
         if (handler.isChecked()){
             context.drawTexture(TEXTURE,x+123,y+60,176,0,25,12);
         }
-        if (mouseX >= x + 108 && mouseX <= x + 121 && mouseY >= y + 60 && mouseY <= y + 71){
-            context.drawTooltip(textRenderer,Text.literal(handler.getGasValue() + " L").formatted(Formatting.WHITE),mouseX,mouseY);
+        boolean b = mouseX >= x + 108 && mouseX <= x + 121 && mouseY >= y + 60 && mouseY <= y + 71;
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(textRenderer,Text.literal(handler.getGasValue() + " L").formatted(Formatting.WHITE),x,y);
         }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     private void renderProgressArrow(DrawContext context, int x, int y) {

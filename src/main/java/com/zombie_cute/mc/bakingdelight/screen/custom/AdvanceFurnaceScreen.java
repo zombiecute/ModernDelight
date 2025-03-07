@@ -55,7 +55,7 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
             return super.mouseClicked(mouseX, mouseY, button);
         }
     }
-
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -72,13 +72,21 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
         renderBurnTime(context, x, y);
         if (mouseX >= x + 7 && mouseX <= x + 41 && mouseY >= y + 51 && mouseY <= y + 62){
             context.drawTexture(TEXTURE, x + 6, y + 50, 176, 38, 36,13);
-            context.drawTooltip(this.textRenderer,Text.translatable(TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
-        }
+            b = true;
+        } else b = false;
         if (handler.getExperiences()/10 <= 9999){
             context.drawText(textRenderer,String.valueOf(handler.getExperiences()/10),x+8,y+52, 0x82fd64,true);
         } else {
             context.drawText(textRenderer,"9999+",x+8,y+52, 0x82fd64,true);
         }
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int mouseX, int mouseY) {
+        if (b){
+            context.drawTooltip(this.textRenderer,Text.translatable(TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
+        }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     private void renderBurnTime(DrawContext context, int x, int y) {

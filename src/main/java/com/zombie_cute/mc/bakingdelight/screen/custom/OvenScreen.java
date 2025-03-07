@@ -50,6 +50,7 @@ public class OvenScreen extends HandledScreen<OvenScreenHandler> {
             return super.mouseClicked(mouseX, mouseY, button);
         }
     }
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -64,13 +65,21 @@ public class OvenScreen extends HandledScreen<OvenScreenHandler> {
         renderBurnTime(context, x, y);
         if (mouseX >= x + 124 && mouseX <= x + 158 && mouseY >= y + 55 && mouseY <= y + 66){
             context.drawTexture(TEXTURE, x + 123, y + 54, 0, 195, 36,13);
-            context.drawTooltip(textRenderer,Text.translatable(AdvanceFurnaceScreen.TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
-        }
+            b = true;
+        } else b = false;
         if (handler.getExperiences() <= 9999){
             context.drawText(textRenderer,String.valueOf(handler.getExperiences()),x+125,y+56, 0x82fd64,true);
         } else {
             context.drawText(textRenderer,"9999+",x+125,y+56, 0x82fd64,true);
         }
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(textRenderer,Text.translatable(AdvanceFurnaceScreen.TOOLTIP).formatted(Formatting.WHITE),x,y);
+        }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     private void renderBurnTime(DrawContext context, int x, int y) {

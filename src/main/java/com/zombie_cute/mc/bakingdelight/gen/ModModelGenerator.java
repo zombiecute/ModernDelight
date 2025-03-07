@@ -34,7 +34,6 @@ public class ModModelGenerator extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleState(ModBlocks.FISH_AND_CHIPS);
         blockStateModelGenerator.registerSimpleState(ModBlocks.CHERRY_MILK_TEA);
         blockStateModelGenerator.registerSimpleState(ModBlocks.ROSE_ICE_TEA);
-        blockStateModelGenerator.registerSimpleState(ModBlocks.WOODEN_PLATE);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SILICON_BLOCK);
 

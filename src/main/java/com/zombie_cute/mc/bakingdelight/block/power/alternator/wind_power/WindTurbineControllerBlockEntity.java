@@ -113,9 +113,13 @@ public class WindTurbineControllerBlockEntity extends BlockEntity implements Ext
         return new WindTurbineControllerScreenHandler(syncId,playerInventory,this,this.propertyDelegate);
     }
     public static float getMultiplier(){
-        float value = ModConfig.windTurbineMultiplier;
-        if (value > 0){
-            return value;
-        } else return 3.0f;
+        try {
+            float value = ModConfig.windTurbineMultiplier;
+            if (value > 0){
+                return value;
+            } else return 3.0f;
+        } catch (Throwable e){
+            return 3.0f;
+        }
     }
 }

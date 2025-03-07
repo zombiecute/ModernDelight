@@ -13,6 +13,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -26,6 +27,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.*;
 import net.minecraft.world.tick.OrderedTick;
@@ -91,10 +93,17 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
         if (state.getBlock() != newState.getBlock()){
             if (world.getBlockEntity(pos) instanceof GlassBowlBlockEntity blockEntity){
                 ItemScatterer.spawn(world ,pos, blockEntity);
+                if (!(blockEntity.getOutputStack().getItem() instanceof PackagedItem)) {
+                    ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),blockEntity.getOutputStack());
+                }
                 world.updateComparators(pos,this);
             }
         } else {
-            updateBlock(state, world, pos);
+            boolean wasWaterlogged = state.get(WATERLOGGED);
+            boolean isWaterlogged = newState.get(WATERLOGGED);
+            if (wasWaterlogged != isWaterlogged) {
+                updateBlock(newState, world, pos);
+            }
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }
@@ -107,54 +116,61 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
-        return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        boolean isInWater = fluidState.getFluid() == Fluids.WATER;
+        return getDefaultState().with(WATERLOGGED, isInWater).with(HAS_WATER, isInWater);
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos,
                                                 BlockPos posFrom) {
-        updateBlock(state, world, pos);
+        if (Boolean.TRUE.equals(state.get(WATERLOGGED))) {
+            world.getFluidTickScheduler().scheduleTick(OrderedTick.create(Fluids.WATER, pos));
+        }
+        updateBlock(state, (World) world,pos);
         return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState()
                 : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
     }
 
-    private static void updateBlock(BlockState state, WorldAccess world, BlockPos pos) {
-        if (Boolean.TRUE.equals(state.get(WATERLOGGED))) {
-            world.getFluidTickScheduler().scheduleTick(OrderedTick.create(Fluids.WATER, pos));
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        updateBlock(state,world,pos);
+        super.scheduledTick(state, world, pos, random);
+    }
+
+    private static void updateBlock(BlockState state, World world, BlockPos pos) {
+        if (world.isClient()){
+            return;
         }
         if (world.getBlockEntity(pos) instanceof GlassBowlBlockEntity blockEntity){
             if (state.get(WATERLOGGED)){
                 world.setBlockState(pos, state.with(HAS_WATER,true),3);
                 if (!blockEntity.getStack(0).isEmpty()){
-                    ItemScatterer.spawn((World) world, pos.getX(), pos.getY(), pos.getZ(),
+                    ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(),
                             blockEntity.getStack(0));
                     blockEntity.setStack(0, ItemStack.EMPTY);
                     blockEntity.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.8F);
-                    blockEntity.markDirty();
                 }
                 if (!blockEntity.getOutputStack().isEmpty()){
                     if (!(blockEntity.getOutputStack().getItem() instanceof PackagedItem)) {
-                        ItemScatterer.spawn((World) world, pos.getX(), pos.getY(), pos.getZ(),
-                                blockEntity.getOutputStack().copy());
-                        blockEntity.setOutputStack(ItemStack.EMPTY);
+                        ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(),
+                                blockEntity.getOutputStack());
                         blockEntity.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.8F);
-                        blockEntity.markDirty();
                     }
-                    blockEntity.markDirty();
+                    blockEntity.setOutputStack(ItemStack.EMPTY);
+                    world.setBlockState(pos, state.with(HAS_ITEM,false),3);
                 }
             }
             if (state.get(HAS_WATER)){
                 if (!blockEntity.getOutputStack().isEmpty()){
                     if (!(blockEntity.getOutputStack().getItem() instanceof PackagedItem)) {
-                        ItemScatterer.spawn((World) world, pos.getX(), pos.getY(), pos.getZ(),
-                                blockEntity.getOutputStack().copy());
-                        blockEntity.setOutputStack(ItemStack.EMPTY);
+                        ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(),
+                                blockEntity.getOutputStack());
                         blockEntity.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.8F);
-                        blockEntity.markDirty();
                     }
-                    blockEntity.markDirty();
+                    blockEntity.setOutputStack(ItemStack.EMPTY);
+                    world.setBlockState(pos, state.with(HAS_ITEM,false),3);
                 }
-                world.setBlockState(pos, state.with(HAS_ITEM,false),3);
             }
+            blockEntity.markDirty();
         }
     }
 

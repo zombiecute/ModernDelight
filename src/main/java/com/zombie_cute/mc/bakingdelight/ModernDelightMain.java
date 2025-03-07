@@ -65,7 +65,11 @@ public class ModernDelightMain implements ModInitializer {
 		ModFluid.registerModFluid();
 		ModWorldGeneration.generateModWorldGen();
 		NetworkHandler.registerC2SPacket();
-		ModConfig.INSTANCE.load();
+		try {
+			ModConfig.INSTANCE.load();
+		} catch (Throwable throwable){
+			LOGGER.warn("It is recommended to install Yet Another Config Lib to configure {} more easily.", MOD_ID);
+		}
 		// DispenserBlock
 		DispenserBlock.registerBehavior(ModItems.BUTTER, new ProjectileDispenserBehavior() {
 			@Override
@@ -114,8 +118,5 @@ public class ModernDelightMain implements ModInitializer {
 		});
 
 
-	}
-	public static ModConfig getConfig() {
-		return ModConfig.INSTANCE.instance();
 	}
 }

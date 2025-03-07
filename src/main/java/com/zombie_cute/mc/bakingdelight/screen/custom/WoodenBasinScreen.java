@@ -23,7 +23,7 @@ public class WoodenBasinScreen extends HandledScreen<WoodenBasinScreenHandler> {
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
-
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -35,13 +35,19 @@ public class WoodenBasinScreen extends HandledScreen<WoodenBasinScreenHandler> {
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
 
         renderFluid(context, x, y);
-        if (mouseX >= x + 46 && mouseX <= x + 65 && mouseY >= y + 20 && mouseY <= y + 68){
-            context.drawTooltip(textRenderer,Text.literal(handler.getFluidLevel()+" mB"),
-                    mouseX,mouseY);
-        }
+        b = mouseX >= x + 46 && mouseX <= x + 65 && mouseY >= y + 20 && mouseY <= y + 68;
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,194,13,11,11);
         }
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(textRenderer,Text.literal(handler.getFluidLevel()+" mB"),
+                    x,y);
+        }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     @Environment(EnvType.CLIENT)

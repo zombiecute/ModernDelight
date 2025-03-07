@@ -6,6 +6,7 @@ import com.zombie_cute.mc.bakingdelight.block.food.fish_and_chips.FishAndChipsBl
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.GlassBowlBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.KitchenUtensilHolderBlockEntityRender;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.WoodenPlateBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.BakingTrayBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.DeepFryBasketBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.DeepFryerBlockEntityRenderer;
@@ -64,6 +65,7 @@ public class ModernDelightClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_BOWL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DEEP_FRYER, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WOODEN_PLATE, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_PEPPER_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_PEPPER_CROP, RenderLayer.getCutout());
@@ -108,6 +110,7 @@ public class ModernDelightClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.ELECTRIC_STEAMER_BLOCK_ENTITY, ElectricSteamerBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.JUICE_EXTRACTOR_BLOCK_ENTITY, JuiceExtractorBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.DEEP_FRY_BASKET_BLOCK_ENTITY, DeepFryBasketBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.WOODEN_PLATE_BLOCK_ENTITY, WoodenPlateBlockEntityRenderer::new);
 
         registerModelPredicateProviders();
 

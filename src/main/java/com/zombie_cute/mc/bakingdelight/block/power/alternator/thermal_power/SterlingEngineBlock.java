@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -27,6 +28,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -40,9 +42,11 @@ public class SterlingEngineBlock extends BlockWithEntity {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,3,16);
     public static final BooleanProperty SMALL_SOUND = BooleanProperty.of("small_sound");
+    public static final BooleanProperty IS_WORKING = BooleanProperty.of("is_working");
+
     public SterlingEngineBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
-        getStateManager().getDefaultState().with(SMALL_SOUND, false);
+        getStateManager().getDefaultState().with(SMALL_SOUND, false).with(IS_WORKING,false);
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
@@ -58,10 +62,48 @@ public class SterlingEngineBlock extends BlockWithEntity {
         }
         super.appendTooltip(stack, world, tooltip, options);
     }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.get(SterlingEngineBlock.IS_WORKING)){
+            Direction dir = state.get(SterlingEngineBlock.FACING);
+            double varX = 0;
+            double varZ = 0;
+            switch (dir){
+                case NORTH -> {
+                    varX = 0.5;
+                    varZ = -0.5;
+                }
+                case SOUTH -> {
+                    varX = 0.5;
+                    varZ = 1.5;
+                }
+                case EAST -> {
+                    varX = 1.5;
+                    varZ = 0.5;
+                }
+                case WEST -> {
+                    varX = -0.5;
+                    varZ = 0.5;
+                }
+            }
+            double x = pos.getX() + varX;
+            double y = pos.getY() + 0.3;
+            double z = pos.getZ() + varZ;
+            for (int i = 0;i<5;i++){
+                world.addParticle(ParticleTypes.POOF,x,y,z,
+                        (random.nextFloat()-0.5)/3,
+                        (random.nextFloat()-0.5)/5,
+                        (random.nextFloat()-0.5)/3);
+            }
+        }
+        super.randomDisplayTick(state, world, pos, random);
+    }
+
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite()).with(SMALL_SOUND,false);
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite()).with(SMALL_SOUND,false).with(IS_WORKING,false);
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -124,7 +166,7 @@ public class SterlingEngineBlock extends BlockWithEntity {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SMALL_SOUND);
+        builder.add(FACING, SMALL_SOUND, IS_WORKING);
     }
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {

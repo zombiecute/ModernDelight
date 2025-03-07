@@ -11,6 +11,7 @@ import com.zombie_cute.mc.bakingdelight.block.food.pizza.RawPizzaBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.*;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.CabinetBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.KitchenUtensilHolderBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.WoodenPlateBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.BakingTrayBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.DeepFryBasketBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.DeepFryerBlockEntity;
@@ -177,6 +178,10 @@ public class ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE, new Identifier(ModernDelightMain.MOD_ID, "deep_fry_basket_be"),
             FabricBlockEntityTypeBuilder.create(DeepFryBasketBlockEntity::new, ModBlocks.DEEP_FRY_BASKET).build(null)
     );
+    public static final BlockEntityType<WoodenPlateBlockEntity> WOODEN_PLATE_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, new Identifier(ModernDelightMain.MOD_ID, "wooden_plate_be"),
+            FabricBlockEntityTypeBuilder.create(WoodenPlateBlockEntity::new, ModBlocks.WOODEN_PLATE).build(null)
+    );
     public static void registerBlockEntities(){
         EnergyStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
                 ((ACDCConverterBlockEntity) blockEntity).energyStorage),AC_DC_CONVERTER_BLOCK_ENTITY);
@@ -184,6 +189,8 @@ public class ModBlockEntities {
                 ((BatteryBlockEntity) blockEntity).energyStorage),BATTERY_BLOCK_ENTITY);
         EnergyStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
                 ((PhotovoltaicGeneratorBlockEntity) blockEntity).energyStorage),PHOTOVOLTAIC_GENERATOR_BLOCK_ENTITY);
+        EnergyStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
+                ((ChargingPostBlockEntity) blockEntity).energyStorage),CHARGING_POST_BLOCK_ENTITY);
 
         FluidStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
                 ((ElectricSteamerBlockEntity)blockEntity).fluidStorage),ELECTRIC_STEAMER_BLOCK_ENTITY);

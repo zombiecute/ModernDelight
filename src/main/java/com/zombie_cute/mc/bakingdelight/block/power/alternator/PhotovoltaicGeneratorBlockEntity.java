@@ -189,9 +189,13 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
         return energyStorage;
     }
     public static float getMultiplier(){
-        float value = ModConfig.photovoltaicGeneratorMultiplier;
-        if (value > 0){
-            return value;
-        } else return 2.0f;
+        try {
+            float value = ModConfig.photovoltaicGeneratorMultiplier;
+            if (value > 0){
+                return value;
+            } else return 2.0f;
+        } catch (Throwable e){
+            return 2.0f;
+        }
     }
 }

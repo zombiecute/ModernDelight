@@ -51,6 +51,7 @@ public class FreezerScreen extends HandledScreen<FreezerScreenHandler> {
             return super.mouseClicked(mouseX, mouseY, button);
         }
     }
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -65,8 +66,8 @@ public class FreezerScreen extends HandledScreen<FreezerScreenHandler> {
         renderCoolTime(context, x, y);
         if (mouseX >= x + 116 && mouseX <= x + 150 && mouseY >= y + 35 && mouseY <= y + 46){
             context.drawTexture(TEXTURE, x + 115, y + 34, 191, 0, 36,13);
-            context.drawTooltip(textRenderer,Text.translatable(AdvanceFurnaceScreen.TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
-        }
+            b = true;
+        } else b = false;
         if (handler.getExperiences() <= 9999){
             context.drawText(textRenderer,String.valueOf(handler.getExperiences()),x+117,y+36, 0x82fd64,true);
         } else {
@@ -85,6 +86,14 @@ public class FreezerScreen extends HandledScreen<FreezerScreenHandler> {
         if (handler.isCrafting()){
             context.drawTexture(TEXTURE, x + 154, y + 34, 176, 0 , 12, handler.getScaledProgress());
         }
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(textRenderer,Text.translatable(AdvanceFurnaceScreen.TOOLTIP).formatted(Formatting.WHITE),x,y);
+        }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     @Override

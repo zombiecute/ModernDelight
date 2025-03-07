@@ -174,10 +174,14 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
     }
 
     public static float getConversionEfficiency() {
-        float value = ModConfig.teslaCoilConversionEfficiency;
-        if (value > 0 && value <= 1){
-            return value;
-        } else return 0.8f;
+        try {
+            float value = ModConfig.teslaCoilConversionEfficiency;
+            if (value > 0 && value <= 1){
+                return value;
+            } else return 0.8f;
+        } catch (Throwable e){
+            return 0.8f;
+        }
     }
 
     @Override

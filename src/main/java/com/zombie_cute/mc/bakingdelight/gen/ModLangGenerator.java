@@ -157,6 +157,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(MiscUtil.PUN, "Prohibit Unlimited Nesting!");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"Click to gain experiences");
+        translationBuilder.add(MiniGame2Screen.TOOLTIP,"Elimination Tool");
 
         translationBuilder.add(GlassBowlBlockEntity.WHISK_FAIL, "This thing doesn't seem to be able to be handled by the whisk.");
         translationBuilder.add(GlassBowlBlockEntity.NEED_PACKAGE, "The contents require special items to be removed, need");
@@ -627,6 +628,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("config.bakingdelight.seasoning.title","Flavouring System Config");
         translationBuilder.add("config.bakingdelight.option.maxSeasonings.title","Maximum amount of seasonings");
         translationBuilder.add("config.bakingdelight.option.maxSeasonings.desc","Set the maximum amount of seasoning you can add to a food.");
+        translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.title","EP Conversion Efficiency of Charging Post");
+        translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.desc","Modification of the energy power conversion efficiency of Charging Post.");
 
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_TITLE, "The truth is it's a whisk");
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_DESC, "Craft a whisk to start your new kitchen journey.");

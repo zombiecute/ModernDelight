@@ -2,7 +2,6 @@ package com.zombie_cute.mc.bakingdelight.block.biogas;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.FluidUtil;
-import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.item.TooltipContext;
@@ -35,7 +34,7 @@ public class GasCanisterBlockItem extends BlockItem {
         if (nbtCompound != null) {
             if (nbtCompound.contains("gas_canister.fluid_variant") && nbtCompound.contains("gas_canister.fluid_amount")){
                 long fluid_amount = nbtCompound.getLong("gas_canister.fluid_amount");
-                return (int) Math.min(12.0 * (float)FluidUtil.convertDropletsToMb(fluid_amount) / (float) ModConfig.gasCanisterVolume, 13);
+                return (int) Math.min(12.0 * (float)FluidUtil.convertDropletsToMb(fluid_amount) / (float) GasCanisterBlockEntity.getMaxCapacity(), 13);
             }
         }
         return 0;
@@ -47,7 +46,7 @@ public class GasCanisterBlockItem extends BlockItem {
         if (nbtCompound != null) {
             if (nbtCompound.contains("gas_canister.fluid_variant") && nbtCompound.contains("gas_canister.fluid_amount")){
                 long fluid_amount = nbtCompound.getLong("gas_canister.fluid_amount");
-                float f = (float) FluidUtil.convertDropletsToMb(fluid_amount) / (float) ModConfig.gasCanisterVolume;
+                float f = (float) FluidUtil.convertDropletsToMb(fluid_amount) / (float) GasCanisterBlockEntity.getMaxCapacity();
                 return MathHelper.packRgb(f,1-f,0);
             }
         }

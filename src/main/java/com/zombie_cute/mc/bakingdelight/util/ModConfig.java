@@ -35,6 +35,8 @@ public final class ModConfig {
     @SerialEntry
     public static float teslaCoilConversionEfficiency = 0.8f;
     @SerialEntry
+    public static float chargingPostEfficiency = 0.9f;
+    @SerialEntry
     public static boolean allowGasCanisterExplode = true;
     @SerialEntry
     public static boolean allowGasCanisterInNether = false;
@@ -149,6 +151,17 @@ public final class ModConfig {
                                                         0.8f,
                                                         () -> teslaCoilConversionEfficiency,
                                                         value -> teslaCoilConversionEfficiency = value
+                                                )
+                                                .controller(opt -> FloatSliderControllerBuilder.create(opt).range(0.005f, 1.0f).step(0.005f)
+                                                        .valueFormatter(val -> Text.literal(String.format("%.1f",val * 100.0) + "%")))
+                                                .build())
+                                        .option(Option.<Float>createBuilder()
+                                                .name(Text.translatable("config.bakingdelight.option.chargingPostEfficiency.title"))
+                                                .description(OptionDescription.of(Text.translatable("config.bakingdelight.option.chargingPostEfficiency.desc")))
+                                                .binding(
+                                                        0.9f,
+                                                        () -> chargingPostEfficiency,
+                                                        value -> chargingPostEfficiency = value
                                                 )
                                                 .controller(opt -> FloatSliderControllerBuilder.create(opt).range(0.005f, 1.0f).step(0.005f)
                                                         .valueFormatter(val -> Text.literal(String.format("%.1f",val * 100.0) + "%")))

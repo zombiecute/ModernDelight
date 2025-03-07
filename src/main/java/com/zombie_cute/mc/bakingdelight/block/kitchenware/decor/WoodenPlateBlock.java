@@ -1,9 +1,12 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.enums.ShowAbleItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -11,13 +14,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.OrderedTick;
@@ -26,13 +35,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
 
-public class WoodenPlateBlock extends Block implements Waterloggable {
+public class WoodenPlateBlock extends BlockWithEntity implements Waterloggable {
     public WoodenPlateBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.BROWN).nonOpaque());
-        this.setDefaultState(getStateManager().getDefaultState().with(WATERLOGGED, false));
+        this.setDefaultState(getStateManager().getDefaultState().with(WATERLOGGED, false).with(SHOWING_ITEM,ShowAbleItems.EMPTY));
     }
     public static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,1,15);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    public static final EnumProperty<ShowAbleItems> SHOWING_ITEM = EnumProperty.of("showing_item", ShowAbleItems.class);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         tooltip.add(Text.translatable(MiscUtil.CAN_PLACE).formatted(Formatting.GRAY));
@@ -75,6 +85,38 @@ public class WoodenPlateBlock extends Block implements Waterloggable {
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED);
+        builder.add(WATERLOGGED, SHOWING_ITEM);
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()){
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof WoodenPlateBlockEntity){
+                ItemScatterer.spawn(world ,pos, (WoodenPlateBlockEntity)blockEntity);
+                world.updateComparators(pos,this);
+            }
+        }
+        super.onStateReplaced(state, world, pos, newState, moved);
+    }
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (world.isClient()){
+            return ActionResult.SUCCESS;
+        }
+        if (world.getBlockEntity(pos) instanceof WoodenPlateBlockEntity blockEntity){
+            blockEntity.use(world, state, player, hand);
+        }
+        return ActionResult.CONSUME;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new WoodenPlateBlockEntity(pos,state);
     }
 }

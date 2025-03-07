@@ -50,7 +50,6 @@
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*",
-		"yet_another_config_lib_v3": "*",
 		"geckolib": "*"
 	},
 	"custom": {
@@ -62,7 +61,7 @@
 		}
 	},
 	"suggests": {
-		"another-mod": ["modmenu", "create", "farmersdelight"]
+		"another-mod": ["modmenu", "create", "farmersdelight", "yet_another_config_lib_v3"]
 	},
 	"resources": [
 		"assets/bakingdelight/models/item",

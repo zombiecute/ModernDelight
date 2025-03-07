@@ -292,15 +292,27 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
         super.markDirty();
     }
     public static int getMaxCapacity(){
-        int value = ModConfig.gasCanisterVolume;
-        if (value > 0){
-            return value;
-        } else return 6000;
+        try {
+            int value = ModConfig.gasCanisterVolume;
+            if (value > 0){
+                return value;
+            } else return 6000;
+        } catch (Throwable e){
+            return 6000;
+        }
     }
     public static boolean allowExplode(){
-        return ModConfig.allowGasCanisterExplode;
+        try {
+            return ModConfig.allowGasCanisterExplode;
+        } catch (Throwable e){
+            return true;
+        }
     }
     public static boolean allowNether(){
-        return ModConfig.allowGasCanisterInNether;
+        try {
+            return ModConfig.allowGasCanisterInNether;
+        } catch (Throwable e){
+            return false;
+        }
     }
 }

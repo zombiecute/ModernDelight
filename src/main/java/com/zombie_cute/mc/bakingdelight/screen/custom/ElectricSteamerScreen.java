@@ -22,7 +22,7 @@ public class ElectricSteamerScreen extends HandledScreen<ElectricSteamerScreenHa
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
-
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -55,9 +55,7 @@ public class ElectricSteamerScreen extends HandledScreen<ElectricSteamerScreenHa
         renderSteamProgressArrow(context,x,y);
         renderSteamArrow(context,x,y);
         renderWaterArrow(context,x,y);
-        if (mouseX >= x + 152 && mouseY >= y + 18 && mouseX <= x + 167 && mouseY <= y + 58){
-            context.drawTooltip(this.textRenderer,Text.literal(handler.getWaterAmount()+" mB"),mouseX,mouseY);
-        }
+        b = mouseX >= x + 152 && mouseY >= y + 18 && mouseX <= x + 167 && mouseY <= y + 58;
     }
     private void renderProgressArrow(DrawContext context, int x, int y, int slot) {
         if (handler.getScaledProgress(slot) != 0){
@@ -81,6 +79,14 @@ public class ElectricSteamerScreen extends HandledScreen<ElectricSteamerScreenHa
             int offset = 41 - handler.getScaledWater();
             context.drawTexture(TEXTURE,x+152,y+18+offset,176,12+offset,16,handler.getScaledWater());
         }
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(this.textRenderer,Text.literal(handler.getWaterAmount()+" mB"),x,y);
+        }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     @Override

@@ -27,7 +27,10 @@ public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigester
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
-
+    boolean b1;
+    boolean b2;
+    boolean b3;
+    boolean b4;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -41,27 +44,37 @@ public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigester
         context.drawText(textRenderer,String.valueOf(handler.getSize()),x+70,y+22,0xffffff,true);
         context.drawText(textRenderer,String.valueOf(handler.getGasValue()),x+70,y+38,0x00ff00,true);
         context.drawText(textRenderer,String.valueOf(handler.getSize() * 1000),x+70,y+54,0xff0000,true);
-        if (mouseX >= x + 52 && mouseY >= y + 19 && mouseX <= x + 65 && mouseY <= y + 33){
-            context.drawTooltip(textRenderer,Text.translatable(SIZE).formatted(Formatting.WHITE),mouseX,mouseY);
-        }
-        if (mouseX >= x + 52 && mouseY >= y + 35 && mouseX <= x + 65 && mouseY <= y + 49){
-            context.drawTooltip(textRenderer,Text.translatable(GAS_VALUE).formatted(Formatting.GREEN),mouseX,mouseY);
-        }
-        if (mouseX >= x + 52 && mouseY >= y + 51 && mouseX <= x + 65 && mouseY <= y + 65){
-            context.drawTooltip(textRenderer,Text.translatable(MAX_GAS_VALUE).formatted(Formatting.RED),mouseX,mouseY);
-        }
+        b1 = mouseX >= x + 52 && mouseY >= y + 19 && mouseX <= x + 65 && mouseY <= y + 33;
+        b2 = mouseX >= x + 52 && mouseY >= y + 35 && mouseX <= x + 65 && mouseY <= y + 49;
+        b3 = mouseX >= x + 52 && mouseY >= y + 51 && mouseX <= x + 65 && mouseY <= y + 65;
+
         if (handler.getChecked()==1){
             context.drawTexture(TEXTURE,x+9,y+58,176,0,25,12);
+            b4 = false;
         } else {
-            if (mouseX >= x + 9 && mouseY >= y + 58 && mouseX <= x + 33 && mouseY <= y + 69){
-                context.drawTooltip(textRenderer,Text.translatable(UNAVAILABLE).formatted(Formatting.RED),mouseX,mouseY);
-            }
+            b4 = mouseX >= x + 9 && mouseY >= y + 58 && mouseX <= x + 33 && mouseY <= y + 69;
         }
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,194,13,11,11);
         }
     }
 
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int mouseX, int mouseY) {
+        if (b1){
+            context.drawTooltip(textRenderer,Text.translatable(SIZE).formatted(Formatting.WHITE),mouseX,mouseY);
+        }
+        if (b2){
+            context.drawTooltip(textRenderer,Text.translatable(GAS_VALUE).formatted(Formatting.GREEN),mouseX,mouseY);
+        }
+        if (b3){
+            context.drawTooltip(textRenderer,Text.translatable(MAX_GAS_VALUE).formatted(Formatting.RED),mouseX,mouseY);
+        }
+        if (b4){
+            context.drawTooltip(textRenderer,Text.translatable(UNAVAILABLE).formatted(Formatting.RED),mouseX,mouseY);
+        }
+        super.drawMouseoverTooltip(context, x, y);
+    }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {

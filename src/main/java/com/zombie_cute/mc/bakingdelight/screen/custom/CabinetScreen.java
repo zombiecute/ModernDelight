@@ -19,6 +19,7 @@ public class CabinetScreen extends HandledScreen<CabinetScreenHandler> {
     @Override
     protected void init() {
         super.init();
+        backgroundHeight = 184;
         playerInventoryTitleY += 18;
     }
     @Override
@@ -27,9 +28,9 @@ public class CabinetScreen extends HandledScreen<CabinetScreenHandler> {
         RenderSystem.setShaderColor(1f,1f,1f,1f);
         RenderSystem.setShaderTexture(0,TEXTURE);
         int x = (width - backgroundWidth) / 2;
-        int y = (height - 184) / 2;
+        int y = (height - backgroundHeight) / 2;
 
-        context.drawTexture(TEXTURE, x, y + 9, 0, 0, backgroundWidth,184);
+        context.drawTexture(TEXTURE, x, y + 9, 0, 0, backgroundWidth,backgroundHeight);
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {

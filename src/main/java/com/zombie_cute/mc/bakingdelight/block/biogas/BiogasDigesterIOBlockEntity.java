@@ -228,14 +228,12 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
         return item.isFood();
     }
     public static Item getDigestate(){
-        String value = ModConfig.digestate;
-        Item digestate = null;
         try {
+            String value = ModConfig.digestate;
+            Item digestate;
             digestate = Registries.ITEM.get(new Identifier(value));
-        } catch (Exception ignored){}
-        if (digestate != null){
             return digestate;
-        } else {
+        } catch (Throwable ignored){
             return Items.BONE_MEAL;
         }
     }

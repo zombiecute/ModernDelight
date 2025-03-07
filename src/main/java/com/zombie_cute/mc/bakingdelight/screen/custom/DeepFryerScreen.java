@@ -22,6 +22,7 @@ public class DeepFryerScreen extends HandledScreen<DeepFryerScreenHandler> {
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -43,9 +44,7 @@ public class DeepFryerScreen extends HandledScreen<DeepFryerScreenHandler> {
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,194,13,11,11);
         }
-        if (mouseX >= x + 126 && mouseX <= x + 131 && mouseY >= y + 20 && mouseY <= y + 45){
-            context.drawTooltip(textRenderer,Text.literal(handler.getOil()+" mB").formatted(Formatting.WHITE),mouseX,mouseY);
-        }
+        b = mouseX >= x + 126 && mouseX <= x + 131 && mouseY >= y + 20 && mouseY <= y + 45;
     }
     private void renderOilLevel(DrawContext context, int x, int y) {
         if (handler.hasOil()){
@@ -65,6 +64,14 @@ public class DeepFryerScreen extends HandledScreen<DeepFryerScreenHandler> {
     }
     private void renderProgressArrow4(DrawContext context, int x, int y) {
         context.drawTexture(TEXTURE, x + 108, y + 41, 0, 178, handler.getScaledProgress(3), 4);
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(textRenderer,Text.literal(handler.getOil()+" mB").formatted(Formatting.WHITE),x,y);
+        }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     @Override

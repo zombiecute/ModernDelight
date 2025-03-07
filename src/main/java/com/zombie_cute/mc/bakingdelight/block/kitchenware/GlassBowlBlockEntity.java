@@ -33,6 +33,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -237,11 +238,19 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, GLASS_BOWL_INV);
+        nbt.putString("glass_bowl_output_item",Registries.ITEM.getId(outputStack.getItem()).toString());
+        nbt.putInt("glass_bowl_output_count",outputStack.getCount());
     }
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt, GLASS_BOWL_INV);
+        String s = nbt.getString("glass_bowl_output_item");
+        int c = nbt.getInt("glass_bowl_output_count");
+        try {
+            Item item = Registries.ITEM.get(new Identifier(s));
+            outputStack = new ItemStack(item,c);
+        } catch (Exception ignored){}
     }
     public void playSound(SoundEvent sound, float volume, float pitch) {
         Objects.requireNonNull(world).playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, sound, SoundCategory.BLOCKS, volume, pitch);

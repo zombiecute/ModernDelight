@@ -158,6 +158,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(MiscUtil.PUN, "禁止无限套娃！");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"点击以获取经验值");
+        translationBuilder.add(MiniGame2Screen.TOOLTIP,"消除工具");
 
         translationBuilder.add(GlassBowlBlockEntity.WHISK_FAIL, "这东西似乎不是搅拌器能处理的");
         translationBuilder.add(GlassBowlBlockEntity.NEED_PACKAGE, "里面的东西需要特殊的物品取出，需要");
@@ -624,6 +625,8 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("config.bakingdelight.seasoning.title","调味系统配置");
         translationBuilder.add("config.bakingdelight.option.maxSeasonings.title","最大调味品量");
         translationBuilder.add("config.bakingdelight.option.maxSeasonings.desc","设置一个食物最多可以添加多少调味料。");
+        translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.title","充电桩充电效率");
+        translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.desc","设置充电桩的充电效率。");
 
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_TITLE, "真相就是搅拌器");
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_DESC, "合成一把搅拌器来开始你新的厨房之旅");

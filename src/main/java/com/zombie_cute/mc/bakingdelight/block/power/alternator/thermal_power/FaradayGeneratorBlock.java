@@ -2,7 +2,6 @@ package com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
-import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -36,10 +35,10 @@ public class FaradayGeneratorBlock extends BlockWithEntity {
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
-    private static final VoxelShape SHAPED_SOUTH = Block.createCuboidShape(2,0,0,14,20,16);
-    private static final VoxelShape SHAPED_NORTH = Block.createCuboidShape(2,0,0,14,20,16);
-    private static final VoxelShape SHAPED_EAST = Block.createCuboidShape(0,0,2,16,20,14);
-    private static final VoxelShape SHAPED_WEST = Block.createCuboidShape(0,0,2,16,20,14);
+    private static final VoxelShape SHAPED_SOUTH = Block.createCuboidShape(2,0,0,14,16,16);
+    private static final VoxelShape SHAPED_NORTH = Block.createCuboidShape(2,0,0,14,16,16);
+    private static final VoxelShape SHAPED_EAST = Block.createCuboidShape(0,0,2,16,16,14);
+    private static final VoxelShape SHAPED_WEST = Block.createCuboidShape(0,0,2,16,16,14);
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -74,7 +73,7 @@ public class FaradayGeneratorBlock extends BlockWithEntity {
             tooltip.add(MiscUtil.getShiftText(false));
             tooltip.add(MiscUtil.getAltText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(MiscUtil.getACGen(String.valueOf(ModConfig.energyGeneratedByFaradayGenerator)));
+            tooltip.add(MiscUtil.getACGen(String.valueOf(FaradayGeneratorBlockEntity.getEnergyEfficiency())));
         } else {
             tooltip.add(MiscUtil.getShiftText(false));
             tooltip.add(MiscUtil.getAltText(false));

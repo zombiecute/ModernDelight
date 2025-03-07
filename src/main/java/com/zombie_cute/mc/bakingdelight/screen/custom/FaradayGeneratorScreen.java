@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
-import com.zombie_cute.mc.bakingdelight.util.ModConfig;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.FaradayGeneratorBlockEntity;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -34,10 +34,7 @@ public class FaradayGeneratorScreen extends HandledScreen<FaradayGeneratorScreen
 
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
         if (handler.getChecked()==1){
-            int value = ModConfig.energyGeneratedByFaradayGenerator;
-            if (value < 1){
-                value = 200;
-            }
+            int value = (int) FaradayGeneratorBlockEntity.getEnergyEfficiency();
             context.drawText(textRenderer, value+" EP/S",x + 70,y + 38,0xffffff,true);
             context.drawTexture(TEXTURE,x+9,y+58,176,0,25,12);
         } else context.drawText(textRenderer,"0 EP/S",x + 70,y + 38,0xffffff,true);

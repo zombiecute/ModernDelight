@@ -10,6 +10,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
@@ -69,12 +70,15 @@ public class ACDCConverterScreenHandler extends ScreenHandler {
     public int getMaxWorkSpeed(){
         return this.propertyDelegate.get(4);
     }
-    public boolean hasBattery(){
+    public int hasBattery(){
         Item item = blockEntity.getStack(0).getItem();
-        if (item instanceof BlockItem blockItem){
-            return blockItem.getBlock() instanceof AbstractBatteryBlock;
+        if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractBatteryBlock){
+            return 2;
         }
-        return false;
+        if (item != Items.AIR){
+            return 1;
+        }
+        return 0;
     }
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {

@@ -31,6 +31,7 @@ public class MiniGame2Screen extends Screen {
         this.goal = goal;
         reset(false);
     }
+    public static final String TOOLTIP = "tooltips.bakingdelight.mini_game_2.wrench";
     private final int backgroundWidth = 176;
     private final int backgroundHeight = 166;
     private int x;
@@ -314,6 +315,7 @@ public class MiniGame2Screen extends Screen {
             context.drawTexture(TEXTURE,x + 8,y + 142,88,166,16,16,512,512);
             if (b){
                 context.drawTexture(TEXTURE,x + 8,y + 142,104,166,16,16,512,512);
+                context.drawTooltip(textRenderer,Text.translatable(TOOLTIP),mouseX,mouseY);
             }
         }
     }

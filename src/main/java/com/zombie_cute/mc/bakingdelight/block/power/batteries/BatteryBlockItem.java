@@ -1,7 +1,8 @@
 package com.zombie_cute.mc.bakingdelight.block.power.batteries;
 
+import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.DCConsumer;
+import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.Power;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -13,9 +14,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BatteryBlockItem extends BlockItem {
-    public BatteryBlockItem(Block block) {
+public class BatteryBlockItem extends BlockItem implements DCConsumer {
+    final AbstractBatteryBlock batteryBlock;
+    public BatteryBlockItem(AbstractBatteryBlock block) {
         super(block, new FabricItemSettings().maxCount(1));
+        this.batteryBlock = block;
     }
     public static final String TOOLTIP_TEXT = "toolTipText.bakingdelight.battery_name";
     @Override
@@ -54,4 +57,22 @@ public class BatteryBlockItem extends BlockItem {
     public boolean isItemBarVisible(ItemStack stack) {
         return true;
     }
+
+    @Override
+    public Power getPower(ItemStack stack) {
+        Power power = new Power(batteryBlock.getMaxPower());
+        power.setPowerValue(AbstractBatteryBlock.getBatteryPower(stack));
+        return power;
+    }
+
+    @Override
+    public void addPower(ItemStack stack, long value) {
+        AbstractBatteryBlock.changeBatteryPower(stack,value,true);
+    }
+
+    @Override
+    public void reducePower(ItemStack stack, long value) {
+        AbstractBatteryBlock.changeBatteryPower(stack,value,false);
+    }
+
 }

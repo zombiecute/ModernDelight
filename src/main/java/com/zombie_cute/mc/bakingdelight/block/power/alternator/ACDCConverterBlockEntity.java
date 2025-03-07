@@ -91,10 +91,14 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
         return workSpeed;
     }
     public int getMaxWorkSpeed(){
-        int max_speed = ModConfig.acdcConverterMaxWorkSpeed;
-        if (max_speed < 1){
+        try {
+            int max_speed = ModConfig.acdcConverterMaxWorkSpeed;
+            if (max_speed >= 1){
+                return max_speed;
+            } else return 20;
+        } catch (Throwable ignored){
             return 20;
-        } else return max_speed;
+        }
     }
     public void addWorkSpeed(int value) {
         if (workSpeed + value >= getMaxWorkSpeed()){

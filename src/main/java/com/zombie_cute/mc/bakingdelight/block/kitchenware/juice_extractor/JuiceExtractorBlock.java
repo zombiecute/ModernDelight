@@ -12,6 +12,9 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -23,6 +26,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -35,12 +39,11 @@ public class JuiceExtractorBlock extends BlockWithEntity {
     public JuiceExtractorBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
         setDefaultState(this.getStateManager().getDefaultState()
-                .with(IS_FULL, false).with(FACING,Direction.NORTH).with(IS_WORKING, false).with(HAS_ITEM,false));
+                .with(IS_FULL, false).with(FACING,Direction.NORTH).with(IS_WORKING, false));
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty IS_WORKING = BooleanProperty.of("is_working");
     public static final BooleanProperty IS_FULL = BooleanProperty.of("is_full");
-    public static final BooleanProperty HAS_ITEM = BooleanProperty.of("has_item");
 
     private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,18,14);
     @Override
@@ -96,6 +99,19 @@ public class JuiceExtractorBlock extends BlockWithEntity {
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
     }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.get(IS_WORKING)){
+            for (int i = 0; i < 16; i ++){
+                world.addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, Items.ORANGE_DYE.getDefaultStack()),
+                        pos.getX() + Math.random(),pos.getY()+.5,pos.getZ()+Math.random(),
+                        (Math.random()-.5)/4,Math.random()/4,(Math.random()-.5)/4);
+            }
+        }
+        super.randomDisplayTick(state, world, pos, random);
+    }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()){
@@ -111,7 +127,7 @@ public class JuiceExtractorBlock extends BlockWithEntity {
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING,IS_FULL,IS_WORKING,HAS_ITEM);
+        builder.add(FACING,IS_FULL,IS_WORKING);
     }
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {

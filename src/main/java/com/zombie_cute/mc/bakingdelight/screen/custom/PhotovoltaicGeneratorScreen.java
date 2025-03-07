@@ -32,6 +32,7 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -50,13 +51,19 @@ public class PhotovoltaicGeneratorScreen extends HandledScreen<PhotovoltaicGener
         if (handler.isInSlowMode()){
             context.drawTexture(TEXTURE, x + 135,y + 14,192,12,12,12);
         }
-        if (mouseX >= x + 17 && mouseX <= x + 32 && mouseY >= y + 15 && mouseY <= y + 67){
-            context.drawTooltip(textRenderer,Text.literal(handler.getPower()+" EP"),
-                    mouseX,mouseY);
-        }
+        b = mouseX >= x + 17 && mouseX <= x + 32 && mouseY >= y + 15 && mouseY <= y + 67;
         if (mouseX >= x + 161 && mouseX <= x + 171 && mouseY >= y + 5 && mouseY <= y + 15){
             context.drawTexture(TEXTURE,x+161,y+5,192,37,11,11);
         }
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(textRenderer,Text.literal(handler.getPower()+" EP"),
+                    x,y);
+        }
+        super.drawMouseoverTooltip(context, x, y);
     }
 
     @Override

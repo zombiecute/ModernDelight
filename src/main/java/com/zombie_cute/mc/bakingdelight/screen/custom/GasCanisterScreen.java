@@ -21,9 +21,9 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
     @Override
     protected void init() {
         super.init();
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) * 4 / 7;
     }
-
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -77,8 +77,14 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
                 case 3: context.drawTexture(TEXTURE,x+81,y+24,204,222,51,28);
             }
         }
+        b = mouseX >= x + 82 && mouseX <= x + 130 && mouseY >= y + 25 && mouseY <= y + 50;
+    }
 
-        if (mouseX >= x + 82 && mouseX <= x + 130 && mouseY >= y + 25 && mouseY <= y + 50){
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int mouseX, int mouseY) {
+        if (b){
+            int gasValue = handler.getGasValue();
+            int maxGasValue = GasCanisterBlockEntity.getMaxCapacity();
             if (gasValue<maxGasValue/6){
                 context.drawTooltip(textRenderer,Text.literal(gasValue+" mB").formatted(Formatting.GREEN),
                         mouseX,mouseY);
@@ -93,8 +99,8 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
                         mouseX,mouseY);
             }
         }
+        super.drawMouseoverTooltip(context, x, y);
     }
-
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {

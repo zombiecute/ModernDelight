@@ -31,6 +31,9 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
+    boolean b1;
+    boolean b2;
+    boolean b3;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -49,20 +52,29 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         renderIceCream1(context,x,y,mouseX,mouseY);
         renderIceCream2(context,x,y,mouseX,mouseY);
         renderIceCream3(context,x,y,mouseX,mouseY);
-        if (mouseX >= x + 87 && mouseX <= x + 107 && mouseY >= y + 17 && mouseY <= y + 62){
+        b1 = mouseX >= x + 87 && mouseX <= x + 107 && mouseY >= y + 17 && mouseY <= y + 62;
+        b2 = mouseX >= x + 114 && mouseX <= x + 134 && mouseY >= y + 17 && mouseY <= y + 62;
+        b3 = mouseX >= x + 141 && mouseX <= x + 161 && mouseY >= y + 17 && mouseY <= y + 62;
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int mouseX, int mouseY) {
+        if (b1){
             context.drawTooltip(textRenderer,Text.literal(iceCream1.getAmount()+" mL").formatted(Formatting.WHITE),
                     mouseX,mouseY);
         }
-        if (mouseX >= x + 114 && mouseX <= x + 134 && mouseY >= y + 17 && mouseY <= y + 62){
+        if (b2){
             context.drawTooltip(textRenderer,Text.literal(iceCream2.getAmount()+" mL").formatted(Formatting.WHITE),
                     mouseX,mouseY);
         }
-        if (mouseX >= x + 141 && mouseX <= x + 161 && mouseY >= y + 17 && mouseY <= y + 62) {
+        if (b3){
             context.drawTooltip(textRenderer,Text.literal(iceCream3.getAmount()+" mL").formatted(Formatting.WHITE),
                     mouseX,mouseY);
         }
+        super.drawMouseoverTooltip(context, x, y);
     }
-    private void renderPower(DrawContext context,int x,int y){
+
+    private void renderPower(DrawContext context, int x, int y){
         if (handler.isPowered()){
             context.drawTexture(TEXTURE,x + 9,y + 30,176,25,12,25);
         }

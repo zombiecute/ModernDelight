@@ -16,11 +16,9 @@ import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
@@ -54,17 +52,6 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
     public static final int MAX_POWER = 500;
-    @Override
-    public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        getNBTPower(stack);
-        return super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
-    }
-
-    @Override
-    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
-        getNBTPower(stack);
-        return super.onStackClicked(stack, slot, clickType, player);
-    }
 
     @Override
     public void onCraft(ItemStack stack, World world, PlayerEntity player) {
@@ -79,14 +66,14 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
                 nbt = new NbtCompound();
             }
             if (nbt.contains("power")){
-                long i = nbt.getInt("power");
+                long i = nbt.getLong("power");
                 if (value >= 0){
                     i = Math.min(value + i, MAX_POWER);
                 }
                 nbt.putLong("power",i);
             } else {
                 if (value >= 0){
-                    nbt.putLong("power",value);
+                    nbt.putLong("power",Math.min(value, MAX_POWER));
                 }
             }
             itemStack.setNbt(nbt);
@@ -99,7 +86,7 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
                 nbt = new NbtCompound();
             }
             if (nbt.contains("power")){
-                long i = nbt.getInt("power");
+                long i = nbt.getLong("power");
                 if (value >= 0){
                     i = Math.max(i - value, 0);
                 }
@@ -111,14 +98,14 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
         }
     }
 
-    public static int getNBTPower(ItemStack itemStack){
+    public static long getNBTPower(ItemStack itemStack){
         if (itemStack.isOf(ModItems.ELECTRIC_WHISK)){
             NbtCompound nbt = itemStack.getNbt();
             if (nbt == null){
                 nbt = new NbtCompound();
             }
             if (nbt.contains("power")){
-                return nbt.getInt("power");
+                return nbt.getLong("power");
             } else {
                 nbt.putLong("power",0);
                 itemStack.setNbt(nbt);

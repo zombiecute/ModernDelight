@@ -356,6 +356,8 @@
   "config.bakingdelight.option.allowGasCanisterExplode.desc": "当该选项启用时，若燃气罐旁边存在“危险的方块”时，它将有可能爆炸，此外燃气罐还会因充入过量的气体而发生爆炸。",
   "config.bakingdelight.option.allowGasCanisterInNether": "允许燃气罐在下界使用",
   "config.bakingdelight.option.allowGasCanisterInNether.desc": "当该选项启用时，燃气罐将被允许在下界正常使用而不会爆炸。",
+  "config.bakingdelight.option.chargingPostEfficiency.desc": "设置充电桩的充电效率。",
+  "config.bakingdelight.option.chargingPostEfficiency.title": "充电桩充电效率",
   "config.bakingdelight.option.digestate": "沼渣成分",
   "config.bakingdelight.option.digestate.desc": "修改沼气池输入输出接口所产生沼渣的成分。此处需要填写物品正确的的命名空间ID。",
   "config.bakingdelight.option.energyGeneratedByFaradayGenerator": "法拉第发电机的发电量",
@@ -683,5 +685,6 @@
   "tooltips.bakingdelight.biogas_digester_controller.max_gas_value": "沼气池的最大储气量",
   "tooltips.bakingdelight.biogas_digester_controller.size": "控制器下方的空间的大小",
   "tooltips.bakingdelight.biogas_digester_controller.unavailable": "控制器下方的空间不完整、不封闭或者过大",
-  "tooltips.bakingdelight.biogas_digester_io.unavailable": "此接口下方的方块不是控制器，或者控制器不可用"
+  "tooltips.bakingdelight.biogas_digester_io.unavailable": "此接口下方的方块不是控制器，或者控制器不可用",
+  "tooltips.bakingdelight.mini_game_2.wrench": "消除工具"
 }

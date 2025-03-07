@@ -21,7 +21,7 @@ public class ChargingPostScreenHandler extends ScreenHandler {
     public final ChargingPostBlockEntity blockEntity;
     public ChargingPostScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(2));
+                new ArrayPropertyDelegate(4));
     }
     public ChargingPostScreenHandler(int syncId, PlayerInventory playerInventory,
                                      BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate){
@@ -40,6 +40,15 @@ public class ChargingPostScreenHandler extends ScreenHandler {
         addPlayerInventory(playerInventory);
 
         addProperties(arrayPropertyDelegate);
+    }
+    public int getPower(){
+        return this.propertyDelegate.get(2);
+    }
+    public int getScaledPower(){
+        int progress = this.propertyDelegate.get(2);
+        int maxProgress = this.propertyDelegate.get(3); // Max Progress
+        int progressArrowSize = 53;// Arrow's Width
+        return progress != 0 && maxProgress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
     public boolean isWorking(){
         return propertyDelegate.get(0) != 0;

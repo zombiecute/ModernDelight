@@ -10,10 +10,13 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandler> {
     private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
@@ -25,6 +28,11 @@ public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandle
     public static final String PUT_BATTERY_TIP = "tooltips.bakingdelight.acdcc.put_battery_tip";
     public static final String AC2DC = "tooltips.bakingdelight.acdcc.ac2dc";
     public static final String DC2AC = "tooltips.bakingdelight.acdcc.dc2ac";
+
+    boolean bool1;
+    boolean bool2;
+    boolean bool3;
+    boolean bool4;
 
     @Override
     protected void init() {
@@ -44,25 +52,10 @@ public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandle
         renderSwitchButton(context, mouseX, mouseY, x, y);
         renderPageButton(context, mouseX, mouseY, x, y);
         renderPowerLevel(context,x,y);
-
-        if (mouseX >= x + 17 && mouseX <= x + 32 && mouseY >= y + 15 && mouseY <= y + 67){
-            context.drawTooltip(this.textRenderer,Text.literal(handler.getPower()+" EP").formatted(Formatting.WHITE),mouseX,mouseY);
-        }
-        if (mouseX >= x + 151 && mouseX <= x + 51 && mouseY >= y + 168 && mouseY <= y + 68 && !handler.hasBattery()){
-            context.drawTooltip(this.textRenderer,Text.translatable(PUT_BATTERY_TIP).formatted(Formatting.RED),mouseX,mouseY);
-        }
-        if (mouseX >= x + 53 && mouseX <= x + 26 && mouseY >= y + 122 && mouseY <= y + 36){
-            MutableText text = Text.translatable(SPEED_TIP);
-            text.append(Text.literal(handler.getWorkSpeed() + "/" + handler.getMaxWorkSpeed()));
-            context.drawTooltip(this.textRenderer,text.formatted(Formatting.WHITE),mouseX,mouseY);
-        }
-        if (mouseX >= x + 58 && mouseX <= x + 54 && mouseY >= y + 94 && mouseY <= y + 69){
-            if (handler.isDC2ACMode()){
-                context.drawTooltip(this.textRenderer,Text.translatable(DC2AC).formatted(Formatting.WHITE),mouseX,mouseY);
-            } else {
-                context.drawTooltip(this.textRenderer,Text.translatable(AC2DC).formatted(Formatting.WHITE),mouseX,mouseY);
-            }
-        }
+        bool1 = mouseX >= x + 17 && mouseX <= x + 32 && mouseY >= y + 15 && mouseY <= y + 67;
+        bool2 = mouseX >= x + 151 && mouseX <= x + 168 && mouseY >= y + 51 && mouseY <= y + 68;
+        bool3 = mouseX >= x + 42 && mouseX <= x + 133 && mouseY >= y + 26 && mouseY <= y + 36;
+        bool4 = mouseX >= x + 58 && mouseX <= x + 94 && mouseY >= y + 54 && mouseY <= y + 69;
     }
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
@@ -156,6 +149,34 @@ public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandle
             context.drawTexture(TEXTURE, x + 17, y + 15 + offset, 176, offset,16, handler.getScaledProgress());
         }
     }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int mouseX, int mouseY) {
+        if (bool1){
+            context.drawTooltip(this.textRenderer,List.of(Text.literal(handler.getPower()+" EP").formatted(Formatting.WHITE)),Optional.empty(),mouseX,mouseY);
+        }
+        if (bool2){
+            switch (handler.hasBattery()){
+                case 1 -> context.drawTooltip(this.textRenderer,List.of(Text.translatable(PUT_BATTERY_TIP).formatted(Formatting.RED)),Optional.empty(),mouseX,mouseY - 16);
+                case 0 -> context.drawTooltip(this.textRenderer,List.of(Text.translatable(PUT_BATTERY_TIP).formatted(Formatting.RED)),Optional.empty(),mouseX,mouseY);
+            }
+        }
+        if (bool3){
+            List<Text> texts = new ArrayList<>();
+            texts.add(Text.translatable(SPEED_TIP).formatted(Formatting.WHITE));
+            texts.add(Text.literal(handler.getWorkSpeed() + "/" + handler.getMaxWorkSpeed()).formatted(Formatting.WHITE));
+            context.drawTooltip(this.textRenderer,texts,Optional.empty(),mouseX,mouseY);
+        }
+        if (bool4){
+            if (handler.isDC2ACMode()){
+                context.drawTooltip(this.textRenderer,List.of(Text.translatable(DC2AC).formatted(Formatting.WHITE)),Optional.empty(),mouseX,mouseY);
+            } else {
+                context.drawTooltip(this.textRenderer,List.of(Text.translatable(AC2DC).formatted(Formatting.WHITE)),Optional.empty(),mouseX,mouseY);
+            }
+        }
+        super.drawMouseoverTooltip(context, mouseX, mouseY);
+    }
+
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context);

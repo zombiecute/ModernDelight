@@ -64,6 +64,7 @@ public class ChargingPostBlock extends BlockWithEntity {
             tooltip.add(MiscUtil.getAltText(true));
             tooltip.add(Text.literal(" "));
             tooltip.add(MiscUtil.getDCCom("30"));
+            tooltip.add(MiscUtil.getDCSto("1000"));
         } else {
             tooltip.add(MiscUtil.getShiftText(false));
             tooltip.add(MiscUtil.getAltText(false));

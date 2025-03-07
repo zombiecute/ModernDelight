@@ -20,6 +20,7 @@ public class ChargingPostScreen extends HandledScreen<ChargingPostScreenHandler>
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
+    boolean b;
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -30,12 +31,29 @@ public class ChargingPostScreen extends HandledScreen<ChargingPostScreenHandler>
 
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
         renderProgressArrow(context, x, y);
+        renderPowerLevel(context,x,y);
+        b = mouseX >= x + 7 && mouseY >= y + 16 && mouseX <= x + 24 && mouseY <= y + 70;
     }
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if (handler.isWorking()){
             context.drawTexture(TEXTURE, x + 62, y + 40, 0, 166, handler.getScaledProgress(), 15);
         }
     }
+    private void renderPowerLevel(DrawContext context, int x, int y) {
+        if (handler.getPower() != 0){
+            int offset = 53 - handler.getScaledPower();
+            context.drawTexture(TEXTURE, x + 8, y + 17 + offset, 176, offset,16, handler.getScaledPower());
+        }
+    }
+
+    @Override
+    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
+        if (b){
+            context.drawTooltip(textRenderer,Text.literal(handler.getPower() + " EP"),x,y);
+        }
+        super.drawMouseoverTooltip(context, x, y);
+    }
+
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context);

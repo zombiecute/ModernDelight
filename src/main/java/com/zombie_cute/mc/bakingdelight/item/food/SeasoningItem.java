@@ -66,7 +66,7 @@ public class SeasoningItem extends Item {
                     newFood.setCount(count ? foodCount : thisCount);
                     NbtCompound nbt = newFood.getOrCreateSubNbt("modern_delight_seasoning");
                     boolean hasAdded = false;
-                    for (int i = 1; i <= ModConfig.maxSeasonings;i++){
+                    for (int i = 1; i <= getMaxSeasoning();i++){
                         if (nbt.contains("seasoning_"+i)){
                             continue;
                         }
@@ -95,7 +95,16 @@ public class SeasoningItem extends Item {
             return TypedActionResult.pass(user.getStackInHand(hand));
         }
     }
-
+    public static int getMaxSeasoning(){
+        try {
+            int m = ModConfig.maxSeasonings;
+            if (m > 0){
+                return m;
+            } else return 5;
+        } catch (Throwable e){
+            return 5;
+        }
+    }
     public List<StatusEffectInstance> getEffects() {
         return effects;
     }
