@@ -115,8 +115,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(MiscUtil.PGen_1, "A photovoltaic generator converts light energy into DC electrical energy and stores it, ");
         translationBuilder.add(MiscUtil.PGen_2, "batteries can be plugged in and charged, and the amount of power generated depends on factors");
         translationBuilder.add(MiscUtil.PGen_3, "such as current altitude, time of day, weather, block light and sky light.");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_1, "The Stirling engine needed to be mounted on a burning furnace, blast furnace,");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_2, "smoker, advanced furnace or oven to work, and it came with a large flywheel for");
+        translationBuilder.add(MiscUtil.STERLING_ENGINE_1, "The Stirling engine needed to be mounted on a burning furnace,");
+        translationBuilder.add(MiscUtil.STERLING_ENGINE_2, "blast furnace, smoker, advanced furnace or oven to work, and it need");
         translationBuilder.add(MiscUtil.STERLING_ENGINE_3, "connecting to a Faraday generator to produce AC Power.");
         translationBuilder.add(MiscUtil.STERLING_ENGINE_4, "Using a sponge makes it less noisy.");
         translationBuilder.add(MiscUtil.TESLA_COIL_1, "The Tesla Coil can transmit AC power remotely, and when placed on a device that generates AC power");

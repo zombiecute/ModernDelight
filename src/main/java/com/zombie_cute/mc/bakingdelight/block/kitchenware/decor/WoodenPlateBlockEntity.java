@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
+import com.zombie_cute.mc.bakingdelight.networking.packet.IntegerSyncS2CPacket;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.util.enums.ShowAbleItems;
@@ -26,6 +27,7 @@ public class WoodenPlateBlockEntity extends BlockEntity implements ImplementedIn
         super(ModBlockEntities.WOODEN_PLATE_BLOCK_ENTITY, pos, state);
     }
     final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1,ItemStack.EMPTY);
+    int rotate = 0;
     @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
@@ -35,13 +37,23 @@ public class WoodenPlateBlockEntity extends BlockEntity implements ImplementedIn
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt,inventory);
+        rotate = nbt.getInt("wooden_plate_rotate");
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt,inventory);
+        nbt.putInt("wooden_plate_rotate",rotate);
         markDirty();
+    }
+
+    public int getRotate() {
+        return rotate;
+    }
+
+    public void setRotate(int rotate) {
+        this.rotate = rotate;
     }
 
     @Override
@@ -72,20 +84,28 @@ public class WoodenPlateBlockEntity extends BlockEntity implements ImplementedIn
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.isEmpty()){
             if (!getStack(0).isEmpty()){
-                world.setBlockState(pos,state.with(WoodenPlateBlock.SHOWING_ITEM,ShowAbleItems.EMPTY));
-                ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),getStack(0));
-                setStack(0,ItemStack.EMPTY);
-                world.playSound(null,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS,1.0f,0.8f);
-                markDirty();
+                if (player.isSneaking()){
+                    rotate += 45;
+                    if (rotate >= 360){
+                        rotate = 0;
+                    }
+                    world.playSound(null,pos, SoundEvents.ENTITY_ITEM_FRAME_ROTATE_ITEM, SoundCategory.BLOCKS,1.0f,0.8f+world.random.nextFloat()/2);
+                    IntegerSyncS2CPacket.send(pos,rotate,world);
+                } else {
+                    world.setBlockState(pos,state.with(WoodenPlateBlock.SHOWING_ITEM,ShowAbleItems.EMPTY));
+                    ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),getStack(0));
+                    setStack(0,ItemStack.EMPTY);
+                    world.playSound(null,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS,1.0f,0.8f);
+                }
             }
         } else {
             if (getStack(0).isEmpty()){
                 world.setBlockState(pos,state.with(WoodenPlateBlock.SHOWING_ITEM,ShowAbleItems.getValue(itemStack.getItem())));
                 setStack(0,itemStack.split(1));
                 world.playSound(null,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS,1.0f,0.8f);
-                markDirty();
             }
         }
+        markDirty();
     }
 
     @Override

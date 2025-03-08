@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.unknown",
+				"identifier": "geometry.sterling_engin",
 				"texture_width": 256,
 				"texture_height": 256,
 				"visible_bounds_width": 8,
@@ -69,7 +69,8 @@
 						{"origin": [6, -15, -49], "size": [1, 11, 2], "uv": [128, 58]},
 						{"origin": [-7, -16, -52], "size": [14, 1, 8], "uv": [119, 68]},
 						{"origin": [-7, -15, -49], "size": [1, 11, 2], "uv": [98, 131]},
-						{"origin": [-9, -7, -50], "size": [2, 3, 3], "pivot": [-7.5, -5.5, -48], "rotation": [-90, 0, 0], "uv": [134, 52]}
+						{"origin": [-9, -7, -50], "size": [2, 3, 3], "pivot": [-7.5, -5.5, -48], "rotation": [-90, 0, 0], "uv": [134, 52]},
+						{"origin": [-7, -13, -10], "size": [14, 5, 2], "uv": [157, 0]}
 					]
 				},
 				{

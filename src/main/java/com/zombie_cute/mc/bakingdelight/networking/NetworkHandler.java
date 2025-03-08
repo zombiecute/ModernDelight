@@ -1,10 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.networking;
 
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
-import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
-import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
-import com.zombie_cute.mc.bakingdelight.networking.packet.SpawnXPC2SPacket;
-import com.zombie_cute.mc.bakingdelight.networking.packet.UpdateInventoryC2SPacket;
+import com.zombie_cute.mc.bakingdelight.networking.packet.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -16,6 +13,7 @@ public class NetworkHandler {
     public static final Identifier SPAWN_XP_PACKET_ID = new Identifier(ModernDelightMain.MOD_ID,"spawn_xp");
     public static final Identifier CHANGE_BLOCK_ENTITY_DATA_PACKET_ID = new Identifier(ModernDelightMain.MOD_ID,"change_block_entity_data");
     public static final Identifier ITEM_SYNC = new Identifier(ModernDelightMain.MOD_ID,"item_sync");
+    public static final Identifier INTEGER_SYNC = new Identifier(ModernDelightMain.MOD_ID,"integer_sync");
 
     public static void registerC2SPacket(){
         ModernDelightMain.LOGGER.info("Registering C2S receivers for {}", ModernDelightMain.MOD_ID);
@@ -27,5 +25,6 @@ public class NetworkHandler {
     public static void registerS2CPacket(){
         ModernDelightMain.LOGGER.info("Registering S2C receivers for {}", ModernDelightMain.MOD_ID);
         ClientPlayNetworking.registerGlobalReceiver(ITEM_SYNC, ItemStackSyncS2CPacket::receive);
+        ClientPlayNetworking.registerGlobalReceiver(INTEGER_SYNC, IntegerSyncS2CPacket::receive);
     }
 }

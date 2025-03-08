@@ -38,6 +38,7 @@ import com.zombie_cute.mc.bakingdelight.block.power.alternator.ACDCConverterBloc
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.PhotovoltaicGeneratorBlock;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.FaradayGeneratorBlock;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.SterlingEngineBlock;
+import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.SterlingEngineBlockItem;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.FanBladeBlock;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTurbineControllerBlock;
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.*;
@@ -185,7 +186,7 @@ public class ModBlocks {
     public static final BlockItem ICE_CREAM_MAKER_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"ice_cream_maker"),
             new IceCreamMakerBlockItem());
     public static final BlockItem STERLING_ENGINE_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"sterling_engine"),
-            new BlockItem(STERLING_ENGINE,new FabricItemSettings().maxCount(16)));
+            new SterlingEngineBlockItem());
     public static final BlockItem FAN_BLADE_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"fan_blade"),
             new BlockItem(FAN_BLADE,new FabricItemSettings().maxCount(16)));
     public static final BlockItem SIMPLE_BATTERY_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"simple_battery"),

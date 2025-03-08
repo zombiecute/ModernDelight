@@ -117,8 +117,8 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(MiscUtil.PGen_2, "可以在里面接入电池并为其充电，发电量取决与当前的");
         translationBuilder.add(MiscUtil.PGen_3, "高度，时间，天气，方块光和天空光等因素。");
         translationBuilder.add(MiscUtil.STERLING_ENGINE_1, "斯特林引擎需要安装在燃烧中的熔炉，高炉，");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_2, "烟熏炉，高级熔炉或烤炉上才能工作，它自带");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_3, "了一个大飞轮用于和法拉第发电机相连接来产生交流电。");
+        translationBuilder.add(MiscUtil.STERLING_ENGINE_2, "烟熏炉，高级熔炉或烤炉上才能工作，它");
+        translationBuilder.add(MiscUtil.STERLING_ENGINE_3, "需要与法拉第发电机相连接来产生交流电。");
         translationBuilder.add(MiscUtil.STERLING_ENGINE_4, "使用海绵可以让它减小噪音");
         translationBuilder.add(MiscUtil.TESLA_COIL_1, "特斯拉线圈可以远程传输交流电，将其放置在一个可以产生交流电");
         translationBuilder.add(MiscUtil.TESLA_COIL_2, "的装置上时便可将电力扩散至其东南西北上下各8格的区域，");

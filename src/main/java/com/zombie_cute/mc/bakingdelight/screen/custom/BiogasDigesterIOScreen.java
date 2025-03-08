@@ -38,7 +38,7 @@ public class BiogasDigesterIOScreen extends HandledScreen<BiogasDigesterIOScreen
         if (handler.isChecked()){
             context.drawTexture(TEXTURE,x+123,y+60,176,0,25,12);
         }
-        boolean b = mouseX >= x + 108 && mouseX <= x + 121 && mouseY >= y + 60 && mouseY <= y + 71;
+        b = mouseX >= x + 108 && mouseX <= x + 121 && mouseY >= y + 60 && mouseY <= y + 71;
     }
 
     @Override

@@ -2,15 +2,15 @@
   "credit": "Made with Blockbench",
   "parent": "builtin/entity",
   "texture_size": [
-    64,
-    64
+    256,
+    256
   ],
   "display": {
     "thirdperson_righthand": {
       "rotation": [
-        75,
-        45,
-        0
+        160.26,
+        84.7,
+        -87.46
       ],
       "translation": [
         0,
@@ -25,9 +25,9 @@
     },
     "thirdperson_lefthand": {
       "rotation": [
-        75,
-        45,
-        0
+        115.68,
+        82.88,
+        -42.62
       ],
       "translation": [
         0,
@@ -43,7 +43,12 @@
     "firstperson_righthand": {
       "rotation": [
         0,
-        45,
+        85,
+        0
+      ],
+      "translation": [
+        0,
+        4,
         0
       ],
       "scale": [
@@ -55,7 +60,12 @@
     "firstperson_lefthand": {
       "rotation": [
         0,
-        225,
+        85,
+        0
+      ],
+      "translation": [
+        0,
+        4,
         0
       ],
       "scale": [
@@ -67,7 +77,7 @@
     "ground": {
       "translation": [
         0,
-        3,
+        6.5,
         0
       ],
       "scale": [
@@ -79,31 +89,36 @@
     "gui": {
       "rotation": [
         30,
-        225,
+        -135,
         0
       ],
       "translation": [
-        0,
         -5,
+        5,
         0
       ],
       "scale": [
-        0.625,
-        0.625,
-        0.625
+        0.4,
+        0.4,
+        0.4
       ]
     },
     "head": {
       "translation": [
         0,
-        6.25,
+        2,
         0
       ]
     },
     "fixed": {
-      "translation": [
+      "rotation": [
         0,
-        -4.5,
+        90,
+        0
+      ],
+      "translation": [
+        12,
+        0,
         0
       ],
       "scale": [
@@ -114,6 +129,6 @@
     }
   },
   "textures": {
-    "particle": "block/juice_extractor"
+    "particle": "bakingdelight:block/sterling_engine"
   }
 }

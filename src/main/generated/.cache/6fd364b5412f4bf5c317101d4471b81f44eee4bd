@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-05T14:53:48.6932454	Modern Delight/Recipes
+// 1.20.1	2025-03-07T16:53:15.8049715	Modern Delight/Recipes
 23d7e943eda40bea72ffcb560fc71270408ba06a data\bakingdelight\recipes\amethyst_axe.json
 d9fdff3181dad4766bf49f3149a3568269b565d7 data\bakingdelight\advancements\recipes\misc\ancient_debris.json
 3a0a532102d6a7e35492cac27df766d2328772a6 data\bakingdelight\recipes\pudding_wip_1.json
@@ -42,8 +42,8 @@ ddd972f738a5c7ef4041e1bc32ed22dcf27b6542 data\bakingdelight\advancements\recipes
 0767346639ca623d01e12c565472ba0fb9e7b48a data\bakingdelight\recipes\mashed_potato_block.json
 fe27cb4732958f460fc2bd47bb53aa968c25247c data\bakingdelight\recipes\rose_cake.json
 d29cfbdb2b4b58679ef7bda6a6e83885dad54580 data\bakingdelight\recipes\packaging_bag.json
-3af9507ee4640e9f1f5f85172e83ddc5b43464ae data\bakingdelight\advancements\recipes\food\french_fries.json
 bb1f68df59374e5eb85c84078019993e129c8e5d data\bakingdelight\recipes\fish_and_chips.json
+3af9507ee4640e9f1f5f85172e83ddc5b43464ae data\bakingdelight\advancements\recipes\food\french_fries.json
 53295f3808fea8d24937c1a0de9902900fec58ca data\bakingdelight\recipes\orange_tulip_cake.json
 76f46180317bd6e6c7d105d4bcbb74e95e303380 data\bakingdelight\recipes\deep_fry_basket.json
 ab37f47bba61c2cf8940aabb317a5f0899c927c1 data\bakingdelight\recipes\ice_cream_maker.json
@@ -64,8 +64,8 @@ c37baf734fcf8f4e70b1d9c64e51296d9e3cb2ec data\bakingdelight\advancements\recipes
 795c73efed41e24a4e96e222b11875391d58eb5e data\bakingdelight\advancements\recipes\food\fried_milk_wip.json
 7cf7b814b879c9dc7a90f655165f2e4410b575e8 data\bakingdelight\recipes\diamond_whisk.json
 3f1774f84e58c6c19280da090e135309f11afa65 data\bakingdelight\recipes\glass_bowl.json
-afc374e9e35a30bc75f83858fc03833749c60bf3 data\bakingdelight\advancements\recipes\food\matcha_cream.json
 697ba2fe8c48e257f728d7c2eca5db5f62c6e072 data\bakingdelight\recipes\golden_apple_cream.json
+afc374e9e35a30bc75f83858fc03833749c60bf3 data\bakingdelight\advancements\recipes\food\matcha_cream.json
 6825ae2eed84a7f894d2a61e000c763e5c845d12 data\bakingdelight\advancements\recipes\food\white_tulip_cake.json
 5c45d50daaedd8f2da340bda4876df97c743f0ed data\bakingdelight\advancements\recipes\food\blue_orchid_flower_cake.json
 9d81b1077faf2b4eb6746671bc6c0b59077a4aa8 data\bakingdelight\advancements\recipes\food\cherry_egg.json

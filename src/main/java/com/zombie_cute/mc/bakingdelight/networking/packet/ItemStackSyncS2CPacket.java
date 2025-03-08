@@ -33,14 +33,14 @@ public class ItemStackSyncS2CPacket {
         }
     }
     public static void send(BlockPos pos, DefaultedList<ItemStack> list, World world) {
-        if(!world.isClient()){
-            PacketByteBuf data = PacketByteBufs.create();
-            data.writeInt(list.size());
-            for (ItemStack itemStack : list) {
-                data.writeItemStack(itemStack);
-            }
-            data.writeBlockPos(pos);
+        if (world instanceof ServerWorld){
             for(ServerPlayerEntity serverPlayerEntity : PlayerLookup.tracking((ServerWorld) world,pos)){
+                PacketByteBuf data = PacketByteBufs.create();
+                data.writeInt(list.size());
+                for (ItemStack itemStack : list) {
+                    data.writeItemStack(itemStack);
+                }
+                data.writeBlockPos(pos);
                 ServerPlayNetworking.send(serverPlayerEntity,NetworkHandler.ITEM_SYNC,data);
             }
         }

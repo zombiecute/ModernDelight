@@ -25,10 +25,12 @@ public class WoodenPlateBlockEntityRenderer implements BlockEntityRenderer<Woode
     public void render(WoodenPlateBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
         ItemStack renderStack = entity.getRenderStack();
+        int rotate = entity.getRotate();
         matrices.push();
         matrices.translate(0.5f, 0.1f,0.5f);
         matrices.scale(0.8f,0.8f,0.8f);
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(rotate));
         itemRenderer.renderItem(renderStack, ModelTransformationMode.FIXED, getLightLevel(Objects.requireNonNull(entity.getWorld()),entity.getPos()), OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,entity.getWorld(),1);
         matrices.pop();
     }

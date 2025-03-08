@@ -149,7 +149,6 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_ICE_CREAM_CONE, Models.GENERATED);
         itemModelGenerator.register(ModItems.ICE_CREAM_CONE, Models.GENERATED);
         itemModelGenerator.register(ModBlocks.FAN_BLADE_ITEM, Models.GENERATED);
-        itemModelGenerator.register(ModBlocks.STERLING_ENGINE_ITEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLACK_PEPPER_DUST, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.WOODEN_WHISK, Models.HANDHELD);

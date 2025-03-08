@@ -83,6 +83,7 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof GlassBowlBlockEntity container) {
+            updateBlock(state,world,pos);
             container.onUse(player, state, world);
             return ActionResult.SUCCESS;
         }

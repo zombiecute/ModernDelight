@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -150,9 +151,16 @@ public class HolderItem extends Item {
             removeHoldingStack(holder);
             world.playSound(null,user.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,1.0f,world.random.nextFloat()+0.8f);
         } else if (!otherStack.isEmpty()){
+            NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(otherStack);
             if (otherStack.getItem() == this){
                 ItemStack otherStackHolding = getHoldingStack(otherStack);
                 if (otherStackHolding.getItem() == this){
+                    user.sendMessage(Text.translatable(MiscUtil.PUN),true);
+                    return TypedActionResult.consume(holder);
+                }
+            }
+            if (nbtCompound != null) {
+                if (nbtCompound.contains("Items", 9)) {
                     user.sendMessage(Text.translatable(MiscUtil.PUN),true);
                     return TypedActionResult.consume(holder);
                 }
