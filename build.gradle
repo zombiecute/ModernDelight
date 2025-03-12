@@ -56,6 +56,7 @@ repositories {
 			includeGroup("com.eliotlash.mclib")
 		}
 	} // GeckoLib
+	maven { url 'https://maven.blamejared.com' } // Patchouli
 }
 
 fabricApi {
@@ -111,6 +112,8 @@ dependencies {
 	modLocalRuntime("curse.maven:techreborn-233564:4708962")
 	// YACL
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+	// Patchouli
+	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 }
 
 processResources {

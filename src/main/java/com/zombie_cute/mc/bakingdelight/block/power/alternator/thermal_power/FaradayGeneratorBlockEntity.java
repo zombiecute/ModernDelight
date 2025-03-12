@@ -110,6 +110,8 @@ public class FaradayGeneratorBlockEntity extends BlockEntity implements Extended
     }
     @Override
     public long getEfficiency() {
-        return getEnergyEfficiency();
+        if (isWorking != 0){
+            return getEnergyEfficiency();
+        } else return 0;
     }
 }

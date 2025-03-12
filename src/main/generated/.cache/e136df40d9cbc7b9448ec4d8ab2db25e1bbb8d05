@@ -1,10 +1,10 @@
-// 1.20.1	2025-03-07T16:53:15.817452	Modern Delight/Tags for minecraft:item
+// 1.20.1	2025-03-12T12:18:19.9480528	Modern Delight/Tags for minecraft:item
 24efe6f2c005546072bac148c571d0ec54644e08 data\c\tags\items\crops.json
 75e54e403dea1691895353fbf2a84947a1f341db data\anvilcraft\tags\items\amethyst_pickaxe.json
 b8b686c049882d222584068e3223840a9668aac6 data\c\tags\items\ingots.json
 ef7fbccd6ea6a25c375cba913b2d5b15b82c391f data\c\tags\items\foods\cooked_meats\cooked_pork.json
 bcc4ca23e4f26c61238a49ed5816f1f788079926 data\c\tags\items\foods\bottle_of_vegetable_oil.json
-d9891a5ec4dd30520baf281655ca2d9622fc9e8f data\c\tags\items\foods.json
+2eb049120373c03d003c69200e9ccc40980e8f1c data\c\tags\items\foods.json
 8907c6c1bcafeb03121d533d6fd2130764afdf95 data\c\tags\items\shovels.json
 64030387f8828bca2824f0caa345c2103000d5e9 data\c\tags\items\foods\raw_meats\raw_beef.json
 8907c6c1bcafeb03121d533d6fd2130764afdf95 data\anvilcraft\tags\items\royal_steel_shovel_base.json
@@ -59,12 +59,12 @@ cf13c858c7d0b0b2560b0f90cde94d570e471323 data\bakingdelight\tags\items\crowbars.
 a081f51d0ce1788d6e1252f86f8a05971dc943fd data\c\tags\items\storage_blocks.json
 df2a1ec43d307c4e72db7601faa0679d621f6f1d data\c\tags\items\foods\puddings.json
 ec6c19aac7e0495fbb0d97269caa5fb927f16a4e data\c\tags\items\quicklimes.json
-035ccb0d0b659a5afe64501aaa73d05c117a6c14 data\c\tags\items\foods\pastas.json
+b8913f51b2a46134e48601e543bc2fd0065acac6 data\c\tags\items\foods\pastas.json
 889da69c53ac8bab817179e4c375234d357ed129 data\create\tags\items\upright_on_belt.json
 faa36bb59bb4132468f715d92ebd0110ccfcdb54 data\c\tags\items\hoes.json
 3a209f2072398737bd6d25001c5a1188bc262d2a data\c\tags\items\foods\mousses.json
-ddf6e777d662a781163cc6acb1db06d9e425b063 data\anvilcraft\tags\items\amethyst_sword.json
 2272865edad8e7de0c8153adc474245c51a99b04 data\c\tags\items\foods\raw_fishes\prawns.json
+ddf6e777d662a781163cc6acb1db06d9e425b063 data\anvilcraft\tags\items\amethyst_sword.json
 64174cbce981fa89057e9783db7e22ffc85b09b1 data\c\tags\items\dough.json
 36254fd62df9560979d15e21a9bbe0011d8c5a93 data\bakingdelight\tags\items\amethyst_tools.json
 9316842fc5ed0abb86653217acf95d90e2943dfe data\c\tags\items\flower_cakes.json
@@ -76,8 +76,8 @@ a90e6c2004316ac0274004c231b3898e6916094a data\c\tags\items\foods\creams.json
 bc6f836ef0f0e2d23d910b8abea78e550e2fe8ce data\bakingdelight\tags\items\condiments.json
 e3ad5e555df62e3cf319f08aee58aeace82ca421 data\bakingdelight\tags\items\spatulas.json
 8907c6c1bcafeb03121d533d6fd2130764afdf95 data\anvilcraft\tags\items\amethyst_shovel.json
-b8b686c049882d222584068e3223840a9668aac6 data\c\tags\items\silicon.json
 e5e89e0c67b80ffa9d44ac65fbcdf613fad721e1 data\c\tags\items\foods\sausages.json
+b8b686c049882d222584068e3223840a9668aac6 data\c\tags\items\silicon.json
 d7845eed6e57e5fdf85f77bec9592181e26b726c data\c\tags\items\foods\fruits\lemon.json
 a532486fce499e5a294db9765a5a358a28de4d0a data\c\tags\items\wheat_flour.json
 379243fa9db68f83627d4388ed04b1fb54403cfe data\c\tags\items\mushrooms.json

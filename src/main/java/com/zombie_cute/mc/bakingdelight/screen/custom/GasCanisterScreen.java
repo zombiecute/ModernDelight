@@ -99,7 +99,7 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
                         mouseX,mouseY);
             }
         }
-        super.drawMouseoverTooltip(context, x, y);
+        super.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override

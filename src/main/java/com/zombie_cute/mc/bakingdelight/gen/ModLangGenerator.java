@@ -155,6 +155,9 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(MiscUtil.FAILED_SEASONING, "You can't add more seasoning to this food.");
         translationBuilder.add(MiscUtil.SEASONING_ADDED, "Seasonings:");
         translationBuilder.add(MiscUtil.PUN, "Prohibit Unlimited Nesting!");
+        translationBuilder.add(MiscUtil.WOODEN_PLATE_1, "A plate that can be used to display items,");
+        translationBuilder.add(MiscUtil.WOODEN_PLATE_2, "right click to place items on it, sneak and");
+        translationBuilder.add(MiscUtil.WOODEN_PLATE_3, "right click to rotate the items on it.");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"Click to gain experiences");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"Elimination Tool");
@@ -502,6 +505,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.BLACK_PEPPER_STEAK, "Black Pepper Steak");
         translationBuilder.add(ModItems.HOLDER, "Tongs");
         translationBuilder.add(ModItems.HOLDER_UP, "Half Tongs");
+        translationBuilder.add(ModItems.RAW_NOODLES, "Raw Noodles");
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s was electrocuted!");
         translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s turned to ashes");
@@ -630,6 +634,10 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("config.bakingdelight.option.maxSeasonings.desc","Set the maximum amount of seasoning you can add to a food.");
         translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.title","EP Conversion Efficiency of Charging Post");
         translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.desc","Modification of the energy power conversion efficiency of Charging Post.");
+
+        translationBuilder.add(ModItems.GUIDE_BOOK,"Modern Delight Guide");
+        translationBuilder.add("patchouli.bakingdelight.book.name","Modern Delight Guide");
+        translationBuilder.add("patchouli.bakingdelight.book.landing_text","Introducing you: Modern Delight. This book will show you how to play this mod better.");
 
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_TITLE, "The truth is it's a whisk");
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_DESC, "Craft a whisk to start your new kitchen journey.");

@@ -86,7 +86,7 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
         if (b){
             context.drawTooltip(this.textRenderer,Text.translatable(TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
         }
-        super.drawMouseoverTooltip(context, x, y);
+        super.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     private void renderBurnTime(DrawContext context, int x, int y) {

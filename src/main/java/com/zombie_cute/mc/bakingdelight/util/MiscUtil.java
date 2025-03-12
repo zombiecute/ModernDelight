@@ -138,6 +138,9 @@ public class MiscUtil {
     public static final String SEASONING_ADDED = "bakingdelight.tooltips.seasoning_added";
     public static final String CAN_PLACE = "bakingdelight.tooltips.can_place";
     public static final String PUN = "bakingdelight.tooltips.prohibit_unlimited_nesting";
+    public static final String WOODEN_PLATE_1 = "bakingdelight.tooltips.wooden_plate_1";
+    public static final String WOODEN_PLATE_2 = "bakingdelight.tooltips.wooden_plate_2";
+    public static final String WOODEN_PLATE_3 = "bakingdelight.tooltips.wooden_plate_3";
 
 
     public static MutableText getShiftText(boolean hasDown){

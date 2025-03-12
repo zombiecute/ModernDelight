@@ -119,6 +119,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.KITCHEN_UTENSIL_HOLDER);
                         entries.add(ModBlocks.WOODEN_PLATE);
                         // Instant Noodles
+                        entries.add(ModItems.RAW_NOODLES);
                         entries.add(ModItems.FRIED_NOODLES);
                         entries.add(ModItems.MULTIFUNCTIONAL_WRAPPING_PAPER);
                         entries.add(ModItems.DIRTY_WRAPPING_PAPER);

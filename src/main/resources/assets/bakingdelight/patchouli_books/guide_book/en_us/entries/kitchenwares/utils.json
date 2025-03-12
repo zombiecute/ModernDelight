@@ -1,0 +1,92 @@
+{
+  "name": "Kitchenware",
+  "icon": "bakingdelight:crowbar",
+  "category": "bakingdelight:kitchenwares",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "bakingdelight:glass_bowl",
+      "title": "Glass Bowl",
+      "text": "You can put items in a glass bowl and then use a whisk to stir or whip the items in it. You can also fill it with water using a water bucket or a water bottle, and hold some items and right-click on the glass bottle to mix them with water."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "bakingdelight:whisks"
+      },
+      "title": "Whisks",
+      "text": "You can quickly destroy some of the soil blocks, which are still mainly used to interact with the glass bowl."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:electric_whisk",
+      "title": "Electric Whisk",
+      "text": "It can interact directly with drops on the ground for batch mixing or whipping of items."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "bakingdelight:charging_post"
+      },
+      "title": "Charging Post",
+      "text": "Right-click to open the GUI. It cache 1000 EP DC, two slots on the left for batteries, and the right for items to be charged."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:crowbar",
+      "title": "Crowbar",
+      "text": "A wrench-like presence that can rotate some of the machines in this mod, and a sneaky right-click to quickly destroy various blocks."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:cuisine_table",
+      "title": "Cuisine Table",
+      "text": "Similar to a cutting board, put tools and items into it to start processing."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:stone_mortar",
+      "title": "Stone Mortar",
+      "text": "The off hand holds the item to be processed, the main hand holds the stone mortar, and holding down the right click will start the grinding process. You can get the Precision Grinding Enchantment (up to level 3) through the Librarian, which increases the yield."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "bakingdelight:condiments"
+      },
+      "title": "Seasoning",
+      "text": "Hold any food in the off hand and seasoning in the main hand and right click to season that food, different seasonings will provide different effects."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:freezer",
+      "title": "Freezer",
+      "text": "The freezer can be activated in two ways, either by using ice directly as ‘fuel’ or by supplying it with AC power. It can cold process a number of items and store up to 15 different items."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:electric_steamer",
+      "title": "Electric Steamer",
+      "text": "Like the traditional steamer, the electric steamer can steam some items, but you need to supply it with water and AC power."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:ice_cream_maker",
+      "title": "Ice Cream Maker",
+      "text": "Sneak and right click to open the GUI, provide it with AC power, any flavour of cream, sugar, egg and you can start making ice cream, up to 3 different flavours of ice cream can be cached, you are free to choose, after choosing the flavour hold the ice cream cone and right click to extract the ice cream."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:juice_extractor",
+      "title": "Juice Extractor",
+      "text": "It requires AC power to work, right click on the juice extractor with the item in hand to put ingredients into it, right click again to start it after putting in 4 ingredients."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:kitchen_utensil_holder",
+      "recipe2":"bakingdelight:wooden_plate",
+      "title": "Alternative Item Frames"
+    }
+  ]
+}

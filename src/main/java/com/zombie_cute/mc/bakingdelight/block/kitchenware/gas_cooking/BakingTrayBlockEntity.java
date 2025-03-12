@@ -225,7 +225,6 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
                         craftCampfireItem(this.getStack(3),3,world);
                     }
                     stir_fry_times = 0;
-                    markDirty();
                 }
             }
         }
@@ -238,11 +237,12 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
                 .getFirstMatch(RecipeType.CAMPFIRE_COOKING,inventory,world);
         ItemScatterer.spawn(world,pos.getX(), pos.getY(), pos.getZ(),
                 new ItemStack(match.get().getOutput(null).getItem()));
-        this.setStack(slot,ItemStack.EMPTY);
+        this.getStack(slot).decrement(1);
         int exp = (int)match.get().getExperience();
         if (exp == 0) exp=1;
         ExperienceOrbEntity xp = new ExperienceOrbEntity(world,pos.getX(),pos.getY(),pos.getZ(),exp);
         world.spawnEntity(xp);
+        markDirty();
     }
     private boolean hasCampfireRecipe(ItemStack stack) {
         SimpleInventory inventory = new SimpleInventory(1);

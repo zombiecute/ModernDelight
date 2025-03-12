@@ -95,6 +95,7 @@ public class ModCompostingChances {
         CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_NOODLES, 0.3f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.MATCHA, 0.2f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.GARLIC_PUREE, 0.2f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.RAW_NOODLES, 0.2f);
 
     }
 }

@@ -1,0 +1,14 @@
+{
+  "name": "patchouli.bakingdelight.book.name",
+  "landing_text": "patchouli.bakingdelight.book.landing_text",
+  "version": 1,
+  "creative_tab": "bakingdelight:bakingdelight_itemgroup",
+  "model": "bakingdelight:guide_book",
+  "index_icon": "bakingdelight:guide_book",
+  "book_texture": "patchouli:textures/gui/book_blue.png",
+  "show_progress": false,
+  "use_resource_pack": true,
+  "use_blocky_font": true,
+  "i18n": true,
+  "pause_game": true
+}

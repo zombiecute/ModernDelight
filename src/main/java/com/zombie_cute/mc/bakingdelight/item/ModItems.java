@@ -659,6 +659,9 @@ public class ModItems {
                     .maxCount(16).food(new FoodComponent.Builder().hunger(11).saturationModifier(0.4f).build())));
     public static final Item HOLDER = registerItem("holder", new HolderItem());
     public static final Item HOLDER_UP = registerItem("holder_up", new Item(new FabricItemSettings().maxCount(1)));
+    public static final Item GUIDE_BOOK = registerItem("guide_book", new Item(new FabricItemSettings().maxCount(1)));
+    public static final Item RAW_NOODLES = registerItem("raw_noodles", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,10 * 20,0),0.5f).build())));
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID,name),item);
     }

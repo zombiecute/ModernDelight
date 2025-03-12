@@ -62,9 +62,5 @@
 	},
 	"suggests": {
 		"another-mod": ["modmenu", "create", "farmersdelight", "yet_another_config_lib_v3"]
-	},
-	"resources": [
-		"assets/bakingdelight/models/item",
-		"assets/bakingdelight/textures/item"
-	]
+	}
 }

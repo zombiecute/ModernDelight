@@ -1,0 +1,23 @@
+{
+  "name": "Steamer Basket",
+  "icon": "bakingdelight:bamboo_grate",
+  "category": "bakingdelight:biogas_sys",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Traditional Steamer",
+      "text": "When a water cauldron is heated by gas cooking stove, the water inside gradually turns into water vapour. You can steam your food by building a steamer, which consists of a number of drawers and a cover, on top of the heated cauldron."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Example",
+      "images": ["bakingdelight:guide_images/guide_steamer.png"]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "bakingdelight:bamboo_grate",
+      "recipe2": "bakingdelight:bamboo_cover"
+    }
+  ]
+}

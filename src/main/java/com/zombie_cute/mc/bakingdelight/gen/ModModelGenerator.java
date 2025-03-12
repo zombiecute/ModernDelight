@@ -307,6 +307,8 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BLACK_PEPPER_STEAK, Models.GENERATED);
         itemModelGenerator.register(ModItems.HOLDER_UP, Models.GENERATED);
         itemModelGenerator.register(ModItems.HOLDER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GUIDE_BOOK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_NOODLES, Models.GENERATED);
 
     }
     private static Model registerItemBlockModel(Block parent, TextureKey ... requiredTextureKeys) {

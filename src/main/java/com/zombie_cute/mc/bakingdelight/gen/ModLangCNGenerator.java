@@ -156,6 +156,9 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(MiscUtil.FAILED_SEASONING, "你不能向这个食物添加更多调味品了");
         translationBuilder.add(MiscUtil.SEASONING_ADDED, "调味品：");
         translationBuilder.add(MiscUtil.PUN, "禁止无限套娃！");
+        translationBuilder.add(MiscUtil.WOODEN_PLATE_1, "一个可以用于展示物品的盘子，");
+        translationBuilder.add(MiscUtil.WOODEN_PLATE_2, "右键可以将物品放在上面，");
+        translationBuilder.add(MiscUtil.WOODEN_PLATE_3, "潜行加右键旋转上面的物品。");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"点击以获取经验值");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"消除工具");
@@ -363,6 +366,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.GARLIC_PETAL, "蒜瓣");
         translationBuilder.add(ModBlocks.WILD_GARLIC, "野生大蒜");
         translationBuilder.add(ModItems.ELECTRIC_WHISK, "电动搅拌器");
+        translationBuilder.add(ModItems.RAW_NOODLES, "生面条");
 
 
         translationBuilder.add(ModEntities.BUTTER,"黄油");
@@ -627,6 +631,10 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("config.bakingdelight.option.maxSeasonings.desc","设置一个食物最多可以添加多少调味料。");
         translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.title","充电桩充电效率");
         translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.desc","设置充电桩的充电效率。");
+
+        translationBuilder.add(ModItems.GUIDE_BOOK,"现代乐事指南");
+        translationBuilder.add("patchouli.bakingdelight.book.name","现代乐事指南");
+        translationBuilder.add("patchouli.bakingdelight.book.landing_text","向你介绍：现代乐事。这本书将会告诉你如何更好的游玩这个模组。");
 
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_TITLE, "真相就是搅拌器");
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_DESC, "合成一把搅拌器来开始你新的厨房之旅");

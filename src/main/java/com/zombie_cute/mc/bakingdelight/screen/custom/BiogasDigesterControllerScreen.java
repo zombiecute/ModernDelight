@@ -73,7 +73,7 @@ public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigester
         if (b4){
             context.drawTooltip(textRenderer,Text.translatable(UNAVAILABLE).formatted(Formatting.RED),mouseX,mouseY);
         }
-        super.drawMouseoverTooltip(context, x, y);
+        super.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override

@@ -1,14 +1,100 @@
 {
   "criteria": {
-    "get_start": {
+    "amethyst_whisk": {
       "conditions": {
-        "item": {
-          "items": [
-            "minecraft:bread"
-          ]
-        }
+        "items": [
+          {
+            "items": [
+              "bakingdelight:amethyst_whisk"
+            ]
+          }
+        ]
       },
-      "trigger": "minecraft:consume_item"
+      "trigger": "minecraft:inventory_changed"
+    },
+    "copper_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:copper_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diamond_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:diamond_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "golden_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:golden_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "iron_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:iron_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "netherite_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:netherite_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stone_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:stone_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wooden_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:wooden_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "display": {
@@ -29,7 +115,14 @@
   },
   "requirements": [
     [
-      "get_start"
+      "iron_whisk",
+      "wooden_whisk",
+      "stone_whisk",
+      "copper_whisk",
+      "golden_whisk",
+      "amethyst_whisk",
+      "diamond_whisk",
+      "netherite_whisk"
     ]
   ],
   "sends_telemetry_event": true

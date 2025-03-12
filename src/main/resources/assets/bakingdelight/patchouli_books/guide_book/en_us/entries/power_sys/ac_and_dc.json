@@ -1,0 +1,21 @@
+{
+  "name": "AC and DC",
+  "icon": "bakingdelight:ac_dc_converter",
+  "category": "bakingdelight:power_sys",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Summary",
+      "text": "There are two different types of electricity in this mod, one is AC and the other is DC. AC power can only be used now and cannot be stored. DC power can be stored, used by other mods or supplied by other mods."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "bakingdelight:ac_dc_converter"
+      },
+      "title": "AC/DC Converter",
+      "text": "This is a device that converts AC and DC power to each other, note that this conversion process is lossy. In addition, it can cache 3000 EP of DC power, or you can put a battery internally. Right clicking on it opens its GUI, you can adjust its working speed at the adjustment bar, the faster it works the more lossy it will be."
+    }
+  ]
+}

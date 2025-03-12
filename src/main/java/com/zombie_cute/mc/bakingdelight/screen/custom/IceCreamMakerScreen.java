@@ -71,7 +71,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
             context.drawTooltip(textRenderer,Text.literal(iceCream3.getAmount()+" mL").formatted(Formatting.WHITE),
                     mouseX,mouseY);
         }
-        super.drawMouseoverTooltip(context, x, y);
+        super.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     private void renderPower(DrawContext context, int x, int y){

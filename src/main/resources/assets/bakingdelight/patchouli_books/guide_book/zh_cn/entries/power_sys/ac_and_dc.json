@@ -1,0 +1,21 @@
+{
+  "name": "交流和直流",
+  "icon": "bakingdelight:ac_dc_converter",
+  "category": "bakingdelight:power_sys",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "简介",
+      "text": "在本模组中有两种不同类型的电能，一种是交流电，一种是直流电。交流电只能现发现用，不能被存储起来，而直流电则可以被存储起来，也可以被其他模组所使用或由其他模组所供给。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "bakingdelight:ac_dc_converter"
+      },
+      "title": "交流/直流转化器",
+      "text": "这是一台可以相互转化交流电与直流电的装置，注意这个转化的过程是有损的，此外本体可以缓存3000EP的直流电，也可以内接一个电池。右键可以打开它的GUI界面，你可以在调节槽处调节其工作速度，其工作速度越快损耗也会越大。"
+    }
+  ]
+}

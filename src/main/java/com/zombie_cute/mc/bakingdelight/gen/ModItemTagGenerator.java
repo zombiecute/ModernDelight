@@ -280,6 +280,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModBlocks.STEAMED_PUMPKIN_ITEM);
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.STEAMED_PUMPKIN_WIP);
 
+        getOrCreateTagBuilder(TagKeys.FOODS).addTag(TagKeys.PASTAS);
+        getOrCreateTagBuilder(TagKeys.PASTAS).add(ModItems.RAW_NOODLES);
+
         getOrCreateTagBuilder(TagKeys.RAW_MEATS).addOptionalTag(TagKeys.RAW_PORK);
         getOrCreateTagBuilder(TagKeys.RAW_MEATS).addOptionalTag(TagKeys.RAW_BEEF);
 

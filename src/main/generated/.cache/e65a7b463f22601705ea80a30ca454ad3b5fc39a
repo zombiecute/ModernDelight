@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-07T16:53:15.8221411	Modern Delight/Model Definitions
+// 1.20.1	2025-03-12T12:18:19.9513355	Modern Delight/Model Definitions
 e143d34d1133e86ddea7b69cc56444a293cd9592 assets\bakingdelight\models\item\wheat_dough.json
 a91623af1beecbb55314e24b9b6d7a4455307360 assets\bakingdelight\models\item\redstone_component.json
 d905a19315e8a287374dcf7083b2c05697138f4d assets\bakingdelight\models\item\pink_tulip_cake.json
@@ -59,6 +59,7 @@ e3c3b101b762e31c270e149b131c8dc35b53e1a8 assets\bakingdelight\models\item\cherry
 57c2d70c8669e29a1073f0ca792ce21b2ee6b7d7 assets\bakingdelight\models\item\netherite_whisk.json
 e9bb474685a57a04dc62561b209ad6eb553149c2 assets\bakingdelight\models\item\fried_cod_nugget.json
 510d09ad2a955cf29f250b42c32ba8b1a534da21 assets\bakingdelight\models\item\fish_egg.json
+ade53f443ca775d2c8d03ea2991888cef060869e assets\bakingdelight\models\item\guide_book.json
 026dbc87fb2f9dc9da447df7f548521c03f453a7 assets\bakingdelight\models\item\amethyst_pickaxe.json
 a2599aae71b52539eb3a704310ec30a9d5cd70d4 assets\bakingdelight\models\item\pork_chop_burger.json
 8633ecd79b8b220a0cf2d4a6d034ae60573bba6e assets\bakingdelight\models\item\orange_tulip_cake.json
@@ -174,6 +175,7 @@ df8d1a43f1f45632fb028a0374cc9689f9642573 assets\bakingdelight\models\item\cream_
 ac18abeb30e22de5b7a9281542f1dfbe0877c658 assets\bakingdelight\models\item\chicken_fillet.json
 370e598ab1e2faaa2a547f3dd0422a4fd46821be assets\bakingdelight\models\item\black_truffle.json
 2c019ceb23ac6040dfd33c91262e864d2a4c300c assets\bakingdelight\models\item\sunflower_seed_pulp.json
+e825f6db1bb25e0e1063d2a501e9b83f0a802803 assets\bakingdelight\models\item\raw_noodles.json
 0dcb3621826f684b4c924e4b031ca8d976462ea2 assets\bakingdelight\models\item\jar.json
 4a23b2d0a5e2b6fe45c3b8e1183d6bb3efdb40c6 assets\bakingdelight\models\item\dirty_packaging_bag.json
 b3e275518d9cf61b0854910c04fa2e6cebb30fb7 assets\bakingdelight\models\item\pork_ribs.json

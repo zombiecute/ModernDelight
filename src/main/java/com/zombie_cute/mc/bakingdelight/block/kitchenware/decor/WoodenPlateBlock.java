@@ -5,6 +5,7 @@ import com.zombie_cute.mc.bakingdelight.util.enums.ShowAbleItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -45,7 +46,15 @@ public class WoodenPlateBlock extends BlockWithEntity implements Waterloggable {
     public static final EnumProperty<ShowAbleItems> SHOWING_ITEM = EnumProperty.of("showing_item", ShowAbleItems.class);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(Text.translatable(MiscUtil.CAN_PLACE).formatted(Formatting.GRAY));
+        if(Screen.hasShiftDown()){
+            tooltip.add(MiscUtil.getShiftText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.add(Text.translatable(MiscUtil.WOODEN_PLATE_1).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(MiscUtil.WOODEN_PLATE_2).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable(MiscUtil.WOODEN_PLATE_3).formatted(Formatting.GOLD));
+        } else {
+            tooltip.add(MiscUtil.getShiftText(false));
+        }
         super.appendTooltip(stack, world, tooltip, options);
     }
     @Nullable
