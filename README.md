@@ -14,6 +14,8 @@ Getting Started
 
 You can check the advancement for more help! By default, press (L) to open the advancement screen.
 
+If you installed the Patchouli[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/patchouli-fabric) / [Modrinth](https://modrinth.com/mod/patchouli)], you can use any whisk and book to craft a guide book.
+
 It is recommended to use through the REI[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-items) / [Modrinth](https://modrinth.com/mod/rei)] or EMI[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/emi) / [Modrinth](https://modrinth.com/mod/emi)] to get more help!
 
 Links
