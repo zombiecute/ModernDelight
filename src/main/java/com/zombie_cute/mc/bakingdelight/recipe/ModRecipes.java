@@ -50,5 +50,9 @@ public class ModRecipes {
                 GrindingRecipe.Type.INSTANCE);
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(ModernDelightMain.MOD_ID,GrindingRecipe.Serializer.ID),
                 GrindingRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, new Identifier(ModernDelightMain.MOD_ID, SqueezeRecipe.Type.ID),
+                SqueezeRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(ModernDelightMain.MOD_ID,SqueezeRecipe.Serializer.ID),
+                SqueezeRecipe.Serializer.INSTANCE);
     }
 }

@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-12T12:18:19.9513355	Modern Delight/Model Definitions
+// 1.20.1	2025-03-18T14:14:16.4859786	Modern Delight/Model Definitions
 e143d34d1133e86ddea7b69cc56444a293cd9592 assets\bakingdelight\models\item\wheat_dough.json
 a91623af1beecbb55314e24b9b6d7a4455307360 assets\bakingdelight\models\item\redstone_component.json
 d905a19315e8a287374dcf7083b2c05697138f4d assets\bakingdelight\models\item\pink_tulip_cake.json
@@ -271,6 +271,7 @@ caae2bb2613703d33547f8e8afe78961775f293a assets\bakingdelight\models\item\honey_
 fd64d84dcc96080b564da5f3b84ef56fb94ecd14 assets\bakingdelight\models\item\ice_brick.json
 68b1dcd36733ebb14ac9a69581975cd17bc503ee assets\bakingdelight\models\item\sea_salt_lemon.json
 dee9aaf149f3ab417212c247777074835641cd3f assets\bakingdelight\models\item\deep_fried_shrimp_cake.json
+137b742e483e28b2708737c86a43885bdcca469e assets\bakingdelight\models\item\sweetened_water_bucket.json
 df2a0c126c1b8402789f5d886d95a0e8a3ca341a assets\bakingdelight\models\item\seaweed_fried_shrimp_cake.json
 3c39f839821c817673fe9e81a74f9782e889f1da assets\bakingdelight\blockstates\intermediate_battery.json
 7efefaadc4091d8ab091ae9eeda49f791c2a55f0 assets\bakingdelight\models\item\glow_squid_tentacle_kebabs.json

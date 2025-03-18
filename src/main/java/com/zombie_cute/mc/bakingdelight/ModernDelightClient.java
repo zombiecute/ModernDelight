@@ -136,6 +136,14 @@ public class ModernDelightClient implements ClientModInitializer {
                 ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluid.STILL_LIQUEFIED_BIOGAS, ModFluid.FLOWING_LIQUEFIED_BIOGAS);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_SWEETENED_WATER, ModFluid.FLOWING_SWEETENED_WATER,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft","block/water_still"),
+                        new Identifier("minecraft","block/water_flow"),
+                        0x38889c
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                ModFluid.STILL_SWEETENED_WATER, ModFluid.FLOWING_SWEETENED_WATER);
     }
     public static void registerModelPredicateProviders() {
         ModelPredicateProviderRegistry.register(ModItems.PORTABLE_POT, new Identifier(ModernDelightMain.MOD_ID,"pot_state"), (itemStack, clientWorld, livingEntity, seed) -> {

@@ -11,7 +11,7 @@ import com.zombie_cute.mc.bakingdelight.recipe.custom.DeepFryingRecipe;
 import com.zombie_cute.mc.bakingdelight.screen.custom.DeepFryerScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
-import com.zombie_cute.mc.bakingdelight.util.FluidUtil;
+import com.zombie_cute.mc.bakingdelight.util.FluidStack;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModDamageTypes;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -290,7 +290,7 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         }
         if (hasOil()){
             world.setBlockState(pos, state.with(DeepFryerBlock.HAS_OIL,true));
-            this.oilLevel = (int) FluidUtil.convertDropletsToMb(fluidStorage.amount);
+            this.oilLevel = (int) FluidStack.convertDropletsToMb(fluidStorage.amount);
         } else {
             this.oilLevel = 0;
             world.setBlockState(pos, state.with(DeepFryerBlock.HAS_OIL,false));
@@ -428,8 +428,8 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         return state.get(DeepFryerBlock.RUNNING);
     }
     private void decreaseOilLevel(){
-        if (fluidStorage.amount - FluidUtil.convertMbToDroplets(50) > 0){
-            fluidStorage.amount-=FluidUtil.convertMbToDroplets(50);
+        if (fluidStorage.amount - FluidStack.convertMbToDroplets(50) > 0){
+            fluidStorage.amount-= FluidStack.convertMbToDroplets(50);
         } else {
             fluidStorage.amount = 0;
             fluidStorage.variant = FluidVariant.blank();

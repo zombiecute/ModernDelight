@@ -503,6 +503,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.BLACK_PEPPER_STEAK, "黑椒牛排");
         translationBuilder.add(ModItems.HOLDER, "夹子");
         translationBuilder.add(ModItems.HOLDER_UP, "半截夹子");
+        translationBuilder.add(ModItems.SWEETENED_WATER_BUCKET, "糖水桶");
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s 触电身亡！");
         translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s 化为了灰烬");
@@ -512,6 +513,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "奶油");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "植物油");
         translationBuilder.add(ModBlocks.LIQUEFIED_BIOGAS_FLUID_BLOCK, "液化沼气");
+        translationBuilder.add(ModBlocks.SWEENTENED_WATER_FLUID_BLOCK, "糖水");
 
         translationBuilder.add(ModEnchantments.FINE_GRINDING,"精碾");
         translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","石臼在碾磨时会有额外的产出");

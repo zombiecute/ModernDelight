@@ -506,6 +506,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.HOLDER, "Tongs");
         translationBuilder.add(ModItems.HOLDER_UP, "Half Tongs");
         translationBuilder.add(ModItems.RAW_NOODLES, "Raw Noodles");
+        translationBuilder.add(ModItems.SWEETENED_WATER_BUCKET, "Sweetened Water");
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s was electrocuted!");
         translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s turned to ashes");
@@ -515,6 +516,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "Cream");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "Vegetable Oil");
         translationBuilder.add(ModBlocks.LIQUEFIED_BIOGAS_FLUID_BLOCK, "Liquefied Biogas");
+        translationBuilder.add(ModBlocks.SWEENTENED_WATER_FLUID_BLOCK, "Sweetened Water");
 
         translationBuilder.add(ModEnchantments.FINE_GRINDING,"Precision Grinding");
         translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","The stone mortar will have additional output when grinding.");

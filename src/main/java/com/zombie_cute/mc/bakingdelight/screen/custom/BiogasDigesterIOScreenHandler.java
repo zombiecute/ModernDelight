@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.biogas.BiogasDigesterIOBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
-import com.zombie_cute.mc.bakingdelight.screen.slot.OnlyExtractSlot;
+import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.entity.BlockEntity;

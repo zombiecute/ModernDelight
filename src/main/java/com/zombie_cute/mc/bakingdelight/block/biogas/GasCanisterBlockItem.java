@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.biogas;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.util.FluidUtil;
+import com.zombie_cute.mc.bakingdelight.util.FluidStack;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.item.TooltipContext;
@@ -34,7 +34,7 @@ public class GasCanisterBlockItem extends BlockItem {
         if (nbtCompound != null) {
             if (nbtCompound.contains("gas_canister.fluid_variant") && nbtCompound.contains("gas_canister.fluid_amount")){
                 long fluid_amount = nbtCompound.getLong("gas_canister.fluid_amount");
-                return (int) Math.min(12.0 * (float)FluidUtil.convertDropletsToMb(fluid_amount) / (float) GasCanisterBlockEntity.getMaxCapacity(), 13);
+                return (int) Math.min(12.0 * (float) FluidStack.convertDropletsToMb(fluid_amount) / (float) GasCanisterBlockEntity.getMaxCapacity(), 13);
             }
         }
         return 0;
@@ -46,7 +46,7 @@ public class GasCanisterBlockItem extends BlockItem {
         if (nbtCompound != null) {
             if (nbtCompound.contains("gas_canister.fluid_variant") && nbtCompound.contains("gas_canister.fluid_amount")){
                 long fluid_amount = nbtCompound.getLong("gas_canister.fluid_amount");
-                float f = (float) FluidUtil.convertDropletsToMb(fluid_amount) / (float) GasCanisterBlockEntity.getMaxCapacity();
+                float f = (float) FluidStack.convertDropletsToMb(fluid_amount) / (float) GasCanisterBlockEntity.getMaxCapacity();
                 return MathHelper.packRgb(f,1-f,0);
             }
         }
@@ -61,18 +61,18 @@ public class GasCanisterBlockItem extends BlockItem {
             if (nbtCompound.contains("gas_canister.fluid_variant") && nbtCompound.contains("gas_canister.fluid_amount")){
                 FluidVariant fluidVariant = FluidVariant.fromNbt((NbtCompound) nbtCompound.get("gas_canister.fluid_variant"));
                 long fluid_amount = nbtCompound.getLong("gas_canister.fluid_amount");
-                FluidUtil fluidUtil = new FluidUtil(fluidVariant,fluid_amount);
-                MutableText mutableText = getFluidCapacity(fluidUtil);
+                FluidStack fluidStack = new FluidStack(fluidVariant,fluid_amount);
+                MutableText mutableText = getFluidCapacity(fluidStack);
                 tooltip.add(mutableText);
             }
         }
     }
     @NotNull
-    private static MutableText getFluidCapacity(FluidUtil fluidUtil) {
-        String translation_key = fluidUtil.getFluidVariant().getFluid().getDefaultState().getBlockState().getBlock().getTranslationKey();
+    private static MutableText getFluidCapacity(FluidStack fluidStack) {
+        String translation_key = fluidStack.getFluidVariant().getFluid().getDefaultState().getBlockState().getBlock().getTranslationKey();
         MutableText mutableText = Text.translatable(translation_key).formatted(Formatting.GRAY);
         mutableText.append(Text.literal(": ").formatted(Formatting.GRAY));
-        long mb = FluidUtil.convertDropletsToMb(fluidUtil.getAmount());
+        long mb = FluidStack.convertDropletsToMb(fluidStack.getAmount());
         if (mb < GasCanisterBlockEntity.getMaxCapacity()/6){
             mutableText.append(Text.literal(String.valueOf(mb)).formatted(Formatting.GREEN));
         } else if (mb < GasCanisterBlockEntity.getMaxCapacity()/2) {

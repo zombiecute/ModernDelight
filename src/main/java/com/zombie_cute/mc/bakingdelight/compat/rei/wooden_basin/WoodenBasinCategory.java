@@ -3,8 +3,7 @@ package com.zombie_cute.mc.bakingdelight.compat.rei.wooden_basin;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlockEntity;
-import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
-import com.zombie_cute.mc.bakingdelight.item.ModItems;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -14,12 +13,9 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,26 +44,20 @@ public class WoodenBasinCategory implements DisplayCategory<WoodenBasinDisplay> 
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,75)));
 
-        Collection<ItemConvertible> itemCollection = new ArrayList<>(WoodenBasinBlockEntity.createOilMap().keySet());
-
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 84,startPoint.y + 4))
-                .entries(EntryIngredients.ofItems(itemCollection)));
+                .markInput().entries(display.getInputEntries().get(0)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 84,startPoint.y + 36))
-                .markInput().entry(EntryStacks.of(ModItems.FILTER.getDefaultStack())));
+                .markInput().entries(EntryIngredients.ofItemTag(TagKeys.FILTERS)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 39,startPoint.y + 36))
-                .markOutput().entry(EntryStacks.of(ModFluid.STILL_VEGETABLE_OIL)));
+                .markOutput().entries(display.getOutputEntries().get(1)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 129,startPoint.y + 36))
-                .markOutput().entry(EntryStacks.of(ModItems.OIL_IMPURITY)));
+                .markOutput().entries(display.getOutputEntries().get(0)));
 
         return widgets;
     }
     @Override
     public int getDisplayHeight() {
         return 74;
-    }
-    @Override
-    public int getFixedDisplaysPerPage() {
-        return 1;
     }
 }

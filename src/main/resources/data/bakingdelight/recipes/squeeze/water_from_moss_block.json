@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:moss_block"
+    }
+  ],
+  "output": {
+    "item": "minecraft:moss_carpet"
+  },
+  "fluid_output": {
+    "fluid": "minecraft:water",
+    "amount": 2250
+  }
+}

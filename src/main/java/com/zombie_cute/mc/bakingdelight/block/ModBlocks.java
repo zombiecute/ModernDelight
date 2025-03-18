@@ -165,7 +165,8 @@ public class ModBlocks {
             new WoodenPlateBlock());
     public static final Block STEAMED_PUMPKIN = registerBlockWithoutItem("steamed_pumpkin",
             new SteamedPumpkinBlock());
-
+    public static final Block SWEENTENED_WATER_FLUID_BLOCK = registerBlockWithoutItem("sweetened_water_fluid",
+            new FluidBlock(ModFluid.STILL_SWEETENED_WATER,FabricBlockSettings.copyOf(Blocks.WATER)));
     // Block Items
     public static final BlockItem FISH_AND_CHIPS_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"fish_and_chips"),
             new BlockItem(FISH_AND_CHIPS,new FabricItemSettings().maxCount(16).food(

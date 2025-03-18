@@ -119,7 +119,7 @@ public class BakingDelightREIClientPlugin implements REIClientPlugin {
         registry.add(new OvenTransformDisplay());
         registry.add(new AdvanceFurnaceTransformDisplay());
         registry.registerRecipeFiller(CampfireCookingRecipe.class, RecipeType.CAMPFIRE_COOKING, BakingTrayDisplay::new);
-        registry.add(new WoodenBasinDisplay());
+        registry.registerRecipeFiller(SqueezeRecipe.class,SqueezeRecipe.Type.INSTANCE,WoodenBasinDisplay::new);
         registry.add(new BiogasFermentationDisplay());
         registry.registerRecipeFiller(DeepFryingRecipe.class, DeepFryingRecipe.Type.INSTANCE, DeepFryingDisplay::new);
         registry.registerRecipeFiller(CuisineRecipe.class, CuisineRecipe.Type.INSTANCE, CuisineDisplay::new);

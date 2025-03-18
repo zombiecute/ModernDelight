@@ -2,8 +2,8 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlockEntity;
+import com.zombie_cute.mc.bakingdelight.screen.util.FluidStackRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -11,17 +11,20 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.Optional;
+
 public class WoodenBasinScreen extends HandledScreen<WoodenBasinScreenHandler> {
     private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/wooden_basin_gui.png");
     public WoodenBasinScreen(WoodenBasinScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
-
+    private FluidStackRenderer fluidStackRenderer;
     @Override
     protected void init() {
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+        assignFluidStackRenderer();
     }
     boolean b;
     @Override
@@ -44,18 +47,17 @@ public class WoodenBasinScreen extends HandledScreen<WoodenBasinScreenHandler> {
     @Override
     protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
         if (b){
-            context.drawTooltip(textRenderer,Text.literal(handler.getFluidLevel()+" mB"),
-                    x,y);
+            context.drawTooltip(textRenderer,fluidStackRenderer.getTooltip(handler.blockEntity.getFluidStackCopy()),
+                    Optional.empty(),x,y);
         }
         super.drawMouseoverTooltip(context, x, y);
     }
-
-    @Environment(EnvType.CLIENT)
+    private void assignFluidStackRenderer(){
+        fluidStackRenderer = new FluidStackRenderer(WoodenBasinBlockEntity.MAX_FLUID_LEVEL,18,47);
+    }
     private void renderFluid(DrawContext context, int x, int y) {
-        if (handler.getFluidLevel()!=0){
-            int offset = 47 - handler.getScaledFluidLevel();
-            context.drawTexture(TEXTURE, x + 47, y + 21 + offset, 176, offset,18, handler.getScaledFluidLevel());
-        }
+        fluidStackRenderer.drawFluid(context,handler.blockEntity.getFluidStackCopy(),
+                x+47,y+21,18,47);
     }
 
     @Override

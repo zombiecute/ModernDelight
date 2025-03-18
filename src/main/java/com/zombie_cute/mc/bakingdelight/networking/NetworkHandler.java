@@ -14,6 +14,7 @@ public class NetworkHandler {
     public static final Identifier CHANGE_BLOCK_ENTITY_DATA_PACKET_ID = new Identifier(ModernDelightMain.MOD_ID,"change_block_entity_data");
     public static final Identifier ITEM_SYNC = new Identifier(ModernDelightMain.MOD_ID,"item_sync");
     public static final Identifier INTEGER_SYNC = new Identifier(ModernDelightMain.MOD_ID,"integer_sync");
+    public static final Identifier FLUID_SYNC = new Identifier(ModernDelightMain.MOD_ID,"fluid_sync");
 
     public static void registerC2SPacket(){
         ModernDelightMain.LOGGER.info("Registering C2S receivers for {}", ModernDelightMain.MOD_ID);
@@ -26,5 +27,6 @@ public class NetworkHandler {
         ModernDelightMain.LOGGER.info("Registering S2C receivers for {}", ModernDelightMain.MOD_ID);
         ClientPlayNetworking.registerGlobalReceiver(ITEM_SYNC, ItemStackSyncS2CPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(INTEGER_SYNC, IntegerSyncS2CPacket::receive);
+        ClientPlayNetworking.registerGlobalReceiver(FLUID_SYNC, FluidSyncS2CPacket::receive);
     }
 }

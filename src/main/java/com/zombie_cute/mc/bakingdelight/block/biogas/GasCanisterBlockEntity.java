@@ -6,7 +6,7 @@ import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.screen.custom.GasCanisterScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
-import com.zombie_cute.mc.bakingdelight.util.FluidUtil;
+import com.zombie_cute.mc.bakingdelight.util.FluidStack;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -52,7 +52,7 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
         }
         @Override
         protected long getCapacity(FluidVariant variant) {
-            return FluidUtil.convertMbToDroplets(getMaxCapacity());
+            return FluidStack.convertMbToDroplets(getMaxCapacity());
         }
         @Override
         protected void onFinalCommit() {
@@ -99,7 +99,7 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
         if (world.isClient){
             return;
         }
-        gasValue = (int)FluidUtil.convertDropletsToMb(fluidStorage.amount);
+        gasValue = (int) FluidStack.convertDropletsToMb(fluidStorage.amount);
         blockEntity.tick--;
         switch (tick){
             case 20, 3: cycleInt = 0;break;
@@ -118,7 +118,7 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
                 randomExplode(world);
             } else if (world.getDimension().ultrawarm() && !allowNether()) {
                 randomExplode(world);
-            } else if (fluidStorage.amount >= FluidUtil.convertMbToDroplets(getMaxCapacity())){
+            } else if (fluidStorage.amount >= FluidStack.convertMbToDroplets(getMaxCapacity())){
                 world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), getGasValue() / 1000f, true, World.ExplosionSourceType.BLOCK);
             }
@@ -157,7 +157,7 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
                     entity.reduceGas(5);
                     try(Transaction transaction = Transaction.openOuter()){
                         fluidStorage.insert(FluidVariant.of(ModFluid.STILL_LIQUEFIED_BIOGAS),
-                                FluidUtil.convertMbToDroplets(5),transaction);
+                                FluidStack.convertMbToDroplets(5),transaction);
                         transaction.commit();
                     }
                     markDirty();
@@ -166,7 +166,7 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
                     entity.reduceGas(1);
                     try(Transaction transaction = Transaction.openOuter()){
                         fluidStorage.insert(FluidVariant.of(ModFluid.STILL_LIQUEFIED_BIOGAS),
-                                FluidUtil.convertMbToDroplets(1),transaction);
+                                FluidStack.convertMbToDroplets(1),transaction);
                         transaction.commit();
                     }
                     markDirty();

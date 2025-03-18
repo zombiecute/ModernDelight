@@ -1,13 +1,15 @@
 package com.zombie_cute.mc.bakingdelight.util;
 
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-
-public class FluidUtil {
+/**
+ * Originally by Flandre923
+ **/
+public class FluidStack {
     public FluidVariant fluidVariant;
-    public long amount;
-    public FluidUtil(FluidVariant fluidVariant,long amount){
+    public long amount_droplets;
+    public FluidStack(FluidVariant fluidVariant, long amount_droplets){
         this.fluidVariant = fluidVariant;
-        this.amount = amount;
+        this.amount_droplets = amount_droplets;
     }
 
     public FluidVariant getFluidVariant() {
@@ -19,11 +21,11 @@ public class FluidUtil {
     }
 
     public long getAmount() {
-        return amount;
+        return amount_droplets;
     }
 
-    public void setAmount(long amount) {
-        this.amount = amount;
+    public void setAmount(long amount_droplets) {
+        this.amount_droplets = amount_droplets;
     }
 
     public static long convertDropletsToMb(long droplets){

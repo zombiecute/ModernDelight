@@ -4,7 +4,7 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.SteamingRecipe;
 import com.zombie_cute.mc.bakingdelight.screen.custom.ElectricSteamerScreenHandler;
-import com.zombie_cute.mc.bakingdelight.util.FluidUtil;
+import com.zombie_cute.mc.bakingdelight.util.FluidStack;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -129,18 +129,18 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
             return;
         }
         if (fluidStorage.variant.getFluid() == Fluids.WATER){
-            water = (int) FluidUtil.convertDropletsToMb(fluidStorage.amount);
+            water = (int) FluidStack.convertDropletsToMb(fluidStorage.amount);
         } else water = 0;
         if (cachedPower > 0){
             cachedPower--;
             world.setBlockState(pos,state.with(ElectricSteamerBlock.IS_WORKING,true));
-            if (fluidStorage.amount > FluidUtil.convertMbToDroplets(50) &&
+            if (fluidStorage.amount > FluidStack.convertMbToDroplets(50) &&
                     steam < MAX_WATER_OR_STEAM &&
                     fluidStorage.variant.getFluid() == Fluids.WATER){
                 steamProgress++;
                 if (steamProgress >= MAX_STEAM_PROGRESS){
                     steamProgress = 0;
-                    fluidStorage.amount-=FluidUtil.convertMbToDroplets(50);
+                    fluidStorage.amount-= FluidStack.convertMbToDroplets(50);
                     if (steam + 80 < MAX_WATER_OR_STEAM){
                         steam+=80;
                     } else {

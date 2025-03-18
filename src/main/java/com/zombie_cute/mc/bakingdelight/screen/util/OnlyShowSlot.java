@@ -1,4 +1,4 @@
-package com.zombie_cute.mc.bakingdelight.screen.slot;
+package com.zombie_cute.mc.bakingdelight.screen.util;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;

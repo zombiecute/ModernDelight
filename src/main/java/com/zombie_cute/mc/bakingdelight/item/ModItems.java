@@ -662,6 +662,8 @@ public class ModItems {
     public static final Item GUIDE_BOOK = registerItem("guide_book", new Item(new FabricItemSettings().maxCount(1)));
     public static final Item RAW_NOODLES = registerItem("raw_noodles", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,10 * 20,0),0.5f).build())));
+    public static final Item SWEETENED_WATER_BUCKET = registerItem("sweetened_water_bucket",new BucketItem(ModFluid.STILL_SWEETENED_WATER,new FabricItemSettings()
+            .maxCount(1).recipeRemainder(Items.BUCKET)));
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID,name),item);
     }

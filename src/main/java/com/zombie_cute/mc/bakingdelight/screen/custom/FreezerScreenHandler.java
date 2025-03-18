@@ -3,7 +3,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlock;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
-import com.zombie_cute.mc.bakingdelight.screen.slot.OnlyExtractSlot;
+import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

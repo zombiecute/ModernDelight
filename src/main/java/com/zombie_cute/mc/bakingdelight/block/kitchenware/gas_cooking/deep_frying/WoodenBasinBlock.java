@@ -41,10 +41,8 @@ import java.util.List;
 public class WoodenBasinBlock extends BlockWithEntity implements Waterloggable{
     public WoodenBasinBlock() {
         super(FabricBlockSettings.copyOf(Blocks.BARREL).nonOpaque());
-        setDefaultState(this.getStateManager().getDefaultState()
-                .with(HAS_OIL, false).with(WATERLOGGED,false));
+        setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED,false));
     }
-    public static final BooleanProperty HAS_OIL = BooleanProperty.of("has_oil");
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,6,16);
@@ -65,13 +63,12 @@ public class WoodenBasinBlock extends BlockWithEntity implements Waterloggable{
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER)
-                .with(HAS_OIL,false);
+        return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(HAS_OIL).add(WATERLOGGED);
+        builder.add(WATERLOGGED);
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos,
@@ -116,7 +113,7 @@ public class WoodenBasinBlock extends BlockWithEntity implements Waterloggable{
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (!world.isClient && world.random.nextFloat() < fallDistance - 0.5f && entity instanceof LivingEntity && (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) && entity.getWidth() * entity.getWidth() * entity.getHeight() > 0.512f) {
             if (world.getBlockEntity(pos) instanceof WoodenBasinBlockEntity blockEntity) {
-                blockEntity.onLandedUpon(world);
+                blockEntity.onLandedUpon(world, (LivingEntity) entity);
             }
         }
         super.onLandedUpon(world, state, pos, entity, fallDistance);

@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.fluid;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.fluid.custom.CreamFluid;
 import com.zombie_cute.mc.bakingdelight.fluid.custom.LiquefiedBiogasFluid;
+import com.zombie_cute.mc.bakingdelight.fluid.custom.SweetenedWaterFluid;
 import com.zombie_cute.mc.bakingdelight.fluid.custom.VegetableOilFluid;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.registry.Registries;
@@ -16,6 +17,8 @@ public class ModFluid {
     public static final FlowableFluid STILL_VEGETABLE_OIL = registerFluid("still_vegetable_oil", new VegetableOilFluid.Still());
     public static final FlowableFluid FLOWING_LIQUEFIED_BIOGAS = registerFluid("flowing_liquefied_biogas", new LiquefiedBiogasFluid.Flowing());
     public static final FlowableFluid STILL_LIQUEFIED_BIOGAS = registerFluid("still_liquefied_biogas", new LiquefiedBiogasFluid.Still());
+    public static final FlowableFluid FLOWING_SWEETENED_WATER = registerFluid("flowing_sweetened_water", new SweetenedWaterFluid.Flowing());
+    public static final FlowableFluid STILL_SWEETENED_WATER = registerFluid("still_sweetened_water", new SweetenedWaterFluid.Still());
     public static FlowableFluid registerFluid(String name, FlowableFluid fluid){
          return Registry.register(Registries.FLUID, new Identifier(ModernDelightMain.MOD_ID,name),fluid);
     }

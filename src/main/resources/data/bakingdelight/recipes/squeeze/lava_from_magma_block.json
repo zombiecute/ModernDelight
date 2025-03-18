@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:squeeze",
+  "is_danger": true,
+  "do_create_fire": true,
+  "ingredients": [
+    {
+      "item": "minecraft:magma_block"
+    }
+  ],
+  "output": {
+    "item": "minecraft:netherrack"
+  },
+  "fluid_output": {
+    "fluid": "minecraft:lava",
+    "amount": 9000
+  }
+}

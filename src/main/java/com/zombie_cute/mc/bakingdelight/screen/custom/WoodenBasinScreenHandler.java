@@ -2,18 +2,13 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
-import com.zombie_cute.mc.bakingdelight.screen.slot.OnlyExtractSlot;
-import com.zombie_cute.mc.bakingdelight.util.FluidUtil;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
@@ -21,19 +16,15 @@ import net.minecraft.util.math.Vec3d;
 
 public class WoodenBasinScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-    private final PropertyDelegate propertyDelegate;
     public final WoodenBasinBlockEntity blockEntity;
     public WoodenBasinScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(2));
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()));
     }
-    public WoodenBasinScreenHandler(int syncId, PlayerInventory playerInventory,
-                                    BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate){
+    public WoodenBasinScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity){
         super(ModScreenHandlers.WOODEN_BASIN_SCREEN_HANDLER,syncId);
         checkSize(((Inventory) blockEntity),5);
         this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
-        this.propertyDelegate = arrayPropertyDelegate;
         this.blockEntity = ((WoodenBasinBlockEntity) blockEntity);
 
         this.addSlot(new Slot(inventory,0,20,21));
@@ -44,19 +35,6 @@ public class WoodenBasinScreenHandler extends ScreenHandler {
 
         addPlayerHotbar(playerInventory);
         addPlayerInventory(playerInventory);
-
-        addProperties(arrayPropertyDelegate);
-    }
-    @Environment(EnvType.CLIENT)
-    public int getFluidLevel(){
-        return this.propertyDelegate.get(0);
-    }
-    @Environment(EnvType.CLIENT)
-    public int getScaledFluidLevel(){
-        int progress = this.propertyDelegate.get(0);
-        int maxProgress = (int) FluidUtil.convertDropletsToMb(WoodenBasinBlockEntity.MAX_FLUID_LEVEL); // Max Progress
-        int progressArrowSize = 47;// Arrow's Width
-        return progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     @Override

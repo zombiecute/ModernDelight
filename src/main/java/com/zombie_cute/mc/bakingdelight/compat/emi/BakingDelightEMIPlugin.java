@@ -107,7 +107,9 @@ public class BakingDelightEMIPlugin implements EmiPlugin {
         }
         registry.addRecipe(new EMIAdvanceFurnaceRecipe());
         registry.addRecipe(new EMIOvenRecipe());
-        registry.addRecipe(new EMIWoodenBasinRecipe());
+        for (SqueezeRecipe recipe : manager.listAllOfType(SqueezeRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new EMIWoodenBasinRecipe(recipe));
+        }
         registry.addRecipe(new EMIIceCreamRecipe());
         for (JuiceExtractingRecipe recipe : manager.listAllOfType(JuiceExtractingRecipe.Type.INSTANCE)) {
             registry.addRecipe(new EMIJuiceExtractingRecipe(recipe));

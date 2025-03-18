@@ -55,6 +55,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.WOODEN_BASIN);
                         entries.add(ModItems.VEGETABLE_OIL_BOTTLE);
                         entries.add(ModItems.VEGETABLE_OIL_BUCKET);
+                        entries.add(ModItems.SWEETENED_WATER_BUCKET);
                         entries.add(ModItems.OIL_IMPURITY);
                         entries.add(ModBlocks.DEEP_FRYER);
                         entries.add(ModBlocks.DEEP_FRY_BASKET);
