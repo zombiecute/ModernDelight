@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooki
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +15,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -33,13 +32,11 @@ public class GasCookingStoveBlock extends AbstractGasCookingStoveBlock {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
+            tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.GAS_COOKING_STOVE_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.GAS_COOKING_STOVE_2).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.GAS_COOKING_STOVE_3).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.GAS_COOKING_STOVE)));
         }else {
-            tooltip.add(MiscUtil.getShiftText(false));
+            tooltip.add(TextUtil.getShiftText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

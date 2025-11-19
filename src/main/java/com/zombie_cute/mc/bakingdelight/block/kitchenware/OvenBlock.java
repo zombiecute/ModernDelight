@@ -89,7 +89,7 @@ public class OvenBlock extends BlockWithEntity implements BlockEntityProvider {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient){
             NamedScreenHandlerFactory screenHandlerFactory = ((OvenBlockEntity) world.getBlockEntity(pos));
-            if (MiscUtil.isCrowbar(player)){
+            if (MiscUtil.isPlayerHoldingCrowbar(player)){
                 if (world.getBlockEntity(pos) instanceof OvenBlockEntity container) {
                     container.onUse(state, world);
                     return ActionResult.SUCCESS;

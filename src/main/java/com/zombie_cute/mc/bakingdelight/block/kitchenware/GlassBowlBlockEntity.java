@@ -11,7 +11,7 @@ import com.zombie_cute.mc.bakingdelight.recipe.custom.MixWithWaterRecipe;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.WhiskingRecipe;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
@@ -204,7 +204,7 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                         ModSounds.ITEM_ELECTRIC_WHISK_WORKING, SoundCategory.PLAYERS,1.0f,1.0f);
                 return true;
             } else {
-                player.sendMessage(Text.translatable(MiscUtil.ELECTRIC_WHISK_MSG),true);
+                player.sendMessage(Text.translatable(TextUtil.ELECTRIC_WHISK_MSG),true);
                 return false;
             }
         }

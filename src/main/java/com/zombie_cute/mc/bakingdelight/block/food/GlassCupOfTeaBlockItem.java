@@ -2,6 +2,7 @@ package com.zombie_cute.mc.bakingdelight.block.food;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.block_util.Drinkable;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
@@ -29,7 +30,7 @@ public class GlassCupOfTeaBlockItem extends BlockItem implements Drinkable {
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(Text.translatable(MiscUtil.CAN_PLACE).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, options);
     }
     @Override

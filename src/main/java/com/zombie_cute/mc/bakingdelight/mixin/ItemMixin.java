@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.mixin;
 
 import com.zombie_cute.mc.bakingdelight.item.food.SeasoningItem;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ public class ItemMixin {
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
         NbtCompound nbt = stack.getSubNbt("modern_delight_seasoning");
         if (nbt != null){
-            tooltip.add(Text.translatable(MiscUtil.SEASONING_ADDED).formatted(Formatting.DARK_GRAY));
+            tooltip.add(Text.translatable(TextUtil.SEASONING_ADDED).formatted(Formatting.DARK_GRAY));
             for (int i = 1; i <= SeasoningItem.getMaxSeasoning(); i++){
                 if (nbt.contains("seasoning_"+i)){
                     String registerKey = nbt.getString("seasoning_"+i);
@@ -33,7 +33,7 @@ public class ItemMixin {
                         item = Registries.ITEM.get(new Identifier(registerKey));
                     } catch (Exception ignored){}
                     if (item != null){
-                        tooltip.add(Text.translatable(item.getTranslationKey()).formatted(Formatting.GRAY));
+                        tooltip.addAll(TextUtil.generateToolTip(Text.translatable(item.getTranslationKey()),11184810));
                     }
                 }
             }

@@ -77,7 +77,31 @@ public class CuisineTableScreenHandler extends ScreenHandler {
         if (slot.hasStack()) {
             ItemStack originalStack = slot.getStack();
             newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()-1) {
+            if (invSlot == 2){
+                originalStack.getItem().onCraft(originalStack, player.getWorld(), player);
+                if (!this.insertItem(originalStack, 3, this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+                if (player instanceof ServerPlayerEntity serverPlayer){
+                    ItemStack tool = CuisineTableScreenHandler.this.inventory.getStack(1);
+                    World world = serverPlayer.getWorld();
+                    BlockPos pos = CuisineTableScreenHandler.this.blockEntity.getPos();
+                    CuisineTableScreenHandler.this.blockEntity.removeStack(0,1);
+                    if (tool.isDamageable()){
+                        if (tool.getMaxDamage()>tool.getDamage()+1){
+                            tool.setDamage(tool.getDamage()+1);
+                            CuisineTableScreenHandler.this.blockEntity.setStack(1,tool);
+                        } else {
+                            CuisineTableScreenHandler.this.blockEntity.setStack(1,ItemStack.EMPTY);
+                            world.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        }
+                    } else {
+                        CuisineTableScreenHandler.this.blockEntity.removeStack(1,1);
+                    }
+                    world.playSound(null, pos, ModSounds.ITEM_STONE_MORTAR_WORKING, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                }
+                slot.onQuickTransfer(originalStack, newStack);
+            } else if (invSlot < 2) {
                 if (!this.insertItem(originalStack, this.inventory.size()-1, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }

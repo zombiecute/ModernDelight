@@ -8,7 +8,7 @@ import com.zombie_cute.mc.bakingdelight.item.food.instant_noodles.CookedPortable
 import com.zombie_cute.mc.bakingdelight.item.food.instant_noodles.PackagedInstantNoodlesItem;
 import com.zombie_cute.mc.bakingdelight.item.food.instant_noodles.PortablePotItem;
 import com.zombie_cute.mc.bakingdelight.item.tools.*;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import com.zombie_cute.mc.bakingdelight.util.enums.ModToolMaterials;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -153,11 +153,11 @@ public class ModItems {
             new StatusEffectInstance(StatusEffects.ABSORPTION,15 * 20,0)){
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
             if(Screen.hasShiftDown()){
-                tooltip.add(MiscUtil.getShiftText(true));
+                tooltip.add(TextUtil.getShiftText(true));
                 tooltip.add(Text.literal(" "));
-                tooltip.add(Text.translatable(MiscUtil.TRUFFLE).formatted(Formatting.GOLD));
+                tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.TRUFFLE)));
             }else {
-                tooltip.add(MiscUtil.getShiftText(false));
+                tooltip.add(TextUtil.getShiftText(false));
             }
             super.appendTooltip(stack, world, tooltip, context);
         }
@@ -166,11 +166,11 @@ public class ModItems {
             new StatusEffectInstance(StatusEffects.ABSORPTION,8 * 20,1)){
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
             if(Screen.hasShiftDown()){
-                tooltip.add(MiscUtil.getShiftText(true));
+                tooltip.add(TextUtil.getShiftText(true));
                 tooltip.add(Text.literal(" "));
-                tooltip.add(Text.translatable(MiscUtil.TRUFFLE).formatted(Formatting.GOLD));
+                tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.TRUFFLE)));
             }else {
-                tooltip.add(MiscUtil.getShiftText(false));
+                tooltip.add(TextUtil.getShiftText(false));
             }
             super.appendTooltip(stack, world, tooltip, context);
         }
@@ -190,11 +190,11 @@ public class ModItems {
             new StatusEffectInstance(StatusEffects.WATER_BREATHING, 30 * 20,0)){
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
             if(Screen.hasShiftDown()){
-                tooltip.add(MiscUtil.getShiftText(true));
+                tooltip.add(TextUtil.getShiftText(true));
                 tooltip.add(Text.literal(" "));
-                tooltip.add(Text.translatable(MiscUtil.CUTTLEBONE).formatted(Formatting.GOLD));
+                tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.CUTTLEBONE)));
             }else {
-                tooltip.add(MiscUtil.getShiftText(false));
+                tooltip.add(TextUtil.getShiftText(false));
             }
             super.appendTooltip(stack, world, tooltip, context);
         }
@@ -205,11 +205,11 @@ public class ModItems {
             new StatusEffectInstance(StatusEffects.GLOWING,180 * 20,0)){
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
             if(Screen.hasShiftDown()){
-                tooltip.add(MiscUtil.getShiftText(true));
+                tooltip.add(TextUtil.getShiftText(true));
                 tooltip.add(Text.literal(" "));
-                tooltip.add(Text.translatable(MiscUtil.CUTTLEBONE).formatted(Formatting.GOLD));
+                tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.CUTTLEBONE)));
             }else {
-                tooltip.add(MiscUtil.getShiftText(false));
+                tooltip.add(TextUtil.getShiftText(false));
             }
             super.appendTooltip(stack, world, tooltip, context);
         }
@@ -263,12 +263,11 @@ public class ModItems {
         @Override
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
             if(Screen.hasShiftDown()){
-                tooltip.add(MiscUtil.getShiftText(true));
+                tooltip.add(TextUtil.getShiftText(true));
                 tooltip.add(Text.literal(" "));
-                tooltip.add(Text.translatable(MiscUtil.FILTER_1).formatted(Formatting.GOLD));
-                tooltip.add(Text.translatable(MiscUtil.FILTER_2).formatted(Formatting.GOLD));
+                tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.FILTER)));
             } else {
-                tooltip.add(MiscUtil.getShiftText(false));
+                tooltip.add(TextUtil.getShiftText(false));
             }
             super.appendTooltip(stack, world, tooltip, context);
         }
@@ -547,7 +546,7 @@ public class ModItems {
                             .alwaysEdible().build())){
                 @Override
                 public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-                    tooltip.add(Text.translatable(MiscUtil.TURNIP).formatted(Formatting.DARK_RED));
+                    tooltip.add(Text.translatable(TextUtil.TURNIP).formatted(Formatting.DARK_RED));
                     super.appendTooltip(stack, world, tooltip, context);
                 }
                 @Override

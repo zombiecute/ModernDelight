@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.ShowAbleItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -19,7 +19,6 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -47,13 +46,12 @@ public class WoodenPlateBlock extends BlockWithEntity implements Waterloggable {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
+            tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.WOODEN_PLATE_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.WOODEN_PLATE_2).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.WOODEN_PLATE_3).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.WOODEN_PLATE)));
+
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
+            tooltip.add(TextUtil.getShiftText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

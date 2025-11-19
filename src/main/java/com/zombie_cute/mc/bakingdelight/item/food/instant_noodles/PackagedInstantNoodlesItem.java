@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.item.food.instant_noodles;
 
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
@@ -44,7 +44,7 @@ public class PackagedInstantNoodlesItem extends Item {
         if (special != null){
             return Text.translatable(special.toTranslationKey());
         } else if (isUnhealthy(stack)){
-            return Text.translatable(MiscUtil.NOODLE_UNHEALTHY);
+            return Text.translatable(TextUtil.NOODLE_UNHEALTHY);
         }
         return super.getName(stack);
     }
@@ -71,7 +71,7 @@ public class PackagedInstantNoodlesItem extends Item {
     public static void setToolTipFromNoodles(ItemStack noodles, List<Text> tooltip) {
         List<Item> items = getStacksFromNbt(noodles);
         if (items != null){
-            tooltip.add(Text.translatable(MiscUtil.PIZZA_INGREDIENTS).formatted(Formatting.DARK_GRAY));
+            tooltip.add(Text.translatable(TextUtil.INGREDIENTS).formatted(Formatting.DARK_GRAY));
             for (Item item : items){
                 if (!item.equals(Items.AIR)){
                     tooltip.add(Text.translatable(item.getTranslationKey()).formatted(Formatting.GRAY));

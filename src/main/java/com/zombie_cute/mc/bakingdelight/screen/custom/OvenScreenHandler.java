@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.OvenBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -78,6 +79,10 @@ public class OvenScreenHandler extends ScreenHandler {
             newStack = originalStack.copy();
             if (invSlot < this.inventory.size()) {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (FuelRegistry.INSTANCE.get(originalStack.getItem()) != null){
+                if (!this.insertItem(originalStack, 4, 5, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {

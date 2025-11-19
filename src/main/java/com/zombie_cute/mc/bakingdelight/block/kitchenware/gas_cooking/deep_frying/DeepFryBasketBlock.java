@@ -133,7 +133,7 @@ public class DeepFryBasketBlock extends BlockWithEntity {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
-        if (MiscUtil.isCrowbar(player)){
+        if (MiscUtil.isPlayerHoldingCrowbar(player)){
             Direction dir = state.get(FACING);
             switch (dir){
                 case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

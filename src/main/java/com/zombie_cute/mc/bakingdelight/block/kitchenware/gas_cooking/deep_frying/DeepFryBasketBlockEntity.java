@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_fryi
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -41,7 +41,7 @@ public class DeepFryBasketBlockEntity extends BlockEntity implements Implemented
             NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(itemStack);
             if (nbtCompound != null) {
                 if (nbtCompound.contains("Items", 9)) {
-                    player.sendMessage(Text.translatable(MiscUtil.PUN),true);
+                    player.sendMessage(Text.translatable(TextUtil.PUN),true);
                     return;
                 }
             }

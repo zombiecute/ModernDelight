@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming;
 
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
@@ -9,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -28,13 +28,11 @@ public class BambooCoverBlock extends Block {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
+            tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.BAMBOO_STEAMER_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.BAMBOO_STEAMER_2).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.BAMBOO_STEAMER_3).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.BAMBOO_STEAMER)));
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
+            tooltip.add(TextUtil.getShiftText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }
@@ -55,7 +53,7 @@ public class BambooCoverBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (MiscUtil.isCrowbar(player)){
+        if (MiscUtil.isPlayerHoldingCrowbar(player)){
             if (!world.isClient){
                 world.breakBlock(pos,true);
             }

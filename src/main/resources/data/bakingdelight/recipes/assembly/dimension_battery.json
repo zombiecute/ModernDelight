@@ -1,7 +1,7 @@
 {
   "type": "bakingdelight:assembly",
   "mini_game_type": 2,
-  "goal": 5,
+  "goal": 3,
   "ingredients": [
     {
       "item": "minecraft:dragon_breath"

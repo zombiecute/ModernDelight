@@ -25,7 +25,7 @@ import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -38,126 +38,158 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
-        translationBuilder.add(MiscUtil.SHIFT_FRONT, "Hold ");
-        translationBuilder.add(MiscUtil.SHIFT_END, " for summary");
-        translationBuilder.add(MiscUtil.WHISK_1, "A whisk that can be used to mix ingredients,");
-        translationBuilder.add(MiscUtil.WHISK_2, "or... whisk the brains of monsters?");
-        translationBuilder.add(MiscUtil.BUTTER_1, "Sticky texture...Maybe it's used ");
-        translationBuilder.add(MiscUtil.BUTTER_2, "for something other than food");
-        translationBuilder.add(MiscUtil.TRUFFLE, "It can be found in podzol");
-        translationBuilder.add(MiscUtil.CUTTLEBONE, "It can be dropped when a squid killed by an amethyst tool");
-        translationBuilder.add(MiscUtil.FILTER_1, "A filter made of string that can be placed");
-        translationBuilder.add(MiscUtil.FILTER_2, "in a wooden basin to filter oil and slags");
-        translationBuilder.add(MiscUtil.KNEADING_STICK, "It beats and kneads people");
-        translationBuilder.add(MiscUtil.SPATULA, "It can be used with a heated tray to stir-fry foods");
-        translationBuilder.add(MiscUtil.BDC_1, "It is the core component that makes up the biogas digester,");
-        translationBuilder.add(MiscUtil.BDC_2, "and when a flat and completely sealed cuboid area exists underneath it,");
-        translationBuilder.add(MiscUtil.BDC_3, "it will automatically recognize this area as the digester.");
-        translationBuilder.add(MiscUtil.BDI_1, "It will be activated when it is a working biogas digester controller");
-        translationBuilder.add(MiscUtil.BDI_2, "underneath it, at which point you just need to fill it with any food");
-        translationBuilder.add(MiscUtil.BDI_3, "to start fermenting it to produce biogas. If a gas canister attached to");
-        translationBuilder.add(MiscUtil.BDI_4, "the side of it, it will allow you to fill the gas canister with biogas.");
-        translationBuilder.add(MiscUtil.GAS_COOKING_STOVE_1, "When it is flanked by a gas canister containing gas, right-click to");
-        translationBuilder.add(MiscUtil.GAS_COOKING_STOVE_2, "activate it, and when activated, it can heat up the block above it, including");
-        translationBuilder.add(MiscUtil.GAS_COOKING_STOVE_3, "baking tray, oven, and advance furnace, all of which are compatible.");
-        translationBuilder.add(MiscUtil.CROWBAR, "The Holy Sword of Physics");
-        translationBuilder.add(MiscUtil.PIZZA_INGREDIENTS, "Ingredients: ");
-        translationBuilder.add(MiscUtil.BAKING_TRAY_1, "A small, easy-to-use iron plate that can be used for upgrading an Advanced Furnace");
-        translationBuilder.add(MiscUtil.BAKING_TRAY_2, "or for stir-frying: with a Gas Cooking Stove underneath it to heat it up, ");
-        translationBuilder.add(MiscUtil.BAKING_TRAY_3, "place the food on top of it and use a spatula to stir-fry it five times to cook the food.");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_1, "A deep fryer can be used to deep fry a variety of foods. Pour in cooking oil and");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_2, "it will start to consume the gas and heat up, place a Gas Canister at the back of the fryer,");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_3, "then press the button on the front of the fryer, then add the food to it to start");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_4, "frying, hold down Shift and right-click on the fryer to check its detailed status.");
-        translationBuilder.add(MiscUtil.WOODEN_BASIN_1, "A Wooden Basin that can be used to extract vegetable oil, put in an oil crop");
-        translationBuilder.add(MiscUtil.WOODEN_BASIN_2, "(e.g. stir-fried sunflower seeds) and a filter, then stand on it and jump to");
-        translationBuilder.add(MiscUtil.WOODEN_BASIN_3, "extract the oil, you can use a glass bottle or a bucket to take out the oil.");
-        translationBuilder.add(MiscUtil.HOLDER_1, "For safe and harmless removal of the contents of the Deep Fryer, you can");
-        translationBuilder.add(MiscUtil.HOLDER_2, "also press sneak and right click to transfer items between different containers.");
-        translationBuilder.add(MiscUtil.HOLDER_3, "Right clicking allows you to remove a clamped item. Right clicking while not clamping");
-        translationBuilder.add(MiscUtil.HOLDER_4, "an item allows you to clamp an item held in your other hand.");
-        translationBuilder.add(MiscUtil.ALT_END, " for electricity usage");
-        translationBuilder.add(MiscUtil.ACDCC_1, "A device that converts DC and AC power freely, in the \"AC->DC\" mode, converts AC to DC");
-        translationBuilder.add(MiscUtil.ACDCC_2, "and caches when connected to any AC power generator, batteries can be plugged in and charged,");
-        translationBuilder.add(MiscUtil.ACDCC_3, "in the \"DC->AC\" mode, it can convert cached DC power or DC power from internal battery into AC power");
-        translationBuilder.add(MiscUtil.ACDCC_4, "and output it, its efficiency can be adjusted in the GUI. It can also be used for FE/RF/AE conversion.");
-        translationBuilder.add(MiscUtil.ALT_ACGen, "[AC power generation]");
-        translationBuilder.add(MiscUtil.ALT_ACCom, "[AC power consumption]");
-        translationBuilder.add(MiscUtil.ALT_DCSto, "[Maximum DC storage]");
-        translationBuilder.add(MiscUtil.ALT_DCGen, "[DC power generation]");
-        translationBuilder.add(MiscUtil.ALT_DCCom, "[DC power consumption]");
-        translationBuilder.add(MiscUtil.BAMBOO_STEAMER_1, "A simple bamboo steamer, requires a cover, basket drawers, and a gas cooking stove heated");
-        translationBuilder.add(MiscUtil.BAMBOO_STEAMER_2, "cauldron filled with water, add the ingredients and it will start the process, a Steamer");
-        translationBuilder.add(MiscUtil.BAMBOO_STEAMER_3, "can be stacked 3 blocks high, each block can hold 4 layers.");
-        translationBuilder.add(MiscUtil.CUISINE_TABLE_1, "The cuisine table allows you to deepen the ingredients and use it");
-        translationBuilder.add(MiscUtil.CUISINE_TABLE_2, "with a tool that breaks down the ingredients into more parts.");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_1, "The electrician's desk allows you to synthesize and process some complex circuit components or");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_2, "appliances, after placing the material correctly into the desk, click on the output button that");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_3, "appears in the GUI to start the synthesis. There are 3 different types of mini-games:");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_4, "1. 2048 (by pressing WASD to synthesize the specified number); 2. Splicing of ");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_5, "the circuit board (reproduce the pattern of the \"?\" screen, the screwdriver");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_6, "can remove the pattern); 3. Hanno's Tower (just move the left tower to the right");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_7, ", narrow blocks can only be placed on wide blocks); Finish the mini-game");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_8, "and then press that output button again to get the finished product.");
-        translationBuilder.add(MiscUtil.ELECTRIC_STEAMER_1, "Like a regular steamer, but it consumes AC power to heat the water and can only process 12 ingredients");
-        translationBuilder.add(MiscUtil.ELECTRIC_STEAMER_2, "at once, it has the advantage of taking up little space and does not require additional heating equipment.");
-        translationBuilder.add(MiscUtil.FARADAY_GENERATOR_1, "When properly mounted behind the flywheel of a Stirling engine, AC power is generated, ");
-        translationBuilder.add(MiscUtil.FARADAY_GENERATOR_2, "be sure that the flywheel of the Stirling engine and the generator must");
-        translationBuilder.add(MiscUtil.FARADAY_GENERATOR_3, "look like they are just able to be connected in order to generate power.");
-        translationBuilder.add(MiscUtil.FAN_BLADE_1, "A fan blade for wind power generation, which can be mounted on the");
-        translationBuilder.add(MiscUtil.FAN_BLADE_2, "wind turbine controller or placed elsewhere for decorative purposes,");
-        translationBuilder.add(MiscUtil.FAN_BLADE_3, "its rotation speed depends on the current altitude and weather conditions.");
-        translationBuilder.add(MiscUtil.FREEZER_1, "A simple freezer, which can be used for storing items");
-        translationBuilder.add(MiscUtil.FREEZER_2, "or cold processing some ingredients, can be cooled by consuming");
-        translationBuilder.add(MiscUtil.FREEZER_3, "some refrigerants, such as ice, or by directly consuming AC electricity");
-        translationBuilder.add(MiscUtil.GLASS_BOWL_1, "A container for processing and whisking ingredients that needs to be used with");
-        translationBuilder.add(MiscUtil.GLASS_BOWL_2, "a whisk, water can also be poured into it for \"mixing with water\".");
-        translationBuilder.add(MiscUtil.PGen_1, "A photovoltaic generator converts light energy into DC electrical energy and stores it, ");
-        translationBuilder.add(MiscUtil.PGen_2, "batteries can be plugged in and charged, and the amount of power generated depends on factors");
-        translationBuilder.add(MiscUtil.PGen_3, "such as current altitude, time of day, weather, block light and sky light.");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_1, "The Stirling engine needed to be mounted on a burning furnace,");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_2, "blast furnace, smoker, advanced furnace or oven to work, and it need");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_3, "connecting to a Faraday generator to produce AC Power.");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_4, "Using a sponge makes it less noisy.");
-        translationBuilder.add(MiscUtil.TESLA_COIL_1, "The Tesla Coil can transmit AC power remotely, and when placed on a device that generates AC power");
-        translationBuilder.add(MiscUtil.TESLA_COIL_2, "it spreads the power over an area of 8 blocks to the the east, south, west, north, up, and down,");
-        translationBuilder.add(MiscUtil.TESLA_COIL_3, "and you can turn on the visualization button in the GUI to visualize this 48 blocks area,");
-        translationBuilder.add(MiscUtil.TESLA_COIL_4, "and the AC appliances and other Tesla Coils within the area are energized, and mob that get too");
-        translationBuilder.add(MiscUtil.TESLA_COIL_5, "close to an energized Tesla Coil can receive an electric shock that can damage them.");
-        translationBuilder.add(MiscUtil.WTC_1, "When the fan blade are properly installed, the controller will");
-        translationBuilder.add(MiscUtil.WTC_2, "begin to operate and generate AC power, the amount of power");
-        translationBuilder.add(MiscUtil.WTC_3, "generated depends on the current altitude and weather conditions.");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_1, "Hold down Shift and right click to open the GUI screen, put any flavor of");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_2, "cream, sugar and eggs in it and provide AC power to start working, the");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_3, "different flavors of ice cream made will be stored in it, after checking the flavors");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_4, "you want to mix, hold the ice cream cone and right click on it to take out the ice cream.");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_MSG, "Low battery!");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_NEED_BOWL, "This item can only be processed by matching the glass bowl!");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_1, "Like a regular whisk, it can be used with a glass bowl to enable whisking");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_2, "of food, but it will consume DC power and you will need a charging post");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_3, "to charge it. In addition, it is also effective to the drops on the ground.");
-        translationBuilder.add(MiscUtil.CHARGING_POST_1, "A device that can charge DC appliances, after right clicking");
-        translationBuilder.add(MiscUtil.CHARGING_POST_2, "to open the GUI, the left two slot are battery placement slots");
-        translationBuilder.add(MiscUtil.CHARGING_POST_3, "where you can place at least one battery, and the");
-        translationBuilder.add(MiscUtil.CHARGING_POST_4, "right slot is for the DC appliance to be charged.");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_1, "A juice extractor that can be used for extracting juice, it can be used by");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_2, "switching on the AC power,right clicking on the juice extractor while holding");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_3, "the item to be extracted to put it into it, right clicking on the juice extractor");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_4, "again after putting in the two items to start the machine.");
-        translationBuilder.add(MiscUtil.POT_HAS_QUICKLIME, "Contains Quicklime");
-        translationBuilder.add(MiscUtil.POT_MISS_QUICKLIME, "Lack of Quicklime");
-        translationBuilder.add(MiscUtil.POT_HAS_WATER, "Contains Water");
-        translationBuilder.add(MiscUtil.POT_MISS_WATER, "Lack of Water");
-        translationBuilder.add(MiscUtil.NOODLE_UNHEALTHY, "Weird Instant Noodles");
-        translationBuilder.add(MiscUtil.ANYTHING, "Anything");
-        translationBuilder.add(MiscUtil.NEED_FOOD, "You need to hold any food in your other hand.");
-        translationBuilder.add(MiscUtil.SEASONING_TIP, "Seasoning item, hold this in one hand and any food in the other hand to season the food.");
-        translationBuilder.add(MiscUtil.FAILED_SEASONING, "You can't add more seasoning to this food.");
-        translationBuilder.add(MiscUtil.SEASONING_ADDED, "Seasonings:");
-        translationBuilder.add(MiscUtil.PUN, "Prohibit Unlimited Nesting!");
-        translationBuilder.add(MiscUtil.WOODEN_PLATE_1, "A plate that can be used to display items,");
-        translationBuilder.add(MiscUtil.WOODEN_PLATE_2, "right click to place items on it, sneak and");
-        translationBuilder.add(MiscUtil.WOODEN_PLATE_3, "right click to rotate the items on it.");
+        translationBuilder.add(TextUtil.SHIFT_FRONT, "Hold ");
+        translationBuilder.add(TextUtil.SHIFT_END, " for summary");
+        translationBuilder.add(TextUtil.WHISK,
+                "A whisk that can be used to mix ingredients, or... whisk the brains of monsters?");
+        translationBuilder.add(TextUtil.BUTTER,
+                "Sticky texture...Maybe it's used for something other than food.");
+        translationBuilder.add(TextUtil.TRUFFLE, "It can be found in podzol.");
+        translationBuilder.add(TextUtil.CUTTLEBONE,
+                "It can be dropped when a squid killed by an amethyst tool.");
+        translationBuilder.add(TextUtil.FILTER,
+                "A filter made of string that can be placed in a wooden basin to filter oil and slags.");
+        translationBuilder.add(TextUtil.KNEADING_STICK, "It beats and kneads people.");
+        translationBuilder.add(TextUtil.SPATULA, "It can be used with a heated tray to stir-fry foods.");
+        translationBuilder.add(TextUtil.BDC,
+                "It is the core component that makes up the biogas digester, " +
+                        "and when a flat and completely sealed cuboid area exists underneath it," +
+                        " it will automatically recognize this area as the digester.");
+        translationBuilder.add(TextUtil.BDI,
+                "It will be activated when it is a working biogas digester controller underneath it, " +
+                        "at which point you just need to fill it with any food to start fermenting it to produce biogas." +
+                        " If a gas canister attached to the side of it," +
+                        " it will allow you to fill the gas canister with biogas.");
+        translationBuilder.add(TextUtil.GAS_COOKING_STOVE,
+                "When it is flanked by a gas canister containing gas, " +
+                        "right-click to activate it, and when activated," +
+                        " it can heat up the block above it, including baking tray, oven, " +
+                        "and advance furnace, all of which are compatible.");
+        translationBuilder.add(TextUtil.CROWBAR, "The Holy Sword of Physics.");
+        translationBuilder.add(TextUtil.INGREDIENTS, "Ingredients: ");
+        translationBuilder.add(TextUtil.BAKING_TRAY,
+                "A small, easy-to-use iron plate that can be used for upgrading an Advanced Furnace " +
+                        "or for stir-frying: with a Gas Cooking Stove underneath it to heat it up, " +
+                        "place the food on top of it and use a spatula to stir-fry it five times to cook the food.");
+        translationBuilder.add(TextUtil.DEEP_FRYER,
+                "A deep fryer can be used to deep fry a variety of foods. " +
+                        "Pour in cooking oil and it will start to consume the gas and heat up, " +
+                        "place a Gas Canister at the back of the fryer," +
+                        " then press the button on the front of the fryer, then add the food to it to start frying, " +
+                        "hold down Shift and right-click on the fryer to check its detailed status.");
+        translationBuilder.add(TextUtil.WOODEN_BASIN,
+                "A Wooden Basin that can be used to extract vegetable oil, " +
+                        "put in an oil crop (e.g. stir-fried sunflower seeds) and a filter," +
+                        " then stand on it and jump to extract the oil," +
+                        " you can use a glass bottle or a bucket to take out the oil.");
+        translationBuilder.add(TextUtil.HOLDER,
+                "For safe and harmless removal of the contents of the Deep Fryer," +
+                        " you can also press sneak and right click to transfer items between different containers." +
+                        " Right clicking allows you to remove a clamped item. " +
+                        "Right clicking while not clamping an item allows you to clamp an item held in your other hand.");
+        translationBuilder.add(TextUtil.ALT_END, " for electricity usage");
+        translationBuilder.add(TextUtil.ACDCC,
+                "A device that converts DC and AC power freely, in the \"AC->DC\" mode, " +
+                        "converts AC to DC and caches when connected to any AC power generator, " +
+                        "batteries can be plugged in and charged, in the \"DC->AC\" mode, " +
+                        "it can convert cached DC power or DC power from internal battery into AC power and output it," +
+                        " its efficiency can be adjusted in the GUI. It can also be used for FE/RF/AE conversion.");
+        translationBuilder.add(TextUtil.ALT_ACGen, "[AC power generation]");
+        translationBuilder.add(TextUtil.ALT_ACCom, "[AC power consumption]");
+        translationBuilder.add(TextUtil.ALT_DCSto, "[Maximum DC storage]");
+        translationBuilder.add(TextUtil.ALT_DCGen, "[DC power generation]");
+        translationBuilder.add(TextUtil.ALT_DCCom, "[DC power consumption]");
+        translationBuilder.add(TextUtil.BAMBOO_STEAMER,
+                "A simple bamboo steamer, requires a cover, basket drawers, " +
+                        "and a gas cooking stove heated cauldron filled with water," +
+                        " add the ingredients and it will start the process, " +
+                        "a Steamer can be stacked 3 blocks high, each block can hold 4 layers.");
+        translationBuilder.add(TextUtil.CUISINE_TABLE,
+                "The cuisine table allows you to deepen the ingredients and use it " +
+                        "with a tool that breaks down the ingredients into more parts.");
+        translationBuilder.add(TextUtil.ELECTRICIANS_DESK,
+                "The electrician's desk allows you to synthesize and process some complex circuit components " +
+                        "or appliances, after placing the material correctly into the desk, click on the output button " +
+                        "that appears in the GUI to start the synthesis. There are 3 different types of mini-games: " +
+                        "1. 2048 (by pressing WASD to synthesize the specified number); " +
+                        "2. Splicing of the circuit board (reproduce the pattern of the \"?\" screen, " +
+                        "the screwdriver can remove the pattern); 3. Hanno's Tower (just move the left tower to the right, " +
+                        "narrow blocks can only be placed on wide blocks); Finish the mini-game and then press that output" +
+                        " button again to get the finished product.");
+        translationBuilder.add(TextUtil.ELECTRIC_STEAMER,
+                "Like a regular steamer, but it consumes AC power to heat the water and can " +
+                        "only process 12 ingredients at once, it has the advantage of taking up little space " +
+                        "and does not require additional heating equipment.");
+        translationBuilder.add(TextUtil.FARADAY_GENERATOR,
+                "When properly mounted behind the flywheel of a Stirling engine, AC power is generated," +
+                        " be sure that the flywheel of the Stirling engine and the generator " +
+                        "must look like they are just able to be connected in order to generate power.");
+        translationBuilder.add(TextUtil.FAN_BLADE,
+                "A fan blade for wind power generation, which can be mounted on the wind turbine controller" +
+                        " or placed elsewhere for decorative purposes, its rotation speed depends on the current " +
+                        "altitude and weather conditions.");
+        translationBuilder.add(TextUtil.FREEZER,
+                "A simple freezer, which can be used for storing items or cold processing some ingredients," +
+                        " can be cooled by consuming some refrigerants, such as ice," +
+                        " or by directly consuming AC electricity.");
+        translationBuilder.add(TextUtil.GLASS_BOWL,
+                "A container for processing and whisking ingredients that needs to be used with a whisk, " +
+                        "water can also be poured into it for \"mixing with water\".");
+        translationBuilder.add(TextUtil.PGEN,
+                "A photovoltaic generator converts light energy into DC electrical energy and stores it, " +
+                        "batteries can be plugged in and charged, and the amount of power generated depends on " +
+                        "factors such as current altitude, time of day, weather, block light and sky light.");
+        translationBuilder.add(TextUtil.STERLING_ENGINE,
+                "The Stirling engine needed to be mounted on a burning furnace, " +
+                        "blast furnace, smoker, advanced furnace or oven to work," +
+                        " and it need connecting to a Faraday generator to produce AC Power." +
+                        "Using a sponge makes it less noisy.");
+        translationBuilder.add(TextUtil.TESLA_COIL,
+                "The Tesla Coil can transmit AC power remotely, and when placed on a" +
+                        " device that generates AC power it spreads the power over an area of" +
+                        " 8 blocks to the the east, south, west, north, up, and down, and you " +
+                        "can turn on the visualization button in the GUI to visualize this 48 blocks area," +
+                        " and the AC appliances and other Tesla Coils within the area are energized," +
+                        " and mob that get too close to an energized Tesla Coil can receive an electric shock that can damage them.");
+        translationBuilder.add(TextUtil.WTC,
+                "When the fan blade are properly installed, " +
+                        "the controller will begin to operate and generate AC power, " +
+                        "the amount of power generated depends on the current altitude and weather conditions.");
+        translationBuilder.add(TextUtil.ICE_CREAM_MAKER,
+                "Hold down Shift and right click to open the GUI screen, put any flavor of cream," +
+                        " sugar and eggs in it and provide AC power to start working, the different flavors " +
+                        "of ice cream made will be stored in it, after checking the flavors you want to mix, " +
+                        "hold the ice cream cone and right click on it to take out the ice cream.");
+        translationBuilder.add(TextUtil.ELECTRIC_WHISK_MSG, "Low battery!");
+        translationBuilder.add(TextUtil.ELECTRIC_WHISK_NEED_BOWL, "This item can only be processed by matching the glass bowl!");
+        translationBuilder.add(TextUtil.ELECTRIC_WHISK,
+                "Like a regular whisk, it can be used with a glass bowl to enable whisking of food, " +
+                        "but it will consume DC power and you will need a charging post to charge it. " +
+                        "In addition, it is also effective to the drops on the ground.");
+        translationBuilder.add(TextUtil.CHARGING_POST,
+                "A device that can charge DC appliances, after right clicking to open the GUI," +
+                        " the left two slot are battery placement slots where you can place at least one battery, " +
+                        "and the right slot is for the DC appliance to be charged.");
+        translationBuilder.add(TextUtil.JUICE_EXTRACTOR,
+                "A juice extractor that can be used for extracting juice, " +
+                        "it can be used by switching on the AC power, " +
+                        "right clicking on the juice extractor while holding the item to be extracted to put" +
+                        " it into it, right clicking on the juice extractor again after putting in" +
+                        " the two items to start the machine.");
+        translationBuilder.add(TextUtil.POT_HAS_QUICKLIME, "Contains Quicklime");
+        translationBuilder.add(TextUtil.POT_MISS_QUICKLIME, "Lack of Quicklime");
+        translationBuilder.add(TextUtil.POT_HAS_WATER, "Contains Water");
+        translationBuilder.add(TextUtil.POT_MISS_WATER, "Lack of Water");
+        translationBuilder.add(TextUtil.NOODLE_UNHEALTHY, "Weird Instant Noodles");
+        translationBuilder.add(TextUtil.ANYTHING, "Anything");
+        translationBuilder.add(TextUtil.NEED_FOOD, "You need to hold any food in your other hand.");
+        translationBuilder.add(TextUtil.SEASONING_TIP, "Seasoning item, hold this in one hand and any food in the other hand to season the food.");
+        translationBuilder.add(TextUtil.FAILED_SEASONING, "You can't add more seasoning to this food.");
+        translationBuilder.add(TextUtil.SEASONING_ADDED, "Seasonings:");
+        translationBuilder.add(TextUtil.PUN, "Prohibit Unlimited Nesting!");
+        translationBuilder.add(TextUtil.WOODEN_PLATE,
+                "A plate that can be used to display items, right click to place items on it," +
+                        " sneak and right click to rotate the items on it.");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"Click to gain experiences");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"Elimination Tool");
@@ -364,7 +396,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.JAR, "Jar");
         translationBuilder.add(ModItems.CARAMEL, "Caramel");
         translationBuilder.add(ModItems.CARAMEL_PUDDING, "Caramel Pudding");
-        translationBuilder.add(MiscUtil.CAN_PLACE, "Placeable");
+        translationBuilder.add(TextUtil.CAN_PLACE, "Placeable");
         translationBuilder.add(ModItems.CHEESE_BAKED_POTATO, "Cheese Baked Potato");
         translationBuilder.add(ModItems.CHEESE_RICE_BALL, "Cheese Rice Ball");
         translationBuilder.add(ModItems.CHOCOLATE_SAUCE, "Chocolate Sauce");
@@ -396,7 +428,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SQUID_TENTACLE_KEBABS, "Squid Tentacle Kebab");
         translationBuilder.add(ModItems.STREAKY_PORK, "Streaky Pork");
         translationBuilder.add(ModItems.TURNIP, "Rutabaga");
-        translationBuilder.add(MiscUtil.TURNIP, "A slight grudge from the author.");
+        translationBuilder.add(TextUtil.TURNIP, "A slight grudge from the author.");
         translationBuilder.add(ModItems.RAW_DONUT, "Raw Donut");
         translationBuilder.add(ModItems.CHOCOLATE_DONUT, "Chocolate Donut");
         translationBuilder.add(ModItems.CHEESE_BURGER, "Cheese Burger");

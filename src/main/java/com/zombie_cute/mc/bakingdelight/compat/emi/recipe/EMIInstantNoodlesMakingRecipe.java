@@ -3,7 +3,7 @@ package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.item.food.instant_noodles.CookedPortablePotItem;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -87,7 +87,7 @@ public class EMIInstantNoodlesMakingRecipe implements EmiRecipe {
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModItems.QUICKLIME)), 49, 50);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(Items.WATER_BUCKET)), 68, 50);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModItems.PORTABLE_POT)), 49, 82);
-        widgets.addTooltip(List.of(TooltipComponent.of(Text.translatable(MiscUtil.ANYTHING).asOrderedText())),47,6,18,18);
+        widgets.addTooltip(List.of(TooltipComponent.of(Text.translatable(TextUtil.ANYTHING).asOrderedText())),47,6,18,18);
         List<ItemStack> exampleItems = new ArrayList<>();
         for (SpecialIngredient specialIngredient : SpecialIngredient.values()){
             exampleItems.add(CookedPortablePotItem.createCookedPot(specialIngredient.getIngredients()));

@@ -25,7 +25,7 @@ import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -39,126 +39,114 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(@NotNull TranslationBuilder translationBuilder) {
-        translationBuilder.add(MiscUtil.SHIFT_FRONT, "按住 ");
-        translationBuilder.add(MiscUtil.SHIFT_END, " 以查看概要");
-        translationBuilder.add(MiscUtil.WHISK_1, "一款搅拌器可以用于搅拌或打发食材");
-        translationBuilder.add(MiscUtil.WHISK_2, "或者...？用它来搅匀怪物的脑浆？");
-        translationBuilder.add(MiscUtil.BUTTER_1, "黏糊糊的质感...或许除了用于");
-        translationBuilder.add(MiscUtil.BUTTER_2, "制作食物另有其用？");
-        translationBuilder.add(MiscUtil.TRUFFLE, "可以在灰化土中找到");
-        translationBuilder.add(MiscUtil.CUTTLEBONE, "被紫水晶工具击杀时掉落");
-        translationBuilder.add(MiscUtil.FILTER_1, "一款由线织成的过滤器，可以");
-        translationBuilder.add(MiscUtil.FILTER_2, "放在木盆中用于过滤油和渣");
-        translationBuilder.add(MiscUtil.KNEADING_STICK, "打人与擀面兼备");
-        translationBuilder.add(MiscUtil.SPATULA, "可以搭配受热的烤盘一起使用来炒菜");
-        translationBuilder.add(MiscUtil.BDC_1, "它是构成沼气池的核心部件，当它下有一个平");
-        translationBuilder.add(MiscUtil.BDC_2, "整的完全密封的长方体区域时，这块区域就会");
-        translationBuilder.add(MiscUtil.BDC_3, "被自动的识别为沼气池的一部分。");
-        translationBuilder.add(MiscUtil.BDI_1, "当其下方存在一个工作的沼气池控制器时，它将被");
-        translationBuilder.add(MiscUtil.BDI_2, "激活，这时，你只需将任意的食物装入其中，他就");
-        translationBuilder.add(MiscUtil.BDI_3, "会开始发酵，并产生沼气。当它的侧面存在一个燃");
-        translationBuilder.add(MiscUtil.BDI_4, "气罐时，就可以为燃气罐充气。");
-        translationBuilder.add(MiscUtil.GAS_COOKING_STOVE_1, "当它的侧面有一个装有气体的燃气罐时，右键即可");
-        translationBuilder.add(MiscUtil.GAS_COOKING_STOVE_2, "有几率激活它。激活后，它可以加热其上方的方块，");
-        translationBuilder.add(MiscUtil.GAS_COOKING_STOVE_3, "烤盘，烤炉，高级熔炉均可兼容。");
-        translationBuilder.add(MiscUtil.CROWBAR, "物理学圣剑");
-        translationBuilder.add(MiscUtil.PIZZA_INGREDIENTS, "成分：");
-        translationBuilder.add(MiscUtil.BAKING_TRAY_1, "一款简易的小铁盘，可以用于升级高级熔炉，也可以用于炒菜：");
-        translationBuilder.add(MiscUtil.BAKING_TRAY_2, "在其下方有燃气灶为其加热的条件下，将食物放在烤盘的上方，");
-        translationBuilder.add(MiscUtil.BAKING_TRAY_3, "使用锅铲进行翻炒5次即可炒熟食物。");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_1, "油炸锅可以用于油炸各种食物。倒入食用油，在其后");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_2, "方放置一个装有燃气的燃气罐时，再按下它前方的按钮，");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_3, "它就会开始消耗燃气并加热，接着将食物加入其中就会开始油炸了，");
-        translationBuilder.add(MiscUtil.DEEP_FRYER_4, "对其按住Shift加右键可以查看其详细状态。");
-        translationBuilder.add(MiscUtil.WOODEN_BASIN_1, "一个可以用于榨取植物油的木盆，放入油料作物");
-        translationBuilder.add(MiscUtil.WOODEN_BASIN_2, "（如炒葵花籽）和过滤网，然后站在它上面跳跃就可以榨油了，");
-        translationBuilder.add(MiscUtil.WOODEN_BASIN_3, "你可以使用玻璃瓶或是桶来取出油。");
-        translationBuilder.add(MiscUtil.HOLDER_1, "可以用于安全无伤的取出油炸锅内的物品，");
-        translationBuilder.add(MiscUtil.HOLDER_2, "也可以按潜行加右键来转移不同容器之间");
-        translationBuilder.add(MiscUtil.HOLDER_3, "的物品。手持右键可以把夹着的物品取下。");
-        translationBuilder.add(MiscUtil.HOLDER_4, "未夹物品时右键可以把另一只手握着的物品夹住。");
-        translationBuilder.add(MiscUtil.ALT_END, " 以查看用电概况");
-        translationBuilder.add(MiscUtil.ACDCC_1, "一款可以自由转换直流电和交流电的装置，“AC->DC”模式下，与任意的");
-        translationBuilder.add(MiscUtil.ACDCC_2, "交流电发电装置连接时可将交流电转化为直流电并缓存，可以在里面接入电池");
-        translationBuilder.add(MiscUtil.ACDCC_3, "并为电池充电，“DC->AC”模式下，可以将缓存的直流电或接入电池的直流电转化");
-        translationBuilder.add(MiscUtil.ACDCC_4, "为交流电并输出，可以在GUI中调节它的工作效率。此外还可以用于于FE/RF/AE的转化。");
-        translationBuilder.add(MiscUtil.ALT_ACGen, "[交流电发电量]");
-        translationBuilder.add(MiscUtil.ALT_ACCom, "[交流电耗电量]");
-        translationBuilder.add(MiscUtil.ALT_DCSto, "[最大直流电存储量]");
-        translationBuilder.add(MiscUtil.ALT_DCGen, "[直流电发电量]");
-        translationBuilder.add(MiscUtil.ALT_DCCom, "[直流电耗电量]");
-        translationBuilder.add(MiscUtil.BAMBOO_STEAMER_1, "一款简易的竹制蒸笼，需要搭配笼盖，笼屉，一个被燃气灶加热且");
-        translationBuilder.add(MiscUtil.BAMBOO_STEAMER_2, "装有水的炼药锅来使用，向其中放入食材即可开始加工，蒸笼最高");
-        translationBuilder.add(MiscUtil.BAMBOO_STEAMER_3, "可以叠3个方块高，每个方块可以放4层。");
-        translationBuilder.add(MiscUtil.CUISINE_TABLE_1, "料理台可以深度加工“食材”，搭配一个工具来使用，将");
-        translationBuilder.add(MiscUtil.CUISINE_TABLE_2, "“食材”分解成更多的部分");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_1, "电工台允许你合成加工一些复杂的电路元件或电器，");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_2, "将材料正确的放入后点击GUI中的成品按钮来开始合成，");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_3, "共有3种不同类型的小游戏：");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_4, "1. 2048（通过按下WASD来合成出指定的数字后即可）");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_5, "2. 电路板拼接（将“？”界面种的图案");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_6, "复刻一遍即可，螺丝刀可以削除图案）");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_7, "3. 汉诺塔（将左边的塔移动到右侧即可，窄块只能放在宽块上）");
-        translationBuilder.add(MiscUtil.ELECTRICIANS_DESK_8, "完成小游戏后再按下成品按钮便可将成品取出。");
-        translationBuilder.add(MiscUtil.ELECTRIC_STEAMER_1, "与普通蒸笼一样，不过它需要消耗交流电加热水，并且只能同时加工12种食材，");
-        translationBuilder.add(MiscUtil.ELECTRIC_STEAMER_2, "不过它的优点就是占用空间小，不需要额外的东西来给它加热。");
-        translationBuilder.add(MiscUtil.FAN_BLADE_1, "一块用于风力发电的扇叶，可以安装在风力发");
-        translationBuilder.add(MiscUtil.FAN_BLADE_2, "电机控制器上，也可以放在其他地方做装饰用，");
-        translationBuilder.add(MiscUtil.FAN_BLADE_3, "它的旋转速度取决于当前高度和天气状况。");
-        translationBuilder.add(MiscUtil.FARADAY_GENERATOR_1, "当被正确的安装在斯特林引擎的飞轮后时，则可进行发电，");
-        translationBuilder.add(MiscUtil.FARADAY_GENERATOR_2, "注意一定要将斯特林引擎的飞轮和本发电机拼的刚好能");
-        translationBuilder.add(MiscUtil.FARADAY_GENERATOR_3, "够衔接上时才能正常发电。");
-        translationBuilder.add(MiscUtil.FREEZER_1, "一款简易的冰箱，可以用于存储物品，也可以冷加工一些食材，");
-        translationBuilder.add(MiscUtil.FREEZER_2, "可以通过消耗一些制冷剂，如冰块等，来制冷，或者是直接消耗");
-        translationBuilder.add(MiscUtil.FREEZER_3, "交流电来制冷。");
-        translationBuilder.add(MiscUtil.GLASS_BOWL_1, "一款用于加工或搅拌食材的容器，需要配合搅拌器使用，");
-        translationBuilder.add(MiscUtil.GLASS_BOWL_2, "也可以往其中倒入水来进行与水混合的操作。");
-        translationBuilder.add(MiscUtil.PGen_1, "光伏发电机可以将光能转化为直流电能并将其存储起来，");
-        translationBuilder.add(MiscUtil.PGen_2, "可以在里面接入电池并为其充电，发电量取决与当前的");
-        translationBuilder.add(MiscUtil.PGen_3, "高度，时间，天气，方块光和天空光等因素。");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_1, "斯特林引擎需要安装在燃烧中的熔炉，高炉，");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_2, "烟熏炉，高级熔炉或烤炉上才能工作，它");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_3, "需要与法拉第发电机相连接来产生交流电。");
-        translationBuilder.add(MiscUtil.STERLING_ENGINE_4, "使用海绵可以让它减小噪音");
-        translationBuilder.add(MiscUtil.TESLA_COIL_1, "特斯拉线圈可以远程传输交流电，将其放置在一个可以产生交流电");
-        translationBuilder.add(MiscUtil.TESLA_COIL_2, "的装置上时便可将电力扩散至其东南西北上下各8格的区域，");
-        translationBuilder.add(MiscUtil.TESLA_COIL_3, "可以打开GUI中的可视化按钮来可视化这48格的区域，");
-        translationBuilder.add(MiscUtil.TESLA_COIL_4, "区域内的交流电用电器和其他特斯拉线圈也会被通电，");
-        translationBuilder.add(MiscUtil.TESLA_COIL_5, "距离被通电的特斯拉线圈太近的生物会收到电击伤害。");
-        translationBuilder.add(MiscUtil.WTC_1, "当风力发电机的叶片被正确的安装后,");
-        translationBuilder.add(MiscUtil.WTC_2, "本控制器将会开始工作并产生交流电，");
-        translationBuilder.add(MiscUtil.WTC_3, "产生的电量取决于当前高度和天气状况。");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_1, "按住Shift和右键可以打开GUI界面，在其中放入任意口味的");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_2, "奶油，糖和鸡蛋并提供交流电后就会开始工作，制成的不");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_3, "同口味的冰淇淋会存储在它里面，在勾选想要混合的口");
-        translationBuilder.add(MiscUtil.ICE_CREAM_MAKER_4, "味后，手持冰淇淋脆筒右键便可以将冰淇淋取出。");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_MSG, "电量不足！");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_NEED_BOWL, "此物品只能通过配合玻璃碗来加工！");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_1, "和普通的搅拌器一样，都可以用于搭配玻璃碗来实现");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_2, "搅拌食物，不过它会对直流电的进行消耗，");
-        translationBuilder.add(MiscUtil.ELECTRIC_WHISK_3, "此外它还对地上的掉落物也能够生效。");
-        translationBuilder.add(MiscUtil.CHARGING_POST_1, "一款可以给直流用电器充电的装置，");
-        translationBuilder.add(MiscUtil.CHARGING_POST_2, "右键打开GUI后，左边的两格为电池放");
-        translationBuilder.add(MiscUtil.CHARGING_POST_3, "置槽，你可以在这里放置至少一个电池，");
-        translationBuilder.add(MiscUtil.CHARGING_POST_4, "右边的槽为待充电的直流用电器。");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_1, "一款可以用于榨取果汁的榨汁机，通入交");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_2, "流电便可使用，手持待物品右键榨汁机即");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_3, "可将其放入其中，放入两种物品后再次右");
-        translationBuilder.add(MiscUtil.JUICE_EXTRACTOR_4, "键即可启动机器。");
-        translationBuilder.add(MiscUtil.POT_HAS_QUICKLIME, "包含生石灰");
-        translationBuilder.add(MiscUtil.POT_MISS_QUICKLIME, "缺少生石灰");
-        translationBuilder.add(MiscUtil.POT_HAS_WATER, "包含水");
-        translationBuilder.add(MiscUtil.POT_MISS_WATER, "缺少水");
-        translationBuilder.add(MiscUtil.NOODLE_UNHEALTHY, "奇怪的方便面");
-        translationBuilder.add(MiscUtil.ANYTHING, "任何物品");
-        translationBuilder.add(MiscUtil.NEED_FOOD, "你需要在另一只手上持有任意一种食物");
-        translationBuilder.add(MiscUtil.SEASONING_TIP, "调味品，一只手拿着它，另一只手拿着任何食物，即可为食物调味");
-        translationBuilder.add(MiscUtil.FAILED_SEASONING, "你不能向这个食物添加更多调味品了");
-        translationBuilder.add(MiscUtil.SEASONING_ADDED, "调味品：");
-        translationBuilder.add(MiscUtil.PUN, "禁止无限套娃！");
-        translationBuilder.add(MiscUtil.WOODEN_PLATE_1, "一个可以用于展示物品的盘子，");
-        translationBuilder.add(MiscUtil.WOODEN_PLATE_2, "右键可以将物品放在上面，");
-        translationBuilder.add(MiscUtil.WOODEN_PLATE_3, "潜行加右键旋转上面的物品。");
+        translationBuilder.add(TextUtil.SHIFT_FRONT, "按住 ");
+        translationBuilder.add(TextUtil.SHIFT_END, " 以查看概要");
+        translationBuilder.add(TextUtil.WHISK, "一款搅拌器可以用于搅拌或打发食材，或者...？用它来搅匀怪物的脑浆？");
+        translationBuilder.add(TextUtil.BUTTER, "黏糊糊的质感...或许除了用于制作食物另有其用？");
+        translationBuilder.add(TextUtil.TRUFFLE, "可以在灰化土中找到");
+        translationBuilder.add(TextUtil.CUTTLEBONE, "被紫水晶工具击杀时掉落");
+        translationBuilder.add(TextUtil.FILTER, "一款由线织成的过滤器，可以放在木盆中用于过滤油和渣");
+        translationBuilder.add(TextUtil.KNEADING_STICK, "打人与擀面兼备");
+        translationBuilder.add(TextUtil.SPATULA, "可以搭配受热的烤盘一起使用来炒菜");
+        translationBuilder.add(TextUtil.BDC,
+                "它是构成沼气池的核心部件，当它下有一个平整的完全密封的长方体区域时，" +
+                "这块区域就会被自动的识别为沼气池的一部分。");
+        translationBuilder.add(TextUtil.BDI,
+                "当其下方存在一个工作的沼气池控制器时，它将被激活，" +
+                        "这时，你只需将任意的食物装入其中，他就会开始发酵，并产生沼气。" +
+                        "当它的侧面存在一个燃气罐时，就可以为燃气罐充气。");
+        translationBuilder.add(TextUtil.GAS_COOKING_STOVE,
+                "当它的侧面有一个装有气体的燃气罐时，右键即可有几率激活它。激活后，它可以加热其上方的方块，烤盘，烤炉，高级熔炉均可兼容。");
+        translationBuilder.add(TextUtil.CROWBAR, "物理学圣剑");
+        translationBuilder.add(TextUtil.INGREDIENTS, "成分：");
+        translationBuilder.add(TextUtil.BAKING_TRAY,
+                "一款简易的小铁盘，可以用于升级高级熔炉，也可以用于炒菜；" +
+                        "在其下方有燃气灶为其加热的条件下，将食物放在烤盘的上方，使用锅铲进行翻炒5次即可炒熟食物。");
+        translationBuilder.add(TextUtil.DEEP_FRYER,
+                "油炸锅可以用于油炸各种食物。倒入食用油，在其后方放置一个装有燃气的燃气罐时，再按下它前方的按钮，" +
+                        "它就会开始消耗燃气并加热，接着将食物加入其中就会开始油炸了，对其按住Shift加右键可以查看其详细状态。");
+        translationBuilder.add(TextUtil.WOODEN_BASIN,
+                "一个可以用于榨取植物油的木盆，放入油料作物（如炒葵花籽）和过滤网，" +
+                        "然后站在它上面跳跃就可以榨油了你可以使用玻璃瓶或是桶来取出油。");
+        translationBuilder.add(TextUtil.HOLDER,
+                "可以用于安全无伤的取出油炸锅内的物品，也可以按潜行加右键来转移不同容器之间的物品。" +
+                        "手持右键可以把夹着的物品取下。未夹物品时右键可以把另一只手握着的物品夹住。");
+        translationBuilder.add(TextUtil.ALT_END, " 以查看用电概况");
+        translationBuilder.add(TextUtil.ACDCC,
+                "一款可以自由转换直流电和交流电的装置，“AC->DC”模式下，" +
+                        "与任意的交流电发电装置连接时可将交流电转化为直流电并缓存，" +
+                        "可以在里面接入电池并为电池充电，“DC->AC”模式下，可以将缓存的直流电或接入电池的直流电转化为交流电并输出，" +
+                        "可以在GUI中调节它的工作效率。此外还可以用于于FE/RF/AE的转化。");
+        translationBuilder.add(TextUtil.ALT_ACGen, "[交流电发电量]");
+        translationBuilder.add(TextUtil.ALT_ACCom, "[交流电耗电量]");
+        translationBuilder.add(TextUtil.ALT_DCSto, "[最大直流电存储量]");
+        translationBuilder.add(TextUtil.ALT_DCGen, "[直流电发电量]");
+        translationBuilder.add(TextUtil.ALT_DCCom, "[直流电耗电量]");
+        translationBuilder.add(TextUtil.BAMBOO_STEAMER,
+                "一款简易的竹制蒸笼，需要搭配笼盖，笼屉，一个被燃气灶加热且装有水的炼药锅来使用，" +
+                        "向其中放入食材即可开始加工，蒸笼最高可以叠3个方块高，每个方块可以放4层。");
+        translationBuilder.add(TextUtil.CUISINE_TABLE,
+                "料理台可以深度加工“食材”，搭配一个工具来使用，将“食材”分解成更多的部分");
+        translationBuilder.add(TextUtil.ELECTRICIANS_DESK,
+                "电工台允许你合成加工一些复杂的电路元件或电器，" +
+                        "将材料正确的放入后点击GUI中的成品按钮来开始合成，共有3种不同类型的小游戏：" +
+                        "1. 2048（通过按下WASD来合成出指定的数字后即可）；" +
+                        "2. 电路板拼接（将“？”界面种的图案；复刻一遍即可，螺丝刀可以削除图案）；" +
+                        "3. 汉诺塔（将左边的塔移动到右侧即可，窄块只能放在宽块上）；" +
+                        "完成小游戏后再按下成品按钮便可将成品取出。");
+        translationBuilder.add(TextUtil.ELECTRIC_STEAMER,
+                "与普通蒸笼一样，不过它需要消耗交流电加热水，并且只能同时加工12种食材，" +
+                        "不过它的优点就是占用空间小，不需要额外的东西来给它加热。");
+        translationBuilder.add(TextUtil.FAN_BLADE,
+                "一块用于风力发电的扇叶，可以安装在风力发电机控制器上，" +
+                        "也可以放在其他地方做装饰用，它的旋转速度取决于当前高度和天气状况。");
+        translationBuilder.add(TextUtil.FARADAY_GENERATOR,
+                "当被正确的安装在斯特林引擎的飞轮后时，则可进行发电，" +
+                        "注意一定要将斯特林引擎的飞轮和本发电机拼的刚好能够衔接上时才能正常发电。");
+        translationBuilder.add(TextUtil.FREEZER,
+                "一款简易的冰箱，可以用于存储物品，也可以冷加工一些食材，" +
+                        "可以通过消耗一些制冷剂，如冰块等，来制冷，或者是直接消耗交流电来制冷。");
+        translationBuilder.add(TextUtil.GLASS_BOWL,
+                "一款用于加工或搅拌食材的容器，需要配合搅拌器使用，也可以往其中倒入水来进行与水混合的操作。");
+        translationBuilder.add(TextUtil.PGEN,
+                "光伏发电机可以将光能转化为直流电能并将其存储起来，可以在里面接入电池并为其充电，" +
+                        "发电量取决与当前的高度，时间，天气，方块光和天空光等因素。");
+        translationBuilder.add(TextUtil.STERLING_ENGINE,
+                "斯特林引擎需要安装在燃烧中的熔炉，高炉，烟熏炉，高级熔炉或烤炉上才能工作，" +
+                        "它需要与法拉第发电机相连接来产生交流电。使用海绵可以让它减小噪音。");
+        translationBuilder.add(TextUtil.TESLA_COIL,
+                "特斯拉线圈可以远程传输交流电，将其放置在一个可以产生交流电的装置上时便可将电力扩散至其东南西北上下各8格的区域，" +
+                        "可以打开GUI中的可视化按钮来可视化这48格的区域，区域内的交流电用电器和其他特斯拉线圈也会被通电，" +
+                        "距离被通电的特斯拉线圈太近的生物会收到电击伤害。");
+        translationBuilder.add(TextUtil.WTC,
+                "当风力发电机的叶片被正确的安装后，本控制器将会开始工作并产生交流电，产生的电量取决于当前高度和天气状况。");
+        translationBuilder.add(TextUtil.ICE_CREAM_MAKER,
+                "按住潜行和右键可以打开GUI界面，在其中放入任意口味的奶油，糖和鸡蛋并提供交流电后就会开始工作，" +
+                        "制成的不同口味的冰淇淋会存储在它里面，在勾选想要混合的口味后，手持冰淇淋脆筒右键便可以将冰淇淋取出。");
+        translationBuilder.add(TextUtil.ELECTRIC_WHISK_MSG, "电量不足！");
+        translationBuilder.add(TextUtil.ELECTRIC_WHISK_NEED_BOWL, "此物品只能通过配合玻璃碗来加工！");
+        translationBuilder.add(TextUtil.ELECTRIC_WHISK,
+                "和普通的搅拌器一样，都可以用于搭配玻璃碗来实现搅拌食物，" +
+                        "不过它会对直流电的进行消耗，此外它还对地上的掉落物也能够生效。");
+        translationBuilder.add(TextUtil.CHARGING_POST,
+                "一款可以给直流用电器充电的装置，右键打开GUI后，左边的两格为电池放置槽，" +
+                        "你可以在这里放置至少一个电池，右边的槽为待充电的直流用电器。");
+        translationBuilder.add(TextUtil.JUICE_EXTRACTOR,
+                "一款可以用于榨取果汁的榨汁机，通入交流电便可使用，手持待物品右键榨汁机即可将其放入其中，" +
+                        "放入两种物品后再次右键即可启动机器。");
+        translationBuilder.add(TextUtil.POT_HAS_QUICKLIME, "包含生石灰");
+        translationBuilder.add(TextUtil.POT_MISS_QUICKLIME, "缺少生石灰");
+        translationBuilder.add(TextUtil.POT_HAS_WATER, "包含水");
+        translationBuilder.add(TextUtil.POT_MISS_WATER, "缺少水");
+        translationBuilder.add(TextUtil.NOODLE_UNHEALTHY, "奇怪的方便面");
+        translationBuilder.add(TextUtil.ANYTHING, "任何物品");
+        translationBuilder.add(TextUtil.NEED_FOOD, "你需要在另一只手上持有任意一种食物");
+        translationBuilder.add(TextUtil.SEASONING_TIP, "调味品，一只手拿着它，另一只手拿着任何食物，即可为食物调味");
+        translationBuilder.add(TextUtil.FAILED_SEASONING, "你不能向这个食物添加更多调味品了");
+        translationBuilder.add(TextUtil.SEASONING_ADDED, "调味品：");
+        translationBuilder.add(TextUtil.PUN, "禁止无限套娃！");
+        translationBuilder.add(TextUtil.WOODEN_PLATE,
+                "一个可以用于展示物品的盘子，右键可以将物品放在上面，潜行加右键旋转上面的物品。");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"点击以获取经验值");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"消除工具");
@@ -319,7 +307,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.JAR, "玻璃罐");
         translationBuilder.add(ModItems.CARAMEL, "焦糖");
         translationBuilder.add(ModItems.CARAMEL_PUDDING, "焦糖布丁");
-        translationBuilder.add(MiscUtil.CAN_PLACE, "可放置");
+        translationBuilder.add(TextUtil.CAN_PLACE, "可放置");
         translationBuilder.add(ModItems.CHEESE_BAKED_POTATO, "芝士焗土豆");
         translationBuilder.add(ModItems.CHEESE_RICE_BALL, "芝士饭团");
         translationBuilder.add(ModItems.CHOCOLATE_SAUCE, "巧克力酱");
@@ -351,7 +339,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SQUID_TENTACLE_KEBABS, "鱿鱼须串");
         translationBuilder.add(ModItems.STREAKY_PORK, "生五花肉");
         translationBuilder.add(ModItems.TURNIP, "芜菁甘蓝");
-        translationBuilder.add(MiscUtil.TURNIP, "来自作者的微微怨念");
+        translationBuilder.add(TextUtil.TURNIP, "来自作者的微微怨念");
         translationBuilder.add(ModItems.RAW_DONUT, "生甜甜圈");
         translationBuilder.add(ModItems.CHOCOLATE_DONUT, "巧克力甜甜圈");
         translationBuilder.add(ModItems.CHEESE_BURGER, "芝士汉堡");

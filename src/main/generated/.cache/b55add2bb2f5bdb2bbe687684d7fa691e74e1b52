@@ -1,16 +1,16 @@
-// 1.20.1	2025-03-18T14:14:16.4728748	Modern Delight/Tags for minecraft:block
-90268148e03fe63baa2ab3a73ae29af2527faa4f data\minecraft\tags\blocks\needs_stone_tool.json
-6b3d762519297d15e4752a8119f451201f2df8db data\minecraft\tags\blocks\crops.json
-0ee164988a827f20d114e47ea240eacef8275e8d data\minecraft\tags\blocks\bee_growables.json
-2720a46ca3c0c45c6d4d2ed6f87d66d9b8b6010d data\farmersdelight\tags\blocks\heat_sources.json
+// 1.20.1	2025-11-19T11:37:19.7792845	Modern Delight/Tags for minecraft:block
 a580a5d94a5826846850bd1b89633d76f4f26f2d data\bakingdelight\tags\blocks\danger_blocks.json
-0c727ac95487011cd1872e758986f8c4241ab5eb data\bakingdelight\tags\blocks\crowbar_destroyable.json
+f06a4f45860ca58b31544e8393810de84bd920a8 data\create\tags\blocks\wrench_pickup.json
+0ee164988a827f20d114e47ea240eacef8275e8d data\minecraft\tags\blocks\bee_growables.json
 578636f9e4a417bbefc03135e1dd5e46ad7c7ef9 data\minecraft\tags\blocks\needs_diamond_tool.json
+ba5e5ba458d463e787e35c9ea22fe5e9e43ede78 data\bakingdelight\tags\blocks\whisk_mineable.json
+6b3d762519297d15e4752a8119f451201f2df8db data\minecraft\tags\blocks\crops.json
+1b7e2a9a851b538717d86b38a36a8ae63ec0503d data\minecraft\tags\blocks\small_flowers.json
 6796a9e704de36790f6ebf71586b4500696ab668 data\minecraft\tags\blocks\needs_iron_tool.json
 2720a46ca3c0c45c6d4d2ed6f87d66d9b8b6010d data\create\tags\blocks\passive_boiler_heaters.json
-ba5e5ba458d463e787e35c9ea22fe5e9e43ede78 data\bakingdelight\tags\blocks\whisk_mineable.json
-5adf1bd4a24e7454f64e19a6fde6228d2e7f1113 data\minecraft\tags\blocks\mineable\pickaxe.json
 b85608692a7ba9c78539ecbb806d5c7f593cf801 data\minecraft\tags\blocks\mineable\axe.json
+0c727ac95487011cd1872e758986f8c4241ab5eb data\bakingdelight\tags\blocks\crowbar_destroyable.json
+2720a46ca3c0c45c6d4d2ed6f87d66d9b8b6010d data\farmersdelight\tags\blocks\heat_sources.json
 9768e71e2a8b14e4cab2d03a8d5278557daa9639 data\minecraft\tags\blocks\maintains_farmland.json
-f06a4f45860ca58b31544e8393810de84bd920a8 data\create\tags\blocks\wrench_pickup.json
-1b7e2a9a851b538717d86b38a36a8ae63ec0503d data\minecraft\tags\blocks\small_flowers.json
+5adf1bd4a24e7454f64e19a6fde6228d2e7f1113 data\minecraft\tags\blocks\mineable\pickaxe.json
+90268148e03fe63baa2ab3a73ae29af2527faa4f data\minecraft\tags\blocks\needs_stone_tool.json

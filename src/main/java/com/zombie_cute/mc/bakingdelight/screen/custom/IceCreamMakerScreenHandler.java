@@ -1,13 +1,16 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.item.food.CreamItem;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
+import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
 import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
@@ -36,7 +39,7 @@ public class IceCreamMakerScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory,0,44,17));
         this.addSlot(new Slot(inventory,1,44,35));
         this.addSlot(new Slot(inventory,2,44,53));
-        this.addSlot(new Slot(inventory,3,25,53));
+        this.addSlot(new OnlyExtractSlot(inventory,3,25,53));
 
 
         addPlayerHotbar(playerInventory);
@@ -85,9 +88,19 @@ public class IceCreamMakerScreenHandler extends ScreenHandler {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
-                return ItemStack.EMPTY;
-            }
+            } else if (originalStack.getItem() instanceof CreamItem) {
+                if (!this.insertItem(originalStack, 0, 1, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (originalStack.getItem() == Items.SUGAR) {
+                if (!this.insertItem(originalStack, 1, 2, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (originalStack.getItem() == Items.EGG) {
+                if (!this.insertItem(originalStack, 2, 3, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else return ItemStack.EMPTY;
 
             if (originalStack.isEmpty()) {
                 slot.setStack(ItemStack.EMPTY);

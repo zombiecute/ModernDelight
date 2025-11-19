@@ -2,22 +2,21 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlockEntity;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
+import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
+import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 public class ElectriciansDeskScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -45,24 +44,7 @@ public class ElectriciansDeskScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory,6,135,17));
         this.addSlot(new Slot(inventory,7,135,35));
 
-        this.addSlot(new Slot(inventory,8,114,56){
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return false;
-            }
-            @Override
-            public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                if (player instanceof ServerPlayerEntity serverPlayer){
-                    World world = serverPlayer.getWorld();
-                    BlockPos pos = ElectriciansDeskScreenHandler.this.blockEntity.getPos();
-                    for (int i = 0;i<6;i++){
-                        ElectriciansDeskScreenHandler.this.blockEntity.removeStack(i,1);
-                    }
-                    world.playSound(null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                }
-                super.onTakeItem(player, stack);
-            }
-        });
+        this.addSlot(new OnlyExtractSlot(inventory,8,114,56));
 
         addPlayerHotbar(playerInventory);
         addPlayerInventory(playerInventory);
@@ -84,6 +66,14 @@ public class ElectriciansDeskScreenHandler extends ScreenHandler {
             newStack = originalStack.copy();
             if (invSlot < this.inventory.size()-1) {
                 if (!this.insertItem(originalStack, this.inventory.size()-1, this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (MiscUtil.isInk(originalStack.getItem())){
+                if (!this.insertItem(originalStack, 7, 8, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (originalStack.getItem() == Items.PAPER){
+                if (!this.insertItem(originalStack, 6, 7, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(originalStack, 0, this.inventory.size()-1, false)) {

@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
@@ -53,7 +53,7 @@ public class GlassCupBlock extends Block implements Waterloggable {
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(Text.translatable(MiscUtil.CAN_PLACE).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, options);
     }
     @Nullable

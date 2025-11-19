@@ -5,7 +5,7 @@ import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.item.food.PackagedItem;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.WhiskingRecipe;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.DCConsumer;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.Power;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -124,21 +124,20 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
         tooltip.add(Text.translatable(BatteryBlockItem.TOOLTIP_TEXT).formatted(Formatting.DARK_GRAY));
         tooltip.add(Text.literal(getNBTPower(stack) + "/"+MAX_POWER+" EP").formatted(Formatting.GRAY));
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(true));
+            tooltip.add(TextUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.ELECTRIC_WHISK_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.ELECTRIC_WHISK_2).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.ELECTRIC_WHISK_3).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.ELECTRIC_WHISK)));
+
         } else if (Screen.hasAltDown()) {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(true));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(MiscUtil.getDCCom("2"));
-            tooltip.add(MiscUtil.getDCSto(String.valueOf(MAX_POWER)));
+            tooltip.add(TextUtil.getDCCom("2"));
+            tooltip.add(TextUtil.getDCSto(String.valueOf(MAX_POWER)));
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, context);
     }
@@ -216,7 +215,7 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
             long power = getNBTPower(stack);
             int count = oldStack.getCount();
             if (count * 2L > power){
-                player.sendMessage(Text.translatable(MiscUtil.ELECTRIC_WHISK_MSG),true);
+                player.sendMessage(Text.translatable(TextUtil.ELECTRIC_WHISK_MSG),true);
                 return;
             }
             BlockPos blockPos = itemEntity.getBlockPos();
@@ -227,7 +226,7 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
             if (match.isPresent()){
                 ItemStack newStack = new ItemStack(match.get().getOutput(null).getItem(),count);
                 if (newStack.getItem() instanceof PackagedItem){
-                    player.sendMessage(Text.translatable(MiscUtil.ELECTRIC_WHISK_NEED_BOWL),true);
+                    player.sendMessage(Text.translatable(TextUtil.ELECTRIC_WHISK_NEED_BOWL),true);
                     return;
                 }
                 playAnimation(stack);

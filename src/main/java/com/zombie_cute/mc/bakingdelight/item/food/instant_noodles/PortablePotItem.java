@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.item.food.instant_noodles;
 
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
@@ -93,7 +93,7 @@ public class PortablePotItem extends Item {
         if (specialIngredient != null){
             return Text.translatable(specialIngredient.toTranslationKey());
         } else if (CookedPortablePotItem.isUnhealthy(stack)) {
-            return Text.translatable(MiscUtil.NOODLE_UNHEALTHY);
+            return Text.translatable(TextUtil.NOODLE_UNHEALTHY);
         }
         return super.getName(stack);
     }
@@ -261,14 +261,14 @@ public class PortablePotItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (hasQuicklime(stack)){
-            tooltip.add(Text.translatable(MiscUtil.POT_HAS_QUICKLIME).formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable(TextUtil.POT_HAS_QUICKLIME).formatted(Formatting.GRAY));
         } else {
-            tooltip.add(Text.translatable(MiscUtil.POT_MISS_QUICKLIME).formatted(Formatting.DARK_RED));
+            tooltip.add(Text.translatable(TextUtil.POT_MISS_QUICKLIME).formatted(Formatting.DARK_RED));
         }
         if (hasWater(stack)){
-            tooltip.add(Text.translatable(MiscUtil.POT_HAS_WATER).formatted(Formatting.AQUA));
+            tooltip.add(Text.translatable(TextUtil.POT_HAS_WATER).formatted(Formatting.AQUA));
         } else {
-            tooltip.add(Text.translatable(MiscUtil.POT_MISS_WATER).formatted(Formatting.DARK_RED));
+            tooltip.add(Text.translatable(TextUtil.POT_MISS_WATER).formatted(Formatting.DARK_RED));
         }
         NbtCompound nbt = stack.getOrCreateNbt();
         if (nbt.contains("noodles_data")){

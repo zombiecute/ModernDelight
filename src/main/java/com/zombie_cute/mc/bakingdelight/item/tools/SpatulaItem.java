@@ -2,7 +2,7 @@ package com.zombie_cute.mc.bakingdelight.item.tools;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
@@ -18,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -46,11 +45,11 @@ public class SpatulaItem extends ToolItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
+            tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.SPATULA).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.SPATULA)));
         }else {
-            tooltip.add(MiscUtil.getShiftText(false));
+            tooltip.add(TextUtil.getShiftText(false));
         }
         super.appendTooltip(stack, world, tooltip, context);
     }

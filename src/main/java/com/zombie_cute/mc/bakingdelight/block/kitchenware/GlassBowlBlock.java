@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware;
 
 import com.zombie_cute.mc.bakingdelight.item.food.PackagedItem;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
@@ -21,7 +21,6 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -47,12 +46,11 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
+            tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.GLASS_BOWL_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.GLASS_BOWL_2).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.GLASS_BOWL)));
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
+            tooltip.add(TextUtil.getShiftText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.compat.emi.recipe;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.AssemblyRecipe;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
@@ -78,7 +79,7 @@ public class EMIAssemblyRecipe implements EmiRecipe {
         widgets.addSlot(input.get(4), 30, 27);
         widgets.addSlot(input.get(5), 48, 27);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(Items.PAPER)), 123, 9);
-        widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(Items.INK_SAC,Items.GLOW_INK_SAC,Items.BLACK_DYE)), 123, 27);
+        widgets.addSlot(EmiIngredient.of(TagKeys.INKS), 123, 27);
 
         widgets.addSlot(output.get(0), 102, 18).recipeContext(this);
     }

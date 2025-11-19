@@ -85,6 +85,10 @@ public class FreezerScreenHandler extends ScreenHandler {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
+            } else if (FreezerBlockEntity.canUseAsIce(originalStack)) {
+                if (!this.insertItem(originalStack, 3, 4, true)) {
+                    return ItemStack.EMPTY;
+                }
             } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
                 return ItemStack.EMPTY;
             }

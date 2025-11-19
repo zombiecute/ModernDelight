@@ -68,8 +68,30 @@ public class DeepFryerScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int invSlot) {
-        return ItemStack.EMPTY;
+    public ItemStack quickMove(PlayerEntity player, int slot) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot2 = this.slots.get(slot);
+        if (slot2.hasStack()) {
+            ItemStack itemStack2 = slot2.getStack();
+            itemStack = itemStack2.copy();
+            if (slot >= 4 && slot < 31) {
+                if (!this.insertItem(itemStack2, 31, 40, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slot >= 31 && slot < 40 && !this.insertItem(itemStack2, 4, 31, false)) {
+                return ItemStack.EMPTY;
+            }
+            if (itemStack2.isEmpty()) {
+                slot2.setStack(ItemStack.EMPTY);
+            }
+            slot2.markDirty();
+            if (itemStack2.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot2.onTakeItem(player, itemStack2);
+            this.sendContentUpdates();
+        }
+        return itemStack;
     }
 
     @Override

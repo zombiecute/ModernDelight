@@ -135,7 +135,7 @@ public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
                 if (world.getBlockEntity(pos) instanceof GasCanisterBlockEntity container) {
                     container.onUse(player, world);
                 }
-            } else if (MiscUtil.isCrowbar(player)){
+            } else if (MiscUtil.isPlayerHoldingCrowbar(player)){
                 world.breakBlock(pos,true);
             } else {
                 NamedScreenHandlerFactory screenHandlerFactory = ((GasCanisterBlockEntity) world.getBlockEntity(pos));

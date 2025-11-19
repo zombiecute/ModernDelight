@@ -3,7 +3,7 @@ package com.zombie_cute.mc.bakingdelight.compat.rei.instant_noodles;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.item.food.instant_noodles.CookedPortablePotItem;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -63,7 +63,7 @@ public class InstantNoodlesMakingCategory implements DisplayCategory<InstantNood
                 .entry(EntryStacks.of(ModItems.PORTABLE_POT)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 90,startPoint.y + 82))
                 .markOutput().entry(EntryStacks.of(ModItems.COOKED_PORTABLE_POT)));
-        widgets.add(Widgets.createTooltip(new Rectangle(startPoint.x + 47,startPoint.y + 6,18,18),Text.translatable(MiscUtil.ANYTHING)));
+        widgets.add(Widgets.createTooltip(new Rectangle(startPoint.x + 47,startPoint.y + 6,18,18),Text.translatable(TextUtil.ANYTHING)));
         List<ItemStack> exampleItems = new ArrayList<>();
         for (SpecialIngredient specialIngredient : SpecialIngredient.values()){
             exampleItems.add(CookedPortablePotItem.createCookedPot(specialIngredient.getIngredients()));

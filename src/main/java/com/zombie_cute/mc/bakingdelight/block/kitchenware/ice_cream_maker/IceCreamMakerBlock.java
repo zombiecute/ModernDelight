@@ -90,7 +90,7 @@ public class IceCreamMakerBlock extends BlockWithEntity {
                 player.openHandledScreen(entity);
             } else if (hit.getSide().equals(state.get(FACING))) {
                 entity.tryStart(state, world, player);
-            } else if (MiscUtil.isCrowbar(player)){
+            } else if (MiscUtil.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);
                 switch (dir){
                     case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

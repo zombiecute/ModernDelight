@@ -2,6 +2,7 @@ package com.zombie_cute.mc.bakingdelight.block.power;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -27,7 +28,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -64,15 +64,12 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
+            tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.TESLA_COIL_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.TESLA_COIL_2).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.TESLA_COIL_3).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.TESLA_COIL_4).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.TESLA_COIL_5).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.TESLA_COIL)));
+
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
+            tooltip.add(TextUtil.getShiftText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }
@@ -222,7 +219,7 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
-        if (MiscUtil.isCrowbar(player)){
+        if (MiscUtil.isPlayerHoldingCrowbar(player)){
             Direction dir = state.get(FACING);
              switch (dir){
                  case DOWN: {

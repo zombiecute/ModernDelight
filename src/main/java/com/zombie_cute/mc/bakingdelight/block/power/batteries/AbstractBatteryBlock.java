@@ -263,7 +263,7 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
-        if (MiscUtil.isCrowbar(player) && player.isSneaking()){
+        if (MiscUtil.isPlayerHoldingCrowbar(player) && player.isSneaking()){
             world.breakBlock(pos,true);
         }
         return ActionResult.CONSUME;

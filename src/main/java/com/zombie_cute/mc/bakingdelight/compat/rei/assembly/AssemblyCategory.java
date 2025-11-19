@@ -2,6 +2,7 @@ package com.zombie_cute.mc.bakingdelight.compat.rei.assembly;
 
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -11,12 +12,10 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,12 +61,8 @@ public class AssemblyCategory implements DisplayCategory<AssemblyDisplay> {
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 123,startPoint.y + 9))
                 .entries(EntryIngredients.of(Items.PAPER)));
-        HashSet<ItemConvertible> items = new HashSet<>();
-        items.add(Items.INK_SAC);
-        items.add(Items.GLOW_INK_SAC);
-        items.add(Items.BLACK_DYE);
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 123,startPoint.y + 27))
-                .entries(EntryIngredients.ofItems(items)));
+                .entries(EntryIngredients.ofItemTag(TagKeys.INKS)));
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 102,startPoint.y + 18))
                 .markOutput().entries(display.getOutputEntries().get(0)));

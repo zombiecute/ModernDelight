@@ -5,6 +5,7 @@ import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -39,11 +40,11 @@ public class AdvanceFurnaceScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory,1,80,16));
         this.addSlot(new Slot(inventory,2,116,16));
         this.addSlot(new Slot(inventory,3,152,16));
-        this.addSlot(new Slot(inventory,8,8,28));
         this.addSlot(new OnlyExtractSlot(inventory,4,44,60));
         this.addSlot(new OnlyExtractSlot(inventory,5,80,60));
         this.addSlot(new OnlyExtractSlot(inventory,6,116,60));
         this.addSlot(new OnlyExtractSlot(inventory,7,152,60));
+        this.addSlot(new Slot(inventory,8,8,28));
 
         addPlayerHotbar(playerInventory);
         addPlayerInventory(playerInventory);
@@ -93,6 +94,10 @@ public class AdvanceFurnaceScreenHandler extends ScreenHandler {
             newStack = originalStack.copy();
             if (invSlot < this.inventory.size()) {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (FuelRegistry.INSTANCE.get(originalStack.getItem()) != null){
+                if (!this.insertItem(originalStack, 8, 9, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {

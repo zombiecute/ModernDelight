@@ -6,6 +6,7 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
 import com.zombie_cute.mc.bakingdelight.networking.packet.UpdateInventoryC2SPacket;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.AssemblyRecipe;
+import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -81,9 +82,15 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
             context.drawTexture(TEXTURE, x + 112, y + 24, 176, 40, 20,20);
         } else {
             if (handler.canCraft()){
-                context.drawTexture(TEXTURE, x + 112, y + 24, 176, 0, 20 ,20);
-                if (b){
-                    context.drawTexture(TEXTURE,x + 112,y + 24, 196, 0, 20, 20);
+                if (!this.hasRecipe()){
+                    int[] array = new int[1];
+                    array[0] = 5;
+                    ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
+                } else {
+                    context.drawTexture(TEXTURE, x + 112, y + 24, 176, 0, 20 ,20);
+                    if (b){
+                        context.drawTexture(TEXTURE,x + 112,y + 24, 196, 0, 20, 20);
+                    }
                 }
             } else {
                 if (this.hasPaperAndInk() && this.hasRecipe() && handler.blockEntity.getStack(8).isEmpty()){
@@ -97,9 +104,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
     }
     private boolean hasPaperAndInk(){
         return handler.blockEntity.getStack(6).getItem().equals(Items.PAPER) &&
-                (handler.blockEntity.getStack(7).getItem().equals(Items.INK_SAC) ||
-                        handler.blockEntity.getStack(7).getItem().equals(Items.GLOW_INK_SAC) ||
-                        handler.blockEntity.getStack(7).getItem().equals(Items.BLACK_DYE));
+                MiscUtil.isInk(handler.blockEntity.getStack(7).getItem());
     }
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
@@ -108,6 +113,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
         boolean b = mouseX >= x + 112 && mouseY >= y + 24 && mouseX <= x + 131 && mouseY <= y + 43;
         if (b){
             if (handler.canCraft()){
+
                 int[] array = new int[1];
                 array[0] = 2;
                 UpdateInventoryC2SPacket.send(handler.blockEntity.getPos(),this.outputItem);

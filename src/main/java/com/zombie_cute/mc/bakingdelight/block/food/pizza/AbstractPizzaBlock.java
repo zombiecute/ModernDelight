@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.food.pizza;
 
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
@@ -53,13 +53,13 @@ public abstract class AbstractPizzaBlock extends BlockWithEntity {
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(Text.translatable(MiscUtil.CAN_PLACE).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
         NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
         if (nbtCompound != null) {
             if (nbtCompound.contains("Items", 9)) {
                 DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(5, ItemStack.EMPTY);
                 Inventories.readNbt(nbtCompound, defaultedList);
-                tooltip.add(Text.translatable(MiscUtil.PIZZA_INGREDIENTS).formatted(Formatting.DARK_GRAY));
+                tooltip.add(Text.translatable(TextUtil.INGREDIENTS).formatted(Formatting.DARK_GRAY));
                 for (ItemStack itemStack : defaultedList) {
                     if (!itemStack.isEmpty()) {
                         tooltip.add(

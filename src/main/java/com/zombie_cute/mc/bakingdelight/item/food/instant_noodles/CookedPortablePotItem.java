@@ -2,6 +2,7 @@ package com.zombie_cute.mc.bakingdelight.item.food.instant_noodles;
 
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
@@ -47,7 +48,7 @@ public class CookedPortablePotItem extends Item {
             if (special != null){
                 return Text.translatable(special.toTranslationKey());
             } else if (isUnhealthy(stack)) {
-                return Text.translatable(MiscUtil.NOODLE_UNHEALTHY);
+                return Text.translatable(TextUtil.NOODLE_UNHEALTHY);
             }
         }
         return super.getName(stack);

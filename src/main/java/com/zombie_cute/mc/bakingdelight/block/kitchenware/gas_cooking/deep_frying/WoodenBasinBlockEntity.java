@@ -149,7 +149,7 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new WoodenBasinScreenHandler(syncId, playerInventory,this);
     }
-    private boolean isFilter(Item item){
+    public static boolean isFilter(Item item){
         for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.FILTERS)){
             if (item == registryEntry.value()){
                 return true;

@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.power.ChargingPostBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.power.batteries.BatteryBlockItem;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -68,6 +69,10 @@ public class ChargingPostScreenHandler extends ScreenHandler {
             newStack = originalStack.copy();
             if (invSlot < this.inventory.size()) {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!(originalStack.getItem() instanceof BatteryBlockItem)){
+                if (!this.insertItem(originalStack, 2, 3, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {

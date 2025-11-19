@@ -409,7 +409,10 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.WHITE_TRUFFLE);
         getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.CUTTLEBONE);
         getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.GLOW_CUTTLEBONE);
-
+        // Inks
+        getOrCreateTagBuilder(TagKeys.INKS).add(Items.INK_SAC);
+        getOrCreateTagBuilder(TagKeys.INKS).add(Items.GLOW_INK_SAC);
+        getOrCreateTagBuilder(TagKeys.INKS).add(Items.BLACK_DYE);
         // Leaves
         getOrCreateTagBuilder(ItemTags.LEAVES).add(ModItems.MATCHA);
         // Forge

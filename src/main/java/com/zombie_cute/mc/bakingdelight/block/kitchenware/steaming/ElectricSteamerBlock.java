@@ -2,6 +2,7 @@ package com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -43,19 +44,18 @@ public class ElectricSteamerBlock extends BlockWithEntity {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(true));
+            tooltip.add(TextUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.ELECTRIC_STEAMER_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.ELECTRIC_STEAMER_2).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.ELECTRIC_STEAMER)));
         } else if (Screen.hasAltDown()) {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(true));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(MiscUtil.getACCom("10"));
+            tooltip.add(TextUtil.getACCom("10"));
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }
@@ -117,7 +117,7 @@ public class ElectricSteamerBlock extends BlockWithEntity {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
-        if (MiscUtil.isCrowbar(player)){
+        if (MiscUtil.isPlayerHoldingCrowbar(player)){
             Direction dir = state.get(FACING);
             switch (dir){
                 case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

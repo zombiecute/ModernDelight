@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.item.food;
 
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -30,7 +30,7 @@ public class SeasoningItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(MiscUtil.SEASONING_TIP).formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable(TextUtil.SEASONING_TIP).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
     @Override
@@ -57,7 +57,7 @@ public class SeasoningItem extends Item {
             } else {
                 user.getItemCooldownManager().set(this, 20);
                 if (foodItem.getItem() instanceof SeasoningItem){
-                    user.sendMessage(Text.translatable(MiscUtil.FAILED_SEASONING),true);
+                    user.sendMessage(Text.translatable(TextUtil.FAILED_SEASONING),true);
                 } else {
                     int foodCount = foodItem.getCount();
                     int thisCount = thisStack.getCount();
@@ -85,13 +85,13 @@ public class SeasoningItem extends Item {
                         user.giveItemStack(newFood);
                         world.playSound(null,user.getX(),user.getY(),user.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,1.0f,world.random.nextFloat() + 0.8f);
                     } else {
-                        user.sendMessage(Text.translatable(MiscUtil.FAILED_SEASONING),true);
+                        user.sendMessage(Text.translatable(TextUtil.FAILED_SEASONING),true);
                     }
                 }
                 return TypedActionResult.consume(user.getStackInHand(hand));
             }
         } else {
-            user.sendMessage(Text.translatable(MiscUtil.NEED_FOOD),true);
+            user.sendMessage(Text.translatable(TextUtil.NEED_FOOD),true);
             return TypedActionResult.pass(user.getStackInHand(hand));
         }
     }

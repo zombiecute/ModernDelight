@@ -115,7 +115,7 @@ public class AdvanceFurnaceBlock extends BlockWithEntity implements BlockEntityP
             NamedScreenHandlerFactory screenHandlerFactory = ((AdvanceFurnaceBlockEntity) world.getBlockEntity(pos));
             if (isBakingTrayBlock(player)){
                 ((AdvanceFurnaceBlockEntity) Objects.requireNonNull(world.getBlockEntity(pos))).onUse(world,state);
-            } else if (MiscUtil.isCrowbar(player)){
+            } else if (MiscUtil.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);
                 switch (dir){
                     case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

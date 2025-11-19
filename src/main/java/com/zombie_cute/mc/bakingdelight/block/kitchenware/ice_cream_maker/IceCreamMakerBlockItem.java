@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
@@ -9,7 +9,6 @@ import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -38,21 +37,19 @@ public class IceCreamMakerBlockItem extends BlockItem implements GeoItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(true));
+            tooltip.add(TextUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.ICE_CREAM_MAKER_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.ICE_CREAM_MAKER_2).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.ICE_CREAM_MAKER_3).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.ICE_CREAM_MAKER_4).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.ICE_CREAM_MAKER)));
+
         } else if (Screen.hasAltDown()) {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(true));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(MiscUtil.getACCom("20"));
+            tooltip.add(TextUtil.getACCom("20"));
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, context);
     }

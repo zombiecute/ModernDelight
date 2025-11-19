@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.block.kitchenware;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -53,20 +54,18 @@ public class FreezerBlock extends BlockWithEntity implements BlockEntityProvider
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
-            tooltip.add(MiscUtil.getShiftText(true));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(true));
+            tooltip.add(TextUtil.getAltText(false));
             tooltip.add(Text.literal(" "));
-            tooltip.add(Text.translatable(MiscUtil.FREEZER_1).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.FREEZER_2).formatted(Formatting.GOLD));
-            tooltip.add(Text.translatable(MiscUtil.FREEZER_3).formatted(Formatting.GOLD));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.FREEZER)));
         } else if (Screen.hasAltDown()) {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(true));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(true));
             tooltip.add(Text.literal(" "));
-            tooltip.add(MiscUtil.getACCom("15"));
+            tooltip.add(TextUtil.getACCom("15"));
         } else {
-            tooltip.add(MiscUtil.getShiftText(false));
-            tooltip.add(MiscUtil.getAltText(false));
+            tooltip.add(TextUtil.getShiftText(false));
+            tooltip.add(TextUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }
@@ -160,7 +159,7 @@ public class FreezerBlock extends BlockWithEntity implements BlockEntityProvider
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient){
-            if (MiscUtil.isCrowbar(player)){
+            if (MiscUtil.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);
                 switch (dir){
                     case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

@@ -1,7 +1,7 @@
 {
   "type": "bakingdelight:assembly",
   "mini_game_type": 2,
-  "goal": 4,
+  "goal": 2,
   "ingredients": [
     {
       "item": "minecraft:iron_ingot"

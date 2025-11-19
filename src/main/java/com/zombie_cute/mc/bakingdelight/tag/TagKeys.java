@@ -115,6 +115,7 @@ public class TagKeys {
     public static final TagKey<Item> OIL_PLANTS = create("oil_plants",RegistryKeys.ITEM);
     public static final TagKey<Item> FILTERS = create("filters",RegistryKeys.ITEM);
     public static final TagKey<Item> CONDIMENTS = create("condiments",RegistryKeys.ITEM);
+    public static final TagKey<Item> INKS = create("inks",RegistryKeys.ITEM);
 
     public static final TagKey<Fluid> OIL = create("oil",RegistryKeys.FLUID);
     public static final TagKey<Fluid> CREAM = create("cream",RegistryKeys.FLUID);
