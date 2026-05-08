@@ -99,6 +99,16 @@ public class SterlingEngineBlock extends BlockWithEntity {
         super.randomDisplayTick(state, world, pos, random);
     }
 
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!world.isClient){
+            if (state.get(SMALL_SOUND)){
+                ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.SPONGE));
+            }
+        }
+        super.onBreak(world, pos, state, player);
+    }
+
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {

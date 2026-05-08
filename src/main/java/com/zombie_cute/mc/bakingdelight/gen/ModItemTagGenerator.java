@@ -66,14 +66,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FLAT_ON_BAKING_TRAY).addOptionalTag(ItemTags.TRAPDOORS);
         getOrCreateTagBuilder(TagKeys.FLAT_ON_BAKING_TRAY).addOptionalTag(BlockTags.PRESSURE_PLATES.id());
         // Whisks
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.AMETHYST_WHISK);
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.WOODEN_WHISK);
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.COPPER_WHISK);
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.STONE_WHISK);
         getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.IRON_WHISK);
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.GOLDEN_WHISK);
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.DIAMOND_WHISK);
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.NETHERITE_WHISK);
         getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.ELECTRIC_WHISK);
         // Tools
         getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.TOOLS_KNIVES);
@@ -190,12 +183,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.TOOLS_KNIVES).add(ModItems.COPPER_KNIFE);
         getOrCreateTagBuilder(TagKeys.TOOLS_KNIVES).add(ModItems.AMETHYST_KNIFE);
         // Amethyst Tools
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_WHISK);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_SWORD);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_PICKAXE);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_AXE);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_SHOVEL);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_HOE);
         getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_KNIFE);
 
         getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(new Identifier("anvilcraft:amethyst_sword"));
@@ -208,12 +195,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.MUSHROOMS).add(Items.RED_MUSHROOM);
         // Kneading Sticks
         getOrCreateTagBuilder(TagKeys.KNEADING_STICKS).add(ModItems.KNEADING_STICK);
-        // Vanilla Tools
-        getOrCreateTagBuilder(TagKeys.TOOLS_SWORDS).add(ModItems.AMETHYST_SWORD);
-        getOrCreateTagBuilder(TagKeys.TOOLS_AXES).add(ModItems.AMETHYST_AXE);
-        getOrCreateTagBuilder(TagKeys.TOOLS_HOES).add(ModItems.AMETHYST_HOE);
-        getOrCreateTagBuilder(TagKeys.TOOLS_PICKAXES).add(ModItems.AMETHYST_PICKAXE);
-        getOrCreateTagBuilder(TagKeys.TOOLS_SHOVELS).add(ModItems.AMETHYST_SHOVEL);
         // Dough Wheat
         getOrCreateTagBuilder(TagKeys.DOUGH_WHEAT).add(ModBlocks.WHEAT_DOUGH.asItem());
         // Cold Items
@@ -369,20 +350,8 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         // Quicklimes
         getOrCreateTagBuilder(TagKeys.QUICKLIMES).add(ModItems.QUICKLIME);
         // Gold
-        getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED).add(ModItems.GOLDEN_WHISK);
         getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED).add(ModItems.GOLDEN_APPLE_CREAM);
         getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED).add(ModItems.GOLDEN_APPLE_MOUSSE);
-        // Anvil Craft
-        getOrCreateTagBuilder(TagKeys.ROYAL_STEEL_AXE_BASE).add(ModItems.AMETHYST_AXE);
-        getOrCreateTagBuilder(TagKeys.ROYAL_STEEL_HOE_BASE).add(ModItems.AMETHYST_HOE);
-        getOrCreateTagBuilder(TagKeys.ROYAL_STEEL_PICKAXE_BASE).add(ModItems.AMETHYST_PICKAXE);
-        getOrCreateTagBuilder(TagKeys.ROYAL_STEEL_SHOVEL_BASE).add(ModItems.AMETHYST_SHOVEL);
-        getOrCreateTagBuilder(TagKeys.ROYAL_STEEL_SWORD_BASE).add(ModItems.AMETHYST_SWORD);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_SWORD).add(ModItems.AMETHYST_SWORD);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_PICKAXE).add(ModItems.AMETHYST_PICKAXE);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_AXE).add(ModItems.AMETHYST_AXE);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_SHOVEL).add(ModItems.AMETHYST_SHOVEL);
-        getOrCreateTagBuilder(TagKeys.AMETHYST_HOE).add(ModItems.AMETHYST_HOE);
         // Juice
         getOrCreateTagBuilder(TagKeys.FOODS).addTag(TagKeys.JUICE);
         getOrCreateTagBuilder(TagKeys.JUICE).add(ModItems.SWEET_BERRIES_JUICE);

@@ -160,14 +160,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(JuiceExtractorBlockEntity.WRONG_RECIPE, "放入的物品无法进行榨汁操作");
         translationBuilder.add(JuiceExtractorBlockEntity.IS_FULL, "请先取出榨汁机内的果汁，需要");
 
-        translationBuilder.add(ModItems.WOODEN_WHISK, "木搅拌器");
-        translationBuilder.add(ModItems.STONE_WHISK, "石搅拌器");
-        translationBuilder.add(ModItems.COPPER_WHISK, "铜搅拌器");
-        translationBuilder.add(ModItems.IRON_WHISK, "铁搅拌器");
-        translationBuilder.add(ModItems.GOLDEN_WHISK, "金搅拌器");
-        translationBuilder.add(ModItems.AMETHYST_WHISK, "紫水晶搅拌器");
-        translationBuilder.add(ModItems.DIAMOND_WHISK, "钻石搅拌器");
-        translationBuilder.add(ModItems.NETHERITE_WHISK, "下界合金搅拌器");
+        translationBuilder.add(ModItems.IRON_WHISK, "搅拌器");
 
         translationBuilder.add(ModItems.COPPER_KNIFE, "铜刀");
         translationBuilder.add(ModItems.AMETHYST_KNIFE, "紫水晶刀");
@@ -256,12 +249,6 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SILICON_COMPONENT, "硅构件");
         translationBuilder.add(ModItems.REDSTONE_COMPONENT, "红石构件");
         translationBuilder.add(ModItems.DIAMOND_COMPONENT, "钻石构件");
-
-        translationBuilder.add(ModItems.AMETHYST_SWORD, "紫水晶剑");
-        translationBuilder.add(ModItems.AMETHYST_PICKAXE, "紫水晶镐");
-        translationBuilder.add(ModItems.AMETHYST_AXE, "紫水晶斧");
-        translationBuilder.add(ModItems.AMETHYST_SHOVEL, "紫水晶锹");
-        translationBuilder.add(ModItems.AMETHYST_HOE, "紫水晶锄");
 
         translationBuilder.add(ModItems.EMPTY_CAKE, "饼皮");
         translationBuilder.add(ModItems.BLUE_ORCHID_FLOWER_CAKE, "兰花饼");
@@ -666,7 +653,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModAdvancementGenerator.GET_CREAM_BUCKET_DESC, "将奶桶放入玻璃碗，再用搅拌器搅拌即可获得奶油桶");
         translationBuilder.add(ModAdvancementGenerator.GET_BUTTER_TITLE, "甜而粘口");
         translationBuilder.add(ModAdvancementGenerator.GET_BUTTER_DESC, "将奶油放入玻璃碗，再用搅拌器搅拌即可获得黄油");
-        translationBuilder.add("advancement.bakingdelight.get_start_desc", "在吃完这一块面包后，是否觉得它太过于平庸了？是时候准备一些全新的食物了！");
+        translationBuilder.add("advancement.bakingdelight.get_start_desc", "一份简单的模组教程将在此展开。");
         translationBuilder.add("advancement.bakingdelight.get_kneading_stick.title", "李奶奶的擀面杖");
         translationBuilder.add("advancement.bakingdelight.get_kneading_stick.desc", "其实只是一根普通的木头棒子罢");
         translationBuilder.add("advancement.bakingdelight.get_wheat_flour.title", "做更好的面包");

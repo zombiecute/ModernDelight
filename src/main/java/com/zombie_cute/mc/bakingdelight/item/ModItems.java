@@ -36,22 +36,8 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.3F).build())));
     public static final Item MASHED_POTATO = registerItem("mashed_potato", new PackagedItem(Items.BOWL,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(1).saturationModifier(0.3F).snack().build()).recipeRemainder(Items.BOWL)));
-    public static final Item WOODEN_WHISK = registerItem("wooden_whisk",
-            new WhiskItem(1.5F, -2.5F, ToolMaterials.WOOD, new FabricItemSettings()));
-    public static final Item STONE_WHISK = registerItem("stone_whisk",
-            new WhiskItem(1.5F, -3.0F, ToolMaterials.STONE, new FabricItemSettings()));
-    public static final Item COPPER_WHISK = registerItem("copper_whisk",
-            new WhiskItem(1.5F, -3.4F, ModToolMaterials.COPPER, new FabricItemSettings()));
     public static final Item IRON_WHISK = registerItem("iron_whisk",
             new WhiskItem(1.5F, -3.3F, ToolMaterials.IRON, new FabricItemSettings()));
-    public static final Item GOLDEN_WHISK = registerItem("golden_whisk",
-            new WhiskItem(1.5F, -3.0F, ToolMaterials.GOLD, new FabricItemSettings()));
-    public static final Item AMETHYST_WHISK = registerItem("amethyst_whisk",
-            new WhiskItem(1.5F, -2.6F, ModToolMaterials.AMETHYST, new FabricItemSettings()));
-    public static final Item DIAMOND_WHISK = registerItem("diamond_whisk",
-            new WhiskItem(1.5F, -2.8F, ToolMaterials.DIAMOND, new FabricItemSettings()));
-    public static final Item NETHERITE_WHISK = registerItem("netherite_whisk",
-            new WhiskItem(1.5F, -3.0F, ToolMaterials.NETHERITE, new FabricItemSettings().fireproof()));
     public static final Item APPLE_PETAL = registerItem("apple_petal", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).snack().build())));
     public static final Item APPLE_CREAM = registerItem("apple_cream", new CreamItem(CreamFlavor.APPLE,new FabricItemSettings()
@@ -175,16 +161,6 @@ public class ModItems {
             super.appendTooltip(stack, world, tooltip, context);
         }
     });
-    public static final Item AMETHYST_SWORD = registerItem("amethyst_sword",
-            new SwordItem(ModToolMaterials.AMETHYST,  3,-2.2F, new FabricItemSettings()));
-    public static final Item AMETHYST_PICKAXE = registerItem("amethyst_pickaxe",
-            new PickaxeItem(ModToolMaterials.AMETHYST, 2,-2.8F, new FabricItemSettings()));
-    public static final Item AMETHYST_AXE = registerItem("amethyst_axe",
-            new AxeItem(ModToolMaterials.AMETHYST, 6, -3.0F, new FabricItemSettings()));
-    public static final Item AMETHYST_SHOVEL = registerItem("amethyst_shovel",
-            new ShovelItem(ModToolMaterials.AMETHYST, 2.5F, -2.7F, new FabricItemSettings()));
-    public static final Item AMETHYST_HOE = registerItem("amethyst_hoe",
-            new HoeItem(ModToolMaterials.AMETHYST, 0, 0.0F, new FabricItemSettings()));
     public static final Item CUTTLEBONE = registerItem("cuttlebone", new SeasoningItem(new FabricItemSettings(),
             new StatusEffectInstance(StatusEffects.REGENERATION,8 * 20,0),
             new StatusEffectInstance(StatusEffects.WATER_BREATHING, 30 * 20,0)){

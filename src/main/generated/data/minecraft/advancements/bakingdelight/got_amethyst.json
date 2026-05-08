@@ -1,12 +1,12 @@
 {
-  "parent": "minecraft:bakingdelight/got_whisk",
+  "parent": "minecraft:bakingdelight/root",
   "criteria": {
-    "netherite_whisk": {
+    "amethyst_knife": {
       "conditions": {
         "items": [
           {
             "items": [
-              "bakingdelight:netherite_whisk"
+              "bakingdelight:amethyst_knife"
             ]
           }
         ]
@@ -17,26 +17,23 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancement.bakingdelight.get_netherite_whisk_desc"
+      "translate": "advancement.bakingdelight.get_amethyst_tool_desc"
     },
-    "frame": "challenge",
+    "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "bakingdelight:netherite_whisk",
+      "item": "bakingdelight:amethyst_knife",
       "nbt": "{Damage:0}"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancement.bakingdelight.get_netherite_whisk_title"
+      "translate": "advancement.bakingdelight.get_amethyst_tool_title"
     }
   },
   "requirements": [
     [
-      "netherite_whisk"
+      "amethyst_knife"
     ]
   ],
-  "rewards": {
-    "experience": 1000
-  },
   "sends_telemetry_event": true
 }

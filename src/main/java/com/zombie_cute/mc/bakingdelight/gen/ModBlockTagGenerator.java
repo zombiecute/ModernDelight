@@ -20,28 +20,17 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         // Whisk Mineable
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(ModBlocks.MASHED_POTATO_BLOCK);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.DIRT);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.DIRT_PATH);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.GRASS_BLOCK);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.SAND);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.RED_SAND);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.SOUL_SAND);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.SOUL_SOIL);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.COARSE_DIRT);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.MYCELIUM);
-        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE)
-                .add(Blocks.PODZOL);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(ModBlocks.MASHED_POTATO_BLOCK);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.DIRT);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.DIRT_PATH);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.GRASS_BLOCK);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.SAND);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.RED_SAND);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.SOUL_SAND);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.SOUL_SOIL);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.COARSE_DIRT);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.MYCELIUM);
+        getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.PODZOL);
         // Mineable Pickaxe
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.OVEN);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.FREEZER);
@@ -161,6 +150,28 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         // Small Flowers
         getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_GARLIC);
         getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_PEPPER_CROP);
+        // Can Pick By Tongs
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.CHEST);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.FURNACE);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.BLAST_FURNACE);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.SMOKER);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.HOPPER);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.SHULKER_BOX);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.TRAPPED_CHEST);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.BARREL);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.OVEN);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.ADVANCE_FURNACE);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.BAKING_TRAY);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.BIOGAS_DIGESTER_IO);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.AC_DC_CONVERTER);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.DEEP_FRY_BASKET);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.DEEP_FRYER);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.KITCHEN_UTENSIL_HOLDER);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.WOODEN_BASIN);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.WOODEN_PLATE);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.BAMBOO_GRATE);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.ELECTRIC_STEAMER);
+        getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
 
     }
 }

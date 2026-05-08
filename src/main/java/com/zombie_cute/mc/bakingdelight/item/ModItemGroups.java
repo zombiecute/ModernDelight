@@ -20,21 +20,9 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         // Whisks & Glass Bowl
                         entries.add(ModItems.ELECTRIC_WHISK);
-                        entries.add(ModItems.WOODEN_WHISK);
-                        entries.add(ModItems.STONE_WHISK);
-                        entries.add(ModItems.COPPER_WHISK);
                         entries.add(ModItems.IRON_WHISK);
-                        entries.add(ModItems.GOLDEN_WHISK);
-                        entries.add(ModItems.DIAMOND_WHISK);
-                        entries.add(ModItems.NETHERITE_WHISK);
-                        entries.add(ModItems.AMETHYST_WHISK);
                         entries.add(ModBlocks.GLASS_BOWL);
                         // Amethyst Tools & Knifes & Stir-frying
-                        entries.add(ModItems.AMETHYST_SWORD);
-                        entries.add(ModItems.AMETHYST_PICKAXE);
-                        entries.add(ModItems.AMETHYST_AXE);
-                        entries.add(ModItems.AMETHYST_SHOVEL);
-                        entries.add(ModItems.AMETHYST_HOE);
                         entries.add(ModItems.AMETHYST_KNIFE);
                         entries.add(ModItems.COPPER_KNIFE);
                         entries.add(ModItems.SPATULA);

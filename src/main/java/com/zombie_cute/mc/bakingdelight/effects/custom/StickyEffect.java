@@ -4,6 +4,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
 
 public class StickyEffect extends StatusEffect {
     public StickyEffect() {
@@ -17,10 +19,22 @@ public class StickyEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (!entity.getWorld().getBlockState(entity.getBlockPos().down()).isAir()){
-            entity.setVelocity(0,0,0);
+        World world = entity.getWorld();
+        if (entity.isOnGround() && world instanceof ServerWorld serverWorld) {
+            spawnParticles(entity, serverWorld);
         }
-        entity.getWorld().addParticle(ParticleTypes.LANDING_HONEY,true,entity.getX(),entity.getY() + 1,entity.getZ(),1,1,1);
         super.applyUpdateEffect(entity, amplifier);
+    }
+
+    private static void spawnParticles(LivingEntity entity, ServerWorld serverWorld) {
+        serverWorld.spawnParticles(
+                ParticleTypes.FALLING_HONEY,
+                entity.getX(),
+                entity.getY(),
+                entity.getZ(),
+                1,
+                0.0, 0.0, 0.0,
+                0.0
+        );
     }
 }

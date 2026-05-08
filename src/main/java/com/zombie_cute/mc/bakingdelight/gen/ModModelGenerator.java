@@ -151,25 +151,13 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModBlocks.FAN_BLADE_ITEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLACK_PEPPER_DUST, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.WOODEN_WHISK, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.STONE_WHISK, Models.HANDHELD);
         itemModelGenerator.register(ModItems.IRON_WHISK, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.GOLDEN_WHISK, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.AMETHYST_WHISK, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.DIAMOND_WHISK, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.NETHERITE_WHISK, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.AMETHYST_KNIFE, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.KNEADING_STICK, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SPATULA, Models.HANDHELD);
         itemModelGenerator.register(ModItems.FILTER, Models.GENERATED);
-
-        itemModelGenerator.register(ModItems.AMETHYST_SWORD, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.AMETHYST_PICKAXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.AMETHYST_AXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.AMETHYST_SHOVEL, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.AMETHYST_HOE, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.BLACK_TRUFFLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.WHITE_TRUFFLE, Models.GENERATED);

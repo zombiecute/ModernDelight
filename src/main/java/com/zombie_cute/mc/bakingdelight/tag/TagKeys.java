@@ -11,17 +11,6 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 public class TagKeys {
-    // Anvil Craft
-    public static final TagKey<Item> ROYAL_STEEL_SWORD_BASE = create("royal_steel_sword_base",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> ROYAL_STEEL_PICKAXE_BASE = create("royal_steel_pickaxe_base",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> ROYAL_STEEL_AXE_BASE = create("royal_steel_axe_base",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> ROYAL_STEEL_SHOVEL_BASE = create("royal_steel_shovel_base",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> ROYAL_STEEL_HOE_BASE = create("royal_steel_hoe_base",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> AMETHYST_SWORD = create("amethyst_sword",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> AMETHYST_PICKAXE = create("amethyst_pickaxe",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> AMETHYST_AXE = create("amethyst_axe",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> AMETHYST_SHOVEL = create("amethyst_shovel",RegistryKeys.ITEM,"anvilcraft");
-    public static final TagKey<Item> AMETHYST_HOE = create("amethyst_hoe",RegistryKeys.ITEM,"anvilcraft");
     // Create
     public static final TagKey<Item> UPRIGHT_ON_BELT = create("upright_on_belt",RegistryKeys.ITEM,"create");
     public static final TagKey<Item> BLAZE_BURNER_FUEL = create("blaze_burner_fuel/regular",RegistryKeys.ITEM,"create");
@@ -116,6 +105,7 @@ public class TagKeys {
     public static final TagKey<Item> FILTERS = create("filters",RegistryKeys.ITEM);
     public static final TagKey<Item> CONDIMENTS = create("condiments",RegistryKeys.ITEM);
     public static final TagKey<Item> INKS = create("inks",RegistryKeys.ITEM);
+    public static final TagKey<Block> CAN_PICK =create("can_pick",RegistryKeys.BLOCK);
 
     public static final TagKey<Fluid> OIL = create("oil",RegistryKeys.FLUID);
     public static final TagKey<Fluid> CREAM = create("cream",RegistryKeys.FLUID);

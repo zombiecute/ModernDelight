@@ -6,16 +6,15 @@
       "item": "minecraft:amethyst_shard"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
+      "item": "bakingdelight:silicon_ingot"
     },
     "R": {
       "item": "minecraft:redstone"
     }
   },
   "pattern": [
-    "  A",
-    "RA ",
-    "IR "
+    "RA",
+    "IR"
   ],
   "result": {
     "item": "bakingdelight:amethyst_knife"

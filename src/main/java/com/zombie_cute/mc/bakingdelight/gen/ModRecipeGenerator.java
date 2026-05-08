@@ -299,26 +299,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(ModItems.MASHED_POTATO),
                         FabricRecipeProvider.conditionsFromItem(ModItems.MASHED_POTATO))
                 .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.WOODEN_WHISK)
-                .pattern("I")
-                .pattern("N")
-                .pattern("S")
-                .input('I', ItemTags.PLANKS)
-                .input('N', ItemTags.WOODEN_SLABS)
-                .input('S', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(Items.STICK),
-                        FabricRecipeProvider.conditionsFromItem(Items.STICK))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.COPPER_WHISK)
-                .pattern("I")
-                .pattern("N")
-                .pattern("S")
-                .input('I', Items.COPPER_BLOCK)
-                .input('N', Items.COPPER_INGOT)
-                .input('S', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(Items.COPPER_INGOT),
-                        FabricRecipeProvider.conditionsFromItem(Items.COPPER_INGOT))
-                .offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.IRON_WHISK)
                 .pattern("I")
                 .pattern("N")
@@ -329,105 +309,20 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(Items.IRON_INGOT),
                         FabricRecipeProvider.conditionsFromItem(Items.IRON_INGOT))
                 .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.GOLDEN_WHISK)
-                .pattern("I")
-                .pattern("N")
-                .pattern("S")
-                .input('I', Items.GOLD_INGOT)
-                .input('N', Items.GOLD_NUGGET)
-                .input('S', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(Items.GOLD_INGOT),
-                        FabricRecipeProvider.conditionsFromItem(Items.GOLD_INGOT))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_WHISK)
-                .pattern("III")
-                .pattern("INI")
-                .pattern(" S ")
-                .input('I', Items.AMETHYST_SHARD)
-                .input('N', Items.REDSTONE_BLOCK)
-                .input('S', Items.IRON_INGOT)
-                .criterion(FabricRecipeProvider.hasItem(Items.AMETHYST_SHARD),
-                        FabricRecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DIAMOND_WHISK)
-                .pattern("I")
-                .pattern("N")
-                .pattern("S")
-                .input('I', Items.DIAMOND)
-                .input('N', Items.AMETHYST_SHARD)
-                .input('S', Items.STICK)
-                .criterion(FabricRecipeProvider.hasItem(Items.DIAMOND),
-                        FabricRecipeProvider.conditionsFromItem(Items.DIAMOND))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_AXE)
-                .pattern("AB")
-                .pattern("AR")
-                .pattern(" I")
-                .input('I', Items.IRON_INGOT)
-                .input('A', Items.AMETHYST_SHARD)
-                .input('R', Items.REDSTONE_BLOCK)
-                .input('B', Items.AMETHYST_BLOCK)
-                .criterion(FabricRecipeProvider.hasItem(Items.AMETHYST_SHARD),
-                        FabricRecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_HOE)
-                .pattern("AB")
-                .pattern(" R")
-                .pattern(" I")
-                .input('I', Items.IRON_INGOT)
-                .input('A', Items.AMETHYST_SHARD)
-                .input('R', Items.REDSTONE_BLOCK)
-                .input('B', Items.AMETHYST_BLOCK)
-                .criterion(FabricRecipeProvider.hasItem(Items.AMETHYST_SHARD),
-                        FabricRecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_SHOVEL)
-                .pattern("ABA")
-                .pattern("ARA")
-                .pattern(" I ")
-                .input('I', Items.IRON_INGOT)
-                .input('A', Items.AMETHYST_SHARD)
-                .input('R', Items.REDSTONE_BLOCK)
-                .input('B', Items.AMETHYST_BLOCK)
-                .criterion(FabricRecipeProvider.hasItem(Items.AMETHYST_SHARD),
-                        FabricRecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_PICKAXE)
-                .pattern("ABA")
-                .pattern(" R ")
-                .pattern(" I ")
-                .input('I', Items.IRON_INGOT)
-                .input('A', Items.AMETHYST_SHARD)
-                .input('R', Items.REDSTONE_BLOCK)
-                .input('B', Items.AMETHYST_BLOCK)
-                .criterion(FabricRecipeProvider.hasItem(Items.AMETHYST_SHARD),
-                        FabricRecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
-                .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_SWORD)
-                .pattern("B")
-                .pattern("R")
-                .pattern("I")
-                .input('I', Items.IRON_INGOT)
-                .input('R', Items.REDSTONE_BLOCK)
-                .input('B', Items.AMETHYST_BLOCK)
-                .criterion(FabricRecipeProvider.hasItem(Items.AMETHYST_SHARD),
-                        FabricRecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
-                .offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.COPPER_KNIFE)
                 .pattern("C")
                 .pattern("S")
-                .input('C', Items.COPPER_BLOCK)
+                .input('C', Items.COPPER_INGOT)
                 .input('S', Items.STICK)
                 .criterion(FabricRecipeProvider.hasItem(Items.COPPER_INGOT),
                         FabricRecipeProvider.conditionsFromItem(Items.COPPER_INGOT))
                 .offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_KNIFE)
-                .pattern("  A")
-                .pattern("RA ")
-                .pattern("IR ")
+                .pattern("RA")
+                .pattern("IR")
                 .input('A', Items.AMETHYST_SHARD)
                 .input('R', Items.REDSTONE)
-                .input('I', Items.IRON_INGOT)
+                .input('I', ModItems.SILICON_INGOT)
                 .criterion(FabricRecipeProvider.hasItem(Items.AMETHYST_SHARD),
                         FabricRecipeProvider.conditionsFromItem(Items.AMETHYST_SHARD))
                 .offerTo(exporter);

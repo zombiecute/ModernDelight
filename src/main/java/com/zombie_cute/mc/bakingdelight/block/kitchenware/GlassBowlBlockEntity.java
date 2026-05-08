@@ -115,6 +115,7 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                         getResultItem(world,state,player,false);
                     } else {
                         MutableText text = Text.translatable(NEED_PACKAGE);
+                        text.append(Text.literal(" "));
                         text.append(Text.translatable(packagedItem.getPackageItem().getTranslationKey()));
                         player.sendMessage(text,true);
                     }

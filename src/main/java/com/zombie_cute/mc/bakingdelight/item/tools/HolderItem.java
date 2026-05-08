@@ -1,7 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.item.tools;
 
+import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,6 +13,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -37,7 +41,14 @@ public class HolderItem extends Item {
         BlockPos blockPos = context.getBlockPos();
         ItemStack holder = context.getStack();
         PlayerEntity player = context.getPlayer();
-        if (!world.isClient()){
+        Block aimedBlock = world.getBlockState(blockPos).getBlock();
+        boolean canPick = false;
+        for (RegistryEntry<Block> registryEntry : Registries.BLOCK.iterateEntries(TagKeys.CAN_PICK)) {
+            if (aimedBlock == registryEntry.value()) {
+                canPick = true;
+            }
+        }
+        if (canPick){
             if (world.getBlockEntity(blockPos) instanceof Inventory inventory){
                 if (inventory.canPlayerUse(player)){
                     int slots = inventory.size();
@@ -79,40 +90,6 @@ public class HolderItem extends Item {
                     }
                 }
             }
-//            else if (world.getBlockEntity(blockPos) instanceof InventoryStorage storage) {
-//                int slots = storage.getSlotCount();
-//                ItemStack holdingStack = getHoldingStack(holder);
-//                if (holdingStack.isEmpty()){
-//                    for (int i = 0 ; i < slots; i++){
-//                        ItemVariant itemVariant = storage.getSlot(i).getResource();
-//                        long count = storage.getSlot(i).getResource().toStack().getCount();
-//                        if (!itemVariant.isBlank()){
-//                            try (Transaction transaction = Transaction.openOuter()){
-//                                ItemVariant res = ItemVariant.blank();
-//                                storage.getSlot(i).extract(res,count,transaction);
-//                                transaction.commit();
-//                                setHoldingStack(res.toStack(),holder);
-//                                world.playSound(null,blockPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,1.0f,world.random.nextFloat()+0.8f);
-//                            }
-//                            break;
-//                        }
-//                    }
-//                } else {
-//                    for (int i = 0 ; i < slots; i++){
-//                        ItemVariant itemVariant = storage.getSlot(i).getResource();
-//                        if (itemVariant.matches(holdingStack) || itemVariant.isBlank()){
-//                            try (Transaction transaction = Transaction.openOuter()){
-//                                ItemVariant res = ItemVariant.of(holdingStack);
-//                                storage.getSlot(i).insert(res,holdingStack.getCount(),transaction);
-//                                transaction.commit();
-//                                setHoldingStack(res.toStack(),holder);
-//                                world.playSound(null,blockPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,1.0f,world.random.nextFloat()+0.3f);
-//                                return ActionResult.CONSUME;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
         }
         return ActionResult.CONSUME;
     }

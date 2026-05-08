@@ -203,14 +203,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(JuiceExtractorBlockEntity.WRONG_RECIPE, "Juicing operation cannot be performed on inserted items.");
         translationBuilder.add(JuiceExtractorBlockEntity.IS_FULL, "Please remove the juice from the juice extractor first. Need ");
 
-        translationBuilder.add(ModItems.WOODEN_WHISK, "Wooden Whisk");
-        translationBuilder.add(ModItems.STONE_WHISK, "Stone Whisk");
-        translationBuilder.add(ModItems.COPPER_WHISK, "Copper Whisk");
-        translationBuilder.add(ModItems.IRON_WHISK, "Iron Whisk");
-        translationBuilder.add(ModItems.GOLDEN_WHISK, "Golden Whisk");
-        translationBuilder.add(ModItems.AMETHYST_WHISK, "Amethyst Whisk");
-        translationBuilder.add(ModItems.DIAMOND_WHISK, "Diamond Whisk");
-        translationBuilder.add(ModItems.NETHERITE_WHISK, "Netherite Whisk");
+        translationBuilder.add(ModItems.IRON_WHISK, "Whisk");
 
         translationBuilder.add(ModItems.COPPER_KNIFE, "Copper Knife");
         translationBuilder.add(ModItems.AMETHYST_KNIFE, "Amethyst Knife");
@@ -301,12 +294,6 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SILICON_COMPONENT, "Silicon Component");
         translationBuilder.add(ModItems.REDSTONE_COMPONENT, "Redstone Component");
         translationBuilder.add(ModItems.DIAMOND_COMPONENT, "Diamond Component");
-
-        translationBuilder.add(ModItems.AMETHYST_SWORD, "Amethyst Sword");
-        translationBuilder.add(ModItems.AMETHYST_PICKAXE, "Amethyst Pickaxe");
-        translationBuilder.add(ModItems.AMETHYST_AXE, "Amethyst Axe");
-        translationBuilder.add(ModItems.AMETHYST_SHOVEL, "Amethyst Shovel");
-        translationBuilder.add(ModItems.AMETHYST_HOE, "Amethyst Hoe");
 
         translationBuilder.add(ModItems.EMPTY_CAKE, "Piecrust");
         translationBuilder.add(ModItems.BLUE_ORCHID_FLOWER_CAKE, "Blue Orchid Cake");

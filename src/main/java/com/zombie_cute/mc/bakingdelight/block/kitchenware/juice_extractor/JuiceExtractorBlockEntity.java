@@ -156,7 +156,7 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
         } else {
             boolean isMainHand = !player.getMainHandStack().isEmpty();
             Hand hand = isMainHand ? Hand.MAIN_HAND : Hand.OFF_HAND;
-            // isFull检测
+            // isFull 检测
             if (world.getBlockState(pos).get(JuiceExtractorBlock.IS_FULL)){
                 if (player.getStackInHand(hand).getItem() == tempContainer){
                     if (player.getStackInHand(hand).getCount() == 1){
@@ -174,6 +174,7 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
                     }
                 } else {
                     MutableText text = Text.translatable(IS_FULL);
+                    text.append(Text.literal(" "));
                     text.append(Text.translatable(tempContainer.getTranslationKey()));
                     player.sendMessage(text,true);
                 }

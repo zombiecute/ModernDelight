@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:bakingdelight/got_amethyst_tool",
+  "parent": "minecraft:bakingdelight/got_amethyst",
   "criteria": {
     "cuttlebone": {
       "conditions": {

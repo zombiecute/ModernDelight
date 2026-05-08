@@ -11,7 +11,6 @@ import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.ConsumeItemCriterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -77,14 +76,7 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                         false
                 )
                 .criterion("iron_whisk", InventoryChangedCriterion.Conditions.items(ModItems.IRON_WHISK))
-                .criterion("wooden_whisk", InventoryChangedCriterion.Conditions.items(ModItems.WOODEN_WHISK))
-                .criterion("stone_whisk", InventoryChangedCriterion.Conditions.items(ModItems.STONE_WHISK))
-                .criterion("copper_whisk", InventoryChangedCriterion.Conditions.items(ModItems.COPPER_WHISK))
-                .criterion("golden_whisk", InventoryChangedCriterion.Conditions.items(ModItems.GOLDEN_WHISK))
-                .criterion("amethyst_whisk", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_WHISK))
-                .criterion("diamond_whisk", InventoryChangedCriterion.Conditions.items(ModItems.DIAMOND_WHISK))
-                .criterion("netherite_whisk", InventoryChangedCriterion.Conditions.items(ModItems.NETHERITE_WHISK))
-                .requirements(new String[][]{new String[]{"iron_whisk","wooden_whisk","stone_whisk","copper_whisk","golden_whisk","amethyst_whisk","diamond_whisk","netherite_whisk"}})
+                .requirements(new String[][]{new String[]{"iron_whisk"}})
                 .build(consumer, ModernDelightMain.MOD_ID + "/root");
         Advancement getWhisk = Advancement.Builder.create().parent(getStart)
                 .display(
@@ -98,14 +90,7 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                         false
                 )
                 .criterion("iron_whisk", InventoryChangedCriterion.Conditions.items(ModItems.IRON_WHISK))
-                .criterion("wooden_whisk", InventoryChangedCriterion.Conditions.items(ModItems.WOODEN_WHISK))
-                .criterion("stone_whisk", InventoryChangedCriterion.Conditions.items(ModItems.STONE_WHISK))
-                .criterion("copper_whisk", InventoryChangedCriterion.Conditions.items(ModItems.COPPER_WHISK))
-                .criterion("golden_whisk", InventoryChangedCriterion.Conditions.items(ModItems.GOLDEN_WHISK))
-                .criterion("amethyst_whisk", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_WHISK))
-                .criterion("diamond_whisk", InventoryChangedCriterion.Conditions.items(ModItems.DIAMOND_WHISK))
-                .criterion("netherite_whisk", InventoryChangedCriterion.Conditions.items(ModItems.NETHERITE_WHISK))
-                .requirements(new String[][]{new String[]{"iron_whisk","wooden_whisk","stone_whisk","copper_whisk","golden_whisk","amethyst_whisk","diamond_whisk","netherite_whisk"}})
+                .requirements(new String[][]{new String[]{"iron_whisk"}})
                 .build(consumer, ModernDelightMain.MOD_ID + "/got_whisk");
         Advancement getAmethystTool = Advancement.Builder.create().parent(getStart)
                 .display(
@@ -118,29 +103,9 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                         true,
                         false
                 )
-                .criterion("amethyst_whisk", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_WHISK))
-                .criterion("amethyst_sword", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_SWORD))
-                .criterion("amethyst_pickaxe", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_PICKAXE))
-                .criterion("amethyst_axe", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_AXE))
-                .criterion("amethyst_shovel", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_SHOVEL))
-                .criterion("amethyst_hoe", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_HOE))
                 .criterion("amethyst_knife", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_KNIFE))
-                .requirements(new String[][]{new String[]{"amethyst_whisk","amethyst_sword","amethyst_pickaxe","amethyst_axe","amethyst_shovel","amethyst_hoe","amethyst_knife"}})
-                .build(consumer, ModernDelightMain.MOD_ID + "/got_amethyst_tool");
-        Advancement getNetheriteWhisk = Advancement.Builder.create().parent(getWhisk)
-                .display(
-                        ModItems.NETHERITE_WHISK,
-                        Text.translatable(GET_NETHERITE_WHISK_TITLE),
-                        Text.translatable(GET_NETHERITE_WHISK_DESC),
-                        null,
-                        AdvancementFrame.CHALLENGE,
-                        true,
-                        true,
-                        false
-                )
-                .rewards(AdvancementRewards.Builder.experience(1000))
-                .criterion("netherite_whisk", InventoryChangedCriterion.Conditions.items(ModItems.NETHERITE_WHISK))
-                .build(consumer, ModernDelightMain.MOD_ID + "/got_netherite_whisk");
+                .requirements(new String[][]{new String[]{"amethyst_knife"}})
+                .build(consumer, ModernDelightMain.MOD_ID + "/got_amethyst");
         Advancement getCuttlebone = Advancement.Builder.create().parent(getAmethystTool)
                 .display(
                         ModItems.CUTTLEBONE,
@@ -171,25 +136,6 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 .criterion("white_truffle", InventoryChangedCriterion.Conditions.items(ModItems.WHITE_TRUFFLE))
                 .requirements(new String[][]{new String[]{"black_truffle","white_truffle"}})
                 .build(consumer, ModernDelightMain.MOD_ID + "/got_truffle");
-        Advancement getAllAmethyst = Advancement.Builder.create().parent(getAmethystTool)
-                .display(
-                        Items.AMETHYST_SHARD,
-                        Text.translatable(GET_ALL_AMETHYST_TITLE),
-                        Text.translatable(GET_ALL_AMETHYST_DESC),
-                        null,
-                        AdvancementFrame.GOAL,
-                        true,
-                        true,
-                        false
-                )
-                .criterion("amethyst_whisk", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_WHISK))
-                .criterion("amethyst_sword", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_SWORD))
-                .criterion("amethyst_pickaxe", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_PICKAXE))
-                .criterion("amethyst_axe", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_AXE))
-                .criterion("amethyst_shovel", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_SHOVEL))
-                .criterion("amethyst_hoe", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_HOE))
-                .criterion("amethyst_knife", InventoryChangedCriterion.Conditions.items(ModItems.AMETHYST_KNIFE))
-                .build(consumer, ModernDelightMain.MOD_ID + "/got_all_amethyst");
         Advancement GetCherryBomb = Advancement.Builder.create().parent(getStart)
                 .display(
                         ModItems.CHERRY,

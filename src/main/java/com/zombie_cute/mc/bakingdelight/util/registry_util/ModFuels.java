@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 
 public class ModFuels {
     public static void registerFuels(){
-        FuelRegistry.INSTANCE.add(ModItems.WOODEN_WHISK, 200);
         FuelRegistry.INSTANCE.add(ModItems.KNEADING_STICK, 200);
         FuelRegistry.INSTANCE.add(ModItems.SUNFLOWER_SEED_PEEL, 60);
         FuelRegistry.INSTANCE.add(ModBlocks.WOODEN_BASIN, 1350);

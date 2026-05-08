@@ -1,8 +1,10 @@
 package com.zombie_cute.mc.bakingdelight.enchantment.custom;
 
+import com.zombie_cute.mc.bakingdelight.item.tools.StoneMortarItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
 
 public class FineGrindingEnchantment extends Enchantment {
 
@@ -16,5 +18,10 @@ public class FineGrindingEnchantment extends Enchantment {
     @Override
     public int getMaxLevel() {
         return 3;
+    }
+
+    @Override
+    public boolean isAcceptableItem(ItemStack stack) {
+        return stack.getItem() instanceof StoneMortarItem;
     }
 }
