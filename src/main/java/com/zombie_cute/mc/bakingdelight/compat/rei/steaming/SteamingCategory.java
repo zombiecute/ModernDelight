@@ -22,7 +22,7 @@ import java.util.List;
 
 public class SteamingCategory implements DisplayCategory<SteamingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming.png");
     public static final CategoryIdentifier<SteamingDisplay> STEAMING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "steaming");
 

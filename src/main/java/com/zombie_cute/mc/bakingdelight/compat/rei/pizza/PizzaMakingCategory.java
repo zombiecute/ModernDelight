@@ -21,7 +21,7 @@ import java.util.List;
 
 public class PizzaMakingCategory implements DisplayCategory<PizzaMakingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/pizza.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/pizza.png");
     public static final String PIZZA_TITLE = "display_name.bakingdelight.pizza_name";
     public static final CategoryIdentifier<PizzaMakingDisplay> PIZZA_MAKING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "pizza_making");

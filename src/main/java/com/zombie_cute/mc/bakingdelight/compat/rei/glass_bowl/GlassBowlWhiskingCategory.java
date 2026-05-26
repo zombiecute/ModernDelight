@@ -20,7 +20,7 @@ import java.util.List;
 
 public class GlassBowlWhiskingCategory implements DisplayCategory<GlassBowlWhiskingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/glass_bowl.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/glass_bowl.png");
     public static final CategoryIdentifier<GlassBowlWhiskingDisplay> WHISKING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "whisking");
     public static final String GLASS_BOWL_NAME = "display_name.bakingdelight.glass_bowl_name";
@@ -37,7 +37,7 @@ public class GlassBowlWhiskingCategory implements DisplayCategory<GlassBowlWhisk
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModItems.IRON_WHISK);
+        return EntryStacks.of(ModItems.WHISK);
     }
 
     @Override

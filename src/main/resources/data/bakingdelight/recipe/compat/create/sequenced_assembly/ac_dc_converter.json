@@ -1,0 +1,101 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "bakingdelight:ac_dc_converter"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "id": "bakingdelight:ac_dc_converter",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "id": "bakingdelight:silicon_component",
+      "chance": 2.0,
+      "count": 6
+    },
+    {
+      "id": "bakingdelight:ac_dc_converter",
+      "chance": 18.0,
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:ac_dc_converter"
+        },
+        {
+          "tag": "c:plates/iron"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:ac_dc_converter"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:ac_dc_converter"
+        },
+        {
+          "item": "bakingdelight:redstone_component"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:ac_dc_converter"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:ac_dc_converter"
+        },
+        {
+          "item": "bakingdelight:silicon_component"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:ac_dc_converter"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:ac_dc_converter"
+        },
+        {
+          "tag": "c:plates/iron"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:ac_dc_converter"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "id": "bakingdelight:ac_dc_converter"
+  }
+}

@@ -18,11 +18,12 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -38,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, ACConsumer, SidedInventory {
+public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, ACConsumer, SidedInventory {
     public ElectricSteamerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ELECTRIC_STEAMER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -93,21 +94,22 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
     public static final int MAX_STEAM_PROGRESS = 60;
     public static final int MAX_WATER_OR_STEAM = 1000;
     public static final int WATER_SLOT = 12;
+
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt,registryLookup);
+        Inventories.writeNbt(nbt, inventory,registryLookup);
         nbt.putInt("electric_steamer.cachedPower",cachedPower);
         nbt.putIntArray("electric_steamer.progresses",progresses);
-        nbt.put("electric_steamer.fluid_variant",fluidStorage.variant.toNbt());
+        nbt.putString("electric_steamer.fluid_variant",fluidStorage.variant.getRegistryEntry().getIdAsString());
         nbt.putLong("electric_steamer.fluid_amount",fluidStorage.amount);
         nbt.putInt("electric_steamer.steam",steam);
         nbt.putInt("electric_steamer.steamProgress",steamProgress);
     }
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
+    public void readNbt(NbtCompound nbt,RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt,registryLookup);
+        Inventories.readNbt(nbt, inventory,registryLookup);
         cachedPower = nbt.getInt("electric_steamer.cachedPower");
         int[] temp = nbt.getIntArray("electric_steamer.progresses");
         int max = progresses.length;
@@ -115,75 +117,81 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
             max = temp.length;
         }
         System.arraycopy(temp, 0, progresses, 0, max);
-        fluidStorage.variant = FluidVariant.fromNbt((NbtCompound) nbt.get("electric_steamer.fluid_variant"));
-        fluidStorage.amount = nbt.getLong("electric_steamer.fluid_amount");
+        FluidStack fluid;
+        try {
+            fluid = FluidStack.getFluidStack(nbt.getString("electric_steamer.fluid_variant"), nbt.getLong("electric_steamer.fluid_amount"));
+        } catch (Exception ignored) {
+            fluid = new FluidStack(FluidVariant.of(Fluids.WATER), nbt.getLong("electric_steamer.fluid_amount"));
+        }
+        fluidStorage.variant = fluid.fluidVariant;
+        fluidStorage.amount = fluid.getAmount();
         steam = nbt.getInt("electric_steamer.steam");
         steamProgress = nbt.getInt("electric_steamer.steamProgress");
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
-    public void tick(World world, BlockPos pos, BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, ElectricSteamerBlockEntity b) {
         if (world.isClient){
             return;
         }
-        if (fluidStorage.variant.getFluid() == Fluids.WATER){
-            water = (int) FluidStack.convertDropletsToMb(fluidStorage.amount);
-        } else water = 0;
-        if (cachedPower > 0){
-            cachedPower--;
+        if (b.fluidStorage.variant.getFluid() == Fluids.WATER){
+            b.water = (int) FluidStack.convertDropletsToMb(b.fluidStorage.amount);
+        } else b.water = 0;
+        if (b.cachedPower > 0){
+            b.cachedPower--;
             world.setBlockState(pos,state.with(ElectricSteamerBlock.IS_WORKING,true));
-            if (fluidStorage.amount > FluidStack.convertMbToDroplets(50) &&
-                    steam < MAX_WATER_OR_STEAM &&
-                    fluidStorage.variant.getFluid() == Fluids.WATER){
-                steamProgress++;
-                if (steamProgress >= MAX_STEAM_PROGRESS){
-                    steamProgress = 0;
-                    fluidStorage.amount-= FluidStack.convertMbToDroplets(50);
-                    if (steam + 80 < MAX_WATER_OR_STEAM){
-                        steam+=80;
+            if (b.fluidStorage.amount > FluidStack.convertMbToDroplets(50) &&
+                    b.steam < MAX_WATER_OR_STEAM &&
+                    b.fluidStorage.variant.getFluid() == Fluids.WATER){
+                b.steamProgress++;
+                if (b.steamProgress >= MAX_STEAM_PROGRESS){
+                    b.steamProgress = 0;
+                    b.fluidStorage.amount-= FluidStack.convertMbToDroplets(50);
+                    if (b.steam + 80 < MAX_WATER_OR_STEAM){
+                        b.steam+=80;
                     } else {
-                        steam = MAX_WATER_OR_STEAM;
+                        b.steam = MAX_WATER_OR_STEAM;
                     }
                 }
             } else {
-                steamProgress = 0;
+                b.steamProgress = 0;
             }
         } else world.setBlockState(pos,state.with(ElectricSteamerBlock.IS_WORKING,false));
-        if (getStack(WATER_SLOT).getItem().equals(Items.WATER_BUCKET)){
-            if (fillWater(world,pos)){
-                setStack(WATER_SLOT,Items.BUCKET.getDefaultStack());
+        if (b.getStack(WATER_SLOT).getItem().equals(Items.WATER_BUCKET)){
+            if (b.fillWater(world,pos)){
+                b.setStack(WATER_SLOT,Items.BUCKET.getDefaultStack());
             }
         }
         if (world.getTime() %20L == 0L){
-            if (steam > 5){
+            if (b.steam > 5){
                 for (int i = 0; i < 12; i++){
-                    SimpleInventory inventory = new SimpleInventory(this.getStack(i));
-                    Optional<SteamingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                            .getFirstMatch(SteamingRecipe.Type.INSTANCE, inventory,this.getWorld());
+                    Optional<RecipeEntry<SteamingRecipe>> match = Objects.requireNonNull(b.getWorld()).getRecipeManager()
+                            .getFirstMatch(SteamingRecipe.Type.INSTANCE, new SingleStackRecipeInput(b.getStack(i)),b.getWorld());
                     if (match.isPresent()){
-                        int maxProgress = match.get().getMaxProgress();
-                        int count = this.getStack(i).getCount();
+                        int maxProgress = match.get().value().getMaxProgress();
+                        int count = b.getStack(i).getCount();
                         if (count <= 16){
-                            this.maxProgresses[i] = maxProgress;
+                            b.maxProgresses[i] = maxProgress;
                         } else {
-                            this.maxProgresses[i] = maxProgress * count / 16;
+                            b.maxProgresses[i] = maxProgress * count / 16;
                         }
-                        if (this.progresses[i] < this.maxProgresses[i]){
-                            this.progresses[i]++;
-                            this.steam -=5;
+                        if (b.progresses[i] < b.maxProgresses[i]){
+                            b.progresses[i]++;
+                            b.steam -=5;
                         } else {
-                            this.progresses[i] = 0;
-                            this.maxProgresses[i] = 0;
-                            this.setStack(i,new ItemStack(match.get().getOutput(null).getItem(),count));
+                            b.progresses[i] = 0;
+                            b.maxProgresses[i] = 0;
+                            b.setStack(i,new ItemStack(match.get().value().getResult(null).getItem(),count));
                         }
                     } else {
-                        this.progresses[i] = 0;
-                        this.maxProgresses[i] = 0;
+                        b.progresses[i] = 0;
+                        b.maxProgresses[i] = 0;
                     }
                 }
-                markDirty();
+                b.markDirty();
             }
         }
     }
@@ -226,8 +234,8 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
     }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 
     @Override

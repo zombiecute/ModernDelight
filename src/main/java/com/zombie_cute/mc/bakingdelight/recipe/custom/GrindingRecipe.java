@@ -1,37 +1,31 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrindingRecipe implements Recipe<SimpleInventory> {
-    private final Identifier id;
+public class GrindingRecipe implements Recipe<SingleStackRecipeInput> {
     private final ItemStack output;
     private final ItemStack chancedOutput;
     private final float chance;
     private final DefaultedList<Ingredient> recipeItems;
-    public GrindingRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack output, ItemStack chancedOutput, float chance){
-        this.id = id;
+    public GrindingRecipe(DefaultedList<Ingredient> ingredients, ItemStack output, ItemStack chancedOutput, float chance){
         this.output = output;
         this.recipeItems = ingredients;
         this.chancedOutput = chancedOutput;
@@ -47,8 +41,8 @@ public class GrindingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public boolean matches(SimpleInventory inventory, World world) {
-        return recipeItems.get(0).test(inventory.getStack(0));
+    public boolean matches(SingleStackRecipeInput inventory, World world) {
+        return recipeItems.get(0).test(inventory.getStackInSlot(0));
     }
 
     @Override
@@ -57,7 +51,7 @@ public class GrindingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return output;
     }
 
@@ -67,7 +61,7 @@ public class GrindingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
         return output;
     }
     public List<ItemStack> getOutputs(){
@@ -81,11 +75,6 @@ public class GrindingRecipe implements Recipe<SimpleInventory> {
         DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());
         list.addAll(recipeItems);
         return list;
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -106,63 +95,48 @@ public class GrindingRecipe implements Recipe<SimpleInventory> {
 
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "grinding";
+        public static final MapCodec<GrindingRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
+                                .flatXmap(ingredients ->{
+                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+                                    if (ingredients1.length == 0){
+                                        return DataResult.error(()->"No ingredients");
+                                    }
+                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
+                                },DataResult::success).forGetter(GrindingRecipe::getIngredients)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("extra")).forGetter(recipe -> recipe.chancedOutput)
+                        , Codec.FLOAT.fieldOf("chance").forGetter(recipe -> recipe.chance)
+                ).apply(instance, GrindingRecipe::new)
+        );
+        public static final PacketCodec<RegistryByteBuf, GrindingRecipe> PACKET_CODEC = PacketCodec.ofStatic(GrindingRecipe.Serializer::write, GrindingRecipe.Serializer::read);
 
-        @Override
-        public GrindingRecipe read(Identifier id, JsonObject json) {
-            ItemStack output = outputFromJson(JsonHelper.getObject(json,"output"));
-            ItemStack chancedOutput = outputFromJson(JsonHelper.getObject(json,"extra"));
-            float chance = JsonHelper.getFloat(json,"chance");
-            JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1,Ingredient.EMPTY);
-
-            for(int i=0;i<inputs.size();i++){
-                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new GrindingRecipe(id, inputs, output,chancedOutput,chance);
-        }
-        public static ItemStack outputFromJson(JsonObject json) {
-            Item item = getItem(json);
-            if (json.has("data")) {
-                throw new JsonParseException("Disallowed data tag found");
-            } else {
-                int i = JsonHelper.getInt(json, "count", 1);
-                if (i < 1) {
-                    throw new JsonSyntaxException("Invalid output count: " + i);
-                } else {
-                    if (item == Items.AIR){
-                        return ItemStack.EMPTY;
-                    } else return new ItemStack(item, i);
-                }
-            }
-        }
-
-        public static Item getItem(JsonObject json) {
-            String string = JsonHelper.getString(json, "item");
-            return Registries.ITEM.getOrEmpty(Identifier.tryParse(string)).orElseThrow(() -> new JsonSyntaxException("Unknown item '" + string + "'"));
-        }
-
-        @Override
-        public GrindingRecipe read(Identifier id, PacketByteBuf buf) {
+        private static GrindingRecipe read(RegistryByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
-
-            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
-
-            ItemStack output = buf.readItemStack();
-            ItemStack chancedOutput = buf.readItemStack();
+            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
+            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
+            ItemStack chancedOutput = ItemStack.PACKET_CODEC.decode(buf);
             float chance = buf.readFloat();
-            return new GrindingRecipe(id, inputs, output, chancedOutput, chance);
+            return new GrindingRecipe(inputs,output,chancedOutput,chance);
+        }
+
+        private static void write(RegistryByteBuf buf, GrindingRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for (Ingredient ingredient : recipe.getIngredients()){
+                Ingredient.PACKET_CODEC.encode(buf,ingredient);
+            }
+            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
+            ItemStack.PACKET_CODEC.encode(buf,recipe.chancedOutput);
+            buf.writeFloat(recipe.getChance());
+        }
+        @Override
+        public MapCodec<GrindingRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public void write(PacketByteBuf buf, GrindingRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for(Ingredient ingredient : recipe.getIngredients()){
-                ingredient.write(buf);
-            }
-            buf.writeItemStack(recipe.output);
-            buf.writeItemStack(recipe.chancedOutput);
-            buf.writeFloat(recipe.chance);
+        public PacketCodec<RegistryByteBuf, GrindingRecipe> packetCodec() {
+            return PACKET_CODEC;
         }
     }
 }

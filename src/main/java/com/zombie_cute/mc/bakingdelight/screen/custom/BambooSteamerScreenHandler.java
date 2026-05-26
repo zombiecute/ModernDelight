@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -21,8 +20,8 @@ public class BambooSteamerScreenHandler extends ScreenHandler {
     public final BambooGrateBlockEntity blockEntity;
     public int currentLayer;
     private final PropertyDelegate propertyDelegate;
-    public BambooSteamerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),buf.readInt(),new ArrayPropertyDelegate(35));
+    public BambooSteamerScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos),inventory.player.getWorld().getBlockState(pos).get(BambooGrateBlock.LAYER),new ArrayPropertyDelegate(35));
     }
     public BambooSteamerScreenHandler(int syncId, PlayerInventory playerInventory,
                                       BlockEntity blockEntity, int currentLayer, PropertyDelegate arrayPropertyDelegate){

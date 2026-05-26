@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:garlic_petal"
+    },
+    {
+      "item": "bakingdelight:garlic_petal"
+    },
+    {
+      "item": "bakingdelight:garlic_petal"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:garlic"
+  }
+}

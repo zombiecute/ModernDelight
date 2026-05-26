@@ -1,18 +1,18 @@
 package com.zombie_cute.mc.bakingdelight.item.tools;
 
+import com.zombie_cute.mc.bakingdelight.components.ModComponents;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
@@ -23,13 +23,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class HolderItem extends Item {
     public HolderItem() {
-        super(new FabricItemSettings().maxCount(1));
+        super(new Settings().maxCount(1));
     }
 
     @Override
@@ -67,7 +66,7 @@ public class HolderItem extends Item {
                     } else {
                         for (int i = 0 ; i < slots; i++){
                             ItemStack stack = inventory.getStack(i);
-                            if (holdingStack.getItem() == stack.getItem() && !stack.hasNbt()){
+                            if (holdingStack.getItem() == stack.getItem() && !stack.getComponents().isEmpty()){
                                 int holdingCount = holdingStack.getCount();
                                 int stackCount = stack.getCount();
                                 if (holdingCount + stackCount > holdingStack.getMaxCount()){
@@ -95,18 +94,13 @@ public class HolderItem extends Item {
     }
 
     public static ItemStack getHoldingStack(ItemStack holder) {
-        NbtCompound nbt = holder.getSubNbt("holding_stack");
-        if (nbt != null){
-            return ItemStack.fromNbt(nbt);
-        }
-        return ItemStack.EMPTY;
+        return holder.getOrDefault(ModComponents.HOLDER_HOLDING_STACK, ItemStack.EMPTY);
     }
     public static void setHoldingStack(ItemStack holdingStack, ItemStack holder){
-        NbtCompound nbt = holder.getOrCreateSubNbt("holding_stack");
-        holdingStack.writeNbt(nbt);
+        holder.set(ModComponents.HOLDER_HOLDING_STACK, holdingStack);
     }
     public static void removeHoldingStack(ItemStack holder){
-        holder.removeSubNbt("holding_stack");
+        holder.remove(ModComponents.HOLDER_HOLDING_STACK);
     }
 
     @Override
@@ -127,7 +121,7 @@ public class HolderItem extends Item {
             removeHoldingStack(holder);
             world.playSound(null,user.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,1.0f,world.random.nextFloat()+0.8f);
         } else if (!otherStack.isEmpty()){
-            NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(otherStack);
+            ContainerComponent nbtComponent = otherStack.getOrDefault(DataComponentTypes.CONTAINER, ContainerComponent.DEFAULT);
             if (otherStack.getItem() == this){
                 ItemStack otherStackHolding = getHoldingStack(otherStack);
                 if (otherStackHolding.getItem() == this){
@@ -135,11 +129,9 @@ public class HolderItem extends Item {
                     return TypedActionResult.consume(holder);
                 }
             }
-            if (nbtCompound != null) {
-                if (nbtCompound.contains("Items", 9)) {
-                    user.sendMessage(Text.translatable(TextUtil.PUN),true);
-                    return TypedActionResult.consume(holder);
-                }
+            if (!nbtComponent.stream().toList().isEmpty()) {
+                user.sendMessage(Text.translatable(TextUtil.PUN),true);
+                return TypedActionResult.consume(holder);
             }
             setHoldingStack(otherStack.copy(),holder);
             otherStack.decrement(otherStack.getCount());
@@ -149,7 +141,7 @@ public class HolderItem extends Item {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -158,6 +150,6 @@ public class HolderItem extends Item {
         } else {
             tooltip.add(TextUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

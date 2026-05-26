@@ -33,10 +33,10 @@
 			"com.zombie_cute.mc.bakingdelight.ModernDelightDataGenerator"
 		],
 		"rei_client": [
-			"com.zombie_cute.mc.bakingdelight.compat.rei.BakingDelightREIClientPlugin"
+			"com.zombie_cute.mc.bakingdelight.compat.rei.ModernDelightREIClientPlugin"
 		],
 		"emi": [
-			"com.zombie_cute.mc.bakingdelight.compat.emi.BakingDelightEMIPlugin"
+			"com.zombie_cute.mc.bakingdelight.compat.emi.ModernDelightEMIPlugin"
 		],
 		"modmenu": [
 			"com.zombie_cute.mc.bakingdelight.compat.modmenu.ModernDelightModMenuApiImpl"
@@ -46,9 +46,9 @@
 		"bakingdelight.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.3",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
+		"fabricloader": ">=0.18.2",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
 		"fabric-api": "*",
 		"geckolib": "*"
 	},
@@ -61,6 +61,6 @@
 		}
 	},
 	"suggests": {
-		"another-mod": ["modmenu", "create", "farmersdelight", "yet_another_config_lib_v3"]
+		"another-mod": ["modmenu", "create", "farmersdelight", "yet_another_config_lib_v3","patchouli"]
 	}
 }

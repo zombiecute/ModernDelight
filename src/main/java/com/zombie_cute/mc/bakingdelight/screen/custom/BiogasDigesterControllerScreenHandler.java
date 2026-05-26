@@ -8,7 +8,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -19,8 +18,8 @@ import net.minecraft.util.math.Vec3d;
 public class BiogasDigesterControllerScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
     public final BiogasDigesterControllerBlockEntity blockEntity;
-    public BiogasDigesterControllerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
+    public BiogasDigesterControllerScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos),
                 new ArrayPropertyDelegate(4));
     }
     public BiogasDigesterControllerScreenHandler(int syncId, PlayerInventory playerInventory,

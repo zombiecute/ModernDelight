@@ -11,7 +11,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class DeepFryerScreen extends HandledScreen<DeepFryerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/deep_fryer_gui.png");
     public DeepFryerScreen(DeepFryerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -76,7 +76,7 @@ public class DeepFryerScreen extends HandledScreen<DeepFryerScreenHandler> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

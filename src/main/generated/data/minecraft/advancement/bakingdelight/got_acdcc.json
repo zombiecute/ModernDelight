@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_silicon_ingot",
+  "criteria": {
+    "acdcc": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:ac_dc_converter"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.acdcc.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:ac_dc_converter"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.acdcc.title"
+    }
+  },
+  "requirements": [
+    [
+      "acdcc"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

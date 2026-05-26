@@ -3,8 +3,8 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.components.custom.FlavorComponent;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
-import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -17,7 +17,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/ice_cream_maker_gui.png");
     public IceCreamMakerScreen(IceCreamMakerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -86,7 +86,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream1.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 93 && mouseY >= y + 65 && mouseX <= x + 101 && mouseY <= y + 73;
-        if (iceCream1.getFlavor() != CreamFlavor.NULL){
+        if (iceCream1.getFlavor() != FlavorComponent.NULL){
             context.drawTexture(TEXTURE,x + 87,y + 17 + fix,21 * iceCream1.getFlavor().getId(),166,21,height);
         }
         if (iceCream1.isSelected()){
@@ -104,7 +104,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream2.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 120 && mouseY >= y + 65 && mouseX <= x + 128 && mouseY <= y + 73;
-        if (iceCream2.getFlavor() != CreamFlavor.NULL){
+        if (iceCream2.getFlavor() != FlavorComponent.NULL){
             context.drawTexture(TEXTURE,x + 114,y + 17 + fix,21 * iceCream2.getFlavor().getId(),166,21,height);
         }
         if (iceCream2.isSelected()){
@@ -122,7 +122,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
         int height = iceCream3.getAmount() * 46 / 1000;
         int fix = 46 - height;
         boolean area = mouseX >= x + 147 && mouseY >= y + 65 && mouseX <= x + 155 && mouseY <= y + 73;
-        if (iceCream3.getFlavor() != CreamFlavor.NULL){
+        if (iceCream3.getFlavor() != FlavorComponent.NULL){
             context.drawTexture(TEXTURE,x + 141,y + 17 + fix,21 * iceCream3.getFlavor().getId(),166,21,height);
         }
         if (iceCream3.isSelected()){
@@ -172,7 +172,7 @@ public class IceCreamMakerScreen extends HandledScreen<IceCreamMakerScreenHandle
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

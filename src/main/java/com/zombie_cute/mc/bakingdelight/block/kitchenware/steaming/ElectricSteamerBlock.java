@@ -1,20 +1,21 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -35,14 +36,19 @@ import java.util.List;
 
 public class ElectricSteamerBlock extends BlockWithEntity {
     public ElectricSteamerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(AbstractBlock.Settings.copy(Blocks.IRON_BARS));
         setDefaultState(this.getStateManager().getDefaultState().with(IS_WORKING,false));
+    }
+    public static final MapCodec<ElectricSteamerBlock> CODEC = createCodec((s) -> new ElectricSteamerBlock());
+    protected MapCodec<? extends ElectricSteamerBlock> getCodec() {
+        return CODEC;
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty IS_WORKING = BooleanProperty.of("is_working");
     private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,16,14);
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(TextUtil.getAltText(false));
@@ -57,7 +63,7 @@ public class ElectricSteamerBlock extends BlockWithEntity {
             tooltip.add(TextUtil.getShiftText(false));
             tooltip.add(TextUtil.getAltText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
 
     @Override
@@ -113,7 +119,8 @@ public class ElectricSteamerBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
@@ -140,7 +147,6 @@ public class ElectricSteamerBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.ELECTRIC_STEAMER_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+        return world.isClient ? null : validateTicker(type, ModBlockEntities.ELECTRIC_STEAMER_BLOCK_ENTITY, ElectricSteamerBlockEntity::tick);
     }
 }

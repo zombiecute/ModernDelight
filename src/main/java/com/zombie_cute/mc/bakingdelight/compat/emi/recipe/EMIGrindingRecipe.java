@@ -17,17 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIGrindingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/grinding.png");
+    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/grinding.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModItems.STONE_MORTAR);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "grinding"), WORKSTATION);
-    private final Identifier id;
+            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "grinding"), WORKSTATION);
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIGrindingRecipe(GrindingRecipe recipe) {
-        this.id = recipe.getId();
-        this.input = List.of(EmiIngredient.of(recipe.getIngredients().get(0)),EmiIngredient.of(Ingredient.ofItems(ModItems.STONE_MORTAR)));
+        this.input = List.of(EmiIngredient.of(recipe.getIngredients().getFirst()),EmiIngredient.of(Ingredient.ofItems(ModItems.STONE_MORTAR)));
         List<EmiStack> stacks = new ArrayList<>();
         for (ItemStack item : recipe.getOutputs()){
             stacks.add(EmiStack.of(item));
@@ -41,7 +39,7 @@ public class EMIGrindingRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return id;
+        return null;
     }
 
     @Override

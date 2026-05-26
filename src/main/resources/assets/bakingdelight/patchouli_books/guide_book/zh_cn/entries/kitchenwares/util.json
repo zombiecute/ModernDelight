@@ -1,0 +1,88 @@
+{
+  "name": "厨具介绍",
+  "icon": "bakingdelight:crowbar",
+  "category": "bakingdelight:kitchenwares",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "bakingdelight:glass_bowl",
+      "title": "玻璃碗",
+      "text": "你可以在玻璃碗放入物品，然后使用搅拌器对其中的物品的搅拌或打发。你也可以用水桶或水瓶往其中装入水，拿着一些物品右键玻璃瓶来实现与水混合的操作。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "bakingdelight:iron_whisk",
+      "title": "搅拌器",
+      "text": "可以快速破坏部分泥土类方块，主要还是用于和玻璃碗互动。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:electric_whisk",
+      "title": "电动搅拌器",
+      "text": "它可以直接和地上的掉落物进行互动，实现物品的批量搅拌或打发。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "bakingdelight:charging_post"
+      },
+      "title": "充电桩",
+      "text": "右键打开GUI，可以缓存1000EP直流电，左侧的两个槽位放电池，右侧放待充电的物品。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:crowbar",
+      "title": "撬棍",
+      "text": "类似于扳手一样的存在，可以旋转本模组的一些机器，潜行右键可以快速破坏各种方块。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:cuisine_table",
+      "title": "料理台",
+      "text": "类似于砧板，往里面放入工具和物品即可开始加工。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:stone_mortar",
+      "title": "石臼",
+      "text": "副手持待加工的物品，主手持石臼，按住右键即可开始碾磨加工。可以通过图书管理员获得精碾附魔（最高3级），从而提高产率。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "bakingdelight:honey_crystallization,bakingdelight:sea_salt,bakingdelight:garlic_puree,bakingdelight:black_pepper_dust,bakingdelight:black_truffle,bakingdelight:white_truffle,bakingdelight:cuttlebone,bakingdelight:glow_cuttlebone",
+      "title": "调味品",
+      "text": "副手持任意食物，主手持调味品，右键即可为该食物调味，不同的调味品将提供不同的效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:freezer",
+      "title": "冰柜",
+      "text": "冰柜有两种启动方式，一种是直接用冰作为“燃料”，一种是为其提供交流电。它可以冷加工一些物品，也可以存储15种不同的物品。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:electric_steamer",
+      "title": "电蒸笼",
+      "text": "与传统蒸笼一样，电蒸笼可以蒸制一些物品，不过你需要为其提供水和交流电。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:ice_cream_maker",
+      "title": "冰淇淋机",
+      "text": "使用潜行加右键打开GUI，为其提供交流电，任意口味的奶油，糖，蛋即可开始制作冰淇淋，最多可以缓存3种不同口味的冰淇淋，你可以自由选择，选好口味后手持冰淇淋脆桶右键即可取出冰淇淋。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:juice_extractor",
+      "title": "榨汁机",
+      "text": "需要交流电才能工作，手持物品右键榨汁机即可往其中放入原料，放入4种原料后再次右键即可启动榨汁机。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe":"bakingdelight:kitchen_utensil_holder",
+      "recipe2":"bakingdelight:wooden_plate",
+      "title": "另类物品展示框"
+    }
+  ]
+}

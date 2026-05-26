@@ -2,23 +2,24 @@ package com.zombie_cute.mc.bakingdelight.block.biogas;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.screen.custom.BiogasDigesterIOScreenHandler;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
+import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -33,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class BiogasDigesterIOBlockEntity extends BlockEntity implements ImplementedInventory, SidedInventory, ExtendedScreenHandlerFactory {
+public class BiogasDigesterIOBlockEntity extends BlockEntity implements ImplementedInventory, SidedInventory, ExtendedScreenHandlerFactory<BlockPos> {
     public BiogasDigesterIOBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BIOGAS_DIGESTER_IO_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -72,10 +73,11 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
+
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, inventory,registryLookup);
         nbt.putInt("biogas_digester_io.progress",progress);
         nbt.putInt("biogas_digester_io.maxProgress", maxProgress);
         nbt.putBoolean("biogas_digester_io.isCrafting", isCrafting);
@@ -84,22 +86,24 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, inventory,registryLookup);
         progress = nbt.getInt("biogas_digester_io.progress");
         maxProgress = nbt.getInt("biogas_digester_io.maxProgress");
         isCrafting = nbt.getBoolean("biogas_digester_io.isCrafting");
         tempGasValue = nbt.getInt("biogas_digester_io.tempGasValue");
         counter = nbt.getInt("biogas_digester_io.counter");
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
+
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 
     @Override
@@ -133,7 +137,7 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
     }
     private boolean isCrafting = false;
     private int tempGasValue = 0;
-    public void tick(World world, BlockPos pos, BiogasDigesterIOBlockEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state, BiogasDigesterIOBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
@@ -142,39 +146,39 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
                 blockEntity.checked = 1;
                 blockEntity.gasValue = entity.getGasValue();
                 blockEntity.maxProgress = entity.getCurrentSize();
-                if (gasValue > Short.MAX_VALUE){
-                    shortGasValue = gasValue/19;
-                    isSplit = 1;
+                if (blockEntity.gasValue > Short.MAX_VALUE){
+                    blockEntity.shortGasValue = blockEntity.gasValue/19;
+                    blockEntity.isSplit = 1;
                 } else {
-                    shortGasValue = gasValue;
-                    isSplit = 0;
+                    blockEntity.shortGasValue = blockEntity.gasValue;
+                    blockEntity.isSplit = 0;
                 }
                 if (!blockEntity.isCrafting){
                     for (int i = 0;i<9;i++){
-                        Item item = this.getStack(i).getItem().asItem();
-                        if (isFood(item)){
-                            FoodComponent component = item.getFoodComponent();
-                            blockEntity.tempGasValue = (int) (Objects.requireNonNull(component).getHunger() * 30 + component.getSaturationModifier() * 10);
-                            removeStack(i,1);
+                        ItemStack item = blockEntity.getStack(i);
+                        if (blockEntity.isFood(item)){
+                            FoodComponent component = item.get(DataComponentTypes.FOOD);
+                            blockEntity.tempGasValue = (int) (Objects.requireNonNull(component).nutrition() * 30 + component.saturation() * 10);
+                            blockEntity.removeStack(i,1);
                             blockEntity.isCrafting = true;
                             break;
                         }
                     }
                 } else {
-                    inCreaseProgress();
+                    blockEntity.inCreaseProgress();
                     if (blockEntity.progress == blockEntity.maxProgress){
-                        entity.addGas(tempGasValue);
-                        resetProgress();
+                        entity.addGas(blockEntity.tempGasValue);
+                        blockEntity.resetProgress();
                         blockEntity.counter += world.random.nextBetween(0,4);
                         if (blockEntity.counter >= 32){
-                            putItem(world);
+                            blockEntity.putItem(world);
                             blockEntity.counter = 0;
                         }
                         blockEntity.tempGasValue = 0;
                         blockEntity.isCrafting = false;
                     }
                 }
-                markDirty();
+                blockEntity.markDirty();
             }
         } else {
             blockEntity.checked = 0;
@@ -182,8 +186,8 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
             blockEntity.maxProgress = 0;
             blockEntity.tempGasValue = 0;
             blockEntity.isCrafting = false;
-            resetProgress();
-            markDirty();
+            blockEntity.resetProgress();
+            blockEntity.markDirty();
         }
     }
 
@@ -224,14 +228,14 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
         progress++;
     }
 
-    public boolean isFood(Item item){
-        return item.isFood();
+    public boolean isFood(ItemStack item){
+        return item.contains(DataComponentTypes.FOOD);
     }
     public static Item getDigestate(){
         try {
             String value = ModConfig.digestate;
             Item digestate;
-            digestate = Registries.ITEM.get(new Identifier(value));
+            digestate = Registries.ITEM.get(Identifier.of(value));
             return digestate;
         } catch (Throwable ignored){
             return Items.BONE_MEAL;

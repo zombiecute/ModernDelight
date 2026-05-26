@@ -1,0 +1,10 @@
+{
+  "type": "bakingdelight:whisking",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "output": { "id": "bakingdelight:cream_bucket"
+  }
+}

@@ -1,17 +1,18 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -33,8 +34,13 @@ import java.util.Objects;
 
 public class GlassCupBlock extends Block implements Waterloggable {
     public GlassCupBlock() {
-        super(FabricBlockSettings.copyOf(ModBlocks.GLASS_BOWL));
+        super(AbstractBlock.Settings.copy(ModBlocks.GLASS_BOWL));
         this.setDefaultState(getStateManager().getDefaultState().with(CUPS, 1).with(WATERLOGGED, false));
+    }
+
+    public static final MapCodec<GlassCupBlock> CODEC = createCodec((s) -> new GlassCupBlock());
+    protected MapCodec<? extends GlassCupBlock> getCodec() {
+        return CODEC;
     }
     public static final IntProperty CUPS;
     public static final BooleanProperty WATERLOGGED;
@@ -44,17 +50,18 @@ public class GlassCupBlock extends Block implements Waterloggable {
     protected static final VoxelShape FOUR_CUPS_SHAPE;
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient()){
             int cups = state.get(CUPS);
             ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(ModBlocks.GLASS_CUP,cups));
         }
-        super.onBreak(world, pos, state, player);
+        return super.onBreak(world, pos, state, player);
     }
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {

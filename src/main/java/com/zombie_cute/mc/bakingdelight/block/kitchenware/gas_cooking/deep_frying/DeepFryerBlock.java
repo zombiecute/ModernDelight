@@ -1,18 +1,19 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -21,7 +22,10 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -38,9 +42,13 @@ public class DeepFryerBlock extends BlockWithEntity {
     public static final BooleanProperty HAS_OIL = BooleanProperty.of("has_oil");
     public static final BooleanProperty RUNNING = BooleanProperty.of("running");
     public DeepFryerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.BRICKS).nonOpaque());
+        super(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque());
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(HAS_OIL, false).with(RUNNING, false));
+    }
+    public static final MapCodec<DeepFryerBlock> CODEC = createCodec((s) -> new DeepFryerBlock());
+    protected MapCodec<? extends DeepFryerBlock> getCodec() {
+        return CODEC;
     }
 
     private static final VoxelShape TYPE_WEST = Block.createCuboidShape(1,1,0,15,11,16);
@@ -126,7 +134,7 @@ public class DeepFryerBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof DeepFryerBlockEntity entity){
             if (MiscUtil.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);
@@ -151,8 +159,9 @@ public class DeepFryerBlock extends BlockWithEntity {
         }
         return ActionResult.SUCCESS;
     }
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -160,12 +169,11 @@ public class DeepFryerBlock extends BlockWithEntity {
         } else {
             tooltip.add(TextUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.DEEP_FRYER_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, state1, blockEntity));
+        return world.isClient ? null : validateTicker(type, ModBlockEntities.DEEP_FRYER_BLOCK_ENTITY, DeepFryerBlockEntity::tick);
     }
 }

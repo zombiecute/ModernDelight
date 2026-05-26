@@ -1,6 +1,5 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlockEntity;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
@@ -9,7 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.sound.SoundEvents;
@@ -47,7 +45,7 @@ public class MiniGame3Screen extends Screen {
     private boolean isSelectedMode = false;
     private final boolean[] selectedLine = {false,false,false};
     private int selectedNum = 0;
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/mini_game_3_gui.png");
     @Override
     protected void init() {
@@ -60,18 +58,13 @@ public class MiniGame3Screen extends Screen {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1f,1f,1f,1f);
-        RenderSystem.setShaderTexture(0,TEXTURE);
+        super.render(context, mouseX, mouseY, delta);
+
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
         renderDoneButton(context,mouseX,mouseY);
         renderBlocks(context,mouseX,mouseY);
         renderSelectedNum(context,mouseX,mouseY);
 
-
-
-        RenderSystem.disableDepthTest();
-        super.render(context, mouseX, mouseY, delta);
         context.getMatrices().push();
         context.getMatrices().translate(x, y, 0.0F);
     }

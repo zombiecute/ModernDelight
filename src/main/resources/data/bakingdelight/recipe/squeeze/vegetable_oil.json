@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "tag": "bakingdelight:oil_plants"
+    }
+  ],
+  "output": { "id": "bakingdelight:oil_impurity"
+  },
+  "fluid": "bakingdelight:still_vegetable_oil",
+  "amount": 9000
+}

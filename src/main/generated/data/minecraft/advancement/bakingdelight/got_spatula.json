@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:bakingdelight/got_gas_cooking_stove",
+  "criteria": {
+    "spatula": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:spatula"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.spatula.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:spatula"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.spatula.title"
+    }
+  },
+  "requirements": [
+    [
+      "spatula"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

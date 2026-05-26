@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "kuh": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:kitchen_utensil_holder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.kuh.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:kitchen_utensil_holder"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.kuh.title"
+    }
+  },
+  "requirements": [
+    [
+      "kuh"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

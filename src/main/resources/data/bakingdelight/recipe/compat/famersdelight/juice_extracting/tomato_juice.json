@@ -1,0 +1,24 @@
+{
+  "type": "bakingdelight:juice_extracting",
+  "progress": 150,
+  "container": {
+    "id":"minecraft:glass_bottle"
+  },
+  "ingredients": [
+    {
+      "tag": "c:foods/tomato"
+    },
+    {
+      "tag": "c:foods/tomato"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": { "id": "bakingdelight:tomato_juice",
+    "count": 3
+  }
+}

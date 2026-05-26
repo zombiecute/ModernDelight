@@ -8,7 +8,7 @@ import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTu
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTurbineControllerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.AbstractBatteryBlock;
 import com.zombie_cute.mc.bakingdelight.screen.custom.ACDCConverterScreenHandler;
-import com.zombie_cute.mc.bakingdelight.util.*;
+import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACGenerateAble;
@@ -22,7 +22,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, PowerStorageAble, ACGenerateAble, ACConsumer {
+public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, PowerStorageAble, ACGenerateAble, ACConsumer {
     public ACDCConverterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.AC_DC_CONVERTER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -110,11 +110,11 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
             workSpeed = 0;
         } else workSpeed -= value;
     }
-    public void tick(World world, ACDCConverterBlockEntity blockEntity, BlockState state) {
+    public static void tick(World world,BlockPos pos, BlockState state, ACDCConverterBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
-        blockEntity.getPower().setPowerValue(energyStorage.amount / 10);
+        blockEntity.getPower().setPowerValue(blockEntity.energyStorage.amount / 10);
         if (world.getTime() % 20L == 0L){
             ItemStack itemStack = blockEntity.getStack(0);
             if (blockEntity.getIsACMode()){
@@ -164,7 +164,7 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
                     }
                 }
                 if (inputBlock != null && blockEntity.workSpeed != 0){
-                    blockEntity.addEnergy((long)((double)inputBlock.getEfficiency() * (1.0 - (double) blockEntity.workSpeed / ((double) getMaxWorkSpeed() * 3.0))) * 10);
+                    blockEntity.addEnergy((long)((double)inputBlock.getEfficiency() * (1.0 - (double) blockEntity.workSpeed / ((double) blockEntity.getMaxWorkSpeed() * 3.0))) * 10);
                 }
             }
         }
@@ -189,32 +189,35 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
         }
         return false;
     }
+
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, INV);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, INV,registryLookup);
         nbt.putLong("acdcc.power", this.getPowerValue());
         nbt.putInt("acdcc.isOpen",this.isACMode);
         nbt.putInt("acdcc.workSpeed",this.workSpeed);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, INV);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, INV,registryLookup);
         this.setPower(nbt.getLong("acdcc.power"));
         this.workSpeed = nbt.getInt("acdcc.workSpeed");
         this.isACMode = nbt.getInt("acdcc.isOpen");
         this.energyStorage.amount = nbt.getLong("acdcc.power") * 10;
         markDirty();
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
+
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 
     @Override

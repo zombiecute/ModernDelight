@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:bakingdelight/got_oven",
+  "criteria": {
+    "cheese": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:cheese"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.get_cheese.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:cheese"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_cheese.title"
+    }
+  },
+  "requirements": [
+    [
+      "cheese"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

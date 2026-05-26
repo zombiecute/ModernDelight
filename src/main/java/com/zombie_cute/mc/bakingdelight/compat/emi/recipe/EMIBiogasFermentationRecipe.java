@@ -10,6 +10,7 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -21,10 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIBiogasFermentationRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
+    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "biogas_fermentation"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "biogas_fermentation"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
@@ -46,7 +47,7 @@ public class EMIBiogasFermentationRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return new Identifier(ModernDelightMain.MOD_ID,"biogas_fermentation");
+        return null;
     }
 
     @Override
@@ -76,7 +77,7 @@ public class EMIBiogasFermentationRecipe implements EmiRecipe {
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.BIOGAS_DIGESTER_IO)), 67, 34);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.BIOGAS_DIGESTER_CONTROLLER)), 67, 52);
         ItemStack stack = new ItemStack(Items.APPLE);
-        stack.setCustomName(Text.translatable(BiogasFermentationCategory.FOOD));
+        stack.set(DataComponentTypes.CUSTOM_NAME,Text.translatable(BiogasFermentationCategory.FOOD));
         widgets.addSlot(EmiIngredient.of(Ingredient.ofStacks(stack)), 49, 13);
 
         widgets.addSlot(output.get(0), 31, 34).recipeContext(this);

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_fried_noodles",
+  "criteria": {
+    "fish_and_chips": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:fish_and_chips"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.fish_and_chips.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:fish_and_chips"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.fish_and_chips.title"
+    }
+  },
+  "requirements": [
+    [
+      "fish_and_chips"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

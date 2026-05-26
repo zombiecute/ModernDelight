@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_egg_bowl": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:egg_bowl"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:cherry_egg"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_egg_bowl"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:cherry_egg"
+    ]
+  }
+}

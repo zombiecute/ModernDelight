@@ -1,0 +1,14 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:shears"
+    }
+  ],
+  "output": { "id": "minecraft:paper",
+    "count": 3
+  }
+}

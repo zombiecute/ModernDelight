@@ -1,0 +1,14 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_mall"
+    },
+    {
+      "tag": "bakingdelight:crowbars"
+    }
+  ],
+  "output": { "id": "minecraft:amethyst_shard",
+    "count": 18
+  }
+}

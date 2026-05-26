@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cream"
+    },
+    {
+      "tag": "c:foods/pumpkins"
+    },
+    {
+      "tag": "c:foods/pumpkins"
+    }
+  ],
+  "result": { "id": "bakingdelight:pumpkin_cream"
+  }
+}

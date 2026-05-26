@@ -12,7 +12,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/gas_canister_gui.png");
     public GasCanisterScreen(GasCanisterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -104,7 +104,7 @@ public class GasCanisterScreen extends HandledScreen<GasCanisterScreenHandler> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

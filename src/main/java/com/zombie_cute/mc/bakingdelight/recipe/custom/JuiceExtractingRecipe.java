@@ -1,41 +1,39 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
+import com.zombie_cute.mc.bakingdelight.recipe.input.MultiStackRecipeInput;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class JuiceExtractingRecipe implements Recipe<SimpleInventory> {
-    private final Identifier id;
+import java.util.List;
+
+public class JuiceExtractingRecipe implements Recipe<MultiStackRecipeInput> {
     final int progress;
     final ItemStack output;
-    final DefaultedList<Ingredient> input;
-    final Item container;
-    public JuiceExtractingRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack itemStack, int progress, Item container){
-        this.id = id;
+    final List<Ingredient> input;
+    final ItemStack container;
+    public JuiceExtractingRecipe(List<Ingredient> ingredients, ItemStack itemStack, int progress, ItemStack container){
         this.output = itemStack;
         this.input = ingredients;
         this.progress = progress;
         this.container = container;
     }
+
     @Override
-    public boolean matches(SimpleInventory inventory, World world) {
+    public boolean matches(MultiStackRecipeInput inventory, World world) {
         RecipeMatcher recipeMatcher = new RecipeMatcher();
         int i = 0;
         for(int j = 0; j < inventory.size(); ++j) {
-            ItemStack itemStack = inventory.getStack(j);
+            ItemStack itemStack = inventory.getStackInSlot(j);
             if (!itemStack.isEmpty()) {
                 ++i;
                 recipeMatcher.addInput(itemStack, 1);
@@ -43,11 +41,12 @@ public class JuiceExtractingRecipe implements Recipe<SimpleInventory> {
         }
         return i == this.input.size() && recipeMatcher.match(this, null);
     }
+
     @Override
-    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(MultiStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return output;
     }
-
+    
     @Override
     public ItemStack createIcon() {
         return ModBlocks.JUICE_EXTRACTOR.asItem().getDefaultStack();
@@ -61,12 +60,12 @@ public class JuiceExtractingRecipe implements Recipe<SimpleInventory> {
         return progress;
     }
 
-    public Item getContainer() {
+    public ItemStack getContainer() {
         return container;
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
         return output;
     }
     @Override
@@ -75,11 +74,6 @@ public class JuiceExtractingRecipe implements Recipe<SimpleInventory> {
         list.addAll(input);
         return list;
     }
-    @Override
-    public Identifier getId() {
-        return id;
-    }
-
     @Override
     public RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
@@ -98,50 +92,49 @@ public class JuiceExtractingRecipe implements Recipe<SimpleInventory> {
 
         public static final JuiceExtractingRecipe.Serializer INSTANCE = new JuiceExtractingRecipe.Serializer();
         public static final String ID = "juice_extracting";
+        public static final MapCodec<JuiceExtractingRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
+                                .flatXmap(ingredients ->{
+                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+                                    if (ingredients1.length == 0){
+                                        return DataResult.error(()->"No ingredients");
+                                    }
+                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
+                                },DataResult::success).forGetter(JuiceExtractingRecipe::getIngredients)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
+                        , Codec.INT.fieldOf("progress").forGetter(recipe -> recipe.progress)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("container")).forGetter(recipe -> recipe.container)
+                ).apply(instance, JuiceExtractingRecipe::new)
+        );
+        public static final PacketCodec<RegistryByteBuf, JuiceExtractingRecipe> PACKET_CODEC = PacketCodec.ofStatic(JuiceExtractingRecipe.Serializer::write, JuiceExtractingRecipe.Serializer::read);
 
-        @Override
-        public JuiceExtractingRecipe read(Identifier id, JsonObject json) {
-            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json,"output"));
-            JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(4,Ingredient.EMPTY);
-            int progress = JsonHelper.getInt(json,"progress",200);
-            for(int i=0;i<inputs.size();i++){
-                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
-            }
-            String tempContainer = JsonHelper.getString(json,"container");
-            Item container = getItemFromString(tempContainer);
-            return new JuiceExtractingRecipe(id, inputs, output, progress, container);
-        }
-
-        public static Item getItemFromString(String string) {
-            Item item = Items.GLASS_BOTTLE;
-            try {
-                item = Registries.ITEM.get(new Identifier(string));
-            } catch (Exception ignored){
-                ModernDelightMain.LOGGER.error("Unknown item '{}'", string);
-            }
-            return item;
-        }
-
-        @Override
-        public JuiceExtractingRecipe read(Identifier id, PacketByteBuf buf) {
+        private static JuiceExtractingRecipe read(RegistryByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
-            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
-            ItemStack output = buf.readItemStack();
-            int progress = (int)buf.readLong();
-            Item container = getItemFromString(buf.readString());
-            return new JuiceExtractingRecipe(id, inputs, output, progress, container);
+            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
+            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
+            int progress = buf.readInt();
+            ItemStack container = ItemStack.PACKET_CODEC.decode(buf);
+            return new JuiceExtractingRecipe(inputs,output,progress,container);
+        }
+
+        private static void write(RegistryByteBuf buf, JuiceExtractingRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for (Ingredient ingredient : recipe.getIngredients()){
+                Ingredient.PACKET_CODEC.encode(buf,ingredient);
+            }
+            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
+            buf.writeInt(recipe.getProgress());
+            ItemStack.PACKET_CODEC.encode(buf,recipe.getContainer());
         }
 
         @Override
-        public void write(PacketByteBuf buf, JuiceExtractingRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for(Ingredient ingredient : recipe.getIngredients()){
-                ingredient.write(buf);
-            }
-            buf.writeItemStack(recipe.output);
-            buf.writeLong(recipe.progress);
-            buf.writeString(Registries.ITEM.getId(recipe.container).toString());
+        public MapCodec<JuiceExtractingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public PacketCodec<RegistryByteBuf, JuiceExtractingRecipe> packetCodec() {
+            return PACKET_CODEC;
         }
     }
 }

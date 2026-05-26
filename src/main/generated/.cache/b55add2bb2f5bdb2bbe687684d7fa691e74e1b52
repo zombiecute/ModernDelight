@@ -1,17 +1,17 @@
-// 1.20.1	2026-05-08T15:56:15.9273346	Modern Delight/Tags for minecraft:block
-a580a5d94a5826846850bd1b89633d76f4f26f2d data\bakingdelight\tags\blocks\danger_blocks.json
-f06a4f45860ca58b31544e8393810de84bd920a8 data\create\tags\blocks\wrench_pickup.json
-0ee164988a827f20d114e47ea240eacef8275e8d data\minecraft\tags\blocks\bee_growables.json
-578636f9e4a417bbefc03135e1dd5e46ad7c7ef9 data\minecraft\tags\blocks\needs_diamond_tool.json
-abe3a954593ddd184f544b1f8d0f64fe209577d7 data\bakingdelight\tags\blocks\can_pick.json
-ba5e5ba458d463e787e35c9ea22fe5e9e43ede78 data\bakingdelight\tags\blocks\whisk_mineable.json
-6b3d762519297d15e4752a8119f451201f2df8db data\minecraft\tags\blocks\crops.json
-1b7e2a9a851b538717d86b38a36a8ae63ec0503d data\minecraft\tags\blocks\small_flowers.json
-6796a9e704de36790f6ebf71586b4500696ab668 data\minecraft\tags\blocks\needs_iron_tool.json
-2720a46ca3c0c45c6d4d2ed6f87d66d9b8b6010d data\create\tags\blocks\passive_boiler_heaters.json
-b85608692a7ba9c78539ecbb806d5c7f593cf801 data\minecraft\tags\blocks\mineable\axe.json
-0c727ac95487011cd1872e758986f8c4241ab5eb data\bakingdelight\tags\blocks\crowbar_destroyable.json
-9768e71e2a8b14e4cab2d03a8d5278557daa9639 data\minecraft\tags\blocks\maintains_farmland.json
-2720a46ca3c0c45c6d4d2ed6f87d66d9b8b6010d data\farmersdelight\tags\blocks\heat_sources.json
-5adf1bd4a24e7454f64e19a6fde6228d2e7f1113 data\minecraft\tags\blocks\mineable\pickaxe.json
-90268148e03fe63baa2ab3a73ae29af2527faa4f data\minecraft\tags\blocks\needs_stone_tool.json
+// 1.21.1	2026-05-26T13:02:25.0044684	Modern Delight/Tags for minecraft:block
+73020f0b3d1a2d1f38a649058079fbde184c1c6a data\minecraft\tags\block\mineable\axe.json
+4928f60af2ed32d6a1f73f487067b9e5198c4c7a data\create\tags\block\passive_boiler_heaters.json
+6830d36c19fccc70e7eceb9df67a1f28c2d24cc8 data\minecraft\tags\block\needs_iron_tool.json
+88bd37e8c401a8bf29a552bfa8773530229368da data\bakingdelight\tags\block\danger_blocks.json
+5751113bcdd664fd43c94fd4daf9dfa0ae1541ee data\bakingdelight\tags\block\can_pick.json
+bd2d8b0fdbb08f653f0ed648ee7c9d6e8b7604c7 data\minecraft\tags\block\bee_growables.json
+4928f60af2ed32d6a1f73f487067b9e5198c4c7a data\farmersdelight\tags\block\heat_sources.json
+4ff31da987ff582b212d39c66f59e34e11a6a563 data\create\tags\block\wrench_pickup.json
+3887fb95e55451b74d23a869472bcb5452c18c65 data\minecraft\tags\block\maintains_farmland.json
+10bc92a0efbe8b0ec2e780708cd87f9cd76d2289 data\minecraft\tags\block\mineable\pickaxe.json
+1010a922555f4da29ce2dadd900f38ee77d11a3d data\minecraft\tags\block\small_flowers.json
+d05d989ea8ff9d2c4cb3e21c374e882be2b349d1 data\minecraft\tags\block\crops.json
+37ddfa49989e4ddd1050db81382c0bbde478843c data\bakingdelight\tags\block\whisk_mineable.json
+d248fb377f1cf316dae50f65e7bb9aef97ea729b data\bakingdelight\tags\block\crowbar_destroyable.json
+479eb484d1f202470a40057148be2fe820daed98 data\minecraft\tags\block\needs_diamond_tool.json
+de35518da59ca920e058dcf4b43571ff2760ea4d data\minecraft\tags\block\needs_stone_tool.json

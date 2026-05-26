@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cream": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:cream"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:cherry_cream"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cream"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:cherry_cream"
+    ]
+  }
+}

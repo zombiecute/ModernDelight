@@ -21,7 +21,7 @@ import java.util.List;
 
 public class BakingTrayCategory implements DisplayCategory<BakingTrayDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/baking_tray.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/baking_tray.png");
     public static final CategoryIdentifier<BakingTrayDisplay> STIR_FRYING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "baking_tray");
     public static final String BAKING_TRAY_NAME = "display_name.bakingdelight.baking_tray_name";

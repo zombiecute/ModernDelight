@@ -1,0 +1,10 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "tag": "c:foods/pasta"
+    }
+  ],
+  "output": { "id": "bakingdelight:fired_noodles"
+  }
+}

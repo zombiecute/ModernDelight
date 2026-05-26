@@ -11,7 +11,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigesterControllerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/biogas_digester_controller_gui.png");
     public static final String UNAVAILABLE = "tooltips.bakingdelight.biogas_digester_controller.unavailable";
     public static final String SIZE = "tooltips.bakingdelight.biogas_digester_controller.size";
@@ -78,7 +78,7 @@ public class BiogasDigesterControllerScreen extends HandledScreen<BiogasDigester
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

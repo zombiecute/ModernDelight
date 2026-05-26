@@ -1,17 +1,19 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.deep_frying;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -39,8 +41,12 @@ import java.util.List;
 public class DeepFryBasketBlock extends BlockWithEntity {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public DeepFryBasketBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.DIRT)
+        super(AbstractBlock.Settings.copy(Blocks.DIRT)
                 .nonOpaque().breakInstantly().sounds(BlockSoundGroup.LANTERN));
+    }
+    public static final MapCodec<DeepFryBasketBlock> CODEC = createCodec((s) -> new DeepFryBasketBlock());
+    protected MapCodec<? extends DeepFryBasketBlock> getCodec() {
+        return CODEC;
     }
     private static final VoxelShape TYPE_WEST = Block.createCuboidShape(1,0,1,16,8,15);
     private static final VoxelShape TYPE_EAST = Block.createCuboidShape(0,0,1,15,8,15);
@@ -83,12 +89,13 @@ public class DeepFryBasketBlock extends BlockWithEntity {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
-        if (nbtCompound != null) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+        NbtComponent nbt = stack.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,null);
+        if (nbt != null) {
+            NbtCompound nbtCompound = nbt.copyNbt();
             if (nbtCompound.contains("Items", 9)) {
                 DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(4, ItemStack.EMPTY);
-                Inventories.readNbt(nbtCompound, defaultedList);
+                Inventories.readNbt(nbtCompound, defaultedList, context.getRegistryLookup());
                 for (ItemStack itemStack : defaultedList) {
                     if (!itemStack.isEmpty()) {
                         MutableText mutableText = itemStack.getName().copy();
@@ -98,21 +105,21 @@ public class DeepFryBasketBlock extends BlockWithEntity {
                 }
             }
         }
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient()){
             if (world.getBlockEntity(pos) instanceof DeepFryBasketBlockEntity blockEntity){
                 ItemStack itemStack = new ItemStack(ModBlocks.DEEP_FRY_BASKET_ITEM);
-                blockEntity.setStackNbt(itemStack);
+                blockEntity.setStackNbt(itemStack,world.getRegistryManager());
                 ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
             }
         }
-        super.onBreak(world, pos, state, player);
+        return super.onBreak(world, pos, state, player);
     }
 
     @Override
@@ -129,7 +136,8 @@ public class DeepFryBasketBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         if (world.isClient){
             return ActionResult.SUCCESS;
         }

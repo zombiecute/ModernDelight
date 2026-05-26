@@ -15,20 +15,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class EMIWoodenBasinRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/wooden_basin.png");
+    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/wooden_basin.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.WOODEN_BASIN);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "oil_extraction"), WORKSTATION);
-
+            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "oil_extraction"), WORKSTATION);
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
-    private final Identifier id;
     public EMIWoodenBasinRecipe(SqueezeRecipe recipe) {
-        this.input = List.of(EmiIngredient.of(recipe.getIngredients().get(0)));
+        this.input = List.of(EmiIngredient.of(recipe.getIngredients().getFirst()));
         this.output = List.of(
-                EmiStack.of(recipe.getOutput(null)),
+                EmiStack.of(recipe.getResult(null)),
                 EmiStack.of(recipe.getOutputFluid().getFluidVariant().getFluid(),recipe.getOutputFluid().getAmount()));
-        this.id = recipe.getId();
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -37,7 +34,7 @@ public class EMIWoodenBasinRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return id;
+        return null;
     }
 
     @Override

@@ -1,34 +1,37 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class WhiskingRecipe implements Recipe<SimpleInventory> {
-    private final Identifier id;
+import java.util.List;
+
+public class WhiskingRecipe implements Recipe<SingleStackRecipeInput> {
     private final ItemStack output;
-    private final DefaultedList<Ingredient> recipeItems;
-    public WhiskingRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack itemStack){
-        this.id = id;
+    private final List<Ingredient> recipeItems;
+    public WhiskingRecipe(List<Ingredient> ingredients, ItemStack itemStack){
         this.output = itemStack;
         this.recipeItems = ingredients;
     }
 
     @Override
-    public boolean matches(SimpleInventory inventory, World world) {
+    public boolean matches(SingleStackRecipeInput inventory, World world) {
         if (world.isClient){
             return false;
         }
-        return recipeItems.get(0).test(inventory.getStack(0));
+        return recipeItems.getFirst().test(inventory.getStackInSlot(0));
     }
 
     @Override
@@ -37,7 +40,7 @@ public class WhiskingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return output;
     }
 
@@ -47,7 +50,7 @@ public class WhiskingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
         return output;
     }
 
@@ -56,11 +59,6 @@ public class WhiskingRecipe implements Recipe<SimpleInventory> {
         DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());
         list.addAll(recipeItems);
         return list;
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -82,39 +80,43 @@ public class WhiskingRecipe implements Recipe<SimpleInventory> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "whisking";
 
-        @Override
-        public WhiskingRecipe read(Identifier id, JsonObject json) {
-            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json,"output"));
+        public static final MapCodec<WhiskingRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
+                                .flatXmap(ingredients ->{
+                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+                                    if (ingredients1.length == 0){
+                                        return DataResult.error(()->"No ingredients");
+                                    }
+                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
+                                },DataResult::success).forGetter(WhiskingRecipe::getIngredients)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
+                ).apply(instance, WhiskingRecipe::new)
+        );
+        public static final PacketCodec<RegistryByteBuf, WhiskingRecipe> PACKET_CODEC = PacketCodec.ofStatic(WhiskingRecipe.Serializer::write, WhiskingRecipe.Serializer::read);
 
-            JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1,Ingredient.EMPTY);
-
-            for(int i=0;i<inputs.size();i++){
-                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new WhiskingRecipe(id, inputs, output);
-        }
-
-        @Override
-        public WhiskingRecipe read(Identifier id, PacketByteBuf buf) {
+        private static WhiskingRecipe read(RegistryByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
+            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
+            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
+            return new WhiskingRecipe(inputs,output);
+        }
 
-            for(int i =0;i<inputs.size();i++){
-                inputs.set(i,Ingredient.fromPacket(buf));
+        private static void write(RegistryByteBuf buf, WhiskingRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for (Ingredient ingredient : recipe.getIngredients()){
+                Ingredient.PACKET_CODEC.encode(buf,ingredient);
             }
-
-            ItemStack output = buf.readItemStack();
-            return new WhiskingRecipe(id, inputs, output);
+            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
         }
 
         @Override
-        public void write(PacketByteBuf buf, WhiskingRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for(Ingredient ingredient : recipe.getIngredients()){
-                ingredient.write(buf);
-            }
-            buf.writeItemStack(recipe.output);
+        public MapCodec<WhiskingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public PacketCodec<RegistryByteBuf, WhiskingRecipe> packetCodec() {
+            return PACKET_CODEC;
         }
     }
 }

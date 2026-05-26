@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar_cane"
+    }
+  ],
+  "output": { "id": "minecraft:paper"
+  },
+  "fluid": "bakingdelight:still_sweetened_water",
+  "amount": 9000
+}

@@ -18,18 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIFreezingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/freezer.png");
+    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/freezer.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.FREEZER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "freezing"), WORKSTATION);
-
-    private final Identifier id;
+            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "freezing"), WORKSTATION);
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
     private final List<EmiIngredient> coolItems = new ArrayList<>();
 
     public EMIFreezingRecipe(FreezingRecipe recipe) {
-        this.id = recipe.getId();
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
@@ -39,7 +36,7 @@ public class EMIFreezingRecipe implements EmiRecipe {
             coolItems.add(EmiIngredient.of(Ingredient.ofItems(item)));
         }
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -48,7 +45,7 @@ public class EMIFreezingRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return id;
+        return null;
     }
 
     @Override

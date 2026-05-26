@@ -6,22 +6,23 @@ import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeGenerator extends FabricRecipeProvider {
-    public ModRecipeGenerator(FabricDataOutput output) {
-        super(output);
+    public ModRecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
-    public void generate(Consumer<RecipeJsonProvider> exporter) {
+    public void generate(RecipeExporter exporter) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModBlocks.FISH_AND_CHIPS_ITEM, 1)
                 .input(ModBlocks.WOODEN_PLATE)
                 .input(ModItems.FRIED_COD_NUGGET)
@@ -195,9 +196,9 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         FabricRecipeProvider.conditionsFromItem(ModItems.VEGETABLE_OIL_BUCKET))
                 .offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.EMPTY_CAKE, 4)
-                .input(TagKeys.C_DOUGH)
-                .input(TagKeys.C_DOUGH)
-                .input(TagKeys.C_DOUGH)
+                .input(TagKeys.DOUGHS)
+                .input(TagKeys.DOUGHS)
+                .input(TagKeys.DOUGHS)
                 .input(Items.MILK_BUCKET)
                 .criterion(FabricRecipeProvider.hasItem(Items.MILK_BUCKET),
                         FabricRecipeProvider.conditionsFromItem(Items.MILK_BUCKET))
@@ -275,7 +276,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.FRIED_MILK_WIP,3)
                 .input(Items.MILK_BUCKET)
                 .input(Items.SUGAR)
-                .input(TagKeys.C_FLOUR)
+                .input(TagKeys.FLOURS)
                 .input(Items.EGG)
                 .criterion(FabricRecipeProvider.hasItem(ModItems.EMPTY_CAKE),
                         FabricRecipeProvider.conditionsFromItem(ModItems.EMPTY_CAKE))
@@ -299,7 +300,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(ModItems.MASHED_POTATO),
                         FabricRecipeProvider.conditionsFromItem(ModItems.MASHED_POTATO))
                 .offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.IRON_WHISK)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.WHISK)
                 .pattern("I")
                 .pattern("N")
                 .pattern("S")
@@ -678,7 +679,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .pattern("  W")
                 .input('I', Items.IRON_INGOT)
                 .input('R', ModItems.REDSTONE_COMPONENT)
-                .input('W', ModItems.IRON_WHISK)
+                .input('W', ModItems.WHISK)
                 .criterion(FabricRecipeProvider.hasItem(ModItems.REDSTONE_COMPONENT),
                         FabricRecipeProvider.conditionsFromItem(ModItems.REDSTONE_COMPONENT))
                 .offerTo(exporter);

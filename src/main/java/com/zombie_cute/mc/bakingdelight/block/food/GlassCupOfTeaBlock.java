@@ -1,12 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.block.food;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.block_util.Drinkable;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -29,15 +26,20 @@ import java.util.List;
 
 public class GlassCupOfTeaBlock extends Block implements Drinkable {
     public GlassCupOfTeaBlock(int hunger, float saturationModifier, StatusEffectInstance... effects) {
-        super(FabricBlockSettings.copyOf(Blocks.REPEATER).sounds(BlockSoundGroup.GLASS));
+        super(AbstractBlock.Settings.copy(Blocks.REPEATER).sounds(BlockSoundGroup.GLASS));
         this.hunger = hunger;
         this.saturationModifier = saturationModifier;
         this.effects = Arrays.asList(effects.clone());
     }
     public GlassCupOfTeaBlock(int hunger, float saturationModifier) {
-        super(FabricBlockSettings.copyOf(Blocks.REPEATER).sounds(BlockSoundGroup.GLASS));
+        super(AbstractBlock.Settings.copy(Blocks.REPEATER).sounds(BlockSoundGroup.GLASS));
         this.hunger = hunger;
         this.saturationModifier = saturationModifier;
+    }
+
+    public static final MapCodec<GlassCupOfTeaBlock> CODEC = createCodec((s)->new GlassCupOfTeaBlock(5,0.3f));
+    protected MapCodec<? extends GlassCupOfTeaBlock> getCodec() {
+        return CODEC;
     }
     protected static final VoxelShape SHAPED = Block.createCuboidShape(5.0, 0.0, 5.0, 11, 10, 11);;
     public List<StatusEffectInstance> effects = null;
@@ -63,7 +65,7 @@ public class GlassCupOfTeaBlock extends Block implements Drinkable {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient()){
             if (player.isSneaking()){
                 if (player.getMainHandStack().isEmpty()){

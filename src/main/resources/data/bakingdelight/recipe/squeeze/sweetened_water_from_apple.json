@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:apple"
+    }
+  ],
+  "output": { "id": "bakingdelight:apple_petal"
+  },
+  "fluid": "bakingdelight:still_sweetened_water",
+  "amount": 3375
+}

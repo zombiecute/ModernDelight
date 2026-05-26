@@ -1,0 +1,10 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "bakingdelight:raw_chicken_fillet"
+    }
+  ],
+  "output": { "id": "bakingdelight:chicken_fillet"
+  }
+}
