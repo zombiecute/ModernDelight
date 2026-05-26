@@ -1,0 +1,27 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "count": 1,
+      "item": "bakingdelight:potato_starch"
+    },
+    {
+      "chance": 0.5,
+      "item": "bakingdelight:potato_starch"
+    }
+  ]
+}

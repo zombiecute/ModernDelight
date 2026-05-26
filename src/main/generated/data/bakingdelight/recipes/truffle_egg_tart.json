@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:egg_tart"
+    },
+    {
+      "item": "bakingdelight:black_truffle"
+    }
+  ],
+  "result": {
+    "item": "bakingdelight:truffle_egg_tart"
+  }
+}

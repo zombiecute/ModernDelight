@@ -6,20 +6,20 @@ import software.bernie.geckolib.model.DefaultedBlockGeoModel;
 
 public class FanBladeBlockEntityModel extends DefaultedBlockGeoModel<FanBladeBlockEntity> {
     public FanBladeBlockEntityModel() {
-        super(Identifier.of(ModernDelightMain.MOD_ID,"fan_blade"));
+        super(new Identifier(ModernDelightMain.MOD_ID,"fan_blade"));
     }
     @Override
     public Identifier getModelResource(FanBladeBlockEntity animatable) {
-        return Identifier.of(ModernDelightMain.MOD_ID,"geo/fan_blade.geo.json");
+        return new Identifier(ModernDelightMain.MOD_ID,"geo/fan_blade.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(FanBladeBlockEntity animatable) {
-        return Identifier.of(ModernDelightMain.MOD_ID, "textures/block/fan_blade.png");
+        return new Identifier(ModernDelightMain.MOD_ID, "textures/block/fan_blade.png");
     }
 
     @Override
     public Identifier getAnimationResource(FanBladeBlockEntity animatable) {
-        return Identifier.of(ModernDelightMain.MOD_ID, "animations/fan_blade.animation.json");
+        return new Identifier(ModernDelightMain.MOD_ID, "animations/fan_blade.animation.json");
     }
 }

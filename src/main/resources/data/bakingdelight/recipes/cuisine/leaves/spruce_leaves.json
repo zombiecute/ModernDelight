@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_sapling"
+    },
+    {
+      "tag": "c:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:spruce_leaves",
+    "count": 1
+  }
+}

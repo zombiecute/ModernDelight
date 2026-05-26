@@ -1,7 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.freezer;
 
 import com.google.common.collect.ImmutableList;
-import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.FreezingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -10,16 +9,14 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 
 import java.util.*;
 
 public class FreezerFreezingDisplay extends BasicDisplay {
     public FreezerFreezingDisplay(FreezingRecipe recipe){
         super(EntryIngredients.ofIngredients(recipe.getIngredients()),
-                Collections.singletonList(EntryIngredients.of(recipe.getResult(null))),
-                Optional.of(Identifier.of(ModernDelightMain.MOD_ID,recipe.getResult(null).getTranslationKey()+"."+recipe.hashCode())));
-
+                Collections.singletonList(EntryIngredients.of(recipe.getOutput(null))),
+                Optional.ofNullable(recipe.getId()));
     }
     public static Collection<ItemStack> getCoolItems(){
         Collection<ItemStack> itemStacks = new ArrayList<>();

@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:raw_donut"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "bakingdelight:raw_donut"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:donut",
+    "count": 2
+  }
+}

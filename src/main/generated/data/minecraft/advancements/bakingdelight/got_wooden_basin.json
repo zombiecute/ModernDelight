@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_gas_cooking_stove",
+  "criteria": {
+    "wooden_basin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:wooden_basin"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.wooden_basin.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:wooden_basin"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.wooden_basin.title"
+    }
+  },
+  "requirements": [
+    [
+      "wooden_basin"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

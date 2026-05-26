@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cream"
+    },
+    {
+      "item": "bakingdelight:apple_petal"
+    },
+    {
+      "item": "bakingdelight:apple_petal"
+    }
+  ],
+  "result": {
+    "item": "bakingdelight:apple_cream"
+  }
+}

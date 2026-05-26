@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "create:dough"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:fried_dough_stick",
+    "count": 3
+  }
+}

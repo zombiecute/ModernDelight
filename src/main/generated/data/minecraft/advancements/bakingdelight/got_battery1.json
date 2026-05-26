@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_acdcc",
+  "criteria": {
+    "battery1": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:simple_battery"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.battery1.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:simple_battery"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.battery1.title"
+    }
+  },
+  "requirements": [
+    [
+      "battery1"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

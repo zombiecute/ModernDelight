@@ -11,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class FaradayGeneratorScreen extends HandledScreen<FaradayGeneratorScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/faraday_generator_gui.png");
 
     public FaradayGeneratorScreen(FaradayGeneratorScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -43,7 +43,7 @@ public class FaradayGeneratorScreen extends HandledScreen<FaradayGeneratorScreen
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context,mouseX,mouseY,delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

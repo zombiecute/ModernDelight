@@ -1,0 +1,51 @@
+{
+  "parent": "minecraft:bakingdelight/got_amethyst",
+  "criteria": {
+    "cuttlebone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:cuttlebone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "glow_cuttlebone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:glow_cuttlebone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.get_cuttlebone_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:cuttlebone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_cuttlebone_title"
+    }
+  },
+  "requirements": [
+    [
+      "cuttlebone",
+      "glow_cuttlebone"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

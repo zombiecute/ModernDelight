@@ -112,8 +112,8 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         // Crowbar Destroyable
         getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addTag(BlockTags.PICKAXE_MINEABLE);
         getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addTag(BlockTags.AXE_MINEABLE);
-        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(Identifier.of("c:glass_panes"));
-        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(Identifier.of("c:glasses"));
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(new Identifier("c:glass_panes"));
+        getOrCreateTagBuilder(TagKeys.CROWBAR_DESTROYABLE).addOptionalTag(new Identifier("c:glasses"));
         // Wrench Pickup
         getOrCreateTagBuilder(TagKeys.WRENCH_PICKUP).add(ModBlocks.GLASS_BOWL);
         getOrCreateTagBuilder(TagKeys.WRENCH_PICKUP).add(ModBlocks.PHOTOVOLTAIC_GENERATOR);

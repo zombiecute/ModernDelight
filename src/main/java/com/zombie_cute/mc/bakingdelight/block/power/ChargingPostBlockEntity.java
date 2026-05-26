@@ -18,7 +18,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class ChargingPostBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>, PowerStorageAble {
+public class ChargingPostBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory, PowerStorageAble {
     public ChargingPostBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CHARGING_POST_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -77,86 +77,87 @@ public class ChargingPostBlockEntity extends BlockEntity implements ImplementedI
     private int isWorking = 0;
     private int ticker = 0;
     private boolean dir = false;
-    public static void tick(World world, BlockPos pos, BlockState state, ChargingPostBlockEntity b) {
+    public void tick(World world) {
         if (world.isClient){
             return;
         }
-        b.power.setPowerValue(b.energyStorage.amount / 10);
+        this.power.setPowerValue(energyStorage.amount / 10);
         if (world.getTime() % 20L == 0){
             long battery1;
             long battery2;
-            battery1 = AbstractBatteryBlock.getBatteryPower(b.getStack(0));
-            battery2 = AbstractBatteryBlock.getBatteryPower(b.getStack(1));
-            if (b.energyStorage.amount < b.energyStorage.capacity){
+            battery1 = AbstractBatteryBlock.getBatteryPower(getStack(0));
+            battery2 = AbstractBatteryBlock.getBatteryPower(getStack(1));
+            if (energyStorage.amount < energyStorage.capacity){
                 if (battery1 >= 100){
-                    AbstractBatteryBlock.changeBatteryPower(b.getStack(0),b.energyStorage,100,false);
+                    AbstractBatteryBlock.changeBatteryPower(getStack(0),energyStorage,100,false);
                 } else if (battery1 >= 10){
-                    AbstractBatteryBlock.changeBatteryPower(b.getStack(0),b.energyStorage,10,false);
+                    AbstractBatteryBlock.changeBatteryPower(getStack(0),energyStorage,10,false);
                 } else if (battery1 >= 1){
-                    AbstractBatteryBlock.changeBatteryPower(b.getStack(0),b.energyStorage,1,false);
+                    AbstractBatteryBlock.changeBatteryPower(getStack(0),energyStorage,1,false);
                 } else if (battery2 >= 100){
-                    AbstractBatteryBlock.changeBatteryPower(b.getStack(1),b.energyStorage,100,false);
+                    AbstractBatteryBlock.changeBatteryPower(getStack(1),energyStorage,100,false);
                 } else if (battery2 >= 10){
-                    AbstractBatteryBlock.changeBatteryPower(b.getStack(1),b.energyStorage,10,false);
+                    AbstractBatteryBlock.changeBatteryPower(getStack(1),energyStorage,10,false);
                 } else if (battery2 >= 1){
-                    AbstractBatteryBlock.changeBatteryPower(b.getStack(1),b.energyStorage,1,false);
+                    AbstractBatteryBlock.changeBatteryPower(getStack(1),energyStorage,1,false);
                 }
             }
-            if (b.getStack(2).getItem() instanceof DCConsumer consumer){
-                Power p = consumer.getPower(b.getStack(2));
+            if (getStack(2).getItem() instanceof DCConsumer consumer){
+                Power p = consumer.getPower(getStack(2));
                 long need = p.getMaxPower() - p.getPowerValue();
                 if (need >= 30){
-                    if (b.energyStorage.amount >= 30 * 10){
-                        b.reduceEnergy(30 * 10);
-                        consumer.addPower(b.getStack(2), (long) (30 * EFFICIENCY));
-                        b.isWorking = 1;
-                    } else if (b.energyStorage.amount > 10) {
-                        b.reduceEnergy(10);
-                        consumer.addPower(b.getStack(2),1);
-                        b.isWorking = 1;
-                    } else b.isWorking = 0;
+                    if (energyStorage.amount >= 30 * 10){
+                        reduceEnergy(30 * 10);
+                        consumer.addPower(getStack(2), (long) (30 * EFFICIENCY));
+                        isWorking = 1;
+                    } else if (energyStorage.amount > 10) {
+                        reduceEnergy(10);
+                        consumer.addPower(getStack(2),1);
+                        isWorking = 1;
+                    } else isWorking = 0;
                 } else if (need > 0) {
-                    if (b.energyStorage.amount > 10) {
-                        b.reduceEnergy(10);
-                        consumer.addPower(b.getStack(2),1);
-                        b.isWorking = 1;
-                    } else b.isWorking = 0;
-                } else b.isWorking = 0;
-            } else b.isWorking = 0;
+                    if (energyStorage.amount > 10) {
+                        reduceEnergy(10);
+                        consumer.addPower(getStack(2),1);
+                        isWorking = 1;
+                    } else isWorking = 0;
+                } else isWorking = 0;
+            } else isWorking = 0;
         }
-        if (b.isWorking != 0){
-            if (!b.dir){
-                b.ticker++;
+        if (isWorking != 0){
+            if (!dir){
+                ticker++;
             } else {
-                b.ticker--;
+                ticker--;
             }
-            if (b.ticker == 0){
-                b.dir = false;
+            if (ticker == 0){
+                dir = false;
             }
-            if (b.ticker == 10){
-                b.dir = true;
+            if (ticker == 10){
+                dir = true;
             }
         } else {
-            b.ticker = 0;
+            ticker = 0;
         }
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public NbtCompound toInitialChunkDataNbt() {
+        createNbt();
+        return super.toInitialChunkDataNbt();
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt,inventory,registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt,inventory);
         nbt.putLong("charging_post.power",this.getPowerValue());
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
-        Inventories.readNbt(nbt,inventory,registryLookup);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt,inventory);
         this.energyStorage.amount = nbt.getLong("charging_post.power") * 10;
         markDirty();
     }
@@ -167,8 +168,8 @@ public class ChargingPostBlockEntity extends BlockEntity implements ImplementedI
     }
 
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
 
     @Override

@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:tropical_fish"
+    },
+    {
+      "tag": "c:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:bone",
+    "count": 1
+  }
+}

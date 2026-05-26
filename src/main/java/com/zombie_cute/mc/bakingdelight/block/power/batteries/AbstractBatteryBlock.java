@@ -11,18 +11,18 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
@@ -34,12 +34,9 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
     public static long getBatteryPower(ItemStack batteryItem){
         if (batteryItem.getItem() instanceof BlockItem blockItem){
             if (blockItem.getBlock() instanceof AbstractBatteryBlock){
-                NbtComponent nbtComponent = batteryItem.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,null);
-                if (nbtComponent != null){
-                    NbtCompound nbt = nbtComponent.copyNbt();
-                    if (nbt.contains("battery.power")){
-                        return nbt.getLong("battery.power");
-                    }
+                NbtCompound nbt = BlockItem.getBlockEntityNbt(batteryItem);
+                if (nbt != null && nbt.contains("battery.power")) {
+                    return nbt.getLong("battery.power");
                 }
             }
         }
@@ -48,9 +45,8 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
     public static void changeBatteryPower(ItemStack batteryItem,long value,boolean isAdd){
         if (batteryItem.getItem() instanceof BlockItem blockItem){
             if (blockItem.getBlock() instanceof AbstractBatteryBlock){
-                NbtComponent nbtComponent = batteryItem.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,null);
-                if (nbtComponent != null) {
-                    NbtCompound nbtCompound = nbtComponent.copyNbt();
+                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(batteryItem);
+                if (nbtCompound != null) {
                     if (nbtCompound.contains("battery.power")) {
                         long batteryPower = nbtCompound.getLong("battery.power");
                         long maxBatteryPower = nbtCompound.getLong("battery.maxPower");
@@ -73,8 +69,9 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
                         }
                     }
                 } else {
-                    ItemStack newBattery = createBatteryStack(blockItem.getBlock());
-                    changeBatteryPower(newBattery,value,isAdd);
+                    NbtCompound newNBT = initNbtCompound(blockItem);
+                    BlockItem.setBlockEntityNbt(batteryItem,ModBlockEntities.BATTERY_BLOCK_ENTITY,newNBT);
+                    changeBatteryPower(batteryItem,value,isAdd);
                 }
             }
         }
@@ -86,9 +83,8 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
         ItemStack newStack = oldBatteryItemStack.copy();
         if (oldBatteryItemStack.getItem() instanceof BlockItem blockItem){
             if (blockItem.getBlock() instanceof AbstractBatteryBlock){
-                NbtComponent nbt = oldBatteryItemStack.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,null);
-                if (nbt != null) {
-                    NbtCompound nbtCompound = nbt.copyNbt();
+                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(oldBatteryItemStack);
+                if (nbtCompound != null) {
                     if (nbtCompound.contains("battery.power")) {
                         long batteryPower = nbtCompound.getLong("battery.power");
                         long maxBatteryPower = nbtCompound.getLong("battery.maxPower");
@@ -115,8 +111,9 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
                         }
                     }
                 } else {
-                    ItemStack newBattery = createBatteryStack(blockItem.getBlock());
-                    return changeBatteryPower(newBattery,thisPower,valueEP,isAddBatteryPower);
+                    NbtCompound newNBT = initNbtCompound(blockItem);
+                    BlockItem.setBlockEntityNbt(newStack,ModBlockEntities.BATTERY_BLOCK_ENTITY,newNBT);
+                    return changeBatteryPower(newStack,thisPower,valueEP,isAddBatteryPower);
                 }
             }
         }
@@ -143,9 +140,8 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
         ItemStack newStack = oldBatteryItemStack.copy();
         if (oldBatteryItemStack.getItem() instanceof BlockItem blockItem){
             if (blockItem.getBlock() instanceof AbstractBatteryBlock){
-                NbtComponent nbt = oldBatteryItemStack.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,null);
-                if (nbt != null) {
-                    NbtCompound nbtCompound = nbt.copyNbt();
+                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(oldBatteryItemStack);
+                if (nbtCompound != null) {
                     if (nbtCompound.contains("battery.power")) {
                         long batteryPower = nbtCompound.getLong("battery.power");
                         long maxBatteryPower = nbtCompound.getLong("battery.maxPower");
@@ -210,8 +206,9 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
                         }
                     }
                 } else {
-                    ItemStack newBattery = createBatteryStack(blockItem.getBlock());
-                    return changeBatteryPower(newBattery,thisPower,valueEP,isAddBatteryPower);
+                    NbtCompound newNBT = initNbtCompound(blockItem);
+                    BlockItem.setBlockEntityNbt(newStack,ModBlockEntities.BATTERY_BLOCK_ENTITY,newNBT);
+                    return changeBatteryPower(newStack,thisPower,valueEP,isAddBatteryPower);
                 }
             }
         }
@@ -220,17 +217,15 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
 
     private static void changeBatteryNBT(NbtCompound nbtCompound, long batteryPower, ItemStack newStack) {
         nbtCompound.putLong("battery.power", batteryPower);
-        newStack.set(DataComponentTypes.BLOCK_ENTITY_DATA,NbtComponent.of(nbtCompound));
+        BlockItem.setBlockEntityNbt(newStack, ModBlockEntities.BATTERY_BLOCK_ENTITY, nbtCompound);
     }
 
-    public static ItemStack createBatteryStack(Block batteryBlock) {
-        ItemStack stack = new ItemStack(batteryBlock);
-        AbstractBatteryBlock block = (AbstractBatteryBlock) batteryBlock;
-        NbtCompound data = new NbtCompound();
-        data.putLong("battery.power", 0);
-        data.putLong("battery.maxPower", block.getMaxPower());
-        BlockItem.setBlockEntityData(stack, ModBlockEntities.BATTERY_BLOCK_ENTITY, data);
-        return stack;
+    private static @NotNull NbtCompound initNbtCompound(BlockItem blockItem) {
+        NbtCompound newNBT = new NbtCompound();
+        newNBT.putLong("battery.power", 0);
+        AbstractBatteryBlock block = (AbstractBatteryBlock) blockItem.getBlock();
+        newNBT.putLong("battery.maxPower", block.getMaxPower());
+        return newNBT;
     }
     @Override
     public boolean shouldDropItemsOnExplosion(Explosion explosion) {
@@ -254,7 +249,7 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
         if (world.getBlockEntity(pos) instanceof BatteryBlockEntity blockEntity) {
             if (!world.isClient) {
                 ItemStack itemStack = new ItemStack(getBlock());
-                blockEntity.setStackNbt(itemStack,world.getRegistryManager());
+                blockEntity.setStackNbt(itemStack);
                 ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
@@ -264,7 +259,7 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
@@ -290,6 +285,7 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : validateTicker(type, ModBlockEntities.BATTERY_BLOCK_ENTITY, BatteryBlockEntity::tick);
+        return checkType(type, ModBlockEntities.BATTERY_BLOCK_ENTITY,
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1,pos));
     }
 }

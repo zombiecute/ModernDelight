@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bamboo_planks"
+    },
+    "P": {
+      "item": "minecraft:bamboo_slab"
+    }
+  },
+  "pattern": [
+    "P P",
+    "BPB"
+  ],
+  "result": {
+    "item": "bakingdelight:bamboo_grate"
+  },
+  "show_notification": true
+}

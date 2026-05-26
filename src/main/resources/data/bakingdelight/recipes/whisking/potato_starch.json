@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:whisking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:mashed_potato"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:potato_starch"
+  }
+}

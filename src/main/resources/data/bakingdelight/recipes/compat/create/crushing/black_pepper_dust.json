@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:black_pepper_corn"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "count": 2,
+      "item": "bakingdelight:black_pepper_dust"
+    },
+    {
+      "chance": 0.5,
+      "item": "bakingdelight:black_pepper_dust"
+    },
+    {
+      "chance": 0.2,
+      "item": "bakingdelight:black_pepper_dust"
+    }
+  ]
+}

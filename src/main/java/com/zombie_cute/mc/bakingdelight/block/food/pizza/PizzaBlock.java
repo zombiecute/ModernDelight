@@ -1,6 +1,5 @@
 package com.zombie_cute.mc.bakingdelight.block.food.pizza;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -11,6 +10,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,17 +25,14 @@ public class PizzaBlock extends AbstractPizzaBlock {
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(BITES, 0));
     }
-    public static final MapCodec<PizzaBlock> CODEC = createCodec((s)->new PizzaBlock());
-    protected MapCodec<? extends PizzaBlock> getCodec() {
-        return CODEC;
-    }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(BITES);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
             if (tryEat(world, pos, state, player).isAccepted()) {
                 return ActionResult.SUCCESS;

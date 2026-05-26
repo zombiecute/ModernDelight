@@ -1,0 +1,21 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "casualness_delight",
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "farmersdelight:chicken_cuts"
+    }
+  ],
+  "output": {
+    "item": "casualness_delight:fried_chicken_chip",
+    "count": 3
+  }
+}

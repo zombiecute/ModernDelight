@@ -6,7 +6,6 @@ import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.PowerStorageA
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
@@ -38,33 +37,33 @@ public class BatteryBlockEntity extends BlockEntity implements PowerStorageAble 
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
         nbt.putLong("battery.maxPower",this.getPower().getMaxPower());
         nbt.putLong("battery.power",this.getPowerValue());
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
         this.resetPower(nbt.getInt("battery.power"),nbt.getInt("battery.maxPower"));
         this.energyStorage.amount = nbt.getLong("battery.power") * 10L;
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, BatteryBlockEntity b) {
+    public void tick(World world, BlockPos pos) {
         if (world.isClient){
             return;
         }
         AbstractBatteryBlock self = (AbstractBatteryBlock) world.getBlockState(pos).getBlock();
         long maxEnergy = self.getMaxPower() * 10;
-        if (b.energyStorage.amount > maxEnergy){
-            b.energyStorage.amount = maxEnergy;
+        if (energyStorage.amount > maxEnergy){
+            energyStorage.amount = maxEnergy;
         }
-        b.power.setPowerValue(b.energyStorage.amount / 10);
+        this.power.setPowerValue(energyStorage.amount / 10);
     }
 }

@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "tag": "bakingdelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:disc_fragment_5",
+    "count": 1
+  }
+}

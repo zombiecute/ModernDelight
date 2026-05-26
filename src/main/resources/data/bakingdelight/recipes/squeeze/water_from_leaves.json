@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "tag": "minecraft:leaves"
+    }
+  ],
+  "output": {
+    "item": "minecraft:stick"
+  },
+  "fluid_output": {
+    "fluid": "minecraft:water",
+    "amount": 1125
+  }
+}

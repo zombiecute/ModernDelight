@@ -1,9 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -19,10 +19,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -34,11 +31,7 @@ import java.util.Objects;
 
 public class AdvanceFurnaceBlock extends BlockWithEntity implements BlockEntityProvider {
     public AdvanceFurnaceBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.BRICKS).luminance(state -> state.get(BURNING) ? 15 : 0));
-    }
-    public static final MapCodec<AdvanceFurnaceBlock> CODEC = createCodec((s) -> new AdvanceFurnaceBlock());
-    protected MapCodec<? extends AdvanceFurnaceBlock> getCodec() {
-        return CODEC;
+        super(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(BURNING) ? 15 : 0));
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty BURNING = BooleanProperty.of("burning");
@@ -117,7 +110,7 @@ public class AdvanceFurnaceBlock extends BlockWithEntity implements BlockEntityP
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient){
             NamedScreenHandlerFactory screenHandlerFactory = ((AdvanceFurnaceBlockEntity) world.getBlockEntity(pos));
             if (isBakingTrayBlock(player)){
@@ -149,6 +142,7 @@ public class AdvanceFurnaceBlock extends BlockWithEntity implements BlockEntityP
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : validateTicker(type, ModBlockEntities.ADVANCE_FURNACE_BLOCK_ENTITY, AdvanceFurnaceBlockEntity::tick);
+        return checkType(type, ModBlockEntities.ADVANCE_FURNACE_BLOCK_ENTITY,
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1, blockEntity));
     }
 }

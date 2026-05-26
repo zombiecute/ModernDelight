@@ -1,9 +1,0 @@
-{
-  "values": [
-    {
-      "id": "#c:foods/dough/wheat",
-      "required": false
-    },
-    "bakingdelight:mixed_dough"
-  ]
-}

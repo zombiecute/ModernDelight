@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_bdc_bdi",
+  "criteria": {
+    "gas_canister": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:gas_canister"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.gas_canister.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:gas_canister"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.gas_canister.title"
+    }
+  },
+  "requirements": [
+    [
+      "gas_canister"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

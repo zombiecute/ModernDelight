@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_sapling"
+    },
+    {
+      "tag": "c:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:jungle_leaves",
+    "count": 1
+  }
+}

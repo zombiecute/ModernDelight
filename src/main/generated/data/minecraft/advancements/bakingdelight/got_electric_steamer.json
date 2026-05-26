@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_bamboo_steamer",
+  "criteria": {
+    "electric_steamer": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:electric_steamer"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.electric_steamer.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:electric_steamer"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.electric_steamer.title"
+    }
+  },
+  "requirements": [
+    [
+      "electric_steamer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "tag": "c:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:bone",
+    "count": 2
+  }
+}

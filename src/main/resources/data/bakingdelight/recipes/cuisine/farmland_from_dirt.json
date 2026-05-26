@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "tag": "minecraft:dirt"
+    },
+    {
+      "tag": "c:hoes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:farmland",
+    "count": 1
+  }
+}

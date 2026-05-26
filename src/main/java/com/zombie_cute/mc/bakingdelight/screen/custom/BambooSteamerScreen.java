@@ -13,13 +13,13 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class BambooSteamerScreen extends HandledScreen<BambooSteamerScreenHandler> {
-    private static final Identifier TEXTURE_1 = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE_1 = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/bamboo_steamer_gui.png");
-    private static final Identifier TEXTURE_2 = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE_2 = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/bamboo_steamer2_gui.png");
-    private static final Identifier TEXTURE_3 = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE_3 = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/bamboo_steamer3_gui.png");
-    private static final Identifier TEXTURE_4 = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE_4 = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/bamboo_steamer4_gui.png");
     public BambooSteamerScreen(BambooSteamerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -133,7 +133,7 @@ public class BambooSteamerScreen extends HandledScreen<BambooSteamerScreenHandle
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context,mouseX,mouseY,delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_kneading_stick",
+  "criteria": {
+    "raw_pizza": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:raw_pizza"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.get_raw_pizza.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:raw_pizza"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_raw_pizza.title"
+    }
+  },
+  "requirements": [
+    [
+      "raw_pizza"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

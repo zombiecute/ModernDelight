@@ -6,21 +6,21 @@ import software.bernie.geckolib.model.DefaultedItemGeoModel;
 
 public class IceCreamMakerBlockItemModel extends DefaultedItemGeoModel<IceCreamMakerBlockItem> {
     public IceCreamMakerBlockItemModel() {
-        super(Identifier.of(ModernDelightMain.MOD_ID,"ice_cream_maker_item"));
+        super(new Identifier(ModernDelightMain.MOD_ID,"ice_cream_maker_item"));
     }
 
     @Override
     public Identifier getModelResource(IceCreamMakerBlockItem animatable) {
-        return Identifier.of(ModernDelightMain.MOD_ID,"geo/ice_cream_maker.geo.json");
+        return new Identifier(ModernDelightMain.MOD_ID,"geo/ice_cream_maker.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(IceCreamMakerBlockItem animatable) {
-        return Identifier.of(ModernDelightMain.MOD_ID, "textures/block/ice_cream_maker.png");
+        return new Identifier(ModernDelightMain.MOD_ID, "textures/block/ice_cream_maker.png");
     }
 
     @Override
     public Identifier getAnimationResource(IceCreamMakerBlockItem animatable) {
-        return Identifier.of(ModernDelightMain.MOD_ID, "animations/ice_cream_maker.animation.json");
+        return new Identifier(ModernDelightMain.MOD_ID, "animations/ice_cream_maker.animation.json");
     }
 }

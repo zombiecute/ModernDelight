@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class WindTurbineControllerScreen extends HandledScreen<WindTurbineControllerScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/wind_turbine_controller_gui.png");
 
     public WindTurbineControllerScreen(WindTurbineControllerScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -48,7 +48,7 @@ public class WindTurbineControllerScreen extends HandledScreen<WindTurbineContro
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context, mouseX, mouseY, delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

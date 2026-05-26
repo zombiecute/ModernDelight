@@ -5,35 +5,32 @@
 
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.zombie_cute.mc.bakingdelight.components.ModComponents;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
+import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
-import net.minecraft.recipe.input.CraftingRecipeInput;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class InstantNoodlesRecipe extends SpecialCraftingRecipe {
     private static final Ingredient FRIED_NOODLES = Ingredient.ofItems(ModItems.FRIED_NOODLES);
     private static final Ingredient PACKAGE = Ingredient.ofItems(ModItems.MULTIFUNCTIONAL_WRAPPING_PAPER);
-    public InstantNoodlesRecipe(CraftingRecipeCategory craftingRecipeCategory) {
-        super(craftingRecipeCategory);
+    public InstantNoodlesRecipe(Identifier identifier, CraftingRecipeCategory craftingRecipeCategory) {
+        super(identifier, craftingRecipeCategory);
     }
-
     @Override
-    public boolean matches(CraftingRecipeInput recipeInputInventory, World world) {
+    public boolean matches(RecipeInputInventory recipeInputInventory, World world) {
         boolean b1 = false;
         boolean b2 = false;
-        for(int i = 0; i < recipeInputInventory.getSize(); ++i) {
-            ItemStack itemStack = recipeInputInventory.getStackInSlot(i);
+        for(int i = 0; i < recipeInputInventory.size(); ++i) {
+            ItemStack itemStack = recipeInputInventory.getStack(i);
             if (!itemStack.isEmpty()) {
                 if (PACKAGE.test(itemStack)) {
                     b1 = true;
@@ -44,15 +41,15 @@ public class InstantNoodlesRecipe extends SpecialCraftingRecipe {
         }
         return b1 && b2;
     }
-
     @Override
-    public ItemStack craft(CraftingRecipeInput recipeInputInventory, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager dynamicRegistryManager) {
         ItemStack itemStack = new ItemStack(ModItems.PACKAGED_INSTANT_NOODLES);
+        int counter = 1;
         boolean b1 = false;
         boolean b2 = false;
-        List<String> nbt = itemStack.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS, new ArrayList<String>());
-        for(int i = 0; i < recipeInputInventory.getSize();++i){
-            ItemStack item = recipeInputInventory.getStackInSlot(i);
+        NbtCompound nbt = itemStack.getOrCreateSubNbt("instant_noodles_ingredients");
+        for(int i = 0; i < recipeInputInventory.size();++i){
+            ItemStack item = recipeInputInventory.getStack(i);
             if (!item.isEmpty()) {
                 if (PACKAGE.test(item) && !b1) {
                     b1 = true;
@@ -60,21 +57,19 @@ public class InstantNoodlesRecipe extends SpecialCraftingRecipe {
                     b2 = true;
                 } else {
                     String name = Registries.ITEM.getId(item.getItem()).toString();
-                    nbt.add(name);
+                    nbt.putString("ingredients_"+counter,name);
+                    counter++;
                 }
             }
         }
-        itemStack.set(ModComponents.INSTANT_NOODLES_INGREDIENTS, nbt);
         return itemStack;
     }
-
     @Override
     public boolean fits(int width, int height) {
         return width * height >= 2;
     }
-
     @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return new ItemStack(ModItems.PACKAGED_INSTANT_NOODLES);
     }
 

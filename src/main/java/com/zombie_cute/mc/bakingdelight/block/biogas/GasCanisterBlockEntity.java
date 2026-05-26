@@ -16,15 +16,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -43,7 +42,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>{
+public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory{
     private int gasValue = 0;
     private int cycleInt = 0;
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
@@ -96,32 +95,32 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
         };
     }
     private int tick = 20;
-    public static void tick(World world, BlockPos pos, BlockState state, GasCanisterBlockEntity blockEntity) {
+    public void tick(World world, BlockPos pos, BlockState state, GasCanisterBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
-        blockEntity.gasValue = (int) FluidStack.convertDropletsToMb(blockEntity.fluidStorage.amount);
+        gasValue = (int) FluidStack.convertDropletsToMb(fluidStorage.amount);
         blockEntity.tick--;
-        switch (blockEntity.tick){
-            case 20, 3: blockEntity.cycleInt = 0;break;
-            case 17, 7: blockEntity.cycleInt = 1;break;
-            case 15, 10: blockEntity.cycleInt = 2;break;
-            case 12: blockEntity.cycleInt = 3;break;
-            case 0 : blockEntity.tick = 20;
+        switch (tick){
+            case 20, 3: cycleInt = 0;break;
+            case 17, 7: cycleInt = 1;break;
+            case 15, 10: cycleInt = 2;break;
+            case 12: cycleInt = 3;break;
+            case 0 : tick = 20;
         }
-        if (allowExplode() && blockEntity.fluidIsGas()) {
+        if (allowExplode() && fluidIsGas()) {
             if(isDangerBlock(world.getBlockState(pos.down()).getBlock())||
                     isDangerBlock(world.getBlockState(pos.up()).getBlock())||
                     isDangerBlock(world.getBlockState(pos.north()).getBlock())||
                     isDangerBlock(world.getBlockState(pos.south()).getBlock())||
                     isDangerBlock(world.getBlockState(pos.west()).getBlock())||
                     isDangerBlock(world.getBlockState(pos.east()).getBlock())){
-                blockEntity.randomExplode(world);
+                randomExplode(world);
             } else if (world.getDimension().ultrawarm() && !allowNether()) {
-                blockEntity.randomExplode(world);
-            } else if (blockEntity.fluidStorage.amount >= FluidStack.convertMbToDroplets(getMaxCapacity())){
+                randomExplode(world);
+            } else if (fluidStorage.amount >= FluidStack.convertMbToDroplets(getMaxCapacity())){
                 world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), blockEntity.getGasValue() / 1000f, true, World.ExplosionSourceType.BLOCK);
+                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), getGasValue() / 1000f, true, World.ExplosionSourceType.BLOCK);
             }
         }
         Direction direction = state.get(GasCanisterBlock.FACING);
@@ -149,28 +148,28 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
                 break;
             }
         }
-        if ( (blockEntity.fluidIsGas() || blockEntity.fluidStorage.variant.isBlank()) &&
+        if ( (fluidIsGas() || fluidStorage.variant.isBlank()) &&
                 world.getBlockState(facingBlock).getBlock().equals(ModBlocks.BIOGAS_DIGESTER_IO) &&
                 world.getBlockEntity(underBlock) instanceof BiogasDigesterControllerBlockEntity entity){
-            if (blockEntity.gasValue < getMaxCapacity()){
+            if (gasValue < getMaxCapacity()){
                 if (entity.getGasValue()>=5){
-                    blockEntity.playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
+                    playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
                     entity.reduceGas(5);
                     try(Transaction transaction = Transaction.openOuter()){
-                        blockEntity.fluidStorage.insert(FluidVariant.of(ModFluid.STILL_LIQUEFIED_BIOGAS),
+                        fluidStorage.insert(FluidVariant.of(ModFluid.STILL_LIQUEFIED_BIOGAS),
                                 FluidStack.convertMbToDroplets(5),transaction);
                         transaction.commit();
                     }
-                    blockEntity.markDirty();
+                    markDirty();
                 } else if (entity.getGasValue() > 0){
-                    blockEntity.playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
+                    playSound(ModSounds.BLOCK_GAS_CANISTER_FILLING,0.5f,0.8f);
                     entity.reduceGas(1);
                     try(Transaction transaction = Transaction.openOuter()){
-                        blockEntity.fluidStorage.insert(FluidVariant.of(ModFluid.STILL_LIQUEFIED_BIOGAS),
+                        fluidStorage.insert(FluidVariant.of(ModFluid.STILL_LIQUEFIED_BIOGAS),
                                 FluidStack.convertMbToDroplets(1),transaction);
                         transaction.commit();
                     }
-                    blockEntity.markDirty();
+                    markDirty();
                 }
             }
         }
@@ -217,11 +216,11 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
     public void onUse(PlayerEntity player, World world) {
         if (gasValue > 999 && fluidIsGas()){
             if (player.getOffHandStack().getItem().equals(Items.FLINT_AND_STEEL)){
-                player.getOffHandStack().damage(1, player,player.getActiveHand()== Hand.MAIN_HAND? EquipmentSlot.MAINHAND:EquipmentSlot.OFFHAND);
+                player.getOffHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.MAIN_HAND));
                 playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE,1.0f,1.0f);
                 instantExplode(world);
             } else if (player.getMainHandStack().getItem().equals(Items.FLINT_AND_STEEL)){
-                player.getMainHandStack().damage(1, player,player.getActiveHand()== Hand.MAIN_HAND? EquipmentSlot.MAINHAND:EquipmentSlot.OFFHAND);
+                player.getMainHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.OFF_HAND));
                 playSound(SoundEvents.ITEM_FLINTANDSTEEL_USE,1.0f,1.0f);
                 instantExplode(world);
             } else if (player.getOffHandStack().getItem().equals(Items.FIRE_CHARGE)){
@@ -242,34 +241,26 @@ public class GasCanisterBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
         nbt.putLong("gas_canister.fluid_amount",fluidStorage.amount);
-        nbt.putString("gas_canister.fluid_variant",fluidStorage.variant.getRegistryEntry().getIdAsString());
+        nbt.put("gas_canister.fluid_variant",fluidStorage.variant.toNbt());
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
-        FluidStack stack;
-        try {
-            stack = FluidStack.getFluidStack(nbt.getString("gas_canister.fluid_variant"), nbt.getLong("gas_canister.fluid_amount"));
-        } catch (Exception e) {
-            stack = new FluidStack(FluidVariant.of(Fluids.WATER), nbt.getLong("gas_canister.fluid_amount"));
-        }
-        fluidStorage.variant = stack.fluidVariant;
-        fluidStorage.amount = stack.amount_droplets;
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        fluidStorage.variant = FluidVariant.fromNbt((NbtCompound) nbt.get("gas_canister.fluid_variant"));
+        fluidStorage.amount = nbt.getLong("gas_canister.fluid_amount");
         markDirty();
     }
-
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
-
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(this.pos);
     }
 
     @Override

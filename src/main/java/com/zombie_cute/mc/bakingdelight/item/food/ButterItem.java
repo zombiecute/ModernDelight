@@ -4,25 +4,22 @@ import com.zombie_cute.mc.bakingdelight.entity.custom.ButterEntity;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ProjectileItem;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ButterItem extends Item implements ProjectileItem {
-    public ButterItem(Item.Settings settings) {
+public class ButterItem extends Item {
+    public ButterItem(Settings settings) {
         super(settings);
     }
     @Override
@@ -45,9 +42,7 @@ public class ButterItem extends Item implements ProjectileItem {
 
         return TypedActionResult.success(heldStack, world.isClient());
     }
-
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -55,13 +50,6 @@ public class ButterItem extends Item implements ProjectileItem {
         }else {
             tooltip.add(TextUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, context, tooltip, type);
-    }
-
-    @Override
-    public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
-        ButterEntity butterEntity = new ButterEntity(world, pos.getX(), pos.getY(), pos.getZ());
-        butterEntity.setItem(stack);
-        return butterEntity;
+        super.appendTooltip(stack, world, tooltip, context);
     }
 }

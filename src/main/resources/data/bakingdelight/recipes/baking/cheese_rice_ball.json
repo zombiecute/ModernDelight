@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cheese"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "tag": "c:crops/rice"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:cheese_rice_ball",
+    "count": 1
+  }
+}

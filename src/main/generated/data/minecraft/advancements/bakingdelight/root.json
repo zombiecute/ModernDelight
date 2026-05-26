@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "iron_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:iron_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/beehive_end.png",
+    "description": {
+      "translate": "advancement.bakingdelight.get_start_desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:freezer"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "itemgroup.bakingdelight"
+    }
+  },
+  "requirements": [
+    [
+      "iron_whisk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,33 +1,30 @@
 package com.zombie_cute.mc.bakingdelight.block.power.batteries;
 
-import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.DCConsumer;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.Power;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.NbtComponent;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class BatteryBlockItem extends BlockItem implements DCConsumer {
     final AbstractBatteryBlock batteryBlock;
     public BatteryBlockItem(AbstractBatteryBlock block) {
-        super(block, new Item.Settings().maxCount(1));
+        super(block, new FabricItemSettings().maxCount(1));
         this.batteryBlock = block;
     }
-    public static final String TOOLTIP_TEXT = "toolTipText."+ ModernDelightMain.MOD_ID +".battery_name";
-
+    public static final String TOOLTIP_TEXT = "toolTipText.bakingdelight.battery_name";
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        NbtComponent nbt = stack.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,null);
-        if (nbt != null) {
-            NbtCompound nbtCompound = nbt.copyNbt();
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext options) {
+        NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
+        if (nbtCompound != null) {
             if (nbtCompound.contains("battery.power")) {
                 long power = nbtCompound.getLong("battery.power");
                 long maxPower = nbtCompound.getLong("battery.maxPower");
@@ -35,14 +32,13 @@ public class BatteryBlockItem extends BlockItem implements DCConsumer {
                 tooltip.add(Text.literal(power + "/" + maxPower + "EP").formatted(Formatting.GRAY));
             }
         }
-        super.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, world, tooltip, options);
     }
 
     @Override
     public int getItemBarStep(ItemStack stack) {
-        NbtComponent nbt = stack.getOrDefault(DataComponentTypes.BLOCK_ENTITY_DATA,null);
-        if (nbt != null) {
-            NbtCompound nbtCompound = nbt.copyNbt();
+        NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
+        if (nbtCompound != null) {
             if (nbtCompound.contains("battery.power")) {
                 long power = nbtCompound.getLong("battery.power");
                 long maxPower = nbtCompound.getLong("battery.maxPower");

@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:mashed_potato_block",
+    "minecraft:dirt",
+    "minecraft:dirt_path",
+    "minecraft:grass_block",
+    "minecraft:sand",
+    "minecraft:red_sand",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:coarse_dirt",
+    "minecraft:mycelium",
+    "minecraft:podzol"
+  ]
+}

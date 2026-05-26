@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:polished_blackstone_brick_slab"
+    },
+    "C": {
+      "item": "minecraft:barrel"
+    },
+    "D": {
+      "item": "minecraft:polished_deepslate_slab"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "QCQ",
+    "DDD"
+  ],
+  "result": {
+    "item": "bakingdelight:blackstone_cabinet"
+  },
+  "show_notification": true
+}

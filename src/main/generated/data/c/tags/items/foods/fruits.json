@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:foods/fruits/lemon",
+      "required": false
+    },
+    {
+      "id": "#c:foods/fruits/mango",
+      "required": false
+    }
+  ]
+}

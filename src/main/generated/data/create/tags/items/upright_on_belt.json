@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:egg_tart",
+    "bakingdelight:truffle_egg_tart",
+    "bakingdelight:cuttlebone",
+    "bakingdelight:glow_cuttlebone",
+    "bakingdelight:crystal_dumpling",
+    "#c:foods/creams",
+    "minecraft:bowl",
+    "bakingdelight:mashed_potato",
+    "bakingdelight:sauce_mashed_potato",
+    "bakingdelight:liquefied_biogas_bucket",
+    "bakingdelight:vegetable_oil_bucket",
+    "bakingdelight:cream_bucket",
+    "#c:foods/juice"
+  ]
+}

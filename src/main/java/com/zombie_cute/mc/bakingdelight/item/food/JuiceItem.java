@@ -2,10 +2,11 @@ package com.zombie_cute.mc.bakingdelight.item.food;
 
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import com.zombie_cute.mc.bakingdelight.util.block_util.Drinkable;
-import net.minecraft.component.type.FoodComponent;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
@@ -23,14 +24,14 @@ public class JuiceItem extends Item implements Drinkable {
     public float saturationModifier;
     public Item juice_container;
     public JuiceItem(int hunger, float saturationModifier, Item juice_container, StatusEffectInstance... effects) {
-        super(new Settings().maxCount(16).recipeRemainder(juice_container).food(new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build()));
+        super(new FabricItemSettings().maxCount(16).recipeRemainder(juice_container).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3f).build()));
         this.hunger = hunger;
         this.saturationModifier = saturationModifier;
         this.juice_container = juice_container;
         this.effects = Arrays.asList(effects.clone());
     }
     public JuiceItem(int hunger, float saturationModifier, Item juice_container) {
-        super(new Settings().maxCount(16).recipeRemainder(juice_container));
+        super(new FabricItemSettings().maxCount(16).recipeRemainder(juice_container));
         this.hunger = hunger;
         this.saturationModifier = saturationModifier;
         this.juice_container = juice_container;
@@ -41,7 +42,7 @@ public class JuiceItem extends Item implements Drinkable {
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+    public int getMaxUseTime(ItemStack stack) {
         return 32;
     }
 

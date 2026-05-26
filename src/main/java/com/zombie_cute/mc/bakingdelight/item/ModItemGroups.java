@@ -14,13 +14,13 @@ public class ModItemGroups {
     public static final String GROUPS_TAB_NAME = "itemgroup.bakingdelight";
     public static final ItemGroup ITEM_GROUP = Registry.register(
             Registries.ITEM_GROUP,
-            Identifier.of(ModernDelightMain.MOD_ID,"bakingdelight_itemgroup"),
+            new Identifier(ModernDelightMain.MOD_ID,"bakingdelight_itemgroup"),
             FabricItemGroup.builder().displayName(Text.translatable(GROUPS_TAB_NAME))
                     .icon(()->new ItemStack(ModBlocks.GLASS_BOWL))
                     .entries((displayContext, entries) -> {
                         // Whisks & Glass Bowl
                         entries.add(ModItems.ELECTRIC_WHISK);
-                        entries.add(ModItems.WHISK);
+                        entries.add(ModItems.IRON_WHISK);
                         entries.add(ModBlocks.GLASS_BOWL);
                         // Amethyst Tools & Knifes & Stir-frying
                         entries.add(ModItems.AMETHYST_KNIFE);

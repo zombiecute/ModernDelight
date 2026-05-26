@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:bakingdelight/got_tesla_coil",
+  "criteria": {
+    "fan_blade": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:fan_blade"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wind_turbine_controller": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:wind_turbine_controller"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.wind.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:fan_blade"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.wind.title"
+    }
+  },
+  "requirements": [
+    [
+      "wind_turbine_controller"
+    ],
+    [
+      "fan_blade"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

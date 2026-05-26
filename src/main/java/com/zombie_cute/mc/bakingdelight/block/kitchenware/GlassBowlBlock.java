@@ -1,20 +1,18 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.item.food.PackagedItem;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -23,6 +21,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -44,13 +43,8 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(HAS_ITEM, false).with(WATERLOGGED,false).with(HAS_WATER, false));
     }
-    public static final MapCodec<GlassBowlBlock> CODEC = createCodec((GlassBowlBlock::new));
-    protected MapCodec<? extends GlassBowlBlock> getCodec() {
-        return CODEC;
-    }
-
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -58,9 +52,8 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
         } else {
             tooltip.add(TextUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, context, tooltip, options);
+        super.appendTooltip(stack, world, tooltip, options);
     }
-
     @Override
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HAS_ITEM, WATERLOGGED, HAS_WATER);
@@ -86,7 +79,7 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof GlassBowlBlockEntity container) {
             updateBlock(state,world,pos);
             container.onUse(player, state, world);

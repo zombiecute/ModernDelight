@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "amethyst_knife": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:amethyst_knife"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.get_amethyst_tool_desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:amethyst_knife",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_amethyst_tool_title"
+    }
+  },
+  "requirements": [
+    [
+      "amethyst_knife"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

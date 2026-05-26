@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#create:stone_types/limestone",
+      "required": false
+    },
+    {
+      "id": "#create:stone_types/dripstone",
+      "required": false
+    },
+    {
+      "id": "#create:stone_types/calcite",
+      "required": false
+    },
+    "minecraft:dripstone_block",
+    "minecraft:calcite"
+  ]
+}

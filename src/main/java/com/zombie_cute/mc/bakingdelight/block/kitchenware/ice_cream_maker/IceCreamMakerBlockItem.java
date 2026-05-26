@@ -2,36 +2,40 @@ package com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
-import software.bernie.geckolib.animatable.client.GeoRenderProvider;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animatable.client.RenderProvider;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.util.RenderUtils;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class IceCreamMakerBlockItem extends BlockItem implements GeoItem {
     public IceCreamMakerBlockItem() {
-        super(ModBlocks.ICE_CREAM_MAKER, new Item.Settings());
+        super(ModBlocks.ICE_CREAM_MAKER, new FabricItemSettings());
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
     private static final RawAnimation START = RawAnimation.begin().thenLoop("idle");
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(TextUtil.getAltText(false));
@@ -47,19 +51,23 @@ public class IceCreamMakerBlockItem extends BlockItem implements GeoItem {
             tooltip.add(TextUtil.getShiftText(false));
             tooltip.add(TextUtil.getAltText(false));
         }
-        super.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, world, tooltip, context);
     }
 
     @Override
-    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
-        consumer.accept(new GeoRenderProvider() {
+    public void createRenderer(Consumer<Object> consumer) {
+        consumer.accept(new RenderProvider() {
             private final IceCreamMakerBlockItemRenderer renderer = new IceCreamMakerBlockItemRenderer();
-
             @Override
-            public @NotNull BuiltinModelItemRenderer getGeoItemRenderer() {
-                return renderer;
+            public BuiltinModelItemRenderer getCustomRenderer() {
+                return this.renderer;
             }
         });
+    }
+
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return renderProvider;
     }
 
     @Override
@@ -72,4 +80,8 @@ public class IceCreamMakerBlockItem extends BlockItem implements GeoItem {
         return cache;
     }
 
+    @Override
+    public double getTick(Object itemStack) {
+        return RenderUtils.getCurrentTick();
+    }
 }

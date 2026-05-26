@@ -16,18 +16,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIWhiskingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/glass_bowl.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/glass_bowl.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.GLASS_BOWL);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "whisking"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "whisking"), WORKSTATION);
+    private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIWhiskingRecipe(WhiskingRecipe recipe) {
-        List<EmiIngredient> lists = new ArrayList<>(List.of(EmiIngredient.of(recipe.getIngredients().getFirst())));
+        this.id = recipe.getId();
+        List<EmiIngredient> lists = new ArrayList<>(List.of(EmiIngredient.of(recipe.getIngredients().get(0))));
         lists.add(EmiIngredient.of(TagKeys.WHISKS));
         this.input = lists;
-        this.output = List.of(EmiStack.of(recipe.getResult(null)));
+        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -36,7 +38,7 @@ public class EMIWhiskingRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return null;
+        return id;
     }
 
     @Override

@@ -3,8 +3,8 @@ package com.zombie_cute.mc.bakingdelight.block.kitchenware;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooking_stove.BurningGasCookingStoveBlockEntity;
-import com.zombie_cute.mc.bakingdelight.screen.custom.AdvanceFurnaceScreenHandler;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
+import com.zombie_cute.mc.bakingdelight.screen.custom.AdvanceFurnaceScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -13,18 +13,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
-import net.minecraft.recipe.input.SingleStackRecipeInput;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -41,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, SidedInventory {
+public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9,ItemStack.EMPTY);
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
@@ -123,11 +122,10 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
     }
-
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registry) {
-        super.writeNbt(nbt, registry);
-        Inventories.writeNbt(nbt, inventory,registry);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, inventory);
         nbt.putInt("advance_furnace.progress_1", progress_1);
         nbt.putInt("advance_furnace.progress_2", progress_2);
         nbt.putInt("advance_furnace.progress_3", progress_3);
@@ -140,9 +138,9 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
     }
 
     @Override
-    public void readNbt(NbtCompound nbt,RegistryWrapper.WrapperLookup registry) {
-        super.readNbt(nbt,registry);
-        Inventories.readNbt(nbt, inventory,registry);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt, inventory);
         progress_1 = nbt.getInt("advance_furnace.progress_1");
         progress_2 = nbt.getInt("advance_furnace.progress_2");
         progress_3 = nbt.getInt("advance_furnace.progress_3");
@@ -154,8 +152,8 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
         cachedMaxBurnTime = nbt.getInt("advance_furnace.cachedMaxBurnTime");
     }
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registry) {
-        return createNbt(registry);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
 
     @Override
@@ -164,8 +162,8 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
     }
 
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(this.pos);
     }
 
     @Override
@@ -184,57 +182,57 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
     }
     int tick = 20;
     private boolean alwaysBurning = false;
-    public static void tick(World world, BlockPos pos, BlockState state, AdvanceFurnaceBlockEntity entity) {
+    public void tick(World world, BlockPos pos, BlockState state, AdvanceFurnaceBlockEntity entity) {
         if (world.isClient){
             return;
         }
-        entity.tick--;
-        if (entity.tick==0) entity.tick = 20;
-        entity.alwaysBurning(world.getBlockEntity(pos.down()) instanceof BurningGasCookingStoveBlockEntity);
-        if (entity.alwaysBurning){
-            if (entity.burnTime != 0 && entity.cachedBurnTime == 0){
-                entity.cachedBurnTime = entity.burnTime;
-                entity.cachedMaxBurnTime = entity.maxBurnTime;
+        tick--;
+        if (tick==0) tick = 20;
+        alwaysBurning(world.getBlockEntity(pos.down()) instanceof BurningGasCookingStoveBlockEntity);
+        if (alwaysBurning){
+            if (burnTime != 0 && cachedBurnTime == 0){
+                cachedBurnTime = burnTime;
+                cachedMaxBurnTime = maxBurnTime;
             }
-            entity.maxBurnTime = 1;
-            entity.burnTime = 1;
+            maxBurnTime = 1;
+            burnTime = 1;
             world.setBlockState(pos, state.with(AdvanceFurnaceBlock.BURNING,true));
             markDirty(world, pos, state);
-            entity.checkStack(entity,state,INPUT_SLOT_1,OUTPUT_SLOT_1);
-            entity.checkStack(entity,state,INPUT_SLOT_2,OUTPUT_SLOT_2);
-            entity.checkStack(entity,state,INPUT_SLOT_3,OUTPUT_SLOT_3);
-            entity.checkStack(entity,state,INPUT_SLOT_4,OUTPUT_SLOT_4);
+            checkStack(entity,state,INPUT_SLOT_1,OUTPUT_SLOT_1);
+            checkStack(entity,state,INPUT_SLOT_2,OUTPUT_SLOT_2);
+            checkStack(entity,state,INPUT_SLOT_3,OUTPUT_SLOT_3);
+            checkStack(entity,state,INPUT_SLOT_4,OUTPUT_SLOT_4);
         } else {
-            if (entity.cachedBurnTime != 0){
-                entity.burnTime = entity.cachedBurnTime;
-                entity.maxBurnTime = entity.cachedMaxBurnTime;
-                entity.cachedBurnTime = 0;
-                entity.cachedMaxBurnTime = 0;
+            if (cachedBurnTime != 0){
+                burnTime = cachedBurnTime;
+                maxBurnTime = cachedMaxBurnTime;
+                cachedBurnTime = 0;
+                cachedMaxBurnTime = 0;
             }
-            if (entity.isFuelBurning()){
-                --entity.burnTime;
+            if (isFuelBurning()){
+                --burnTime;
                 world.setBlockState(pos, state.with(AdvanceFurnaceBlock.BURNING,true));
                 markDirty(world, pos, state);
-                entity.checkStack(entity,state,INPUT_SLOT_1,OUTPUT_SLOT_1);
-                entity.checkStack(entity,state,INPUT_SLOT_2,OUTPUT_SLOT_2);
-                entity.checkStack(entity,state,INPUT_SLOT_3,OUTPUT_SLOT_3);
-                entity.checkStack(entity,state,INPUT_SLOT_4,OUTPUT_SLOT_4);
+                checkStack(entity,state,INPUT_SLOT_1,OUTPUT_SLOT_1);
+                checkStack(entity,state,INPUT_SLOT_2,OUTPUT_SLOT_2);
+                checkStack(entity,state,INPUT_SLOT_3,OUTPUT_SLOT_3);
+                checkStack(entity,state,INPUT_SLOT_4,OUTPUT_SLOT_4);
             } else {
-                entity.decreaseCraftProgress();
-                entity.maxBurnTime = 1;
+                decreaseCraftProgress();
+                maxBurnTime = 1;
                 world.setBlockState(pos, state.with(AdvanceFurnaceBlock.BURNING,false));
             }
-            if (canUseAsFuel(entity.getStack(FUEL_SLOT))&&(entity.burnTime == 0)&&
-                    (entity.hasRecipe(entity,INPUT_SLOT_1,OUTPUT_SLOT_1)||entity.hasRecipe(entity,INPUT_SLOT_2,OUTPUT_SLOT_3)
-                            ||entity.hasRecipe(entity,INPUT_SLOT_3,OUTPUT_SLOT_3)||entity.hasRecipe(entity,INPUT_SLOT_4,OUTPUT_SLOT_4))
+            if (canUseAsFuel(getStack(FUEL_SLOT))&&(burnTime == 0)&&
+                    (hasRecipe(entity,INPUT_SLOT_1,OUTPUT_SLOT_1)||hasRecipe(entity,INPUT_SLOT_2,OUTPUT_SLOT_3)
+                            ||hasRecipe(entity,INPUT_SLOT_3,OUTPUT_SLOT_3)||hasRecipe(entity,INPUT_SLOT_4,OUTPUT_SLOT_4))
             ){
-                ItemStack fuel = entity.getStack(FUEL_SLOT);
-                entity.burnTime = entity.getFuelTime(fuel);
-                entity.maxBurnTime = entity.burnTime;
-                if (entity.getStack(FUEL_SLOT).getItem() == Items.LAVA_BUCKET){
-                    entity.setStack(FUEL_SLOT, Items.BUCKET.getDefaultStack());
+                ItemStack fuel = getStack(FUEL_SLOT);
+                burnTime = getFuelTime(fuel);
+                maxBurnTime = burnTime;
+                if (getStack(FUEL_SLOT).getItem() == Items.LAVA_BUCKET){
+                    setStack(FUEL_SLOT, Items.BUCKET.getDefaultStack());
                 } else {
-                    entity.removeStack(FUEL_SLOT,1);
+                    removeStack(FUEL_SLOT,1);
                 }
                 markDirty(world, pos, state);
             }
@@ -309,11 +307,13 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
     }
 
     private void craftItem(AdvanceFurnaceBlockEntity entity,int inputSlot,int outputSlot) {
-        Optional<RecipeEntry<SmeltingRecipe>> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
-                .getFirstMatch(RecipeType.SMELTING, new SingleStackRecipeInput(entity.getStack(inputSlot)),entity.getWorld());
-        experience += (int) (match.get().value().getExperience() * 10);
-        this.setStack(outputSlot, new ItemStack(match.get().value().getResult(null).getItem(),
-                getStack(outputSlot).getCount() + match.get().value().getResult(null).getCount()));
+        SimpleInventory inventory = new SimpleInventory(1);
+        inventory.setStack(0,entity.getStack(inputSlot));
+        Optional<SmeltingRecipe> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
+                .getFirstMatch(RecipeType.SMELTING, inventory,entity.getWorld());
+        experience += (int) (match.get().getExperience() * 10);
+        this.setStack(outputSlot, new ItemStack(match.get().getOutput(null).getItem(),
+                getStack(outputSlot).getCount() + match.get().getOutput(null).getCount()));
     }
     public void setExperience(int value){
         this.experience = value;
@@ -348,12 +348,14 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
     }
 
     private boolean hasRecipe(AdvanceFurnaceBlockEntity entity, int inputSlot, int outputSlot) {
-        Optional<RecipeEntry<SmeltingRecipe>> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
-                .getFirstMatch(RecipeType.SMELTING, new SingleStackRecipeInput(entity.getStack(inputSlot)),entity.getWorld());
+        SimpleInventory inventory = new SimpleInventory(1);
+        inventory.setStack(0,entity.getStack(inputSlot));
+        Optional<SmeltingRecipe> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
+                .getFirstMatch(RecipeType.SMELTING, inventory,entity.getWorld());
         if (entity.world != null) {
             return match.isPresent() &&
-                    canInsertAmountIntoOutputSlot(match.get().value().getResult(null),outputSlot) &&
-                    canInsertItemIntoOutputSlot(match.get().value().getResult(entity.world.getRegistryManager()).getItem(),outputSlot);
+                    canInsertAmountIntoOutputSlot(match.get().getOutput(null),outputSlot) &&
+                    canInsertItemIntoOutputSlot(match.get().getOutput(entity.world.getRegistryManager()).getItem(),outputSlot);
         }
         return false;
     }

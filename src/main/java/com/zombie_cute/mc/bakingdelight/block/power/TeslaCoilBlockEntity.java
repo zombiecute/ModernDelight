@@ -2,11 +2,11 @@ package com.zombie_cute.mc.bakingdelight.block.power;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACGenerateAble;
 import com.zombie_cute.mc.bakingdelight.screen.custom.TeslaCoilScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
-import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
-import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACGenerateAble;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModDamageTypes;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -15,8 +15,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
+public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
     protected final PropertyDelegate propertyDelegate;
     private static final Direction[] DIRECTIONS = {Direction.UP,Direction.DOWN,Direction.WEST,Direction.EAST,Direction.NORTH,Direction.SOUTH};
     public TeslaCoilBlockEntity(BlockPos pos, BlockState state) {
@@ -69,36 +69,35 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new TeslaCoilScreenHandler(syncId,playerInventory,this,propertyDelegate);
     }
-
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
     private int showPractical = 0;
     private int efficiency = 0;
     private final List<BlockEntity> confinedBlockEntities = new ArrayList<>();
     private BlockEntity powerSupply = null;
     private int ticker = 60;
-    public static void tick(World world, BlockPos pos, BlockState state, TeslaCoilBlockEntity blockEntity) {
+    public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient){
             return;
         }
-        blockEntity.ticker--;
-        if (blockEntity.ticker <= 0){
-            blockEntity.ticker = 60;
+        this.ticker--;
+        if (this.ticker <= 0){
+            this.ticker = 60;
         }
-        if (blockEntity.showPractical != 0){
+        if (this.showPractical != 0){
             world.setBlockState(pos,state.with(TeslaCoilBlock.SHOW_PARTICLE,true));
         } else world.setBlockState(pos,state.with(TeslaCoilBlock.SHOW_PARTICLE,false));
         // Attack
-        if (blockEntity.ticker % 20 == 0){
-            if (blockEntity.efficiency > 0){
+        if (this.ticker % 20 == 0){
+            if (this.efficiency > 0){
                 Box box = new Box(pos).expand(1.2);
                 List<LivingEntity> entities = world.getNonSpectatingEntities(LivingEntity.class,box);
                 for (LivingEntity entity : entities) {
                     if (entity != null){
                         entity.damage(ModDamageTypes.of(world, ModDamageTypes.ELECTROSHOCK),
-                                (float) ((float) blockEntity.efficiency / 100.0) * 2); // 造成伤害
+                                (float) ((float) this.efficiency / 100.0) * 2); // 造成伤害
                         for (int j = 0; j < 4; j++){
                             world.addImportantParticle(ParticleTypes.WAX_OFF,
                                     pos.getX() + 0.3 + world.random.nextFloat()/3,
@@ -113,55 +112,55 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
             }
         }
         // 每3秒更新一次
-        if (blockEntity.ticker % 60 == 0){
+        if (this.ticker % 60 == 0){
             // 电源判定
             switch (state.get(TeslaCoilBlock.FACING)){
-                case UP -> blockEntity.powerSupply = blockEntity.getPowerSupply(world,pos.up());
-                case DOWN -> blockEntity.powerSupply = blockEntity.getPowerSupply(world,pos.down());
-                case EAST -> blockEntity.powerSupply = blockEntity.getPowerSupply(world,pos.west());
-                case SOUTH -> blockEntity.powerSupply = blockEntity.getPowerSupply(world,pos.north());
-                case WEST -> blockEntity.powerSupply = blockEntity.getPowerSupply(world,pos.east());
-                case NORTH -> blockEntity.powerSupply = blockEntity.getPowerSupply(world,pos.south());
+                case UP -> this.powerSupply = this.getPowerSupply(world,pos.up());
+                case DOWN -> this.powerSupply = this.getPowerSupply(world,pos.down());
+                case EAST -> this.powerSupply = this.getPowerSupply(world,pos.west());
+                case SOUTH -> this.powerSupply = this.getPowerSupply(world,pos.north());
+                case WEST -> this.powerSupply = this.getPowerSupply(world,pos.east());
+                case NORTH -> this.powerSupply = this.getPowerSupply(world,pos.south());
             }
             int max = 0;
             long cachedPower = 0;
-            blockEntity.confinedBlockEntities.clear();
+            confinedBlockEntities.clear();
             // 遍历范围内所有的方块实体
             for (Direction direction : DIRECTIONS){
                 for (int i = 1; i <= 8;i++){
                     switch (direction){
-                        case NORTH -> blockEntity.confinedBlockEntities.add(world.getBlockEntity(pos.north(i)));
-                        case SOUTH -> blockEntity.confinedBlockEntities.add(world.getBlockEntity(pos.south(i)));
-                        case EAST -> blockEntity.confinedBlockEntities.add(world.getBlockEntity(pos.east(i)));
-                        case WEST -> blockEntity.confinedBlockEntities.add(world.getBlockEntity(pos.west(i)));
-                        case UP -> blockEntity.confinedBlockEntities.add(world.getBlockEntity(pos.up(i)));
-                        case DOWN -> blockEntity.confinedBlockEntities.add(world.getBlockEntity(pos.down(i)));
+                        case NORTH -> confinedBlockEntities.add(world.getBlockEntity(pos.north(i)));
+                        case SOUTH -> confinedBlockEntities.add(world.getBlockEntity(pos.south(i)));
+                        case EAST -> confinedBlockEntities.add(world.getBlockEntity(pos.east(i)));
+                        case WEST -> confinedBlockEntities.add(world.getBlockEntity(pos.west(i)));
+                        case UP -> confinedBlockEntities.add(world.getBlockEntity(pos.up(i)));
+                        case DOWN -> confinedBlockEntities.add(world.getBlockEntity(pos.down(i)));
                     }
                 }
             }
-            if (!blockEntity.isOnPowerSupply()){
+            if (!isOnPowerSupply()){
                 // 找自己并获取最大的电量值
-                for (BlockEntity entity : blockEntity.confinedBlockEntities){
+                for (BlockEntity entity : confinedBlockEntities){
                     if (entity instanceof TeslaCoilBlockEntity teslaCoilBlock){
                         if (max < teslaCoilBlock.getEfficiency()){
                             max = teslaCoilBlock.getEfficiency();
                         }
                     }
                 }
-                blockEntity.efficiency = (int) (max * getConversionEfficiency());
+                this.efficiency = (int) (max * getConversionEfficiency());
             }
             // 找要电的
-            for (BlockEntity entity : blockEntity.confinedBlockEntities){
+            for (BlockEntity entity : confinedBlockEntities){
                 if (entity instanceof ACConsumer consumer){
                     if (consumer.isWorking()){
                         cachedPower += consumer.getConsumedValue();
                     }
                 }
             }
-            blockEntity.efficiency -= (int) cachedPower;
+            this.efficiency -= (int) cachedPower;
             // 用电器工作
-            if (blockEntity.efficiency > 0){
-                for (BlockEntity entity : blockEntity.confinedBlockEntities){
+            if (this.efficiency > 0){
+                for (BlockEntity entity : confinedBlockEntities){
                     if (entity instanceof ACConsumer consumer){
                         if (consumer.isWorking()){
                             consumer.energize();
@@ -170,7 +169,7 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
                 }
                 world.setBlockState(pos,state.with(TeslaCoilBlock.IS_OVERLOADED,false));
             } else world.setBlockState(pos,state.with(TeslaCoilBlock.IS_OVERLOADED,true));
-            blockEntity.markDirty();
+            markDirty();
         }
     }
 
@@ -186,15 +185,15 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
         nbt.putInt("tesla_coil.showParticle",this.showPractical);
         nbt.putInt("tesla_coil.ticker",this.ticker);
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
         this.showPractical = nbt.getInt("tesla_coil.showParticle");
         this.ticker = nbt.getInt("tesla_coil.ticker");
     }

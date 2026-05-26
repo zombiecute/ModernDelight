@@ -1,0 +1,28 @@
+{
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 3,
+  "goal": 5,
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "bakingdelight:redstone_component"
+    },
+    {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "bakingdelight:silicon_component"
+    },
+    {
+      "item": "minecraft:comparator"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:charging_post"
+  }
+}

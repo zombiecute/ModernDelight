@@ -21,7 +21,7 @@ import static com.zombie_cute.mc.bakingdelight.block.kitchenware.FreezerBlockEnt
 
 public class FreezerFreezingCategory implements DisplayCategory<FreezerFreezingDisplay> {
     public static final Identifier TEXTURE =
-            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/freezer.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/freezer.png");
     public static final CategoryIdentifier<FreezerFreezingDisplay> FREEZING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "freezing");
 

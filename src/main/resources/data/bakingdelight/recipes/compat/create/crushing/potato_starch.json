@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+  {
+    "condition": "fabric:all_mods_loaded",
+    "values": [
+      "create"
+    ]
+  }
+],
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "count": 2,
+      "item": "bakingdelight:potato_starch"
+    },
+    {
+      "chance": 0.8,
+      "item": "bakingdelight:potato_starch"
+    },
+    {
+      "chance": 0.5,
+      "item": "bakingdelight:potato_starch"
+    }
+  ]
+}

@@ -18,12 +18,12 @@ public class StickyEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         World world = entity.getWorld();
         if (entity.isOnGround() && world instanceof ServerWorld serverWorld) {
             spawnParticles(entity, serverWorld);
         }
-        return super.applyUpdateEffect(entity, amplifier);
+        super.applyUpdateEffect(entity, amplifier);
     }
 
     private static void spawnParticles(LivingEntity entity, ServerWorld serverWorld) {

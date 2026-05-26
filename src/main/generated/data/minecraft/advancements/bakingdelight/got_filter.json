@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:bakingdelight/got_wooden_basin",
+  "criteria": {
+    "filter": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:filter"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.filter.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:filter",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.filter.title"
+    }
+  },
+  "requirements": [
+    [
+      "filter"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

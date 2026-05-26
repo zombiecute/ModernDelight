@@ -1,18 +1,17 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.ShowAbleItems;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -38,19 +37,14 @@ import java.util.Objects;
 
 public class WoodenPlateBlock extends BlockWithEntity implements Waterloggable {
     public WoodenPlateBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.REPEATER).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.BROWN).nonOpaque());
+        super(FabricBlockSettings.copyOf(Blocks.REPEATER).sounds(BlockSoundGroup.WOOD).mapColor(MapColor.BROWN).nonOpaque());
         this.setDefaultState(getStateManager().getDefaultState().with(WATERLOGGED, false).with(SHOWING_ITEM,ShowAbleItems.EMPTY));
-    }
-    public static final MapCodec<WoodenPlateBlock> CODEC = createCodec((s) -> new WoodenPlateBlock());
-    protected MapCodec<? extends WoodenPlateBlock> getCodec() {
-        return CODEC;
     }
     public static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,1,15);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final EnumProperty<ShowAbleItems> SHOWING_ITEM = EnumProperty.of("showing_item", ShowAbleItems.class);
-
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -59,9 +53,8 @@ public class WoodenPlateBlock extends BlockWithEntity implements Waterloggable {
         } else {
             tooltip.add(TextUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, context, tooltip, options);
+        super.appendTooltip(stack, world, tooltip, options);
     }
-
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
@@ -118,8 +111,7 @@ public class WoodenPlateBlock extends BlockWithEntity implements Waterloggable {
         super.onStateReplaced(state, world, pos, newState, moved);
     }
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        Hand hand = player.getActiveHand();
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()){
             return ActionResult.SUCCESS;
         }

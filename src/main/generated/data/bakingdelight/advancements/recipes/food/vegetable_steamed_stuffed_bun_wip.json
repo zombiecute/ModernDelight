@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:vegetable_steamed_stuffed_bun_wip"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wooden_plate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:wooden_plate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wooden_plate",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:vegetable_steamed_stuffed_bun_wip"
+    ]
+  },
+  "sends_telemetry_event": false
+}

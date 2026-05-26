@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ChargingPostScreen extends HandledScreen<ChargingPostScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/charging_post_gui.png");
     public ChargingPostScreen(ChargingPostScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -56,7 +56,7 @@ public class ChargingPostScreen extends HandledScreen<ChargingPostScreenHandler>
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context,mouseX,mouseY,delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

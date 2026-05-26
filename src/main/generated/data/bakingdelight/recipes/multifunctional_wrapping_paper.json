@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:paper"
+    },
+    "S": {
+      "item": "minecraft:honeycomb"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GSG",
+    "GGG"
+  ],
+  "result": {
+    "count": 8,
+    "item": "bakingdelight:multifunctional_wrapping_paper"
+  },
+  "show_notification": true
+}

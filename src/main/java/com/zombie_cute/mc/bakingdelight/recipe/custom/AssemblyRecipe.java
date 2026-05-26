@@ -1,51 +1,45 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.recipe.input.MultiStackRecipeInput;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.*;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class AssemblyRecipe implements Recipe<MultiStackRecipeInput> {
+public class AssemblyRecipe implements Recipe<SimpleInventory> {
+    private final Identifier id;
     private final ItemStack output;
-    private final List<Ingredient> recipeItems;
+    private final DefaultedList<Ingredient> recipeItems;
     private final int mini_game_type;
     private final int goal;
-    public AssemblyRecipe(List<Ingredient> ingredients, ItemStack output, int mini_game_type, int goal){
+    public AssemblyRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack output, int mini_game_type, int goal){
+        this.id = id;
         this.output = output;
         this.recipeItems = ingredients;
         this.mini_game_type = mini_game_type;
         this.goal = goal;
     }
-
     @Override
-    public boolean matches(MultiStackRecipeInput inventory, World world) {
-        return recipeItems.get(0).test(inventory.getStackInSlot(0)) &&
-                recipeItems.get(1).test(inventory.getStackInSlot(1)) &&
-                recipeItems.get(2).test(inventory.getStackInSlot(2)) &&
-                recipeItems.get(3).test(inventory.getStackInSlot(3)) &&
-                recipeItems.get(4).test(inventory.getStackInSlot(4)) &&
-                recipeItems.get(5).test(inventory.getStackInSlot(5));
+    public boolean matches(SimpleInventory inventory, World world) {
+        return recipeItems.get(0).test(inventory.getStack(0)) &&
+                recipeItems.get(1).test(inventory.getStack(1)) &&
+                recipeItems.get(2).test(inventory.getStack(2)) &&
+                recipeItems.get(3).test(inventory.getStack(3)) &&
+                recipeItems.get(4).test(inventory.getStack(4)) &&
+                recipeItems.get(5).test(inventory.getStack(5));
     }
 
     @Override
-    public ItemStack craft(MultiStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
         return output;
     }
-
     @Override
     public boolean fits(int width, int height) {
         return true;
@@ -59,7 +53,7 @@ public class AssemblyRecipe implements Recipe<MultiStackRecipeInput> {
     }
 
     @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return output;
     }
 
@@ -73,6 +67,11 @@ public class AssemblyRecipe implements Recipe<MultiStackRecipeInput> {
     @Override
     public ItemStack createIcon() {
         return ModBlocks.ELECTRICIANS_DESK.asItem().getDefaultStack();
+    }
+
+    @Override
+    public Identifier getId() {
+        return id;
     }
 
     @Override
@@ -94,48 +93,43 @@ public class AssemblyRecipe implements Recipe<MultiStackRecipeInput> {
         public static final AssemblyRecipe.Serializer INSTANCE = new AssemblyRecipe.Serializer();
         public static final String ID = "assembly";
 
-        public static final MapCodec<AssemblyRecipe> CODEC = RecordCodecBuilder.mapCodec(
-                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
-                                .flatXmap(ingredients ->{
-                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
-                                    if (ingredients1.length == 0){
-                                        return DataResult.error(()->"No ingredients");
-                                    }
-                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
-                                },DataResult::success).forGetter(AssemblyRecipe::getIngredients)
-                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
-                        , Codec.INT.fieldOf("mini_game_type").forGetter(recipe -> recipe.mini_game_type)
-                        ,Codec.INT.fieldOf("goal").forGetter(recipe -> recipe.goal)
-                ).apply(instance, AssemblyRecipe::new)
-        );
-        public static final PacketCodec<RegistryByteBuf, AssemblyRecipe> PACKET_CODEC = PacketCodec.ofStatic(AssemblyRecipe.Serializer::write, AssemblyRecipe.Serializer::read);
-
-        private static AssemblyRecipe read(RegistryByteBuf buf) {
+        @Override
+        public AssemblyRecipe read(Identifier id, JsonObject json) {
+            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json,"output"));
+            JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
+            int type = JsonHelper.getInt(json,"mini_game_type",0);
+            int goal = JsonHelper.getInt(json,"goal",0);
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(6,Ingredient.EMPTY);
-            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
-            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
-            int mini_game_type = buf.readShort();
-            int goal = buf.readInt();
-            return new AssemblyRecipe(inputs,output,mini_game_type,goal);
-        }
 
-        private static void write(RegistryByteBuf buf, AssemblyRecipe recipe) {
-            for (Ingredient ingredient : recipe.getIngredients()){
-                Ingredient.PACKET_CODEC.encode(buf,ingredient);
+            for(int i=0;i<inputs.size();i++){
+                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
             }
-            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
-            buf.writeShort(recipe.mini_game_type);
-            buf.writeInt(recipe.goal);
+
+            return new AssemblyRecipe(id, inputs, output,type, goal);
         }
 
         @Override
-        public MapCodec<AssemblyRecipe> codec() {
-            return CODEC;
+        public AssemblyRecipe read(Identifier id, PacketByteBuf buf) {
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
+
+            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
+
+            ItemStack output = buf.readItemStack();
+            int[] type = buf.readIntArray();
+            return new AssemblyRecipe(id, inputs, output,type[0], type[1]);
         }
 
         @Override
-        public PacketCodec<RegistryByteBuf, AssemblyRecipe> packetCodec() {
-            return PACKET_CODEC;
+        public void write(PacketByteBuf buf, AssemblyRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for(Ingredient ingredient : recipe.getIngredients()){
+                ingredient.write(buf);
+            }
+            buf.writeItemStack(recipe.output);
+            int[] type = new int[2];
+            type[0] = recipe.mini_game_type;
+            type[1] = recipe.goal;
+            buf.writeIntArray(type);
         }
     }
 }

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "bakingdelight:wooden_plate"
+    },
+    "D": {
+      "item": "bakingdelight:mixed_dough"
+    },
+    "H": {
+      "tag": "c:crops/black_peppers"
+    },
+    "K": {
+      "tag": "c:crops/cabbage"
+    },
+    "M": {
+      "tag": "c:foods/raw_meats"
+    }
+  },
+  "pattern": [
+    "KMH",
+    "DMD",
+    "BBB"
+  ],
+  "result": {
+    "count": 3,
+    "item": "bakingdelight:shaomai_wip"
+  },
+  "show_notification": true
+}

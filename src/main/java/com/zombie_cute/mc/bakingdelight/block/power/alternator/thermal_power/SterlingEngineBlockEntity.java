@@ -13,11 +13,12 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.util.RenderUtils;
 
 public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEntity {
     public SterlingEngineBlockEntity(BlockPos pos, BlockState state) {
@@ -26,7 +27,7 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
     private static final RawAnimation IDLE = RawAnimation.begin().thenPlay("start").thenLoop("idle");
     private static final RawAnimation STOPPING = RawAnimation.begin().thenPlay("stop");
 
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private boolean hasStart = false;
     private int ticker = 30;
     @Override
@@ -64,23 +65,26 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
-
-    public static void tick(World world, BlockPos pos, BlockState state, SterlingEngineBlockEntity b) {
+    @Override
+    public double getTick(Object blockEntity) {
+        return RenderUtils.getCurrentTick();
+    }
+    public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient){
             return;
         }
         boolean small_sound = state.get(SterlingEngineBlock.SMALL_SOUND);
         if (state.get(SterlingEngineBlock.IS_WORKING)){
-            if (!b.hasStart){
-                b.ticker = 30;
+            if (!hasStart){
+                ticker = 30;
                 if (small_sound){
                     world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 0.15f, 1.0f);
                 } else {
                     world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 2.3f, 1.0f);
                 }
             }
-            b.hasStart = true;
-            if (b.ticker == 0){
+            hasStart = true;
+            if (ticker == 0){
                 if (small_sound){
                     if (world.getTime() % 3L == 0){
                         world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE, SoundCategory.BLOCKS, 0.15f, 1.0f);
@@ -90,9 +94,9 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
                         world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE, SoundCategory.BLOCKS, 2.3f, 1.0f);
                     }
                 }
-            } else b.ticker--;
+            } else ticker--;
         } else {
-            if (b.hasStart){
+            if (hasStart){
                 if (small_sound){
                     world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_STOP, SoundCategory.BLOCKS, 0.15f, 1.0f);
 
@@ -100,7 +104,7 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
                     world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_STOP, SoundCategory.BLOCKS, 2.3f, 1.0f);
                 }
             }
-            b.hasStart = false;
+            hasStart = false;
         }
         if (world.getBlockState(pos).getBlock() instanceof SterlingEngineBlock){
             if (world.getBlockState(pos.down()).getBlock() instanceof FurnaceBlock){

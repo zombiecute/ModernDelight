@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_otherside"
+    },
+    {
+      "tag": "bakingdelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:emerald",
+    "count": 3
+  }
+}

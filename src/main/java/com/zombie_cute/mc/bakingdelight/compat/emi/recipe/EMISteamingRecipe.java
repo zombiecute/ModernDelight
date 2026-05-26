@@ -18,14 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMISteamingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.BAMBOO_GRATE);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "steaming"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "steaming"), WORKSTATION);
+
+    private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMISteamingRecipe(SteamingRecipe recipe) {
+        this.id = recipe.getId();
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
@@ -35,7 +38,7 @@ public class EMISteamingRecipe implements EmiRecipe {
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_COOKING_STOVE)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)));
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getResult(null)));
+        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -44,7 +47,7 @@ public class EMISteamingRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return null;
+        return id;
     }
 
     @Override

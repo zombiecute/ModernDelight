@@ -1,29 +1,25 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.input.SingleStackRecipeInput;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.*;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class SteamingRecipe implements Recipe<SingleStackRecipeInput> {
+public class SteamingRecipe implements Recipe<SimpleInventory> {
+    private final Identifier id;
     private final ItemStack output;
-    private final List<Ingredient> recipeItems;
+    private final DefaultedList<Ingredient> recipeItems;
     private final int maxProgress;
-    public SteamingRecipe(List<Ingredient> ingredients, ItemStack itemStack, int maxProgress){
+    public SteamingRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack itemStack, int maxProgress){
+        this.id = id;
         this.output = itemStack;
         this.recipeItems = ingredients;
         this.maxProgress = maxProgress;
@@ -35,20 +31,17 @@ public class SteamingRecipe implements Recipe<SingleStackRecipeInput> {
     }
 
     @Override
-    public boolean matches(SingleStackRecipeInput inventory, World world) {
-
+    public boolean matches(SimpleInventory inventory, World world) {
         if (world.isClient){
             return false;
         }
-        return recipeItems.get(0).test(inventory.getStackInSlot(0));
+        return recipeItems.get(0).test(inventory.getStack(0));
     }
-
     public int getMaxProgress(){
         return this.maxProgress;
     }
-
     @Override
-    public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
         return output;
     }
 
@@ -58,7 +51,7 @@ public class SteamingRecipe implements Recipe<SingleStackRecipeInput> {
     }
 
     @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return output;
     }
 
@@ -67,6 +60,11 @@ public class SteamingRecipe implements Recipe<SingleStackRecipeInput> {
         DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());
         list.addAll(recipeItems);
         return list;
+    }
+
+    @Override
+    public Identifier getId() {
+        return id;
     }
 
     @Override
@@ -88,45 +86,41 @@ public class SteamingRecipe implements Recipe<SingleStackRecipeInput> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "steaming";
 
-        public static final MapCodec<SteamingRecipe> CODEC = RecordCodecBuilder.mapCodec(
-                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
-                                .flatXmap(ingredients ->{
-                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
-                                    if (ingredients1.length == 0){
-                                        return DataResult.error(()->"No ingredients");
-                                    }
-                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
-                                },DataResult::success).forGetter(SteamingRecipe::getIngredients)
-                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
-                        , Codec.INT.fieldOf("maxProgress").forGetter(recipe -> recipe.maxProgress)
-                ).apply(instance, SteamingRecipe::new)
-        );
-        public static final PacketCodec<RegistryByteBuf, SteamingRecipe> PACKET_CODEC = PacketCodec.ofStatic(SteamingRecipe.Serializer::write, SteamingRecipe.Serializer::read);
+        @Override
+        public SteamingRecipe read(Identifier id, JsonObject json) {
+            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
 
-        private static SteamingRecipe read(RegistryByteBuf buf) {
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1,Ingredient.EMPTY);
-            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
-            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
-            int maxProgress = buf.readInt();
-            return new SteamingRecipe(inputs,output,maxProgress);
-        }
+            JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1, Ingredient.EMPTY);
+            int maxProgress = JsonHelper.getInt(json,"maxProgress",10);
 
-        private static void write(RegistryByteBuf buf, SteamingRecipe recipe) {
-            for (Ingredient ingredient : recipe.getIngredients()){
-                Ingredient.PACKET_CODEC.encode(buf,ingredient);
+            for (int i = 0; i < inputs.size(); i++) {
+                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
-            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
-            buf.writeInt(recipe.maxProgress);
+
+            return new SteamingRecipe(id, inputs, output, maxProgress);
         }
 
         @Override
-        public MapCodec<SteamingRecipe> codec() {
-            return CODEC;
+        public SteamingRecipe read(Identifier id, PacketByteBuf buf) {
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
+
+            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
+            ItemStack output = buf.readItemStack();
+            int[] maxProgress = buf.readIntArray();
+            return new SteamingRecipe(id, inputs, output,maxProgress[0]);
         }
 
         @Override
-        public PacketCodec<RegistryByteBuf, SteamingRecipe> packetCodec() {
-            return PACKET_CODEC;
+        public void write(PacketByteBuf buf, SteamingRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                ingredient.write(buf);
+            }
+            buf.writeItemStack(recipe.output);
+            int[] maxProgress = new int[1];
+            maxProgress[0] = recipe.getMaxProgress();
+            buf.writeIntArray(maxProgress);
         }
     }
 }

@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "wither_rose_cake": {
+      "conditions": {
+        "item": {
+          "items": [
+            "bakingdelight:wither_rose_cake"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.wither_rose_cake.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "bakingdelight:wither_rose_cake"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.wither_rose_cake.title"
+    }
+  },
+  "requirements": [
+    [
+      "wither_rose_cake"
+    ]
+  ],
+  "rewards": {
+    "experience": 1500
+  },
+  "sends_telemetry_event": true
+}

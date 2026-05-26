@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:bakingdelight/root",
+  "criteria": {
+    "iron_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:iron_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.get_whisk_desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:iron_whisk",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_whisk_title"
+    }
+  },
+  "requirements": [
+    [
+      "iron_whisk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

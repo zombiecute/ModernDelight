@@ -1,0 +1,21 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:haunting",
+  "ingredients": [
+    {
+      "item": "bakingdelight:black_truffle"
+    }
+  ],
+  "results": [
+    {
+      "item": "bakingdelight:white_truffle"
+    }
+  ]
+}

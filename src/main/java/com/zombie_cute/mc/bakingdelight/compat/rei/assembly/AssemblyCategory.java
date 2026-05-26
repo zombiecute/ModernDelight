@@ -21,7 +21,7 @@ import java.util.List;
 
 public class AssemblyCategory implements DisplayCategory<AssemblyDisplay> {
     public static final Identifier TEXTURE =
-            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/assembly.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/assembly.png");
     public static final CategoryIdentifier<AssemblyDisplay> ASSEMBLY =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "assembly");
 

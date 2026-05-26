@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:matcha"
+    },
+    {
+      "item": "bakingdelight:mousse_wip"
+    },
+    {
+      "item": "bakingdelight:matcha"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:matcha_mousse"
+  }
+}

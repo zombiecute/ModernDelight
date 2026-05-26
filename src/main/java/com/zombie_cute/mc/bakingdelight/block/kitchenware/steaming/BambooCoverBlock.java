@@ -1,36 +1,32 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class BambooCoverBlock extends Block {
     public BambooCoverBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.BAMBOO_PLANKS).nonOpaque());
+        super(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque());
     }
     public static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,4,15);
-    public static final MapCodec<BambooCoverBlock> CODEC = createCodec((s) -> new BambooCoverBlock());
-    protected MapCodec<? extends BambooCoverBlock> getCodec() {
-        return CODEC;
-    }
-
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -38,9 +34,8 @@ public class BambooCoverBlock extends Block {
         } else {
             tooltip.add(TextUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, context, tooltip, options);
+        super.appendTooltip(stack, world, tooltip, options);
     }
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPED;
@@ -57,7 +52,7 @@ public class BambooCoverBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (MiscUtil.isPlayerHoldingCrowbar(player)){
             if (!world.isClient){
                 world.breakBlock(pos,true);

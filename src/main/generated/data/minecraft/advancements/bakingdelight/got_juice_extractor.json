@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/wind",
+  "criteria": {
+    "juice_extractor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:juice_extractor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.juice_extractor.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:juice_extractor"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.juice_extractor.title"
+    }
+  },
+  "requirements": [
+    [
+      "juice_extractor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

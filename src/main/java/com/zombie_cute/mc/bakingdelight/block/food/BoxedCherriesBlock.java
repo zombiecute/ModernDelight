@@ -1,7 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.food;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.AbstractBlock;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,15 +14,10 @@ import net.minecraft.world.World;
 
 public class BoxedCherriesBlock extends Block {
     public BoxedCherriesBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS));
-    }
-    public static final MapCodec<BoxedCherriesBlock> CODEC = createCodec((s)->new BoxedCherriesBlock());
-    protected MapCodec<? extends BoxedCherriesBlock> getCodec() {
-        return CODEC;
+        super(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
     }
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        Hand hand = player.getActiveHand();
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient){
             if (player.getStackInHand(hand).getItem().equals(Items.GUNPOWDER)){
                 return ActionResult.SUCCESS;

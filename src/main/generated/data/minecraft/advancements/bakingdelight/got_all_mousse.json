@@ -1,0 +1,113 @@
+{
+  "parent": "minecraft:bakingdelight/got_mousse_wip",
+  "criteria": {
+    "cherry_mousse": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:cherry_mousse"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chocolate_mousse": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:chocolate_mousse"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cream_mousse": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:cream_mousse"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "golden_apple_mousse": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:golden_apple_mousse"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "matcha_mousse": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:matcha_mousse"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pumpkin_mousse": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:pumpkin_mousse"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.get_all_mousse_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:cherry_mousse"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_all_mousse_title"
+    }
+  },
+  "requirements": [
+    [
+      "cherry_mousse"
+    ],
+    [
+      "chocolate_mousse"
+    ],
+    [
+      "cream_mousse"
+    ],
+    [
+      "golden_apple_mousse"
+    ],
+    [
+      "matcha_mousse"
+    ],
+    [
+      "pumpkin_mousse"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

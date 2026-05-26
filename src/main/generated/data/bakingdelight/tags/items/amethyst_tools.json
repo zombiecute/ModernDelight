@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:amethyst_knife",
+    {
+      "id": "anvilcraft:amethyst_sword",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_pickaxe",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_axe",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_shovel",
+      "required": false
+    },
+    {
+      "id": "anvilcraft:amethyst_hoe",
+      "required": false
+    }
+  ]
+}

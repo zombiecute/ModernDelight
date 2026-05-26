@@ -1,0 +1,86 @@
+{
+  "parent": "minecraft:bakingdelight/got_fried_noodles",
+  "criteria": {
+    "cooked_portable_pot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:cooked_portable_pot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "packaged_instant_noodles": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:packaged_instant_noodles"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "portable_pot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:portable_pot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "quicklime": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:quicklime"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.cooked_portable_pot.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:cooked_portable_pot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.cooked_portable_pot.title"
+    }
+  },
+  "requirements": [
+    [
+      "packaged_instant_noodles"
+    ],
+    [
+      "portable_pot"
+    ],
+    [
+      "quicklime"
+    ],
+    [
+      "cooked_portable_pot"
+    ]
+  ],
+  "rewards": {
+    "experience": 80
+  },
+  "sends_telemetry_event": true
+}

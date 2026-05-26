@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:mousse_wip",
+    "bakingdelight:cream_mousse",
+    "bakingdelight:matcha_mousse",
+    "bakingdelight:cherry_mousse",
+    "bakingdelight:chocolate_mousse",
+    "bakingdelight:golden_apple_mousse",
+    "bakingdelight:pumpkin_mousse"
+  ]
+}

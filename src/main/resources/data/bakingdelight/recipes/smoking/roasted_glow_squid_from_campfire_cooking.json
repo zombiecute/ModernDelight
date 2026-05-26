@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "bakingdelight:glow_squid"
+  },
+  "result": "bakingdelight:roasted_glow_squid"
+}

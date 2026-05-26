@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "bakingdelight:jar"
+    },
+    {
+      "item": "bakingdelight:jar"
+    },
+    {
+      "item": "bakingdelight:jar"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:sea_salt",
+    "count": 3
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_stal"
+    },
+    {
+      "tag": "bakingdelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:redstone",
+    "count": 16
+  }
+}

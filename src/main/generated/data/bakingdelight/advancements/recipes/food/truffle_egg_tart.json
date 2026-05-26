@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_black_truffle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:black_truffle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:truffle_egg_tart"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_black_truffle",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:truffle_egg_tart"
+    ]
+  },
+  "sends_telemetry_event": false
+}

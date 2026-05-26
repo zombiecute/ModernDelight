@@ -15,38 +15,34 @@ import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import java.util.List;
 
 public class ModPlacedFeatures {
-    public static final RegistryKey<PlacedFeature> WILD_BLACK_PEPPER_PLACED = registerKey("wild_black_pepper_placed");
-    public static final RegistryKey<PlacedFeature> WILD_GARLIC_PLACED = registerKey("wild_garlic_placed");
+    public static final RegistryKey<PlacedFeature> WILD_BLACK_PEPPER_PLACED = registerKey("wild_black_pepper_p");
+    public static final RegistryKey<PlacedFeature> WILD_GARLIC_PLACED = registerKey("wild_garlic_p");
 
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var registryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
-        register(context,WILD_GARLIC_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_BLACK_PEPPER),
-                RarityFilterPlacementModifier.of(12),
+        register(context,WILD_BLACK_PEPPER_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_BLACK_PEPPER),
+                RarityFilterPlacementModifier.of(2),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
-        register(context, WILD_BLACK_PEPPER_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_GARLIC),
-                RarityFilterPlacementModifier.of(16),
+        register(context, WILD_GARLIC_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_GARLIC),
+                RarityFilterPlacementModifier.of(2),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
     }
-    public static RegistryKey<PlacedFeature> registerKey(String name) {
-        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(ModernDelightMain.MOD_ID, name));
-    }
-
-    private static void register(Registerable<PlacedFeature> context,
-                                 RegistryKey<PlacedFeature> key,
-                                 RegistryEntry<ConfiguredFeature<?, ?>> configuration,
-                                 List<PlacementModifier> modifiers) {
-        context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
-    }
-
-    private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<PlacedFeature> context,
-                                                                                   RegistryKey<PlacedFeature> key,
+    private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key,
                                                                                    RegistryEntry<ConfiguredFeature<?, ?>> configuration,
                                                                                    PlacementModifier... modifiers) {
         register(context, key, configuration, List.of(modifiers));
+    }
+
+    private static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration,
+                                 List<PlacementModifier> modifiers) {
+        context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
+    }
+    public static RegistryKey<PlacedFeature> registerKey(String name) {
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(ModernDelightMain.MOD_ID,name));
     }
 }

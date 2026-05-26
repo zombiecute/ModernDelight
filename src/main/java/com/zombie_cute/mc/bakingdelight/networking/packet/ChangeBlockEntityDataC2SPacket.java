@@ -6,32 +6,24 @@ import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.power.TeslaCoilBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.ACDCConverterBlockEntity;
 import com.zombie_cute.mc.bakingdelight.networking.NetworkHandler;
+import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 
-public record ChangeBlockEntityDataC2SPacket(BlockPos pos, byte[] array) implements CustomPayload {
-    public static final Id<ChangeBlockEntityDataC2SPacket> ID = new Id<>(NetworkHandler.CHANGE_BLOCK_ENTITY_DATA_PACKET_ID);
-    @Override
-    public Id<? extends CustomPayload> getId() {
-        return ID;
-    }
-    public static final PacketCodec<RegistryByteBuf, ChangeBlockEntityDataC2SPacket> CODEC =
-            PacketCodec.tuple(
-                    BlockPos.PACKET_CODEC, ChangeBlockEntityDataC2SPacket::pos,
-                    PacketCodecs.BYTE_ARRAY, ChangeBlockEntityDataC2SPacket::array,
-                    ChangeBlockEntityDataC2SPacket::new);
-    public static void receive(MinecraftServer server, ServerPlayerEntity player, BlockPos pos, byte[] array) {
+public class ChangeBlockEntityDataC2SPacket {
+    public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
+        BlockPos pos = buf.readBlockPos();
+        int[] array = buf.readIntArray();
         server.execute(() -> {
             BlockEntity blockEntity = player.getWorld().getBlockEntity(pos);
             if (blockEntity instanceof TeslaCoilBlockEntity teslaCoilBlockEntity){
@@ -84,10 +76,9 @@ public record ChangeBlockEntityDataC2SPacket(BlockPos pos, byte[] array) impleme
     }
     @Environment(EnvType.CLIENT)
     public static void send(BlockPos pos, int[] array) {
-        byte[] array2 = new byte[array.length];
-        for (int i = 0; i < array.length; i++){
-            array2[i] = (byte)array[i];
-        }
-        ClientPlayNetworking.send(new ChangeBlockEntityDataC2SPacket(pos, array2));
+        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+        buf.writeBlockPos(pos);
+        buf.writeIntArray(array);
+        ClientPlayNetworking.send(NetworkHandler.CHANGE_BLOCK_ENTITY_DATA_PACKET_ID, buf);
     }
 }

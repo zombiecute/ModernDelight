@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:foods/sausages",
+      "required": false
+    },
+    "bakingdelight:sausage",
+    "bakingdelight:sectioned_sausage",
+    "bakingdelight:starch_sausage",
+    "bakingdelight:grilled_sausage",
+    "bakingdelight:grilled_starch_sausage",
+    "bakingdelight:little_octopus_sausage"
+  ]
+}

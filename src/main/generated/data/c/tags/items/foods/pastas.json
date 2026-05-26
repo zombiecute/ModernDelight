@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:raw_noodles",
+    {
+      "id": "#forge:pasta",
+      "required": false
+    }
+  ]
+}

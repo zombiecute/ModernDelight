@@ -16,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -69,9 +68,9 @@ public class ButterEntity extends ThrownItemEntity {
                 if (!livingEntity.isAffectedBySplashPotions() || !((d = this.squaredDistanceTo(livingEntity)) < 16.0))
                     continue;
                 double e = livingEntity == entity ? 1.0 : 1.0 - Math.sqrt(d) / 4.0;
-                RegistryEntry<StatusEffect> STICKY = sticky.getEffectType();
-                RegistryEntry<StatusEffect> MINING_FATIGUE = mining_fatigue.getEffectType();
-                RegistryEntry<StatusEffect> WEAKNESS = weakness.getEffectType();
+                StatusEffect STICKY = sticky.getEffectType();
+                StatusEffect MINING_FATIGUE = mining_fatigue.getEffectType();
+                StatusEffect WEAKNESS = weakness.getEffectType();
                 int i2 = sticky.mapDuration(i -> (int) (e * (double) i + 0.5));
                 int i3 = mining_fatigue.mapDuration(i -> (int) (e * (double) i + 0.5));
                 int i4 = weakness.mapDuration(i -> (int) (e * (double) i + 0.5));

@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:whisking",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:egg_bowl"
+  }
+}

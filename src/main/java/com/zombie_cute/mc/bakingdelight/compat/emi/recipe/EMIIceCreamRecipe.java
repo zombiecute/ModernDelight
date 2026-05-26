@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIIceCreamRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/ice_cream.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/ice_cream.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.ICE_CREAM_MAKER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "ice_cream_making"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "ice_cream_making"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
@@ -42,7 +42,7 @@ public class EMIIceCreamRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return null;
+        return new Identifier(ModernDelightMain.MOD_ID,"ice_cream_making");
     }
 
     @Override

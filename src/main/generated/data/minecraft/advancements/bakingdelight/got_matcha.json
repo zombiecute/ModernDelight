@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_stone_mortar",
+  "criteria": {
+    "matcha": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:matcha"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.matcha.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:matcha"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.matcha.title"
+    }
+  },
+  "requirements": [
+    [
+      "matcha"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

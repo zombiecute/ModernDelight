@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CuisineCategory implements DisplayCategory<CuisineDisplay> {
     public static final Identifier TEXTURE =
-            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/cuisine.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/cuisine.png");
     public static final CategoryIdentifier<CuisineDisplay> CUISINE =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "cuisine");
 

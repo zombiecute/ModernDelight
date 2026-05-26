@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "bakingdelight:sunflower_seed"
+    }
+  ],
+  "processingTime": 10,
+  "results": [
+    {
+      "count": 1,
+      "item": "bakingdelight:sunflower_seed_pulp"
+    },
+    {
+      "chance": 0.9,
+      "item": "bakingdelight:sunflower_seed_peel"
+    },
+    {
+      "chance": 0.6,
+      "item": "bakingdelight:sunflower_seed_peel"
+    }
+  ]
+}

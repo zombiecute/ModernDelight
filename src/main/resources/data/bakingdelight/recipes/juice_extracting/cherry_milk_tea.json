@@ -1,0 +1,23 @@
+{
+  "type": "bakingdelight:juice_extracting",
+  "progress": 320,
+  "container": "bakingdelight:glass_cup",
+  "ingredients": [
+    {
+      "item": "bakingdelight:ice_brick"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "item": "minecraft:cherry_leaves"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:cherry_milk_tea",
+    "count": 3
+  }
+}

@@ -36,8 +36,8 @@ public abstract class ModAbstractFluid extends FlowableFluid {
     }
 
     @Override
-    protected int getMaxFlowDistance(WorldView world) {
-        return 4;
+    protected int getFlowSpeed(WorldView world) {
+        return 3;
     }
 
     @Override

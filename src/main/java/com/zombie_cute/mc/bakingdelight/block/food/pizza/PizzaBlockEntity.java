@@ -2,8 +2,7 @@ package com.zombie_cute.mc.bakingdelight.block.food.pizza;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.Objects;
@@ -15,9 +14,9 @@ public class PizzaBlockEntity extends AbstractPizzaBlockEntity {
     public int getHunger(){
         int result = 0;
         for(int i=0; i <PIZZA_INV.size();i++){
-            ItemStack item = getStack(i);
-            if (item.contains(DataComponentTypes.FOOD)){
-                result += Objects.requireNonNull(item.get(DataComponentTypes.FOOD)).nutrition();
+            Item item = getStack(i).getItem();
+            if (item.isFood()){
+                result += Objects.requireNonNull(item.getFoodComponent()).getHunger();
             }
         }
         return result / 3;

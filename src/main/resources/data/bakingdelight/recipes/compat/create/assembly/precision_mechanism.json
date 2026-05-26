@@ -1,0 +1,36 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "bakingdelight:assembly",
+  "mini_game_type": 2,
+  "goal": 4,
+  "ingredients": [
+    {
+      "item": "create:golden_sheet"
+    },
+    {
+      "item": "bakingdelight:redstone_component"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "bakingdelight:redstone_component"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "output": {
+    "item": "create:precision_mechanism"
+  }
+}

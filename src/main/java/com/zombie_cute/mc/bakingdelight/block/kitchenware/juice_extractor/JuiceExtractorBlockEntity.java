@@ -3,7 +3,6 @@ package com.zombie_cute.mc.bakingdelight.block.kitchenware.juice_extractor;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.JuiceExtractingRecipe;
-import com.zombie_cute.mc.bakingdelight.recipe.input.MultiStackRecipeInput;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
@@ -13,14 +12,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
@@ -29,7 +27,6 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -37,15 +34,13 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 
 public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEntity, ImplementedInventory, ACConsumer, SidedInventory {
@@ -114,34 +109,32 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt, inventory,registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, inventory);
         nbt.putInt("juice_extractor.progress",progress);
-        nbt.putString("juice_extractor.tempOutput",tempOutput.getItem().toString());
-        nbt.putInt("juice_extractor.tempOutput.count",tempOutput.getCount());
-        nbt.putString("juice_extractor.tempContainer",tempContainer.toString());
+        NbtCompound tempOutputNBT = new NbtCompound();
+        tempOutput.writeNbt(tempOutputNBT);
+        nbt.put("juice_extractor.tempOutput",tempOutputNBT);
+        NbtCompound tempContainerNBT = new NbtCompound();
+        tempContainer.getDefaultStack().writeNbt(tempContainerNBT);
+        nbt.put("juice_extractor.tempContainer",tempContainerNBT);
         nbt.putBoolean("juice_extractor.hasRecipe", hasRecipe);
     }
-
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
-        Inventories.readNbt(nbt, inventory,registryLookup);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("juice_extractor.progress");
-        String tempOutput = nbt.getString("juice_extractor.tempOutput");
-        int tempOutputCount = nbt.getInt("juice_extractor.tempOutput.count");
-        String tempContainer = nbt.getString("juice_extractor.tempContainer");
-        try {
-            this.tempOutput = new ItemStack(Registries.ITEM.get(Identifier.of(tempOutput)), tempOutputCount);
-            this.tempContainer = Registries.ITEM.get(Identifier.of(tempContainer));
-        } catch (Exception ignored) {}
+        NbtCompound output = nbt.getCompound("juice_extractor.tempOutput");
+        tempOutput = ItemStack.fromNbt(output);
+        NbtCompound container = nbt.getCompound("juice_extractor.tempContainer");
+        tempContainer = ItemStack.fromNbt(container).getItem();
         hasRecipe = nbt.getBoolean("juice_extractor.hasRecipe");
     }
-
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
     public void use(World world, BlockPos pos, PlayerEntity player) {
         if (world.isClient || world.getBlockState(pos).get(JuiceExtractorBlock.IS_WORKING)){
@@ -213,16 +206,16 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
 
     private void tryStart(PlayerEntity player,World world) {
         if (cachedPower > 0){
-            List<ItemStack> inv = new ArrayList<>(4);
+            SimpleInventory inv = new SimpleInventory(4);
             for (int i = 0;i < 4;i++){
-                inv.add(i,getStack(i));
+                inv.setStack(i,getStack(i));
             }
-            Optional<RecipeEntry<JuiceExtractingRecipe>> match = world.getRecipeManager()
-                    .getFirstMatch(JuiceExtractingRecipe.Type.INSTANCE, new MultiStackRecipeInput(inv,inv.size()), world);
+            Optional<JuiceExtractingRecipe> match = world.getRecipeManager()
+                    .getFirstMatch(JuiceExtractingRecipe.Type.INSTANCE, inv, world);
             if (match.isPresent()){
-                this.tempOutput = match.get().value().getResult(null).copy();
-                this.tempContainer = match.get().value().getContainer().getItem();
-                this.progress = match.get().value().getProgress();
+                this.tempOutput = match.get().getOutput(null).copy();
+                this.tempContainer = match.get().getContainer();
+                this.progress = match.get().getProgress();
                 clear(world);
                 if (hasHardThings()){
                     scream = true;
@@ -277,35 +270,35 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
         return false;
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, JuiceExtractorBlockEntity b) {
+    public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient){
             return;
         }
-        if (b.cachedPower != 0){
-            b.cachedPower--;
+        if (cachedPower != 0){
+            cachedPower--;
         }
         if (state.get(JuiceExtractorBlock.IS_WORKING)){
-            if (b.progress > 0){
+            if (progress > 0){
                 if (world.getTime() % 5 == 0){
-                    if (b.scream){
+                    if (scream){
                         world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, ModSounds.BLOCK_JUICE_EXTRACTOR_SCREAM, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     } else {
                         world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, ModSounds.BLOCK_JUICE_EXTRACTOR_WORKING, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     }
                 }
-                b.progress--;
+                progress--;
             } else {
                 world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, ModSounds.BLOCK_JUICE_EXTRACTOR_STOP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                if (b.hasRecipe){
-                    b.setStack(OUTPUT,b.tempOutput.copy());
+                if (hasRecipe){
+                    setStack(OUTPUT,tempOutput.copy());
                     setState(world, pos, JuiceExtractorBlock.IS_FULL, true);
                 } else {
                     world.createExplosion(null,pos.getX(),pos.getY(),pos.getZ(),1.5f,false, World.ExplosionSourceType.BLOCK);
                 }
-                b.hasRecipe = false;
-                b.scream = false;
+                hasRecipe = false;
+                scream = false;
                 setState(world, pos, JuiceExtractorBlock.IS_WORKING, false);
-                b.markDirty();
+                markDirty();
             }
         }
     }

@@ -8,28 +8,19 @@ import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public record SpawnXPC2SPacket(BlockPos pos) implements CustomPayload {
-    public static final Id<SpawnXPC2SPacket> ID = new Id<>(NetworkHandler.SPAWN_XP_PACKET_ID);
-    public static final PacketCodec<RegistryByteBuf, SpawnXPC2SPacket> CODEC =
-            PacketCodec.tuple(
-                    BlockPos.PACKET_CODEC, SpawnXPC2SPacket::pos,
-                    SpawnXPC2SPacket::new);
-    @Override
-    public Id<? extends CustomPayload> getId() {
-        return ID;
-    }
-    public static void receive(MinecraftServer server, ServerPlayerEntity player, BlockPos pos) {
+public class SpawnXPC2SPacket {
+    public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
+        BlockPos pos = buf.readBlockPos();
         server.execute(() -> {
             World world = player.getWorld();
             BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -58,6 +49,6 @@ public record SpawnXPC2SPacket(BlockPos pos) implements CustomPayload {
     public static void send(BlockPos pos) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         buf.writeBlockPos(pos);
-        ClientPlayNetworking.send(new SpawnXPC2SPacket(pos));
+        ClientPlayNetworking.send(NetworkHandler.SPAWN_XP_PACKET_ID, buf);
     }
 }

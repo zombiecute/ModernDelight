@@ -1,6 +1,5 @@
 package com.zombie_cute.mc.bakingdelight.block.power.batteries;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,11 +14,7 @@ public class IntermediateBatteryBlock extends AbstractBatteryBlock {
     public IntermediateBatteryBlock(Settings settings) {
         super(settings);
     }
-    public static final MapCodec<IntermediateBatteryBlock> CODEC = createCodec((IntermediateBatteryBlock::new));
-    @Override
-    protected MapCodec<? extends IntermediateBatteryBlock> getCodec() {
-        return CODEC;
-    }
+
     @Override
     protected Block getBlock() {
         return ModBlocks.INTERMEDIATE_BATTERY;

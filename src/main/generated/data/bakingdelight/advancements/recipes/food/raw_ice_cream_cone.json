@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mixed_dough": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:mixed_dough"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:raw_ice_cream_cone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_mixed_dough",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:raw_ice_cream_cone"
+    ]
+  },
+  "sends_telemetry_event": false
+}

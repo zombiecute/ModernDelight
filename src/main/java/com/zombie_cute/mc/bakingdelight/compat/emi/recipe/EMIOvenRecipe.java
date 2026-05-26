@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIOvenRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/transform.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/transform.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModItems.CROWBAR);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "oven_transforming"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "oven_transforming"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
@@ -39,7 +39,7 @@ public class EMIOvenRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return null;
+        return new Identifier(ModernDelightMain.MOD_ID,"oven_transforming");
     }
 
     @Override

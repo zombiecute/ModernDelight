@@ -8,11 +8,10 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.potion.Potion;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 public class ModEffectsAndPotions {
-    public static final RegistryEntry<StatusEffect> STICKY = registerEffect("sticky",new StickyEffect());
+    public static final StatusEffect STICKY = registerEffect("sticky",new StickyEffect());
     public static final Potion STICKY_POTION = registerPotion("sticky_potion", new Potion(
             new StatusEffectInstance(STICKY, 22 * 20, 0)));
     public static final Potion STICKY_LONG_POTION = registerPotion("sticky_long_potion", new Potion(
@@ -44,11 +43,11 @@ public class ModEffectsAndPotions {
             new StatusEffectInstance(StatusEffects.WATER_BREATHING, 120 * 20,0),
             new StatusEffectInstance(StatusEffects.GLOWING,10 * 60 * 20,0)
     ));
-    public static RegistryEntry<StatusEffect> registerEffect(String name, StatusEffect statusEffect){
-        return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(ModernDelightMain.MOD_ID,name),statusEffect);
+    public static StatusEffect registerEffect(String name, StatusEffect statusEffect){
+        return Registry.register(Registries.STATUS_EFFECT, new Identifier(ModernDelightMain.MOD_ID,name),statusEffect);
     }
     public static Potion registerPotion(String name, Potion potion){
-        return Registry.register(Registries.POTION,Identifier.of(ModernDelightMain.MOD_ID,name),potion);
+        return Registry.register(Registries.POTION,new Identifier(ModernDelightMain.MOD_ID,name),potion);
     }
     public static void registerModEffectsAndPotions(){
         ModernDelightMain.LOGGER.info("Registering Mod Effects and Potions for " + ModernDelightMain.MOD_ID);

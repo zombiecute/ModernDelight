@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "bakingdelight:fried_milk_wip"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:fried_milk"
+  }
+}

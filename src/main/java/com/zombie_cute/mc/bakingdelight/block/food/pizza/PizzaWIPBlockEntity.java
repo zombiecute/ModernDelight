@@ -6,12 +6,13 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvents;
@@ -22,7 +23,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PizzaWIPBlockEntity extends AbstractPizzaBlockEntity {
     public PizzaWIPBlockEntity(BlockPos pos, BlockState state) {
@@ -67,13 +67,19 @@ public class PizzaWIPBlockEntity extends AbstractPizzaBlockEntity {
                 }
                 player.getMainHandStack().decrement(1);
                 ItemStack rawPizza = new ItemStack(ModBlocks.RAW_PIZZA_ITEM);
-                List<ItemStack> itemStackList = new ArrayList<>();
+                NbtList nbtList = new NbtList();
                 for(int i = 0; i < inventory.size(); ++i) {
                     ItemStack itemStack = inventory.getStack(i);
-                    itemStackList.add(itemStack);
+                    if (!itemStack.isEmpty()) {
+                        NbtCompound nbtCompound = new NbtCompound();
+                        nbtCompound.putByte("Slot", (byte)i);
+                        itemStack.writeNbt(nbtCompound);
+                        nbtList.add(nbtCompound);
+                    }
                 }
-                ContainerComponent component = ContainerComponent.fromStacks(itemStackList);
-                rawPizza.set(DataComponentTypes.CONTAINER,component);
+                NbtCompound nbt = new NbtCompound();
+                nbt.put("Items",nbtList);
+                BlockItem.setBlockEntityNbt(rawPizza,ModBlockEntities.RAW_PIZZA_BLOCK_ENTITY,nbt);
                 playSound(SoundEvents.BLOCK_HONEY_BLOCK_PLACE,1.0f, world.random.nextFloat() + 0.1f);
                 ItemScatterer.spawn(world,pos.getX()+.5,pos.getY()+.5,pos.getZ()+.5,rawPizza);
                 world.breakBlock(pos, false);

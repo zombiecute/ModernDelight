@@ -1,7 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.item.tools;
 
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.BatteryBlockItem;
-import com.zombie_cute.mc.bakingdelight.components.ModComponents;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.item.food.PackagedItem;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.WhiskingRecipe;
@@ -9,16 +8,17 @@ import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.DCConsumer;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.Power;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
@@ -28,15 +28,15 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
-import software.bernie.geckolib.animatable.client.GeoRenderProvider;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animatable.client.RenderProvider;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,48 +44,83 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
     public ElectricWhiskItem() {
-        super(new Item.Settings().maxCount(1).component(ModComponents.POWER,0L));
+        super(new FabricItemSettings().maxCount(1));
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
-    public static final long MAX_POWER = 500;
+    public static final int MAX_POWER = 500;
+
+    @Override
+    public void onCraft(ItemStack stack, World world, PlayerEntity player) {
+        getNBTPower(stack);
+        super.onCraft(stack, world, player);
+    }
 
     public static void addNBTPower(ItemStack itemStack, long value){
-        if (itemStack.contains(ModComponents.POWER)){
-            long power = itemStack.getOrDefault(ModComponents.POWER, 0L);
-            if (value >= 0){
-                power = Math.min(value + power, 500);
+        if (itemStack.isOf(ModItems.ELECTRIC_WHISK)){
+            NbtCompound nbt = itemStack.getNbt();
+            if (nbt == null){
+                nbt = new NbtCompound();
             }
-            itemStack.set(ModComponents.POWER,power);
-        } else {
-            itemStack.set(ModComponents.POWER, Math.clamp(value, 0L, 500L));
+            if (nbt.contains("power")){
+                long i = nbt.getLong("power");
+                if (value >= 0){
+                    i = Math.min(value + i, MAX_POWER);
+                }
+                nbt.putLong("power",i);
+            } else {
+                if (value >= 0){
+                    nbt.putLong("power",Math.min(value, MAX_POWER));
+                }
+            }
+            itemStack.setNbt(nbt);
         }
     }
     public static void reduceNBTPower(ItemStack itemStack, long value){
-        if (itemStack.contains(ModComponents.POWER)){
-            long power = itemStack.getOrDefault(ModComponents.POWER,0L);
-            if (value >= 0){
-                power = Math.max(power - value, 0L);
+        if (itemStack.isOf(ModItems.ELECTRIC_WHISK)){
+            NbtCompound nbt = itemStack.getNbt();
+            if (nbt == null){
+                nbt = new NbtCompound();
             }
-            itemStack.set(ModComponents.POWER,power);
-        } else {
-            itemStack.set(ModComponents.POWER, 0L);
+            if (nbt.contains("power")){
+                long i = nbt.getLong("power");
+                if (value >= 0){
+                    i = Math.max(i - value, 0);
+                }
+                nbt.putLong("power",i);
+            } else {
+                nbt.putLong("power", 0);
+            }
+            itemStack.setNbt(nbt);
         }
     }
 
     public static long getNBTPower(ItemStack itemStack){
-        return itemStack.getOrDefault(ModComponents.POWER,0L);
+        if (itemStack.isOf(ModItems.ELECTRIC_WHISK)){
+            NbtCompound nbt = itemStack.getNbt();
+            if (nbt == null){
+                nbt = new NbtCompound();
+            }
+            if (nbt.contains("power")){
+                return nbt.getLong("power");
+            } else {
+                nbt.putLong("power",0);
+                itemStack.setNbt(nbt);
+                return 0;
+            }
+        } else return 0;
     }
     public boolean isWorking = false;
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     private static final RawAnimation WORKING = RawAnimation.begin().thenLoop("working");
-
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable(BatteryBlockItem.TOOLTIP_TEXT).formatted(Formatting.DARK_GRAY));
         tooltip.add(Text.literal(getNBTPower(stack) + "/"+MAX_POWER+" EP").formatted(Formatting.GRAY));
         if(Screen.hasShiftDown()){
@@ -104,20 +139,22 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
             tooltip.add(TextUtil.getShiftText(false));
             tooltip.add(TextUtil.getAltText(false));
         }
-        super.appendTooltip(stack, context, tooltip, type);
+        super.appendTooltip(stack, world, tooltip, context);
     }
-
     @Override
-    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
-        consumer.accept(new GeoRenderProvider() {
-            private ElectricWhiskItemRenderer renderer = new ElectricWhiskItemRenderer();
+    public void createRenderer(Consumer<Object> consumer) {
+        consumer.accept(new RenderProvider() {
+            private final ElectricWhiskItemRenderer renderer = new ElectricWhiskItemRenderer();
             @Override
-            public @NotNull BuiltinModelItemRenderer getGeoItemRenderer() {
-                if (this.renderer == null)
-                    this.renderer = new ElectricWhiskItemRenderer();
+            public BuiltinModelItemRenderer getCustomRenderer() {
                 return this.renderer;
             }
         });
+    }
+
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return renderProvider;
     }
 
     @Override
@@ -182,10 +219,12 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
                 return;
             }
             BlockPos blockPos = itemEntity.getBlockPos();
-            Optional<RecipeEntry<WhiskingRecipe>> match = world.getRecipeManager()
-                    .getFirstMatch(WhiskingRecipe.Type.INSTANCE, new SingleStackRecipeInput(oldStack),world);
+            SimpleInventory inventory = new SimpleInventory(1);
+            inventory.setStack(0,oldStack);
+            Optional<WhiskingRecipe> match = world.getRecipeManager()
+                    .getFirstMatch(WhiskingRecipe.Type.INSTANCE, inventory,world);
             if (match.isPresent()){
-                ItemStack newStack = new ItemStack(match.get().value().getResult(null).getItem(),count);
+                ItemStack newStack = new ItemStack(match.get().getOutput(null).getItem(),count);
                 if (newStack.getItem() instanceof PackagedItem){
                     player.sendMessage(Text.translatable(TextUtil.ELECTRIC_WHISK_NEED_BOWL),true);
                     return;
@@ -210,7 +249,8 @@ public class ElectricWhiskItem extends Item implements GeoItem, DCConsumer {
             if (!item.isWorking()){
                 item.setWorking(true);
             }
-            scheduler.schedule(()-> MinecraftClient.getInstance().execute(()-> item.setWorking(false)),1, TimeUnit.SECONDS);
+            scheduler.schedule(()-> MinecraftClient.getInstance().execute(()-> item.setWorking(false))
+                    ,1, TimeUnit.SECONDS);
         }
     }
 

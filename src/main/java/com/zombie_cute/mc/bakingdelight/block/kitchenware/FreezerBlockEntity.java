@@ -1,11 +1,9 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware;
 
 import com.google.common.collect.Maps;
-import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.FreezingRecipe;
-import com.zombie_cute.mc.bakingdelight.recipe.input.MultiStackRecipeInput;
 import com.zombie_cute.mc.bakingdelight.screen.custom.FreezerScreenHandler;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
@@ -18,17 +16,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
@@ -44,16 +42,19 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
-public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, SidedInventory, ACConsumer {
+public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory, ACConsumer {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(20,ItemStack.EMPTY);
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
     private static final int INPUT_SLOT_3 = 2;
     private static final int ICE_SLOT = 3;
     private static final int OUTPUT_SLOT = 4;
-    public static final String FREEZER_NAME = "display_name."+ ModernDelightMain.MOD_ID +".freezer_name";
+    public static final String FREEZER_NAME = "display_name.bakingdelight.freezer_name";
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
     private int maxProgress = 400;
@@ -61,7 +62,7 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
     private int maxCoolTime = 1;
     private int experiences = 0;
     public FreezerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.FREEZER_BLOCK_ENTITY, pos, state);
+        super(ModBlockEntities.FREEZER_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -110,11 +111,10 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
     public void playSound(SoundEvent sound, float volume, float pitch) {
         Objects.requireNonNull(world).playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, sound, SoundCategory.BLOCKS, volume, pitch);
     }
-
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt, inventory,registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, inventory);
         nbt.putInt("freezer.progress",progress);
         nbt.putInt("freezer.fuelTime", coolTime);
         nbt.putInt("freezer.maxCoolTime", maxCoolTime);
@@ -122,18 +122,17 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
-        Inventories.readNbt(nbt, inventory,registryLookup);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("freezer.progress");
         coolTime = nbt.getInt("freezer.coolTime");
         maxCoolTime = nbt.getInt("freezer.maxCoolTime");
         experiences = nbt.getInt("freezer.experiences");
     }
-
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
 
     @Override
@@ -142,8 +141,8 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
     }
 
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(this.pos);
     }
 
     @Override
@@ -156,54 +155,54 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new FreezerScreenHandler(syncId, playerInventory,this,this.propertyDelegate);
     }
-    public static void tick(World world, BlockPos pos, BlockState state, FreezerBlockEntity entity){
+    public void tick(World world, BlockPos pos, BlockState state, FreezerBlockEntity entity){
         if (world.isClient){
             return;
         }
-        if (entity.isCool()){
-            --entity.coolTime;
+        if (isCool()){
+            --coolTime;
             if (world.getTime() % 100L == 0L){
-                entity.playSound(ModSounds.BLOCK_FREEZER_RUNNING,0.3f,0.8f);
+                playSound(ModSounds.BLOCK_FREEZER_RUNNING,0.3f,0.8f);
             }
-            if (entity.isOutputSlotEmptyOrReceivable()){
-                if (entity.hasRecipe(entity)){
-                    entity.increaseCraftProgress();
-                    entity.markDirty();
-                    if (entity.hasCraftingFinished()){
-                        entity.craftItem(entity);
+            if (isOutputSlotEmptyOrReceivable()){
+                if (hasRecipe(entity)){
+                    increaseCraftProgress();
+                    markDirty();
+                    if (hasCraftingFinished()){
+                        craftItem(entity);
                         for (int i = 0;i < 3;i++){
-                            if (!entity.getStack(i).getRecipeRemainder().isEmpty()){
-                                ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),entity.getStack(i).getRecipeRemainder().copy());
+                            if (!getStack(i).getRecipeRemainder().isEmpty()){
+                                ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),this.getStack(i).getRecipeRemainder().copy());
                             }
                         }
-                        entity.removeStack(INPUT_SLOT_1,1);
-                        entity.removeStack(INPUT_SLOT_2,1);
-                        entity.removeStack(INPUT_SLOT_3,1);
-                        entity.resetProgress();
+                        removeStack(INPUT_SLOT_1,1);
+                        removeStack(INPUT_SLOT_2,1);
+                        removeStack(INPUT_SLOT_3,1);
+                        resetProgress();
                     }
                 } else {
-                    if (entity.progress != 0){
-                        entity.resetProgress();
+                    if (this.progress != 0){
+                        resetProgress();
                     }
                 }
             }
         } else {
-            if (entity.hasRecipe(entity)){
-                entity.progress--;
+            if (hasRecipe(entity)){
+                progress--;
             } else {
-                entity.resetProgress();
+                resetProgress();
             }
-            entity.maxCoolTime = 60;
-            entity.markDirty();
+            maxCoolTime = 60;
+            markDirty();
         }
-        if (canUseAsIce(entity.getStack(3))&&entity.coolTime == 0){
-            ItemStack ice = entity.getStack(3);
-            entity.coolTime = entity.getCoolTime(ice);
-            entity.maxCoolTime = entity.coolTime;
-            if (entity.getStack(ICE_SLOT).getItem() == Items.POWDER_SNOW_BUCKET){
-                entity.setStack(ICE_SLOT, Items.BUCKET.getDefaultStack());
+        if (canUseAsIce(this.getStack(3))&&this.coolTime == 0){
+            ItemStack ice = this.getStack(3);
+            this.coolTime = this.getCoolTime(ice);
+            maxCoolTime = coolTime;
+            if (this.getStack(ICE_SLOT).getItem() == Items.POWDER_SNOW_BUCKET){
+                this.setStack(ICE_SLOT, Items.BUCKET.getDefaultStack());
             } else {
-                entity.removeStack(ICE_SLOT,1);
+                this.removeStack(ICE_SLOT,1);
             }
         }
     }
@@ -246,15 +245,15 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
         this.progress = 0;
     }
     private void craftItem(FreezerBlockEntity entity) {
-        List<ItemStack> inventory = new ArrayList<>(entity.size());
+        SimpleInventory inventory = new SimpleInventory(entity.size());
         for(int i = 0; i< entity.size();i++){
-            inventory.add(i,entity.getStack(i));
+            inventory.setStack(i,entity.getStack(i));
         }
-        Optional<RecipeEntry<FreezingRecipe>> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
-                .getFirstMatch(FreezingRecipe.Type.INSTANCE, new MultiStackRecipeInput(inventory,entity.size()),entity.getWorld());
+        Optional<FreezingRecipe> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
+                .getFirstMatch(FreezingRecipe.Type.INSTANCE, inventory,entity.getWorld());
         experiences += 3;
-        this.setStack(OUTPUT_SLOT, new ItemStack(match.get().value().getResult(null).getItem(),
-                getStack(OUTPUT_SLOT).getCount() + match.get().value().getResult(null).getCount()));
+        this.setStack(OUTPUT_SLOT, new ItemStack(match.get().getOutput(null).getItem(),
+                getStack(OUTPUT_SLOT).getCount() + match.get().getOutput(null).getCount()));
     }
     private boolean hasCraftingFinished(){
         return progress >= maxProgress;
@@ -263,17 +262,17 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
         progress++;
     }
     private boolean hasRecipe(FreezerBlockEntity entity) {
-        List<ItemStack> inventory = new ArrayList<>(entity.size());
+        SimpleInventory inventory = new SimpleInventory(entity.size());
         for(int i = 0; i< entity.size();i++){
-            inventory.add(i,entity.getStack(i));
+            inventory.setStack(i,entity.getStack(i));
         }
-        Optional<RecipeEntry<FreezingRecipe>> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
-                .getFirstMatch(FreezingRecipe.Type.INSTANCE, new MultiStackRecipeInput(inventory,entity.size()),entity.getWorld());
+        Optional<FreezingRecipe> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
+                .getFirstMatch(FreezingRecipe.Type.INSTANCE, inventory,entity.getWorld());
 
         if (entity.world != null) {
             return match.isPresent() &&
-                    canInsertAmountIntoOutputSlot(match.get().value().getResult(null)) &&
-                    canInsertItemIntoOutputSlot(match.get().value().getResult(entity.world.getRegistryManager()).getItem());
+                    canInsertAmountIntoOutputSlot(match.get().getOutput(null)) &&
+                    canInsertItemIntoOutputSlot(match.get().getOutput(entity.world.getRegistryManager()).getItem());
         } else return false;
     }
 

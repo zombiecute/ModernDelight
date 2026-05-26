@@ -1,27 +1,23 @@
 package com.zombie_cute.mc.bakingdelight.block.power;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -34,17 +30,12 @@ import java.util.List;
 
 public class ElectriciansDeskBlock extends BlockWithEntity {
     public ElectriciansDeskBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS).nonOpaque());
+        super(FabricBlockSettings.copyOf(Blocks.CHERRY_PLANKS).nonOpaque());
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,14,16);
-    public static final MapCodec<ElectriciansDeskBlock> CODEC = createCodec((settings -> new ElectriciansDeskBlock()));
     @Override
-    protected MapCodec<? extends ElectriciansDeskBlock> getCodec() {
-        return CODEC;
-    }
-    @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
@@ -53,7 +44,7 @@ public class ElectriciansDeskBlock extends BlockWithEntity {
         } else {
             tooltip.add(TextUtil.getShiftText(false));
         }
-        super.appendTooltip(stack, context, tooltip, options);
+        super.appendTooltip(stack, world, tooltip, options);
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -108,7 +99,7 @@ public class ElectriciansDeskBlock extends BlockWithEntity {
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient){
             if (MiscUtil.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);

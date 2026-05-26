@@ -151,7 +151,7 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModBlocks.FAN_BLADE_ITEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLACK_PEPPER_DUST, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.WHISK, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.IRON_WHISK, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.AMETHYST_KNIFE, Models.HANDHELD);
 
@@ -302,6 +302,6 @@ public class ModModelGenerator extends FabricModelProvider {
     }
     private static Model registerItemBlockModel(Block parent, TextureKey ... requiredTextureKeys) {
         String name = ModelIds.getBlockModelId(parent).getPath();
-        return new Model(Optional.of(Identifier.of(ModernDelightMain.MOD_ID, name)), Optional.empty(), requiredTextureKeys);
+        return new Model(Optional.of(new Identifier(ModernDelightMain.MOD_ID, name)), Optional.empty(), requiredTextureKeys);
     }
 }

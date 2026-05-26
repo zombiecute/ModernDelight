@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:still_cream",
+    "bakingdelight:flowing_cream",
+    "bakingdelight:flowing_vegetable_oil",
+    "bakingdelight:still_vegetable_oil",
+    "bakingdelight:still_liquefied_biogas",
+    "bakingdelight:flowing_liquefied_biogas",
+    "bakingdelight:still_sweetened_water",
+    "bakingdelight:flowing_sweetened_water"
+  ]
+}

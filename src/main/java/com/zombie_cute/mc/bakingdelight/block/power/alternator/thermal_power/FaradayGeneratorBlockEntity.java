@@ -2,14 +2,15 @@ package com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACGenerateAble;
 import com.zombie_cute.mc.bakingdelight.screen.custom.FaradayGeneratorScreenHandler;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
-import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACGenerateAble;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -19,7 +20,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class FaradayGeneratorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ACGenerateAble {
+public class FaradayGeneratorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ACGenerateAble {
     public FaradayGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FARADAY_GENERATOR_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -41,7 +42,7 @@ public class FaradayGeneratorBlockEntity extends BlockEntity implements Extended
     }
     protected final PropertyDelegate propertyDelegate;
     private int isWorking = 0;
-    public static void tick(World world, BlockPos pos, BlockState state, FaradayGeneratorBlockEntity b) {
+    public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient){
             return;
         }
@@ -58,33 +59,33 @@ public class FaradayGeneratorBlockEntity extends BlockEntity implements Extended
                 Direction engineDir = world.getBlockState(blockPos).get(SterlingEngineBlock.FACING);
                 switch (thisDir){
                     case WEST -> {if (engineDir != Direction.NORTH) {
-                        b.isWorking = 0;
+                        this.isWorking = 0;
                         return;
                     }}
                     case SOUTH -> {if (engineDir != Direction.WEST) {
-                        b.isWorking = 0;
+                        this.isWorking = 0;
                         return;
                     }}
                     case EAST -> {if (engineDir != Direction.SOUTH) {
-                        b.isWorking = 0;
+                        this.isWorking = 0;
                         return;
                     }}
                     case NORTH -> {if (engineDir != Direction.EAST) {
-                        b.isWorking = 0;
+                        this.isWorking = 0;
                         return;
                     }}
                 }
                 if (engineBlockEntity.getCachedState().get(SterlingEngineBlock.IS_WORKING)){
-                    b.isWorking = 1;
-                } else b.isWorking = 0;
-            } else b.isWorking = 0;
+                    this.isWorking = 1;
+                } else this.isWorking = 0;
+            } else this.isWorking = 0;
         }
 
     }
 
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
 
     @Override

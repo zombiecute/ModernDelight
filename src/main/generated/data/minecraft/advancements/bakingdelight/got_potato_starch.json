@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_mashed_potato",
+  "criteria": {
+    "potato_starch": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:potato_starch"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.get_potato_starch_desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:potato_starch"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_potato_starch_title"
+    }
+  },
+  "requirements": [
+    [
+      "potato_starch"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

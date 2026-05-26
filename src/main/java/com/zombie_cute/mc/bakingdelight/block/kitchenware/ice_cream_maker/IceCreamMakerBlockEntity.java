@@ -1,16 +1,13 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker;
 
-import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import com.zombie_cute.mc.bakingdelight.components.ModComponents;
-import com.zombie_cute.mc.bakingdelight.components.custom.FlavorComponent;
-import com.zombie_cute.mc.bakingdelight.components.custom.FlavorListComponent;
+import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.item.food.CreamItem;
 import com.zombie_cute.mc.bakingdelight.screen.custom.IceCreamMakerScreenHandler;
-import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -20,7 +17,7 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -31,17 +28,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEntity, ACConsumer, ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
+public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEntity, ACConsumer, ImplementedInventory, ExtendedScreenHandlerFactory {
     public IceCreamMakerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ICE_CREAM_MAKER_BLOCK_ENTITY, pos, state);
         propertyDelegate = new PropertyDelegate() {
@@ -101,76 +98,76 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
         return cache;
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, IceCreamMakerBlockEntity b) {
+    public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient){
             return;
         }
-        if (b.isPowered > 0){
-            b.isPowered--;
+        if (isPowered > 0){
+            this.isPowered--;
         } else {
-            if (b.progress > 0){
-                b.progress--;
+            if (this.progress > 0){
+                progress--;
             }
         }
         if (state.get(IceCreamMakerBlock.START)){
-            b.ticker++;
-            if (b.ticker >= 60){
-                ItemScatterer.spawn(world,pos.getX(),pos.getY(), pos.getZ(), b.getStack(4));
-                b.setStack(4,ItemStack.EMPTY);
+            ticker++;
+            if (ticker >= 60){
+                ItemScatterer.spawn(world,pos.getX(),pos.getY(), pos.getZ(), this.getStack(4));
+                this.setStack(4,ItemStack.EMPTY);
                 world.setBlockState(pos,state.with(IceCreamMakerBlock.START,false));
             }
-        } else b.ticker = 0;
+        } else ticker = 0;
         if (world.getTime() %20L == 0L){
-            if (b.getStack(0).getItem() instanceof CreamItem cream){
-                FlavorComponent creamFlavor = cream.getFlavor();
-                int findNull = b.findNull();
-                int findSameFlavor = b.findSameFlavor(creamFlavor);
-                if (b.hasRecipe() && (findNull != 0 || findSameFlavor != 0)){
-                    b.progress++;
+            if (this.getStack(0).getItem() instanceof CreamItem cream){
+                CreamFlavor creamFlavor = cream.getFlavor();
+                int findNull = findNull();
+                int findSameFlavor = findSameFlavor(creamFlavor);
+                if (hasRecipe() && (findNull != 0 || findSameFlavor != 0)){
+                    progress++;
                     int maxProgress = 10;
-                    if (b.progress >= maxProgress){
+                    if (progress >= maxProgress){
                         if (findSameFlavor != 0){
                             switch (findSameFlavor){
-                                case 1 -> b.iceCream1.changeAmount(100);
-                                case 2 -> b.iceCream2.changeAmount(100);
-                                case 3 -> b.iceCream3.changeAmount(100);
+                                case 1 -> this.iceCream1.changeAmount(100);
+                                case 2 -> this.iceCream2.changeAmount(100);
+                                case 3 -> this.iceCream3.changeAmount(100);
                             }
                         } else {
                             switch (findNull){
                                 case 1 -> {
-                                    b.iceCream1.setFlavor(creamFlavor);
-                                    b.iceCream1.setAmount(100);
+                                    this.iceCream1.setFlavor(creamFlavor);
+                                    this.iceCream1.setAmount(100);
                                 }
                                 case 2 -> {
-                                    b.iceCream2.setFlavor(creamFlavor);
-                                    b.iceCream2.setAmount(100);
+                                    this.iceCream2.setFlavor(creamFlavor);
+                                    this.iceCream2.setAmount(100);
                                 }
                                 case 3 -> {
-                                    b.iceCream3.setFlavor(creamFlavor);
-                                    b.iceCream3.setAmount(100);
+                                    this.iceCream3.setFlavor(creamFlavor);
+                                    this.iceCream3.setAmount(100);
                                 }
                             }
                         }
-                        b.removeStack(0,1);
-                        b.removeStack(1,1);
-                        b.removeStack(2,1);
-                        ItemStack stack3 = b.getStack(3);
+                        this.removeStack(0,1);
+                        this.removeStack(1,1);
+                        this.removeStack(2,1);
+                        ItemStack stack3 = this.getStack(3);
                         int count = stack3.getCount();
                         if (stack3.isEmpty()){
-                            b.setStack(3,Items.BOWL.getDefaultStack());
+                            this.setStack(3,Items.BOWL.getDefaultStack());
                         } else {
                             if (stack3.getItem() == Items.BOWL && count < stack3.getMaxCount()){
-                                b.setStack(3,new ItemStack(Items.BOWL,count+1));
+                                this.setStack(3,new ItemStack(Items.BOWL,count+1));
                             } else ItemScatterer.spawn(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(Items.BOWL));
                         }
-                        b.progress = 0;
+                        progress = 0;
                     }
-                } else b.progress = 0;
-            } else b.progress = 0;
-            b.markDirty();
+                } else progress = 0;
+            } else progress = 0;
+            markDirty();
         }
     }
-    private int findSameFlavor(FlavorComponent creamFlavor){
+    private int findSameFlavor(CreamFlavor creamFlavor){
         if (this.iceCream1.getFlavor() == creamFlavor && this.iceCream1.getAmount() != 1000){
             return 1;
         }
@@ -200,14 +197,13 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
                 this.getStack(2).getItem() == Items.EGG;
     }
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
-
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt, inventory, registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt, inventory);
         nbt.putInt("ice_cream_maker.progress",this.progress);
 
         nbt.putInt("ice_cream_maker.ice_cream1.flavor",this.iceCream1.getFlavor().getId());
@@ -222,25 +218,23 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
         nbt.putInt("ice_cream_maker.ice_cream3.amount",this.iceCream3.getAmount());
         nbt.putBoolean("ice_cream_maker.ice_cream3.selected",this.iceCream3.isSelected());
     }
-
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
-        Inventories.readNbt(nbt, inventory, registryLookup);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt, inventory);
         this.progress = nbt.getInt("ice_cream_maker.progress");
 
-        this.iceCream1.setFlavor(FlavorComponent.getFlavorByID(nbt.getInt("ice_cream_maker.ice_cream1.flavor")));
+        this.iceCream1.setFlavor(CreamFlavor.getFlavorByID(nbt.getInt("ice_cream_maker.ice_cream1.flavor")));
         this.iceCream1.setAmount(nbt.getInt("ice_cream_maker.ice_cream1.amount"));
         this.iceCream1.setSelected(nbt.getBoolean("ice_cream_maker.ice_cream1.selected"));
 
-        this.iceCream2.setFlavor(FlavorComponent.getFlavorByID(nbt.getInt("ice_cream_maker.ice_cream2.flavor")));
+        this.iceCream2.setFlavor(CreamFlavor.getFlavorByID(nbt.getInt("ice_cream_maker.ice_cream2.flavor")));
         this.iceCream2.setAmount(nbt.getInt("ice_cream_maker.ice_cream2.amount"));
         this.iceCream2.setSelected(nbt.getBoolean("ice_cream_maker.ice_cream2.selected"));
 
-        this.iceCream3.setFlavor(FlavorComponent.getFlavorByID(nbt.getInt("ice_cream_maker.ice_cream3.flavor")));
+        this.iceCream3.setFlavor(CreamFlavor.getFlavorByID(nbt.getInt("ice_cream_maker.ice_cream3.flavor")));
         this.iceCream3.setAmount(nbt.getInt("ice_cream_maker.ice_cream3.amount"));
         this.iceCream3.setSelected(nbt.getBoolean("ice_cream_maker.ice_cream3.selected"));
-        markDirty();
     }
     @Override
     public long getConsumedValue() {
@@ -263,8 +257,8 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
     }
 
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
 
     @Override
@@ -277,8 +271,8 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new IceCreamMakerScreenHandler(syncId,playerInventory,this,propertyDelegate);
     }
-    public static final String NEED_CONE = ModernDelightMain.MOD_ID+".ice_cream_maker.need_cone";
-    public static final String NEED_SELECT = ModernDelightMain.MOD_ID+".ice_cream_maker.need_select";
+    public static final String NEED_CONE = "bakingdelight.ice_cream_maker.need_cone";
+    public static final String NEED_SELECT = "bakingdelight.ice_cream_maker.need_select";
 
     public void tryStart(BlockState state, World world, PlayerEntity player) {
         if (!state.get(IceCreamMakerBlock.START)){
@@ -286,16 +280,16 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
                 player.sendMessage(Text.translatable(NEED_CONE),true);
                 return;
             }
-            List<FlavorComponent> creamFlavors = new ArrayList<>();
-            if (iceCream1.isSelected() && iceCream1.getFlavor() != FlavorComponent.NULL && iceCream1.getAmount() >= 50){
+            List<CreamFlavor> creamFlavors = new ArrayList<>();
+            if (iceCream1.isSelected() && iceCream1.getFlavor() != CreamFlavor.NULL && iceCream1.getAmount() >= 50){
                 creamFlavors.add(iceCream1.getFlavor());
                 iceCream1.changeAmount(-50);
             }
-            if (iceCream2.isSelected() && iceCream2.getFlavor() != FlavorComponent.NULL && iceCream2.getAmount() >= 50){
+            if (iceCream2.isSelected() && iceCream2.getFlavor() != CreamFlavor.NULL && iceCream2.getAmount() >= 50){
                 creamFlavors.add(iceCream2.getFlavor());
                 iceCream2.changeAmount(-50);
             }
-            if (iceCream3.isSelected() && iceCream3.getFlavor() != FlavorComponent.NULL && iceCream3.getAmount() >= 50){
+            if (iceCream3.isSelected() && iceCream3.getFlavor() != CreamFlavor.NULL && iceCream3.getAmount() >= 50){
                 creamFlavors.add(iceCream3.getFlavor());
                 iceCream3.changeAmount(-50);
             }
@@ -304,8 +298,9 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
                 return;
             }
             ItemStack iceCream = new ItemStack(ModItems.ICE_CREAM);
-            FlavorListComponent flavorListComponent = new FlavorListComponent(creamFlavors);
-            iceCream.set(ModComponents.FLAVOR_LIST, flavorListComponent);
+            for (CreamFlavor creamFlavor : creamFlavors){
+                CreamFlavor.addFlavorToFood(iceCream, creamFlavor);
+            }
             this.setStack(4,iceCream);
             player.getMainHandStack().decrement(1);
             world.setBlockState(pos,state.with(IceCreamMakerBlock.START,true));
@@ -323,15 +318,15 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
     }
 
     public static class IceCream {
-        public IceCream(FlavorComponent creamFlavor, int amount){
+        public IceCream(CreamFlavor creamFlavor, int amount){
             this.creamFlavor = creamFlavor;
             this.amount = amount;
         }
         public IceCream(){
-            this.creamFlavor = FlavorComponent.NULL;
+            this.creamFlavor = CreamFlavor.NULL;
             this.amount = 0;
         }
-        public FlavorComponent getFlavor() {
+        public CreamFlavor getFlavor() {
             return creamFlavor;
         }
         public int getSelected(){
@@ -348,9 +343,9 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
             isSelected = value != 0;
         }
 
-        public void setFlavor(FlavorComponent creamFlavor) {
+        public void setFlavor(CreamFlavor creamFlavor) {
             this.creamFlavor = creamFlavor;
-            if (creamFlavor == FlavorComponent.NULL){
+            if (creamFlavor == CreamFlavor.NULL){
                 this.amount = 0;
             }
         }
@@ -360,29 +355,29 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
         }
 
         public void setAmount(int amount) {
-            if (this.creamFlavor != FlavorComponent.NULL){
+            if (this.creamFlavor != CreamFlavor.NULL){
                 if (amount > MAX_AMOUNT){
                     this.amount = MAX_AMOUNT;
                 } else {
                     this.amount = Math.max(amount, 0);
                 }
                 if (this.amount == 0){
-                    this.creamFlavor = FlavorComponent.NULL;
+                    this.creamFlavor = CreamFlavor.NULL;
                 }
             }
         }
         public void changeAmount(int value){
-            if (this.creamFlavor != FlavorComponent.NULL){
+            if (this.creamFlavor != CreamFlavor.NULL){
                 if (this.amount + value <= 0){
                     this.amount = 0;
-                    this.creamFlavor = FlavorComponent.NULL;
+                    this.creamFlavor = CreamFlavor.NULL;
                 } else if (this.amount + value >= MAX_AMOUNT){
                     this.amount = MAX_AMOUNT;
                 } else this.amount += value;
             }
         }
 
-        private FlavorComponent creamFlavor;
+        private CreamFlavor creamFlavor;
         private int amount;
         private final int MAX_AMOUNT = 1000;
         private boolean isSelected = false;

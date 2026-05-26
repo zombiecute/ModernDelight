@@ -1,0 +1,23 @@
+{
+  "type": "bakingdelight:juice_extracting",
+  "progress": 120,
+  "container": "minecraft:glass_bottle",
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:sweet_berries_juice",
+    "count": 3
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cream"
+    },
+    {
+      "item": "bakingdelight:matcha"
+    },
+    {
+      "item": "bakingdelight:matcha"
+    },
+    {
+      "item": "bakingdelight:matcha"
+    }
+  ],
+  "result": {
+    "item": "bakingdelight:matcha_cream"
+  }
+}

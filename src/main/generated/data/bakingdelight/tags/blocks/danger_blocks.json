@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:lava",
+    "minecraft:magma_block",
+    {
+      "id": "#minecraft:campfires",
+      "required": false
+    },
+    {
+      "id": "#farmersdelight:heat_sources",
+      "required": false
+    },
+    {
+      "id": "#create:passive_boiler_heaters",
+      "required": false
+    }
+  ]
+}

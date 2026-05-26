@@ -1,0 +1,23 @@
+{
+  "type": "bakingdelight:juice_extracting",
+  "progress": 280,
+  "container": "bakingdelight:glass_cup",
+  "ingredients": [
+    {
+      "item": "bakingdelight:ice_brick"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "tag": "c:foods/fruits/mango"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:mango_milk_tea",
+    "count": 3
+  }
+}

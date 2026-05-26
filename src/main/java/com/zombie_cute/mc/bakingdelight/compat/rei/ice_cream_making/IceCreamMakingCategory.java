@@ -22,7 +22,7 @@ import java.util.List;
 
 public class IceCreamMakingCategory implements DisplayCategory<IceCreamMakingDisplay> {
     public static final Identifier TEXTURE =
-            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/ice_cream.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/ice_cream.png");
     public static final String TITLE = "emi.category.bakingdelight.ice_cream_making";
     public static final CategoryIdentifier<IceCreamMakingDisplay> ICE_CREAM_MAKING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "ice_cream_making");
@@ -38,7 +38,7 @@ public class IceCreamMakingCategory implements DisplayCategory<IceCreamMakingDis
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModBlocks.ICE_CREAM_MAKER.asItem().getDefaultStack());
+        return EntryStacks.of(ModBlocks.PIZZA.asItem().getDefaultStack());
     }
     @Override
     public List<Widget> setupDisplay(IceCreamMakingDisplay display, Rectangle bounds) {

@@ -1,0 +1,20 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:black_pepper_dust"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "bakingdelight:black_pepper_dust"
+    },
+    {
+      "item": "bakingdelight:raw_pizza"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:pizza"
+  }
+}

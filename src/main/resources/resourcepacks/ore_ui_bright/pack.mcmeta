@@ -1,6 +1,6 @@
 {
   "pack": {
-    "pack_format": 34,
+    "pack_format": 15,
     "description": "Replace all GUIs in Modern Kitchen with new Ore UI style."
   }
 }

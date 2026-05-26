@@ -1,6 +1,5 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,10 +28,6 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
         setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
-    public static final MapCodec<KitchenUtensilHolderBlock> CODEC = createCodec(KitchenUtensilHolderBlock::new);
-    protected MapCodec<? extends KitchenUtensilHolderBlock> getCodec() {
-        return CODEC;
-    }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final VoxelShape SHAPED_SOUTH = Block.createCuboidShape(1,8,0,15,12,3);
     private static final VoxelShape SHAPED_NORTH = Block.createCuboidShape(1,8,13,15,12,16);
@@ -106,8 +101,7 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        Hand hand = player.getActiveHand();
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()){
             return ActionResult.SUCCESS;
         }

@@ -1,0 +1,51 @@
+{
+  "parent": "minecraft:bakingdelight/got_cuttlebone",
+  "criteria": {
+    "glow_kebabs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:glow_squid_tentacle_kebabs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "kebabs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:squid_tentacle_kebabs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.kebabs.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:squid_tentacle_kebabs"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.kebabs.title"
+    }
+  },
+  "requirements": [
+    [
+      "glow_kebabs",
+      "kebabs"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

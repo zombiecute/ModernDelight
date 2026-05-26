@@ -23,10 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIInstantNoodlesMakingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/instant_noodles.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/instant_noodles.png");
     public static final EmiStack WORKSTATION = EmiStack.of(Blocks.CRAFTING_TABLE);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "instant_noodles_making"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "instant_noodles_making"), WORKSTATION);
 
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
@@ -54,7 +54,7 @@ public class EMIInstantNoodlesMakingRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return null;
+        return new Identifier(ModernDelightMain.MOD_ID,"instant_noodles_making");
     }
 
     @Override

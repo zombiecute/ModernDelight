@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_gas_canister",
+  "criteria": {
+    "gas_cooking_stove": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:gas_cooking_stove"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.gas_cooking_stove.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:gas_cooking_stove"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.gas_cooking_stove.title"
+    }
+  },
+  "requirements": [
+    [
+      "gas_cooking_stove"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

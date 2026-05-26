@@ -1,27 +1,24 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.input.SingleStackRecipeInput;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.*;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class MixWithWaterRecipe implements Recipe<SingleStackRecipeInput> {
+public class MixWithWaterRecipe implements Recipe<SimpleInventory> {
+    private final Identifier id;
     private final ItemStack output;
-    private final List<Ingredient> recipeItems;
-    public MixWithWaterRecipe(List<Ingredient> ingredients, ItemStack itemStack){
+    private final DefaultedList<Ingredient> recipeItems;
+    public MixWithWaterRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack itemStack){
+        this.id = id;
         this.output = itemStack;
         this.recipeItems = ingredients;
     }
@@ -32,15 +29,15 @@ public class MixWithWaterRecipe implements Recipe<SingleStackRecipeInput> {
     }
 
     @Override
-    public boolean matches(SingleStackRecipeInput inventory, World world) {
+    public boolean matches(SimpleInventory inventory, World world) {
         if (world.isClient){
             return false;
         }
-        return recipeItems.getFirst().test(inventory.getStackInSlot(0));
+        return recipeItems.get(0).test(inventory.getStack(0));
     }
 
     @Override
-    public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
         return output;
     }
 
@@ -50,7 +47,7 @@ public class MixWithWaterRecipe implements Recipe<SingleStackRecipeInput> {
     }
 
     @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return output;
     }
 
@@ -59,6 +56,11 @@ public class MixWithWaterRecipe implements Recipe<SingleStackRecipeInput> {
         DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());
         list.addAll(recipeItems);
         return list;
+    }
+
+    @Override
+    public Identifier getId() {
+        return id;
     }
 
     @Override
@@ -80,43 +82,37 @@ public class MixWithWaterRecipe implements Recipe<SingleStackRecipeInput> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "mix_with_water";
 
-        public static final MapCodec<MixWithWaterRecipe> CODEC = RecordCodecBuilder.mapCodec(
-                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
-                                .flatXmap(ingredients ->{
-                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
-                                    if (ingredients1.length == 0){
-                                        return DataResult.error(()->"No ingredients");
-                                    }
-                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
-                                },DataResult::success).forGetter(MixWithWaterRecipe::getIngredients)
-                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
-                ).apply(instance, MixWithWaterRecipe::new)
-        );
-        public static final PacketCodec<RegistryByteBuf, MixWithWaterRecipe> PACKET_CODEC = PacketCodec.ofStatic(MixWithWaterRecipe.Serializer::write, MixWithWaterRecipe.Serializer::read);
+        @Override
+        public MixWithWaterRecipe read(Identifier id, JsonObject json) {
+            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json,"output"));
 
-        private static MixWithWaterRecipe read(RegistryByteBuf buf) {
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
-            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
-            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
-            return new MixWithWaterRecipe(inputs,output);
-        }
+            JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1,Ingredient.EMPTY);
 
-        private static void write(RegistryByteBuf buf, MixWithWaterRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-            for (Ingredient ingredient : recipe.getIngredients()){
-                Ingredient.PACKET_CODEC.encode(buf,ingredient);
+            for(int i=0;i<inputs.size();i++){
+                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
             }
-            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
+
+            return new MixWithWaterRecipe(id, inputs, output);
         }
 
         @Override
-        public MapCodec<MixWithWaterRecipe> codec() {
-            return CODEC;
+        public MixWithWaterRecipe read(Identifier id, PacketByteBuf buf) {
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
+
+            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
+
+            ItemStack output = buf.readItemStack();
+            return new MixWithWaterRecipe(id, inputs, output);
         }
 
         @Override
-        public PacketCodec<RegistryByteBuf, MixWithWaterRecipe> packetCodec() {
-            return PACKET_CODEC;
+        public void write(PacketByteBuf buf, MixWithWaterRecipe recipe) {
+            buf.writeInt(recipe.getIngredients().size());
+            for(Ingredient ingredient : recipe.getIngredients()){
+                ingredient.write(buf);
+            }
+            buf.writeItemStack(recipe.output);
         }
     }
 }

@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:mud"
+    }
+  ],
+  "output": {
+    "item": "minecraft:dirt"
+  },
+  "fluid_output": {
+    "fluid": "minecraft:water",
+    "amount": 27000
+  }
+}

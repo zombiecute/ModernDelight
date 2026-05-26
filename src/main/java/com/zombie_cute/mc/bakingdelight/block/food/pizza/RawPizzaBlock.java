@@ -1,6 +1,5 @@
 package com.zombie_cute.mc.bakingdelight.block.food.pizza;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -11,10 +10,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class RawPizzaBlock extends AbstractPizzaBlock {
-    public static final MapCodec<RawPizzaBlock> CODEC = createCodec((s)->new RawPizzaBlock());
-    protected MapCodec<? extends RawPizzaBlock> getCodec() {
-        return CODEC;
-    }
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -25,7 +20,7 @@ public class RawPizzaBlock extends AbstractPizzaBlock {
         if (world.getBlockEntity(pos) instanceof RawPizzaBlockEntity blockEntity) {
             if (!world.isClient) {
                 ItemStack itemStack = new ItemStack(ModBlocks.RAW_PIZZA_ITEM);
-                itemStack.applyComponentsFrom(blockEntity.createComponentMap());
+                blockEntity.setStackNbt(itemStack);
                 ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);

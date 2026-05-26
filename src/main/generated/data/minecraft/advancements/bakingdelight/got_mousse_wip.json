@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_freezer",
+  "criteria": {
+    "mousse_wip": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:mousse_wip"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.get_mousse_wip_desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:mousse_wip"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_mousse_wip_title"
+    }
+  },
+  "requirements": [
+    [
+      "mousse_wip"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

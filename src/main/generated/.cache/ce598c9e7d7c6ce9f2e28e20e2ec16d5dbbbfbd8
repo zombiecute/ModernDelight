@@ -1,5 +1,5 @@
-// 1.21.1	2026-05-26T13:02:25.0094687	Modern Delight/bakingdelight
-5bd0720f088b6993cb22edb1ecc04f6cb23a7986 data\bakingdelight\worldgen\placed_feature\wild_garlic_placed.json
-3da3dd4ac6a8a3e551139c8fd0e79d4decd401c5 data\bakingdelight\worldgen\configured_feature\wild_garlic.json
-9a1f64be6818af265b595058b85868dda55f557d data\bakingdelight\worldgen\configured_feature\wild_black_pepper.json
-e5da05cc1231bb5752984c3ba481c62f9328cfd3 data\bakingdelight\worldgen\placed_feature\wild_black_pepper_placed.json
+// 1.20.1	2026-05-08T15:56:15.9353355	Modern Delight/bakingdelight
+250f0b762c80023da74024ef687909a6e95a048b data\bakingdelight\worldgen\placed_feature\wild_black_pepper_p.json
+864cf3940e8d66ee61922b22dac9dbfe4b217b21 data\bakingdelight\worldgen\placed_feature\wild_garlic_p.json
+8cedc7b622994dfcc31504f7ad074d17bb8b5935 data\bakingdelight\worldgen\configured_feature\wild_garlic_cf.json
+5d2ff18a7258925da2ee2d9fef086ba7991d1cc1 data\bakingdelight\worldgen\configured_feature\wild_black_pepper_cf.json

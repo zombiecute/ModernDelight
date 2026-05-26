@@ -2,11 +2,11 @@ package com.zombie_cute.mc.bakingdelight.block.power.alternator;
 
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.AbstractBatteryBlock;
-import com.zombie_cute.mc.bakingdelight.screen.custom.PhotovoltaicGeneratorScreenHandler;
-import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.Power;
 import com.zombie_cute.mc.bakingdelight.util.block_util.power_util.PowerStorageAble;
+import com.zombie_cute.mc.bakingdelight.screen.custom.PhotovoltaicGeneratorScreenHandler;
+import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, PowerStorageAble {
+public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, PowerStorageAble {
     public PhotovoltaicGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.PHOTOVOLTAIC_GENERATOR_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -70,20 +70,20 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
     private int isWorking = 0;
     private int slowMode = 0;
     public static final String PHOTOVOLTAIC_GENERATOR_NAME = "display_name.bakingdelight.photovoltaic_generator_name";
-    public static void tick(World world, BlockPos pos, BlockState state,  PhotovoltaicGeneratorBlockEntity blockEntity) {
+    public void tick(World world, PhotovoltaicGeneratorBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
         if (world.getTime() % 20L == 0L){
             ItemStack itemStack = blockEntity.getStack(0);
             blockEntity.setStack(0,
-                    AbstractBatteryBlock.changeBatteryPower(itemStack,blockEntity.energyStorage, 80, true));
+                    AbstractBatteryBlock.changeBatteryPower(itemStack,energyStorage, 80, true));
             int light = world.getLightLevel(LightType.BLOCK,pos) / 3 - 1;
             if (light > 0){
                 blockEntity.addEnergy(light * 10L);
                 blockEntity.slowMode = 1;
             } else blockEntity.slowMode = 0;
-            if (blockEntity.isInOpenAir(world)){
+            if (isInOpenAir(world)){
                 if (isEarlyMorningOrTwilight(world)){
                     blockEntity.addPowerAndCheck(1,world);
                     if (world.isThundering() || world.isRaining()) blockEntity.isWorking = 0;
@@ -97,9 +97,9 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
                     blockEntity.isWorking = 1;
                 } else blockEntity.isWorking = 0;
             } else blockEntity.isWorking = 0;
-            blockEntity.markDirty();
+            markDirty();
         }
-        blockEntity.setPower(blockEntity.getEnergyStorage().amount / 10);
+        setPower(getEnergyStorage().amount / 10);
     }
 
     private void addPowerAndCheck(int multiplier, World world){
@@ -139,31 +139,28 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
         long timeOfDay = world.getTimeOfDay() % 24000L;
         return timeOfDay >= 4283 && timeOfDay < 7700;
     }
-
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt,inventory,registryLookup);
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        Inventories.writeNbt(nbt,inventory);
         nbt.putLong("photovoltaic_generator.power", this.getPower().getPowerValue());
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
-        Inventories.readNbt(nbt,inventory,registryLookup);
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        Inventories.readNbt(nbt,inventory);
         this.setPower(nbt.getLong("photovoltaic_generator.power"));
         this.energyStorage.amount = nbt.getLong("photovoltaic_generator.power") * 10;
         markDirty();
     }
-
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
-
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return pos;
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
 
     @Override

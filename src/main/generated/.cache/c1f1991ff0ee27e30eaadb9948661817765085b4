@@ -1,6 +1,6 @@
-// 1.21.1	2026-05-26T13:02:25.0104697	Modern Delight/Tags for minecraft:fluid
-2a45018e16f9bfbb1de6f470e670098157cd66a8 data\bakingdelight\tags\fluid\cream.json
-2a8d8149d61e2b1afaafcdd676cbe8ddc4bf7424 data\bakingdelight\tags\fluid\oil.json
-e5a722203ff774226c9d9a350db94fab962f363f data\bakingdelight\tags\fluid\gas.json
-aacb81c9fe112baa73f897b1cd6725b8470f639e data\minecraft\tags\fluid\water.json
-c895751e47b7478bb2fe1e03a4473ef4d0b64fde data\c\tags\fluid\drinks\milk.json
+// 1.20.1	2026-05-08T15:56:15.9363347	Modern Delight/Tags for minecraft:fluid
+227e61b12952e2d6f373e532f8b88fcc48bf8036 data\minecraft\tags\fluids\water.json
+5e92fa2a7b6bd3496d1d5b2990064bdc01597f52 data\bakingdelight\tags\fluids\cream.json
+a35a93df476ce20bac3d38abf0fb5a88b2f51d0d data\bakingdelight\tags\fluids\oil.json
+e509b7fb47120626a43870720d5bb21375696186 data\bakingdelight\tags\fluids\gas.json
+b52eb844bc0b4971b007c9d48b69be6296032011 data\c\tags\fluids\milk.json

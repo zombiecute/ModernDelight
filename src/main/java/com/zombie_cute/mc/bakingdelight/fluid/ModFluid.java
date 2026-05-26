@@ -20,7 +20,7 @@ public class ModFluid {
     public static final FlowableFluid FLOWING_SWEETENED_WATER = registerFluid("flowing_sweetened_water", new SweetenedWaterFluid.Flowing());
     public static final FlowableFluid STILL_SWEETENED_WATER = registerFluid("still_sweetened_water", new SweetenedWaterFluid.Still());
     public static FlowableFluid registerFluid(String name, FlowableFluid fluid){
-         return Registry.register(Registries.FLUID, Identifier.of(ModernDelightMain.MOD_ID,name),fluid);
+         return Registry.register(Registries.FLUID, new Identifier(ModernDelightMain.MOD_ID,name),fluid);
     }
     public static void registerModFluid(){
          ModernDelightMain.LOGGER.info("Registering Mod Fluid for " + ModernDelightMain.MOD_ID);

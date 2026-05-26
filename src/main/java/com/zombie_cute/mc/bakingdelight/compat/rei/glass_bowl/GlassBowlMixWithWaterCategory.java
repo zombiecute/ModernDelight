@@ -18,7 +18,7 @@ import java.util.List;
 
 public class GlassBowlMixWithWaterCategory implements DisplayCategory<GlassBowlMixWithWaterDisplay> {
     public static final Identifier TEXTURE =
-            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
     public static final CategoryIdentifier<GlassBowlMixWithWaterDisplay> MIX_WITH_WATER =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "mix_with_water");
     public static final String WATER_GLASS_BOWL_NAME = "display_name.bakingdelight.water_glass_bowl_name";

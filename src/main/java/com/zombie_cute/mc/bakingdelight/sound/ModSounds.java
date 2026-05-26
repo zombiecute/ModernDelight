@@ -33,7 +33,7 @@ public class ModSounds {
     public static final SoundEvent ITEM_STONE_MORTAR_WORKING = registerSound("item_stone_mortar_working");
 
     public static SoundEvent registerSound(String name){
-        Identifier id = Identifier.of(ModernDelightMain.MOD_ID, name);
+        Identifier id = new Identifier(ModernDelightMain.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
     public static void registerModSounds(){

@@ -1,28 +1,25 @@
 package com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power;
 
-import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -35,14 +32,9 @@ import java.util.List;
 
 public class WindTurbineControllerBlock extends BlockWithEntity {
     public WindTurbineControllerBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).nonOpaque());
+        super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque());
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final MapCodec<WindTurbineControllerBlock> CODEC = createCodec((settings -> new WindTurbineControllerBlock()));
-    @Override
-    protected MapCodec<? extends WindTurbineControllerBlock> getCodec() {
-        return CODEC;
-    }
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -76,9 +68,8 @@ public class WindTurbineControllerBlock extends BlockWithEntity {
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING,rotation.rotate(state.get(FACING)));
     }
-
     @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(TextUtil.getAltText(false));
@@ -94,9 +85,8 @@ public class WindTurbineControllerBlock extends BlockWithEntity {
             tooltip.add(TextUtil.getShiftText(false));
             tooltip.add(TextUtil.getAltText(false));
         }
-        super.appendTooltip(stack, context, tooltip, options);
+        super.appendTooltip(stack, world, tooltip, options);
     }
-
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -104,7 +94,7 @@ public class WindTurbineControllerBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
@@ -126,10 +116,10 @@ public class WindTurbineControllerBlock extends BlockWithEntity {
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
-
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : validateTicker(type, ModBlockEntities.WIND_TURBINE_CONTROLLER_BLOCK_ENTITY, WindTurbineControllerBlockEntity::tick);
+        return checkType(type, ModBlockEntities.WIND_TURBINE_CONTROLLER_BLOCK_ENTITY,
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 }

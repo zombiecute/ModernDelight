@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "tag": "c:foods/doughs"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:fried_dough_stick",
+    "count": 3
+  }
+}

@@ -18,14 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIDeepFryingRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/deep_fryer.png");
+    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/deep_fryer.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.DEEP_FRYER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "deep_frying"), WORKSTATION);
+            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "deep_frying"), WORKSTATION);
+
+    private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIDeepFryingRecipe(DeepFryingRecipe recipe) {
+        this.id = recipe.getId();
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
@@ -33,7 +36,7 @@ public class EMIDeepFryingRecipe implements EmiRecipe {
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModItems.HOLDER)));
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getResult(null)));
+        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -42,7 +45,7 @@ public class EMIDeepFryingRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return null;
+        return id;
     }
 
     @Override

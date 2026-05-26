@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:sweetened_water_bucket"
+    },
+    {
+      "item": "bakingdelight:sweetened_water_bucket"
+    },
+    {
+      "item": "bakingdelight:sweetened_water_bucket"
+    },
+    {
+      "item": "bakingdelight:sweetened_water_bucket"
+    }
+  ],
+  "output": {
+    "item": "minecraft:sugar",
+    "count": 10
+  }
+}

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/acdcc_gui.png");
     public ACDCConverterScreen(ACDCConverterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -179,7 +179,7 @@ public class ACDCConverterScreen extends HandledScreen<ACDCConverterScreenHandle
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context,mouseX,mouseY,delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

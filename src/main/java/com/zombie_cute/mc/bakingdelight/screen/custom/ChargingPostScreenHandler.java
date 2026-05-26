@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -19,8 +20,8 @@ public class ChargingPostScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     public final ChargingPostBlockEntity blockEntity;
-    public ChargingPostScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos),
+    public ChargingPostScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
                 new ArrayPropertyDelegate(4));
     }
     public ChargingPostScreenHandler(int syncId, PlayerInventory playerInventory,

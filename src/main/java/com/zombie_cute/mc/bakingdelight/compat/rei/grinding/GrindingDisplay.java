@@ -1,7 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.grinding;
 
 import com.google.common.collect.ImmutableList;
-import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.GrindingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -10,7 +9,6 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +18,7 @@ public class GrindingDisplay extends BasicDisplay {
     public GrindingDisplay(GrindingRecipe recipe){
         super(EntryIngredients.ofIngredients(recipe.getIngredients()),
                 getOutputs(recipe),
-                Optional.of(Identifier.of(ModernDelightMain.MOD_ID,recipe.getResult(null).getTranslationKey()+"."+recipe.hashCode())));
-
+                Optional.ofNullable(recipe.getId()));
     }
     private static List<EntryIngredient> getOutputs(GrindingRecipe recipe){
         List<EntryIngredient> outputs = new ArrayList<>();

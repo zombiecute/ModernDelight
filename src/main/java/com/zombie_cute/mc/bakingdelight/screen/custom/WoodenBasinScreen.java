@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 import java.util.Optional;
 
 public class WoodenBasinScreen extends HandledScreen<WoodenBasinScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/wooden_basin_gui.png");
     public WoodenBasinScreen(WoodenBasinScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -62,7 +62,7 @@ public class WoodenBasinScreen extends HandledScreen<WoodenBasinScreenHandler> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context,mouseX,mouseY,delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

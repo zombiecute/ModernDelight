@@ -16,7 +16,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/advance_furnace_gui.png");
     public static final String TOOLTIP = "tooltips.bakingdelight.advance_furnace_exp_tooltip";
     public AdvanceFurnaceScreen(AdvanceFurnaceScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -120,7 +120,7 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context,mouseX,mouseY,delta);
+        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

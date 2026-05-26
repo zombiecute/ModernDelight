@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:bakingdelight/got_raw_pizza",
+  "criteria": {
+    "pizza": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:pizza"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.get_pizza.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bakingdelight:pizza"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.get_pizza.title"
+    }
+  },
+  "requirements": [
+    [
+      "pizza"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

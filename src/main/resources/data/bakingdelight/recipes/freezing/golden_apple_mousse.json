@@ -1,0 +1,17 @@
+{
+  "type": "bakingdelight:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "bakingdelight:mousse_wip"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:golden_apple_mousse"
+  }
+}

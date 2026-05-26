@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "B B",
+    "III"
+  ],
+  "result": {
+    "item": "bakingdelight:baking_tray"
+  },
+  "show_notification": true
+}

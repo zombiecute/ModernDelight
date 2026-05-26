@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.decor;
 
-import com.mojang.serialization.MapCodec;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,10 +12,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,11 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CabinetBlock extends BlockWithEntity {
     public CabinetBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.DEEPSLATE).sounds(BlockSoundGroup.STONE).nonOpaque());
-    }
-    public static final MapCodec<CabinetBlock> CODEC = createCodec((s) -> new CabinetBlock());
-    protected MapCodec<? extends CabinetBlock> getCodec() {
-        return CODEC;
+        super(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).sounds(BlockSoundGroup.STONE).nonOpaque());
     }
     public CabinetBlock(Settings settings) {
         super(settings);
@@ -73,7 +66,7 @@ public class CabinetBlock extends BlockWithEntity {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         } else {

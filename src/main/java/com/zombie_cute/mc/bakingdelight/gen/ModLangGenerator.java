@@ -19,28 +19,25 @@ import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlMixWithWa
 import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlWhiskingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.pizza.PizzaMakingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.transform.OvenTransformCategory;
-import com.zombie_cute.mc.bakingdelight.components.custom.FlavorComponent;
 import com.zombie_cute.mc.bakingdelight.effects.ModEffectsAndPotions;
-import com.zombie_cute.mc.bakingdelight.enchantment.custom.FineGrindingEnchantment;
+import com.zombie_cute.mc.bakingdelight.enchantment.ModEnchantments;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
+import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import net.minecraft.registry.RegistryWrapper;
-
-import java.util.concurrent.CompletableFuture;
 
 public class ModLangGenerator extends FabricLanguageProvider {
-    public ModLangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-        super(dataOutput, "en_us", registryLookup);
+    public ModLangGenerator(FabricDataOutput dataOutput) {
+        super(dataOutput, "en_us");
     }
 
     @Override
-    public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
+    public void generateTranslations(TranslationBuilder translationBuilder) {
         translationBuilder.add(TextUtil.SHIFT_FRONT, "Hold ");
         translationBuilder.add(TextUtil.SHIFT_END, " for summary");
         translationBuilder.add(TextUtil.WHISK,
@@ -206,7 +203,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(JuiceExtractorBlockEntity.WRONG_RECIPE, "Juicing operation cannot be performed on inserted items.");
         translationBuilder.add(JuiceExtractorBlockEntity.IS_FULL, "Please remove the juice from the juice extractor first. Need ");
 
-        translationBuilder.add(ModItems.WHISK, "Whisk");
+        translationBuilder.add(ModItems.IRON_WHISK, "Whisk");
 
         translationBuilder.add(ModItems.COPPER_KNIFE, "Copper Knife");
         translationBuilder.add(ModItems.AMETHYST_KNIFE, "Amethyst Knife");
@@ -440,15 +437,15 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.RAW_ICE_CREAM_CONE, "Ice Cream Cone (Work In Progress)");
         translationBuilder.add(ModItems.ICE_CREAM, "Ice Cream");
 
-        translationBuilder.add(FlavorComponent.TRANSLATION_KEY, "Flavors");
-        translationBuilder.add(FlavorComponent.NULL.getTranslationKey(), "Unknown");
-        translationBuilder.add(FlavorComponent.PLAIN.getTranslationKey(), "Plain");
-        translationBuilder.add(FlavorComponent.APPLE.getTranslationKey(), "Apple Flavored");
-        translationBuilder.add(FlavorComponent.CHERRY.getTranslationKey(), "Cherry Flavored");
-        translationBuilder.add(FlavorComponent.CHOCOLATE.getTranslationKey(), "Chocolate Flavored");
-        translationBuilder.add(FlavorComponent.GOLDEN_APPLE.getTranslationKey(), "Golden Apple Flavored");
-        translationBuilder.add(FlavorComponent.MATCHA.getTranslationKey(), "Matcha Flavored");
-        translationBuilder.add(FlavorComponent.PUMPKIN.getTranslationKey(), "Pumpkin Flavored");
+        translationBuilder.add(CreamFlavor.TRANSLATION_KEY, "Flavors");
+        translationBuilder.add(CreamFlavor.NULL.getTranslationKey(), "Unknown");
+        translationBuilder.add(CreamFlavor.PLAIN.getTranslationKey(), "Plain");
+        translationBuilder.add(CreamFlavor.APPLE.getTranslationKey(), "Apple Flavored");
+        translationBuilder.add(CreamFlavor.CHERRY.getTranslationKey(), "Cherry Flavored");
+        translationBuilder.add(CreamFlavor.CHOCOLATE.getTranslationKey(), "Chocolate Flavored");
+        translationBuilder.add(CreamFlavor.GOLDEN_APPLE.getTranslationKey(), "Golden Apple Flavored");
+        translationBuilder.add(CreamFlavor.MATCHA.getTranslationKey(), "Matcha Flavored");
+        translationBuilder.add(CreamFlavor.PUMPKIN.getTranslationKey(), "Pumpkin Flavored");
 
         translationBuilder.add(OvenBlockEntity.OVEN_NAME, "Baking");
         translationBuilder.add(AdvanceFurnaceBlockEntity.ADVANCE_FURNACE_NAME, "Advance Furnace");
@@ -540,11 +537,11 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.LIQUEFIED_BIOGAS_FLUID_BLOCK, "Liquefied Biogas");
         translationBuilder.add(ModBlocks.SWEENTENED_WATER_FLUID_BLOCK, "Sweetened Water");
 
-        translationBuilder.add(FineGrindingEnchantment.getTranslationKey(),"Precision Grinding");
-        translationBuilder.add(FineGrindingEnchantment.getTranslationKey()+".desc","The stone mortar will have additional output when grinding.");
+        translationBuilder.add(ModEnchantments.FINE_GRINDING,"Precision Grinding");
+        translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","The stone mortar will have additional output when grinding.");
 
-        translationBuilder.add(ModEffectsAndPotions.STICKY.value(),"Sticky");
-        translationBuilder.add(ModEffectsAndPotions.STICKY.value().getTranslationKey() + ".description","Drastically reduces movement speed while being unable to jump.");
+        translationBuilder.add(ModEffectsAndPotions.STICKY,"Sticky");
+        translationBuilder.add(ModEffectsAndPotions.STICKY.getTranslationKey() + ".description","Drastically reduces movement speed while being unable to jump.");
 
 
         translationBuilder.add("item.minecraft.potion.effect.sticky_potion","Potion of Sticky");

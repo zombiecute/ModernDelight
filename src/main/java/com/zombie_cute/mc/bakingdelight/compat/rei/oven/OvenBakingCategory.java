@@ -20,7 +20,7 @@ import static com.zombie_cute.mc.bakingdelight.block.kitchenware.OvenBlockEntity
 
 public class OvenBakingCategory implements DisplayCategory<OvenBakingDisplay> {
     public static final Identifier TEXTURE =
-            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/oven.png");
+            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/oven.png");
     public static final CategoryIdentifier<OvenBakingDisplay> OVEN_BAKING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "oven_baking");
 

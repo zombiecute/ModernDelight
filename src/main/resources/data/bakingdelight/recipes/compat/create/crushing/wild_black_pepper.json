@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "bakingdelight:wild_pepper_crop"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "count": 2,
+      "item": "bakingdelight:black_pepper_corn"
+    },
+    {
+      "chance": 0.6,
+      "item": "minecraft:red_dye"
+    },
+    {
+      "chance": 0.2,
+      "item": "minecraft:lime_dye"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "bakingdelight:raw_potato_chip"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:potato_chip"
+  }
+}

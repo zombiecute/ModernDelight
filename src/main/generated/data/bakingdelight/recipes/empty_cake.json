@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dough"
+    },
+    {
+      "tag": "c:dough"
+    },
+    {
+      "tag": "c:dough"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "bakingdelight:empty_cake"
+  }
+}

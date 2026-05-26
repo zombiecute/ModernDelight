@@ -12,29 +12,33 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum SpecialIngredient{
-    BRAISED_BEEF_NOODLE_SOUP("braised_beef_noodle_soup",
+    BRAISED_BEEF_NOODLE_SOUP("braised_beef_noodle_soup",0,
             Ingredient.fromTag(TagKeys.RAW_BEEF),
             Ingredient.ofItems(Items.CARROT),
             Ingredient.fromTag(TagKeys.CABBAGE)),
-    STEW_CHICKEN_NOODLE_WITH_MUSHROOM("stewed_chicken_noodle_with_mushroom",
+    STEW_CHICKEN_NOODLE_WITH_MUSHROOM("stewed_chicken_noodle_with_mushroom",1,
             Ingredient.ofItems(Items.BROWN_MUSHROOM),
             Ingredient.ofItems(Items.CHICKEN),
             Ingredient.fromTag(TagKeys.CABBAGE)),
-    TONKOTSU_RAMEN("tonkotsu_ramen",
+    TONKOTSU_RAMEN("tonkotsu_ramen",2,
             Ingredient.fromTag(TagKeys.RAW_PORK),
             Ingredient.ofItems(Items.DRIED_KELP),
             Ingredient.ofItems(Items.EGG));
     final String id;
+    final int raw_id;
     final List<Ingredient> ingredients;
-    SpecialIngredient(String id, Ingredient... ingredients) {
+    SpecialIngredient(String id, int raw_id, Ingredient... ingredients) {
         this.id = id;
+        this.raw_id = raw_id;
         this.ingredients = Arrays.asList(ingredients);
     }
 
     public String getId() {
         return id;
     }
-
+    public int getRaw_id() {
+        return raw_id;
+    }
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
