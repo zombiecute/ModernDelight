@@ -25,7 +25,7 @@ import java.util.List;
 
 public class InstantNoodlesMakingCategory implements DisplayCategory<InstantNoodlesMakingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/instant_noodles.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/instant_noodles.png");
     public static final String TITLE = "emi.category.bakingdelight.instant_noodles_making";
     public static final CategoryIdentifier<InstantNoodlesMakingDisplay> INSTANT_NOODLES_MAKING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "instant_noodles_making");

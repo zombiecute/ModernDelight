@@ -22,7 +22,7 @@ import java.util.List;
 
 public class DeepFryingCategory implements DisplayCategory<DeepFryingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/deep_fryer.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/deep_fryer.png");
     public static final CategoryIdentifier<DeepFryingDisplay> DEEP_FRYING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "deep_frying");
     @Override

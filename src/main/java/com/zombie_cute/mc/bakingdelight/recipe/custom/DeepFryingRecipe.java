@@ -1,24 +1,27 @@
 package com.zombie_cute.mc.bakingdelight.recipe.custom;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class DeepFryingRecipe implements Recipe<SimpleInventory> {
-    private final Identifier id;
+import java.util.List;
+
+public class DeepFryingRecipe implements Recipe<SingleStackRecipeInput> {
     private final ItemStack output;
-    private final DefaultedList<Ingredient> recipeItems;
-    public DeepFryingRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack itemStack){
-        this.id = id;
+    private final List<Ingredient> recipeItems;
+    public DeepFryingRecipe(List<Ingredient> ingredients, ItemStack itemStack){
         this.output = itemStack;
         this.recipeItems = ingredients;
     }
@@ -29,15 +32,16 @@ public class DeepFryingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public boolean matches(SimpleInventory inventory, World world) {
+    public boolean matches(SingleStackRecipeInput inventory, World world) {
+
         if (world.isClient){
             return false;
         }
-        return recipeItems.get(0).test(inventory.getStack(0));
+        return recipeItems.getFirst().test(inventory.getStackInSlot(0));
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return output;
     }
 
@@ -47,7 +51,7 @@ public class DeepFryingRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
         return output;
     }
 
@@ -56,11 +60,6 @@ public class DeepFryingRecipe implements Recipe<SimpleInventory> {
         DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());
         list.addAll(recipeItems);
         return list;
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -82,39 +81,43 @@ public class DeepFryingRecipe implements Recipe<SimpleInventory> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "deep_frying";
 
-        @Override
-        public DeepFryingRecipe read(Identifier id, JsonObject json) {
-            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
+        public static final MapCodec<DeepFryingRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                instance -> instance.group(Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients")
+                                .flatXmap(ingredients ->{
+                                    Ingredient[] ingredients1 = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+                                    if (ingredients1.length == 0){
+                                        return DataResult.error(()->"No ingredients");
+                                    }
+                                    return DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY,ingredients1));
+                                }, DataResult::success).forGetter(DeepFryingRecipe::getIngredients)
+                        ,(ItemStack.VALIDATED_CODEC.fieldOf("output")).forGetter(recipe -> recipe.output)
+                ).apply(instance, DeepFryingRecipe::new)
+        );
+        public static final PacketCodec<RegistryByteBuf, DeepFryingRecipe> PACKET_CODEC = PacketCodec.ofStatic(DeepFryingRecipe.Serializer::write, DeepFryingRecipe.Serializer::read);
 
-            JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1, Ingredient.EMPTY);
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new DeepFryingRecipe(id, inputs, output);
+        private static DeepFryingRecipe read(RegistryByteBuf buf) {
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(),Ingredient.EMPTY);
+            inputs.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
+            ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
+            return new DeepFryingRecipe(inputs,output);
         }
 
-        @Override
-        public DeepFryingRecipe read(Identifier id, PacketByteBuf buf) {
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromPacket(buf));
-            }
-
-            ItemStack output = buf.readItemStack();
-            return new DeepFryingRecipe(id, inputs, output);
-        }
-
-        @Override
-        public void write(PacketByteBuf buf, DeepFryingRecipe recipe) {
+        private static void write(RegistryByteBuf buf, DeepFryingRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
-            for (Ingredient ingredient : recipe.getIngredients()) {
-                ingredient.write(buf);
+            for (Ingredient ingredient : recipe.getIngredients()){
+                Ingredient.PACKET_CODEC.encode(buf,ingredient);
             }
-            buf.writeItemStack(recipe.output);
+            ItemStack.PACKET_CODEC.encode(buf,recipe.getResult(null));
+        }
+
+        @Override
+        public MapCodec<DeepFryingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public PacketCodec<RegistryByteBuf, DeepFryingRecipe> packetCodec() {
+            return PACKET_CODEC;
         }
     }
 }

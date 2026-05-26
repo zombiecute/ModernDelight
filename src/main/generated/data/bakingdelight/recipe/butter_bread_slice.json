@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:butter"
+    },
+    {
+      "item": "bakingdelight:bread_slice"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:butter_bread_slice"
+  }
+}

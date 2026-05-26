@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:bakingdelight/got_filter",
+  "criteria": {
+    "bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:vegetable_oil_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:vegetable_oil_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.vegetable_oil.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:vegetable_oil_bottle"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.vegetable_oil.title"
+    }
+  },
+  "requirements": [
+    [
+      "bottle",
+      "bucket"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

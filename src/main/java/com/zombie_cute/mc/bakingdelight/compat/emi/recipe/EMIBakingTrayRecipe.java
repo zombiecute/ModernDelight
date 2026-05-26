@@ -17,17 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMIBakingTrayRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/baking_tray.png");
+    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/baking_tray.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.BAKING_TRAY);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "stir_frying"), WORKSTATION);
+            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "stir_frying"), WORKSTATION);
 
-    private final Identifier id;
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIBakingTrayRecipe(CampfireCookingRecipe recipe) {
-        this.id = new Identifier(ModernDelightMain.MOD_ID,"stir_frying/"+recipe.getOutput(null).getItem().toString());
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
@@ -36,7 +34,7 @@ public class EMIBakingTrayRecipe implements EmiRecipe {
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_COOKING_STOVE)));
         inputs.add(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)));
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -45,7 +43,7 @@ public class EMIBakingTrayRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return id;
+        return null;
     }
 
     @Override
@@ -71,13 +69,13 @@ public class EMIBakingTrayRecipe implements EmiRecipe {
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(TEXTURE,37,5,58,47,36,4);
-        widgets.addSlot(input.get(0), 37, 5);
+        widgets.addSlot(input.getFirst(), 37, 5);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.BAKING_TRAY)), 37, 23);
         widgets.addSlot(EmiIngredient.of(TagKeys.SPATULAS), 66, 43);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_COOKING_STOVE)), 37, 52);
         widgets.addSlot(EmiIngredient.of(Ingredient.ofItems(ModBlocks.GAS_CANISTER)), 19, 52);
 
-        widgets.addSlot(output.get(0), 97, 5).recipeContext(this);
+        widgets.addSlot(output.getFirst(), 97, 5).recipeContext(this);
     }
 
 }

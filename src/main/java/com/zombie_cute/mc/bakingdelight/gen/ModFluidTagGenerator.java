@@ -34,20 +34,20 @@ public class ModFluidTagGenerator extends FabricTagProvider.FluidTagProvider {
         getOrCreateTagBuilder(TagKeys.CREAM).add(ModFluid.STILL_CREAM);
         getOrCreateTagBuilder(TagKeys.CREAM).add(ModFluid.FLOWING_CREAM);
         // Milk
-        getOrCreateTagBuilder(TagKeys.MILK).addOptionalTag(new Identifier("forge","milk"));
+        getOrCreateTagBuilder(TagKeys.MILK).addOptionalTag(Identifier.of("forge","milk"));
         // Gas
         getOrCreateTagBuilder(TagKeys.GAS).add(ModFluid.STILL_LIQUEFIED_BIOGAS);
         getOrCreateTagBuilder(TagKeys.GAS).add(ModFluid.FLOWING_LIQUEFIED_BIOGAS);
-        getOrCreateTagBuilder(TagKeys.GAS).addOptionalTag(new Identifier("c","biofuel"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","hydrogen"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","deuterium"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","tritium"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","diesel"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","methane"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","methane"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","nitro_diesel"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","nitrocoal_fuel"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","nitrofuel"));
-        getOrCreateTagBuilder(TagKeys.GAS).addOptional(new Identifier("techreborn","biofuel"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptionalTag(Identifier.of("c","biofuel"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","hydrogen"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","deuterium"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","tritium"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","diesel"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","methane"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","methane"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","nitro_diesel"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","nitrocoal_fuel"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","nitrofuel"));
+        getOrCreateTagBuilder(TagKeys.GAS).addOptional(Identifier.of("techreborn","biofuel"));
     }
 }

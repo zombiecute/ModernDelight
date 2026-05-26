@@ -1,0 +1,106 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "bakingdelight:redstone_component"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "id": "bakingdelight:redstone_component",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "id": "create:cogwheel",
+      "chance": 1.0,
+      "count": 4
+    },
+    {
+      "id": "minecraft:comparator",
+      "chance": 2.0,
+      "count": 2
+    },
+    {
+      "id": "minecraft:repeater",
+      "chance": 17.0,
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:redstone_component"
+        },
+        {
+          "item": "create:cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:redstone_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:redstone_component"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:redstone_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:redstone_component"
+        },
+        {
+          "item": "minecraft:quartz"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:redstone_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:redstone_component"
+        },
+        {
+          "item": "minecraft:amethyst_shard"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:redstone_component"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "id": "bakingdelight:redstone_component"
+  }
+}

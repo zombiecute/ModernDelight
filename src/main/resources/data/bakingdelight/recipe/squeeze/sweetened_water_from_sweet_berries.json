@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ],
+  "output": { "id": "minecraft:stick"
+  },
+  "fluid": "bakingdelight:still_sweetened_water",
+  "amount": 3375
+}

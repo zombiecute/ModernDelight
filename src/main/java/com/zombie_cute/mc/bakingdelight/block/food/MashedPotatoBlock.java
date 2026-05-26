@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.food;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -26,6 +27,11 @@ public class MashedPotatoBlock extends Block {
         super(settings);
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(LEVEL, 9));
+    }
+
+    public static final MapCodec<MashedPotatoBlock> CODEC = createCodec(MashedPotatoBlock::new);
+    protected MapCodec<? extends MashedPotatoBlock> getCodec() {
+        return CODEC;
     }
     public static IntProperty LEVEL = IntProperty.of("level",1,9);
 
@@ -88,7 +94,8 @@ public class MashedPotatoBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         if (!world.isClient){
             if (player.getStackInHand(hand).getItem().equals(Items.BOWL)){
                 int i = state.get(LEVEL);

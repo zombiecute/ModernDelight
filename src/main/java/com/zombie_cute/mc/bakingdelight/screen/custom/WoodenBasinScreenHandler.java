@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +17,8 @@ import net.minecraft.util.math.Vec3d;
 public class WoodenBasinScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public final WoodenBasinBlockEntity blockEntity;
-    public WoodenBasinScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()));
+    public WoodenBasinScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos));
     }
     public WoodenBasinScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity){
         super(ModScreenHandlers.WOODEN_BASIN_SCREEN_HANDLER,syncId);

@@ -28,8 +28,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.CROWBARS);
 
 
-        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS).add(ModBlocks.SILICON_BLOCK.asItem());
-        getOrCreateTagBuilder(TagKeys.INGOTS).add(ModItems.SILICON_INGOT);
+        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS).addOptionalTag(TagKeys.STORAGE_BLOCKS);
+        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS_SILICON).add(ModBlocks.SILICON_BLOCK.asItem());
+        getOrCreateTagBuilder(TagKeys.INGOTS).addOptionalTag(TagKeys.SILICON);
         getOrCreateTagBuilder(TagKeys.SILICON).add(ModItems.SILICON_INGOT);
         // Bottle of Vegetable Oil
         getOrCreateTagBuilder(TagKeys.BOTTLE_VEGETABLE_OIL).add(ModItems.VEGETABLE_OIL_BOTTLE);
@@ -39,12 +40,14 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.OIL_PLANTS).add(ModItems.ROASTED_SUNFLOWER_SEED);
         // Spatulas
         getOrCreateTagBuilder(TagKeys.SPATULAS).add(ModItems.SPATULA);
+        // Mortars
+        getOrCreateTagBuilder(TagKeys.MORTARS).add(ModItems.STONE_MORTAR);
         // Blaze Burner Fuel
         getOrCreateTagBuilder(TagKeys.BLAZE_BURNER_FUEL).add(ModItems.LIQUEFIED_BIOGAS_BUCKET);
         // Crowbars
         getOrCreateTagBuilder(TagKeys.CROWBARS).add(ModItems.CROWBAR);
-        getOrCreateTagBuilder(TagKeys.CROWBARS).addOptional(new Identifier("create:wrench"));
-        getOrCreateTagBuilder(TagKeys.CROWBARS).addOptional(new Identifier("techreborn:wrench"));
+        getOrCreateTagBuilder(TagKeys.CROWBARS).addOptional(Identifier.of("create:wrench"));
+        getOrCreateTagBuilder(TagKeys.CROWBARS).addOptional(Identifier.of("techreborn:wrench"));
         // Upright on Belt
         getOrCreateTagBuilder(TagKeys.UPRIGHT_ON_BELT).add(ModItems.EGG_TART);
         getOrCreateTagBuilder(TagKeys.UPRIGHT_ON_BELT).add(ModItems.TRUFFLE_EGG_TART);
@@ -66,15 +69,10 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FLAT_ON_BAKING_TRAY).addOptionalTag(ItemTags.TRAPDOORS);
         getOrCreateTagBuilder(TagKeys.FLAT_ON_BAKING_TRAY).addOptionalTag(BlockTags.PRESSURE_PLATES.id());
         // Whisks
-        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.IRON_WHISK);
+        getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.WHISK);
         getOrCreateTagBuilder(TagKeys.WHISKS).add(ModItems.ELECTRIC_WHISK);
         // Tools
         getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.TOOLS_KNIVES);
-        getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.TOOLS_AXES);
-        getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.TOOLS_HOES);
-        getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.TOOLS_PICKAXES);
-        getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.TOOLS_SWORDS);
-        getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.TOOLS_SHOVELS);
         // Foods
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.SUNFLOWER_SEED_PULP);
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.EMPTY_CAKE);
@@ -155,12 +153,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.SEEDS).addOptionalTag(TagKeys.SEED_GARLIC);
         getOrCreateTagBuilder(TagKeys.CROPS).addOptionalTag(TagKeys.CROP_GARLIC);
         getOrCreateTagBuilder(TagKeys.CROPS).addOptionalTag(TagKeys.CABBAGE);
-        getOrCreateTagBuilder(TagKeys.C_WHEAT_FLOUR).add(ModItems.WHEAT_FLOUR);
-        getOrCreateTagBuilder(TagKeys.C_FLOUR).add(ModItems.WHEAT_FLOUR);
-        getOrCreateTagBuilder(TagKeys.C_FLOUR).add(ModItems.POTATO_STARCH);
-        getOrCreateTagBuilder(TagKeys.C_WHEAT_DOUGH).add(ModBlocks.WHEAT_DOUGH.asItem());
-        getOrCreateTagBuilder(TagKeys.C_DOUGH).add(ModItems.MIXED_DOUGH);
-        getOrCreateTagBuilder(TagKeys.C_DOUGH).add(ModBlocks.WHEAT_DOUGH.asItem());
         // Flower Cakes
         getOrCreateTagBuilder(TagKeys.FLOWER_CAKES).add(ModItems.BLUE_ORCHID_FLOWER_CAKE);
         getOrCreateTagBuilder(TagKeys.FLOWER_CAKES).add(ModItems.CHERRY_CAKE);
@@ -174,7 +166,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FLOWER_CAKES).add(ModItems.WITHER_ROSE_CAKE);
         // Ice Lollies
         getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).add(ModItems.ICE_LOLLY);
-        getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).addOptional(new Identifier("farmersdelight","melon_popsicle"));
+        getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).addOptional(Identifier.of("farmersdelight","melon_popsicle"));
         getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).add(ModItems.CHERRY_ICE_LOLLY);
         getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).add(ModItems.MATCHA_ICE_LOLLY);
         getOrCreateTagBuilder(TagKeys.ICE_LOLLIES).add(ModItems.WITHER_ICE_LOLLY);
@@ -185,11 +177,11 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         // Amethyst Tools
         getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).add(ModItems.AMETHYST_KNIFE);
 
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(new Identifier("anvilcraft:amethyst_sword"));
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(new Identifier("anvilcraft:amethyst_pickaxe"));
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(new Identifier("anvilcraft:amethyst_axe"));
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(new Identifier("anvilcraft:amethyst_shovel"));
-        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(new Identifier("anvilcraft:amethyst_hoe"));
+        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(Identifier.of("anvilcraft:amethyst_sword"));
+        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(Identifier.of("anvilcraft:amethyst_pickaxe"));
+        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(Identifier.of("anvilcraft:amethyst_axe"));
+        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(Identifier.of("anvilcraft:amethyst_shovel"));
+        getOrCreateTagBuilder(TagKeys.AMETHYST_TOOLS).addOptional(Identifier.of("anvilcraft:amethyst_hoe"));
         // Mushrooms
         getOrCreateTagBuilder(TagKeys.MUSHROOMS).add(Items.BROWN_MUSHROOM);
         getOrCreateTagBuilder(TagKeys.MUSHROOMS).add(Items.RED_MUSHROOM);
@@ -218,10 +210,10 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.WHITE_TRUFFLE);
         getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.BLACK_TRUFFLE);
         getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.SECTIONED_SAUSAGE);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(new Identifier("farmersdelight:cabbage"));
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(Identifier.of("farmersdelight:cabbage"));
         getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.PUMPKIN);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(new Identifier("farmersdelight:tomato"));
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(new Identifier("farmersdelight:onion"));
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(Identifier.of("farmersdelight:tomato"));
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(Identifier.of("farmersdelight:onion"));
 
         getOrCreateTagBuilder(TagKeys.TRUFFLES).add(ModItems.WHITE_TRUFFLE);
         getOrCreateTagBuilder(TagKeys.TRUFFLES).add(ModItems.BLACK_TRUFFLE);
@@ -339,7 +331,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.BREAD_WHEAT).add(ModItems.BREAD_SLICE);
 
         getOrCreateTagBuilder(TagKeys.PUMPKINS).add(Items.PUMPKIN);
-        getOrCreateTagBuilder(TagKeys.PUMPKINS).addOptional(new Identifier("farmersdelight:pumpkin_slice"));
+        getOrCreateTagBuilder(TagKeys.PUMPKINS).addOptional(Identifier.of("farmersdelight:pumpkin_slice"));
 
         getOrCreateTagBuilder(TagKeys.SEED_BLACK_PEPPERS).add(ModItems.BLACK_PEPPER_CORN);
         getOrCreateTagBuilder(TagKeys.CROP_BLACK_PEPPER).add(ModItems.BLACK_PEPPER_CORN);
@@ -360,13 +352,13 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.JUICE).add(ModBlocks.ROSE_ICE_TEA_TEA_ITEM);
         getOrCreateTagBuilder(TagKeys.JUICE).add(ModItems.MANGO_MILK_TEA);
         getOrCreateTagBuilder(TagKeys.JUICE).add(ModItems.SEA_SALT_LEMON);
-        getOrCreateTagBuilder(TagKeys.JUICE).addOptional(new Identifier("farmersdelight","apple_cider"));
-        getOrCreateTagBuilder(TagKeys.JUICE).addOptional(new Identifier("farmersdelight","melon_juice"));
-        getOrCreateTagBuilder(TagKeys.JUICE).addOptional(new Identifier("create","builders_tea"));
+        getOrCreateTagBuilder(TagKeys.JUICE).addOptional(Identifier.of("farmersdelight","apple_cider"));
+        getOrCreateTagBuilder(TagKeys.JUICE).addOptional(Identifier.of("farmersdelight","melon_juice"));
+        getOrCreateTagBuilder(TagKeys.JUICE).addOptional(Identifier.of("create","builders_tea"));
         // Carbonate Rocks
-        getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).addOptionalTag(new Identifier("create","stone_types/limestone"));
-        getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).addOptionalTag(new Identifier("create","stone_types/dripstone"));
-        getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).addOptionalTag(new Identifier("create","stone_types/calcite"));
+        getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).addOptionalTag(Identifier.of("create","stone_types/limestone"));
+        getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).addOptionalTag(Identifier.of("create","stone_types/dripstone"));
+        getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).addOptionalTag(Identifier.of("create","stone_types/calcite"));
         getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).add(Blocks.DRIPSTONE_BLOCK.asItem());
         getOrCreateTagBuilder(TagKeys.CARBONATE_ROCKS).add(Blocks.CALCITE.asItem());
         // Condiments
@@ -384,21 +376,5 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.INKS).add(Items.BLACK_DYE);
         // Leaves
         getOrCreateTagBuilder(ItemTags.LEAVES).add(ModItems.MATCHA);
-        // Forge
-        getOrCreateTagBuilder(TagKeys.CABBAGE).addOptionalTag(new Identifier("forge","crops/cabbage"));
-        getOrCreateTagBuilder(TagKeys.MANGO).addOptionalTag(new Identifier("forge:fruits/mango"));
-        getOrCreateTagBuilder(TagKeys.LEMON).addOptionalTag(new Identifier("forge:fruits/lemon"));
-        getOrCreateTagBuilder(TagKeys.RICE).addOptionalTag(new Identifier("forge:crops/rice"));
-        getOrCreateTagBuilder(TagKeys.TOMATO).addOptionalTag(new Identifier("forge:vegetables/tomato"));
-        getOrCreateTagBuilder(TagKeys.TOMATOES).addOptionalTag(new Identifier("forge:vegetables/tomato"));
-        getOrCreateTagBuilder(TagKeys.PASTAS).addOptionalTag(new Identifier("forge:pasta"));
-        getOrCreateTagBuilder(TagKeys.IRON_PLATE).addOptionalTag(new Identifier("forge:plates/iron"));
-        getOrCreateTagBuilder(TagKeys.COPPER_PLATE).addOptionalTag(new Identifier("forge:plates/copper"));
-        getOrCreateTagBuilder(TagKeys.ZINC_INGOT).addOptionalTag(new Identifier("forge:ingots/zinc"));
-        getOrCreateTagBuilder(TagKeys.MILKS).addOptionalTag(new Identifier("forge:milk"));
-        getOrCreateTagBuilder(TagKeys.RAW_CHICKEN).addOptionalTag(new Identifier("forge:raw_chicken"));
-        getOrCreateTagBuilder(TagKeys.ONION).addOptionalTag(new Identifier("forge:crops/onion"));
-        getOrCreateTagBuilder(TagKeys.RAW_MUTTON).addOptionalTag(new Identifier("forge:raw_mutton"));
-
     }
 }

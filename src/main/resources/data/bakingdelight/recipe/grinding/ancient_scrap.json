@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:grinding",
+  "ingredients": [
+    {
+      "tag": "c:ores/netherite_scrap"
+    }
+  ],
+  "output": { "id": "minecraft:netherite_scrap",
+    "count": 1
+  },
+  "chance": 0.4,
+  "extra": { "id": "bakingdelight:ancient_scrap",
+    "count": 2
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "bakingdelight:squeeze",
+  "ingredients": [
+    {
+      "tag": "minecraft:saplings"
+    }
+  ],
+  "output": { "id": "minecraft:dead_bush"
+  },
+  "fluid": "minecraft:water",
+  "amount": 2250
+}

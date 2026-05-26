@@ -14,18 +14,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class EMIMixWithWaterRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
+    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/water_glass_bowl.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.GLASS_BOWL);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "mix_with_water"), WORKSTATION);
-    private final Identifier id;
+            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "mix_with_water"), WORKSTATION);
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMIMixWithWaterRecipe(MixWithWaterRecipe recipe) {
-        this.id = recipe.getId();
-        this.input = List.of(EmiIngredient.of(recipe.getIngredients().get(0)));
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.input = List.of(EmiIngredient.of(recipe.getIngredients().getFirst()));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -34,7 +32,7 @@ public class EMIMixWithWaterRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return id;
+        return null;
     }
 
     @Override

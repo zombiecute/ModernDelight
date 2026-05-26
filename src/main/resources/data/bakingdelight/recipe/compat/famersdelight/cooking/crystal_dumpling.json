@@ -1,0 +1,33 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 180,
+  "experience": 1.0,
+  "container": {
+    "id": "bakingdelight:wooden_plate"
+  },
+  "ingredients": [
+    {
+      "tag": "c:foods/raw_beef"
+    },
+    {
+      "tag": "c:foods/raw_fish"
+    },
+    {
+      "tag": "c:foods/raw_mutton"
+    },
+    {
+      "item": "bakingdelight:mixed_dough"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": { "id": "bakingdelight:crystal_dumpling"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "items": "minecraft:shears"
+                }
+              },
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "predicates": {
+                    "minecraft:enchantments": [
+                      {
+                        "enchantments": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bakingdelight:black_pepper_corn"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 2.0,
+            "min": 0.0
+          },
+          "function": "minecraft:set_count"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:any_of",
+          "terms": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:shears"
+              }
+            },
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "predicates": {
+                  "minecraft:enchantments": [
+                    {
+                      "enchantments": "minecraft:silk_touch",
+                      "levels": {
+                        "min": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bakingdelight:wild_pepper_crop"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 1.0,
+            "min": 1.0
+          },
+          "function": "minecraft:set_count"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

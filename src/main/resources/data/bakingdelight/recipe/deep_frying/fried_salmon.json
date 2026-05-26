@@ -1,0 +1,10 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "minecraft:salmon"
+    }
+  ],
+  "output": { "id": "bakingdelight:fried_salmon"
+  }
+}

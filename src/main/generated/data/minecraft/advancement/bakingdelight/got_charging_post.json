@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_battery1",
+  "criteria": {
+    "charging_post": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:charging_post"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.charging_post.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:charging_post"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.charging_post.title"
+    }
+  },
+  "requirements": [
+    [
+      "charging_post"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

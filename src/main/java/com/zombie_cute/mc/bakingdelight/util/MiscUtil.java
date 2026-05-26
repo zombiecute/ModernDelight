@@ -2,12 +2,12 @@ package com.zombie_cute.mc.bakingdelight.util;
 
 import com.zombie_cute.mc.bakingdelight.item.food.SeasoningItem;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
+import com.zombie_cute.mc.bakingdelight.components.ModComponents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
@@ -34,15 +34,12 @@ public class MiscUtil {
         return false;
     }
     public static void applyFoodEffects(ItemStack stack, LivingEntity targetEntity) {
-        NbtCompound nbt = stack.getSubNbt("modern_delight_seasoning");
-        if (nbt != null) {
+        List<String> nbt = stack.getOrDefault(ModComponents.SEASONING_ITEMS, new ArrayList<>());
+        if (!nbt.isEmpty()) {
             try {
                 List<Item> seasoning = new ArrayList<>();
-                for (int i = 1; i <= SeasoningItem.getMaxSeasoning(); i++) {
-                    if (nbt.contains("seasoning_" + i)) {
-                        String name = nbt.getString("seasoning_" + i);
-                        seasoning.add(Registries.ITEM.get(new Identifier(name)));
-                    }
+                for (String s : nbt) {
+                    seasoning.add(Registries.ITEM.get(Identifier.of(s)));
                 }
                 for (Item i : seasoning) {
                     if (i instanceof SeasoningItem s) {

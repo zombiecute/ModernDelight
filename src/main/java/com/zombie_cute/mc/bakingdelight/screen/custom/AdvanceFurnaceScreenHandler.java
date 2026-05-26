@@ -11,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -23,9 +22,8 @@ public class AdvanceFurnaceScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     public final AdvanceFurnaceBlockEntity blockEntity;
-    public AdvanceFurnaceScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(8));
+    public AdvanceFurnaceScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(8));
     }
     public AdvanceFurnaceScreenHandler(int syncId, PlayerInventory playerInventory,
                                        BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate){

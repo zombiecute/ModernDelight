@@ -1,0 +1,13 @@
+{
+  "type": "bakingdelight:squeeze",
+  "is_danger": true,
+  "ingredients": [
+    {
+      "item": "minecraft:cactus"
+    }
+  ],
+  "output": { "id": "minecraft:sugar"
+  },
+  "fluid": "bakingdelight:still_sweetened_water",
+  "amount": 2250
+}

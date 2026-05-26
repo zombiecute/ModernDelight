@@ -1,0 +1,103 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "bakingdelight:diamond_component"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "id": "bakingdelight:diamond_component",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "id": "create:golden_sheet",
+      "chance": 10.0,
+      "count": 10
+    },
+    {
+      "id": "minecraft:diamond",
+      "chance": 2.0,
+      "count": 3
+    },
+    {
+      "id": "minecraft:diamond_sword",
+      "chance": 8.0,
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:diamond_component"
+        },
+        {
+          "item": "minecraft:gold_nugget"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:diamond_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:diamond_component"
+        },
+        {
+          "item": "minecraft:diamond"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:diamond_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:diamond_component"
+        },
+        {
+          "item": "minecraft:amethyst_shard"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:diamond_component"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "bakingdelight:diamond_component"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:diamond_component"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "id": "bakingdelight:diamond_component"
+  }
+}

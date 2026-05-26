@@ -14,7 +14,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/tesla_coil_gui.png");
 
     public TeslaCoilScreen(TeslaCoilScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -89,7 +89,7 @@ public class TeslaCoilScreen extends HandledScreen<TeslaCoilScreenHandler> {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

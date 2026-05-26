@@ -1,0 +1,22 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "casualness_delight"
+      ]
+    }
+  ],
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "tag": "c:tools/knife"
+    }
+  ],
+  "output": { "id": "casualness_delight:potato_slice",
+    "count": 1
+  }
+}

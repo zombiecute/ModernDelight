@@ -19,7 +19,7 @@ import java.util.List;
 
 public class GrindingCategory implements DisplayCategory<GrindingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/grinding.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/grinding.png");
     public static final CategoryIdentifier<GrindingDisplay> GRINDING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "grinding");
     public static final String TITLE = "emi.category.bakingdelight.grinding";

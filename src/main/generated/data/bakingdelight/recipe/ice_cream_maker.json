@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:dispenser"
+    },
+    "F": {
+      "item": "bakingdelight:freezer"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:lever"
+    },
+    "P": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "R": {
+      "item": "bakingdelight:redstone_component"
+    }
+  },
+  "pattern": [
+    "FDL",
+    "R  ",
+    "IPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:ice_cream_maker"
+  }
+}

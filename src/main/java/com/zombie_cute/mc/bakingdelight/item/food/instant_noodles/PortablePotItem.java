@@ -1,12 +1,12 @@
 package com.zombie_cute.mc.bakingdelight.item.food.instant_noodles;
 
+import com.zombie_cute.mc.bakingdelight.components.ModComponents;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
+import com.zombie_cute.mc.bakingdelight.util.InstantNoodleUtil;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
@@ -14,7 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.FluidTags;
@@ -33,13 +33,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PortablePotItem extends Item {
     public PortablePotItem() {
-        super(new FabricItemSettings().maxCount(1));
+        super(new Settings().maxCount(1));
     }
 
     @Override
@@ -56,23 +56,20 @@ public class PortablePotItem extends Item {
                 }
                 if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
                     world.emitGameEvent(user, GameEvent.FLUID_PICKUP, blockPos);
-                    NbtCompound nbt = itemStack.getOrCreateNbt();
-                    if (nbt.contains("has_water")){
-                        if (nbt.getBoolean("has_water")){
-                            return TypedActionResult.pass(itemStack);
-                        }
+                    boolean nbt = itemStack.getOrDefault(ModComponents.POT_HAS_WATER,false);
+                    if (nbt){
+                        return TypedActionResult.pass(itemStack);
                     }
                     if (world.isClient()){
                         return TypedActionResult.success(itemStack);
                     } else {
-                        nbt.putBoolean("has_water",true);
+                        itemStack.set(ModComponents.POT_HAS_WATER,true);
                         world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
                         world.playSound(null,blockPos.getX(),blockPos.getY(),blockPos.getZ(),SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.PLAYERS,0.8F, 0.8F + user.getWorld().getRandom().nextFloat() * 0.4F);
                         if (hasQuicklime(itemStack) && hasNoodle(itemStack)){
                             ItemStack cooked = new ItemStack(ModItems.COOKED_PORTABLE_POT);
-                            NbtCompound newNbt = cooked.getOrCreateNbt();
-                            NbtCompound noodleNBT = nbt.getCompound("noodles_data").copy();
-                            newNbt.put("noodles_data",noodleNBT);
+                            List<String> noodleNBT = itemStack.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS,new ArrayList<>());
+                            cooked.set(ModComponents.INSTANT_NOODLES_INGREDIENTS,noodleNBT);
                             user.giveItemStack(ModItems.DIRTY_WRAPPING_PAPER.getDefaultStack());
                             user.setStackInHand(hand,cooked);
                             return TypedActionResult.consume(this.craft(itemStack, user, cooked));
@@ -83,168 +80,162 @@ public class PortablePotItem extends Item {
         }
         return TypedActionResult.pass(itemStack);
     }
+
     public ItemStack craft(ItemStack stack, PlayerEntity player, ItemStack outputStack) {
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         return ItemUsage.exchangeStack(stack, player, outputStack);
     }
+
     @Override
     public Text getName(ItemStack stack) {
-        SpecialIngredient specialIngredient = getNoodleType(stack);
+        List<String> nbt = stack.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS,new ArrayList<>());
+        SpecialIngredient specialIngredient = InstantNoodleUtil.getSpecialIngredient(nbt);
         if (specialIngredient != null){
             return Text.translatable(specialIngredient.toTranslationKey());
-        } else if (CookedPortablePotItem.isUnhealthy(stack)) {
+        } else if (InstantNoodleUtil.isUnhealthy(nbt)) {
             return Text.translatable(TextUtil.NOODLE_UNHEALTHY);
         }
         return super.getName(stack);
     }
 
     @Override
-    public boolean onClicked(ItemStack pot, ItemStack noodles, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
+    public boolean onClicked(ItemStack pot, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
         if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
-            NbtCompound nbt = pot.getOrCreateNbt();
-            if (noodles.getItem() instanceof PackagedInstantNoodlesItem) {
-                if (!nbt.contains("noodles_data")) {
-                    NbtCompound noodleNBT = new NbtCompound();
-                    ItemStack newNoodles = noodles.copy();
-                    newNoodles.setCount(1);
-                    newNoodles.writeNbt(noodleNBT);
-                    nbt.put("noodles_data", noodleNBT);
-                    noodles.decrement(1);
+            List<String> potNoodleNBT = pot.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS,new ArrayList<>());
+            if (otherStack.getItem() instanceof PackagedInstantNoodlesItem) {
+                if (!hasNoodle(pot)){
+                    List<String> noodleNBT = otherStack.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS,new ArrayList<>());
+                    otherStack.decrement(1);
+                    pot.set(ModComponents.INSTANT_NOODLES_INGREDIENTS,noodleNBT);
                     this.playInsertSound(player);
                     if (hasWater(pot) && hasQuicklime(pot)){
-                        cook(slot, nbt, player);
+                        cook(slot, noodleNBT, player);
                     }
                     return true;
                 }
-            } else if (isQuicklime(noodles.getItem())) {
-                if (nbt.contains("has_quicklime")){
-                    if (nbt.getBoolean("has_quicklime")){
-                        return false;
-                    }
+            } else if (isQuicklime(otherStack.getItem())) {
+                if (hasQuicklime(pot)){
+                    return false;
                 }
-                nbt.putBoolean("has_quicklime",true);
-                noodles.decrement(1);
+                pot.set(ModComponents.POT_HAS_QUICKLIME,true);
+                otherStack.decrement(1);
                 this.playInsertSound(player);
                 if (hasWater(pot) && hasNoodle(pot)){
-                    cook(slot, nbt, player);
+                    cook(slot, potNoodleNBT, player);
                 }
                 return true;
-            } else if (noodles.getItem() == Items.WATER_BUCKET) {
-                if (nbt.contains("has_water")){
-                    if (nbt.getBoolean("has_water")){
-                        return false;
-                    }
+            } else if (otherStack.getItem() == Items.WATER_BUCKET) {
+                if (hasWater(pot)){
+                    return false;
                 }
-                nbt.putBoolean("has_water",true);
-                noodles.decrement(1);
+                pot.set(ModComponents.POT_HAS_WATER,true);
+                otherStack.decrement(1);
                 cursorStackReference.set(Items.BUCKET.getDefaultStack());
                 this.playWaterFillSound(player);
                 if (hasNoodle(pot) && hasQuicklime(pot)){
-                    cook(slot, nbt, player);
+                    cook(slot, potNoodleNBT, player);
                 }
                 return true;
-            } else if (noodles.isEmpty()) {
-                if (nbt.contains("noodles_data")){
-                    ItemStack newNoodles = ItemStack.fromNbt(nbt.getCompound("noodles_data"));
+            } else if (otherStack.isEmpty()) {
+                if (hasNoodle(pot)){
+                    ItemStack newNoodles = new ItemStack(ModItems.PACKAGED_INSTANT_NOODLES);
+                    newNoodles.set(ModComponents.INSTANT_NOODLES_INGREDIENTS,potNoodleNBT);
                     cursorStackReference.set(newNoodles);
-                    nbt.remove("noodles_data");
+                    pot.remove(ModComponents.INSTANT_NOODLES_INGREDIENTS);
                     this.playRemoveSound(player);
                     return true;
-                } else if (nbt.contains("has_quicklime")) {
-                    if (nbt.getBoolean("has_quicklime")){
-                        cursorStackReference.set(new ItemStack(ModItems.QUICKLIME));
-                        nbt.putBoolean("has_quicklime",false);
-                        this.playRemoveSound(player);
-                        return true;
-                    }
+                } else if (hasQuicklime(pot)) {
+                    cursorStackReference.set(new ItemStack(ModItems.QUICKLIME));
+                    pot.set(ModComponents.POT_HAS_QUICKLIME,false);
+                    this.playRemoveSound(player);
+                    return true;
                 }
             }
         }
         return false;
     }
-
-
 
     @Override
     public boolean onStackClicked(ItemStack pot, Slot slot, ClickType clickType, PlayerEntity player) {
         if (clickType == ClickType.RIGHT) {
-            ItemStack noodles = slot.getStack();
-            NbtCompound nbt = pot.getOrCreateNbt();
-            if (noodles.getItem() instanceof PackagedInstantNoodlesItem) {
-                if (!nbt.contains("noodles_data")) {
-                    NbtCompound noodleNBT = new NbtCompound();
-                    ItemStack newNoodles = noodles.copy();
-                    newNoodles.setCount(1);
-                    newNoodles.writeNbt(noodleNBT);
-                    nbt.put("noodles_data", noodleNBT);
-                    noodles.decrement(1);
-                    slot.setStack(noodles);
+            ItemStack slotStack = slot.getStack();
+            List<String> potNoodleNBT = pot.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS,new ArrayList<>());
+            if (slotStack.getItem() instanceof PackagedInstantNoodlesItem) {
+                if (!hasNoodle(pot)) {
+                    List<String> noodleNBT = slotStack.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS,new ArrayList<>());
+                    pot.set(ModComponents.INSTANT_NOODLES_INGREDIENTS,noodleNBT);
+                    slotStack.decrement(1);
+                    slot.setStack(slotStack);
                     this.playInsertSound(player);
                     if (hasWater(pot) && hasQuicklime(pot)){
-                        cook(pot, player, nbt);
+                        cook(pot, player, noodleNBT);
                     }
                     return true;
                 }
-            } else if (isQuicklime(noodles.getItem())) {
-                if (nbt.contains("has_quicklime")){
-                    if (nbt.getBoolean("has_quicklime")){
-                        return false;
-                    }
+            } else if (isQuicklime(slotStack.getItem())) {
+                if (hasQuicklime(pot)){
+                    return false;
                 }
-                nbt.putBoolean("has_quicklime", true);
-                noodles.decrement(1);
-                slot.setStack(noodles);
+                pot.set(ModComponents.POT_HAS_QUICKLIME,true);
+                slotStack.decrement(1);
+                slot.setStack(slotStack);
                 this.playInsertSound(player);
                 if (hasWater(pot) && hasNoodle(pot)){
-                    cook(pot, player, nbt);
+                    cook(pot, player, potNoodleNBT);
                 }
                 return true;
-            } else if (noodles.getItem() == Items.WATER_BUCKET) {
-                if (nbt.contains("has_water")){
-                    if (nbt.getBoolean("has_water")){
-                        return false;
-                    }
+            } else if (slotStack.getItem() == Items.WATER_BUCKET) {
+                if (hasWater(pot)){
+                    return false;
                 }
-                nbt.putBoolean("has_water", true);
+                pot.set(ModComponents.POT_HAS_WATER,true);
                 slot.setStack(new ItemStack(Items.BUCKET));
                 this.playWaterFillSound(player);
                 if (hasNoodle(pot) && hasQuicklime(pot)){
-                    cook(pot, player, nbt);
+                    cook(pot, player, potNoodleNBT);
                 }
                 return true;
-            } else if (noodles.isEmpty()) {
-                if (nbt.contains("noodles_data")){
-                    ItemStack newNoodles = ItemStack.fromNbt(nbt.getCompound("noodles_data"));
+            } else if (slotStack.getItem() == Items.BUCKET) {
+                if (!hasWater(pot)){
+                    return false;
+                }
+                this.playWaterFillSound(player);
+                pot.set(ModComponents.POT_HAS_WATER,false);
+                if (slotStack.getCount() == 1) {
+                    slot.setStack(new ItemStack(Items.WATER_BUCKET));
+                } else {
+                    slotStack.decrement(1);
+                    player.giveItemStack(new ItemStack(Items.WATER_BUCKET));
+                }
+                return true;
+            } else if (slotStack.isEmpty()) {
+                if (hasNoodle(pot)){
+                    ItemStack newNoodles = new ItemStack(ModItems.PACKAGED_INSTANT_NOODLES);
+                    newNoodles.set(ModComponents.INSTANT_NOODLES_INGREDIENTS,potNoodleNBT);
                     slot.setStack(newNoodles);
-                    nbt.remove("noodles_data");
+                    pot.remove(ModComponents.INSTANT_NOODLES_INGREDIENTS);
                     this.playRemoveSound(player);
                     return true;
-                } else if (nbt.contains("has_quicklime")) {
-                    if (nbt.getBoolean("has_quicklime")){
-                        slot.setStack(ModItems.QUICKLIME.getDefaultStack());
-                        nbt.putBoolean("has_quicklime",false);
-                        this.playRemoveSound(player);
-                        return true;
-                    }
+                } else if (hasQuicklime(pot)) {
+                    slot.setStack(ModItems.QUICKLIME.getDefaultStack());
+                    pot.set(ModComponents.POT_HAS_QUICKLIME,false);
+                    this.playRemoveSound(player);
+                    return true;
                 }
             }
         }
         return false;
     }
-    private static void cook(Slot slot, NbtCompound nbt, PlayerEntity player) {
+    private static void cook(Slot slot, List<String> noodlesData, PlayerEntity player) {
         player.giveItemStack(ModItems.DIRTY_WRAPPING_PAPER.getDefaultStack());
         ItemStack cooked = new ItemStack(ModItems.COOKED_PORTABLE_POT);
-        NbtCompound newNbt = cooked.getOrCreateNbt();
-        NbtCompound newNoodleNBT = nbt.getCompound("noodles_data").copy();
-        newNbt.put("noodles_data",newNoodleNBT);
+        cooked.set(ModComponents.INSTANT_NOODLES_INGREDIENTS, noodlesData);
         slot.setStack(cooked);
     }
-    private static void cook(ItemStack pot, PlayerEntity player, NbtCompound nbt) {
+    private static void cook(ItemStack pot, PlayerEntity player, List<String> noodlesData) {
         player.giveItemStack(ModItems.DIRTY_WRAPPING_PAPER.getDefaultStack());
         ItemStack cooked = new ItemStack(ModItems.COOKED_PORTABLE_POT);
-        NbtCompound newNbt = cooked.getOrCreateNbt();
-        NbtCompound newNoodleNBT = nbt.getCompound("noodles_data").copy();
-        newNbt.put("noodles_data",newNoodleNBT);
+        cooked.set(ModComponents.INSTANT_NOODLES_INGREDIENTS, noodlesData);
         player.giveItemStack(cooked);
         pot.decrement(1);
     }
@@ -258,8 +249,9 @@ public class PortablePotItem extends Item {
     protected void playInsertSound(Entity entity) {
         entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
     }
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (hasQuicklime(stack)){
             tooltip.add(Text.translatable(TextUtil.POT_HAS_QUICKLIME).formatted(Formatting.GRAY));
         } else {
@@ -270,46 +262,23 @@ public class PortablePotItem extends Item {
         } else {
             tooltip.add(Text.translatable(TextUtil.POT_MISS_WATER).formatted(Formatting.DARK_RED));
         }
-        NbtCompound nbt = stack.getOrCreateNbt();
-        if (nbt.contains("noodles_data")){
-            NbtCompound noodleNBT = nbt.getCompound("noodles_data");
-            ItemStack noodles = ItemStack.fromNbt(noodleNBT);
-            PackagedInstantNoodlesItem.setToolTipFromNoodles(noodles,tooltip);
+        if (hasNoodle(stack)){
+            List<String> noodleNBT = stack.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS, new ArrayList<>());
+            InstantNoodleUtil.setToolTipFromNoodles(noodleNBT,tooltip);
         }
-        super.appendTooltip(stack, world, tooltip, context);
+        super.appendTooltip(stack, context, tooltip, type);
     }
+
     public static boolean hasNoodle(ItemStack stack){
-        NbtCompound nbt = stack.getNbt();
-        if (nbt != null){
-            return nbt.contains("noodles_data");
-        }
-        return false;
+        return stack.contains(ModComponents.INSTANT_NOODLES_INGREDIENTS);
     }
     public static boolean hasWater(ItemStack stack){
-        NbtCompound nbt = stack.getNbt();
-        if (nbt != null && nbt.contains("has_water")){
-            return nbt.getBoolean("has_water");
-        }
-        return false;
+        return stack.getOrDefault(ModComponents.POT_HAS_WATER,false);
     }
     public static boolean hasQuicklime(ItemStack stack){
-        NbtCompound nbt = stack.getNbt();
-        if (nbt != null && nbt.contains("has_quicklime")){
-            return nbt.getBoolean("has_quicklime");
-        }
-        return false;
+        return stack.getOrDefault(ModComponents.POT_HAS_QUICKLIME,false);
     }
-    public static SpecialIngredient getNoodleType(ItemStack stack){
-        NbtCompound nbt = stack.getNbt();
-        if (nbt != null){
-            if (nbt.contains("noodles_data")){
-                NbtCompound noodleNBT = nbt.getCompound("noodles_data");
-                ItemStack noodles = ItemStack.fromNbt(noodleNBT);
-                return PackagedInstantNoodlesItem.getSpecialIngredient(noodles);
-            }
-        }
-        return null;
-    }
+
     public static boolean isQuicklime(Item item) {
         for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.QUICKLIMES)) {
             if (item == registryEntry.value()) {

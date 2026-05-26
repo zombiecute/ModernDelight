@@ -1,0 +1,10 @@
+{
+  "type": "bakingdelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    }
+  ],
+  "output": { "id": "minecraft:leather"
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    {
-      "id": "#forge:fruits/mango",
-      "required": false
-    }
-  ]
-}

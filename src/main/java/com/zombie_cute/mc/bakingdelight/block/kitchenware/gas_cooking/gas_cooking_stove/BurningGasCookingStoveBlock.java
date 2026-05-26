@@ -1,9 +1,10 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooking_stove;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModDamageTypes;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeveledCauldronBlock;
@@ -16,7 +17,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -25,7 +25,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class BurningGasCookingStoveBlock extends AbstractGasCookingStoveBlock {
     public BurningGasCookingStoveBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).luminance(12).nonOpaque());
+        super(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).luminance((s)->12).nonOpaque());
+    }
+    public static final MapCodec<BurningGasCookingStoveBlock> CODEC = createCodec((s) -> new BurningGasCookingStoveBlock());
+    protected MapCodec<? extends BurningGasCookingStoveBlock> getCodec() {
+        return CODEC;
     }
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
@@ -57,7 +61,7 @@ public class BurningGasCookingStoveBlock extends AbstractGasCookingStoveBlock {
         super.onSteppedOn(world, pos, state, entity);
     }
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient){
             world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f,
                     SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,
@@ -81,7 +85,6 @@ public class BurningGasCookingStoveBlock extends AbstractGasCookingStoveBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.BURNING_GAS_COOKING_STOVE_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+        return world.isClient ? null : validateTicker(type, ModBlockEntities.BURNING_GAS_COOKING_STOVE_BLOCK_ENTITY, BurningGasCookingStoveBlockEntity::tick);
     }
 }

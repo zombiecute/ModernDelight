@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_oven",
+  "criteria": {
+    "crowbar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:crowbar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_crowbar.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:crowbar"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_crowbar.title"
+    }
+  },
+  "requirements": [
+    [
+      "crowbar"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

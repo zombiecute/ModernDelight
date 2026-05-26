@@ -1,0 +1,14 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:cobweb"
+    },
+    {
+      "item": "minecraft:shears"
+    }
+  ],
+  "output": { "id": "minecraft:string",
+    "count": 9
+  }
+}

@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -63,28 +63,6 @@ fabricApi {
 	configureDataGeneration()
 }
 
-loom {
-	runs {
-		datagen {
-			inherit server
-			name "Data Generation"
-			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-			vmArg "-Dfabric-api.datagen.modid=bakingdelight"
-
-			runDir "build/datagen"
-		}
-		datagenClient {
-			inherit client
-			name "Data Generation"
-			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-
-			runDir "build/datagen"
-		}
-	}
-}
-
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -103,29 +81,37 @@ dependencies {
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}+${minecraft_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}+${minecraft_version}"
 	// Geckolib
-	modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
-	implementation("com.eliotlash.mclib:mclib:20")
+	include modApi("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
+	include modApi("com.eliotlash.mclib:mclib:20")
 	// EnergyStorage
-	include modApi('teamreborn:energy:3.0.0')
-	// Tech Reborn
-	modLocalRuntime("curse.maven:reborncore-237903:4708961")
-	modLocalRuntime("curse.maven:techreborn-233564:4708962")
+	include modApi("teamreborn:energy:${project.energy_version}")
 	// YACL
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
 	// Patchouli
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+
+	// Local Runtime
+	// Tech Reborn
+	modLocalRuntime("curse.maven:techreborn-233564:6664367")
+	// Reborn Corn
+	modLocalRuntime("curse.maven:reborncore-237903:6664366")
+	// Farmer's Delight
+	modImplementation "curse.maven:farmers-delight-refabricated-993166:8088691"
+	// Apple Skin
+	modImplementation "curse.maven:appleskin-248787:5864741"
 }
 
 processResources {
-	inputs.property "version", project.version
+	def version = project.version
+	inputs.property "version", version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": version
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+	it.options.release = 21
 }
 
 java {
@@ -134,13 +120,16 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
 	from("LICENSE") {
-		rename { "${it}_${inputs.properties.archivesName}"}
+		rename { "${it}_$projectName"}
 	}
 }
 

@@ -1,6 +1,0 @@
-{
-  "type":"createaddition:liquid_burning",
-  "input": { "fluid": "bakingdelight:still_liquefied_biogas", "amount": 81000 },
-  "burnTime": 48000,
-  "superheated": false
-}

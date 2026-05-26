@@ -1,17 +1,15 @@
 package com.zombie_cute.mc.bakingdelight.block.food;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -30,15 +28,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class SteamedPumpkinBlock extends Block {
     public SteamedPumpkinBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.CAKE));
+        super(AbstractBlock.Settings.copy(Blocks.CAKE));
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(BITES, 0));
+    }
+    public static final MapCodec<SteamedPumpkinBlock> CODEC = createCodec((s) -> new SteamedPumpkinBlock());
+    protected MapCodec<? extends SteamedPumpkinBlock> getCodec() {
+        return CODEC;
     }
     public static final IntProperty BITES = IntProperty.of("bites",0,3);
     private static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,8,15);
@@ -54,13 +55,16 @@ public class SteamedPumpkinBlock extends Block {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(BITES);
     }
+
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
-        super.appendTooltip(stack, world, tooltip, options);
+        super.appendTooltip(stack, context, tooltip, options);
     }
+
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         if (world.isClient) {
             if (player.getStackInHand(hand).getItem() == Items.BOWL) {
                 world.playSound(player,pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,1.2f,world.getRandom().nextFloat()+0.6f);

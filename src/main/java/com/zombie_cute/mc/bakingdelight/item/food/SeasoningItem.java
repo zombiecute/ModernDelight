@@ -1,13 +1,14 @@
 package com.zombie_cute.mc.bakingdelight.item.food;
 
-import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
-import net.minecraft.client.item.TooltipContext;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
+import com.zombie_cute.mc.bakingdelight.components.ModComponents;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -16,8 +17,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class SeasoningItem extends Item {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         tooltip.add(Text.translatable(TextUtil.SEASONING_TIP).formatted(Formatting.GRAY));
-        super.appendTooltip(stack, world, tooltip, context);
+        super.appendTooltip(stack, context, tooltip, type);
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -43,15 +44,9 @@ public class SeasoningItem extends Item {
             foodItem = user.getOffHandStack();
         }
         if (foodItem.isEmpty()){
-            if (this.isFood()) {
-                ItemStack itemStack = user.getStackInHand(hand);
-                if (user.canConsume(this.getFoodComponent().isAlwaysEdible())) {
-                    user.setCurrentHand(hand);
-                    return TypedActionResult.consume(itemStack);
-                }
-            }
+            return super.use(world, user, hand);
         }
-        if (foodItem.isFood()){
+        if (foodItem.getComponents().contains(DataComponentTypes.FOOD)){
             if (world.isClient()){
                 return TypedActionResult.success(user.getStackInHand(hand));
             } else {
@@ -64,18 +59,13 @@ public class SeasoningItem extends Item {
                     boolean count = thisCount > foodCount;
                     ItemStack newFood = foodItem.copy();
                     newFood.setCount(count ? foodCount : thisCount);
-                    NbtCompound nbt = newFood.getOrCreateSubNbt("modern_delight_seasoning");
-                    boolean hasAdded = false;
-                    for (int i = 1; i <= getMaxSeasoning();i++){
-                        if (nbt.contains("seasoning_"+i)){
-                            continue;
-                        }
+                    List<String> seasoningList = new ArrayList<>(
+                            newFood.getOrDefault(ModComponents.SEASONING_ITEMS, List.of())
+                    );
+                    if (seasoningList.size() < getMaxSeasoning()){
                         String name = Registries.ITEM.getId(thisStack.getItem()).toString();
-                        nbt.putString("seasoning_"+i,name);
-                        hasAdded = true;
-                        break;
-                    }
-                    if (hasAdded){
+                        seasoningList.add(name);
+                        newFood.set(ModComponents.SEASONING_ITEMS,seasoningList);
                         if (thisStack.getItem().getRecipeRemainder() != null){
                             ItemStack recipeRemainder = new ItemStack(thisStack.getItem().getRecipeRemainder(),newFood.getCount());
                             user.giveItemStack(recipeRemainder);

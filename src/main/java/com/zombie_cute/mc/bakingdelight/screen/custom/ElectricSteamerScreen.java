@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ElectricSteamerScreen extends HandledScreen<ElectricSteamerScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/electric_steamer_gui.png");
 
     public ElectricSteamerScreen(ElectricSteamerScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -91,7 +91,7 @@ public class ElectricSteamerScreen extends HandledScreen<ElectricSteamerScreenHa
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

@@ -1,0 +1,73 @@
+{
+  "parent": "minecraft:bakingdelight/got_pudding_wip_2",
+  "criteria": {
+    "apple_pudding": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:apple_pudding"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "caramel_pudding": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:caramel_pudding"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cherry_pudding": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:cherry_pudding"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "matcha_pudding": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:matcha_pudding"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.get_all_pudding_desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:apple_pudding"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.get_all_pudding_title"
+    }
+  },
+  "requirements": [
+    [
+      "apple_pudding"
+    ],
+    [
+      "matcha_pudding"
+    ],
+    [
+      "caramel_pudding"
+    ],
+    [
+      "cherry_pudding"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

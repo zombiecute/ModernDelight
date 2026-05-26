@@ -6,11 +6,12 @@ import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -38,12 +39,9 @@ public class DeepFryBasketBlockEntity extends BlockEntity implements Implemented
                 }
             }
         } else {
-            NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(itemStack);
-            if (nbtCompound != null) {
-                if (nbtCompound.contains("Items", 9)) {
-                    player.sendMessage(Text.translatable(TextUtil.PUN),true);
-                    return;
-                }
+            if (itemStack.contains(DataComponentTypes.CONTAINER) || itemStack.contains(DataComponentTypes.BLOCK_ENTITY_DATA)) {
+                player.sendMessage(Text.translatable(TextUtil.PUN),true);
+                return;
             }
             for(int i = 0; i < getItems().size(); i ++){
                 if (getStack(i).isEmpty()){
@@ -58,15 +56,15 @@ public class DeepFryBasketBlockEntity extends BlockEntity implements Implemented
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        Inventories.readNbt(nbt,getItems());
-        super.readNbt(nbt);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt,getItems(), registryLookup);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        Inventories.writeNbt(nbt,getItems());
-        super.writeNbt(nbt);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt,getItems(),registryLookup);
     }
 
     @Override

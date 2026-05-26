@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
@@ -25,8 +24,8 @@ public class CuisineTableScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public final CuisineTableBlockEntity blockEntity;
 
-    public CuisineTableScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()));
+    public CuisineTableScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos));
     }
     public CuisineTableScreenHandler(int syncId, PlayerInventory playerInventory,
                                      BlockEntity blockEntity){
@@ -78,7 +77,7 @@ public class CuisineTableScreenHandler extends ScreenHandler {
             ItemStack originalStack = slot.getStack();
             newStack = originalStack.copy();
             if (invSlot == 2){
-                originalStack.getItem().onCraft(originalStack, player.getWorld(), player);
+                originalStack.getItem().onCraft(originalStack, player.getWorld());
                 if (!this.insertItem(originalStack, 3, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }

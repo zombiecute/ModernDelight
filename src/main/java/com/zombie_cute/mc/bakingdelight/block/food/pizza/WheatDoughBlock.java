@@ -1,11 +1,12 @@
 package com.zombie_cute.mc.bakingdelight.block.food.pizza;
 
 import com.google.common.collect.Lists;
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -39,7 +40,10 @@ public class WheatDoughBlock extends Block {
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(CRAFT_STATE, 0));
     }
-
+    public static final MapCodec<WheatDoughBlock> CODEC = createCodec(WheatDoughBlock::new);
+    protected MapCodec<? extends WheatDoughBlock> getCodec() {
+        return CODEC;
+    }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(CRAFT_STATE);
@@ -82,7 +86,7 @@ public class WheatDoughBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
@@ -93,7 +97,7 @@ public class WheatDoughBlock extends Block {
             if (random < 0.4){
                 world.setBlockState(pos,state.with(CRAFT_STATE,currentState + 1));
             }
-            player.getMainHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.MAIN_HAND));
+            player.getMainHandStack().damage(1, player,player.getActiveHand()== Hand.MAIN_HAND? EquipmentSlot.MAINHAND:EquipmentSlot.OFFHAND);
             world.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_BREAK, SoundCategory.BLOCKS,1.0f,world.random.nextFloat()+0.1f,true);
             return ActionResult.SUCCESS;
         } else if (currentState == 3){

@@ -21,7 +21,7 @@ import java.util.List;
 
 public class OvenTransformCategory implements DisplayCategory<OvenTransformDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/transform.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/transform.png");
     public static final String TRANSFORM_TITLE = "display_name.bakingdelight.transform_name";
     public static final CategoryIdentifier<OvenTransformDisplay> OVEN_TRANSFORMING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "oven_transforming");

@@ -18,14 +18,15 @@ import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.ElectricSteam
 import com.zombie_cute.mc.bakingdelight.block.power.ChargingPostBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.SterlingEngineBlockEntityRender;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.FanBladeBlockEntityRender;
+import com.zombie_cute.mc.bakingdelight.components.ModComponents;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
-import com.zombie_cute.mc.bakingdelight.item.food.instant_noodles.CookedPortablePotItem;
 import com.zombie_cute.mc.bakingdelight.item.food.instant_noodles.PortablePotItem;
 import com.zombie_cute.mc.bakingdelight.networking.NetworkHandler;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
+import com.zombie_cute.mc.bakingdelight.util.InstantNoodleUtil;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -43,6 +44,9 @@ import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModernDelightClient implements ClientModInitializer {
     public static final String ORE_UI_DARK = "bakingdelight.builtInResourcePack.ore_ui_dark";
     public static final String ORE_UI_BRIGHT = "bakingdelight.builtInResourcePack.ore_ui_bright";
@@ -51,13 +55,13 @@ public class ModernDelightClient implements ClientModInitializer {
         NetworkHandler.registerS2CPacket();
 
         ResourceManagerHelper.registerBuiltinResourcePack(
-                new Identifier(ModernDelightMain.MOD_ID, "ore_ui_dark"),
+                Identifier.of(ModernDelightMain.MOD_ID, "ore_ui_dark"),
                 FabricLoader.getInstance().getModContainer(ModernDelightMain.MOD_ID).orElseThrow(),
                 Text.translatable(ORE_UI_DARK),
                 ResourcePackActivationType.NORMAL
         );
         ResourceManagerHelper.registerBuiltinResourcePack(
-                new Identifier(ModernDelightMain.MOD_ID, "ore_ui_bright"),
+                Identifier.of(ModernDelightMain.MOD_ID, "ore_ui_bright"),
                 FabricLoader.getInstance().getModContainer(ModernDelightMain.MOD_ID).orElseThrow(),
                 Text.translatable(ORE_UI_BRIGHT),
                 ResourcePackActivationType.NORMAL
@@ -96,7 +100,7 @@ public class ModernDelightClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.CHARGING_POST_SCREEN_HANDLER, ChargingPostScreen::new);
 
         BlockEntityRendererFactories.register(ModBlockEntities.GLASS_BOWL_ENTITY, GlassBowlBlockEntityRenderer::new);
-        BlockEntityRendererFactories.register(ModBlockEntities.FREEZER_ENTITY, FreezerBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FREEZER_BLOCK_ENTITY, FreezerBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.BAKING_TRAY_BLOCK_ENTITY, BakingTrayBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.WOODEN_BASIN_BLOCK_ENTITY, WoodenBasinBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.DEEP_FRYER_BLOCK_ENTITY, DeepFryerBlockEntityRenderer::new);
@@ -116,44 +120,45 @@ public class ModernDelightClient implements ClientModInitializer {
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_CREAM, ModFluid.FLOWING_CREAM,
                 new SimpleFluidRenderHandler(
-                new Identifier(ModernDelightMain.MOD_ID,"block/cream_still"),
-                new Identifier(ModernDelightMain.MOD_ID,"block/cream_flow")
+                Identifier.of(ModernDelightMain.MOD_ID,"block/cream_still"),
+                Identifier.of(ModernDelightMain.MOD_ID,"block/cream_flow")
         ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
                 ModFluid.STILL_CREAM, ModFluid.FLOWING_CREAM);
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_VEGETABLE_OIL, ModFluid.FLOWING_VEGETABLE_OIL,
                 new SimpleFluidRenderHandler(
-                        new Identifier(ModernDelightMain.MOD_ID,"block/vegetable_oil_still"),
-                        new Identifier(ModernDelightMain.MOD_ID,"block/vegetable_oil_flow")
+                        Identifier.of(ModernDelightMain.MOD_ID,"block/vegetable_oil_still"),
+                        Identifier.of(ModernDelightMain.MOD_ID,"block/vegetable_oil_flow")
                 ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluid.STILL_VEGETABLE_OIL, ModFluid.FLOWING_VEGETABLE_OIL);
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_LIQUEFIED_BIOGAS, ModFluid.FLOWING_LIQUEFIED_BIOGAS,
                 new SimpleFluidRenderHandler(
-                        new Identifier("minecraft","block/water_still"),
-                        new Identifier("minecraft","block/water_flow"),
+                        Identifier.of("minecraft","block/water_still"),
+                        Identifier.of("minecraft","block/water_flow"),
                         0x8b7a49
                 ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluid.STILL_LIQUEFIED_BIOGAS, ModFluid.FLOWING_LIQUEFIED_BIOGAS);
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_SWEETENED_WATER, ModFluid.FLOWING_SWEETENED_WATER,
                 new SimpleFluidRenderHandler(
-                        new Identifier("minecraft","block/water_still"),
-                        new Identifier("minecraft","block/water_flow"),
+                        Identifier.of("minecraft","block/water_still"),
+                        Identifier.of("minecraft","block/water_flow"),
                         0x38889c
                 ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluid.STILL_SWEETENED_WATER, ModFluid.FLOWING_SWEETENED_WATER);
     }
     public static void registerModelPredicateProviders() {
-        ModelPredicateProviderRegistry.register(ModItems.PORTABLE_POT, new Identifier(ModernDelightMain.MOD_ID,"pot_state"), (itemStack, clientWorld, livingEntity, seed) -> {
+        ModelPredicateProviderRegistry.register(ModItems.PORTABLE_POT, Identifier.of(ModernDelightMain.MOD_ID,"pot_state"), (itemStack, clientWorld, livingEntity, seed) -> {
             if (PortablePotItem.hasNoodle(itemStack) || PortablePotItem.hasWater(itemStack) || PortablePotItem.hasQuicklime(itemStack)){
                 return 0.1F;
             }
             return 0.0F;
         });
-        ModelPredicateProviderRegistry.register(ModItems.COOKED_PORTABLE_POT, new Identifier(ModernDelightMain.MOD_ID,"noodle_type"), (itemStack, clientWorld, livingEntity, seed) -> {
-            SpecialIngredient specialIngredient = PortablePotItem.getNoodleType(itemStack);
+        ModelPredicateProviderRegistry.register(ModItems.COOKED_PORTABLE_POT, Identifier.of(ModernDelightMain.MOD_ID,"noodle_type"), (itemStack, clientWorld, livingEntity, seed) -> {
+            List<String> nbt = itemStack.getOrDefault(ModComponents.INSTANT_NOODLES_INGREDIENTS,new ArrayList<>());
+            SpecialIngredient specialIngredient = InstantNoodleUtil.getSpecialIngredient(nbt);
             if (specialIngredient != null){
                 return switch (specialIngredient){
                     case STEW_CHICKEN_NOODLE_WITH_MUSHROOM -> 0.1F;
@@ -161,7 +166,7 @@ public class ModernDelightClient implements ClientModInitializer {
                     case TONKOTSU_RAMEN -> 0.3F;
                 };
             }
-            if (CookedPortablePotItem.isUnhealthy(itemStack)){
+            if (InstantNoodleUtil.isUnhealthy(nbt)){
                 return 0.9F;
             }
             return 0.0F;

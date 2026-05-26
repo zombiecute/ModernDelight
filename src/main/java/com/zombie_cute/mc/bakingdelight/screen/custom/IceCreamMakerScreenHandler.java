@@ -1,17 +1,16 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockEntity;
+import com.zombie_cute.mc.bakingdelight.components.custom.FlavorComponent;
 import com.zombie_cute.mc.bakingdelight.item.food.CreamItem;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.screen.util.OnlyExtractSlot;
-import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -23,8 +22,8 @@ public class IceCreamMakerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     public final IceCreamMakerBlockEntity blockEntity;
-    public IceCreamMakerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
+    public IceCreamMakerScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos){
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos),
                 new ArrayPropertyDelegate(11));
     }
     public IceCreamMakerScreenHandler(int syncId, PlayerInventory playerInventory,
@@ -58,21 +57,21 @@ public class IceCreamMakerScreenHandler extends ScreenHandler {
     }
     public IceCreamMakerBlockEntity.IceCream getIceCream1(){
         IceCreamMakerBlockEntity.IceCream iceCream = new IceCreamMakerBlockEntity.IceCream(
-                CreamFlavor.getFlavorByID(this.propertyDelegate.get(2)),this.propertyDelegate.get(3)
+                FlavorComponent.getFlavorByID(this.propertyDelegate.get(2)),this.propertyDelegate.get(3)
         );
         iceCream.setSelected(this.propertyDelegate.get(4));
         return iceCream;
     }
     public IceCreamMakerBlockEntity.IceCream getIceCream2(){
         IceCreamMakerBlockEntity.IceCream iceCream = new IceCreamMakerBlockEntity.IceCream(
-                CreamFlavor.getFlavorByID(this.propertyDelegate.get(5)),this.propertyDelegate.get(6)
+                FlavorComponent.getFlavorByID(this.propertyDelegate.get(5)),this.propertyDelegate.get(6)
         );
         iceCream.setSelected(this.propertyDelegate.get(7));
         return iceCream;
     }
     public IceCreamMakerBlockEntity.IceCream getIceCream3(){
         IceCreamMakerBlockEntity.IceCream iceCream = new IceCreamMakerBlockEntity.IceCream(
-                CreamFlavor.getFlavorByID(this.propertyDelegate.get(8)),this.propertyDelegate.get(9)
+                FlavorComponent.getFlavorByID(this.propertyDelegate.get(8)),this.propertyDelegate.get(9)
         );
         iceCream.setSelected(this.propertyDelegate.get(10));
         return iceCream;

@@ -17,6 +17,8 @@ import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -24,15 +26,15 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -43,6 +45,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -51,7 +54,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory, SidedInventory, FluidStorageAble {
+public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>, SidedInventory, FluidStorageAble {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5,ItemStack.EMPTY);
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
@@ -88,30 +91,39 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
     public WoodenBasinBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.WOODEN_BASIN_BLOCK_ENTITY, pos, state);
     }
+
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 
     @Override
-    public void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt,inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt,inventory,registryLookup);
         nbt.putLong("wooden_basin.fluid_amount", fluidStorage.amount);
-        nbt.put("wooden_basin.fluid_variant",fluidStorage.variant.toNbt());
+        nbt.putString("wooden_basin.fluid_variant",fluidStorage.variant.getRegistryEntry().getIdAsString());
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt,inventory);
-        fluidStorage.variant = FluidVariant.fromNbt((NbtCompound) nbt.get("wooden_basin.fluid_variant"));
-        fluidStorage.amount = nbt.getLong("wooden_basin.fluid_amount");
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt,inventory,registryLookup);
+        FluidStack fluidStack;
+        try {
+            fluidStack = FluidStack.getFluidStack(nbt.getString("wooden_basin.fluid_variant"),nbt.getLong("wooden_basin.fluid_amount"));
+        } catch (Exception ignored) {
+            fluidStack = new FluidStack(FluidVariant.of(Fluids.WATER),nbt.getLong("wooden_basin.fluid_amount"));
+        }
+        fluidStorage.variant = fluidStack.fluidVariant;
+        fluidStorage.amount = fluidStack.getAmount();
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
+
     @Override
     public int[] getAvailableSlots(Direction side) {
         int[] result = new int[getItems().size()];
@@ -169,12 +181,10 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
         if (world.isClient){
             return;
         }
-        SimpleInventory inv = new SimpleInventory(1);
-        inv.setStack(0,getStack(INGREDIENT_SLOT));
-        Optional<SqueezeRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                .getFirstMatch(SqueezeRecipe.Type.INSTANCE, inv,this.getWorld());
+        Optional<RecipeEntry<SqueezeRecipe>> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
+                .getFirstMatch(SqueezeRecipe.Type.INSTANCE, new SingleStackRecipeInput(getStack(INGREDIENT_SLOT)),this.getWorld());
         if (match.isPresent()){
-            FluidStack outputFluid = match.get().getOutputFluid();
+            FluidStack outputFluid = match.get().value().getOutputFluid();
             if (
                     (fluidStorage.variant.isOf(outputFluid.getFluidVariant().getFluid()) ||
                             fluidStorage.variant.isBlank())
@@ -187,7 +197,7 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
                 } else {
                     fluidStorage.amount = MAX_FLUID_LEVEL;
                 }
-                ItemStack outputStack = match.get().getOutput(null);
+                ItemStack outputStack = match.get().value().getResult(null);
                 int damage = getStack(FILTER_SLOT).getDamage();
                 if (damage < getStack(FILTER_SLOT).getMaxDamage()){
                     getStack(FILTER_SLOT).setDamage(damage+1);
@@ -206,10 +216,10 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
                 } else {
                     ItemScatterer.spawn(world,pos.getX(), pos.getY(), pos.getZ(),outputStack.copy());
                 }
-                if (match.get().isDanger()){
+                if (match.get().value().isDanger()){
                     entity.damage(world.getDamageSources().cactus(),1.5f);
                 }
-                if (match.get().doCreateFire()){
+                if (match.get().value().doCreateFire()){
                     entity.setOnFireFor(5);
                     createFire(world);
                 }
@@ -227,7 +237,7 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
         return false;
     }
     private boolean hasBlock(World world, BlockPos pos) {
-        return (pos.getY() < world.getBottomY() || pos.getY() >= world.getTopY() || world.isChunkLoaded(pos)) && !world.getBlockState(pos).isAir();
+        return (pos.getY() < world.getBottomY() || pos.getY() >= world.getTopY() || world.isChunkLoaded(ChunkSectionPos.getSectionCoord(pos.getX()), ChunkSectionPos.getSectionCoord(pos.getZ()))) && !world.getBlockState(pos).isAir();
     }
     private void createFire(World world){
         if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
@@ -267,36 +277,37 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
         }
         super.markDirty();
     }
-    public void tick(World world, BlockPos pos, BlockState state) {
+    public static void tick(World world, BlockPos pos, BlockState state, WoodenBasinBlockEntity b) {
         if(world.isClient){
             return;
         }
-        if (getStack(INPUT_SLOT).getItem().equals(Items.BUCKET) &&
-                fluidStorage.amount== MAX_FLUID_LEVEL &&
-                getStack(OUTPUT_SLOT).isEmpty()){
-            removeStack(INPUT_SLOT,1);
-            setStack(OUTPUT_SLOT,fluidStorage.variant.getFluid().getBucketItem().getDefaultStack());
-            fluidStorage.amount = 0;
-            fluidStorage.variant = FluidVariant.blank();
-            markDirty();
-        } else if (isVegetableOil()){
-            fluidStorage.amount -= 27000;
-            if (fluidStorage.amount == 0){
-                fluidStorage.variant = FluidVariant.blank();
+        if (b.getStack(INPUT_SLOT).getItem().equals(Items.BUCKET) &&
+                b.fluidStorage.amount== MAX_FLUID_LEVEL &&
+                b.getStack(OUTPUT_SLOT).isEmpty()){
+            b.removeStack(INPUT_SLOT,1);
+            b.setStack(OUTPUT_SLOT,b.fluidStorage.variant.getFluid().getBucketItem().getDefaultStack());
+            b.fluidStorage.amount = 0;
+            b.fluidStorage.variant = FluidVariant.blank();
+            b.markDirty();
+        } else if (b.isVegetableOil()){
+            b.fluidStorage.amount -= 27000;
+            if (b.fluidStorage.amount == 0){
+                b.fluidStorage.variant = FluidVariant.blank();
             }
-            removeStack(INPUT_SLOT,1);
-            int count = getStack(OUTPUT_SLOT).getCount();
-            setStack(OUTPUT_SLOT,new ItemStack(ModItems.VEGETABLE_OIL_BOTTLE,count+1));
-            markDirty();
-        } else if (isWater()){
-            fluidStorage.amount -= 27000;
-            if (fluidStorage.amount == 0){
-                fluidStorage.variant = FluidVariant.blank();
+            b.removeStack(INPUT_SLOT,1);
+            int count = b.getStack(OUTPUT_SLOT).getCount();
+            b.setStack(OUTPUT_SLOT,new ItemStack(ModItems.VEGETABLE_OIL_BOTTLE,count+1));
+            b.markDirty();
+        } else if (b.isWater()){
+            b.fluidStorage.amount -= 27000;
+            if (b.fluidStorage.amount == 0){
+                b.fluidStorage.variant = FluidVariant.blank();
             }
-            removeStack(INPUT_SLOT,1);
+            b.removeStack(INPUT_SLOT,1);
             ItemStack waterBottle = new ItemStack(Items.POTION);
-            setStack(OUTPUT_SLOT,PotionUtil.setPotion(waterBottle, Potions.WATER));
-            markDirty();
+            waterBottle.set(DataComponentTypes.POTION_CONTENTS,new PotionContentsComponent(Potions.WATER));
+            b.setStack(OUTPUT_SLOT, waterBottle);
+            b.markDirty();
         }
     }
 

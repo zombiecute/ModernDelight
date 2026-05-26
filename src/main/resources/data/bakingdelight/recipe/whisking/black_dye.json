@@ -1,0 +1,10 @@
+{
+  "type": "bakingdelight:whisking",
+  "ingredients": [
+    {
+      "tag": "c:coal"
+    }
+  ],
+  "output": { "id": "minecraft:black_dye"
+  }
+}

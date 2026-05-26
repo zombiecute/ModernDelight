@@ -12,6 +12,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class BiogasFermentationCategory implements DisplayCategory<BiogasFermentationDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/biogas_fermentation.png");
     public static final CategoryIdentifier<BiogasFermentationDisplay> BIOGAS_FERMENTATION =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "biogas_fermentation");
     public static final String FOOD = "bakingdelight.rei_plugin.biogas_fermentation.food";
@@ -47,7 +48,7 @@ public class BiogasFermentationCategory implements DisplayCategory<BiogasFerment
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y,150,122)));
         ItemStack food = new ItemStack(Items.APPLE);
-        food.setCustomName(Text.translatable(FOOD));
+        food.set(DataComponentTypes.CUSTOM_NAME,Text.translatable(FOOD));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 49,startPoint.y + 13))
                 .entry(EntryStacks.of(food)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 67,startPoint.y + 34))

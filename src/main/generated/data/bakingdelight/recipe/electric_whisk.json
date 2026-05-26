@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "bakingdelight:redstone_component"
+    },
+    "W": {
+      "item": "bakingdelight:iron_whisk"
+    }
+  },
+  "pattern": [
+    "IRI",
+    "  W"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:electric_whisk"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "bakingdelight:grinding",
+  "ingredients": [
+    {
+      "tag": "c:ores/iron"
+    }
+  ],
+  "output": { "id": "minecraft:iron_nugget",
+    "count": 9
+  },
+  "chance": 0.5,
+  "extra": { "id": "minecraft:iron_nugget",
+    "count": 3
+  }
+}

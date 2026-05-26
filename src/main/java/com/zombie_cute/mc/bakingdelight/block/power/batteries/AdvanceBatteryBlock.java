@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.block.power.batteries;
 
+import com.mojang.serialization.MapCodec;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,7 +15,11 @@ public class AdvanceBatteryBlock extends AbstractBatteryBlock {
     public AdvanceBatteryBlock(Settings settings) {
         super(settings);
     }
-
+    public static final MapCodec<AdvanceBatteryBlock> CODEC = createCodec((AdvanceBatteryBlock::new));
+    @Override
+    protected MapCodec<? extends AdvanceBatteryBlock> getCodec() {
+        return CODEC;
+    }
     @Override
     public long getMaxPower() {
         return 50000;

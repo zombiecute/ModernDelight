@@ -18,7 +18,7 @@ import java.util.List;
 
 public class JuiceExtractingCategory implements DisplayCategory<JuiceExtractingDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/juice_extracting.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/juice_extracting.png");
     public static final CategoryIdentifier<JuiceExtractingDisplay> JUICE_EXTRACTING =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "juice_extracting");
 

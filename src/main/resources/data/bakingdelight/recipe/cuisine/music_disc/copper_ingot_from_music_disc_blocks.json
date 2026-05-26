@@ -1,0 +1,14 @@
+{
+  "type": "bakingdelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_blocks"
+    },
+    {
+      "tag": "bakingdelight:crowbars"
+    }
+  ],
+  "output": { "id": "minecraft:copper_ingot",
+    "count": 30
+  }
+}

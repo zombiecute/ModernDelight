@@ -1,0 +1,10 @@
+{
+  "type": "bakingdelight:whisking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cream"
+    }
+  ],
+  "output": { "id": "bakingdelight:butter"
+  }
+}

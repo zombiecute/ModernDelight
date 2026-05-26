@@ -1,10 +1,12 @@
 package com.zombie_cute.mc.bakingdelight.compat.rei.cuisine;
 
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.CuisineRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,8 +16,9 @@ import java.util.Optional;
 public class CuisineDisplay extends BasicDisplay {
     public CuisineDisplay(CuisineRecipe recipe){
         super(EntryIngredients.ofIngredients(recipe.getIngredients()),
-                Collections.singletonList(EntryIngredients.of(recipe.getOutput(null))),
-                Optional.ofNullable(recipe.getId()));
+                Collections.singletonList(EntryIngredients.of(recipe.getResult(null))),
+                Optional.of(Identifier.of(ModernDelightMain.MOD_ID,recipe.getResult(null).getTranslationKey()+"."+recipe.hashCode())));
+
     }
     @Override
     public List<EntryIngredient> getInputEntries() {

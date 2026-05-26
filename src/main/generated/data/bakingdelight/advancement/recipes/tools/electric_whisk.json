@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_redstone_component": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:redstone_component"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:electric_whisk"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_redstone_component"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:electric_whisk"
+    ]
+  }
+}

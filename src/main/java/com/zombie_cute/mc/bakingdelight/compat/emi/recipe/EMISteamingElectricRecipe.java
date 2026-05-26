@@ -17,23 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EMISteamingElectricRecipe implements EmiRecipe {
-    public static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming_electric.png");
+    public static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/steaming_electric.png");
     public static final EmiStack WORKSTATION = EmiStack.of(ModBlocks.ELECTRIC_STEAMER);
     public static final EmiRecipeCategory CATEGORY
-            = new EmiRecipeCategory(new Identifier(ModernDelightMain.MOD_ID, "steaming_electric"), WORKSTATION);
-
-    private final Identifier id;
+            = new EmiRecipeCategory(Identifier.of(ModernDelightMain.MOD_ID, "steaming_electric"), WORKSTATION);
     private final List<EmiIngredient> input;
     private final List<EmiStack> output;
 
     public EMISteamingElectricRecipe(SteamingRecipe recipe) {
-        this.id = new Identifier(recipe.getId().getNamespace(),"electric_steamer/"+recipe.getId().getPath());
         List<EmiIngredient> inputs = new ArrayList<>();
         for (Ingredient ingredient : recipe.getIngredients()){
             inputs.add(EmiIngredient.of(ingredient));
         }
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = List.of(EmiStack.of(recipe.getResult(null)));
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -42,7 +39,7 @@ public class EMISteamingElectricRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        return id;
+        return null;
     }
 
     @Override

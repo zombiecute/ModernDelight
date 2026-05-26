@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "bakingdelight:black_pepper_corn"
+    },
+    {
+      "item": "bakingdelight:mixed_dough"
+    },
+    {
+      "item": "bakingdelight:shrimp_paste"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bakingdelight:mixed_shrimp_paste"
+  }
+}

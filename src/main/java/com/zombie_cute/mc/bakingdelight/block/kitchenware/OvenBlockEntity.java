@@ -1,31 +1,32 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware;
 
+import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooking_stove.BurningGasCookingStoveBlockEntity;
-import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.recipe.custom.BakingRecipe;
+import com.zombie_cute.mc.bakingdelight.recipe.input.MultiStackRecipeInput;
 import com.zombie_cute.mc.bakingdelight.screen.custom.OvenScreenHandler;
+import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -38,16 +39,17 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 import static com.zombie_cute.mc.bakingdelight.block.kitchenware.OvenBlock.FACING;
 import static com.zombie_cute.mc.bakingdelight.block.kitchenware.OvenBlock.OVEN_BURNING;
 
-public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
+public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory, SidedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6,ItemStack.EMPTY);
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
@@ -55,7 +57,7 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
     private static final int INPUT_SLOT_4 = 3;
     private static final int FUEL_SLOT = 4;
     private static final int OUTPUT_SLOT = 5;
-    public static final String OVEN_NAME = "display_name.bakingdelight.oven_name";
+    public static final String OVEN_NAME = "display_name."+ ModernDelightMain.MOD_ID +".oven_name";
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
     private int maxProgress = 200;
@@ -111,10 +113,11 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
     }
+
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, inventory, registryLookup);
         nbt.putInt("oven.progress",progress);
         nbt.putInt("oven.fuelTime", burnTime);
         nbt.putInt("oven.maxFuelTime", maxBurnTime);
@@ -124,9 +127,9 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, inventory, registryLookup);
         progress = nbt.getInt("oven.progress");
         burnTime = nbt.getInt("oven.fuelTime");
         maxBurnTime = nbt.getInt("oven.maxFuelTime");
@@ -134,9 +137,10 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
         cachedBurnTime = nbt.getInt("oven.cachedBurnTime");
         cachedMaxBurnTime = nbt.getInt("oven.cachedMaxBurnTime");
     }
+
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
     }
     @Override
     public DefaultedList<ItemStack> getItems() {
@@ -144,8 +148,8 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
     }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
+    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
+        return pos;
     }
 
     @Override
@@ -161,49 +165,49 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
     public void playSound(SoundEvent sound, float volume, float pitch) {
         Objects.requireNonNull(world).playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, sound, SoundCategory.BLOCKS, volume, pitch);
     }
-    public void tick(World world, BlockPos pos, BlockState state, OvenBlockEntity entity) {
+    public static void tick(World world, BlockPos pos, BlockState state, OvenBlockEntity entity) {
         if (world.isClient){
             return;
         }
         if (world.getBlockEntity(pos.down()) instanceof BurningGasCookingStoveBlockEntity){
-            if (burnTime != 0 && cachedBurnTime == 0){
-                cachedBurnTime = burnTime;
-                cachedMaxBurnTime = maxBurnTime;
+            if (entity.burnTime != 0 && entity.cachedBurnTime == 0){
+                entity.cachedBurnTime = entity.burnTime;
+                entity.cachedMaxBurnTime = entity.maxBurnTime;
             }
-            burnTime = 1;
-            maxBurnTime = 1;
+            entity.burnTime = 1;
+            entity.maxBurnTime = 1;
             world.setBlockState(pos, state.with(OVEN_BURNING,true));
             markDirty(world, pos, state);
-            checkAndCraft(world, pos, state, entity);
+            entity.checkAndCraft(world, pos, state, entity);
         } else {
-            if (cachedBurnTime != 0){
-                burnTime = cachedBurnTime;
-                maxBurnTime = cachedMaxBurnTime;
-                cachedBurnTime = 0;
-                cachedMaxBurnTime = 0;
+            if (entity.cachedBurnTime != 0){
+                entity.burnTime = entity.cachedBurnTime;
+                entity.maxBurnTime = entity.cachedMaxBurnTime;
+                entity.cachedBurnTime = 0;
+                entity.cachedMaxBurnTime = 0;
             }
-            if (isFuelBurning()){
-                --burnTime;
+            if (entity.isFuelBurning()){
+                --entity.burnTime;
                 world.setBlockState(pos, state.with(OVEN_BURNING,true));
-                checkAndCraft(world, pos, state, entity);
+                entity.checkAndCraft(world, pos, state, entity);
             } else {
-                if (hasRecipe(entity)){
-                    progress--;
+                if (entity.hasRecipe(entity)){
+                    entity.progress--;
                 } else {
-                    resetProgress();
+                    entity.resetProgress();
                 }
-                maxBurnTime = 1;
+                entity.maxBurnTime = 1;
                 world.setBlockState(pos, state.with(OVEN_BURNING,false));
                 markDirty(world, pos, state);
             }
-            if (canUseAsFuel(getStack(4))&&(burnTime == 0)&&hasRecipe(entity)){
-                ItemStack fuel = this.getStack(4);
-                burnTime = this.getFuelTime(fuel);
-                maxBurnTime = burnTime;
-                if (this.getStack(FUEL_SLOT).getItem() == Items.LAVA_BUCKET){
-                    this.setStack(FUEL_SLOT, Items.BUCKET.getDefaultStack());
+            if (canUseAsFuel(entity.getStack(4))&&(entity.burnTime == 0)&&entity.hasRecipe(entity)){
+                ItemStack fuel = entity.getStack(4);
+                entity.burnTime = entity.getFuelTime(fuel);
+                entity.maxBurnTime = entity.burnTime;
+                if (entity.getStack(FUEL_SLOT).getItem() == Items.LAVA_BUCKET){
+                    entity.setStack(FUEL_SLOT, Items.BUCKET.getDefaultStack());
                 } else {
-                    this.removeStack(FUEL_SLOT,1);
+                    entity.removeStack(FUEL_SLOT,1);
                 }
             }
         }
@@ -257,44 +261,24 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
                 this.getStack(INPUT_SLOT_3).getItem().equals(ModItems.BLACK_PEPPER_DUST) &&
                 this.getStack(INPUT_SLOT_4).getItem().equals(ModBlocks.RAW_PIZZA_ITEM)){
             ItemStack rawPizzaStack = this.getStack(INPUT_SLOT_4);
-            NbtCompound rawPizzaNBT = BlockItem.getBlockEntityNbt(rawPizzaStack);
-            DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(5, ItemStack.EMPTY);
-            if (rawPizzaNBT != null) {
-                if (rawPizzaNBT.contains("Items", 9)) {
-                    Inventories.readNbt(rawPizzaNBT, defaultedList);
-                }
-            }
+            ContainerComponent component = rawPizzaStack.getOrDefault(DataComponentTypes.CONTAINER, ContainerComponent.DEFAULT);
             ItemStack pizzaStack = new ItemStack(ModBlocks.PIZZA_ITEM);
-            NbtCompound nbt = getNbtCompound(defaultedList);
-            BlockItem.setBlockEntityNbt(pizzaStack,ModBlockEntities.PIZZA_BLOCK_ENTITY,nbt);
+            pizzaStack.set(DataComponentTypes.CONTAINER,component);
             this.setStack(OUTPUT_SLOT,pizzaStack);
         } else {
-            SimpleInventory inventory = new SimpleInventory(entity.size());
-            for(int i = 0; i< entity.size();i++){
-                inventory.setStack(i,entity.getStack(i));
+            List<ItemStack> inventory = new ArrayList<>(entity.size());
+            for(int i = 0; i< 4;i++){
+                inventory.add(i,entity.getStack(i));
             }
-            Optional<BakingRecipe> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
-                    .getFirstMatch(BakingRecipe.Type.INSTANCE, inventory,entity.getWorld());
-            this.setStack(OUTPUT_SLOT, new ItemStack(match.get().getOutput(null).getItem(),
-                    getStack(OUTPUT_SLOT).getCount() + match.get().getOutput(null).getCount()));
+            Optional<RecipeEntry<BakingRecipe>> match = getMatch(entity,inventory);
+            this.setStack(OUTPUT_SLOT, new ItemStack(match.get().value().getResult(null).getItem(),
+                    getStack(OUTPUT_SLOT).getCount() + match.get().value().getResult(null).getCount()));
         }
         experiences += 4;
     }
-    @NotNull
-    private static NbtCompound getNbtCompound(DefaultedList<ItemStack> defaultedList) {
-        NbtList nbtList = new NbtList();
-        for(int i = 0; i < defaultedList.size(); ++i) {
-            ItemStack itemStack = defaultedList.get(i);
-            if (!itemStack.isEmpty()) {
-                NbtCompound nbtCompound = new NbtCompound();
-                nbtCompound.putByte("Slot", (byte)i);
-                itemStack.writeNbt(nbtCompound);
-                nbtList.add(nbtCompound);
-            }
-        }
-        NbtCompound nbt = new NbtCompound();
-        nbt.put("Items",nbtList);
-        return nbt;
+    private Optional<RecipeEntry<BakingRecipe>> getMatch(OvenBlockEntity entity, List<ItemStack> inventory) {
+        return Objects.requireNonNull(world).getRecipeManager()
+                .getFirstMatch(BakingRecipe.Type.INSTANCE, new MultiStackRecipeInput(inventory,4), entity.getWorld());
     }
 
     private boolean hasCraftingFinished() {
@@ -313,27 +297,21 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
         this.getStack(OUTPUT_SLOT).isEmpty()){
             return true;
         }
-        SimpleInventory inventory = new SimpleInventory(entity.size());
-        for(int i = 0; i < entity.size();i++){
-            inventory.setStack(i,entity.getStack(i));
+        List<ItemStack> inventory = new ArrayList<>(entity.size());
+        for(int i = 0; i< 4;i++){
+            inventory.add(i,entity.getStack(i));
         }
-        Optional<BakingRecipe> match = Objects.requireNonNull(entity.getWorld()).getRecipeManager()
-                .getFirstMatch(BakingRecipe.Type.INSTANCE, inventory,entity.getWorld());
-
-        if (entity.world != null) {
-            return match.isPresent() &&
-                    canInsertAmountIntoOutputSlot(match.get().getOutput(null)) &&
-                    canInsertItemIntoOutputSlot(match.get().getOutput(entity.world.getRegistryManager()).getItem());
+        Optional<RecipeEntry<BakingRecipe>> match = getMatch(entity, inventory);
+        if (match.isPresent()){
+            ItemStack output = match.get().value().getResult(null);
+            int count = output.getCount();
+            if (this.getStack(OUTPUT_SLOT).getItem() != output.getItem() && !this.getStack(OUTPUT_SLOT).isEmpty()){
+                return false;
+            }
+            return this.getStack(OUTPUT_SLOT).getCount() + count <= this.getStack(OUTPUT_SLOT).getMaxCount() ||
+                    this.getStack(OUTPUT_SLOT).isEmpty();
         }
         return false;
-    }
-
-    private boolean canInsertItemIntoOutputSlot(Item item) {
-        return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
-    }
-
-    private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
-        return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {

@@ -21,7 +21,7 @@ import java.util.List;
 
 public class WoodenBasinCategory implements DisplayCategory<WoodenBasinDisplay> {
     public static final Identifier TEXTURE =
-            new Identifier(ModernDelightMain.MOD_ID, "textures/gui/compats/wooden_basin.png");
+            Identifier.of(ModernDelightMain.MOD_ID, "textures/gui/compats/wooden_basin.png");
     public static final CategoryIdentifier<WoodenBasinDisplay> WOODEN_BASIN =
             CategoryIdentifier.of(ModernDelightMain.MOD_ID, "wooden_basin");
     @Override

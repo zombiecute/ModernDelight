@@ -1,6 +1,5 @@
 package com.zombie_cute.mc.bakingdelight.screen.custom;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlockEntity;
 import com.zombie_cute.mc.bakingdelight.networking.packet.ChangeBlockEntityDataC2SPacket;
@@ -10,7 +9,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.sound.SoundEvents;
@@ -21,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Environment(EnvType.CLIENT)
 public class MiniGame1Screen extends Screen {
     private final Screen parent;
@@ -48,7 +47,7 @@ public class MiniGame1Screen extends Screen {
     private final int[] advanceSpawnNumberPool = {2,4,8};
     private final int goal;
     private boolean isGameEnd = false;
-    private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
+    private static final Identifier TEXTURE = Identifier.of(ModernDelightMain.MOD_ID,
             "textures/gui/mini_game_1_gui.png");
     private Pos2 getARandomPos(){
         List<Pos2> availablePos = new ArrayList<>();
@@ -103,17 +102,14 @@ public class MiniGame1Screen extends Screen {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1f,1f,1f,1f);
-        RenderSystem.setShaderTexture(0,TEXTURE);
+        super.render(context, mouseX, mouseY, delta);
+
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth,backgroundHeight);
         renderNumbers(context);
         renderGoal(context);
         renderDoneButton(context,mouseX,mouseY);
         renderControlButton(context,mouseX,mouseY);
 
-        RenderSystem.disableDepthTest();
-        super.render(context, mouseX, mouseY, delta);
         context.getMatrices().push();
         context.getMatrices().translate(x, y, 0.0F);
     }

@@ -19,26 +19,28 @@ import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlMixWithWa
 import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlWhiskingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.pizza.PizzaMakingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.transform.OvenTransformCategory;
+import com.zombie_cute.mc.bakingdelight.components.custom.FlavorComponent;
 import com.zombie_cute.mc.bakingdelight.effects.ModEffectsAndPotions;
-import com.zombie_cute.mc.bakingdelight.enchantment.ModEnchantments;
+import com.zombie_cute.mc.bakingdelight.enchantment.custom.FineGrindingEnchantment;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
-import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModLangCNGenerator extends FabricLanguageProvider {
-    public ModLangCNGenerator(FabricDataOutput dataOutput) {
-        super(dataOutput, "zh_cn");
+    public ModLangCNGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, "zh_cn", registryLookup);
     }
 
     @Override
-    public void generateTranslations(@NotNull TranslationBuilder translationBuilder) {
+    public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(TextUtil.SHIFT_FRONT, "按住 ");
         translationBuilder.add(TextUtil.SHIFT_END, " 以查看概要");
         translationBuilder.add(TextUtil.WHISK, "一款搅拌器可以用于搅拌或打发食材，或者...？用它来搅匀怪物的脑浆？");
@@ -160,7 +162,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(JuiceExtractorBlockEntity.WRONG_RECIPE, "放入的物品无法进行榨汁操作");
         translationBuilder.add(JuiceExtractorBlockEntity.IS_FULL, "请先取出榨汁机内的果汁，需要");
 
-        translationBuilder.add(ModItems.IRON_WHISK, "搅拌器");
+        translationBuilder.add(ModItems.WHISK, "搅拌器");
 
         translationBuilder.add(ModItems.COPPER_KNIFE, "铜刀");
         translationBuilder.add(ModItems.AMETHYST_KNIFE, "紫水晶刀");
@@ -352,15 +354,15 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.PIZZA_WIP, "披萨（半成品）");
         translationBuilder.add(ModItems.ANCIENT_SCRAP, "远古残片");
 
-        translationBuilder.add(CreamFlavor.TRANSLATION_KEY, "口味");
-        translationBuilder.add(CreamFlavor.NULL.getTranslationKey(), "未知");
-        translationBuilder.add(CreamFlavor.PLAIN.getTranslationKey(), "原味");
-        translationBuilder.add(CreamFlavor.APPLE.getTranslationKey(), "苹果味");
-        translationBuilder.add(CreamFlavor.CHERRY.getTranslationKey(), "樱桃味");
-        translationBuilder.add(CreamFlavor.CHOCOLATE.getTranslationKey(), "巧克力味");
-        translationBuilder.add(CreamFlavor.GOLDEN_APPLE.getTranslationKey(), "金苹果味");
-        translationBuilder.add(CreamFlavor.MATCHA.getTranslationKey(), "抹茶味");
-        translationBuilder.add(CreamFlavor.PUMPKIN.getTranslationKey(), "南瓜味");
+        translationBuilder.add(FlavorComponent.TRANSLATION_KEY, "口味");
+        translationBuilder.add(FlavorComponent.NULL.getTranslationKey(), "未知");
+        translationBuilder.add(FlavorComponent.PLAIN.getTranslationKey(), "原味");
+        translationBuilder.add(FlavorComponent.APPLE.getTranslationKey(), "苹果味");
+        translationBuilder.add(FlavorComponent.CHERRY.getTranslationKey(), "樱桃味");
+        translationBuilder.add(FlavorComponent.CHOCOLATE.getTranslationKey(), "巧克力味");
+        translationBuilder.add(FlavorComponent.GOLDEN_APPLE.getTranslationKey(), "金苹果味");
+        translationBuilder.add(FlavorComponent.MATCHA.getTranslationKey(), "抹茶味");
+        translationBuilder.add(FlavorComponent.PUMPKIN.getTranslationKey(), "南瓜味");
 
         translationBuilder.add(ModBlocks.GLASS_BOWL, "玻璃碗");
         translationBuilder.add(GlassBowlWhiskingCategory.GLASS_BOWL_NAME, "搅拌");
@@ -490,11 +492,11 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.LIQUEFIED_BIOGAS_FLUID_BLOCK, "液化沼气");
         translationBuilder.add(ModBlocks.SWEENTENED_WATER_FLUID_BLOCK, "糖水");
 
-        translationBuilder.add(ModEnchantments.FINE_GRINDING,"精碾");
-        translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","石臼在碾磨时会有额外的产出");
+        translationBuilder.add(FineGrindingEnchantment.getTranslationKey(),"精碾");
+        translationBuilder.add(FineGrindingEnchantment.getTranslationKey()+".desc","石臼在碾磨时会有额外的产出");
 
-        translationBuilder.add(ModEffectsAndPotions.STICKY,"黏糊糊");
-        translationBuilder.add(ModEffectsAndPotions.STICKY.getTranslationKey() + ".description","大幅度降低移动速度，同时无法跳跃。");
+        translationBuilder.add(ModEffectsAndPotions.STICKY.value(),"黏糊糊");
+        translationBuilder.add(ModEffectsAndPotions.STICKY.value().getTranslationKey() + ".description","大幅度降低移动速度，同时无法跳跃。");
 
         translationBuilder.add("item.minecraft.potion.effect.sticky_potion","黏脚药水");
         translationBuilder.add("item.minecraft.potion.effect.sticky_long_potion","黏脚药水");

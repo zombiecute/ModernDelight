@@ -1,0 +1,103 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "bakingdelight:silicon_component"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "id": "bakingdelight:silicon_component",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "id": "bakingdelight:ac_dc_converter",
+      "chance": 10.0,
+      "count": 1
+    },
+    {
+      "id": "create:polished_rose_quartz",
+      "chance": 5.0,
+      "count": 4
+    },
+    {
+      "id": "create:rose_quartz_block",
+      "chance": 5.0,
+      "count": 5
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "bakingdelight:silicon_component"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:silicon_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:silicon_component"
+        },
+        {
+          "item": "minecraft:quartz"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:silicon_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:silicon_component"
+        },
+        {
+          "item": "bakingdelight:silicon_ingot"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:silicon_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "bakingdelight:silicon_component"
+        },
+        {
+          "item": "create:zinc_nugget"
+        }
+      ],
+      "results": [
+        {
+          "id": "bakingdelight:silicon_component"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "id": "bakingdelight:silicon_component"
+  }
+}

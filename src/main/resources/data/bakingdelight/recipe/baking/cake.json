@@ -1,0 +1,19 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cream_bucket"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "tag": "c:foods/dough"
+    }
+  ],
+  "output": { "id": "minecraft:cake"
+  }
+}

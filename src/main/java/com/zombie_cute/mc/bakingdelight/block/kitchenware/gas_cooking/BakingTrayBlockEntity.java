@@ -8,8 +8,8 @@ import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import com.zombie_cute.mc.bakingdelight.util.block_util.ImplementedInventory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
@@ -20,8 +20,11 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.recipe.CampfireCookingRecipe;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -83,7 +86,7 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
                     this.setStack(i,inventory.getStack(i));
                 }
                 playSound(ModSounds.BLOCK_FOOD_FRYING,1.0f,true);
-                player.getMainHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.MAIN_HAND));
+                player.getMainHandStack().damage(1, player,player.getActiveHand()== Hand.MAIN_HAND? EquipmentSlot.MAINHAND:EquipmentSlot.OFFHAND);
             }
         } else {
             if (player.isSneaking()){
@@ -150,17 +153,24 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, INV);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, INV, registryLookup);
         nbt.putInt("baking_tray.stir_fry_times", stir_fry_times);
     }
+
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, INV);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, INV,registryLookup);
         stir_fry_times = nbt.getInt("baking_tray.stir_fry_times");
     }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
+    }
+
     @Override
     public void markDirty() {
         if (world != null) {
@@ -176,11 +186,6 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
     @Override
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
-    }
-
-    @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
     }
 
     public ItemStack getRendererStack1() {
@@ -202,53 +207,49 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
         }
         return items.contains(item);
     }
-    public void tick(World world, BlockPos pos) {
+    public static void tick(World world, BlockPos pos, BlockState state, BakingTrayBlockEntity b) {
         if (world.isClient){
             return;
         }
-        if (coolTime!=0){
-            coolTime--;
+        if (b.coolTime!=0){
+            b.coolTime--;
         }
-        if (isHeated(world,pos)){
-            if (!isFlat(this.getStack(0).getItem())){
-                if (stir_fry_times == max_stir_fry_times){
-                    if (hasCampfireRecipe(this.getStack(0))){
-                        craftCampfireItem(this.getStack(0),0,world);
+        if (b.isHeated(world,pos)){
+            if (!b.isFlat(b.getStack(0).getItem())){
+                if (b.stir_fry_times == b.max_stir_fry_times){
+                    if (b.hasCampfireRecipe(b.getStack(0))){
+                        b.craftCampfireItem(b.getStack(0),0,world);
                     }
-                    if (hasCampfireRecipe(this.getStack(1))){
-                        craftCampfireItem(this.getStack(1),1,world);
+                    if (b.hasCampfireRecipe(b.getStack(1))){
+                        b.craftCampfireItem(b.getStack(1),1,world);
                     }
-                    if (hasCampfireRecipe(this.getStack(2))){
-                        craftCampfireItem(this.getStack(2),2,world);
+                    if (b.hasCampfireRecipe(b.getStack(2))){
+                        b.craftCampfireItem(b.getStack(2),2,world);
                     }
-                    if (hasCampfireRecipe(this.getStack(3))){
-                        craftCampfireItem(this.getStack(3),3,world);
+                    if (b.hasCampfireRecipe(b.getStack(3))){
+                        b.craftCampfireItem(b.getStack(3),3,world);
                     }
-                    stir_fry_times = 0;
+                    b.stir_fry_times = 0;
                 }
             }
         }
     }
 
     private void craftCampfireItem(ItemStack stack, int slot, World world) {
-        SimpleInventory inventory = new SimpleInventory(1);
-        inventory.setStack(0,stack);
-        Optional<CampfireCookingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,inventory,world);
+        Optional<RecipeEntry<CampfireCookingRecipe>> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
+                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,new SingleStackRecipeInput(stack),world);
         ItemScatterer.spawn(world,pos.getX(), pos.getY(), pos.getZ(),
-                new ItemStack(match.get().getOutput(null).getItem()));
+                new ItemStack(match.get().value().getResult(null).getItem()));
         this.getStack(slot).decrement(1);
-        int exp = (int)match.get().getExperience();
+        int exp = (int)match.get().value().getExperience();
         if (exp == 0) exp=1;
         ExperienceOrbEntity xp = new ExperienceOrbEntity(world,pos.getX(),pos.getY(),pos.getZ(),exp);
         world.spawnEntity(xp);
         markDirty();
     }
     private boolean hasCampfireRecipe(ItemStack stack) {
-        SimpleInventory inventory = new SimpleInventory(1);
-        inventory.setStack(0,stack);
-        Optional<CampfireCookingRecipe> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
-                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,inventory,world);
+        Optional<RecipeEntry<CampfireCookingRecipe>> match = Objects.requireNonNull(this.getWorld()).getRecipeManager()
+                .getFirstMatch(RecipeType.CAMPFIRE_COOKING,new SingleStackRecipeInput(stack),world);
         return match.isPresent();
     }
 }

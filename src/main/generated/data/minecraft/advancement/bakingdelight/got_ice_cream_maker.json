@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_freezer",
+  "criteria": {
+    "ice_cream_maker": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:ice_cream_maker"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.bakingdelight.ice_cream_maker.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:ice_cream_maker"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.ice_cream_maker.title"
+    }
+  },
+  "requirements": [
+    [
+      "ice_cream_maker"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

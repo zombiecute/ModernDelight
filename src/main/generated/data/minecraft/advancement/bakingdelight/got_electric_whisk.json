@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:bakingdelight/got_charging_post",
+  "criteria": {
+    "electric_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bakingdelight:electric_whisk"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.bakingdelight.electric_whisk.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bakingdelight:electric_whisk"
+    },
+    "title": {
+      "translate": "advancement.bakingdelight.electric_whisk.title"
+    }
+  },
+  "requirements": [
+    [
+      "electric_whisk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

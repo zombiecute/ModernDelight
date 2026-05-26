@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:seeds/black_peppers",
+      "required": false
+    },
+    {
+      "id": "#c:seeds/garlics",
+      "required": false
+    }
+  ]
+}

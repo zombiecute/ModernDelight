@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
 
 public final class ModConfig {
     public static final ConfigClassHandler<ModConfig> INSTANCE = ConfigClassHandler.createBuilder(ModConfig.class)
-            .id(new Identifier(ModernDelightMain.MOD_ID, "config"))
+            .id(Identifier.of(ModernDelightMain.MOD_ID, "config"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
                     .setPath(FabricLoader.getInstance().getConfigDir().resolve("moderndelight-config.json")).build())
             .build();
