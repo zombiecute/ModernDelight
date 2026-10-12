@@ -11,6 +11,8 @@ import com.zombie_cute.mc.bakingdelight.compat.rei.cuisine.CuisineCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.cuisine.CuisineDisplay;
 import com.zombie_cute.mc.bakingdelight.compat.rei.deep_frying.DeepFryingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.deep_frying.DeepFryingDisplay;
+import com.zombie_cute.mc.bakingdelight.compat.rei.fermenting.FermentingCategory;
+import com.zombie_cute.mc.bakingdelight.compat.rei.fermenting.FermentingDisplay;
 import com.zombie_cute.mc.bakingdelight.compat.rei.freezer.FreezerFreezingCategory;
 import com.zombie_cute.mc.bakingdelight.compat.rei.freezer.FreezerFreezingDisplay;
 import com.zombie_cute.mc.bakingdelight.compat.rei.glass_bowl.GlassBowlMixWithWaterCategory;
@@ -74,7 +76,8 @@ public class BakingDelightREIClientPlugin implements REIClientPlugin {
                 new IceCreamMakingCategory(),
                 new JuiceExtractingCategory(),
                 new InstantNoodlesMakingCategory(),
-                new GrindingCategory()
+                new GrindingCategory(),
+                new FermentingCategory()
         );
         registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.OVEN));
         registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.GAS_CANISTER));
@@ -107,6 +110,7 @@ public class BakingDelightREIClientPlugin implements REIClientPlugin {
         registry.addWorkstations(IceCreamMakingCategory.ICE_CREAM_MAKING, EntryStacks.of(ModBlocks.ICE_CREAM_MAKER));
         registry.addWorkstations(JuiceExtractingCategory.JUICE_EXTRACTING, EntryStacks.of(ModBlocks.JUICE_EXTRACTOR));
         registry.addWorkstations(InstantNoodlesMakingCategory.INSTANT_NOODLES_MAKING, EntryStacks.of(Blocks.CRAFTING_TABLE));
+        registry.addWorkstations(FermentingCategory.FERMENTING, EntryStacks.of(ModBlocks.INDUSTRIAL_FERMENTER_ITEM));
     }
 
     @Override
@@ -130,6 +134,7 @@ public class BakingDelightREIClientPlugin implements REIClientPlugin {
         registry.registerRecipeFiller(JuiceExtractingRecipe.class, JuiceExtractingRecipe.Type.INSTANCE, JuiceExtractingDisplay::new);
         registry.add(new InstantNoodlesMakingDisplay());
         registry.registerRecipeFiller(GrindingRecipe.class, GrindingRecipe.Type.INSTANCE, GrindingDisplay::new);
+        registry.registerRecipeFiller(FermentingRecipe.class, FermentingRecipe.Type.INSTANCE, FermentingDisplay::new);
     }
 
     @Override
@@ -158,5 +163,7 @@ public class BakingDelightREIClientPlugin implements REIClientPlugin {
                 SteamingElectricCategory.STEAMING_ELECTRIC);
         registry.registerClickArea(screen -> new Rectangle((screen.width-176)/2 + 63,(screen.height-166)/2 + 22,19,42), IceCreamMakerScreen.class,
                 IceCreamMakingCategory.ICE_CREAM_MAKING);
+        registry.registerClickArea(screen -> new Rectangle((screen.width-176)/2 + 161,(screen.height-166)/2 + 5,11,11), IndustrialFermenterScreen.class,
+                FermentingCategory.FERMENTING);
     }
 }

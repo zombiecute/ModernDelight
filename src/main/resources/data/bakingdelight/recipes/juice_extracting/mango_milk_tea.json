@@ -4,7 +4,7 @@
   "container": "bakingdelight:glass_cup",
   "ingredients": [
     {
-      "item": "bakingdelight:ice_brick"
+      "item": "minecraft:ice"
     },
     {
       "item": "minecraft:honey_bottle"

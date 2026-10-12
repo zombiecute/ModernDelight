@@ -1,3 +1,6 @@
 {
-  "parent": "bakingdelight:block/pizza"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/pizza"
+  }
 }

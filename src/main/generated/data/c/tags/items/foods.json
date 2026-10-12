@@ -1,10 +1,9 @@
 {
   "replace": false,
   "values": [
+    "bakingdelight:whipping_cream",
     "bakingdelight:sunflower_seed_pulp",
     "bakingdelight:empty_cake",
-    "bakingdelight:raw_onion_ring",
-    "bakingdelight:onion_ring",
     "bakingdelight:fried_cod",
     "bakingdelight:fried_salmon",
     "bakingdelight:fried_milk_wip",
@@ -12,10 +11,10 @@
     "bakingdelight:fried_apple",
     "bakingdelight:raw_potato_chip",
     "bakingdelight:potato_chip",
-    "bakingdelight:cheese_ball",
     "bakingdelight:fried_dough_stick",
     "bakingdelight:steamed_bun",
     "bakingdelight:deep_fried_bun",
+    "bakingdelight:deep_fried_bun_wip",
     "bakingdelight:egg_bowl",
     "bakingdelight:cherry_egg",
     "bakingdelight:fish_egg",
@@ -28,8 +27,6 @@
     "bakingdelight:cheese_baked_potato",
     "bakingdelight:cheese_rice_ball",
     "bakingdelight:chocolate_sauce",
-    "bakingdelight:shrimp_paste",
-    "bakingdelight:mixed_shrimp_paste",
     "bakingdelight:deep_fried_shrimp_cake",
     "bakingdelight:seaweed_fried_shrimp_cake",
     "bakingdelight:donut",
@@ -39,7 +36,6 @@
     "bakingdelight:fried_chicken",
     "bakingdelight:fried_red_mushroom",
     "bakingdelight:fried_brown_mushroom",
-    "bakingdelight:cream_of_mushroom_soup",
     "bakingdelight:french_onion_soup",
     "bakingdelight:raw_donut",
     "bakingdelight:chocolate_donut",
@@ -52,6 +48,15 @@
     "bakingdelight:shaomai",
     "bakingdelight:shaomai_wip",
     "bakingdelight:black_pepper_steak",
+    "bakingdelight:british_breakfast",
+    "bakingdelight:marshala_cheese_ball",
+    "bakingdelight:chicken_rice",
+    "bakingdelight:chili_fish",
+    "bakingdelight:crab_sausage_vegetable",
+    "bakingdelight:cream_mushroom_soup",
+    "bakingdelight:pork_noodle",
+    "bakingdelight:pepper_beef_rice",
+    "bakingdelight:vegetable_noodle",
     {
       "id": "#c:foods/ice_lollies",
       "required": false
@@ -94,6 +99,10 @@
     },
     {
       "id": "#c:flower_cakes",
+      "required": false
+    },
+    {
+      "id": "#c:foods/sausages",
       "required": false
     },
     {
@@ -144,6 +153,8 @@
     "bakingdelight:steamed_pumpkin_in_bowl",
     "bakingdelight:steamed_pumpkin",
     "bakingdelight:steamed_pumpkin_wip",
+    "bakingdelight:caramel_toast",
+    "bakingdelight:braised_shrimp_ball_wip",
     "#c:foods/pastas",
     {
       "id": "#c:foods/fruits",

@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.gen;
 
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
+import com.zombie_cute.mc.bakingdelight.advancement.criterion.FastStoveClickCriterion;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -549,6 +550,19 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 )
                 .criterion("gas_cooking_stove", InventoryChangedCriterion.Conditions.items(ModBlocks.GAS_COOKING_STOVE))
                 .build(consumer, ModernDelightMain.MOD_ID + "/got_gas_cooking_stove");
+        Advancement clickGasCookingStove = Advancement.Builder.create().parent(getGasCookingStove)
+                .display(
+                        ModBlocks.BURNING_GAS_COOKING_STOVE,
+                        Text.translatable("advancement.bakingdelight.click_gas_cooking_stove.title"),
+                        Text.translatable("advancement.bakingdelight.click_gas_cooking_stove.desc"),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        true
+                )
+                .criterion("clicking", FastStoveClickCriterion.Conditions.create(10, 3.0))
+                .build(consumer, ModernDelightMain.MOD_ID + "/click_gas_cooking_stove");
         Advancement getWoodenBasin = Advancement.Builder.create().parent(getGasCookingStove)
                 .display(
                         ModBlocks.WOODEN_BASIN,
@@ -969,13 +983,11 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 .rewards(AdvancementRewards.Builder.experience(800))
                 .criterion("fried_noodles", InventoryChangedCriterion.Conditions.items(ModItems.FRIED_NOODLES))
                 .criterion("potato_chip", ConsumeItemCriterion.Conditions.item(ModItems.POTATO_CHIP))
-                .criterion("onion_ring", ConsumeItemCriterion.Conditions.item(ModItems.ONION_RING))
                 .criterion("salmon", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_SALMON))
                 .criterion("milk", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_MILK))
                 .criterion("dough_stick", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_DOUGH_STICK))
                 .criterion("cod", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_COD))
                 .criterion("apple", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_APPLE))
-                .criterion("cheese_ball", ConsumeItemCriterion.Conditions.item(ModItems.CHEESE_BALL))
                 .criterion("chicken_fillet", ConsumeItemCriterion.Conditions.item(ModItems.CHICKEN_FILLET))
                 .criterion("fried_red_mushroom", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_RED_MUSHROOM))
                 .criterion("fried_brown_mushroom", ConsumeItemCriterion.Conditions.item(ModItems.FRIED_BROWN_MUSHROOM))

@@ -7,13 +7,27 @@ import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlock;
 import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlockItem;
 import com.zombie_cute.mc.bakingdelight.block.crops.BlackPepperCropBlock;
 import com.zombie_cute.mc.bakingdelight.block.crops.GarlicCropBlock;
+import com.zombie_cute.mc.bakingdelight.block.fermenter.IndustrialFermenterBlockItem;
 import com.zombie_cute.mc.bakingdelight.block.food.*;
-import com.zombie_cute.mc.bakingdelight.block.food.fish_and_chips.FishAndChipsBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.wooden_plate.SteamedPumpkinBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.chicken_rice.ChickenRiceBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.chili_fish.ChiliFishBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.crab_sausage_vegetable.CrabSausageVegetableBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.cream_mushroom_soup.CreamMushroomSoupBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlockItem;
+import com.zombie_cute.mc.bakingdelight.block.food.wooden_plate.fish_and_chips.FishAndChipsBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.french_onion_soup.FrenchOnionSoupBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.marshala_cheese_ball.MarshalaCheeseBallBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.pepper_beef_rice.PepperBeefRiceBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.pork_noodle.PorkNoodleBlock;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.vegetable_noodle.VegetableNoodleBlock;
 import com.zombie_cute.mc.bakingdelight.block.food.pizza.PizzaBlock;
 import com.zombie_cute.mc.bakingdelight.block.food.pizza.PizzaWIPBlock;
 import com.zombie_cute.mc.bakingdelight.block.food.pizza.RawPizzaBlock;
 import com.zombie_cute.mc.bakingdelight.block.food.pizza.WheatDoughBlock;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.*;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.clay_pot.ClayPotBlock;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.CabinetBlock;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.GlassCupBlock;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.decor.KitchenUtensilHolderBlock;
@@ -42,22 +56,28 @@ import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.Ste
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.FanBladeBlock;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTurbineControllerBlock;
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.*;
+import com.zombie_cute.mc.bakingdelight.block.fermenter.IndustrialFermenterBlock;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ModBlocks {
     public static final Block SILICON_BLOCK = registerBlock("silicon_block",
@@ -138,7 +158,6 @@ public class ModBlocks {
     public static final Block BAMBOO_COVER = registerBlock("bamboo_cover",new BambooCoverBlock());
     public static final Block ELECTRIC_STEAMER = registerBlock("electric_steamer",new ElectricSteamerBlock());
     public static final Block ICE_CREAM_MAKER = registerBlockWithoutItem("ice_cream_maker", new IceCreamMakerBlock());
-    public static final Block CARAMEL_PUDDING = registerBlockWithoutItem("caramel_pudding", new CaramelPuddingBlock());
     public static final Block FISH_AND_CHIPS = registerBlockWithoutItem("fish_and_chips", new FishAndChipsBlock());
     public static final Block WILD_PEPPER_CROP = registerBlock("wild_pepper_crop",new PlantBlock(
             FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
@@ -167,23 +186,58 @@ public class ModBlocks {
             new SteamedPumpkinBlock());
     public static final Block SWEENTENED_WATER_FLUID_BLOCK = registerBlockWithoutItem("sweetened_water_fluid",
             new FluidBlock(ModFluid.STILL_SWEETENED_WATER,FabricBlockSettings.copyOf(Blocks.WATER)));
+    public static final Block VINEGAR_FLUID_BLOCK = registerBlockWithoutItem("vinegar_fluid",
+            new FluidBlock(ModFluid.STILL_VINEGAR,FabricBlockSettings.copyOf(Blocks.WATER)));
+    public static final Block ALCOHOL_FLUID_BLOCK = registerBlockWithoutItem("alcohol_fluid",
+            new FluidBlock(ModFluid.STILL_ALCOHOL,FabricBlockSettings.copyOf(Blocks.WATER)));
+    public static final Block MILK_FLUID_BLOCK = registerBlockWithoutItem("milk_fluid",
+            new FluidBlock(ModFluid.STILL_MILK,FabricBlockSettings.copyOf(Blocks.WATER)));
+    public static final Block INDUSTRIAL_FERMENTER = registerBlockWithoutItem("industrial_fermenter",
+            new IndustrialFermenterBlock());
+    public static final Block CLAY_POT = registerBlockWithoutItem("clay_pot",new ClayPotBlock());
+
+    public static final Block BRITISH_BREAKFAST = registerBlockWithoutItem("british_breakfast", new BritishBreakfastBlock(12,0.8F));
+    public static final Block MARSHALA_CHEESE_BALL = registerBlockWithoutItem("marshala_cheese_ball", new MarshalaCheeseBallBlock(10,1.0F));
+    public static final Block CHICKEN_RICE = registerBlockWithoutItem("chicken_rice", new ChickenRiceBlock(14,0.6F));
+    public static final Block CHILI_FISH = registerBlockWithoutItem("chili_fish", new ChiliFishBlock(14,0.3F));
+    public static final Block CRAB_SAUSAGE_VEGETABLE = registerBlockWithoutItem("crab_sausage_vegetable", new CrabSausageVegetableBlock(13,0.5F));
+    public static final Block CREAM_OF_MUSHROOM_SOUP = registerBlockWithoutItem("cream_mushroom_soup", new CreamMushroomSoupBlock(12,0.5F));
+    public static final Block FRENCH_ONION_SOUP = registerBlockWithoutItem("french_onion_soup", new FrenchOnionSoupBlock(12,0.9F));
+    public static final Block PORK_NOODLE = registerBlockWithoutItem("pork_noodle", new PorkNoodleBlock(14,0.8F));
+    public static final Block PEPPER_BEEF_RICE = registerBlockWithoutItem("pepper_beef_rice", new PepperBeefRiceBlock(14,0.9F));
+    public static final Block VEGETABLE_NOODLE = registerBlockWithoutItem("vegetable_noodle", new VegetableNoodleBlock(9,0.8F));
+
     // Block Items
     public static final BlockItem FISH_AND_CHIPS_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"fish_and_chips"),
-            new BlockItem(FISH_AND_CHIPS,new FabricItemSettings().maxCount(16).food(
-                    new FoodComponent.Builder().hunger(20).saturationModifier(0.6f).build()
-            )){
+            new PackagedFoodBlockItem(FISH_AND_CHIPS,20,0.6F,WOODEN_PLATE.asItem()));
+    public static final BlockItem CLAY_POT_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,"clay_pot"),
+            new BlockItem(CLAY_POT,new FabricItemSettings().maxCount(16)){
                 @Override
-                public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-                    if (user instanceof PlayerEntity player){
-                        if (stack.getCount() == 1){
-                            player.setStackInHand(player.getActiveHand(), WOODEN_PLATE.asItem().getDefaultStack());
-                        } else {
-                            player.giveItemStack(WOODEN_PLATE.asItem().getDefaultStack());
-                        }
-                    }
-                    return super.finishUsing(stack, world, user);
+                public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+                    tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
+                    super.appendTooltip(stack, world, tooltip, context);
                 }
             });
+    public static final BlockItem BRITISH_BREAKFAST_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+                    "british_breakfast"), new BritishBreakfastBlockItem(12,0.8F));
+    public static final BlockItem MARSHALA_CHEESE_BALL_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+                    "marshala_cheese_ball"), new PackagedFoodBlockItem(MARSHALA_CHEESE_BALL,10,1.0F,CLAY_POT_ITEM));
+    public static final BlockItem CHICKEN_RICE_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "chicken_rice"), new PackagedFoodBlockItem(CHICKEN_RICE,14,0.6F,CLAY_POT_ITEM));
+    public static final BlockItem CHILI_FISH_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "chili_fish"), new PackagedFoodBlockItem(CHILI_FISH,14,0.3F,CLAY_POT_ITEM));
+    public static final BlockItem CRAB_SAUSAGE_VEGETABLE_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "crab_sausage_vegetable"), new PackagedFoodBlockItem(CRAB_SAUSAGE_VEGETABLE,13,0.5F,CLAY_POT_ITEM));
+    public static final BlockItem CREAM_OF_MUSHROOM_SOUP_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "cream_mushroom_soup"), new PackagedFoodBlockItem(CREAM_OF_MUSHROOM_SOUP,12,0.5F,CLAY_POT_ITEM));
+    public static final BlockItem FRENCH_ONION_SOUP_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "french_onion_soup"), new PackagedFoodBlockItem(FRENCH_ONION_SOUP,12,0.9F,CLAY_POT_ITEM));
+    public static final BlockItem PORK_NOODLE_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "pork_noodle"), new PackagedFoodBlockItem(PORK_NOODLE,14,0.8F,CLAY_POT_ITEM));
+    public static final BlockItem PEPPER_BEEF_RICE_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "pepper_beef_rice"), new PackagedFoodBlockItem(PEPPER_BEEF_RICE,14,0.9F,CLAY_POT_ITEM));
+    public static final BlockItem VEGETABLE_NOODLE_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
+            "vegetable_noodle"), new PackagedFoodBlockItem(VEGETABLE_NOODLE,9,0.8F,CLAY_POT_ITEM));
     public static final BlockItem ICE_CREAM_MAKER_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"ice_cream_maker"),
             new IceCreamMakerBlockItem());
     public static final BlockItem STERLING_ENGINE_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"sterling_engine"),
@@ -215,7 +269,13 @@ public class ModBlocks {
     public static final BlockItem WHEAT_DOUGH_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "wheat_dough"),
             new BlockItem(WHEAT_DOUGH, new FabricItemSettings()
                     .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f)
-                            .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,200,0),0.5f).build())));
+                            .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER,200,0),0.5f).build())){
+                @Override
+                public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+                    tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
+                    super.appendTooltip(stack, world, tooltip, context);
+                }
+            });
     public static final BlockItem JUICE_EXTRACTOR_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "juice_extractor"),
             new JuiceExtractorBlockItem());
     public static final BlockItem CHERRY_MILK_TEA_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "cherry_milk_tea"),
@@ -224,7 +284,8 @@ public class ModBlocks {
             new GlassCupOfTeaBlockItem(ROSE_ICE_TEA));
     public static final BlockItem STEAMED_PUMPKIN_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "steamed_pumpkin"),
             new BlockItem(STEAMED_PUMPKIN, new FabricItemSettings().maxCount(16).recipeRemainder(WOODEN_PLATE.asItem())));
-
+    public static final BlockItem INDUSTRIAL_FERMENTER_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "industrial_fermenter"),
+            new IndustrialFermenterBlockItem());
     private static Block registerBlockWithoutItem(String name,Block block){
         return Registry.register(Registries.BLOCK,new Identifier(ModernDelightMain.MOD_ID,name),block);
     }

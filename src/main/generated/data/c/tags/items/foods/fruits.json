@@ -8,6 +8,18 @@
     {
       "id": "#c:foods/fruits/mango",
       "required": false
+    },
+    {
+      "id": "#c:foods/fruits/apple",
+      "required": false
+    },
+    {
+      "id": "#c:foods/fruits/orange",
+      "required": false
+    },
+    {
+      "id": "#c:foods/fruits/pear",
+      "required": false
     }
   ]
 }

@@ -301,7 +301,7 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
     }
 
     private boolean isVegetableOil() {
-        return getStack(INPUT_SLOT).getItem().equals(Items.GLASS_BOTTLE)
+        return getStack(INPUT_SLOT).getItem().equals(ModItems.JAR)
                 && fluidStorage.amount >= 27000
                 && fluidStorage.variant.isOf(ModFluid.STILL_VEGETABLE_OIL)
                 && (getStack(OUTPUT_SLOT).isEmpty()
@@ -311,7 +311,7 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
                 );
     }
     private boolean isWater() {
-        return getStack(INPUT_SLOT).getItem().equals(Items.GLASS_BOTTLE)
+        return getStack(INPUT_SLOT).getItem().equals(ModItems.JAR)
                 && fluidStorage.amount >= 27000
                 && fluidStorage.variant.isOf(Fluids.WATER)
                 && getStack(OUTPUT_SLOT).isEmpty();

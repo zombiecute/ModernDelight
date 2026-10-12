@@ -1,3 +1,6 @@
 {
-  "parent": "bakingdelight:block/pizza_wip"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/pizza_wip"
+  }
 }

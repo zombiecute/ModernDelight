@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_prawn": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:prawn"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:braised_shrimp_ball_wip"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_prawn",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:braised_shrimp_ball_wip"
+    ]
+  },
+  "sends_telemetry_event": false
+}

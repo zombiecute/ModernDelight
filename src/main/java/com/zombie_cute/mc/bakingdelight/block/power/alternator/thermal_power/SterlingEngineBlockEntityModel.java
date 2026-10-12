@@ -7,7 +7,6 @@ import software.bernie.geckolib.model.DefaultedBlockGeoModel;
 public class SterlingEngineBlockEntityModel extends DefaultedBlockGeoModel<SterlingEngineBlockEntity> {
     public SterlingEngineBlockEntityModel() {
         super(new Identifier(ModernDelightMain.MOD_ID,"sterling_engine"));
-
     }
 
     @Override

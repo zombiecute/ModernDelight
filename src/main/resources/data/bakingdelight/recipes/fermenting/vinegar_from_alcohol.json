@@ -1,0 +1,27 @@
+{
+  "type": "bakingdelight:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    }
+  ],
+  "output": {
+    "item": "minecraft:barrier"
+  },
+  "fluid_input": "bakingdelight:still_alcohol",
+  "fluid_output": "bakingdelight:still_vinegar",
+  "temperature": 32,
+  "luminosity": 8,
+  "time": 192,
+  "bacteria_input": "acetobacter",
+  "bacteria_output": "null"
+}

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "minecraft:mutton",
     {
       "id": "#forge:raw_mutton",
       "required": false

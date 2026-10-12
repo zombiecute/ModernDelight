@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bakingdelight:white_truffle_seasoning"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_white_truffle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bakingdelight:white_truffle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_white_truffle",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bakingdelight:white_truffle_seasoning"
+    ]
+  },
+  "sends_telemetry_event": false
+}

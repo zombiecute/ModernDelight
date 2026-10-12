@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.FluidStack;
+import com.zombie_cute.mc.bakingdelight.util.MiscUtil;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.SimpleInventory;
@@ -103,7 +104,7 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
 
         public static FluidStack getFluidFromJson(JsonObject json){
             String string = JsonHelper.getString(json, "fluid");
-            Fluid fluid = Registries.FLUID.getOrEmpty(Identifier.tryParse(string)).orElseThrow(() -> new JsonSyntaxException("Unknown fluid '" + string + "'"));
+            Fluid fluid = MiscUtil.getFluidFromString(string);
             int i = JsonHelper.getInt(json, "amount", 9000);
             if (i < 1) {
                 throw new JsonSyntaxException("Invalid fluid amount count: " + i);

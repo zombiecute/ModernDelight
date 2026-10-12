@@ -1,10 +1,13 @@
 package com.zombie_cute.mc.bakingdelight.util;
 
+import com.google.gson.JsonSyntaxException;
 import com.zombie_cute.mc.bakingdelight.item.food.SeasoningItem;
 import com.zombie_cute.mc.bakingdelight.tag.TagKeys;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -54,5 +57,9 @@ public class MiscUtil {
                 }
             } catch (Exception ignored) {}
         }
+    }
+
+    public static Fluid getFluidFromString(String fluid_string) {
+        return Registries.FLUID.getOrEmpty(Identifier.tryParse(fluid_string)).orElse(Fluids.EMPTY);
     }
 }

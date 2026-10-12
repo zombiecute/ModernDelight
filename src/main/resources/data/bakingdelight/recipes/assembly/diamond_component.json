@@ -1,7 +1,7 @@
 {
   "type": "bakingdelight:assembly",
   "mini_game_type": 2,
-  "goal": 2,
+  "goal": 1,
   "ingredients": [
     {
       "item": "minecraft:diamond"

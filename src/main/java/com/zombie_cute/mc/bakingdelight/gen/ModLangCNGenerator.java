@@ -26,6 +26,7 @@ import com.zombie_cute.mc.bakingdelight.item.ModItemGroups;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
+import com.zombie_cute.mc.bakingdelight.util.enums.BacteriaType;
 import com.zombie_cute.mc.bakingdelight.util.enums.CreamFlavor;
 import com.zombie_cute.mc.bakingdelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -39,8 +40,9 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(@NotNull TranslationBuilder translationBuilder) {
-        translationBuilder.add(TextUtil.SHIFT_FRONT, "按住 ");
+        translationBuilder.add(TextUtil.HOLD_A_KEY, "按住 ");
         translationBuilder.add(TextUtil.SHIFT_END, " 以查看概要");
+        translationBuilder.add(TextUtil.CTRL_END, " 以查看流体信息");
         translationBuilder.add(TextUtil.WHISK, "一款搅拌器可以用于搅拌或打发食材，或者...？用它来搅匀怪物的脑浆？");
         translationBuilder.add(TextUtil.BUTTER, "黏糊糊的质感...或许除了用于制作食物另有其用？");
         translationBuilder.add(TextUtil.TRUFFLE, "可以在灰化土中找到");
@@ -91,7 +93,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
                 "电工台允许你合成加工一些复杂的电路元件或电器，" +
                         "将材料正确的放入后点击GUI中的成品按钮来开始合成，共有3种不同类型的小游戏：" +
                         "1. 2048（通过按下WASD来合成出指定的数字后即可）；" +
-                        "2. 电路板拼接（将“？”界面种的图案；复刻一遍即可，螺丝刀可以削除图案）；" +
+                        "2. 电路板拼接（将“？”界面中的图案复刻一遍即可，螺丝刀可以削除图案）；" +
                         "3. 汉诺塔（将左边的塔移动到右侧即可，窄块只能放在宽块上）；" +
                         "完成小游戏后再按下成品按钮便可将成品取出。");
         translationBuilder.add(TextUtil.ELECTRIC_STEAMER,
@@ -147,6 +149,19 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(TextUtil.PUN, "禁止无限套娃！");
         translationBuilder.add(TextUtil.WOODEN_PLATE,
                 "一个可以用于展示物品的盘子，右键可以将物品放在上面，潜行加右键旋转上面的物品。");
+        translationBuilder.add(TextUtil.INDUSTRIAL_FERMENTER,
+                "利用微生物的力量，将普通食材转化为美酒、香醋与更多奇妙产物。");
+        translationBuilder.add(TextUtil.FERMENTING_QUALITY,"品质：");
+        translationBuilder.add(TextUtil.QUALITY_NEG_1,"有毒");
+        translationBuilder.add(TextUtil.QUALITY_0,"劣质");
+        translationBuilder.add(TextUtil.QUALITY_1,"正常");
+        translationBuilder.add(TextUtil.QUALITY_2,"优质");
+        translationBuilder.add(TextUtil.FERMENTATION_SHIFT,"SHIFT 键已经按下，右键此处将会删除当前的所有流体");
+        translationBuilder.add(TextUtil.FERMENTATION_TIME,"在发酵机100%效率的情况下，完成此发酵需要");
+        translationBuilder.add(TextUtil.FERMENTATION_LIGHT,"此发酵的最适光照强度为");
+        translationBuilder.add(TextUtil.FERMENTATION_TEMP,"此发酵的最适温度为");
+        translationBuilder.add(TextUtil.NO_BACTRIA,"无");
+        translationBuilder.add(TextUtil.FERMENTATION_TANK,"一个容量为 5 B 的流体储罐，可以用于转移工业发酵机中的发酵液以及发酵菌。");
 
         translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"点击以获取经验值");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"消除工具");
@@ -170,20 +185,33 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.FILTER, "过滤网");
 
         translationBuilder.add(ModItems.EGG_TART, "蛋挞");
-        translationBuilder.add(ModItems.APPLE_PUDDING, "苹果布丁");
-        translationBuilder.add(ModItems.BRAISED_SHRIMP_BALL, "红烧虾球");
+        translationBuilder.add(ModItems.APPLE_PUDDING, "焦糖苹果布丁");
+        translationBuilder.add(ModItems.BRAISED_SHRIMP_BALL, "金丝虾球");
+        translationBuilder.add(ModItems.BRAISED_SHRIMP_BALL_WIP, "金丝虾球（半成品）");
         translationBuilder.add(ModItems.MATCHA_PUDDING, "抹茶布丁");
         translationBuilder.add(ModItems.SUNFLOWER_SEED, "葵花籽");
         translationBuilder.add(ModItems.SUNFLOWER_SEED_PEEL, "葵花籽皮");
         translationBuilder.add(ModItems.SUNFLOWER_SEED_PULP, "葵花籽肉");
         translationBuilder.add(ModItems.ROASTED_SUNFLOWER_SEED, "炒葵花籽");
         translationBuilder.add(ModItems.OIL_IMPURITY, "油渣");
-        translationBuilder.add(ModItems.VEGETABLE_OIL_BOTTLE, "植物油瓶");
+        translationBuilder.add(ModItems.VEGETABLE_OIL_BOTTLE, "罐装植物油");
         translationBuilder.add(ModItems.VEGETABLE_OIL_BUCKET, "植物油桶");
 
+        translationBuilder.add(ModBlocks.CLAY_POT, "砂锅");
+        translationBuilder.add(ModBlocks.BRITISH_BREAKFAST, "英式早餐");
+        translationBuilder.add(ModBlocks.MARSHALA_CHEESE_BALL, "玛莎拉芝士球");
+        translationBuilder.add(ModBlocks.CHICKEN_RICE, "砂锅香菇滑鸡饭");
+        translationBuilder.add(ModBlocks.CHILI_FISH, "水煮鱼");
+        translationBuilder.add(ModBlocks.CRAB_SAUSAGE_VEGETABLE, "蟹黄火腿炒时蔬");
+        translationBuilder.add(ModBlocks.PORK_NOODLE, "砂锅叉烧面");
+        translationBuilder.add(ModBlocks.PEPPER_BEEF_RICE, "砂锅黑椒牛柳饭");
+        translationBuilder.add(ModBlocks.VEGETABLE_NOODLE, "砂锅素汤面");
+
+        translationBuilder.add(ModItems.CARAMEL_TOAST, "焦糖吐司");
+
         translationBuilder.add(ModItems.TRUFFLE_EGG_TART, "松露蛋挞");
-        translationBuilder.add(ModItems.PUDDING_WIP_1, "布丁（半成品）");
-        translationBuilder.add(ModItems.PUDDING_WIP_2, "布丁（半成品）");
+        translationBuilder.add(ModItems.PUDDING_WIP_1, "布丁（半成品1）");
+        translationBuilder.add(ModItems.PUDDING_WIP_2, "布丁（半成品2）");
 
         translationBuilder.add(ModItems.POTATO_STARCH, "马铃薯淀粉");
         translationBuilder.add(ModItems.MIXED_DOUGH, "混合面团");
@@ -192,6 +220,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.BLACK_PEPPER_CORN, "黑胡椒粒");
         translationBuilder.add(ModItems.BLACK_PEPPER_DUST, "黑胡椒粉");
+        translationBuilder.add(ModItems.BLACK_PEPPER_SEASONING, "黑胡椒调味罐");
 
         translationBuilder.add(ModItems.MASHED_POTATO, "土豆泥");
         translationBuilder.add(ModItems.SAUCE_MASHED_POTATO, "酱汁土豆泥");
@@ -202,6 +231,12 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.CHERRY_BOMB, "樱桃");
         translationBuilder.add(ModItems.BUTTER, "黄油");
         translationBuilder.add(ModItems.CHEESE, "奶酪");
+
+        translationBuilder.add(ModItems.PINECONE, "松果");
+        translationBuilder.add(ModItems.ORANGE, "橘子");
+        translationBuilder.add(ModItems.PEAR, "梨子");
+        translationBuilder.add(ModItems.LEMON, "柠檬");
+        translationBuilder.add(ModItems.MANGO, "芒果");
 
         translationBuilder.add(ModItems.BREAD_SLICE, "面包片");
         translationBuilder.add(ModItems.BUTTER_BREAD_SLICE, "黄油面包片");
@@ -215,6 +250,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.GOLDEN_APPLE_CREAM, "金苹果奶油");
         translationBuilder.add(ModItems.MATCHA_CREAM, "抹茶奶油");
         translationBuilder.add(ModItems.PUMPKIN_CREAM, "南瓜奶油");
+        translationBuilder.add(ModItems.WHIPPING_CREAM, "淡奶油");
 
         translationBuilder.add(ModItems.MOUSSE_WIP, "慕斯（半成品）");
         translationBuilder.add(ModItems.CREAM_MOUSSE, "奶油慕斯");
@@ -235,14 +271,11 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.SAUSAGE, "香肠");
         translationBuilder.add(ModItems.SECTIONED_SAUSAGE, "切片香肠");
-        translationBuilder.add(ModItems.GRILLED_SAUSAGE, "烤香肠");
-        translationBuilder.add(ModItems.STARCH_SAUSAGE, "淀粉肠");
-        translationBuilder.add(ModItems.GRILLED_STARCH_SAUSAGE, "烤淀粉肠");
-        translationBuilder.add(ModItems.LITTLE_OCTOPUS_SAUSAGE, "小章鱼香肠");
 
         translationBuilder.add(ModItems.BLACK_TRUFFLE, "黑松露");
         translationBuilder.add(ModItems.WHITE_TRUFFLE, "白松露");
-        translationBuilder.add(ModItems.ICE_BRICK, "冰砖");
+        translationBuilder.add(ModItems.BLACK_TRUFFLE_SEASONING, "黑松露调味罐");
+        translationBuilder.add(ModItems.WHITE_TRUFFLE_SEASONING, "白松露调味罐");
 
         translationBuilder.add(ModItems.SILICON_INGOT, "硅锭");
         translationBuilder.add(ModBlocks.SILICON_BLOCK, "硅块");
@@ -262,8 +295,6 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.WHITE_TULIP_CAKE, "白色郁金香饼");
         translationBuilder.add(ModItems.WITHER_ROSE_CAKE, "凋灵玫瑰饼");
 
-        translationBuilder.add(ModItems.RAW_ONION_RING, "生洋葱圈");
-        translationBuilder.add(ModItems.ONION_RING, "鸡肉洋葱圈");
         translationBuilder.add(ModItems.FRIED_COD, "油炸鳕鱼");
         translationBuilder.add(ModItems.FRIED_SALMON, "油炸鲑鱼");
         translationBuilder.add(ModItems.FRIED_MILK_WIP, "油炸牛奶（半成品）");
@@ -271,13 +302,12 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.FRIED_APPLE, "油炸苹果");
         translationBuilder.add(ModItems.RAW_POTATO_CHIP, "生土豆片");
         translationBuilder.add(ModItems.POTATO_CHIP, "薯片");
-        translationBuilder.add(ModItems.CHEESE_BALL, "起司球");
         translationBuilder.add(ModItems.FRIED_DOUGH_STICK, "油条");
         translationBuilder.add(ModItems.RAW_CHICKEN_FILLET, "生鸡柳");
         translationBuilder.add(ModItems.CHICKEN_FILLET, "炸鸡柳");
         translationBuilder.add(ModItems.STEAMED_BUN, "馒头");
-        translationBuilder.add(ModItems.DEEP_FRIED_BUN, "油炸馒头");
-
+        translationBuilder.add(ModItems.DEEP_FRIED_BUN, "黄金馒头");
+        translationBuilder.add(ModItems.DEEP_FRIED_BUN_WIP, "黄金馒头（半成品）");
 
         translationBuilder.add(ModItems.ICE_CREAM_CONE, "冰淇淋脆筒");
         translationBuilder.add(ModItems.RAW_ICE_CREAM_CONE, "冰淇淋脆筒（半成品）");
@@ -298,9 +328,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.CHEESE_BAKED_POTATO, "芝士焗土豆");
         translationBuilder.add(ModItems.CHEESE_RICE_BALL, "芝士饭团");
         translationBuilder.add(ModItems.CHOCOLATE_SAUCE, "巧克力酱");
-        translationBuilder.add(ModItems.MIXED_SHRIMP_PASTE, "混合虾滑酱");
         translationBuilder.add(ModItems.DEEP_FRIED_SHRIMP_CAKE, "油炸虾饼");
-        translationBuilder.add(ModItems.SHRIMP_PASTE, "虾滑");
         translationBuilder.add(ModItems.SEAWEED_FRIED_SHRIMP_CAKE, "海苔炸虾饼");
         translationBuilder.add(ModItems.DONUT, "甜甜圈");
         translationBuilder.add(ModItems.CHERRY_PUDDING, "樱桃布丁");
@@ -313,8 +341,8 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.FRIED_CHICKEN, "炸鸡");
         translationBuilder.add(ModItems.FRIED_RED_MUSHROOM, "油炸红蘑菇");
         translationBuilder.add(ModItems.FRIED_BROWN_MUSHROOM, "油炸棕蘑菇");
-        translationBuilder.add(ModItems.CREAM_OF_MUSHROOM_SOUP, "奶油蘑菇汤");
-        translationBuilder.add(ModItems.FRENCH_ONION_SOUP, "法式洋葱汤");
+        translationBuilder.add(ModBlocks.CREAM_OF_MUSHROOM_SOUP, "奶油蘑菇汤");
+        translationBuilder.add(ModBlocks.FRENCH_ONION_SOUP, "法式洋葱汤");
         translationBuilder.add(ModItems.CHERRY_ICE_LOLLY, "樱桃冰棍");
         translationBuilder.add(ModItems.MATCHA_ICE_LOLLY, "抹茶冰棍");
         translationBuilder.add(ModItems.WITHER_ICE_LOLLY, "凋零冰棍");
@@ -462,6 +490,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SEA_SALT, "海盐");
         translationBuilder.add(ModItems.GARLIC_PUREE, "蒜蓉");
         translationBuilder.add(ModItems.MATCHA, "抹茶");
+        translationBuilder.add(ModItems.GRINDED_LEAVES, "研磨后的树叶");
         translationBuilder.add(ModItems.STONE_MORTAR, "石臼");
         translationBuilder.add(ModItems.MANGO_MILK_TEA, "芒果鲜奶茶");
         translationBuilder.add(ModItems.SEA_SALT_LEMON, "海盐柠檬");
@@ -479,16 +508,29 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.HOLDER, "夹子");
         translationBuilder.add(ModItems.HOLDER_UP, "半截夹子");
         translationBuilder.add(ModItems.SWEETENED_WATER_BUCKET, "糖水桶");
+        translationBuilder.add(ModItems.ALCOHOL_BUCKET, "酒精桶");
+        translationBuilder.add(ModItems.VINEGAR_BUCKET, "醋桶");
+        translationBuilder.add(ModItems.FERMENTATION_TANK, "发酵液储罐");
+
+        translationBuilder.add(ModBlocks.INDUSTRIAL_FERMENTER, "工业发酵机");
+        translationBuilder.add(BacteriaType.ACETOBACTER.getTranslationKey(), "醋酸菌");
+        translationBuilder.add(BacteriaType.ESCHERICHIA.getTranslationKey(), "大肠杆菌");
+        translationBuilder.add(BacteriaType.YEAST.getTranslationKey(), "酵母菌");
+        translationBuilder.add(BacteriaType.MUCOR.getTranslationKey(), "毛霉");
+        translationBuilder.add(BacteriaType.LACTOBACILLUS.getTranslationKey(), "乳酸菌");
 
         translationBuilder.add("death.attack.bakingdelight_electroshock","%1$s 触电身亡！");
         translationBuilder.add("death.attack.bakingdelight_turned_to_ashes","%1$s 化为了灰烬");
-        translationBuilder.add("death.attack.bakingdelight_turned_to_ashes。player","%1$s 化为了灰烬");
+        translationBuilder.add("death.attack.bakingdelight_turned_to_ashes.player","%1$s 化为了灰烬");
         translationBuilder.add("death.attack.bakingdelight_scalded","%1$s 被烫死了");
 
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "奶油");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "植物油");
         translationBuilder.add(ModBlocks.LIQUEFIED_BIOGAS_FLUID_BLOCK, "液化沼气");
         translationBuilder.add(ModBlocks.SWEENTENED_WATER_FLUID_BLOCK, "糖水");
+        translationBuilder.add(ModBlocks.ALCOHOL_FLUID_BLOCK, "酒精");
+        translationBuilder.add(ModBlocks.VINEGAR_FLUID_BLOCK, "醋");
+        translationBuilder.add(ModBlocks.MILK_FLUID_BLOCK, "奶 （发酵中）");
 
         translationBuilder.add(ModEnchantments.FINE_GRINDING,"精碾");
         translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","石臼在碾磨时会有额外的产出");
@@ -550,6 +592,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("emi.category.bakingdelight.juice_extracting","榨汁");
         translationBuilder.add("emi.category.bakingdelight.instant_noodles_making","制作方便面");
         translationBuilder.add("emi.category.bakingdelight.grinding","碾磨");
+        translationBuilder.add("emi.category.bakingdelight.fermenting","发酵");
 
 
         translationBuilder.add("sounds.bakingdelight.entity_butter_hit", "黄油：击中");
@@ -687,7 +730,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.all_fried.title", "完全煎炸");
         translationBuilder.add("advancement.bakingdelight.all_fried.desc", "品尝所有的油炸食品！");
         translationBuilder.add("advancement.bakingdelight.wither_rose_cake.title", "绽放与终结");
-        translationBuilder.add("advancement.bakingdelight.wither_rose_cake.desc", "吃下凋灵玫瑰饼，然后好好思考你的人生");
+        translationBuilder.add("advancement.bakingdelight.wither_rose_cake.desc", "吃下凋灵玫瑰饼，然后好好思考你的人生。（隐藏进度）");
         translationBuilder.add("advancement.bakingdelight.bdc_bdi.title", "沼气工业");
         translationBuilder.add("advancement.bakingdelight.bdc_bdi.desc", "合成一个沼气池控制器和沼气池输入输出接口。记得看清它们的使用说明，然后建造你的沼气发酵池吧");
         translationBuilder.add("advancement.bakingdelight.gas_canister.title", "再靠近一点就会爆炸！");
@@ -754,5 +797,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.bakingdelight.fried_noodles.desc", "油炸一些面条，用蜜啤和纸合成包装袋，尝试制作一些方便面。");
         translationBuilder.add("advancement.bakingdelight.cooked_portable_pot.title", "也许并不方便");
         translationBuilder.add("advancement.bakingdelight.cooked_portable_pot.desc", "向便携锅中放入包装方便面，生石灰和水，快速的煮一些方便面吧。");
+        translationBuilder.add("advancement.bakingdelight.click_gas_cooking_stove.title", "燃气灶音乐家");
+        translationBuilder.add("advancement.bakingdelight.click_gas_cooking_stove.desc", "在 3 秒内快速右键燃气灶 10 次。（隐藏进度）");
     }
 }

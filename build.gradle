@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -91,8 +91,8 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	// Fabric API
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_api_version}"
 	// REI
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
@@ -103,24 +103,29 @@ dependencies {
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}+${minecraft_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}+${minecraft_version}"
 	// Geckolib
-	modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
-	implementation("com.eliotlash.mclib:mclib:20")
+	include modApi("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
+	include modApi("com.eliotlash.mclib:mclib:20")
 	// EnergyStorage
 	include modApi('teamreborn:energy:3.0.0')
-	// Tech Reborn
-	modLocalRuntime("curse.maven:reborncore-237903:4708961")
-	modLocalRuntime("curse.maven:techreborn-233564:4708962")
 	// YACL
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
 	// Patchouli
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+
+	// Local Runtime
+	// Tech Reborn
+	modLocalRuntime("curse.maven:reborncore-237903:4708961")
+	modLocalRuntime("curse.maven:techreborn-233564:4708962")
+	// Apple Skin
+	modLocalRuntime("curse.maven:appleskin-248787:7517366")
 }
 
 processResources {
-	inputs.property "version", project.version
+	def version = project.version
+	inputs.property "version", version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": version
 	}
 }
 
@@ -139,8 +144,11 @@ java {
 }
 
 jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
 	from("LICENSE") {
-		rename { "${it}_${inputs.properties.archivesName}"}
+		rename { "${it}_$projectName"}
 	}
 }
 

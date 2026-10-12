@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "bakingdelight:orange",
+    {
+      "id": "#forge:fruits/orange",
+      "required": false
+    }
+  ]
+}

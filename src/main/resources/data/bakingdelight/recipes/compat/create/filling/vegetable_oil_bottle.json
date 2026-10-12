@@ -10,7 +10,7 @@
   "type": "create:filling",
   "ingredients": [
     {
-      "item": "minecraft:glass_bottle"
+      "item": "bakingdelight:jar"
     },
     {
       "amount": 27000,

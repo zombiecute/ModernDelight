@@ -4,7 +4,17 @@ import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.block.biogas.BiogasDigesterControllerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.biogas.BiogasDigesterIOBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlockEntity;
-import com.zombie_cute.mc.bakingdelight.block.food.fish_and_chips.FishAndChipsBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.chicken_rice.ChickenRiceBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.chili_fish.ChiliFishBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.crab_sausage_vegetable.CrabSausageVegetableBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.cream_mushroom_soup.CreamMushroomSoupBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.wooden_plate.fish_and_chips.FishAndChipsBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.french_onion_soup.FrenchOnionSoupBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.marshala_cheese_ball.MarshalaCheeseBallBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.pepper_beef_rice.PepperBeefRiceBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.pork_noodle.PorkNoodleBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.food.clay_pot.vegetable_noodle.VegetableNoodleBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.food.pizza.PizzaBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.food.pizza.PizzaWIPBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.food.pizza.RawPizzaBlockEntity;
@@ -31,6 +41,8 @@ import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.Ste
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.FanBladeBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTurbineControllerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.BatteryBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.fermenter.IndustrialFermenterBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.kitchenware.clay_pot.ClayPotBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.block.entity.BlockEntityType;
@@ -182,6 +194,54 @@ public class ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE, new Identifier(ModernDelightMain.MOD_ID, "wooden_plate_be"),
             FabricBlockEntityTypeBuilder.create(WoodenPlateBlockEntity::new, ModBlocks.WOODEN_PLATE).build(null)
     );
+    public static final BlockEntityType<IndustrialFermenterBlockEntity> INDUSTRIAL_FERMENTER_BLOCK_ENTITY_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "industrial_fermenter_be"),
+            FabricBlockEntityTypeBuilder.create(IndustrialFermenterBlockEntity::new, ModBlocks.INDUSTRIAL_FERMENTER).build(null)
+    );
+    public static final BlockEntityType<ClayPotBlockEntity> CLAY_POT_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "clay_pot_be"),
+            FabricBlockEntityTypeBuilder.create(ClayPotBlockEntity::new, ModBlocks.CLAY_POT).build(null)
+    );
+    public static final BlockEntityType<BritishBreakfastBlockEntity> BRITISH_BREAKFAST_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "british_breakfast_be"),
+            FabricBlockEntityTypeBuilder.create(BritishBreakfastBlockEntity::new, ModBlocks.BRITISH_BREAKFAST).build(null)
+    );
+    public static final BlockEntityType<ChickenRiceBlockEntity> CHICKEN_RICE_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "chicken_rice_be"),
+            FabricBlockEntityTypeBuilder.create(ChickenRiceBlockEntity::new, ModBlocks.CHICKEN_RICE).build(null)
+    );
+    public static final BlockEntityType<ChiliFishBlockEntity> CHILI_FISH_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "chili_fish_be"),
+            FabricBlockEntityTypeBuilder.create(ChiliFishBlockEntity::new, ModBlocks.CHILI_FISH).build(null)
+    );
+    public static final BlockEntityType<MarshalaCheeseBallBlockEntity> MARSHALA_CHEESE_BALL_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "marshala_cheese_ball_be"),
+            FabricBlockEntityTypeBuilder.create(MarshalaCheeseBallBlockEntity::new, ModBlocks.MARSHALA_CHEESE_BALL).build(null)
+    );
+    public static final BlockEntityType<CrabSausageVegetableBlockEntity> CRAB_SAUSAGE_VEGETABLE_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "crab_sausage_vegetable_be"),
+            FabricBlockEntityTypeBuilder.create(CrabSausageVegetableBlockEntity::new, ModBlocks.CRAB_SAUSAGE_VEGETABLE).build(null)
+    );
+    public static final BlockEntityType<CreamMushroomSoupBlockEntity> CREAM_MUSHROOM_SOUP_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "cream_mushroom_soup_be"),
+            FabricBlockEntityTypeBuilder.create(CreamMushroomSoupBlockEntity::new, ModBlocks.CREAM_OF_MUSHROOM_SOUP).build(null)
+    );
+    public static final BlockEntityType<FrenchOnionSoupBlockEntity> FRENCH_ONION_SOUP_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "french_onion_soup_be"),
+            FabricBlockEntityTypeBuilder.create(FrenchOnionSoupBlockEntity::new, ModBlocks.FRENCH_ONION_SOUP).build(null)
+    );
+    public static final BlockEntityType<PorkNoodleBlockEntity> PORK_NOODLE_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "pork_noodle_be"),
+            FabricBlockEntityTypeBuilder.create(PorkNoodleBlockEntity::new, ModBlocks.PORK_NOODLE).build(null)
+    );
+    public static final BlockEntityType<PepperBeefRiceBlockEntity> PEPPER_BEEF_RICE_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "pepper_beef_rice_be"),
+            FabricBlockEntityTypeBuilder.create(PepperBeefRiceBlockEntity::new, ModBlocks.PEPPER_BEEF_RICE).build(null)
+    );
+    public static final BlockEntityType<VegetableNoodleBlockEntity> VEGETABLE_NOODLE_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "vegetable_noodle"),
+            FabricBlockEntityTypeBuilder.create(VegetableNoodleBlockEntity::new, ModBlocks.VEGETABLE_NOODLE).build(null)
+    );
     public static void registerBlockEntities(){
         EnergyStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
                 ((ACDCConverterBlockEntity) blockEntity).energyStorage),AC_DC_CONVERTER_BLOCK_ENTITY);
@@ -200,6 +260,8 @@ public class ModBlockEntities {
                 ((WoodenBasinBlockEntity)blockEntity).fluidStorage),WOODEN_BASIN_BLOCK_ENTITY);
         FluidStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
                 ((GasCanisterBlockEntity)blockEntity).fluidStorage),GAS_CANISTER_BLOCK_ENTITY);
+        FluidStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
+                ((IndustrialFermenterBlockEntity)blockEntity).fluidStorage),INDUSTRIAL_FERMENTER_BLOCK_ENTITY_BLOCK_ENTITY);
         ModernDelightMain.LOGGER.info("Registering Mod Block Entities for " + ModernDelightMain.MOD_ID);
     }
 }

@@ -2,7 +2,7 @@
   "type": "bakingdelight:freezing",
   "ingredients": [
     {
-      "item": "bakingdelight:ice_brick"
+      "item": "minecraft:ice"
     },
     {
       "item": "minecraft:stick"

@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooking_stove;
 
+import com.zombie_cute.mc.bakingdelight.advancement.ModCriteria;
+import com.zombie_cute.mc.bakingdelight.advancement.util.StoveClickTracker;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
@@ -11,6 +13,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -44,6 +47,9 @@ public class GasCookingStoveBlock extends AbstractGasCookingStoveBlock {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient){
+            if (player instanceof ServerPlayerEntity serverPlayer){
+                ModCriteria.FAST_STOVE_CLICK.trigger(serverPlayer, StoveClickTracker.recordClick(serverPlayer.getUuid()));
+            }
             if (world.random.nextFloat()>0.5){
                 world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f,
                         ModSounds.BLOCK_GAS_COOKING_STOVE_IGNITE, SoundCategory.BLOCKS,

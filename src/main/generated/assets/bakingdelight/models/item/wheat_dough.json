@@ -1,3 +1,6 @@
 {
-  "parent": "bakingdelight:block/wheat_dough"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bakingdelight:item/wheat_dough"
+  }
 }

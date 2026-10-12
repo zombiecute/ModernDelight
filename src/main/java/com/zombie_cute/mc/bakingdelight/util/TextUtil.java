@@ -7,6 +7,7 @@ import net.minecraft.text.OrderedText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,10 @@ import java.util.List;
 public class TextUtil {
     public static final int MAX_TOOLTIP_WIDTH = 250;
 
-    public static final String SHIFT_FRONT = "bakingdelight.tooltips.shift_front";
+    public static final String HOLD_A_KEY = "bakingdelight.tooltips.hold_a_key";
     public static final String SHIFT_END = "bakingdelight.tooltips.shift_end";
     public static final String ALT_END = "bakingdelight.tooltips.alt_end";
+    public static final String CTRL_END = "bakingdelight.tooltips.ctrl_end";
     public static final String WHISK = "bakingdelight.tooltips.whisk";
     public static final String BUTTER = "bakingdelight.tooltips.butter";
     public static final String CUTTLEBONE = "bakingdelight.tooltips.cuttlebone";
@@ -71,6 +73,19 @@ public class TextUtil {
     public static final String CAN_PLACE = "bakingdelight.tooltips.can_place";
     public static final String PUN = "bakingdelight.tooltips.prohibit_unlimited_nesting";
     public static final String WOODEN_PLATE = "bakingdelight.tooltips.wooden_plate";
+    public static final String INDUSTRIAL_FERMENTER = "bakingdelight.tooltips.industrial_fermenter";
+    public static final String FERMENTING_QUALITY = "bakingdelight.tooltips.fermenting_quality";
+    public static final String QUALITY_NEG_1 = "bakingdelight.tooltips.quality_negative_1";
+    public static final String QUALITY_0 = "bakingdelight.tooltips.quality_0";
+    public static final String QUALITY_1 = "bakingdelight.tooltips.quality_1";
+    public static final String QUALITY_2 = "bakingdelight.tooltips.quality_2";
+    public static final String FERMENTATION_SHIFT = "bakingdelight.tooltip.fermentation.shift";
+    public static final String FERMENTATION_TIME = "bakingdelight.tooltip.fermentation.time";
+    public static final String FERMENTATION_LIGHT = "bakingdelight.tooltip.fermentation.light";
+    public static final String FERMENTATION_TEMP = "bakingdelight.tooltip.fermentation.temperature";
+    public static final String NO_BACTRIA = "bakingdelight.tooltip.fermentation.no_bactria";
+    public static final String FERMENTATION_TANK = "bakingdelight.tooltip.fermentation_tank";
+
     public static List<Text> generateToolTip(Text text, Style style){
         List<Text> result = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
@@ -96,7 +111,7 @@ public class TextUtil {
         return generateToolTip(text,16755200);
     }
     public static MutableText getShiftText(boolean hasDown){
-        MutableText mutableText = Text.translatable(SHIFT_FRONT).formatted(Formatting.DARK_GRAY);
+        MutableText mutableText = Text.translatable(HOLD_A_KEY).formatted(Formatting.DARK_GRAY);
         mutableText.append(Text.literal("[").formatted(Formatting.DARK_GRAY));
         if (hasDown){
             mutableText.append(Text.literal("Shift").formatted(Formatting.WHITE));
@@ -108,7 +123,7 @@ public class TextUtil {
         return mutableText;
     }
     public static MutableText getAltText(boolean hasDown){
-        MutableText mutableText = Text.translatable(SHIFT_FRONT).formatted(Formatting.DARK_GRAY);
+        MutableText mutableText = Text.translatable(HOLD_A_KEY).formatted(Formatting.DARK_GRAY);
         mutableText.append(Text.literal("[").formatted(Formatting.DARK_GRAY));
         if (hasDown){
             mutableText.append(Text.literal("Alt").formatted(Formatting.WHITE));
@@ -117,6 +132,18 @@ public class TextUtil {
         }
         mutableText.append(Text.literal("]").formatted(Formatting.DARK_GRAY));
         mutableText.append(Text.translatable(ALT_END).formatted(Formatting.DARK_GRAY));
+        return mutableText;
+    }
+    public static MutableText getCtrlText(boolean hasDown){
+        MutableText mutableText = Text.translatable(HOLD_A_KEY).formatted(Formatting.DARK_GRAY);
+        mutableText.append(Text.literal("[").formatted(Formatting.DARK_GRAY));
+        if (hasDown){
+            mutableText.append(Text.literal("Ctrl").formatted(Formatting.WHITE));
+        } else {
+            mutableText.append(Text.literal("Ctrl").formatted(Formatting.GRAY));
+        }
+        mutableText.append(Text.literal("]").formatted(Formatting.DARK_GRAY));
+        mutableText.append(Text.translatable(CTRL_END).formatted(Formatting.DARK_GRAY));
         return mutableText;
     }
     public static MutableText getACGen(String count){
@@ -147,6 +174,24 @@ public class TextUtil {
         MutableText mutableText = Text.translatable(ALT_DCCom).formatted(Formatting.DARK_GREEN);
         mutableText.append(Text.literal(" " + count + " ").formatted(Formatting.WHITE));
         mutableText.append(Text.literal("EP/s").formatted(Formatting.GRAY));
+        return mutableText;
+    }
+
+    public static MutableText getFluidInfoText(FluidStack fluidStack, int maxCapacityMB) {
+        String translation_key = fluidStack.getFluidVariant().getFluid().getDefaultState().getBlockState().getBlock().getTranslationKey();
+        MutableText mutableText = Text.translatable(translation_key).formatted(Formatting.GRAY);
+        mutableText.append(Text.literal(": ").formatted(Formatting.GRAY));
+        long mb = FluidStack.convertDropletsToMb(fluidStack.getAmount());
+        if (mb < maxCapacityMB / 4){
+            mutableText.append(Text.literal(String.valueOf(mb)).formatted(Formatting.GREEN));
+        } else if (mb < maxCapacityMB / 2) {
+            mutableText.append(Text.literal(String.valueOf(mb)).formatted(Formatting.YELLOW));
+        } else if (mb < maxCapacityMB* 3L / 4) {
+            mutableText.append(Text.literal(String.valueOf(mb)).formatted(Formatting.GOLD));
+        } else {
+            mutableText.append(Text.literal(String.valueOf(mb)).formatted(Formatting.RED));
+        }
+        mutableText.append(Text.literal(" mB").formatted(Formatting.GRAY));
         return mutableText;
     }
 }

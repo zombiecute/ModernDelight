@@ -11,11 +11,11 @@
       "item": "minecraft:honey_bottle"
     },
     {
-      "item": "minecraft:honey_bottle"
+      "item": "bakingdelight:jar"
     }
   ],
   "output": {
     "item": "bakingdelight:honey_crystallization",
-    "count": 3
+    "count": 1
   }
 }

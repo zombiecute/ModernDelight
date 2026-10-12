@@ -1,0 +1,36 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "milk"
+      ]
+    }
+  ],
+  "type": "bakingdelight:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:cheese"
+  },
+  "fluid_input": "milk:still_milk",
+  "min_fluid_amount": 16200,
+  "fluid_output": "empty",
+  "temperature": 35,
+  "luminosity": 2,
+  "time": 142,
+  "bacteria_input": "lactobacillus",
+  "bacteria_output": "null"
+}

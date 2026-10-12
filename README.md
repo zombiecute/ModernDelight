@@ -1,24 +1,54 @@
-Welcome to Modern Delight
--------------------------------------------------------------
-### Requires GeckoLib[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/geckolib) / [Modrinth](https://modrinth.com/mod/geckolib)] and YetAnotherConfigLib[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/yacl) / [Modrinth](https://modrinth.com/mod/yacl)]
-### No plans to make a Forge/NeoForge version, if you want play it on Forge/NeoForge, try Sinytra Connector[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/sinytra-connector) / [Modrinth](https://modrinth.com/mod/connector)] and Connector Extras[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/connector-extras) / [Modrinth](https://modrinth.com/mod/connector-extras)]
+<div align="center">
 
-**Modern Delight** is a mod that aims to expand Minecraft with more modern ways of cooking food, introducing a simpler **electrical system** on top of that, where you can power your kitchen appliances by building some power generating facilities. So far, the mod allows you to use a **whisk** to mix or whip up a whole new range of foods, a stone mortar to **grind** ingredient, an oven to **bake** something, a freezer to **cold process** foods, a kneading stick to make **pizzas**, a traditional bamboo steamer or an electric steamer to **steam** foods, and an ice cream maker to produce delicious and **customizable** ice cream flavors! You can produce **biogas** by fermenting it in a digester and burn it to heat up blocks and even yourself (Be careful about biogas explosion)! You can also use oil extraction from vegetables, which in turn enables **fried foods**! A juice extractor to make **juices**, seasoning food from **other mods**, **DIY** an instant noodle for you or your friend. There are many more details and contents of the mod waiting for you to explore!
+# Modern Delight
 
-### This mod is currently under development, backup your saves often.
+**English | [简体中文](./README_zh.md)**
 
-Report any issues you find to [GitHub Issues](https://github.com/zombiecute/ModernDelight/issues) that is really helpful for us.
+**A bigger kitchen, more ways to cook, and a little electricity.**
 
-Getting Started
----------------
+Modern Delight expands Minecraft's food and cooking with hands-on processing, kitchen appliances, and a compact power system.
 
-You can check the advancement for more help! By default, press (L) to open the advancement screen.
+[![Discord](https://img.shields.io/discord/1210136839650811934?color=5865F2&label=Discord&style=for-the-badge)](https://discord.com/invite/b3RrpnWWYk)
+[![CurseForge](https://img.shields.io/curseforge/dt/977960?logo=curseforge&label=CurseForge&style=for-the-badge&color=242629&labelColor=F16436&logoColor=1C1C1C)](https://www.curseforge.com/minecraft/mc-mods/modern-delight)
+[![Modrinth](https://img.shields.io/modrinth/dt/modern-delight?logo=modrinth&label=Modrinth&style=for-the-badge&color=242629&labelColor=5CA424&logoColor=1C1C1C)](https://modrinth.com/mod/modern-delight)
 
-If you installed the Patchouli[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/patchouli-fabric) / [Modrinth](https://modrinth.com/mod/patchouli)], you can use any whisk and book to craft a guide book.
+![Minecraft 1.20.1](https://img.shields.io/badge/Minecraft-1.20.1-6B8E23?style=flat-square)
+![Fabric](https://img.shields.io/badge/loader-Fabric-DBD0B4?style=flat-square)
+![Java 17+](https://img.shields.io/badge/Java-17%2B-4472C4?style=flat-square)
 
-It is recommended to use through the REI[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-items) / [Modrinth](https://modrinth.com/mod/rei)] or EMI[[Curseforge](https://www.curseforge.com/minecraft/mc-mods/emi) / [Modrinth](https://modrinth.com/mod/emi)] to get more help!
+</div>
 
-Links
------
+## What You Can Do
 
-[GitHub](https://github.com/zombiecute/ModernDelight)
+- **Cook your way:** whisk, grind, bake, steam, freeze, deep-fry, and extract juice with dedicated tools and appliances.
+- **Make more than meals:** prepare pizza, customizable ice cream, instant noodles, seasonings, and a wide range of new foods.
+- **Build a power supply:** generate and use electricity to run kitchen equipment, or produce biogas through fermentation for heat and fuel.
+- **Bring ingredients to life:** grow new crops and use ingredients from supported mods in additional recipes.
+
+## Installation
+
+For **Minecraft 1.20.1** on **Fabric**, install:
+
+- Fabric Loader **0.19.5 or later**
+- [Fabric API](https://modrinth.com/mod/fabric-api)
+- [GeckoLib](https://modrinth.com/mod/geckolib)
+
+These are optional, but add useful integrations:
+
+- [REI](https://modrinth.com/mod/rei) or [EMI](https://modrinth.com/mod/emi) to browse recipes in-game
+- [Patchouli](https://modrinth.com/mod/patchouli) for the in-game guide book
+- [Yet Another Config Lib](https://modrinth.com/mod/yacl) and [Mod Menu](https://modrinth.com/mod/modmenu) for the configuration screen
+
+## Getting Started
+
+- Press **L** to open the advancement screen for progression hints.
+- With Patchouli installed, craft the guide book using a whisk and a book.
+- Use REI or EMI to look up recipes and processing steps.
+
+## Development Status
+
+Modern Delight is under active development. Back up your worlds before updating, and report problems through [GitHub Issues](https://github.com/zombiecute/ModernDelight/issues).
+
+## Links
+
+[GitHub](https://github.com/zombiecute/ModernDelight) · [Issues](https://github.com/zombiecute/ModernDelight/issues) · [Discord](https://discord.com/invite/b3RrpnWWYk) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/modern-delight) · [Modrinth](https://modrinth.com/mod/modern-delight)

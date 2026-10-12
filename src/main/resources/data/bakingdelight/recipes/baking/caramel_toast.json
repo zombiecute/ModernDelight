@@ -1,0 +1,21 @@
+{
+  "type": "bakingdelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "bakingdelight:bread_slice"
+    },
+    {
+      "item": "bakingdelight:caramel"
+    },
+    {
+      "item": "bakingdelight:butter"
+    },
+    {
+      "item": "bakingdelight:bread_slice"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:caramel_toast",
+    "count": 2
+  }
+}

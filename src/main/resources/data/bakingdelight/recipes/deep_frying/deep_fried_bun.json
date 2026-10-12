@@ -2,7 +2,7 @@
   "type": "bakingdelight:deep_frying",
   "ingredients": [
     {
-      "item": "bakingdelight:steamed_bun"
+      "item": "bakingdelight:deep_fried_bun_wip"
     }
   ],
   "output": {

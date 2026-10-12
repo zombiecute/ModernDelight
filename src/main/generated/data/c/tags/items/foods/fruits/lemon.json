@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "bakingdelight:lemon",
     {
       "id": "#forge:fruits/lemon",
       "required": false

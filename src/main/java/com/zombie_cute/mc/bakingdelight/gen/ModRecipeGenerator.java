@@ -72,14 +72,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(ModItems.DEEP_FRIED_SHRIMP_CAKE),
                         FabricRecipeProvider.conditionsFromItem(ModItems.DEEP_FRIED_SHRIMP_CAKE))
                 .offerTo(exporter);
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.MIXED_SHRIMP_PASTE, 1)
-                .input(Items.CARROT)
-                .input(ModItems.BLACK_PEPPER_CORN)
-                .input(ModItems.MIXED_DOUGH)
-                .input(ModItems.SHRIMP_PASTE)
-                .criterion(FabricRecipeProvider.hasItem(ModItems.SHRIMP_PASTE),
-                        FabricRecipeProvider.conditionsFromItem(ModItems.SHRIMP_PASTE))
-                .offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.CHOCOLATE_SAUCE, 1)
                 .input(Items.COCOA_BEANS)
                 .input(TagKeys.MILKS)
@@ -188,11 +180,19 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.VEGETABLE_OIL_BOTTLE, 3)
                 .input(ModItems.VEGETABLE_OIL_BUCKET)
-                .input(Items.GLASS_BOTTLE)
-                .input(Items.GLASS_BOTTLE)
-                .input(Items.GLASS_BOTTLE)
+                .input(ModItems.JAR)
+                .input(ModItems.JAR)
+                .input(ModItems.JAR)
                 .criterion(FabricRecipeProvider.hasItem(ModItems.VEGETABLE_OIL_BUCKET),
                         FabricRecipeProvider.conditionsFromItem(ModItems.VEGETABLE_OIL_BUCKET))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.VEGETABLE_OIL_BUCKET, 1)
+                .input(Items.BUCKET)
+                .input(ModItems.VEGETABLE_OIL_BOTTLE)
+                .input(ModItems.VEGETABLE_OIL_BOTTLE)
+                .input(ModItems.VEGETABLE_OIL_BOTTLE)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.VEGETABLE_OIL_BOTTLE),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.VEGETABLE_OIL_BOTTLE))
                 .offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.EMPTY_CAKE, 4)
                 .input(TagKeys.C_DOUGH)
@@ -285,12 +285,62 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(ModItems.GARLIC_PETAL),
                         FabricRecipeProvider.conditionsFromItem(ModItems.GARLIC_PETAL))
                 .offerTo(exporter);
-
-
-
-
-
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.DEEP_FRIED_BUN_WIP,1)
+                .input(ModItems.STEAMED_BUN).input(ModItems.STEAMED_BUN).input(ModItems.STEAMED_BUN).input(ModItems.WHIPPING_CREAM).input(ModBlocks.WOODEN_PLATE)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.STEAMED_BUN),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.STEAMED_BUN))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.WHIPPING_CREAM,5)
+                .input(ModItems.CREAM_BUCKET).input(ModItems.JAR).input(ModItems.JAR).input(ModItems.JAR).input(ModItems.JAR).input(ModItems.JAR)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.CREAM_BUCKET),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.CREAM_BUCKET))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.MATCHA,3)
+                .input(ModItems.JAR).input(ModItems.JAR).input(ModItems.JAR).input(ModItems.GRINDED_LEAVES).input(ModItems.GRINDED_LEAVES)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.GRINDED_LEAVES),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.GRINDED_LEAVES))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.GARLIC_PUREE,1)
+                .input(ModItems.JAR).input(ModItems.GARLIC_PETAL).input(ModItems.GARLIC_PETAL)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.GARLIC_PETAL),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.GARLIC_PETAL))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BLACK_PEPPER_SEASONING,2)
+                .input(ModItems.JAR).input(ModItems.JAR).input(ModItems.BLACK_PEPPER_DUST).input(ModItems.BLACK_PEPPER_DUST).input(ModItems.BLACK_PEPPER_DUST)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.BLACK_PEPPER_DUST),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.BLACK_PEPPER_DUST))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BLACK_TRUFFLE_SEASONING,2)
+                .input(ModItems.JAR).input(ModItems.JAR).input(ModItems.BLACK_TRUFFLE).input(ModItems.BLACK_TRUFFLE).input(ModItems.BLACK_TRUFFLE)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.BLACK_TRUFFLE),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.BLACK_TRUFFLE))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.WHITE_TRUFFLE_SEASONING,2)
+                .input(ModItems.JAR).input(ModItems.JAR).input(ModItems.WHITE_TRUFFLE).input(ModItems.WHITE_TRUFFLE).input(ModItems.WHITE_TRUFFLE)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.WHITE_TRUFFLE),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.WHITE_TRUFFLE))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BRAISED_SHRIMP_BALL_WIP,1)
+                .input(ModItems.PRAWN).input(ModItems.PRAWN).input(ModItems.PRAWN)
+                .input(TagKeys.C_WHEAT_FLOUR).input(Items.POTATO).input(Items.POTATO)
+                .input(Items.POTATO).input(ModBlocks.WOODEN_PLATE)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.PRAWN),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.PRAWN))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.SPRUCE_SAPLING,1)
+                .input(ModItems.PINECONE).input(Items.DIRT)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.PINECONE),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.PINECONE))
+                .offerTo(exporter);
         // Shaped
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModBlocks.CLAY_POT)
+                .pattern("A A")
+                .pattern("CAC")
+                .input('A',Items.BRICK)
+                .input('C',Items.CLAY)
+                .criterion(FabricRecipeProvider.hasItem(Items.BRICK),
+                        FabricRecipeProvider.conditionsFromItem(Items.BRICK))
+                .offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModBlocks.MASHED_POTATO_BLOCK)
                 .pattern("AAA")
                 .pattern("AAA")

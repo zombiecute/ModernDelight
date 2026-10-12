@@ -163,9 +163,9 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
         ItemStack offHandStack = player.getOffHandStack();
         if (!state.get(DeepFryerBlock.HAS_OIL)){
             if (isBottleVegetableOil(offHandStack.getItem())){
-                splitOilItem(world, player,false, Items.GLASS_BOTTLE);
+                splitOilItem(world, player,false, ModItems.JAR);
             } else if (isBottleVegetableOil(mainHandStack.getItem())){
-                splitOilItem(world, player,true,Items.GLASS_BOTTLE);
+                splitOilItem(world, player,true,ModItems.JAR);
             } else if (isBucketVegetableOil(offHandStack.getItem())){
                 splitOilItem(world, player,false,Items.BUCKET);
             } else if (isBucketVegetableOil(mainHandStack.getItem())){

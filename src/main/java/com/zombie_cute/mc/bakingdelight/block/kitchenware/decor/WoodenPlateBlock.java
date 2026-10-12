@@ -19,6 +19,7 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -45,11 +46,11 @@ public class WoodenPlateBlock extends BlockWithEntity implements Waterloggable {
     public static final EnumProperty<ShowAbleItems> SHOWING_ITEM = EnumProperty.of("showing_item", ShowAbleItems.class);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));
             tooltip.add(Text.literal(" "));
             tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.WOODEN_PLATE)));
-
         } else {
             tooltip.add(TextUtil.getShiftText(false));
         }

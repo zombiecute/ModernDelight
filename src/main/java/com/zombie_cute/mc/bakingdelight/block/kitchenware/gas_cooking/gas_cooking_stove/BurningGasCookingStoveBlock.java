@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.bakingdelight.block.kitchenware.gas_cooking.gas_cooking_stove;
 
+import com.zombie_cute.mc.bakingdelight.advancement.ModCriteria;
+import com.zombie_cute.mc.bakingdelight.advancement.util.StoveClickTracker;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModDamageTypes;
@@ -13,6 +15,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -59,6 +62,9 @@ public class BurningGasCookingStoveBlock extends AbstractGasCookingStoveBlock {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient){
+            if (player instanceof ServerPlayerEntity serverPlayer){
+                ModCriteria.FAST_STOVE_CLICK.trigger(serverPlayer, StoveClickTracker.recordClick(serverPlayer.getUuid()));
+            }
             world.playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f,
                     SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,
                     1.2f, world.random.nextFloat()+0.5f);

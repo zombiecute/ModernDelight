@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:bakingdelight/got_gas_cooking_stove",
+  "criteria": {
+    "clicking": {
+      "conditions": {
+        "required_clicks": 10,
+        "window_seconds": 3.0
+      },
+      "trigger": "bakingdelight:fast_stove_click"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.bakingdelight.click_gas_cooking_stove.desc"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "bakingdelight:burning_gas_cooking_stove"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.bakingdelight.click_gas_cooking_stove.title"
+    }
+  },
+  "requirements": [
+    [
+      "clicking"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

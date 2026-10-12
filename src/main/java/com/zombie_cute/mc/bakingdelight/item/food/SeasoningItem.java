@@ -30,7 +30,7 @@ public class SeasoningItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(TextUtil.SEASONING_TIP).formatted(Formatting.GRAY));
+        tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.SEASONING_TIP)));
         super.appendTooltip(stack, world, tooltip, context);
     }
     @Override

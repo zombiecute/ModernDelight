@@ -59,12 +59,23 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.BAMBOO_GRATE);
         addDrop(ModBlocks.ELECTRIC_STEAMER);
         addDrop(ModBlocks.ICE_CREAM_MAKER);
-        addDrop(ModBlocks.CARAMEL_PUDDING);
         addDrop(ModBlocks.CHARGING_POST);
         addDrop(ModBlocks.JUICE_EXTRACTOR);
         addDrop(ModBlocks.ROSE_ICE_TEA);
         addDrop(ModBlocks.CHERRY_MILK_TEA);
         addDrop(ModBlocks.WOODEN_PLATE);
+        addDrop(ModBlocks.CLAY_POT);
+        addDrop(ModBlocks.BRITISH_BREAKFAST);
+        addDrop(ModBlocks.MARSHALA_CHEESE_BALL);
+        addDrop(ModBlocks.CHICKEN_RICE);
+        addDrop(ModBlocks.CHILI_FISH);
+        addDrop(ModBlocks.CRAB_SAUSAGE_VEGETABLE);
+        addDrop(ModBlocks.CREAM_OF_MUSHROOM_SOUP);
+        addDrop(ModBlocks.FRENCH_ONION_SOUP);
+        addDrop(ModBlocks.PORK_NOODLE);
+        addDrop(ModBlocks.PEPPER_BEEF_RICE);
+        addDrop(ModBlocks.VEGETABLE_NOODLE);
+
         addDrop(ModBlocks.FISH_AND_CHIPS,ModBlocks.WOODEN_PLATE);
         addDrop(ModBlocks.WILD_PEPPER_CROP,block -> new LootTable.Builder()
                 .pool(LootPool.builder()

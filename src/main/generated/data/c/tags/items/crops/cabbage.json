@@ -4,6 +4,10 @@
     {
       "id": "#forge:crops/cabbage",
       "required": false
+    },
+    {
+      "id": "farmersdelight:cabbage",
+      "required": false
     }
   ]
 }

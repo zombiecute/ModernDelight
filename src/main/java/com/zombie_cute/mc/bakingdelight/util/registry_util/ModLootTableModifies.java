@@ -29,6 +29,16 @@ public class ModLootTableModifies {
             = new Identifier("minecraft", "blocks/podzol");
     public static final Identifier CHERRY_LEAVES_ID
             = new Identifier("minecraft", "blocks/cherry_leaves");
+    public static final Identifier SPRUCE_LEAVES_ID
+            = new Identifier("minecraft", "blocks/spruce_leaves");
+    public static final Identifier ACACIA_LEAVES_ID
+            = new Identifier("minecraft", "blocks/acacia_leaves");
+    public static final Identifier JUNGLE_LEAVES_ID
+            = new Identifier("minecraft", "blocks/jungle_leaves");
+    public static final Identifier BIRCH_LEAVES_ID
+            = new Identifier("minecraft", "blocks/birch_leaves");
+    public static final Identifier DARK_OAK_LEAVES_ID
+            = new Identifier("minecraft", "blocks/dark_oak_leaves");
     public static final Identifier SHIPWRECK_SUPPLY_ID
             = new Identifier("minecraft", "chests/shipwreck_supply");
     public static final Identifier VILLAGE_DESERT_HOUSE_ID
@@ -39,12 +49,6 @@ public class ModLootTableModifies {
             = new Identifier("minecraft", "chests/abandoned_mineshaft");
     public static final Identifier FISH_ID
             = new Identifier("minecraft", "gameplay/fishing/fish");
-    public static final Identifier BLUE_ICE_ID
-            = new Identifier("minecraft", "blocks/blue_ice");
-    public static final Identifier ICE_ID
-            = new Identifier("minecraft", "blocks/ice");
-    public static final Identifier PACKED_ICE_ID
-            = new Identifier("minecraft", "blocks/packed_ice");
     public static final Identifier VILLAGE_BUTCHER_ID
             = new Identifier("minecraft", "chests/village/village_butcher");
     public static final Identifier VILLAGE_PLAINS_HOUSE_ID
@@ -108,35 +112,51 @@ public class ModLootTableModifies {
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
             tableBuilder.pool(poolBuilder.build());
         }
-        if (ICE_ID.equals(id)) {
-            LootPool.Builder poolBuilder = LootPool.builder()
-                    .rolls(ConstantLootNumberProvider.create(1))
-                    .conditionally(RandomChanceLootCondition.builder(0.3F))
-                    .with(ItemEntry.builder(ModItems.ICE_BRICK))
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.8f, 2.3f)).build());
-            tableBuilder.pool(poolBuilder.build());
-        }
-        if (PACKED_ICE_ID.equals(id)) {
-            LootPool.Builder poolBuilder = LootPool.builder()
-                    .rolls(ConstantLootNumberProvider.create(1))
-                    .conditionally(RandomChanceLootCondition.builder(0.5F))
-                    .with(ItemEntry.builder(ModItems.ICE_BRICK))
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.8f, 3.3f)).build());
-            tableBuilder.pool(poolBuilder.build());
-        }
-        if (BLUE_ICE_ID.equals(id)) {
-            LootPool.Builder poolBuilder = LootPool.builder()
-                    .rolls(ConstantLootNumberProvider.create(1))
-                    .conditionally(RandomChanceLootCondition.builder(0.7F))
-                    .with(ItemEntry.builder(ModItems.ICE_BRICK))
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(6.8f, 10.3f)).build());
-            tableBuilder.pool(poolBuilder.build());
-        }
         if (CHERRY_LEAVES_ID.equals(id)) {
             LootPool.Builder poolBuilder = LootPool.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
                     .conditionally(RandomChanceLootCondition.builder(0.1F))
                     .with(ItemEntry.builder(ModItems.CHERRY))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if (SPRUCE_LEAVES_ID.equals(id)) {
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(RandomChanceLootCondition.builder(0.15F))
+                    .with(ItemEntry.builder(ModItems.PINECONE))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if (DARK_OAK_LEAVES_ID.equals(id)) {
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(RandomChanceLootCondition.builder(0.1F))
+                    .with(ItemEntry.builder(ModItems.ORANGE))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if (BIRCH_LEAVES_ID.equals(id)) {
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(RandomChanceLootCondition.builder(0.08F))
+                    .with(ItemEntry.builder(ModItems.PEAR))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if (ACACIA_LEAVES_ID.equals(id)) {
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(RandomChanceLootCondition.builder(0.12F))
+                    .with(ItemEntry.builder(ModItems.LEMON))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+            tableBuilder.pool(poolBuilder.build());
+        }
+        if (JUNGLE_LEAVES_ID.equals(id)) {
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(RandomChanceLootCondition.builder(0.05F))
+                    .with(ItemEntry.builder(ModItems.MANGO))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
             tableBuilder.pool(poolBuilder.build());
         }

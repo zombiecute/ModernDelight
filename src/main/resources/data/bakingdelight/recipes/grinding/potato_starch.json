@@ -1,0 +1,16 @@
+{
+  "type": "bakingdelight:grinding",
+  "ingredients": [
+    {
+      "item": "bakingdelight:mashed_potato"
+    }
+  ],
+  "output": {
+    "item": "bakingdelight:potato_starch"
+  },
+  "chance": 0.2,
+  "extra": {
+    "item": "bakingdelight:potato_starch",
+    "count": 1
+  }
+}

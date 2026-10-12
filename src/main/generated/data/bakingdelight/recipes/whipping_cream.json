@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bakingdelight:cream_bucket"
+    },
+    {
+      "item": "bakingdelight:jar"
+    },
+    {
+      "item": "bakingdelight:jar"
+    },
+    {
+      "item": "bakingdelight:jar"
+    },
+    {
+      "item": "bakingdelight:jar"
+    },
+    {
+      "item": "bakingdelight:jar"
+    }
+  ],
+  "result": {
+    "count": 5,
+    "item": "bakingdelight:whipping_cream"
+  }
+}

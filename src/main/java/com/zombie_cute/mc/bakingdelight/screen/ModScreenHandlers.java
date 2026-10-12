@@ -69,6 +69,9 @@ public class ModScreenHandlers {
     public static final ScreenHandlerType<ChargingPostScreenHandler> CHARGING_POST_SCREEN_HANDLER =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "charging_post_screen"),
                     new ExtendedScreenHandlerType<>(ChargingPostScreenHandler::new));
+    public static final ScreenHandlerType<IndustrialFermenterScreenHandler> INDUSTRIAL_FERMENTER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "industrial_fermenter_screen"),
+                    new ExtendedScreenHandlerType<>(IndustrialFermenterScreenHandler::new));
     public static void registerScreenHandlers(){
         ModernDelightMain.LOGGER.info("Registering Screen Handlers for " + ModernDelightMain.MOD_ID);
     }

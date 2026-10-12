@@ -172,6 +172,35 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.BAMBOO_GRATE);
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.ELECTRIC_STEAMER);
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
-
+        // Temperature
+        // 0 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_0).add(Blocks.FROSTED_ICE);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_0).add(Blocks.ICE);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_0).add(Blocks.SNOW_BLOCK);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_0).add(Blocks.SNOW);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_0).add(Blocks.POWDER_SNOW);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_0).add(Blocks.POWDER_SNOW_CAULDRON);
+        // -10 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_MINUS_10).add(Blocks.PACKED_ICE);
+        // -20 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_MINUS_20).add(Blocks.BLUE_ICE);
+        // 40 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_40).add(Blocks.LANTERN);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_40).add(Blocks.JACK_O_LANTERN);
+        // 60 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_60).add(Blocks.SOUL_LANTERN);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_60).add(Blocks.CANDLE);
+        // 80 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_80).add(Blocks.TORCH);
+        // 100 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_100).add(Blocks.SOUL_TORCH);
+        // 300 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_300).add(Blocks.FIRE);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_300).add(Blocks.MAGMA_BLOCK);
+        // 600 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_600).add(Blocks.SOUL_FIRE);
+        // 1000 ℃
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_1000).add(Blocks.LAVA);
+        getOrCreateTagBuilder(TagKeys.TEMPERATURE_1000).add(Blocks.LAVA_CAULDRON);
     }
 }

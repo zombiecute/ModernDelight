@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "bakingdelight:block/gas_conister",
-		"particle": "bakingdelight:block/gas_conister"
+		"0": "bakingdelight:block/gas_canister",
+		"particle": "bakingdelight:block/gas_canister"
 	},
 	"elements": [
 		{

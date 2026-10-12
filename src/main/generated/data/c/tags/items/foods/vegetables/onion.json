@@ -4,6 +4,10 @@
     {
       "id": "#forge:crops/onion",
       "required": false
+    },
+    {
+      "id": "farmersdelight:onion",
+      "required": false
     }
   ]
 }

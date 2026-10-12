@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.bakingdelight.networking.packet;
 
+import com.zombie_cute.mc.bakingdelight.block.fermenter.IndustrialFermenterBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.CuisineTableBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.power.ElectriciansDeskBlockEntity;
@@ -70,6 +71,13 @@ public class ChangeBlockEntityDataC2SPacket {
             } else if (blockEntity instanceof CuisineTableBlockEntity cuisineTableBlockEntity) {
                 switch (array[0]){
                     case 1 -> cuisineTableBlockEntity.setCanOpen(true);
+                }
+            } else if (blockEntity instanceof IndustrialFermenterBlockEntity industrialFermenterBlockEntity) {
+                switch (array[0]){
+                    case 1 -> industrialFermenterBlockEntity.setClosing();
+                    case 2 -> industrialFermenterBlockEntity.reduceFix();
+                    case 3 -> industrialFermenterBlockEntity.addFix();
+                    case 4 -> industrialFermenterBlockEntity.clear();
                 }
             }
         });

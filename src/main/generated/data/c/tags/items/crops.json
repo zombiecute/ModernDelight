@@ -2,11 +2,11 @@
   "replace": false,
   "values": [
     {
-      "id": "#c:crops/black_peppers",
+      "id": "#c:crops/black_pepper",
       "required": false
     },
     {
-      "id": "#c:crops/garlics",
+      "id": "#c:crops/garlic",
       "required": false
     },
     {

@@ -11,16 +11,6 @@
       },
       "trigger": "minecraft:consume_item"
     },
-    "cheese_ball": {
-      "conditions": {
-        "item": {
-          "items": [
-            "bakingdelight:cheese_ball"
-          ]
-        }
-      },
-      "trigger": "minecraft:consume_item"
-    },
     "chicken_fillet": {
       "conditions": {
         "item": {
@@ -147,16 +137,6 @@
       },
       "trigger": "minecraft:consume_item"
     },
-    "onion_ring": {
-      "conditions": {
-        "item": {
-          "items": [
-            "bakingdelight:onion_ring"
-          ]
-        }
-      },
-      "trigger": "minecraft:consume_item"
-    },
     "potato_chip": {
       "conditions": {
         "item": {
@@ -211,9 +191,6 @@
       "potato_chip"
     ],
     [
-      "onion_ring"
-    ],
-    [
       "salmon"
     ],
     [
@@ -227,9 +204,6 @@
     ],
     [
       "apple"
-    ],
-    [
-      "cheese_ball"
     ],
     [
       "chicken_fillet"

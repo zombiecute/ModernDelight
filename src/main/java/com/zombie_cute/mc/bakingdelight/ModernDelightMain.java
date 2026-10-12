@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.bakingdelight;
 
+import com.zombie_cute.mc.bakingdelight.advancement.ModCriteria;
+import com.zombie_cute.mc.bakingdelight.advancement.util.StoveClickTracker;
 import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlock;
@@ -17,13 +19,16 @@ import com.zombie_cute.mc.bakingdelight.recipe.ModRecipes;
 import com.zombie_cute.mc.bakingdelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.bakingdelight.sound.ModSounds;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
+import com.zombie_cute.mc.bakingdelight.util.TemperatureUtil;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModBrewingRecipe;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModCompostingChances;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModFuels;
 import com.zombie_cute.mc.bakingdelight.util.registry_util.ModLootTableModifies;
 import com.zombie_cute.mc.bakingdelight.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
@@ -65,6 +70,7 @@ public class ModernDelightMain implements ModInitializer {
 		ModFluid.registerModFluid();
 		ModWorldGeneration.generateModWorldGen();
 		NetworkHandler.registerC2SPacket();
+		ModCriteria.register();
 		try {
 			ModConfig.INSTANCE.load();
 		} catch (Throwable throwable){
@@ -116,7 +122,14 @@ public class ModernDelightMain implements ModInitializer {
 			}
 			return ActionResult.PASS;
 		});
-
+		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> {
+			if (success) {
+				TemperatureUtil.clearCache();
+			}
+		});
+		ServerPlayConnectionEvents.DISCONNECT.register((server, player) -> {
+			StoveClickTracker.clear(server.getPlayer().getUuid());
+		});
 
 	}
 }

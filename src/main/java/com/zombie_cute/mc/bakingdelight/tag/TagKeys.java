@@ -23,8 +23,6 @@ public class TagKeys {
     public static final TagKey<Item> NETHERITE_SCRAP_ORES = commonItemTag("netherite_scrap_ores");
     public static final TagKey<Item> MUSHROOMS = commonItemTag("mushrooms");
     public static final TagKey<Item> RICE = commonItemTag("crops/rice");
-    public static final TagKey<Item> TOMATO = commonItemTag("vegetables/tomato");
-    public static final TagKey<Item> TOMATOES = commonItemTag("foods/vegetables/tomatoes");
     public static final TagKey<Fluid> MILK = create("milk",RegistryKeys.FLUID,"c");
     public static final TagKey<Item> PASTAS = commonItemTag("foods/pastas");
     public static final TagKey<Item> IRON_PLATE = commonItemTag("iron_plates");
@@ -43,6 +41,10 @@ public class TagKeys {
         public static final TagKey<Item> FRUITS = commonItemTag("foods/fruits");
             public static final TagKey<Item> MANGO = commonItemTag("foods/fruits/mango");
             public static final TagKey<Item> LEMON = commonItemTag("foods/fruits/lemon");
+            public static final TagKey<Item> APPLE = commonItemTag("foods/fruits/apple");
+            public static final TagKey<Item> ORANGE = commonItemTag("foods/fruits/orange");
+            public static final TagKey<Item> PEAR = commonItemTag("foods/fruits/pear");
+
         public static final TagKey<Item> JUICE = commonItemTag("foods/juice");
         public static final TagKey<Item> COOKED_MEATS = commonItemTag("foods/cooked_meats");
             public static final TagKey<Item> COOKED_PORK = commonItemTag("foods/cooked_meats/cooked_pork");
@@ -73,19 +75,13 @@ public class TagKeys {
         public static final TagKey<Item> PIZZA_INGREDIENTS = commonItemTag("foods/pizza_ingredients");
         public static final TagKey<Item> PUMPKINS = commonItemTag("foods/pumpkins");
     public static final TagKey<Item> TOOLS = commonItemTag("tools");
-        public static final TagKey<Item> TOOLS_HOES = commonItemTag("hoes");
-        public static final TagKey<Item> TOOLS_SWORDS = commonItemTag("swords");
-        public static final TagKey<Item> TOOLS_SHOVELS = commonItemTag("shovels");
-        public static final TagKey<Item> TOOLS_PICKAXES = commonItemTag("pickaxes");
-        public static final TagKey<Item> TOOLS_AXES = commonItemTag("axes");
         public static final TagKey<Item> TOOLS_KNIVES = commonItemTag("tools/knives");
-    public static final TagKey<Item> COLD_ITEMS = commonItemTag("cold_items");
     public static final TagKey<Item> SEEDS = commonItemTag("seeds");
-        public static final TagKey<Item> SEED_BLACK_PEPPERS = commonItemTag("seeds/black_peppers");
-        public static final TagKey<Item> SEED_GARLIC = commonItemTag("seeds/garlics");
+        public static final TagKey<Item> SEED_BLACK_PEPPERS = commonItemTag("seeds/black_pepper");
+        public static final TagKey<Item> SEED_GARLIC = commonItemTag("seeds/garlic");
     public static final TagKey<Item> CROPS = commonItemTag("crops");
-        public static final TagKey<Item> CROP_BLACK_PEPPER = commonItemTag("crops/black_peppers");
-        public static final TagKey<Item> CROP_GARLIC = commonItemTag("crops/garlics");
+        public static final TagKey<Item> CROP_BLACK_PEPPER = commonItemTag("crops/black_pepper");
+        public static final TagKey<Item> CROP_GARLIC = commonItemTag("crops/garlic");
         public static final TagKey<Item> CABBAGE = commonItemTag("crops/cabbage");
 
     public static final TagKey<Item> CARBONATE_ROCKS = commonItemTag("carbonate_rocks");
@@ -95,21 +91,33 @@ public class TagKeys {
     public static final TagKey<Item> WHISKS = create("whisks", RegistryKeys.ITEM);
     public static final TagKey<Item> AMETHYST_TOOLS = create("amethyst_tools", RegistryKeys.ITEM);
     public static final TagKey<Item> KNEADING_STICKS = create("kneading_sticks", RegistryKeys.ITEM);
-    public static final TagKey<Block> WHISK_MINEABLE = create("whisk_mineable", RegistryKeys.BLOCK);
     public static final TagKey<Item> FLAT_ON_BAKING_TRAY = create("flat_on_baking_tray", RegistryKeys.ITEM);
-    public static final TagKey<Block> CROWBAR_DESTROYABLE = create("crowbar_destroyable", RegistryKeys.BLOCK);
     public static final TagKey<Item> CROWBARS = create("crowbars",RegistryKeys.ITEM);
     public static final TagKey<Item> SPATULAS = create("spatulas",RegistryKeys.ITEM);
-    public static final TagKey<Block> DANGER_BLOCKS =create("danger_blocks",RegistryKeys.BLOCK);
     public static final TagKey<Item> OIL_PLANTS = create("oil_plants",RegistryKeys.ITEM);
     public static final TagKey<Item> FILTERS = create("filters",RegistryKeys.ITEM);
     public static final TagKey<Item> CONDIMENTS = create("condiments",RegistryKeys.ITEM);
     public static final TagKey<Item> INKS = create("inks",RegistryKeys.ITEM);
-    public static final TagKey<Block> CAN_PICK =create("can_pick",RegistryKeys.BLOCK);
-
+    public static final TagKey<Item> COLD_ITEMS = create("cold_items", RegistryKeys.ITEM);
+    
     public static final TagKey<Fluid> OIL = create("oil",RegistryKeys.FLUID);
     public static final TagKey<Fluid> CREAM = create("cream",RegistryKeys.FLUID);
     public static final TagKey<Fluid> GAS = create("gas",RegistryKeys.FLUID);
+    
+    public static final TagKey<Block> CAN_PICK =create("can_pick",RegistryKeys.BLOCK);
+    public static final TagKey<Block> WHISK_MINEABLE = create("whisk_mineable", RegistryKeys.BLOCK);
+    public static final TagKey<Block> CROWBAR_DESTROYABLE = create("crowbar_destroyable", RegistryKeys.BLOCK);
+    public static final TagKey<Block> DANGER_BLOCKS = create("danger_blocks",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_0 = create("temperature_0",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_MINUS_10 = create("temperature_minus_10",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_MINUS_20 = create("temperature_minus_20",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_300 = create("temperature_300",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_600 = create("temperature_600",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_100 = create("temperature_100",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_1000 = create("temperature_1000",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_80 = create("temperature_80",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_60 = create("temperature_60",RegistryKeys.BLOCK);
+    public static final TagKey<Block> TEMPERATURE_40 = create("temperature_40",RegistryKeys.BLOCK);
 
 
     private static TagKey<Item> commonItemTag(String path) {

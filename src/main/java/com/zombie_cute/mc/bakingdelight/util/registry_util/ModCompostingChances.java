@@ -55,14 +55,11 @@ public class ModCompostingChances {
         CompostingChanceRegistry.INSTANCE.add(ModItems.SUNFLOWER_CAKE, 0.5f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.WHITE_TULIP_CAKE, 0.5f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.WITHER_ROSE_CAKE, 1.0f);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.RAW_ONION_RING, 0.3f);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.ONION_RING, 0.6f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_MILK_WIP, 0.3f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_MILK, 0.8f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_APPLE, 0.7f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.RAW_POTATO_CHIP, 0.1f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.POTATO_CHIP, 0.4f);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.CHEESE_BALL, 0.4f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.FRIED_DOUGH_STICK, 0.3f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.RAW_ICE_CREAM_CONE, 0.2f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.ICE_CREAM_CONE, 0.4f);
@@ -96,6 +93,13 @@ public class ModCompostingChances {
         CompostingChanceRegistry.INSTANCE.add(ModItems.MATCHA, 0.2f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.GARLIC_PUREE, 0.2f);
         CompostingChanceRegistry.INSTANCE.add(ModItems.RAW_NOODLES, 0.2f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.GRINDED_LEAVES, 0.45f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CARAMEL_TOAST, 0.6f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.PINECONE, 0.2f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.ORANGE, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.PEAR, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.LEMON, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.MANGO, 0.3f);
 
     }
 }

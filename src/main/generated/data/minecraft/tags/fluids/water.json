@@ -8,6 +8,12 @@
     "bakingdelight:still_liquefied_biogas",
     "bakingdelight:flowing_liquefied_biogas",
     "bakingdelight:still_sweetened_water",
-    "bakingdelight:flowing_sweetened_water"
+    "bakingdelight:flowing_sweetened_water",
+    "bakingdelight:still_alcohol",
+    "bakingdelight:flowing_alcohol",
+    "bakingdelight:still_vinegar",
+    "bakingdelight:flowing_vinegar",
+    "bakingdelight:still_milk",
+    "bakingdelight:flowing_milk"
   ]
 }

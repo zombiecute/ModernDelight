@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:frosted_ice",
+    "minecraft:ice",
+    "minecraft:snow_block",
+    "minecraft:snow",
+    "minecraft:powder_snow",
+    "minecraft:powder_snow_cauldron"
+  ]
+}
