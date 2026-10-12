@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "bakingdelight:item/mousse_wip"
+    "layer0": "bakingdelight:item/wip_item"
   }
 }
