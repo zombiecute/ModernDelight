@@ -33,7 +33,10 @@ public class FreezingRecipe implements Recipe<SimpleInventory> {
                 recipeItems.get(1).test(inventory.getStack(1))&&
                 recipeItems.get(2).test(inventory.getStack(2));
     }
-
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     @Override
     public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
         return output;

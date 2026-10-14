@@ -50,7 +50,10 @@ public class GrindingRecipe implements Recipe<SimpleInventory> {
     public boolean matches(SimpleInventory inventory, World world) {
         return recipeItems.get(0).test(inventory.getStack(0));
     }
-
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     @Override
     public ItemStack createIcon() {
         return ModItems.STONE_MORTAR.getDefaultStack();

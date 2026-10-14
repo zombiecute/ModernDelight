@@ -26,11 +26,13 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.SPATULAS);
         getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.KNEADING_STICKS);
         getOrCreateTagBuilder(TagKeys.TOOLS).addOptionalTag(TagKeys.CROWBARS);
-
-
-        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS).add(ModBlocks.SILICON_BLOCK.asItem());
         getOrCreateTagBuilder(TagKeys.INGOTS).add(ModItems.SILICON_INGOT);
         getOrCreateTagBuilder(TagKeys.SILICON).add(ModItems.SILICON_INGOT);
+        // Storge Blocks
+        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS_ITEM).addTag(TagKeys.SILICON_STORGE_BLOCK_ITEM);
+        getOrCreateTagBuilder(TagKeys.SILICON_STORGE_BLOCK_ITEM).add(ModBlocks.SILICON_BLOCK.asItem());
+        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS_ITEM).addTag(TagKeys.CHERRY_STORGE_BLOCK_ITEM);
+        getOrCreateTagBuilder(TagKeys.CHERRY_STORGE_BLOCK_ITEM).add(ModBlocks.BOXED_CHERRIES.asItem());
         // Bottle of Vegetable Oil
         getOrCreateTagBuilder(TagKeys.BOTTLE_VEGETABLE_OIL).add(ModItems.VEGETABLE_OIL_BOTTLE);
         // Filters
@@ -149,11 +151,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FOODS).addOptionalTag(TagKeys.FLOWER_CAKES);
         getOrCreateTagBuilder(TagKeys.FOODS).addOptionalTag(TagKeys.SAUSAGES);
         getOrCreateTagBuilder(TagKeys.BREADS).addOptionalTag(TagKeys.BREAD_WHEAT);
-        getOrCreateTagBuilder(TagKeys.FOODS).addOptionalTag(TagKeys.PIZZA_INGREDIENTS);
         getOrCreateTagBuilder(TagKeys.FOODS).addOptionalTag(TagKeys.PUMPKINS);
         getOrCreateTagBuilder(TagKeys.SEEDS).addOptionalTag(TagKeys.SEED_BLACK_PEPPERS);
         getOrCreateTagBuilder(TagKeys.CROPS).addOptionalTag(TagKeys.CROP_BLACK_PEPPER);
-        getOrCreateTagBuilder(TagKeys.SEEDS).addOptionalTag(TagKeys.SEED_GARLIC);
         getOrCreateTagBuilder(TagKeys.CROPS).addOptionalTag(TagKeys.CROP_GARLIC);
         getOrCreateTagBuilder(TagKeys.CROPS).addOptionalTag(TagKeys.CABBAGE);
         getOrCreateTagBuilder(TagKeys.C_WHEAT_FLOUR).add(ModItems.WHEAT_FLOUR);
@@ -201,27 +201,17 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         // Cold Items
         getOrCreateTagBuilder(TagKeys.COLD_ITEMS).add(Items.SNOWBALL);
         // Foods
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.POTATO);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.CARROT);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.BEEF);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.COD);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.SALMON);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.CHICKEN);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.RABBIT);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.MUTTON);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.PORKCHOP);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.TROPICAL_FISH);
+
         getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.BUTTER);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.PRAWN);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.SQUID);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.GLOW_SQUID);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.WHITE_TRUFFLE);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.BLACK_TRUFFLE);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(ModItems.SECTIONED_SAUSAGE);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(new Identifier("farmersdelight:cabbage"));
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).add(Items.PUMPKIN);
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(new Identifier("farmersdelight:tomato"));
-        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptional(new Identifier("farmersdelight:onion"));
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addTag(TagKeys.PUMPKINS);
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addTag(TagKeys.RAW_MEATS);
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addTag(TagKeys.RAW_FISHES);
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addTag(TagKeys.CROPS);
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addTag(TagKeys.SAUSAGES);
+
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptionalTag(TagKeys.CABBAGE);
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptionalTag(new Identifier("c:foods/vegetables/tomatoes"));
+        getOrCreateTagBuilder(TagKeys.PIZZA_INGREDIENTS).addOptionalTag(new Identifier("c:foods/vegetables/onions"));
 
         getOrCreateTagBuilder(TagKeys.TRUFFLES).add(ModItems.WHITE_TRUFFLE);
         getOrCreateTagBuilder(TagKeys.TRUFFLES).add(ModItems.BLACK_TRUFFLE);
@@ -264,7 +254,8 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.BRAISED_SHRIMP_BALL_WIP);
 
         getOrCreateTagBuilder(TagKeys.FOODS).addTag(TagKeys.PASTAS);
-        getOrCreateTagBuilder(TagKeys.PASTAS).add(ModItems.RAW_NOODLES);
+        getOrCreateTagBuilder(TagKeys.PASTAS).addTag(TagKeys.RAW_PASTAS);
+        getOrCreateTagBuilder(TagKeys.RAW_PASTAS).add(ModItems.RAW_NOODLES);
 
         getOrCreateTagBuilder(TagKeys.RAW_MEATS).addTag(TagKeys.RAW_PORK);
         getOrCreateTagBuilder(TagKeys.RAW_MEATS).addTag(TagKeys.RAW_BEEF);
@@ -409,8 +400,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.ZINC_INGOT).addOptionalTag(new Identifier("forge:ingots/zinc"));
         getOrCreateTagBuilder(TagKeys.MILKS).addOptionalTag(new Identifier("forge:milk"));
         getOrCreateTagBuilder(TagKeys.RAW_CHICKEN).addOptionalTag(new Identifier("forge:raw_chicken"));
-        getOrCreateTagBuilder(TagKeys.ONION).addOptionalTag(new Identifier("forge:crops/onion"));
-        getOrCreateTagBuilder(TagKeys.ONION).addOptional(new Identifier("farmersdelight", "onion"));
         getOrCreateTagBuilder(TagKeys.RAW_MUTTON).addOptionalTag(new Identifier("forge:raw_mutton"));
 
     }

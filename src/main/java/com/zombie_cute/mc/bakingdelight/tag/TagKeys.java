@@ -25,12 +25,19 @@ public class TagKeys {
     public static final TagKey<Item> RICE = commonItemTag("crops/rice");
     public static final TagKey<Fluid> MILK = create("milk",RegistryKeys.FLUID,"c");
     public static final TagKey<Item> PASTAS = commonItemTag("foods/pastas");
+    public static final TagKey<Item> RAW_PASTAS = commonItemTag("foods/pastas/raw_pastas");
     public static final TagKey<Item> IRON_PLATE = commonItemTag("iron_plates");
     public static final TagKey<Item> COPPER_PLATE = commonItemTag("copper_plates");
     public static final TagKey<Item> ZINC_INGOT = commonItemTag("zinc_ingots");
-    public static final TagKey<Item> ONION = commonItemTag("foods/vegetables/onion");
 
-    public static final TagKey<Item> STORAGE_BLOCKS = commonItemTag("storage_blocks");
+    public static final TagKey<Item> STORAGE_BLOCKS_ITEM = commonItemTag("storage_blocks");
+    public static final TagKey<Item> SILICON_STORGE_BLOCK_ITEM = commonItemTag("storage_blocks/silicon");
+    public static final TagKey<Item> CHERRY_STORGE_BLOCK_ITEM = commonItemTag("storage_blocks/cherry");
+
+    public static final TagKey<Block> STORAGE_BLOCKS_BLOCK = create("storage_blocks",RegistryKeys.BLOCK,"c");
+    public static final TagKey<Block> SILICON_STORGE_BLOCK_BLOCK = create("storage_blocks/silicon",RegistryKeys.BLOCK,"c");
+    public static final TagKey<Block> CHERRY_STORGE_BLOCK_BLOCK = create("storage_blocks/cherry",RegistryKeys.BLOCK,"c");
+
     public static final TagKey<Item> INGOTS = commonItemTag("ingots");
     public static final TagKey<Item> SILICON = commonItemTag("silicon");
     public static final TagKey<Item> C_WHEAT_FLOUR = commonItemTag("wheat_flour");
@@ -66,19 +73,17 @@ public class TagKeys {
         public static final TagKey<Item> CREAMS_WITHOUT_PLAIN = commonItemTag("foods/creams_without_plain");
         public static final TagKey<Item> MOUSSES = commonItemTag("foods/mousses");
         public static final TagKey<Item> RAW_FISHES = commonItemTag("foods/raw_fishes");
-            public static final TagKey<Item> PRAWNS = commonItemTag("foods/raw_fishes/prawns");
-            public static final TagKey<Item> SQUIDS = commonItemTag("foods/raw_fishes/squids");
+            public static final TagKey<Item> PRAWNS = commonItemTag("foods/raw_fishes/prawn");
+            public static final TagKey<Item> SQUIDS = commonItemTag("foods/raw_fishes/squid");
         public static final TagKey<Item> CUTTLEBONES = commonItemTag("foods/cuttlebones");
         public static final TagKey<Item> SAUSAGES = commonItemTag("foods/sausages");
         public static final TagKey<Item> BREADS = commonItemTag("foods/breads");
             public static final TagKey<Item> BREAD_WHEAT = commonItemTag("foods/breads/wheat");
-        public static final TagKey<Item> PIZZA_INGREDIENTS = commonItemTag("foods/pizza_ingredients");
         public static final TagKey<Item> PUMPKINS = commonItemTag("foods/pumpkins");
     public static final TagKey<Item> TOOLS = commonItemTag("tools");
         public static final TagKey<Item> TOOLS_KNIVES = commonItemTag("tools/knives");
     public static final TagKey<Item> SEEDS = commonItemTag("seeds");
         public static final TagKey<Item> SEED_BLACK_PEPPERS = commonItemTag("seeds/black_pepper");
-        public static final TagKey<Item> SEED_GARLIC = commonItemTag("seeds/garlic");
     public static final TagKey<Item> CROPS = commonItemTag("crops");
         public static final TagKey<Item> CROP_BLACK_PEPPER = commonItemTag("crops/black_pepper");
         public static final TagKey<Item> CROP_GARLIC = commonItemTag("crops/garlic");
@@ -99,7 +104,8 @@ public class TagKeys {
     public static final TagKey<Item> CONDIMENTS = create("condiments",RegistryKeys.ITEM);
     public static final TagKey<Item> INKS = create("inks",RegistryKeys.ITEM);
     public static final TagKey<Item> COLD_ITEMS = create("cold_items", RegistryKeys.ITEM);
-    
+    public static final TagKey<Item> PIZZA_INGREDIENTS = create("pizza_ingredients",RegistryKeys.ITEM);
+
     public static final TagKey<Fluid> OIL = create("oil",RegistryKeys.FLUID);
     public static final TagKey<Fluid> CREAM = create("cream",RegistryKeys.FLUID);
     public static final TagKey<Fluid> GAS = create("gas",RegistryKeys.FLUID);

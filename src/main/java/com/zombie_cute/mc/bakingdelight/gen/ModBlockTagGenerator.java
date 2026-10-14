@@ -172,6 +172,11 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.BAMBOO_GRATE);
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.ELECTRIC_STEAMER);
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
+        // Storage Block
+        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS_BLOCK).addTag(TagKeys.SILICON_STORGE_BLOCK_BLOCK);
+        getOrCreateTagBuilder(TagKeys.SILICON_STORGE_BLOCK_BLOCK).add(ModBlocks.SILICON_BLOCK);
+        getOrCreateTagBuilder(TagKeys.STORAGE_BLOCKS_BLOCK).addTag(TagKeys.CHERRY_STORGE_BLOCK_BLOCK);
+        getOrCreateTagBuilder(TagKeys.CHERRY_STORGE_BLOCK_BLOCK).add(ModBlocks.BOXED_CHERRIES);
         // Temperature
         // 0 ℃
         getOrCreateTagBuilder(TagKeys.TEMPERATURE_0).add(Blocks.FROSTED_ICE);

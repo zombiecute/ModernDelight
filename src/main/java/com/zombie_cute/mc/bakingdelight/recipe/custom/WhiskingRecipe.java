@@ -30,7 +30,10 @@ public class WhiskingRecipe implements Recipe<SimpleInventory> {
         }
         return recipeItems.get(0).test(inventory.getStack(0));
     }
-
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     @Override
     public ItemStack createIcon() {
         return ModBlocks.GLASS_BOWL.asItem().getDefaultStack();

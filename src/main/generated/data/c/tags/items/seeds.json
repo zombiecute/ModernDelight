@@ -4,10 +4,6 @@
     {
       "id": "#c:seeds/black_pepper",
       "required": false
-    },
-    {
-      "id": "#c:seeds/garlic",
-      "required": false
     }
   ]
 }

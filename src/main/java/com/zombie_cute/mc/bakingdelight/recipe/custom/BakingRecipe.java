@@ -28,31 +28,16 @@ public class BakingRecipe implements Recipe<SimpleInventory> {
         if (world.isClient){
             return false;
         }
-//        boolean[] a = {true,true,true,true};
-//        for (int j = 0;j < 4;j++){
-//            for (int i = 0;i < 4;i++){
-//                for (;i < 4; i++){
-//                    if (a[i]){
-//                        break;
-//                    }
-//                }
-//                if(recipeItems.get(i).test(inventory.getStack(j))){
-//                    a[i] = false;
-//                    break;
-//                }
-//            }
-//        }
-//        int count = 0;
-//        for (int i = 0; i < 4; i++){
-//            if (!a[i])count++;
-//        }
-//        return count == 4;
         return recipeItems.get(0).test(inventory.getStack(0)) &&
                 recipeItems.get(1).test(inventory.getStack(1)) &&
                 recipeItems.get(2).test(inventory.getStack(2)) &&
                 recipeItems.get(3).test(inventory.getStack(3));
     }
 
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     @Override
     public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
         return output;

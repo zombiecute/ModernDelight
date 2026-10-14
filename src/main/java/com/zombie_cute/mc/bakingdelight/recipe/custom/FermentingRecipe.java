@@ -107,7 +107,10 @@ public class FermentingRecipe implements Recipe<SimpleInventory> {
         list.addAll(ingredients);
         return list;
     }
-
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     @Override
     public ItemStack createIcon() {
         return ModBlocks.INDUSTRIAL_FERMENTER.asItem().getDefaultStack();

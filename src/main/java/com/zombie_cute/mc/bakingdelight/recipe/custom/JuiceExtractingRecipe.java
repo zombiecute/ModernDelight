@@ -44,6 +44,10 @@ public class JuiceExtractingRecipe implements Recipe<SimpleInventory> {
         return i == this.input.size() && recipeMatcher.match(this, null);
     }
     @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
+    @Override
     public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
         return output;
     }

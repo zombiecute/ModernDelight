@@ -27,7 +27,10 @@ public class MixWithWaterRecipe implements Recipe<SimpleInventory> {
     public ItemStack createIcon() {
         return ModBlocks.GLASS_BOWL.asItem().getDefaultStack();
     }
-
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
         if (world.isClient){

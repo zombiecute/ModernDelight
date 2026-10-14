@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:silicon_block"
+    "#c:storage_blocks/silicon",
+    "#c:storage_blocks/cherry"
   ]
 }

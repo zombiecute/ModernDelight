@@ -38,7 +38,10 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
     public boolean matches(SimpleInventory inventory, World world) {
         return ingredients.get(0).test(inventory.getStack(0));
     }
-
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     public boolean isDanger() {
         return isDanger;
     }

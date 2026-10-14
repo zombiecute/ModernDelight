@@ -26,6 +26,7 @@ public class AssemblyRecipe implements Recipe<SimpleInventory> {
         this.mini_game_type = mini_game_type;
         this.goal = goal;
     }
+
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
         return recipeItems.get(0).test(inventory.getStack(0)) &&
@@ -74,6 +75,10 @@ public class AssemblyRecipe implements Recipe<SimpleInventory> {
         return id;
     }
 
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     @Override
     public RecipeSerializer<?> getSerializer() {
         return AssemblyRecipe.Serializer.INSTANCE;
