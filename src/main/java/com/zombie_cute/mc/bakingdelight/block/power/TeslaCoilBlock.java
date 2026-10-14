@@ -184,14 +184,11 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
             if (direction.getAxis().isHorizontal()){
                 Direction direction2 = direction.getOpposite();
                 blockState = blockState.with(FACING, direction2);
-                if (blockState.canPlaceAt(worldView, blockPos)) {
-                    return blockState.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-                }
             } else {
                 blockState = blockState.with(FACING, direction);
-                if (blockState.canPlaceAt(worldView, blockPos)) {
-                    return blockState.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-                }
+            }
+            if (blockState.canPlaceAt(worldView, blockPos)) {
+                return blockState.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             }
         }
         return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);

@@ -30,6 +30,7 @@ import com.zombie_cute.mc.bakingdelight.block.kitchenware.steaming.ElectricSteam
 import com.zombie_cute.mc.bakingdelight.block.power.ChargingPostBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.thermal_power.SterlingEngineBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.FanBladeBlockEntityRender;
+import com.zombie_cute.mc.bakingdelight.block.trawler.TrawlerBlockEntityRenderer;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.item.ModItems;
@@ -107,6 +108,7 @@ public class ModernDelightClient implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlers.ICE_CREAM_MAKER_SCREEN_HANDLER, IceCreamMakerScreen::new);
         HandledScreens.register(ModScreenHandlers.CHARGING_POST_SCREEN_HANDLER, ChargingPostScreen::new);
         HandledScreens.register(ModScreenHandlers.INDUSTRIAL_FERMENTER_SCREEN_HANDLER, IndustrialFermenterScreen::new);
+        HandledScreens.register(ModScreenHandlers.TRAWLER_SCREEN_HANDLER, TrawlerScreen::new);
 
         BlockEntityRendererFactories.register(ModBlockEntities.GLASS_BOWL_ENTITY, GlassBowlBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.FREEZER_ENTITY, FreezerBlockEntityRenderer::new);
@@ -124,7 +126,7 @@ public class ModernDelightClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.JUICE_EXTRACTOR_BLOCK_ENTITY, JuiceExtractorBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.DEEP_FRY_BASKET_BLOCK_ENTITY, DeepFryBasketBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.WOODEN_PLATE_BLOCK_ENTITY, WoodenPlateBlockEntityRenderer::new);
-        BlockEntityRendererFactories.register(ModBlockEntities.INDUSTRIAL_FERMENTER_BLOCK_ENTITY_BLOCK_ENTITY, IndustrialFermenterBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.INDUSTRIAL_FERMENTER_BLOCK_ENTITY, IndustrialFermenterBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.CLAY_POT_BLOCK_ENTITY, ClayPotBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.BRITISH_BREAKFAST_BLOCK_ENTITY, BritishBreakfastBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.MARSHALA_CHEESE_BALL_BLOCK_ENTITY, MarshalaCheeseBallBlockEntityRender::new);
@@ -136,6 +138,7 @@ public class ModernDelightClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.PORK_NOODLE_BLOCK_ENTITY, PorkNoodleBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.PEPPER_BEEF_RICE_BLOCK_ENTITY, PepperBeefRiceBlockEntityRender::new);
         BlockEntityRendererFactories.register(ModBlockEntities.VEGETABLE_NOODLE_BLOCK_ENTITY, VegetableNoodleBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.TRAWLER_BLOCK_ENTITY, TrawlerBlockEntityRenderer::new);
 
         registerModelPredicateProviders();
 
@@ -175,7 +178,7 @@ public class ModernDelightClient implements ClientModInitializer {
                         new Identifier("minecraft","block/water_flow"),
                         0x903B0A
                 ));
-        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
                 ModFluid.STILL_VINEGAR, ModFluid.FLOWING_VINEGAR);
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_ALCOHOL, ModFluid.FLOWING_ALCOHOL,
                 new SimpleFluidRenderHandler(
@@ -191,7 +194,7 @@ public class ModernDelightClient implements ClientModInitializer {
                         new Identifier("minecraft","block/water_flow"),
                         0xFFFFFF
                 ));
-        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
                 ModFluid.STILL_MILK, ModFluid.FLOWING_MILK);
     }
     public static void registerModelPredicateProviders() {

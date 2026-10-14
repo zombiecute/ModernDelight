@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:bakingdelight/got_mousse_wip",
+  "parent": "minecraft:bakingdelight/got_freezer",
   "criteria": {
     "cherry_mousse": {
       "conditions": {

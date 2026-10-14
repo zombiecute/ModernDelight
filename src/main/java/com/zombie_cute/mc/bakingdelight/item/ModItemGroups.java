@@ -108,6 +108,8 @@ public class ModItemGroups {
                         entries.add(ModItems.SWEETENED_WATER_BUCKET);
                         entries.add(ModItems.ALCOHOL_BUCKET);
                         entries.add(ModItems.VINEGAR_BUCKET);
+                        // Trawler
+                        entries.add(ModBlocks.TRAWLER);
                         // Clay Pots
                         entries.add(ModBlocks.CLAY_POT);
                         entries.add(ModBlocks.MARSHALA_CHEESE_BALL);

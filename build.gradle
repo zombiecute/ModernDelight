@@ -57,6 +57,7 @@ repositories {
 		}
 	} // GeckoLib
 	maven { url 'https://maven.blamejared.com' } // Patchouli
+	maven { url = "https://api.modrinth.com/maven" } // Jade
 }
 
 fabricApi {
@@ -95,13 +96,10 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_api_version}"
 	// REI
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	// Mod Menu
 	modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
-	modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
 	// EMI
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}+${minecraft_version}:api"
-	modLocalRuntime "dev.emi:emi-fabric:${emi_version}+${minecraft_version}"
 	// Geckolib
 	include modApi("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
 	include modApi("com.eliotlash.mclib:mclib:20")
@@ -111,8 +109,15 @@ dependencies {
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
 	// Patchouli
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
-
+	// Jade
+	modImplementation "maven.modrinth:jade:${project.jade_version}"
 	// Local Runtime
+	// REI
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+	// EMI
+	modLocalRuntime "dev.emi:emi-fabric:${emi_version}+${minecraft_version}"
+	// Mod Menu
+	modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
 	// Tech Reborn
 	modLocalRuntime("curse.maven:reborncore-237903:4708961")
 	modLocalRuntime("curse.maven:techreborn-233564:4708962")

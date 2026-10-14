@@ -43,6 +43,7 @@ import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTu
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.BatteryBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.fermenter.IndustrialFermenterBlockEntity;
 import com.zombie_cute.mc.bakingdelight.block.kitchenware.clay_pot.ClayPotBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.trawler.TrawlerBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.block.entity.BlockEntityType;
@@ -194,7 +195,7 @@ public class ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE, new Identifier(ModernDelightMain.MOD_ID, "wooden_plate_be"),
             FabricBlockEntityTypeBuilder.create(WoodenPlateBlockEntity::new, ModBlocks.WOODEN_PLATE).build(null)
     );
-    public static final BlockEntityType<IndustrialFermenterBlockEntity> INDUSTRIAL_FERMENTER_BLOCK_ENTITY_BLOCK_ENTITY = Registry.register(
+    public static final BlockEntityType<IndustrialFermenterBlockEntity> INDUSTRIAL_FERMENTER_BLOCK_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "industrial_fermenter_be"),
             FabricBlockEntityTypeBuilder.create(IndustrialFermenterBlockEntity::new, ModBlocks.INDUSTRIAL_FERMENTER).build(null)
     );
@@ -239,8 +240,12 @@ public class ModBlockEntities {
             FabricBlockEntityTypeBuilder.create(PepperBeefRiceBlockEntity::new, ModBlocks.PEPPER_BEEF_RICE).build(null)
     );
     public static final BlockEntityType<VegetableNoodleBlockEntity> VEGETABLE_NOODLE_BLOCK_ENTITY = Registry.register(
-            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "vegetable_noodle"),
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "vegetable_noodle_be"),
             FabricBlockEntityTypeBuilder.create(VegetableNoodleBlockEntity::new, ModBlocks.VEGETABLE_NOODLE).build(null)
+    );
+    public static final BlockEntityType<TrawlerBlockEntity> TRAWLER_BLOCK_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, Identifier.of(ModernDelightMain.MOD_ID, "trawler_be"),
+            FabricBlockEntityTypeBuilder.create(TrawlerBlockEntity::new, ModBlocks.TRAWLER).build(null)
     );
     public static void registerBlockEntities(){
         EnergyStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
@@ -261,7 +266,7 @@ public class ModBlockEntities {
         FluidStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
                 ((GasCanisterBlockEntity)blockEntity).fluidStorage),GAS_CANISTER_BLOCK_ENTITY);
         FluidStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
-                ((IndustrialFermenterBlockEntity)blockEntity).fluidStorage),INDUSTRIAL_FERMENTER_BLOCK_ENTITY_BLOCK_ENTITY);
+                ((IndustrialFermenterBlockEntity)blockEntity).fluidStorage), INDUSTRIAL_FERMENTER_BLOCK_ENTITY);
         ModernDelightMain.LOGGER.info("Registering Mod Block Entities for " + ModernDelightMain.MOD_ID);
     }
 }

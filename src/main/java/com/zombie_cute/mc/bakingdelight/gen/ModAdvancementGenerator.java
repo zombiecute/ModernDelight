@@ -27,14 +27,10 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
     public static final String GET_WHISK_DESC = "advancement.bakingdelight.get_whisk_desc";
     public static final String GET_AMETHYST_TOOL_TITLE = "advancement.bakingdelight.get_amethyst_tool_title";
     public static final String GET_AMETHYST_TOOL_DESC = "advancement.bakingdelight.get_amethyst_tool_desc";
-    public static final String GET_NETHERITE_WHISK_TITLE = "advancement.bakingdelight.get_netherite_whisk_title";
-    public static final String GET_NETHERITE_WHISK_DESC = "advancement.bakingdelight.get_netherite_whisk_desc";
     public static final String GET_CUTTLEBONE_TITLE = "advancement.bakingdelight.get_cuttlebone_title";
     public static final String GET_CUTTLEBONE_DESC = "advancement.bakingdelight.get_cuttlebone_desc";
     public static final String GET_TRUFFLE_TITLE = "advancement.bakingdelight.get_truffle_title";
     public static final String GET_TRUFFLE_DESC = "advancement.bakingdelight.get_truffle_desc";
-    public static final String GET_ALL_AMETHYST_TITLE = "advancement.bakingdelight.get_all_amethyst_title";
-    public static final String GET_ALL_AMETHYST_DESC = "advancement.bakingdelight.get_all_amethyst_desc";
     public static final String GET_CHERRY_BOMB_TITLE = "advancement.bakingdelight.get_cherry_bomb_title";
     public static final String GET_CHERRY_BOMB_DESC = "advancement.bakingdelight.get_cherry_bomb_desc";
     public static final String GET_GLASS_BOWL_TITLE = "advancement.bakingdelight.get_glass_bowl_title";
@@ -49,14 +45,8 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
     public static final String GET_OVEN_DESC = "advancement.bakingdelight.get_oven_desc";
     public static final String GET_EGG_TART_TITLE = "advancement.bakingdelight.get_egg_tart_title";
     public static final String GET_EGG_TART_DESC = "advancement.bakingdelight.get_egg_tart_desc";
-    public static final String GET_PUDDING_WIP_1_TITLE = "advancement.bakingdelight.get_pudding_wip_1_title";
-    public static final String GET_PUDDING_WIP_1_DESC = "advancement.bakingdelight.get_pudding_wip_1_desc";
-    public static final String GET_PUDDING_WIP_2_TITLE = "advancement.bakingdelight.get_pudding_wip_2_title";
-    public static final String GET_PUDDING_WIP_2_DESC = "advancement.bakingdelight.get_pudding_wip_2_desc";
     public static final String GET_ALL_PUDDING_TITLE = "advancement.bakingdelight.get_all_pudding_title";
     public static final String GET_ALL_PUDDING_DESC = "advancement.bakingdelight.get_all_pudding_desc";
-    public static final String GET_MOUSSE_WIP_TITLE = "advancement.bakingdelight.get_mousse_wip_title";
-    public static final String GET_MOUSSE_WIP_DESC = "advancement.bakingdelight.get_mousse_wip_desc";
     public static final String GET_ALL_MOUSSE_TITLE = "advancement.bakingdelight.get_all_mousse_title";
     public static final String GET_ALL_MOUSSE_DESC = "advancement.bakingdelight.get_all_mousse_desc";
     public static final String GET_CREAM_BUCKET_TITLE = "advancement.bakingdelight.get_cream_bucket_title";
@@ -333,33 +323,7 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 )
                 .criterion("butter", InventoryChangedCriterion.Conditions.items(ModItems.BUTTER))
                 .build(consumer, ModernDelightMain.MOD_ID + "/got_butter");
-        Advancement getPuddingWIP1 = Advancement.Builder.create().parent(getButter)
-                .display(
-                        ModItems.PUDDING_WIP_1,
-                        Text.translatable(GET_PUDDING_WIP_1_TITLE),
-                        Text.translatable(GET_PUDDING_WIP_1_DESC),
-                        null,
-                        AdvancementFrame.TASK,
-                        true,
-                        false,
-                        false
-                )
-                .criterion("pudding_wip_1", InventoryChangedCriterion.Conditions.items(ModItems.PUDDING_WIP_1))
-                .build(consumer, ModernDelightMain.MOD_ID + "/got_pudding_wip_1");
-        Advancement getPuddingWIP2 = Advancement.Builder.create().parent(getPuddingWIP1)
-                .display(
-                        ModItems.PUDDING_WIP_2,
-                        Text.translatable(GET_PUDDING_WIP_2_TITLE),
-                        Text.translatable(GET_PUDDING_WIP_2_DESC),
-                        null,
-                        AdvancementFrame.TASK,
-                        true,
-                        false,
-                        false
-                )
-                .criterion("pudding_wip_2", InventoryChangedCriterion.Conditions.items(ModItems.PUDDING_WIP_2))
-                .build(consumer, ModernDelightMain.MOD_ID + "/got_pudding_wip_2");
-        Advancement getAllPudding = Advancement.Builder.create().parent(getPuddingWIP2)
+        Advancement getAllPudding = Advancement.Builder.create().parent(getButter)
                 .display(
                         ModItems.APPLE_PUDDING,
                         Text.translatable(GET_ALL_PUDDING_TITLE),
@@ -375,20 +339,7 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 .criterion("caramel_pudding", InventoryChangedCriterion.Conditions.items(ModItems.CARAMEL_PUDDING))
                 .criterion("cherry_pudding", InventoryChangedCriterion.Conditions.items(ModItems.CHERRY_PUDDING))
                 .build(consumer, ModernDelightMain.MOD_ID + "/got_all_pudding");
-        Advancement getMousseWIP = Advancement.Builder.create().parent(getFreezer)
-                .display(
-                        ModItems.MOUSSE_WIP,
-                        Text.translatable(GET_MOUSSE_WIP_TITLE),
-                        Text.translatable(GET_MOUSSE_WIP_DESC),
-                        null,
-                        AdvancementFrame.TASK,
-                        true,
-                        false,
-                        false
-                )
-                .criterion("mousse_wip", InventoryChangedCriterion.Conditions.items(ModItems.MOUSSE_WIP))
-                .build(consumer, ModernDelightMain.MOD_ID + "/got_mousse_wip");
-        Advancement getAllMousse = Advancement.Builder.create().parent(getMousseWIP)
+        Advancement getAllMousse = Advancement.Builder.create().parent(getFreezer)
                 .display(
                         ModItems.CHERRY_MOUSSE,
                         Text.translatable(GET_ALL_MOUSSE_TITLE),

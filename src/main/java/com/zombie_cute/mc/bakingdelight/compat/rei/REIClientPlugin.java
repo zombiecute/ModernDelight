@@ -44,7 +44,6 @@ import com.zombie_cute.mc.bakingdelight.compat.rei.wooden_basin.WoodenBasinDispl
 import com.zombie_cute.mc.bakingdelight.recipe.custom.*;
 import com.zombie_cute.mc.bakingdelight.screen.custom.*;
 import me.shedaniel.math.Rectangle;
-import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
@@ -54,7 +53,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.recipe.CampfireCookingRecipe;
 import net.minecraft.recipe.RecipeType;
 
-public class BakingDelightREIClientPlugin implements REIClientPlugin {
+public class REIClientPlugin implements me.shedaniel.rei.api.client.plugins.REIClientPlugin {
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(

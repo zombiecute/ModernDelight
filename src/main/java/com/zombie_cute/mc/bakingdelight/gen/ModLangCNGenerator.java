@@ -162,8 +162,10 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(TextUtil.FERMENTATION_TEMP,"此发酵的最适温度为");
         translationBuilder.add(TextUtil.NO_BACTRIA,"无");
         translationBuilder.add(TextUtil.FERMENTATION_TANK,"一个容量为 5 B 的流体储罐，可以用于转移工业发酵机中的发酵液以及发酵菌。");
-
-        translationBuilder.add(AdvanceFurnaceScreen.TOOLTIP,"点击以获取经验值");
+        translationBuilder.add(TextUtil.TRAWLER,
+                "一款可以用于打捞水产品的设备，只能放置在水面上，右键可以升起或放下拖网，拖网位于水面上时，按下 Shift 加右键可以打开 GUI。鱼饵为可选项。");
+        translationBuilder.add(TextUtil.TRAWLER_BAIT,"此处放置鱼饵（可选）");
+        translationBuilder.add(TextUtil.GET_EXP,"点击以获取经验值");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"消除工具");
 
         translationBuilder.add(GlassBowlBlockEntity.WHISK_FAIL, "这东西似乎不是搅拌器能处理的");
@@ -511,6 +513,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.ALCOHOL_BUCKET, "酒精桶");
         translationBuilder.add(ModItems.VINEGAR_BUCKET, "醋桶");
         translationBuilder.add(ModItems.FERMENTATION_TANK, "发酵液储罐");
+        translationBuilder.add(ModBlocks.TRAWLER, "拖网");
 
         translationBuilder.add(ModBlocks.INDUSTRIAL_FERMENTER, "工业发酵机");
         translationBuilder.add(BacteriaType.ACETOBACTER.getTranslationKey(), "醋酸菌");
@@ -594,6 +597,8 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("emi.category.bakingdelight.grinding","碾磨");
         translationBuilder.add("emi.category.bakingdelight.fermenting","发酵");
 
+        translationBuilder.add("config.jade.bakingdelight.trawler_interval","拖网收获时间");
+        translationBuilder.add("bakingdelight.jade.tooltip.trawler_interval","剩余收获时间：%d 秒");
 
         translationBuilder.add("sounds.bakingdelight.entity_butter_hit", "黄油：击中");
         translationBuilder.add("sounds.bakingdelight.entity_butter_shoot", "黄油：发射");
@@ -651,6 +656,9 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("config.bakingdelight.option.maxSeasonings.desc","设置一个食物最多可以添加多少调味料。");
         translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.title","充电桩充电效率");
         translationBuilder.add("config.bakingdelight.option.chargingPostEfficiency.desc","设置充电桩的充电效率。");
+        translationBuilder.add("config.bakingdelight.trawler.title","拖网配置");
+        translationBuilder.add("config.bakingdelight.option.base_fishing_intervals.title","拖网的默认捕鱼时间（秒）");
+        translationBuilder.add("config.bakingdelight.option.base_fishing_intervals.desc","配置拖网的默认捕鱼时长。");
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"现代乐事指南");
         translationBuilder.add("patchouli.bakingdelight.book.name","现代乐事指南");
@@ -660,14 +668,10 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModAdvancementGenerator.GET_WHISK_DESC, "合成一把搅拌器来开始你新的厨房之旅");
         translationBuilder.add(ModAdvancementGenerator.GET_AMETHYST_TOOL_TITLE, "亮晶晶!");
         translationBuilder.add(ModAdvancementGenerator.GET_AMETHYST_TOOL_DESC, "合成一把紫水晶工具");
-        translationBuilder.add(ModAdvancementGenerator.GET_NETHERITE_WHISK_TITLE, "啊?!");
-        translationBuilder.add(ModAdvancementGenerator.GET_NETHERITE_WHISK_DESC, "合成一把下界合金搅拌器或者滚出厨房");
         translationBuilder.add(ModAdvancementGenerator.GET_CUTTLEBONE_TITLE, "比牛奶更好！");
         translationBuilder.add(ModAdvancementGenerator.GET_CUTTLEBONE_DESC, "获得鱿鱼骨");
         translationBuilder.add(ModAdvancementGenerator.GET_TRUFFLE_TITLE, "掘地三尺");
         translationBuilder.add(ModAdvancementGenerator.GET_TRUFFLE_DESC, "找到松露");
-        translationBuilder.add(ModAdvancementGenerator.GET_ALL_AMETHYST_TITLE, "紫水晶爱好者");
-        translationBuilder.add(ModAdvancementGenerator.GET_ALL_AMETHYST_DESC, "拥有所有的紫水晶工具");
         translationBuilder.add(ModAdvancementGenerator.GET_CHERRY_BOMB_TITLE, "轰！");
         translationBuilder.add(ModAdvancementGenerator.GET_CHERRY_BOMB_DESC, "✧(≖ ◡ ≖✿)");
         translationBuilder.add(ModAdvancementGenerator.GET_GLASS_BOWL_TITLE, "轻拿轻放");
@@ -682,16 +686,10 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModAdvancementGenerator.GET_OVEN_DESC, "烤炉会帮你烘焙更棒的美食");
         translationBuilder.add(ModAdvancementGenerator.GET_EGG_TART_TITLE, "甜蜜蜜！");
         translationBuilder.add(ModAdvancementGenerator.GET_EGG_TART_DESC, "依次将奶油、混合面团、鸡蛋和糖放入烤炉来制作蛋挞");
-        translationBuilder.add(ModAdvancementGenerator.GET_PUDDING_WIP_1_TITLE, "布丁：第一步");
-        translationBuilder.add(ModAdvancementGenerator.GET_PUDDING_WIP_1_DESC, "按照进度来做，相信你会做好布丁的");
-        translationBuilder.add(ModAdvancementGenerator.GET_PUDDING_WIP_2_TITLE, "布丁：第二步");
-        translationBuilder.add(ModAdvancementGenerator.GET_PUDDING_WIP_2_DESC, "将4个布丁（半成品）放入烤炉");
         translationBuilder.add(ModAdvancementGenerator.GET_ALL_PUDDING_TITLE, "Q弹！");
-        translationBuilder.add(ModAdvancementGenerator.GET_ALL_PUDDING_DESC, "将烘焙过布丁放在冰箱的中格，两侧放入对应口味的食材，你将得到真正的布丁");
-        translationBuilder.add(ModAdvancementGenerator.GET_MOUSSE_WIP_TITLE, "慕斯：第一步");
-        translationBuilder.add(ModAdvancementGenerator.GET_MOUSSE_WIP_DESC, "按照进度来做，相信你会做好慕斯的");
+        translationBuilder.add(ModAdvancementGenerator.GET_ALL_PUDDING_DESC, "收集所有的布丁");
         translationBuilder.add(ModAdvancementGenerator.GET_ALL_MOUSSE_TITLE, "好松软！");
-        translationBuilder.add(ModAdvancementGenerator.GET_ALL_MOUSSE_DESC, "将慕斯（半成品）放在冰箱的中格，两侧放入对应口味的食材，你将得到真正的慕斯");
+        translationBuilder.add(ModAdvancementGenerator.GET_ALL_MOUSSE_DESC, "收集所有的慕斯");
         translationBuilder.add(ModAdvancementGenerator.GET_CREAM_BUCKET_TITLE, "黏糊糊的奶");
         translationBuilder.add(ModAdvancementGenerator.GET_CREAM_BUCKET_DESC, "将奶桶放入玻璃碗，再用搅拌器搅拌即可获得奶油桶");
         translationBuilder.add(ModAdvancementGenerator.GET_BUTTER_TITLE, "甜而粘口");

@@ -44,6 +44,8 @@ public final class ModConfig {
     public static int gasCanisterVolume = 6000;
     @SerialEntry
     public static int maxSeasonings = 5;
+    @SerialEntry
+    public static int baseFishingIntervals = 1200;
 
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> builder
@@ -179,6 +181,20 @@ public final class ModConfig {
                                                 )
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 15).step(1)
                                                         .valueFormatter(val -> Text.literal(String.valueOf(val))))
+                                                .build())
+                                        .build())
+                                .group(OptionGroup.createBuilder()
+                                        .name(Text.translatable("config.bakingdelight.trawler.title"))
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.bakingdelight.option.base_fishing_intervals.title"))
+                                                .description(OptionDescription.of(Text.translatable("config.bakingdelight.option.base_fishing_intervals.desc")))
+                                                .binding(
+                                                        1200,
+                                                        () -> baseFishingIntervals,
+                                                        value -> baseFishingIntervals = value
+                                                )
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 6000).step(20)
+                                                        .valueFormatter(val -> Text.literal(String.valueOf(val / 20))))
                                                 .build())
                                         .build())
                                 .build()))

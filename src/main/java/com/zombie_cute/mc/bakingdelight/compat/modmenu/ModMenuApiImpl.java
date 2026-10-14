@@ -4,7 +4,7 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import com.zombie_cute.mc.bakingdelight.util.ModConfig;
 
-public class ModernDelightModMenuApiImpl implements ModMenuApi {
+public class ModMenuApiImpl implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         try {

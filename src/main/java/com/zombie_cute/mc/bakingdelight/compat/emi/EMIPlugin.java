@@ -11,7 +11,7 @@ import net.minecraft.recipe.CampfireCookingRecipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
 
-public class BakingDelightEMIPlugin implements EmiPlugin {
+public class EMIPlugin implements EmiPlugin {
 
     @Override
     public void register(EmiRegistry registry) {

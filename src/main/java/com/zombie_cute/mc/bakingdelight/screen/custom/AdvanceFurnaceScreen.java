@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.networking.packet.SpawnXPC2SPacket;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -18,7 +19,7 @@ import net.minecraft.util.Identifier;
 public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHandler> {
     private static final Identifier TEXTURE = new Identifier(ModernDelightMain.MOD_ID,
             "textures/gui/advance_furnace_gui.png");
-    public static final String TOOLTIP = "tooltips.bakingdelight.advance_furnace_exp_tooltip";
+
     public AdvanceFurnaceScreen(AdvanceFurnaceScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
@@ -84,7 +85,7 @@ public class AdvanceFurnaceScreen extends HandledScreen<AdvanceFurnaceScreenHand
     @Override
     protected void drawMouseoverTooltip(DrawContext context, int mouseX, int mouseY) {
         if (b){
-            context.drawTooltip(this.textRenderer,Text.translatable(TOOLTIP).formatted(Formatting.WHITE),mouseX,mouseY);
+            context.drawTooltip(this.textRenderer,Text.translatable(TextUtil.GET_EXP).formatted(Formatting.WHITE),mouseX,mouseY);
         }
         super.drawMouseoverTooltip(context, mouseX, mouseY);
     }

@@ -75,6 +75,7 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PORK_NOODLE);
         addDrop(ModBlocks.PEPPER_BEEF_RICE);
         addDrop(ModBlocks.VEGETABLE_NOODLE);
+        addDrop(ModBlocks.TRAWLER);
 
         addDrop(ModBlocks.FISH_AND_CHIPS,ModBlocks.WOODEN_PLATE);
         addDrop(ModBlocks.WILD_PEPPER_CROP,block -> new LootTable.Builder()

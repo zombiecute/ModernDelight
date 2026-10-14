@@ -57,6 +57,8 @@ import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.FanBla
 import com.zombie_cute.mc.bakingdelight.block.power.alternator.wind_power.WindTurbineControllerBlock;
 import com.zombie_cute.mc.bakingdelight.block.power.batteries.*;
 import com.zombie_cute.mc.bakingdelight.block.fermenter.IndustrialFermenterBlock;
+import com.zombie_cute.mc.bakingdelight.block.trawler.TrawlerBlock;
+import com.zombie_cute.mc.bakingdelight.block.trawler.TrawlerBlockItem;
 import com.zombie_cute.mc.bakingdelight.fluid.ModFluid;
 import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -207,6 +209,7 @@ public class ModBlocks {
     public static final Block PEPPER_BEEF_RICE = registerBlockWithoutItem("pepper_beef_rice", new PepperBeefRiceBlock(14,0.9F));
     public static final Block VEGETABLE_NOODLE = registerBlockWithoutItem("vegetable_noodle", new VegetableNoodleBlock(9,0.8F));
 
+    public static final Block TRAWLER = registerBlockWithoutItem("trawler",new TrawlerBlock());
     // Block Items
     public static final BlockItem FISH_AND_CHIPS_ITEM = Registry.register(Registries.ITEM,new Identifier(ModernDelightMain.MOD_ID,"fish_and_chips"),
             new PackagedFoodBlockItem(FISH_AND_CHIPS,20,0.6F,WOODEN_PLATE.asItem()));
@@ -286,6 +289,9 @@ public class ModBlocks {
             new BlockItem(STEAMED_PUMPKIN, new FabricItemSettings().maxCount(16).recipeRemainder(WOODEN_PLATE.asItem())));
     public static final BlockItem INDUSTRIAL_FERMENTER_ITEM = Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID, "industrial_fermenter"),
             new IndustrialFermenterBlockItem());
+    public static final BlockItem TRAWLER_ITEM = Registry.register(Registries.ITEM, Identifier.of(ModernDelightMain.MOD_ID, "trawler"),
+            new TrawlerBlockItem());
+
     private static Block registerBlockWithoutItem(String name,Block block){
         return Registry.register(Registries.BLOCK,new Identifier(ModernDelightMain.MOD_ID,name),block);
     }

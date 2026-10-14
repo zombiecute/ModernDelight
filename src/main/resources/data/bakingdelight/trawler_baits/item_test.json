@@ -1,0 +1,9 @@
+{
+  "bait": {
+    "type": "item",
+    "id": "minecraft:wheat_seeds"
+  },
+  "interval_ticks": 40,
+  "probability_of_consume": 1.0,
+  "loot_table" : "bakingdelight:trawler/bait/item_test"
+}

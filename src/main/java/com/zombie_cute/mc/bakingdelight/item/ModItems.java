@@ -637,6 +637,9 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.6F).build())));
     public static final Item MANGO = registerItem("mango", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5F).build())));
+
+    public static final Item COOKED_PRAWN = registerItem("cooked_prawn", new Item(new FabricItemSettings()
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build())));
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID,name),item);
     }

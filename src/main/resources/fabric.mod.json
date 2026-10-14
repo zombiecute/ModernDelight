@@ -34,13 +34,16 @@
 			"com.zombie_cute.mc.bakingdelight.ModernDelightDataGenerator"
 		],
 		"rei_client": [
-			"com.zombie_cute.mc.bakingdelight.compat.rei.BakingDelightREIClientPlugin"
+			"com.zombie_cute.mc.bakingdelight.compat.rei.REIClientPlugin"
 		],
 		"emi": [
-			"com.zombie_cute.mc.bakingdelight.compat.emi.BakingDelightEMIPlugin"
+			"com.zombie_cute.mc.bakingdelight.compat.emi.EMIPlugin"
 		],
 		"modmenu": [
-			"com.zombie_cute.mc.bakingdelight.compat.modmenu.ModernDelightModMenuApiImpl"
+			"com.zombie_cute.mc.bakingdelight.compat.modmenu.ModMenuApiImpl"
+		],
+		"jade": [
+			"com.zombie_cute.mc.bakingdelight.compat.jade.JadePlugin"
 		]
 	},
 	"mixins": [
@@ -62,6 +65,6 @@
 		}
 	},
 	"suggests": {
-		"another-mod": ["modmenu", "create", "farmersdelight", "yet_another_config_lib_v3"]
+		"another-mod": ["modmenu", "create", "farmersdelight", "yet_another_config_lib_v3","jade"]
 	}
 }

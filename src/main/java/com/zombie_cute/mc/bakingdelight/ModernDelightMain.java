@@ -6,6 +6,7 @@ import com.zombie_cute.mc.bakingdelight.block.ModBlockEntities;
 import com.zombie_cute.mc.bakingdelight.block.ModBlocks;
 import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlock;
 import com.zombie_cute.mc.bakingdelight.block.biogas.GasCanisterBlockEntity;
+import com.zombie_cute.mc.bakingdelight.block.trawler.TrawlerBaitManager;
 import com.zombie_cute.mc.bakingdelight.effects.ModEffectsAndPotions;
 import com.zombie_cute.mc.bakingdelight.enchantment.ModEnchantments;
 import com.zombie_cute.mc.bakingdelight.entity.ModEntities;
@@ -29,6 +30,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
@@ -36,6 +38,7 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPointer;
@@ -76,7 +79,32 @@ public class ModernDelightMain implements ModInitializer {
 		} catch (Throwable throwable){
 			LOGGER.warn("It is recommended to install Yet Another Config Lib to configure {} more easily.", MOD_ID);
 		}
-		// DispenserBlock
+		dispenserBlockBehavior();
+		events();
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new TrawlerBaitManager());
+	}
+
+	private static void events() {
+		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+			ItemStack itemStack = player.getStackInHand(hand);
+			if (itemStack.getItem().equals(ModItems.CROWBAR)){
+				world.playSound(null,entity.getBlockPos(),
+						ModSounds.ITEM_CROWBAR_ATTACK, SoundCategory.PLAYERS,
+						0.4f,world.random.nextFloat()/2+0.8f);
+			}
+			return ActionResult.PASS;
+		});
+		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> {
+			if (success) {
+				TemperatureUtil.clearCache();
+			}
+		});
+		ServerPlayConnectionEvents.DISCONNECT.register((server, player) -> {
+			StoveClickTracker.clear(server.getPlayer().getUuid());
+		});
+	}
+
+	private static void dispenserBlockBehavior() {
 		DispenserBlock.registerBehavior(ModItems.BUTTER, new ProjectileDispenserBehavior() {
 			@Override
 			protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
@@ -112,24 +140,5 @@ public class ModernDelightMain implements ModInitializer {
 				return stack;
 			}
 		});
-		// Events
-		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-			ItemStack itemStack = player.getStackInHand(hand);
-			if (itemStack.getItem().equals(ModItems.CROWBAR)){
-				world.playSound(null,entity.getBlockPos(),
-						ModSounds.ITEM_CROWBAR_ATTACK, SoundCategory.PLAYERS,
-						0.4f,world.random.nextFloat()/2+0.8f);
-			}
-			return ActionResult.PASS;
-		});
-		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> {
-			if (success) {
-				TemperatureUtil.clearCache();
-			}
-		});
-		ServerPlayConnectionEvents.DISCONNECT.register((server, player) -> {
-			StoveClickTracker.clear(server.getPlayer().getUuid());
-		});
-
 	}
 }

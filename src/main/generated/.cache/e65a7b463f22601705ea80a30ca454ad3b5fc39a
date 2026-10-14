@@ -1,4 +1,4 @@
-// 1.20.1	2026-10-09T10:33:36.6875689	Modern Delight/Model Definitions
+// 1.20.1	2026-10-14T12:55:36.3018963	Modern Delight/Model Definitions
 3f0d7796946a91fd9c31e080b79c6be4f8a6f491 assets\bakingdelight\models\block\garlic_crop_stage1.json
 d9b9403143ad991dbcdadc8b2c22f5bb07a5f056 assets\bakingdelight\models\item\diorite_cabinet.json
 59e414b97cf7982b51663cf49b5f6278521dcd5a assets\bakingdelight\models\item\packaged_instant_noodles.json
@@ -108,8 +108,8 @@ d0c94242e384c060e1537b7f2c86d3ca460be48c assets\bakingdelight\models\item\boxed_
 2750f9fde6017a29e2e194ff454d0c6139516f1c assets\bakingdelight\models\item\baking_tray.json
 510d09ad2a955cf29f250b42c32ba8b1a534da21 assets\bakingdelight\models\item\fish_egg.json
 23472109aea0022bfd4a211a56e33f28e20cbb5c assets\bakingdelight\models\item\mashed_potato_block.json
-57009936a8b44735497dea9777599fd35a783f73 assets\bakingdelight\models\item\golden_apple_mousse.json
 69b88bea32158a3ebea0019581b0f27115909eb7 assets\bakingdelight\models\item\pinecone.json
+57009936a8b44735497dea9777599fd35a783f73 assets\bakingdelight\models\item\golden_apple_mousse.json
 86fa8658371b65c966dd869d8e734b7e12933bd2 assets\bakingdelight\models\item\fired_noodles.json
 8b100b09515f1b8c506c7541caf1ebab47b2992d assets\bakingdelight\models\item\freezer.json
 bec0af6e989f6b5eca3db8e948deb2b03b00b0ea assets\bakingdelight\models\item\crab_sausage_vegetable.json

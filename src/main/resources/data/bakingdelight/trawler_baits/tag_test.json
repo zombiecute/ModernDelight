@@ -1,0 +1,8 @@
+{
+  "bait": {
+    "type": "tag",
+    "id": "c:foods/fruits"
+  },
+  "interval_ticks": 40,
+  "probability_of_consume": 0.0
+}

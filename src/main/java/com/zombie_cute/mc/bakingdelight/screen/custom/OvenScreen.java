@@ -3,6 +3,7 @@ package com.zombie_cute.mc.bakingdelight.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.bakingdelight.ModernDelightMain;
 import com.zombie_cute.mc.bakingdelight.networking.packet.SpawnXPC2SPacket;
+import com.zombie_cute.mc.bakingdelight.util.TextUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -77,7 +78,7 @@ public class OvenScreen extends HandledScreen<OvenScreenHandler> {
     @Override
     protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
         if (b){
-            context.drawTooltip(textRenderer,Text.translatable(AdvanceFurnaceScreen.TOOLTIP).formatted(Formatting.WHITE),x,y);
+            context.drawTooltip(textRenderer,Text.translatable(TextUtil.GET_EXP).formatted(Formatting.WHITE),x,y);
         }
         super.drawMouseoverTooltip(context, x, y);
     }

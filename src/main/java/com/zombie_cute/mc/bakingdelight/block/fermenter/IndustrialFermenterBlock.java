@@ -39,7 +39,7 @@ public class IndustrialFermenterBlock extends BlockWithEntity {
 
     public IndustrialFermenterBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
-        getStateManager().getDefaultState().with(IS_OPENING, false).with(IS_RUNNING, false).with(IS_CLOSING,false);
+        setDefaultState(getStateManager().getDefaultState().with(IS_OPENING, false).with(IS_RUNNING, false).with(IS_CLOSING,false));
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
@@ -133,7 +133,7 @@ public class IndustrialFermenterBlock extends BlockWithEntity {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.INDUSTRIAL_FERMENTER_BLOCK_ENTITY_BLOCK_ENTITY,
+        return checkType(type, ModBlockEntities.INDUSTRIAL_FERMENTER_BLOCK_ENTITY,
                 IndustrialFermenterBlockEntity::tick);
     }
 }

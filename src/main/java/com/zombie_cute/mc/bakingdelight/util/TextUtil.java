@@ -7,7 +7,6 @@ import net.minecraft.text.OrderedText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +84,9 @@ public class TextUtil {
     public static final String FERMENTATION_TEMP = "bakingdelight.tooltip.fermentation.temperature";
     public static final String NO_BACTRIA = "bakingdelight.tooltip.fermentation.no_bactria";
     public static final String FERMENTATION_TANK = "bakingdelight.tooltip.fermentation_tank";
+    public static final String TRAWLER = "bakingdelight.tooltips.trawler";
+    public static final String TRAWLER_BAIT = "bakingdelight.tooltips.trawler_bait";
+    public static final String GET_EXP = "tooltips.bakingdelight.tooltip.get_exp";
 
     public static List<Text> generateToolTip(Text text, Style style){
         List<Text> result = new ArrayList<>();

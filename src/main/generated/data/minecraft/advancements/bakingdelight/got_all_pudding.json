@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:bakingdelight/got_pudding_wip_2",
+  "parent": "minecraft:bakingdelight/got_butter",
   "criteria": {
     "apple_pudding": {
       "conditions": {

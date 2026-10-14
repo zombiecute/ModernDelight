@@ -47,8 +47,6 @@ public class ModLootTableModifies {
             = new Identifier("minecraft", "chests/village/village_savanna_house");
     public static final Identifier ABANDONED_MINESHAFT_ID
             = new Identifier("minecraft", "chests/abandoned_mineshaft");
-    public static final Identifier FISH_ID
-            = new Identifier("minecraft", "gameplay/fishing/fish");
     public static final Identifier VILLAGE_BUTCHER_ID
             = new Identifier("minecraft", "chests/village/village_butcher");
     public static final Identifier VILLAGE_PLAINS_HOUSE_ID
@@ -193,14 +191,6 @@ public class ModLootTableModifies {
                     .rolls(ConstantLootNumberProvider.create(1))
                     .conditionally(RandomChanceLootCondition.builder(0.4f))
                     .with(ItemEntry.builder(ModItems.IRON_WHISK))
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f,1.0f)).build());
-            tableBuilder.pool(poolBuilder.build());
-        }
-        if(FISH_ID.equals(id)){
-            LootPool.Builder poolBuilder = LootPool.builder()
-                    .rolls(ConstantLootNumberProvider.create(1))
-                    .conditionally(RandomChanceLootCondition.builder(0.4f))
-                    .with(ItemEntry.builder(ModItems.PRAWN))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f,1.0f)).build());
             tableBuilder.pool(poolBuilder.build());
         }

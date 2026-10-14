@@ -20,7 +20,6 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
-import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.fabric.mixin.transfer.BucketItemAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -67,7 +66,7 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
     public static final int MIN_AUXILIARY_CFU = 100;
 
     public IndustrialFermenterBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.INDUSTRIAL_FERMENTER_BLOCK_ENTITY_BLOCK_ENTITY, pos, state);
+        super(ModBlockEntities.INDUSTRIAL_FERMENTER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
