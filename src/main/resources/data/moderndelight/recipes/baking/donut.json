@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:raw_donut"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "moderndelight:raw_donut"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:donut",
+    "count": 2
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "moderndelight:diamond_component"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "item": "moderndelight:diamond_component",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "item": "create:golden_sheet",
+      "chance": 10.0,
+      "count": 10
+    },
+    {
+      "item": "minecraft:diamond",
+      "chance": 2.0,
+      "count": 3
+    },
+    {
+      "item": "minecraft:diamond_sword",
+      "chance": 8.0,
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:diamond_component"
+        },
+        {
+          "item": "minecraft:gold_nugget"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:diamond_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:diamond_component"
+        },
+        {
+          "item": "minecraft:diamond"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:diamond_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:diamond_component"
+        },
+        {
+          "item": "minecraft:amethyst_shard"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:diamond_component"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "moderndelight:diamond_component"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:diamond_component"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "moderndelight:diamond_component"
+  }
+}

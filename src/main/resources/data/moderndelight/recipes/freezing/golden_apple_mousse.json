@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "moderndelight:mousse_wip"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:golden_apple_mousse"
+  }
+}

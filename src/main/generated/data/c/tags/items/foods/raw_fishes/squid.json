@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:squid",
-    "bakingdelight:glow_squid"
+    "moderndelight:squid",
+    "moderndelight:glow_squid"
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 3,
+  "goal": 6,
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "moderndelight:silicon_component"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "moderndelight:redstone_component"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:advance_battery"
+  }
+}

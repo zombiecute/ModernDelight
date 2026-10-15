@@ -1,0 +1,23 @@
+{
+  "type": "moderndelight:juice_extracting",
+  "progress": 310,
+  "container": "moderndelight:glass_cup",
+  "ingredients": [
+    {
+      "item": "moderndelight:sea_salt"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "tag": "c:foods/fruits/lemon"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:sea_salt_lemon",
+    "count": 3
+  }
+}

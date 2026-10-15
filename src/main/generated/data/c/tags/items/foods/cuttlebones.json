@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:cuttlebone",
-    "bakingdelight:glow_cuttlebone"
+    "moderndelight:cuttlebone",
+    "moderndelight:glow_cuttlebone"
   ]
 }

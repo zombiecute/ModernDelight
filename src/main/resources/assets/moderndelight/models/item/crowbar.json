@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "moderndelight:item/crowbar"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "damage": 0.30
+      },
+      "model": "moderndelight:item/crowbar_01"
+    },
+    {
+      "predicate": {
+        "damage": 0.55
+      },
+      "model": "moderndelight:item/crowbar_02"
+    },
+    {
+      "predicate": {
+        "damage": 0.80
+      },
+      "model": "moderndelight:item/crowbar_03"
+    }
+  ]
+}

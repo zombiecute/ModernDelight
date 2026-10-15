@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "moderndelight:mixed_dough"
+    },
+    {
+      "item": "moderndelight:mixed_dough"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "moderndelight:raw_ice_cream_cone"
+  }
+}

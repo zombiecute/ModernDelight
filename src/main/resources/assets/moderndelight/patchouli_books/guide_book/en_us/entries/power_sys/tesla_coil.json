@@ -1,0 +1,22 @@
+{
+  "name": "Tesla Coil",
+  "icon": "moderndelight:tesla_coil",
+  "category": "moderndelight:power_sys",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:tesla_coil"
+      },
+      "title": "Summary",
+      "text": "Tesla Coil allows you to wirelessly transmit the AC power produced by an alternator(Faraday generators, wind turbine controllers or AC/DC converters in DC to AC mode), right-click to open the GUI where you can turn on a visualisation option."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Instruction",
+      "images": ["moderndelight:guide_images/guide_tesla_coil.png"],
+      "text": "All AC appliances or Tesla coils within the particle effect become energized."
+    }
+  ]
+}

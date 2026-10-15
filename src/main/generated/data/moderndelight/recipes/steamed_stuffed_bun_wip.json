@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "moderndelight:wooden_plate"
+    },
+    "D": {
+      "item": "moderndelight:mixed_dough"
+    },
+    "M": {
+      "tag": "c:foods/raw_meats"
+    }
+  },
+  "pattern": [
+    " D ",
+    "DMD",
+    "BBB"
+  ],
+  "result": {
+    "count": 3,
+    "item": "moderndelight:steamed_stuffed_bun_wip"
+  },
+  "show_notification": true
+}

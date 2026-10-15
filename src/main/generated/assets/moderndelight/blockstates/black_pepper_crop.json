@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "moderndelight:block/black_pepper_crop_stage0"
+    },
+    "age=1": {
+      "model": "moderndelight:block/black_pepper_crop_stage1"
+    },
+    "age=2": {
+      "model": "moderndelight:block/black_pepper_crop_stage2"
+    },
+    "age=3": {
+      "model": "moderndelight:block/black_pepper_crop_stage3"
+    },
+    "age=4": {
+      "model": "moderndelight:block/black_pepper_crop_stage4"
+    },
+    "age=5": {
+      "model": "moderndelight:block/black_pepper_crop_stage5"
+    },
+    "age=6": {
+      "model": "moderndelight:block/black_pepper_crop_stage6"
+    }
+  }
+}

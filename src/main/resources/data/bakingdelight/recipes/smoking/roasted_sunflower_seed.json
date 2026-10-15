@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "cookingtime": 600,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "bakingdelight:sunflower_seed_pulp"
-  },
-  "result": "bakingdelight:roasted_sunflower_seed"
-}

@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:bone",
+    "count": 2
+  }
+}

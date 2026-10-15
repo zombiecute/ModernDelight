@@ -1,0 +1,32 @@
+{
+  "name": "风力发电",
+  "icon": "moderndelight:fan_blade",
+  "category": "moderndelight:power_sys",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "简介",
+      "text": "风力发电是最简单的发电方式，只需要风力发电机控制器和风力发电机叶片即可建造风力发电机。"
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["moderndelight:guide_images/guide_wind_turbine.png"],
+      "text": "一台风力发电机的示例"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:fan_blade",
+      "title": "风力发电机叶片",
+      "text": "可以放置在任意方块的侧面上。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:wind_turbine_controller"
+      },
+      "title": "风力发电机控制器",
+      "text": "风力发电机的核心，右键可以打开GUI以查看发电状况。"
+    }
+  ]
+}

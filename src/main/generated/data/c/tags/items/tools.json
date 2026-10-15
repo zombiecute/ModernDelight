@@ -2,19 +2,19 @@
   "replace": false,
   "values": [
     {
-      "id": "#bakingdelight:whisks",
+      "id": "#moderndelight:whisks",
       "required": false
     },
     {
-      "id": "#bakingdelight:spatulas",
+      "id": "#moderndelight:spatulas",
       "required": false
     },
     {
-      "id": "#bakingdelight:kneading_sticks",
+      "id": "#moderndelight:kneading_sticks",
       "required": false
     },
     {
-      "id": "#bakingdelight:crowbars",
+      "id": "#moderndelight:crowbars",
       "required": false
     },
     {

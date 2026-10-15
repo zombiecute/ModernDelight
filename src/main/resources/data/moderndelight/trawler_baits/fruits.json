@@ -1,0 +1,9 @@
+{
+  "bait": {
+    "type": "tag",
+    "id": "c:foods/fruits"
+  },
+  "interval_ticks": 100,
+  "probability_of_consume": 0.3,
+  "loot_table" : "moderndelight:trawler/fish"
+}

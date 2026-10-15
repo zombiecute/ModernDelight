@@ -1,14 +1,14 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:ice_lolly",
+    "moderndelight:ice_lolly",
     {
       "id": "farmersdelight:melon_popsicle",
       "required": false
     },
-    "bakingdelight:cherry_ice_lolly",
-    "bakingdelight:matcha_ice_lolly",
-    "bakingdelight:wither_ice_lolly",
-    "bakingdelight:chocolate_crunch_ice_lolly"
+    "moderndelight:cherry_ice_lolly",
+    "moderndelight:matcha_ice_lolly",
+    "moderndelight:wither_ice_lolly",
+    "moderndelight:chocolate_crunch_ice_lolly"
   ]
 }

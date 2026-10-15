@@ -1,0 +1,14 @@
+{
+  "name": "patchouli.moderndelight.book.name",
+  "landing_text": "patchouli.moderndelight.book.landing_text",
+  "version": 1,
+  "creative_tab": "moderndelight:moderndelight_itemgroup",
+  "model": "moderndelight:guide_book",
+  "index_icon": "moderndelight:guide_book",
+  "book_texture": "patchouli:textures/gui/book_blue.png",
+  "show_progress": false,
+  "use_resource_pack": true,
+  "use_blocky_font": true,
+  "i18n": true,
+  "pause_game": true
+}

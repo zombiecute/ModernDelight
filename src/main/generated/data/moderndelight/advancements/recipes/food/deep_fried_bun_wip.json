@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_steamed_bun": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:steamed_bun"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moderndelight:deep_fried_bun_wip"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_steamed_bun",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moderndelight:deep_fried_bun_wip"
+    ]
+  },
+  "sends_telemetry_event": false
+}

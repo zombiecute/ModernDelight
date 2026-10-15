@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:pudding_wip_1"
+    },
+    {
+      "item": "moderndelight:pudding_wip_1"
+    },
+    {
+      "item": "moderndelight:pudding_wip_1"
+    },
+    {
+      "item": "moderndelight:pudding_wip_1"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:pudding_wip_2",
+    "count": 4
+  }
+}

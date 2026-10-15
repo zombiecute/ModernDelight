@@ -1,0 +1,103 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "moderndelight:silicon_component"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "item": "moderndelight:silicon_component",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "item": "moderndelight:ac_dc_converter",
+      "chance": 10.0,
+      "count": 1
+    },
+    {
+      "item": "create:polished_rose_quartz",
+      "chance": 5.0,
+      "count": 4
+    },
+    {
+      "item": "create:rose_quartz_block",
+      "chance": 5.0,
+      "count": 5
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "moderndelight:silicon_component"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:silicon_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:silicon_component"
+        },
+        {
+          "item": "minecraft:quartz"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:silicon_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:silicon_component"
+        },
+        {
+          "item": "moderndelight:silicon_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:silicon_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:silicon_component"
+        },
+        {
+          "item": "create:zinc_nugget"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:silicon_component"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "moderndelight:silicon_component"
+  }
+}

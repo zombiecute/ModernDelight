@@ -1,19 +1,19 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:still_cream",
-    "bakingdelight:flowing_cream",
-    "bakingdelight:flowing_vegetable_oil",
-    "bakingdelight:still_vegetable_oil",
-    "bakingdelight:still_liquefied_biogas",
-    "bakingdelight:flowing_liquefied_biogas",
-    "bakingdelight:still_sweetened_water",
-    "bakingdelight:flowing_sweetened_water",
-    "bakingdelight:still_alcohol",
-    "bakingdelight:flowing_alcohol",
-    "bakingdelight:still_vinegar",
-    "bakingdelight:flowing_vinegar",
-    "bakingdelight:still_milk",
-    "bakingdelight:flowing_milk"
+    "moderndelight:still_cream",
+    "moderndelight:flowing_cream",
+    "moderndelight:flowing_vegetable_oil",
+    "moderndelight:still_vegetable_oil",
+    "moderndelight:still_liquefied_biogas",
+    "moderndelight:flowing_liquefied_biogas",
+    "moderndelight:still_sweetened_water",
+    "moderndelight:flowing_sweetened_water",
+    "moderndelight:still_alcohol",
+    "moderndelight:flowing_alcohol",
+    "moderndelight:still_vinegar",
+    "moderndelight:flowing_vinegar",
+    "moderndelight:still_milk",
+    "moderndelight:flowing_milk"
   ]
 }

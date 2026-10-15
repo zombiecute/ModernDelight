@@ -1,0 +1,81 @@
+package com.zombie_cute.mc.moderndelight.screen;
+
+import com.zombie_cute.mc.moderndelight.ModernDelightMain;
+import com.zombie_cute.mc.moderndelight.screen.custom.*;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.util.Identifier;
+
+public class ModScreenHandlers {
+    public static final ScreenHandlerType<OvenScreenHandler> OVEN_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "oven_screen"),
+                    new ExtendedScreenHandlerType<>(OvenScreenHandler::new));
+    public static final ScreenHandlerType<FreezerScreenHandler> FREEZER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "freezing_screen"),
+                    new ExtendedScreenHandlerType<>(FreezerScreenHandler::new));
+    public static final ScreenHandlerType<AdvanceFurnaceScreenHandler> ADVANCE_FURNACE_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "advance_furnace_screen"),
+                    new ExtendedScreenHandlerType<>(AdvanceFurnaceScreenHandler::new));
+    public static final ScreenHandlerType<WoodenBasinScreenHandler> WOODEN_BASIN_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "wooden_basin_screen"),
+                    new ExtendedScreenHandlerType<>(WoodenBasinScreenHandler::new));
+    public static final ScreenHandlerType<GasCanisterScreenHandler> GAS_CANISTER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "gas_canister_screen"),
+                    new ExtendedScreenHandlerType<>(GasCanisterScreenHandler::new));
+    public static final ScreenHandlerType<BiogasDigesterControllerScreenHandler> BIOGAS_DIGESTER_CONTROLLER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "biogas_digester_controller_screen"),
+                    new ExtendedScreenHandlerType<>(BiogasDigesterControllerScreenHandler::new));
+    public static final ScreenHandlerType<BiogasDigesterIOScreenHandler> BIOGAS_DIGESTER_IO_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "biogas_digester_io_screen"),
+                    new ExtendedScreenHandlerType<>(BiogasDigesterIOScreenHandler::new));
+    public static final ScreenHandlerType<DeepFryerScreenHandler> DEEP_FRYER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "deep_fryer_screen"),
+                    new ExtendedScreenHandlerType<>(DeepFryerScreenHandler::new));
+    public static final ScreenHandlerType<CuisineTableScreenHandler> CUISINE_TABLE_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "cuisine_table_screen"),
+                    new ExtendedScreenHandlerType<>(CuisineTableScreenHandler::new));
+    public static final ScreenHandlerType<CabinetScreenHandler> CABINET_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "cabinet_screen"),
+                    new ExtendedScreenHandlerType<>(CabinetScreenHandler::new));
+    public static final ScreenHandlerType<PhotovoltaicGeneratorScreenHandler> PHOTOVOLTAIC_GENERATOR_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "photovoltaic_generator_screen"),
+                    new ExtendedScreenHandlerType<>(PhotovoltaicGeneratorScreenHandler::new));
+    public static final ScreenHandlerType<ACDCConverterScreenHandler> ACDC_CONVERTER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "gas_pump_screen"),
+                    new ExtendedScreenHandlerType<>(ACDCConverterScreenHandler::new));
+    public static final ScreenHandlerType<WindTurbineControllerScreenHandler> WIND_TURBINE_CONTROLLER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "wind_turbine_controller_screen"),
+                    new ExtendedScreenHandlerType<>(WindTurbineControllerScreenHandler::new));
+    public static final ScreenHandlerType<FaradayGeneratorScreenHandler> FARADAY_GENERATOR_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "faraday_generator_screen"),
+                    new ExtendedScreenHandlerType<>(FaradayGeneratorScreenHandler::new));
+    public static final ScreenHandlerType<TeslaCoilScreenHandler> TESLA_COIL_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "tesla_coil_screen"),
+                    new ExtendedScreenHandlerType<>(TeslaCoilScreenHandler::new));
+    public static final ScreenHandlerType<ElectriciansDeskScreenHandler> ELECTRICIANS_DESK_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "electric_desk_screen"),
+                    new ExtendedScreenHandlerType<>(ElectriciansDeskScreenHandler::new));
+    public static final ScreenHandlerType<BambooSteamerScreenHandler> BAMBOO_STEAMER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "bamboo_steamer_screen"),
+                    new ExtendedScreenHandlerType<>(BambooSteamerScreenHandler::new));
+    public static final ScreenHandlerType<ElectricSteamerScreenHandler> ELECTRIC_STEAMER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "electric_steamer_screen"),
+                    new ExtendedScreenHandlerType<>(ElectricSteamerScreenHandler::new));
+    public static final ScreenHandlerType<IceCreamMakerScreenHandler> ICE_CREAM_MAKER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "ice_cream_maker_screen"),
+                    new ExtendedScreenHandlerType<>(IceCreamMakerScreenHandler::new));
+    public static final ScreenHandlerType<ChargingPostScreenHandler> CHARGING_POST_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "charging_post_screen"),
+                    new ExtendedScreenHandlerType<>(ChargingPostScreenHandler::new));
+    public static final ScreenHandlerType<IndustrialFermenterScreenHandler> INDUSTRIAL_FERMENTER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(ModernDelightMain.MOD_ID, "industrial_fermenter_screen"),
+                    new ExtendedScreenHandlerType<>(IndustrialFermenterScreenHandler::new));
+    public static final ScreenHandlerType<TrawlerScreenHandler> TRAWLER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, Identifier.of(ModernDelightMain.MOD_ID, "trawler_screen"),
+                    new ExtendedScreenHandlerType<>(TrawlerScreenHandler::new));
+    public static void registerScreenHandlers(){
+        ModernDelightMain.LOGGER.info("Registering Screen Handlers for " + ModernDelightMain.MOD_ID);
+    }
+}

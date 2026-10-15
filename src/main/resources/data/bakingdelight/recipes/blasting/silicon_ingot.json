@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "cookingtime": 600,
-  "experience": 0.3,
-  "ingredient": {
-    "item": "minecraft:quartz"
-  },
-  "result": "bakingdelight:silicon_ingot"
-}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grinded_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:grinded_leaves"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moderndelight:matcha"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_grinded_leaves",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moderndelight:matcha"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "moderndelight:butter",
+    "#c:foods/pumpkins",
+    "#c:foods/raw_meats",
+    "#c:foods/raw_fishes",
+    "#c:crops",
+    "#c:foods/sausages",
+    {
+      "id": "#c:crops/cabbage",
+      "required": false
+    },
+    {
+      "id": "#c:foods/vegetables/tomatoes",
+      "required": false
+    },
+    {
+      "id": "#c:foods/vegetables/onions",
+      "required": false
+    }
+  ]
+}

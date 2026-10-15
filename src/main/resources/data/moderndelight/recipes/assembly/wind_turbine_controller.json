@@ -1,0 +1,28 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 1,
+  "goal": 128,
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "moderndelight:redstone_component"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone_torch"
+    },
+    {
+      "item": "minecraft:piston"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:wind_turbine_controller"
+  }
+}

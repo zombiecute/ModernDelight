@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:white_tulip"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "moderndelight:empty_cake"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:white_tulip_cake"
+  }
+}

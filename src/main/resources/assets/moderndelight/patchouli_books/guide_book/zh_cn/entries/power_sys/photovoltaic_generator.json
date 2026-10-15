@@ -1,0 +1,15 @@
+{
+  "name": "光伏发电",
+  "icon": "moderndelight:photovoltaic_generator",
+  "category": "moderndelight:power_sys",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:photovoltaic_generator"
+      },
+      "text": "光伏发电与风力和火力发电最大的不同之处就是它直接产生直流电，它可以直接给电池充能，如果你想用它给交流用电器供能，那么你就需要一个交流直流转换器来实现进一步的操作。"
+    }
+  ]
+}

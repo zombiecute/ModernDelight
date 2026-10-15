@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "moderndelight:item/orange_tulip_cake"
+  }
+}

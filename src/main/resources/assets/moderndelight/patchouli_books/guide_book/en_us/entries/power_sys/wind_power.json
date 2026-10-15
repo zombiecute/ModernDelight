@@ -1,0 +1,32 @@
+{
+  "name": "Wind Power",
+  "icon": "moderndelight:fan_blade",
+  "category": "moderndelight:power_sys",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Summary",
+      "text": "Wind power is the simplest form of electricity generation, requiring only a wind turbine controller and wind turbine blades to build a wind turbine."
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["moderndelight:guide_images/guide_wind_turbine.png"],
+      "text": "Example of a wind turbine"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:fan_blade",
+      "title": "Wind Turbine Blades",
+      "text": "It can be placed on the side of any block."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:wind_turbine_controller"
+      },
+      "title": "Wind Turbine Controller",
+      "text": "The core of the wind turbine, right clicking opens the GUI to view the status of power generation."
+    }
+  ]
+}

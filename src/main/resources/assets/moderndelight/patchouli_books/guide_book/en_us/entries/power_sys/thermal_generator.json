@@ -1,0 +1,61 @@
+{
+  "name": "Thermal Power",
+  "icon": "moderndelight:faraday_generator",
+  "category": "moderndelight:power_sys",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Summary",
+      "text": "Thermal power is a powerful way of generating electricity, building a simple thermal generator to quickly solve power shortages."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Thermal Generator",
+      "multiblock": {
+        "pattern": [
+          [
+            "_____",
+            "_____",
+            "____S",
+            "   __"
+          ],
+          [
+            "_C___",
+            "_F___",
+            "  0 A",
+            "   __"
+          ],
+          [
+            "_____",
+            "_____",
+            "_____",
+            "   __"
+          ]
+        ],
+        "mapping": {
+            "A": "moderndelight:advance_furnace",
+            "S": "moderndelight:sterling_engine[facing=north]",
+            "F": "moderndelight:faraday_generator[facing=west]",
+            "C": "moderndelight:ac_dc_converter[facing=north]"
+        }
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:sterling_engine"
+      },
+      "title": "Sterling Engine",
+      "text": "A device that converts heat energy into mechanical energy can be placed on top of any furnace (Furnace, Blast Furnace, Smoker, Advance Furnace, Oven), and a sponge is used on it to reduce noise."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:faraday_generator"
+      },
+      "title": "Faraday Generator",
+      "text": "A device that converts mechanical energy into electrical energy and can be used with the Stirling Engine to generate AC power."
+    }
+  ]
+}

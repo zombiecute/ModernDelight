@@ -1,0 +1,31 @@
+{
+  "name": "沼气发酵池",
+  "icon": "moderndelight:biogas_digester_controller",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "简介",
+      "text": "沼气发酵池可以将任意的食物进行发酵处理以产生沼气。要建造发酵池，你需要一个沼气池控制器，一个沼气池输入输出接口和一个完整且体积小于 11x5x11 的长方体密闭空间。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:biogas_digester_controller",
+      "title": "沼气池控制器",
+      "text": "控制整个沼气池的核心，可以通过其GUI中的信息来确定当前沼气池的情况。当其下方存在一个完整且体积小于 11x5x11 的长方体密闭空间时，该空间就会被判定为沼气池的发酵室，若其中存在一定量的沼气时发生泄露会发生严重的爆炸。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:biogas_digester_io",
+      "title": "沼气池输入输出接口",
+      "text": "将其放置在沼气池控制器的上方便可向沼气池中输入食物或提取沼渣，可以在其侧面连接一个燃气罐来取出沼气池中的沼气。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:gas_canister",
+      "title": "燃气罐",
+      "text": "可以存储任意6B的流体，当然主要还是用于存储或利用液化沼气，注意不要存储的太满，否则会发生严重的爆炸！"
+    }
+  ]
+}

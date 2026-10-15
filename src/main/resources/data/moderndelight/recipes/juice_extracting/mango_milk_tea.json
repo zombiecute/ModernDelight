@@ -1,0 +1,23 @@
+{
+  "type": "moderndelight:juice_extracting",
+  "progress": 280,
+  "container": "moderndelight:glass_cup",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "tag": "c:foods/fruits/mango"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:mango_milk_tea",
+    "count": 3
+  }
+}

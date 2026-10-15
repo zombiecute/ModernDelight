@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "moderndelight:black_pepper_seasoning"
+  }
+}

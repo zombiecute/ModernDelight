@@ -1,0 +1,101 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "moderndelight:ac_dc_converter"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "item": "moderndelight:ac_dc_converter",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "item": "moderndelight:silicon_component",
+      "chance": 2.0,
+      "count": 6
+    },
+    {
+      "item": "moderndelight:ac_dc_converter",
+      "chance": 18.0,
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        },
+        {
+          "tag": "c:iron_plates"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        },
+        {
+          "item": "moderndelight:redstone_component"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        },
+        {
+          "item": "moderndelight:silicon_component"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        },
+        {
+          "tag": "c:iron_plates"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:ac_dc_converter"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "moderndelight:ac_dc_converter"
+  }
+}

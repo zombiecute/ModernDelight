@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:garlic_petal"
+    },
+    {
+      "item": "moderndelight:garlic_petal"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:garlic_puree"
+  }
+}

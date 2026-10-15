@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,is_open=false": {
+      "model": "moderndelight:block/freezer",
+      "y": 180
+    },
+    "facing=north,is_open=true": {
+      "model": "moderndelight:block/freezer_is_open",
+      "y": 180
+    },
+    "facing=south,is_open=false": {
+      "model": "moderndelight:block/freezer",
+      "y": 0
+    },
+    "facing=south,is_open=true": {
+      "model": "moderndelight:block/freezer_is_open",
+      "y": 0
+    },
+    "facing=west,is_open=false": {
+      "model": "moderndelight:block/freezer",
+      "y": 90
+    },
+    "facing=west,is_open=true": {
+      "model": "moderndelight:block/freezer_is_open",
+      "y": 90
+    },
+    "facing=east,is_open=false": {
+      "model": "moderndelight:block/freezer",
+      "y": 270
+    },
+    "facing=east,is_open=true": {
+      "model": "moderndelight:block/freezer_is_open",
+      "y": 270
+    }
+  }
+}

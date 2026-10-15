@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:packaging_bag"
+    },
+    {
+      "item": "moderndelight:deep_fried_potato_chips"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:french_fries"
+  }
+}

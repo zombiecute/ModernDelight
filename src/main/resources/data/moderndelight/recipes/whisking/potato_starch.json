@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:whisking",
+  "ingredients": [
+    {
+      "item": "moderndelight:mashed_potato"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:potato_starch"
+  }
+}

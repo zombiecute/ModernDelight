@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "has_bracket=false": {
+      "model": "moderndelight:block/burning_gas_cooking_stove"
+    },
+    "has_bracket=true": {
+      "model": "moderndelight:block/burning_gas_cooking_stove2"
+    }
+  }
+}

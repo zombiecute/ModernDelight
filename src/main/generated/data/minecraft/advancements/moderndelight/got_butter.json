@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_cream",
+  "criteria": {
+    "butter": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:butter"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_butter_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:butter"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_butter_title"
+    }
+  },
+  "requirements": [
+    [
+      "butter"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

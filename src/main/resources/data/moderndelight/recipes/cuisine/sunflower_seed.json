@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:sunflower"
+    },
+    {
+      "tag": "c:tools/knives"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:sunflower_seed",
+    "count": 4
+  }
+}

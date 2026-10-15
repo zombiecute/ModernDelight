@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:mango",
+    "moderndelight:mango",
     {
       "id": "#forge:fruits/mango",
       "required": false

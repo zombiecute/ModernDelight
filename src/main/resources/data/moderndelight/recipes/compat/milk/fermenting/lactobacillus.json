@@ -1,0 +1,37 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "milk"
+      ]
+    }
+  ],
+  "type": "moderndelight:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    }
+  ],
+  "output": {
+    "item": "minecraft:barrier"
+  },
+  "fluid_input": "milk:still_milk",
+  "min_fluid_amount": 810,
+  "fluid_output": "empty",
+  "temperature": 32,
+  "luminosity": 4,
+  "time": 24,
+  "bacteria_input": "null",
+  "bacteria_output": "lactobacillus",
+  "bacteria_output_amount": 50
+}

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:sausage",
-    "bakingdelight:sectioned_sausage"
+    "moderndelight:sausage",
+    "moderndelight:sectioned_sausage"
   ]
 }

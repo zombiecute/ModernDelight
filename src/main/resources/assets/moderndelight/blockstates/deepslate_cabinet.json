@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "moderndelight:block/deepslate_cabinet",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "moderndelight:block/deepslate_cabinet",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "moderndelight:block/deepslate_cabinet",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "moderndelight:block/deepslate_cabinet",
+      "y": 180
+    }
+  }
+}

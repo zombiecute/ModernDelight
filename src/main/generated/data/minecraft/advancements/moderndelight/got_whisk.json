@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:moderndelight/root",
+  "criteria": {
+    "iron_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:iron_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_whisk_desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:iron_whisk",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_whisk_title"
+    }
+  },
+  "requirements": [
+    [
+      "iron_whisk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

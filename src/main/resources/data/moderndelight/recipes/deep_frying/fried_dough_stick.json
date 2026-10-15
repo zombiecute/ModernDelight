@@ -1,0 +1,12 @@
+{
+  "type": "moderndelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "create:dough"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:fried_dough_stick",
+    "count": 3
+  }
+}

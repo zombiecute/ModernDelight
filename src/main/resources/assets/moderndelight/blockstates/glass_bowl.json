@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "has_item=false,has_water=false": {
+      "model": "moderndelight:block/glass_bowl"
+    },
+    "has_item=false,has_water=true": {
+      "model": "moderndelight:block/glass_bowl_has_water"
+    },
+    "has_item=true,has_water=false": {
+      "model": "moderndelight:block/glass_bowl_has_item"
+    },
+    "has_item=true,has_water=true": {
+      "model": "moderndelight:block/glass_bowl_has_item"
+    }
+  }
+}

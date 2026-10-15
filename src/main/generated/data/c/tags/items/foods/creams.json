@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:cream",
-    "bakingdelight:cherry_cream",
-    "bakingdelight:golden_apple_cream",
-    "bakingdelight:chocolate_cream",
-    "bakingdelight:apple_cream",
-    "bakingdelight:matcha_cream",
-    "bakingdelight:pumpkin_cream"
+    "moderndelight:cream",
+    "moderndelight:cherry_cream",
+    "moderndelight:golden_apple_cream",
+    "moderndelight:chocolate_cream",
+    "moderndelight:apple_cream",
+    "moderndelight:matcha_cream",
+    "moderndelight:pumpkin_cream"
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:steamed_bun"
+    },
+    {
+      "item": "moderndelight:steamed_bun"
+    },
+    {
+      "item": "moderndelight:steamed_bun"
+    },
+    {
+      "item": "moderndelight:whipping_cream"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:deep_fried_bun_wip"
+  }
+}

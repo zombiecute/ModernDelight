@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/root",
+  "criteria": {
+    "kuh": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:kitchen_utensil_holder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.moderndelight.kuh.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:kitchen_utensil_holder"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.kuh.title"
+    }
+  },
+  "requirements": [
+    [
+      "kuh"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,18 @@
+{
+  "name": "炒菜",
+  "icon": "moderndelight:spatula",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "烤盘与锅铲",
+      "text": "在被加热时会进入炒菜模式，手持物品右键可以将物品放置在其上面。这时手持锅铲右键便可以对烤盘上的物品进行翻炒，兼容所有的营火加工配方。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:baking_tray",
+      "recipe2": "moderndelight:spatula"
+    }
+  ]
+}

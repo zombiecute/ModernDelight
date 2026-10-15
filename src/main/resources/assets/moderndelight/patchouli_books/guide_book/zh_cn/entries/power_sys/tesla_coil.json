@@ -1,0 +1,22 @@
+{
+  "name": "特斯拉线圈",
+  "icon": "moderndelight:tesla_coil",
+  "category": "moderndelight:power_sys",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:tesla_coil"
+      },
+      "title": "简介",
+      "text": "特斯拉线圈允许你将把一台交流发电机（法拉第发电机，风力发电机控制器或是处于直流转交流模式的交流/直流转换器）产生的交流电进行无线传输，右键打开GUI界面，可以在其中开启一个可视化的选项。"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "说明",
+      "images": ["moderndelight:guide_images/guide_tesla_coil.png"],
+      "text": "所有位于粒子效果中交流电用电器或是其他的特斯拉线圈都会被充能。"
+    }
+  ]
+}

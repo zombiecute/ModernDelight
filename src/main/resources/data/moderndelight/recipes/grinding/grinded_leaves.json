@@ -1,0 +1,16 @@
+{
+  "type": "moderndelight:grinding",
+  "ingredients": [
+    {
+      "tag": "minecraft:leaves"
+    }
+  ],
+  "output": {
+    "item": "minecraft:air"
+  },
+  "chance": 0.4,
+  "extra": {
+    "item": "moderndelight:grinded_leaves",
+    "count": 1
+  }
+}

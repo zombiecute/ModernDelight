@@ -1,0 +1,37 @@
+{
+  "variants": {
+    "showing_item=empty": {
+      "model": "moderndelight:block/wooden_plate"
+    },
+    "showing_item=potato": {
+      "model": "moderndelight:block/wooden_plate_potato"
+    },
+    "showing_item=apple": {
+      "model": "moderndelight:block/wooden_plate_apple"
+    },
+    "showing_item=golden_apple": {
+      "model": "moderndelight:block/wooden_plate_golden_apple"
+    },
+    "showing_item=enchanted_golden_apple": {
+      "model": "moderndelight:block/wooden_plate_enchanted_golden_apple"
+    },
+    "showing_item=sweet_berries": {
+      "model": "moderndelight:block/wooden_plate_sweet_berries"
+    },
+    "showing_item=cod": {
+      "model": "moderndelight:block/wooden_plate_cod"
+    },
+    "showing_item=cooked_cod": {
+      "model": "moderndelight:block/wooden_plate_cooked_cod"
+    },
+    "showing_item=salmon": {
+      "model": "moderndelight:block/wooden_plate_salmon"
+    },
+    "showing_item=cooked_salmon": {
+      "model": "moderndelight:block/wooden_plate_cooked_salmon"
+    },
+    "showing_item=poisonous_potato": {
+      "model": "moderndelight:block/wooden_plate_poisonous_potato"
+    }
+  }
+}

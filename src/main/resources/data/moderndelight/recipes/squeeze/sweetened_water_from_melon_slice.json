@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:melon_slice"
+    }
+  ],
+  "output": {
+    "item": "minecraft:melon_seeds"
+  },
+  "fluid_output": {
+    "fluid": "moderndelight:still_sweetened_water",
+    "amount": 9000
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "bait": {
-    "type": "item",
-    "id": "minecraft:amethyst_shard"
-  },
-  "interval_ticks": 4800,
-  "probability_of_consume": 1.0,
-  "loot_table" : "minecraft:gameplay/fishing/treasure"
-}

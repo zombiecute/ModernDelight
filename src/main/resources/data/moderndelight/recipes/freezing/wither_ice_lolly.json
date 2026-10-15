@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:wither_rose"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:wither_ice_lolly"
+  }
+}

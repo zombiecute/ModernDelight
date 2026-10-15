@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:cheese"
+    },
+    {
+      "item": "moderndelight:butter"
+    },
+    {
+      "tag": "c:crops/black_pepper"
+    },
+    {
+      "item": "moderndelight:mashed_potato"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:cheese_baked_potato",
+    "count": 1
+  }
+}

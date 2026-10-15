@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:mix_with_water",
+  "ingredients": [
+    {
+      "item": "moderndelight:wheat_flour"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:wheat_dough"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:black_pepper_crop",
-    "bakingdelight:garlic_crop"
+    "moderndelight:black_pepper_crop",
+    "moderndelight:garlic_crop"
   ]
 }

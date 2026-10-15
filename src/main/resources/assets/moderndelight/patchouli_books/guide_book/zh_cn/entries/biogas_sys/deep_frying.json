@@ -1,0 +1,40 @@
+{
+  "name": "油炸食品",
+  "icon": "moderndelight:deep_fryer",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "榨油",
+      "text": "在制作油炸食品之前，你需要准备先榨取一些植物油。将过滤网和若干炒葵花籽放置在木盆中，然后站着木盆上跳跃即可开始榨油，你可以用桶或玻璃瓶来取出木盆中的油"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:wooden_basin",
+      "recipe2": "moderndelight:filter"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "开始油炸",
+      "text": "在油炸锅的后面放一个装有燃气的燃气罐，手持植物油瓶或植物油桶右键油炸锅的上面来加入油，手持待炸物品右键油炸锅的上面即可将食物放入其中，右键油炸锅的正面来启动油炸锅，潜行加右键油炸锅可以查看油炸锅的油炸情况，但不能塞入或取出物品。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:deep_fryer",
+      "text": "待油炸结束后，手持夹子右键油炸锅的上面来取出炸好的物品，如果直接空手抓会被烫伤。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:deep_fry_basket",
+      "title": "油炸篮",
+      "text": "手持物品右键油炸篮即可存入物品，空手右键油炸篮即可取出物品，当存有物品油炸篮被摧毁时，里面的物品会保存在油炸篮中而不是掉出来。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:holder",
+      "title": "夹子",
+      "text": "夹子出了帮你安全取出油炸篮中的食物，还可以更加方便的向其他容器中塞入或取出物品。直接右键可以夹取你副手上的物品或拿下夹着的物品。潜行加右键一个容器便可以将物品塞入或取出。"
+    }
+  ]
+}

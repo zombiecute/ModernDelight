@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "level=9":{
+      "model": "moderndelight:block/mashed_potato_block"
+    },
+    "level=8":{
+      "model": "moderndelight:block/mashed_potato_block_8"
+    },
+    "level=7":{
+      "model": "moderndelight:block/mashed_potato_block_7"
+    },
+    "level=6":{
+      "model": "moderndelight:block/mashed_potato_block_6"
+    },
+    "level=5":{
+      "model": "moderndelight:block/mashed_potato_block_5"
+    },
+    "level=4":{
+      "model": "moderndelight:block/mashed_potato_block_4"
+    },
+    "level=3":{
+      "model": "moderndelight:block/mashed_potato_block_3"
+    },
+    "level=2":{
+      "model": "moderndelight:block/mashed_potato_block_2"
+    },
+    "level=1":{
+      "model": "moderndelight:block/mashed_potato_block_1"
+    }
+  }
+}

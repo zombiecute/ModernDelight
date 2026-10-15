@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:moderndelight/got_wheat_dough",
+  "criteria": {
+    "kneading_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:kneading_stick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_kneading_stick.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:kneading_stick",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_kneading_stick.title"
+    }
+  },
+  "requirements": [
+    [
+      "kneading_stick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

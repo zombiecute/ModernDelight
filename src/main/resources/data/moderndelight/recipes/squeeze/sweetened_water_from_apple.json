@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:apple"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:apple_petal"
+  },
+  "fluid_output": {
+    "fluid": "moderndelight:still_sweetened_water",
+    "amount": 3375
+  }
+}

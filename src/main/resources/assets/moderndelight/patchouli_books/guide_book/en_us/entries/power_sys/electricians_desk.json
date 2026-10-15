@@ -1,0 +1,53 @@
+{
+  "name": "Electrician's Desk",
+  "icon": "moderndelight:electricians_desk",
+  "category": "moderndelight:power_sys",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Electrician's Desk",
+      "text": "The electrician's desk is the gateway that opens the electrical system, and is required to craft almost all electricity facilities."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:electricians_desk",
+      "text": "Once the shaped recipe is put in the designated order on the electrician's desk as instructed by EMI or REI, you don't immediately get the output you want, but need to complete a series of mini-games to do so."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "2048",
+      "text": "This mini-game requires you to perform movement actions and synthesise larger numbers by pressing WASD or buttons in the GUI, the goal being to synthesise the number specified in the target bar."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Example",
+      "images": ["moderndelight:guide_images/mini_game_1.png","moderndelight:guide_images/mini_game_1_done.png"]
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Circuit Reproduction",
+      "text": "This mini-game requires you to replicate the pattern located in the ‘?’ button in the blue background screen to the green background screen at the beginning, try to reproduce the pattern using the tools provided."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Example",
+      "images": [
+        "moderndelight:guide_images/mini_game_2.png",
+        "moderndelight:guide_images/mini_game_2_help.png",
+        "moderndelight:guide_images/mini_game_2_next.png",
+        "moderndelight:guide_images/mini_game_2_done.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Hanoi Tower",
+      "text": "This mini-game requires you to move the left tower to the right and the short blocks can only be placed on top of the long blocks."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Example",
+      "images": ["moderndelight:guide_images/mini_game_3.png","moderndelight:guide_images/mini_game_3_done.png"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "moderndelight:crowbar",
+    {
+      "id": "create:wrench",
+      "required": false
+    },
+    {
+      "id": "techreborn:wrench",
+      "required": false
+    }
+  ]
+}

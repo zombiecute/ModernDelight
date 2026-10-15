@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "bakingdelight",
+	"id": "moderndelight",
 	"version": "${version}",
 	"name": "Modern Delight",
 	"description": "Allow Minecraft to have a more enriched way of processing ingredients.",
@@ -21,33 +21,33 @@
 		"issues": "https://github.com/zombiecute/ModernDelight/issues"
 	},
 	"license": "MIT ",
-	"icon": "assets/bakingdelight/icon.png",
+	"icon": "assets/moderndelight/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "com.zombie_cute.mc.bakingdelight.ModernDelightMain"
+          "com.zombie_cute.mc.moderndelight.ModernDelightMain"
 		],
 		"client": [
-			"com.zombie_cute.mc.bakingdelight.ModernDelightClient"
+			"com.zombie_cute.mc.moderndelight.ModernDelightClient"
 		],
 		"fabric-datagen": [
-			"com.zombie_cute.mc.bakingdelight.ModernDelightDataGenerator"
+			"com.zombie_cute.mc.moderndelight.ModernDelightDataGenerator"
 		],
 		"rei_client": [
-			"com.zombie_cute.mc.bakingdelight.compat.rei.REIClientPlugin"
+			"com.zombie_cute.mc.moderndelight.compat.rei.REIClientPlugin"
 		],
 		"emi": [
-			"com.zombie_cute.mc.bakingdelight.compat.emi.EMIPlugin"
+			"com.zombie_cute.mc.moderndelight.compat.emi.EMIPlugin"
 		],
 		"modmenu": [
-			"com.zombie_cute.mc.bakingdelight.compat.modmenu.ModMenuApiImpl"
+			"com.zombie_cute.mc.moderndelight.compat.modmenu.ModMenuApiImpl"
 		],
 		"jade": [
-			"com.zombie_cute.mc.bakingdelight.compat.jade.JadePlugin"
+			"com.zombie_cute.mc.moderndelight.compat.jade.JadePlugin"
 		]
 	},
 	"mixins": [
-		"bakingdelight.mixins.json"
+		"moderndelight.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.19.5",

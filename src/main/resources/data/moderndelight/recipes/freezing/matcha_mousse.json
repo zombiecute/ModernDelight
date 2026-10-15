@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:freezing",
+  "ingredients": [
+    {
+      "item": "moderndelight:matcha"
+    },
+    {
+      "item": "moderndelight:mousse_wip"
+    },
+    {
+      "item": "moderndelight:matcha"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:matcha_mousse"
+  }
+}

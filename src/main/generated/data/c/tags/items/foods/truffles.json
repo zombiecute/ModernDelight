@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:white_truffle",
-    "bakingdelight:black_truffle"
+    "moderndelight:white_truffle",
+    "moderndelight:black_truffle"
   ]
 }

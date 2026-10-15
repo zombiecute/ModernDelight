@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "moderndelight:fried_cod"
+    },
+    {
+      "tag": "c:tools/knives"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:fried_cod_nugget",
+    "count": 2
+  }
+}

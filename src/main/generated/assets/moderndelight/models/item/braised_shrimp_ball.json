@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "moderndelight:item/braised_shrimp_ball"
+  }
+}

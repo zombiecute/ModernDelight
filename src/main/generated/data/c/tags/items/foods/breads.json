@@ -5,6 +5,6 @@
       "id": "#c:foods/breads/wheat",
       "required": false
     },
-    "bakingdelight:butter_bread_slice"
+    "moderndelight:butter_bread_slice"
   ]
 }

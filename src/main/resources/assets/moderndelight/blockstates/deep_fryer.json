@@ -1,0 +1,68 @@
+{
+  "variants": {
+    "facing=north,has_oil=false,running=false": {
+      "model": "moderndelight:block/deep_fryer",
+      "y": 90
+    },
+    "facing=south,has_oil=false,running=false": {
+      "model": "moderndelight:block/deep_fryer",
+      "y": 270
+    },
+    "facing=west,has_oil=false,running=false": {
+      "model": "moderndelight:block/deep_fryer",
+      "y": 0
+    },
+    "facing=east,has_oil=false,running=false": {
+      "model": "moderndelight:block/deep_fryer",
+      "y": 180
+    },
+    "facing=north,has_oil=true,running=false": {
+      "model": "moderndelight:block/deep_fryer_has_oil",
+      "y": 90
+    },
+    "facing=south,has_oil=true,running=false": {
+      "model": "moderndelight:block/deep_fryer_has_oil",
+      "y": 270
+    },
+    "facing=west,has_oil=true,running=false": {
+      "model": "moderndelight:block/deep_fryer_has_oil",
+      "y": 0
+    },
+    "facing=east,has_oil=true,running=false": {
+      "model": "moderndelight:block/deep_fryer_has_oil",
+      "y": 180
+    },
+    "facing=north,has_oil=false,running=true": {
+      "model": "moderndelight:block/deep_fryer_running",
+      "y": 90
+    },
+    "facing=south,has_oil=false,running=true": {
+      "model": "moderndelight:block/deep_fryer_running",
+      "y": 270
+    },
+    "facing=west,has_oil=false,running=true": {
+      "model": "moderndelight:block/deep_fryer_running",
+      "y": 0
+    },
+    "facing=east,has_oil=false,running=true": {
+      "model": "moderndelight:block/deep_fryer_running",
+      "y": 180
+    },
+    "facing=north,has_oil=true,running=true": {
+      "model": "moderndelight:block/deep_fryer_running_has_oil",
+      "y": 90
+    },
+    "facing=south,has_oil=true,running=true": {
+      "model": "moderndelight:block/deep_fryer_running_has_oil",
+      "y": 270
+    },
+    "facing=west,has_oil=true,running=true": {
+      "model": "moderndelight:block/deep_fryer_running_has_oil",
+      "y": 0
+    },
+    "facing=east,has_oil=true,running=true": {
+      "model": "moderndelight:block/deep_fryer_running_has_oil",
+      "y": 180
+    }
+  }
+}

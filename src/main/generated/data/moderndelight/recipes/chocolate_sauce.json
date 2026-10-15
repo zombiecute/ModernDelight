@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "moderndelight:jar"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:chocolate_sauce"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_stone_mortar",
+  "criteria": {
+    "matcha": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:matcha"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.moderndelight.matcha.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:matcha"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.matcha.title"
+    }
+  },
+  "requirements": [
+    [
+      "matcha"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

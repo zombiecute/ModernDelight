@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:bread_slice"
+    },
+    {
+      "item": "moderndelight:caramel"
+    },
+    {
+      "item": "moderndelight:butter"
+    },
+    {
+      "item": "moderndelight:bread_slice"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:caramel_toast",
+    "count": 2
+  }
+}

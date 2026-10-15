@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "moderndelight:cream_bucket"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "moderndelight:butter"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "result": {
+    "count": 12,
+    "item": "moderndelight:mousse_wip"
+  }
+}

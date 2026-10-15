@@ -1,0 +1,28 @@
+{
+  "type": "moderndelight:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "minecraft:dirt"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": {
+    "item": "minecraft:bone_meal"
+  },
+  "fluid_input": "empty",
+  "fluid_output": "empty",
+  "temperature": 37,
+  "luminosity": 4,
+  "time": 20,
+  "bacteria_input": "null",
+  "bacteria_output": "escherichia",
+  "bacteria_output_amount": 500
+}

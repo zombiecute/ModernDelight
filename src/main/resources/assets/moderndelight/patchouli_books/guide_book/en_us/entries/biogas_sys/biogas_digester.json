@@ -1,0 +1,31 @@
+{
+  "name": "Biogas Digester",
+  "icon": "moderndelight:biogas_digester_controller",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Summary",
+      "text": "The Biogas Digester allows you to ferment any food to produce biogas. To build a digester, you will need a biogas digester controller, a biogas digester input & output, and a cuboid area that is a complete and totally closed and less than 11x5x11 in size."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:biogas_digester_controller",
+      "title": "Digester Controller",
+      "text": "The core that controls the entire digester can determine the current digester situation from information in its GUI. When there is a cuboid area that is a complete and totally closed and less than 11x5x11 in size, this area is determined to be the digester's fermentation chamber. Leakage may result in an explosion."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:biogas_digester_io",
+      "title": "Input & Output Port",
+      "text": "It must be placed on top of the biogas digester controller to facilitate the feeding of food into the digester or the extraction of digestate, and a gas canister can be attached to its side to extract the biogas from the digester."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:gas_canister",
+      "title": "Gas Canister",
+      "text": "It can store any 6 Buckets of fluid, but of course it is mainly used for storing or utilising liquefied biogas, be careful not to store it too full or a serious explosion will occur!"
+    }
+  ]
+}

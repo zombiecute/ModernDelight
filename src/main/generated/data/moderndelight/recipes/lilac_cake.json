@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:lilac"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "moderndelight:empty_cake"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:lilac_cake"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "bakingdelight:block/kitchen_utensil_holder", "y": 180,"uvlock": true },
-    "facing=east":  { "model": "bakingdelight:block/kitchen_utensil_holder", "y": 270, "uvlock": true },
-    "facing=south": { "model": "bakingdelight:block/kitchen_utensil_holder", "uvlock": true },
-    "facing=west":  { "model": "bakingdelight:block/kitchen_utensil_holder", "y": 90, "uvlock": true }
-  }
-}

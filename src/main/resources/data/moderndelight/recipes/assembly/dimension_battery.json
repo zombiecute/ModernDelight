@@ -1,0 +1,28 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 2,
+  "goal": 3,
+  "ingredients": [
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "moderndelight:diamond_component"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "moderndelight:silicon_component"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:dimension_battery"
+  }
+}

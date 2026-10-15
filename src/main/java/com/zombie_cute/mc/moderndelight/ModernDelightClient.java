@@ -1,0 +1,222 @@
+package com.zombie_cute.mc.moderndelight;
+
+import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
+import com.zombie_cute.mc.moderndelight.block.ModBlocks;
+import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.chicken_rice.ChickenRiceBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.chili_fish.ChiliFishBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.crab_sausage_vegetable.CrabSausageVegetableBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.cream_mushroom_soup.CreamMushroomSoupBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.fish_and_chips.FishAndChipsBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.french_onion_soup.FrenchOnionSoupBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.marshala_cheese_ball.MarshalaCheeseBallBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.pepper_beef_rice.PepperBeefRiceBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.pork_noodle.PorkNoodleBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.food.clay_pot.vegetable_noodle.VegetableNoodleBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.FreezerBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.GlassBowlBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.clay_pot.ClayPotBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.KitchenUtensilHolderBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.WoodenPlateBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.BakingTrayBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.deep_frying.DeepFryBasketBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.deep_frying.DeepFryerBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.deep_frying.WoodenBasinBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.ice_cream_maker.IceCreamMakerBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.juice_extractor.JuiceExtractorBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.steaming.BambooGrateBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.steaming.ElectricSteamerBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.power.ChargingPostBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.power.alternator.thermal_power.SterlingEngineBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.block.power.alternator.wind_power.FanBladeBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.trawler.TrawlerBlockEntityRenderer;
+import com.zombie_cute.mc.moderndelight.entity.ModEntities;
+import com.zombie_cute.mc.moderndelight.fluid.ModFluid;
+import com.zombie_cute.mc.moderndelight.item.ModItems;
+import com.zombie_cute.mc.moderndelight.item.food.instant_noodles.CookedPortablePotItem;
+import com.zombie_cute.mc.moderndelight.item.food.instant_noodles.PortablePotItem;
+import com.zombie_cute.mc.moderndelight.networking.NetworkHandler;
+import com.zombie_cute.mc.moderndelight.screen.ModScreenHandlers;
+import com.zombie_cute.mc.moderndelight.screen.custom.*;
+import com.zombie_cute.mc.moderndelight.util.enums.SpecialIngredient;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+
+public class ModernDelightClient implements ClientModInitializer {
+    public static final String ORE_UI_DARK = "moderndelight.builtInResourcePack.ore_ui_dark";
+    public static final String ORE_UI_BRIGHT = "moderndelight.builtInResourcePack.ore_ui_bright";
+    @Override
+    public void onInitializeClient() {
+        NetworkHandler.registerS2CPacket();
+
+        ResourceManagerHelper.registerBuiltinResourcePack(
+                new Identifier(ModernDelightMain.MOD_ID, "ore_ui_dark"),
+                FabricLoader.getInstance().getModContainer(ModernDelightMain.MOD_ID).orElseThrow(),
+                Text.translatable(ORE_UI_DARK),
+                ResourcePackActivationType.NORMAL
+        );
+        ResourceManagerHelper.registerBuiltinResourcePack(
+                new Identifier(ModernDelightMain.MOD_ID, "ore_ui_bright"),
+                FabricLoader.getInstance().getModContainer(ModernDelightMain.MOD_ID).orElseThrow(),
+                Text.translatable(ORE_UI_BRIGHT),
+                ResourcePackActivationType.NORMAL
+        );
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLASS_BOWL, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DEEP_FRYER, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WOODEN_PLATE, RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_PEPPER_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_PEPPER_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GARLIC_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_GARLIC, RenderLayer.getCutout());
+
+        EntityRendererRegistry.register(ModEntities.BUTTER, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CHERRY_BOMB, FlyingItemEntityRenderer::new);
+        HandledScreens.register(ModScreenHandlers.OVEN_SCREEN_HANDLER, OvenScreen::new);
+        HandledScreens.register(ModScreenHandlers.FREEZER_SCREEN_HANDLER, FreezerScreen::new);
+        HandledScreens.register(ModScreenHandlers.ADVANCE_FURNACE_SCREEN_HANDLER, AdvanceFurnaceScreen::new);
+        HandledScreens.register(ModScreenHandlers.WOODEN_BASIN_SCREEN_HANDLER, WoodenBasinScreen::new);
+        HandledScreens.register(ModScreenHandlers.GAS_CANISTER_SCREEN_HANDLER, GasCanisterScreen::new);
+        HandledScreens.register(ModScreenHandlers.BIOGAS_DIGESTER_CONTROLLER_SCREEN_HANDLER, BiogasDigesterControllerScreen::new);
+        HandledScreens.register(ModScreenHandlers.BIOGAS_DIGESTER_IO_SCREEN_HANDLER, BiogasDigesterIOScreen::new);
+        HandledScreens.register(ModScreenHandlers.DEEP_FRYER_SCREEN_HANDLER, DeepFryerScreen::new);
+        HandledScreens.register(ModScreenHandlers.CUISINE_TABLE_SCREEN_HANDLER, CuisineTableScreen::new);
+        HandledScreens.register(ModScreenHandlers.CABINET_SCREEN_HANDLER, CabinetScreen::new);
+        HandledScreens.register(ModScreenHandlers.PHOTOVOLTAIC_GENERATOR_SCREEN_HANDLER, PhotovoltaicGeneratorScreen::new);
+        HandledScreens.register(ModScreenHandlers.ACDC_CONVERTER_SCREEN_HANDLER, ACDCConverterScreen::new);
+        HandledScreens.register(ModScreenHandlers.WIND_TURBINE_CONTROLLER_SCREEN_HANDLER, WindTurbineControllerScreen::new);
+        HandledScreens.register(ModScreenHandlers.FARADAY_GENERATOR_SCREEN_HANDLER, FaradayGeneratorScreen::new);
+        HandledScreens.register(ModScreenHandlers.TESLA_COIL_SCREEN_HANDLER, TeslaCoilScreen::new);
+        HandledScreens.register(ModScreenHandlers.ELECTRICIANS_DESK_SCREEN_HANDLER, ElectriciansDeskScreen::new);
+        HandledScreens.register(ModScreenHandlers.BAMBOO_STEAMER_SCREEN_HANDLER, BambooSteamerScreen::new);
+        HandledScreens.register(ModScreenHandlers.ELECTRIC_STEAMER_SCREEN_HANDLER, ElectricSteamerScreen::new);
+        HandledScreens.register(ModScreenHandlers.ICE_CREAM_MAKER_SCREEN_HANDLER, IceCreamMakerScreen::new);
+        HandledScreens.register(ModScreenHandlers.CHARGING_POST_SCREEN_HANDLER, ChargingPostScreen::new);
+        HandledScreens.register(ModScreenHandlers.INDUSTRIAL_FERMENTER_SCREEN_HANDLER, IndustrialFermenterScreen::new);
+        HandledScreens.register(ModScreenHandlers.TRAWLER_SCREEN_HANDLER, TrawlerScreen::new);
+
+        BlockEntityRendererFactories.register(ModBlockEntities.GLASS_BOWL_ENTITY, GlassBowlBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FREEZER_ENTITY, FreezerBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.BAKING_TRAY_BLOCK_ENTITY, BakingTrayBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.WOODEN_BASIN_BLOCK_ENTITY, WoodenBasinBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.DEEP_FRYER_BLOCK_ENTITY, DeepFryerBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FAN_BLADE_BLOCK_ENTITY, FanBladeBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.KITCHEN_UTENSIL_HOLDER_BLOCK_ENTITY, KitchenUtensilHolderBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.STERLING_ENGINE_BLOCK_ENTITY, SterlingEngineBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.BAMBOO_GRATE_BLOCK_ENTITY, BambooGrateBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.ICE_CREAM_MAKER_BLOCK_ENTITY, IceCreamMakerBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FISH_AND_CHIPS_BLOCK_ENTITY, FishAndChipsBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CHARGING_POST_BLOCK_ENTITY, ChargingPostBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.ELECTRIC_STEAMER_BLOCK_ENTITY, ElectricSteamerBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.JUICE_EXTRACTOR_BLOCK_ENTITY, JuiceExtractorBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.DEEP_FRY_BASKET_BLOCK_ENTITY, DeepFryBasketBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.WOODEN_PLATE_BLOCK_ENTITY, WoodenPlateBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.INDUSTRIAL_FERMENTER_BLOCK_ENTITY, IndustrialFermenterBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CLAY_POT_BLOCK_ENTITY, ClayPotBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.BRITISH_BREAKFAST_BLOCK_ENTITY, BritishBreakfastBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.MARSHALA_CHEESE_BALL_BLOCK_ENTITY, MarshalaCheeseBallBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CHICKEN_RICE_BLOCK_ENTITY, ChickenRiceBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CHILI_FISH_BLOCK_ENTITY, ChiliFishBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CRAB_SAUSAGE_VEGETABLE_BLOCK_ENTITY, CrabSausageVegetableBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CREAM_MUSHROOM_SOUP_BLOCK_ENTITY, CreamMushroomSoupBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.FRENCH_ONION_SOUP_BLOCK_ENTITY, FrenchOnionSoupBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.PORK_NOODLE_BLOCK_ENTITY, PorkNoodleBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.PEPPER_BEEF_RICE_BLOCK_ENTITY, PepperBeefRiceBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.VEGETABLE_NOODLE_BLOCK_ENTITY, VegetableNoodleBlockEntityRender::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.TRAWLER_BLOCK_ENTITY, TrawlerBlockEntityRenderer::new);
+
+        registerModelPredicateProviders();
+
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_CREAM, ModFluid.FLOWING_CREAM,
+                new SimpleFluidRenderHandler(
+                new Identifier(ModernDelightMain.MOD_ID,"block/cream_still"),
+                new Identifier(ModernDelightMain.MOD_ID,"block/cream_flow")
+        ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
+                ModFluid.STILL_CREAM, ModFluid.FLOWING_CREAM);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_VEGETABLE_OIL, ModFluid.FLOWING_VEGETABLE_OIL,
+                new SimpleFluidRenderHandler(
+                        new Identifier(ModernDelightMain.MOD_ID,"block/vegetable_oil_still"),
+                        new Identifier(ModernDelightMain.MOD_ID,"block/vegetable_oil_flow")
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                ModFluid.STILL_VEGETABLE_OIL, ModFluid.FLOWING_VEGETABLE_OIL);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_LIQUEFIED_BIOGAS, ModFluid.FLOWING_LIQUEFIED_BIOGAS,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft","block/water_still"),
+                        new Identifier("minecraft","block/water_flow"),
+                        0x8b7a49
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                ModFluid.STILL_LIQUEFIED_BIOGAS, ModFluid.FLOWING_LIQUEFIED_BIOGAS);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_SWEETENED_WATER, ModFluid.FLOWING_SWEETENED_WATER,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft","block/water_still"),
+                        new Identifier("minecraft","block/water_flow"),
+                        0x38889c
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                ModFluid.STILL_SWEETENED_WATER, ModFluid.FLOWING_SWEETENED_WATER);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_VINEGAR, ModFluid.FLOWING_VINEGAR,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft","block/water_still"),
+                        new Identifier("minecraft","block/water_flow"),
+                        0x903B0A
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
+                ModFluid.STILL_VINEGAR, ModFluid.FLOWING_VINEGAR);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_ALCOHOL, ModFluid.FLOWING_ALCOHOL,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft","block/water_still"),
+                        new Identifier("minecraft","block/water_flow"),
+                        0xFFFCD7
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                ModFluid.STILL_ALCOHOL, ModFluid.FLOWING_ALCOHOL);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_MILK, ModFluid.FLOWING_MILK,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft","block/water_still"),
+                        new Identifier("minecraft","block/water_flow"),
+                        0xFFFFFF
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
+                ModFluid.STILL_MILK, ModFluid.FLOWING_MILK);
+    }
+    public static void registerModelPredicateProviders() {
+        ModelPredicateProviderRegistry.register(ModItems.PORTABLE_POT, new Identifier(ModernDelightMain.MOD_ID,"pot_state"), (itemStack, clientWorld, livingEntity, seed) -> {
+            if (PortablePotItem.hasNoodle(itemStack) || PortablePotItem.hasWater(itemStack) || PortablePotItem.hasQuicklime(itemStack)){
+                return 0.1F;
+            }
+            return 0.0F;
+        });
+        ModelPredicateProviderRegistry.register(ModItems.COOKED_PORTABLE_POT, new Identifier(ModernDelightMain.MOD_ID,"noodle_type"), (itemStack, clientWorld, livingEntity, seed) -> {
+            SpecialIngredient specialIngredient = PortablePotItem.getNoodleType(itemStack);
+            if (specialIngredient != null){
+                return switch (specialIngredient){
+                    case STEW_CHICKEN_NOODLE_WITH_MUSHROOM -> 0.1F;
+                    case BRAISED_BEEF_NOODLE_SOUP -> 0.2F;
+                    case TONKOTSU_RAMEN -> 0.3F;
+                };
+            }
+            if (CookedPortablePotItem.isUnhealthy(itemStack)){
+                return 0.9F;
+            }
+            return 0.0F;
+        });
+    }
+}

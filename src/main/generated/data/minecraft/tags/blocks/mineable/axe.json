@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:wooden_basin",
-    "bakingdelight:electricians_desk",
-    "bakingdelight:boxed_cherries",
-    "bakingdelight:bamboo_cover",
-    "bakingdelight:bamboo_grate"
+    "moderndelight:wooden_basin",
+    "moderndelight:electricians_desk",
+    "moderndelight:boxed_cherries",
+    "moderndelight:bamboo_cover",
+    "moderndelight:bamboo_grate"
   ]
 }

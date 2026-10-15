@@ -1,0 +1,28 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "moderndelight:item/portable_pot_with_noodles"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "moderndelight:noodle_type": 0.1
+      }, "model": "moderndelight:item/stewed_chicken_noodle_with_mushroom"
+    },
+    {
+      "predicate": {
+        "moderndelight:noodle_type": 0.2
+      }, "model": "moderndelight:item/braised_beef_noodle_soup"
+    },
+    {
+      "predicate": {
+        "moderndelight:noodle_type": 0.3
+      }, "model": "moderndelight:item/tonkotsu_ramen"
+    },
+    {
+      "predicate": {
+        "moderndelight:noodle_type": 0.9
+      }, "model": "moderndelight:item/unhealthy_noodles"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "tag": "c:milks"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:ice_lolly"
+  }
+}

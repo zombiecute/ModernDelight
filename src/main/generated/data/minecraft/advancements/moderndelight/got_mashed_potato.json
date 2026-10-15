@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_glass_bowl",
+  "criteria": {
+    "mashed_potato": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:mashed_potato"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.moderndelight.get_mashed_potato_desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:mashed_potato"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_mashed_potato_title"
+    }
+  },
+  "requirements": [
+    [
+      "mashed_potato"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

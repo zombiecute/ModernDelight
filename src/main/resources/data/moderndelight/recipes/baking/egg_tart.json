@@ -1,0 +1,20 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:cream"
+    },
+    {
+      "item": "moderndelight:mixed_dough"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:egg_tart"
+  }
+}

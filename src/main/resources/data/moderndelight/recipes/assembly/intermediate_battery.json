@@ -1,0 +1,28 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 3,
+  "goal": 5,
+  "ingredients": [
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "moderndelight:redstone_component"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "minecraft:copper_block"
+    },
+    {
+      "item": "moderndelight:redstone_component"
+    },
+    {
+      "item": "minecraft:copper_block"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:intermediate_battery"
+  }
+}

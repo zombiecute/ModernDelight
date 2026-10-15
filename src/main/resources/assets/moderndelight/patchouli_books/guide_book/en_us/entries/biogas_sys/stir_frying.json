@@ -1,0 +1,18 @@
+{
+  "name": "Stir Frying",
+  "icon": "moderndelight:spatula",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Baking tray with spatula",
+      "text": "When heated by gas cooking stove, the baking tray will enter stir-fry mode(becomes a skillet), where you can holding an item and right-click to place it on top of it. Holding a spatula and right clicking on it will allow you to stir-fry the item on the baking tray, compatible with all Campfire recipes."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:baking_tray",
+      "recipe2": "moderndelight:spatula"
+    }
+  ]
+}

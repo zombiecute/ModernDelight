@@ -1,0 +1,133 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "moderndelight:tesla_coil"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "item": "moderndelight:tesla_coil",
+      "chance": 80.0,
+      "count": 2
+    },
+    {
+      "item": "create:copper_sheet",
+      "chance": 2.0,
+      "count": 12
+    },
+    {
+      "item": "moderndelight:tesla_coil",
+      "chance": 18.0,
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:tesla_coil"
+        },
+        {
+          "tag": "c:iron_plates"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:tesla_coil"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:tesla_coil"
+        },
+        {
+          "tag": "c:iron_ingots"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:tesla_coil"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:tesla_coil"
+        },
+        {
+          "tag": "c:copper_plates"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:tesla_coil"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:tesla_coil"
+        },
+        {
+          "tag": "c:copper_plates"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:tesla_coil"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:tesla_coil"
+        },
+        {
+          "tag": "c:copper_plates"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:tesla_coil"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "moderndelight:tesla_coil"
+        },
+        {
+          "tag": "c:copper_plates"
+        }
+      ],
+      "results": [
+        {
+          "item": "moderndelight:tesla_coil"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "moderndelight:tesla_coil"
+  }
+}

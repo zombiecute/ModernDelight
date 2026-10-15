@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "moderndelight:squid"
+    },
+    {
+      "tag": "c:tools/knives"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:squid_tentacle",
+    "count": 2
+  }
+}

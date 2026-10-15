@@ -1,0 +1,153 @@
+{
+  "entity_butter_hit": {
+    "subtitle": "sounds.moderndelight.entity_butter_hit",
+    "sounds": [
+      "moderndelight:butter_hit_1",
+      "moderndelight:butter_hit_2",
+      "moderndelight:butter_hit_3"
+    ]
+  },
+  "entity_butter_shoot": {
+    "subtitle": "sounds.moderndelight.entity_butter_shoot",
+    "sounds": [
+      "moderndelight:butter_shoot_1",
+      "moderndelight:butter_shoot_2"
+    ]
+  },
+  "entity_cherry_bomb_explosion": {
+    "subtitle": "sounds.moderndelight.entity_cherry_bomb_explosion",
+    "sounds": [
+      "moderndelight:cherry_bomb_explosion"
+    ]
+  },
+  "entity_cherry_bomb_shoot": {
+    "subtitle": "sounds.moderndelight.entity_cherry_bomb_shoot",
+    "sounds": [
+      "moderndelight:cherry_bomb_shoot"
+    ]
+  },
+  "block_freezer_running": {
+    "subtitle": "sounds.moderndelight.block_freezer_running",
+    "sounds": [
+      "moderndelight:freezer_running"
+    ]
+  },
+  "block_freezer_open": {
+    "subtitle": "sounds.moderndelight.block_freezer_open",
+    "sounds": [
+      "moderndelight:freezer_open"
+    ]
+  },
+  "block_freezer_close": {
+    "subtitle": "sounds.moderndelight.block_freezer_close",
+    "sounds": [
+      "moderndelight:freezer_close"
+    ]
+  },
+  "block_glass_bowl_whisking": {
+    "subtitle": "sounds.moderndelight.block_glass_bowl_whisking",
+    "sounds": [
+      "moderndelight:whisking_1",
+      "moderndelight:whisking_2",
+      "moderndelight:whisking_3",
+      "moderndelight:whisking_4"
+    ]
+  },
+  "block_food_frying": {
+    "subtitle": "sounds.moderndelight.block_food_frying",
+    "sounds": [
+      "moderndelight:food_frying"
+    ]
+  },
+  "item_crowbar_hit": {
+    "subtitle": "sounds.moderndelight.item_crowbar_hit",
+    "sounds": [
+      "moderndelight:crowbar_hit"
+    ]
+  },
+  "item_crowbar_attack": {
+    "subtitle": "sounds.moderndelight.item_crowbar_attack",
+    "sounds": [
+      "moderndelight:crowbar_attack"
+    ]
+  },
+  "block_gas_canister_filling": {
+    "subtitle": "sounds.moderndelight.block_gas_canister_filling",
+    "sounds": [
+      "moderndelight:gas_canister_filling"
+    ]
+  },
+  "block_gas_cooking_stove_ignite": {
+    "subtitle": "sounds.moderndelight.block_gas_cooking_stove_ignite",
+    "sounds": [
+      "moderndelight:gas_cooking_stove_ignite"
+    ]
+  },
+  "block_sterling_engine": {
+    "subtitle": "sounds.moderndelight.block_sterling_engine",
+    "sounds": [
+      "moderndelight:sterling_engine_1",
+      "moderndelight:sterling_engine_2",
+      "moderndelight:sterling_engine_3",
+      "moderndelight:sterling_engine_4",
+      "moderndelight:sterling_engine_5"
+    ]
+  },
+  "block_sterling_engine_start": {
+    "subtitle": "sounds.moderndelight.block_sterling_engine_start",
+    "sounds": [
+      "moderndelight:sterling_engine_start"
+    ]
+  },
+  "block_sterling_engine_stop": {
+    "subtitle": "sounds.moderndelight.block_sterling_engine_stop",
+    "sounds": [
+      "moderndelight:sterling_engine_stop"
+    ]
+  },
+  "block_tesla_coil": {
+    "subtitle": "sounds.moderndelight.block_tesla_coil",
+    "sounds": [
+      "moderndelight:tesla_coil_1",
+      "moderndelight:tesla_coil_2",
+      "moderndelight:tesla_coil_3"
+    ]
+  },
+  "item_electric_whisk_working": {
+    "subtitle": "sounds.moderndelight.item_electric_whisk_working",
+    "sounds": [
+      "moderndelight:electric_whisk"
+    ]
+  },
+  "block_juice_extractor_working": {
+    "subtitle": "sounds.moderndelight.block_juice_extractor_working",
+    "sounds": [
+      "moderndelight:juicer_work"
+    ]
+  },
+  "block_juice_extractor_scream": {
+    "subtitle": "sounds.moderndelight.block_juice_extractor_scream",
+    "sounds": [
+      "moderndelight:juicer_scream_1",
+      "moderndelight:juicer_scream_2",
+      "moderndelight:juicer_scream_3",
+      "moderndelight:juicer_scream_4",
+      "moderndelight:juicer_scream_5",
+      "moderndelight:juicer_scream_6"
+    ]
+  },
+  "block_juice_extractor_stop": {
+    "subtitle": "sounds.moderndelight.block_juice_extractor_stop",
+    "sounds": [
+      "moderndelight:juicer_stop"
+    ]
+  },
+  "item_stone_mortar_working": {
+    "subtitle": "sounds.moderndelight.item_stone_mortar_working",
+    "sounds": [
+      "moderndelight:stone_mortar_1",
+      "moderndelight:stone_mortar_2",
+      "moderndelight:stone_mortar_3"
+    ]
+  }
+}

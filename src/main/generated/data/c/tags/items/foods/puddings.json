@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:pudding_wip_1",
-    "bakingdelight:pudding_wip_2",
-    "bakingdelight:apple_pudding",
-    "bakingdelight:matcha_pudding",
-    "bakingdelight:matcha_pudding",
-    "bakingdelight:caramel_pudding",
-    "bakingdelight:cherry_pudding"
+    "moderndelight:pudding_wip_1",
+    "moderndelight:pudding_wip_2",
+    "moderndelight:apple_pudding",
+    "moderndelight:matcha_pudding",
+    "moderndelight:matcha_pudding",
+    "moderndelight:caramel_pudding",
+    "moderndelight:cherry_pudding"
   ]
 }

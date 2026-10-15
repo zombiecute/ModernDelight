@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "moderndelight:sausage"
+    },
+    {
+      "tag": "c:tools/knives"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:sectioned_sausage",
+    "count": 1
+  }
+}

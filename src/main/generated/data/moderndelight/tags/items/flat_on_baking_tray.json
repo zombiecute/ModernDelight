@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "moderndelight:raw_pizza",
+    "moderndelight:pizza_wip",
+    "moderndelight:pizza",
+    {
+      "id": "#minecraft:trapdoors",
+      "required": false
+    },
+    {
+      "id": "#minecraft:pressure_plates",
+      "required": false
+    }
+  ]
+}

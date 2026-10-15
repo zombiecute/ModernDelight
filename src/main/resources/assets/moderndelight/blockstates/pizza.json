@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "moderndelight:block/pizza"
+    },
+    "bites=1": {
+      "model": "moderndelight:block/pizza_1"
+    },
+    "bites=2": {
+      "model": "moderndelight:block/pizza_2"
+    },
+    "bites=3": {
+      "model": "moderndelight:block/pizza_3"
+    },
+    "bites=4": {
+      "model": "moderndelight:block/pizza_4"
+    },
+    "bites=5": {
+      "model": "moderndelight:block/pizza_5"
+    },
+    "bites=6": {
+      "model": "moderndelight:block/pizza_6"
+    }
+  }
+}

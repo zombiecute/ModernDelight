@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 400,
+  "experience": 0.5,
+  "ingredient": {
+    "tag": "c:carbonate_rocks"
+  },
+  "result": "moderndelight:quicklime"
+}

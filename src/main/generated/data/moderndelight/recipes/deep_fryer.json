@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "K": {
+      "item": "moderndelight:deep_fry_basket"
+    }
+  },
+  "pattern": [
+    "  I",
+    "IKI",
+    "III"
+  ],
+  "result": {
+    "item": "moderndelight:deep_fryer"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:squeeze",
+  "ingredients": [
+    {
+      "tag": "moderndelight:oil_plants"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:oil_impurity"
+  },
+  "fluid_output": {
+    "fluid": "moderndelight:still_vegetable_oil",
+    "amount": 9000
+  }
+}

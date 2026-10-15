@@ -1,0 +1,27 @@
+{
+  "type": "moderndelight:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    }
+  ],
+  "output": {
+    "item": "minecraft:barrier"
+  },
+  "fluid_input": "moderndelight:still_sweetened_water",
+  "fluid_output": "moderndelight:still_vinegar",
+  "temperature": 32,
+  "luminosity": 8,
+  "time": 240,
+  "bacteria_input": "acetobacter",
+  "bacteria_output": "null"
+}

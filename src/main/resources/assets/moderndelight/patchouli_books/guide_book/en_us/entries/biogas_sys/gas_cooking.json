@@ -1,0 +1,28 @@
+{
+  "name": "Gas Heater",
+  "icon": "moderndelight:gas_cooking_stove",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Summary",
+      "text": "A number of devices in this mod require gas heaters for heating."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Example",
+      "images": ["moderndelight:guide_images/guide_gas_cooking.png"]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:gas_cooking_stove",
+      "title": "Gas Cooking Stove",
+      "text": "When connected by a gas canister containing gas, the right-click will have a probability to activate a gas cooking stove, and the activated gas cooking stove will continuously consume gas and heat the equipment above it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Devices that can currently be heated: Baking Tray, Advance Furnace, Oven, Water Cauldron."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_sapling"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:spruce_leaves",
+    "count": 1
+  }
+}

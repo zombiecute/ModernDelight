@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "cookingtime": 200,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "bakingdelight:glow_squid"
-  },
-  "result": "bakingdelight:roasted_glow_squid"
-}

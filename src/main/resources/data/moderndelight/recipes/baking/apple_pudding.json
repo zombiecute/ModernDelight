@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:foods/fruits/apple"
+    },
+    {
+      "item": "moderndelight:caramel_pudding"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:apple_pudding",
+    "count": 1
+  }
+}

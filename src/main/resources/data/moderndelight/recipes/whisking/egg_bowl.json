@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:whisking",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:egg_bowl"
+  }
+}

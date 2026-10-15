@@ -1,0 +1,12 @@
+{
+  "type": "moderndelight:steaming",
+  "maxProgress": 6,
+  "ingredients": [
+    {
+      "item": "moderndelight:steamed_stuffed_bun_wip"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:steamed_stuffed_bun"
+  }
+}

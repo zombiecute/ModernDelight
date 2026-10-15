@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:beetroot"
+    }
+  ],
+  "output": {
+    "item": "minecraft:beetroot_seeds"
+  },
+  "fluid_output": {
+    "fluid": "moderndelight:still_sweetened_water",
+    "amount": 3375
+  }
+}

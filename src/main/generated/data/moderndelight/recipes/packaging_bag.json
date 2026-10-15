@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:multifunctional_wrapping_paper"
+    },
+    {
+      "item": "moderndelight:multifunctional_wrapping_paper"
+    },
+    {
+      "item": "moderndelight:multifunctional_wrapping_paper"
+    },
+    {
+      "item": "minecraft:red_dye"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "moderndelight:packaging_bag"
+  }
+}

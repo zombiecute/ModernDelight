@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:chest",
+    "minecraft:furnace",
+    "minecraft:blast_furnace",
+    "minecraft:smoker",
+    "minecraft:hopper",
+    "minecraft:shulker_box",
+    "minecraft:trapped_chest",
+    "minecraft:barrel",
+    "moderndelight:oven",
+    "moderndelight:advance_furnace",
+    "moderndelight:baking_tray",
+    "moderndelight:biogas_digester_io",
+    "moderndelight:ac_dc_converter",
+    "moderndelight:deep_fry_basket",
+    "moderndelight:deep_fryer",
+    "moderndelight:kitchen_utensil_holder",
+    "moderndelight:wooden_basin",
+    "moderndelight:wooden_plate",
+    "moderndelight:bamboo_grate",
+    "moderndelight:electric_steamer",
+    "moderndelight:photovoltaic_generator"
+  ]
+}

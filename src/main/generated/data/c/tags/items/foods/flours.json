@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:potato_starch",
-    "bakingdelight:wheat_flour"
+    "moderndelight:potato_starch",
+    "moderndelight:wheat_flour"
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_freezer",
+  "criteria": {
+    "ice_cream_maker": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:ice_cream_maker"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.ice_cream_maker.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:ice_cream_maker"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.ice_cream_maker.title"
+    }
+  },
+  "requirements": [
+    [
+      "ice_cream_maker"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

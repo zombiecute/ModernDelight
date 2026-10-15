@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:flowering_azalea"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:flowering_azalea_leaves",
+    "count": 1
+  }
+}

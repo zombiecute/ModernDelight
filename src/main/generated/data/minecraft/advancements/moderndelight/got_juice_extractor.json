@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/wind",
+  "criteria": {
+    "juice_extractor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:juice_extractor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.moderndelight.juice_extractor.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:juice_extractor"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.juice_extractor.title"
+    }
+  },
+  "requirements": [
+    [
+      "juice_extractor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

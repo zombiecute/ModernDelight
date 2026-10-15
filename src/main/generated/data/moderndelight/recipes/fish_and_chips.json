@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:wooden_plate"
+    },
+    {
+      "item": "moderndelight:fried_cod_nugget"
+    },
+    {
+      "item": "moderndelight:fried_cod_nugget"
+    },
+    {
+      "item": "moderndelight:deep_fried_potato_chips"
+    },
+    {
+      "item": "moderndelight:deep_fried_potato_chips"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:fish_and_chips"
+  }
+}

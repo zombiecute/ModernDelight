@@ -1,0 +1,12 @@
+{
+  "type": "moderndelight:steaming",
+  "maxProgress": 12,
+  "ingredients": [
+    {
+      "item": "moderndelight:fish_egg"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:steamed_fish_egg"
+  }
+}

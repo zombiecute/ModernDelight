@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:moderndelight/got_deep_fryer",
+  "criteria": {
+    "fried_noodles": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:fired_noodles"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "multifunctional_wrapping_paper": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:multifunctional_wrapping_paper"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.moderndelight.fried_noodles.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:fired_noodles"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.fried_noodles.title"
+    }
+  },
+  "requirements": [
+    [
+      "fried_noodles"
+    ],
+    [
+      "multifunctional_wrapping_paper"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

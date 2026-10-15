@@ -1,0 +1,40 @@
+{
+  "name": "Deep Fried Food",
+  "icon": "moderndelight:deep_fryer",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Oil Extraction",
+      "text": "Before making deep fried food, you need to be prepared to squeeze some vegetable oil first. Place a filter and a few stir-fried sunflower seeds in a wooden basin and start extracting the oil by standing and jumping on the basin, you can use a bucket or glass bottle to extract the oil from the basin."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:wooden_basin",
+      "recipe2": "moderndelight:filter"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Start Deep Frying",
+      "text": "Place a gas canister behind the deep fryer, right click on the top of the fryer with a bottle or bucket of vegetable oil to add oil, right click on the top of the fryer with the item you want to fry to put the food in it, right click on the front of the fryer to start the fryer, sneak and right click on the fryer to see how the fryer is frying, but you cannot insert or extract the item."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:deep_fryer",
+      "text": "When the frying is over, right-click on the top of the fryer with the tongs in your hand to take out the deep fried item, if you grab it with your bare hands, you will get burned."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:deep_fry_basket",
+      "title": "Deep Fry Basket",
+      "text": "Right-click on the basket with your hand to insert items, and right-click on the basket with your empty hand to extract items. When the basket is destroyed, the items inside will be kept in the basket instead of falling out."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:holder",
+      "title": "Tongs",
+      "text": "Tongs not only help you safely extract food from the deep fryer, but also make it easier to insert or extract items from other containers. Right-click to hold an item in your off hand or take down a holding item. Sneaking and right clicking on a container will allow you to insert or extract items."
+    }
+  ]
+}

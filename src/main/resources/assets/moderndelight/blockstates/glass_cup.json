@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "cups=1": {
+      "model": "moderndelight:block/single_glass_cup"
+    },
+    "cups=2": {
+      "model": "moderndelight:block/double_glass_cups"
+    },
+    "cups=3": {
+      "model": "moderndelight:block/three_glass_cups"
+    },
+    "cups=4": {
+      "model": "moderndelight:block/four_glass_cups"
+    }
+  }
+}

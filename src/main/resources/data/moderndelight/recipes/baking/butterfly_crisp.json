@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:mixed_dough"
+    },
+    {
+      "item": "moderndelight:butter"
+    },
+    {
+      "item": "moderndelight:butter"
+    },
+    {
+      "item": "moderndelight:mixed_dough"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:butterfly_crisp",
+    "count": 4
+  }
+}

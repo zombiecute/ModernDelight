@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_11"
+    },
+    {
+      "tag": "moderndelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:gunpowder",
+    "count": 18
+  }
+}

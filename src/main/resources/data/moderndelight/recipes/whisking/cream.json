@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:whisking",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:cream_bucket"
+  }
+}

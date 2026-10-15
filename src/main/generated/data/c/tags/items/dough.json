@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:mixed_dough",
-    "bakingdelight:wheat_dough"
+    "moderndelight:mixed_dough",
+    "moderndelight:wheat_dough"
   ]
 }

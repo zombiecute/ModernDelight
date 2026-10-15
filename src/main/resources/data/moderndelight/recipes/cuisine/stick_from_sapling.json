@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "tag": "minecraft:saplings"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:stick",
+    "count": 2
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar_cane"
+    }
+  ],
+  "output": {
+    "item": "minecraft:paper"
+  },
+  "fluid_output": {
+    "fluid": "moderndelight:still_sweetened_water",
+    "amount": 9000
+  }
+}

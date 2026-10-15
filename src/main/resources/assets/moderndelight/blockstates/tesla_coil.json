@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "moderndelight:block/tesla_coil",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "moderndelight:block/tesla_coil",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "moderndelight:block/tesla_coil2",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "moderndelight:block/tesla_coil2"
+    },
+    "facing=up": {
+      "model": "moderndelight:block/tesla_coil",
+      "x": 180
+    },
+    "facing=down": {
+      "model": "moderndelight:block/tesla_coil"
+    }
+  }
+}

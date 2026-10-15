@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "moderndelight:cherry"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:cherry_ice_lolly"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deep_fried_shrimp_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:deep_fried_shrimp_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moderndelight:seaweed_fried_shrimp_cake"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_deep_fried_shrimp_cake",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moderndelight:seaweed_fried_shrimp_cake"
+    ]
+  },
+  "sends_telemetry_event": false
+}

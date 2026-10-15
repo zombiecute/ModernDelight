@@ -1,0 +1,13 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "moderndelight:item/portable_pot"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "moderndelight:pot_state": 0.1
+      }, "model": "moderndelight:item/portable_pot_at_work"
+    }
+  ]
+}

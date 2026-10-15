@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:grinded_leaves"
+    },
+    {
+      "item": "moderndelight:grinded_leaves"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "moderndelight:matcha"
+  }
+}

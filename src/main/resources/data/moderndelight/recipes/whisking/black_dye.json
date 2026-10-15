@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:whisking",
+  "ingredients": [
+    {
+      "tag": "c:coal"
+    }
+  ],
+  "output": {
+    "item": "minecraft:black_dye"
+  }
+}

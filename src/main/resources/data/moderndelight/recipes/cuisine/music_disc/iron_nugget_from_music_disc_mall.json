@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_mall"
+    },
+    {
+      "tag": "moderndelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:iron_nugget",
+    "count": 12
+  }
+}

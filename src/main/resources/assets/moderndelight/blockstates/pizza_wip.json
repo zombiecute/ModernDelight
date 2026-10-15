@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "craft_state=0": {
+      "model": "moderndelight:block/pizza_wip"
+    },
+    "craft_state=1": {
+      "model": "moderndelight:block/pizza_wip_1"
+    },
+    "craft_state=2": {
+      "model": "moderndelight:block/pizza_wip_2"
+    },
+    "craft_state=3": {
+      "model": "moderndelight:block/pizza_wip_3"
+    },
+    "craft_state=4": {
+      "model": "moderndelight:block/pizza_wip_4"
+    },
+    "craft_state=5": {
+      "model": "moderndelight:block/pizza_wip_5"
+    }
+  }
+}

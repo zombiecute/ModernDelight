@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:mangrove_propagule"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "output": {
+    "item": "minecraft:mangrove_leaves",
+    "count": 1
+  }
+}

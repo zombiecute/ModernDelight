@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:black_truffle"
+    },
+    {
+      "item": "moderndelight:black_truffle"
+    },
+    {
+      "item": "moderndelight:black_truffle"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "moderndelight:black_truffle_seasoning"
+  }
+}

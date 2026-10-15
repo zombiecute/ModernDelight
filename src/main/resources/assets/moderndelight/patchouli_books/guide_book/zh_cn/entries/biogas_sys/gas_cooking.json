@@ -1,0 +1,29 @@
+{
+  "name": "燃气加热装置",
+  "icon": "moderndelight:gas_cooking_stove",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "简介",
+      "text": "模组中有不少设备需要燃气加热装置来进行加热。"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "示例",
+      "images": ["moderndelight:guide_images/guide_gas_cooking.png"]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:gas_cooking_stove",
+      "title": "燃气灶",
+      "text": "当被一个装有燃气的燃气罐连接时，右键将有概率启动燃气灶，启动的燃气灶会不断消耗燃气并加热其上方的设备。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "目前可被加热的设备",
+      "text": "烤盘，高级熔炉，烤炉，炼药锅"
+    }
+  ]
+}

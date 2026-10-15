@@ -1,0 +1,18 @@
+package com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast;
+
+import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.WoodenPlateFoodBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.Nullable;
+
+public class BritishBreakfastBlock extends WoodenPlateFoodBlock {
+    public BritishBreakfastBlock(int hunger, float saturation){
+        super(hunger, saturation);
+    }
+
+    @Override
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new BritishBreakfastBlockEntity(pos, state);
+    }
+}

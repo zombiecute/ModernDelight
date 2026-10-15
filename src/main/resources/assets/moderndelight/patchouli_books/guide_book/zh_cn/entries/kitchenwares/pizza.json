@@ -1,0 +1,19 @@
+{
+  "name": "制作披萨",
+  "icon": "moderndelight:pizza",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "制作披萨",
+      "text": "制作披萨很简单，你只需要将面团擀平，加入奶酪，添加自己喜欢的食物，再涂上奶酪得到生披萨，再放到烤炉中烘焙即可。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:kneading_stick",
+      "title": "擀面杖",
+      "text": "一个可以将面团擀平的擀面杖。"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 1,
+  "goal": 128,
+  "ingredients": [
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "moderndelight:redstone_component"
+    },
+    {
+      "item": "moderndelight:freezer"
+    },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:barrel"
+    },
+    {
+      "item": "moderndelight:advance_furnace"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:industrial_fermenter"
+  }
+}

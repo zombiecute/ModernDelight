@@ -1,0 +1,27 @@
+{
+  "type": "moderndelight:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    },
+    {
+      "item": "minecraft:barrier"
+    }
+  ],
+  "output": {
+    "item": "minecraft:barrier"
+  },
+  "fluid_input": "moderndelight:still_sweetened_water",
+  "fluid_output": "moderndelight:still_alcohol",
+  "temperature": 28,
+  "luminosity": 2,
+  "time": 176,
+  "bacteria_input": "yeast",
+  "bacteria_output": "null"
+}

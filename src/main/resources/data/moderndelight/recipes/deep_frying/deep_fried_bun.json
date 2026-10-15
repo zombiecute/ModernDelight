@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "moderndelight:deep_fried_bun_wip"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:deep_fried_bun"
+  }
+}

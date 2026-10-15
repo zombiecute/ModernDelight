@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "tag": "moderndelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:ender_pearl",
+    "count": 1
+  }
+}

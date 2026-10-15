@@ -1,9 +1,0 @@
-{
-  "bait": {
-    "type": "item",
-    "id": "bakingdelight:ancient_scrap"
-  },
-  "interval_ticks": 1000,
-  "probability_of_consume": 0.02,
-  "loot_table" : "minecraft:gameplay/fishing/treasure"
-}

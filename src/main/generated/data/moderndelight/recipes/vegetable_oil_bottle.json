@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:vegetable_oil_bucket"
+    },
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:jar"
+    },
+    {
+      "item": "moderndelight:jar"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "moderndelight:vegetable_oil_bottle"
+  }
+}

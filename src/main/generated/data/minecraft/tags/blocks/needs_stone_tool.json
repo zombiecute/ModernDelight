@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:charging_post",
-    "bakingdelight:ice_cream_maker",
-    "bakingdelight:electric_steamer",
-    "bakingdelight:silicon_block",
-    "bakingdelight:faraday_generator",
-    "bakingdelight:intermediate_battery",
-    "bakingdelight:fan_blade",
-    "bakingdelight:wind_turbine_controller",
-    "bakingdelight:freezer",
-    "bakingdelight:baking_tray",
-    "bakingdelight:gas_canister",
-    "bakingdelight:biogas_digester_controller",
-    "bakingdelight:biogas_digester_io",
-    "bakingdelight:gas_cooking_stove",
-    "bakingdelight:burning_gas_cooking_stove",
-    "bakingdelight:photovoltaic_generator"
+    "moderndelight:charging_post",
+    "moderndelight:ice_cream_maker",
+    "moderndelight:electric_steamer",
+    "moderndelight:silicon_block",
+    "moderndelight:faraday_generator",
+    "moderndelight:intermediate_battery",
+    "moderndelight:fan_blade",
+    "moderndelight:wind_turbine_controller",
+    "moderndelight:freezer",
+    "moderndelight:baking_tray",
+    "moderndelight:gas_canister",
+    "moderndelight:biogas_digester_controller",
+    "moderndelight:biogas_digester_io",
+    "moderndelight:gas_cooking_stove",
+    "moderndelight:burning_gas_cooking_stove",
+    "moderndelight:photovoltaic_generator"
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_bamboo_steamer",
+  "criteria": {
+    "steamed_bun": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:steamed_bun"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.steamed_bun.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:steamed_bun"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.steamed_bun.title"
+    }
+  },
+  "requirements": [
+    [
+      "steamed_bun"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

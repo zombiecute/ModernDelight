@@ -1,0 +1,240 @@
+{
+  "parent": "minecraft:moderndelight/got_fried_noodles",
+  "criteria": {
+    "apple": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_apple"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "chicken_fillet": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:chicken_fillet"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "cod": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_cod"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "deep_fried_bun": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:deep_fried_bun"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "deep_fried_potato_chips": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:deep_fried_potato_chips"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "deep_fried_shrimp_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:deep_fried_shrimp_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dough_stick": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_dough_stick"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "french_fries": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:french_fries"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "fried_brown_mushroom": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_brown_mushroom"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "fried_chicken": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_chicken"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "fried_noodles": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:fired_noodles"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "fried_red_mushroom": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_red_mushroom"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "milk": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_milk"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "potato_chip": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:potato_chip"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "salmon": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:fried_salmon"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "seaweed_fried_shrimp_cake": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:seaweed_fried_shrimp_cake"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.all_fried.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:fried_milk"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.all_fried.title"
+    }
+  },
+  "requirements": [
+    [
+      "fried_noodles"
+    ],
+    [
+      "potato_chip"
+    ],
+    [
+      "salmon"
+    ],
+    [
+      "milk"
+    ],
+    [
+      "dough_stick"
+    ],
+    [
+      "cod"
+    ],
+    [
+      "apple"
+    ],
+    [
+      "chicken_fillet"
+    ],
+    [
+      "fried_red_mushroom"
+    ],
+    [
+      "fried_brown_mushroom"
+    ],
+    [
+      "deep_fried_shrimp_cake"
+    ],
+    [
+      "deep_fried_potato_chips"
+    ],
+    [
+      "french_fries"
+    ],
+    [
+      "deep_fried_bun"
+    ],
+    [
+      "fried_chicken"
+    ],
+    [
+      "seaweed_fried_shrimp_cake"
+    ]
+  ],
+  "rewards": {
+    "experience": 800
+  },
+  "sends_telemetry_event": true
+}

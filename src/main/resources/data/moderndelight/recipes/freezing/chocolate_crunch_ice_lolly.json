@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:freezing",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "moderndelight:chocolate_sauce"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:chocolate_crunch_ice_lolly"
+  }
+}

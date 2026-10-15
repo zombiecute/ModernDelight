@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:cream"
+    },
+    {
+      "item": "moderndelight:cherry"
+    },
+    {
+      "item": "moderndelight:cherry"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:cherry_cream"
+  }
+}

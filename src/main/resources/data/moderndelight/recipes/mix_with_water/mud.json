@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:mix_with_water",
+  "ingredients": [
+    {
+      "tag": "minecraft:dirt"
+    }
+  ],
+  "output": {
+    "item": "minecraft:mud"
+  }
+}

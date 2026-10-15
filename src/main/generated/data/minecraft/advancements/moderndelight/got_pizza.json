@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_raw_pizza",
+  "criteria": {
+    "pizza": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:pizza"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_pizza.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:pizza"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_pizza.title"
+    }
+  },
+  "requirements": [
+    [
+      "pizza"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

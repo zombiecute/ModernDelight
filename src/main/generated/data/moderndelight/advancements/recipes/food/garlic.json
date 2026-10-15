@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_garlic_petal": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:garlic_petal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moderndelight:garlic"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_garlic_petal",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moderndelight:garlic"
+    ]
+  },
+  "sends_telemetry_event": false
+}

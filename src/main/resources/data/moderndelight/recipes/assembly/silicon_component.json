@@ -1,0 +1,29 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 3,
+  "goal": 4,
+  "ingredients": [
+    {
+      "item": "moderndelight:silicon_ingot"
+    },
+    {
+      "item": "moderndelight:redstone_component"
+    },
+    {
+      "item": "moderndelight:silicon_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "moderndelight:silicon_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:silicon_component",
+    "count": 4
+  }
+}

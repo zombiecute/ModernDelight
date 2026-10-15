@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_bdc_bdi",
+  "criteria": {
+    "gas_canister": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:gas_canister"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.gas_canister.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:gas_canister"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.gas_canister.title"
+    }
+  },
+  "requirements": [
+    [
+      "gas_canister"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=1": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=2": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=3": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=4": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=5": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=6": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=7": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=8": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=9": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=10": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=11": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=12": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=13": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=14": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    },
+    "level=15": {
+      "model": "moderndelight:block/vegetable_oil_fluid"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:obsidian_cabinet",
-    "bakingdelight:dimension_battery"
+    "moderndelight:obsidian_cabinet",
+    "moderndelight:dimension_battery"
   ]
 }

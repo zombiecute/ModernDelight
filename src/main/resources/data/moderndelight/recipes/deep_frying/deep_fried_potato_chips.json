@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "moderndelight:potato_chips"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:deep_fried_potato_chips"
+  }
+}

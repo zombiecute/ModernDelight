@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "moderndelight:block/wild_garlic"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "minecraft:music_disc_wait"
+    },
+    {
+      "tag": "moderndelight:crowbars"
+    }
+  ],
+  "output": {
+    "item": "minecraft:lapis_lazuli",
+    "count": 24
+  }
+}

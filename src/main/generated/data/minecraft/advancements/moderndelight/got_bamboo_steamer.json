@@ -1,0 +1,68 @@
+{
+  "parent": "minecraft:moderndelight/got_gas_cooking_stove",
+  "criteria": {
+    "bamboo_cover": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:bamboo_cover"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "bamboo_grate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:bamboo_grate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cauldron": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cauldron"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.bamboo_steamer.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:bamboo_grate"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.bamboo_steamer.title"
+    }
+  },
+  "requirements": [
+    [
+      "bamboo_grate"
+    ],
+    [
+      "bamboo_cover"
+    ],
+    [
+      "cauldron"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

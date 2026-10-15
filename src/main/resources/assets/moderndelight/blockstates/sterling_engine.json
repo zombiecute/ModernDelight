@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "moderndelight:block/sterling_engine",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "moderndelight:block/sterling_engine",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "moderndelight:block/sterling_engine",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "moderndelight:block/sterling_engine",
+      "y": 90
+    }
+  }
+}

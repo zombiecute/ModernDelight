@@ -1,0 +1,28 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 2,
+  "goal": 1,
+  "ingredients": [
+    {
+      "item": "moderndelight:silicon_component"
+    },
+    {
+      "item": "minecraft:daylight_detector"
+    },
+    {
+      "item": "moderndelight:silicon_component"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "moderndelight:advance_battery"
+    },
+    {
+      "item": "moderndelight:diamond_component"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:photovoltaic_generator"
+  }
+}

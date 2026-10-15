@@ -1,0 +1,61 @@
+{
+  "name": "火力发电",
+  "icon": "moderndelight:faraday_generator",
+  "category": "moderndelight:power_sys",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "简介",
+      "text": "火力发电是一种强有力的发电方式，建造一台简易的火力发电机来快速解决电力不足的问题。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "火力发电机的搭建",
+      "multiblock": {
+        "pattern": [
+          [
+            "_____",
+            "_____",
+            "____S",
+            "   __"
+          ],
+          [
+            "_C___",
+            "_F___",
+            "  0 A",
+            "   __"
+          ],
+          [
+            "_____",
+            "_____",
+            "_____",
+            "   __"
+          ]
+        ],
+        "mapping": {
+            "A": "moderndelight:advance_furnace",
+            "S": "moderndelight:sterling_engine[facing=north]",
+            "F": "moderndelight:faraday_generator[facing=west]",
+            "C": "moderndelight:ac_dc_converter[facing=north]"
+        }
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:sterling_engine"
+      },
+      "title": "斯特林引擎",
+      "text": "一台将热能转化为机械能的装置，可以放置在任意的炉子上面（熔炉，高炉，烟熏炉，高级熔炉，烤炉），对其使用海绵以降噪。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:faraday_generator"
+      },
+      "title": "法拉第发电机",
+      "text": "一台将机械能转化为电能的装置，可以搭配斯特林引擎使用来产生交流电。"
+    }
+  ]
+}

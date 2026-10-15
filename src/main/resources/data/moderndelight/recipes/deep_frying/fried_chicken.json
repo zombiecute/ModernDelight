@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "minecraft:chicken"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:fried_chicken"
+  }
+}

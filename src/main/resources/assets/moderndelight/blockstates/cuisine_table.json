@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "moderndelight:block/cuisine_table",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "moderndelight:block/cuisine_table",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "moderndelight:block/cuisine_table",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "moderndelight:block/cuisine_table",
+      "y": 180
+    }
+  }
+}

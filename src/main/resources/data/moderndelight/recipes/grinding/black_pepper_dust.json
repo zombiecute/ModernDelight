@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:grinding",
+  "ingredients": [
+    {
+      "item": "moderndelight:black_pepper_corn"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:black_pepper_dust",
+    "count": 1
+  },
+  "chance": 0.3,
+  "extra": {
+    "item": "moderndelight:black_pepper_dust",
+    "count": 1
+  }
+}

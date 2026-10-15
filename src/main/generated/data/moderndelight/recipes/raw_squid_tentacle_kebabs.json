@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "moderndelight:squid_tentacle"
+    },
+    {
+      "item": "moderndelight:squid_tentacle"
+    },
+    {
+      "item": "moderndelight:cuttlebone"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:raw_squid_tentacle_kebabs"
+  }
+}

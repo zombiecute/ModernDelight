@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:squeeze",
+  "ingredients": [
+    {
+      "item": "minecraft:glow_berries"
+    }
+  ],
+  "output": {
+    "item": "minecraft:moss_block"
+  },
+  "fluid_output": {
+    "fluid": "moderndelight:still_sweetened_water",
+    "amount": 3375
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "moderndelight:grinding",
+  "ingredients": [
+    {
+      "item": "moderndelight:mashed_potato"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:potato_starch"
+  },
+  "chance": 0.2,
+  "extra": {
+    "item": "moderndelight:potato_starch",
+    "count": 1
+  }
+}

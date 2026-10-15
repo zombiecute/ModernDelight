@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:streaky_pork"
+    },
+    {
+      "item": "moderndelight:vegetable_oil_bottle"
+    },
+    {
+      "item": "moderndelight:vegetable_oil_bottle"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:roast_streaky_pork",
+    "count": 1
+  }
+}

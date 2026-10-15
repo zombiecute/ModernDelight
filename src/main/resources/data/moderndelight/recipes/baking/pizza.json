@@ -1,0 +1,20 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:black_pepper_dust"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    },
+    {
+      "item": "moderndelight:raw_pizza"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:pizza"
+  }
+}

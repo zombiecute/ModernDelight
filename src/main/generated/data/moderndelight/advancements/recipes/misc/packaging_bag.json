@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_multifunctional_wrapping_paper": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:multifunctional_wrapping_paper"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moderndelight:packaging_bag"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_multifunctional_wrapping_paper",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moderndelight:packaging_bag"
+    ]
+  },
+  "sends_telemetry_event": false
+}

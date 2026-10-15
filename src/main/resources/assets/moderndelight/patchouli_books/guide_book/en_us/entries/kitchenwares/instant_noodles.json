@@ -1,0 +1,24 @@
+{
+  "name": "Making Instant Noodles",
+  "icon": "moderndelight:cooked_portable_pot",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:multifunctional_wrapping_paper",
+      "title": "Making Instant Noodles",
+      "text": "To make instant noodles, you first need to put the following ingredients in your crafting table: deep fried noodles, a multifunctional wrapper pappeer, 0-7 ingredients. Next you make packaged instant noodles."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:portable_pot",
+      "text": "Prepare a Portable Pot and use the Packaged Instant Noodles in your inventory to right-click on the Portable Pot in order to place it in the pot."
+    },
+    {
+      "type": "patchouli:blasting",
+      "recipe": "moderndelight:blasting/quicklime",
+      "text": "Calcine the limestone to get quicklime, prepare a bucket of water and right click on the portable pot using quicklime and water in your inventory to place it in the pot. Then you get cooked instant noodles."
+    }
+  ]
+}

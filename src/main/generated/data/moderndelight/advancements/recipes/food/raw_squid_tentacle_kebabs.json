@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_squid_tentacle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:squid_tentacle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moderndelight:raw_squid_tentacle_kebabs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_squid_tentacle",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moderndelight:raw_squid_tentacle_kebabs"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,23 @@
+{
+  "name": "蒸笼",
+  "icon": "moderndelight:bamboo_grate",
+  "category": "moderndelight:biogas_sys",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "传统蒸笼",
+      "text": "当有一个装有水的炼药锅被加热时，里面的水会逐渐变成水蒸汽。你可以在这个被加热的炼药锅上面搭建蒸笼来蒸食物，蒸笼由若干笼屉和一个笼盖组成。"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "示例",
+      "images": ["moderndelight:guide_images/guide_steamer.png"]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:bamboo_grate",
+      "recipe2": "moderndelight:bamboo_cover"
+    }
+  ]
+}

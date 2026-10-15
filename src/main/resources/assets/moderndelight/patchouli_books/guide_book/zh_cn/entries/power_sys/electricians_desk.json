@@ -1,0 +1,53 @@
+{
+  "name": "电工台",
+  "icon": "moderndelight:electricians_desk",
+  "category": "moderndelight:power_sys",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "电工台",
+      "text": "电工台是打开本模组电力系统的大门，几乎所有的电力设施均需要电工台来合成。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:electricians_desk",
+      "text": "当按照EMI或REI的指示在电工台上摆好配方后，你并不能立即得到你所想要的产品，而需要完成一系列的小游戏才行。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "2048",
+      "text": "这个小游戏需要你通过按下WASD或GUI中的按钮来进行移动操作，并合成更大的数字，目标是合成出目标栏所指定的数字。"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "示例",
+      "images": ["moderndelight:guide_images/mini_game_1.png","moderndelight:guide_images/mini_game_1_done.png"]
+    },
+    {
+      "type": "patchouli:text",
+      "title": "电路复刻",
+      "text": "这个小游戏需要你将位于'?'按钮中蓝底界面的图案复刻到最开始的绿底界面中，尝试使用提供的工具来复刻图案。"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "示例",
+      "images": [
+        "moderndelight:guide_images/mini_game_2.png",
+        "moderndelight:guide_images/mini_game_2_help.png",
+        "moderndelight:guide_images/mini_game_2_next.png",
+        "moderndelight:guide_images/mini_game_2_done.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "title": "汉诺塔",
+      "text": "这个小游戏需要你将左侧的塔移动到右侧去，且短块只能放置在长块的上面。"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "示例",
+      "images": ["moderndelight:guide_images/mini_game_3.png","moderndelight:guide_images/mini_game_3_done.png"]
+    }
+  ]
+}

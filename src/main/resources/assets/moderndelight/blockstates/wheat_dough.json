@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "craft_state=0": {
+      "model": "moderndelight:block/wheat_dough"
+    },
+    "craft_state=1": {
+      "model": "moderndelight:block/wheat_dough_1"
+    },
+    "craft_state=2": {
+      "model": "moderndelight:block/wheat_dough_2"
+    },
+    "craft_state=3": {
+      "model": "moderndelight:block/wheat_dough_3"
+    }
+  }
+}

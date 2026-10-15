@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_silicon_ingot",
+  "criteria": {
+    "acdcc": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:ac_dc_converter"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.acdcc.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:ac_dc_converter"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.acdcc.title"
+    }
+  },
+  "requirements": [
+    [
+      "acdcc"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

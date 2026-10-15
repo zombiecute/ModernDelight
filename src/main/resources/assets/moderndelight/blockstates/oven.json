@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,oven_burning=false": {
+      "model": "moderndelight:block/oven",
+      "y": 270
+    },
+    "facing=north,oven_burning=true": {
+      "model": "moderndelight:block/oven_burning",
+      "y": 270
+    },
+    "facing=south,oven_burning=false": {
+      "model": "moderndelight:block/oven",
+      "y": 90
+    },
+    "facing=south,oven_burning=true": {
+      "model": "moderndelight:block/oven_burning",
+      "y": 90
+    },
+    "facing=west,oven_burning=false": {
+      "model": "moderndelight:block/oven",
+      "y": 180
+    },
+    "facing=west,oven_burning=true": {
+      "model": "moderndelight:block/oven_burning",
+      "y": 180
+    },
+    "facing=east,oven_burning=false": {
+      "model": "moderndelight:block/oven",
+      "y": 0
+    },
+    "facing=east,oven_burning=true": {
+      "model": "moderndelight:block/oven_burning",
+      "y": 0
+    }
+  }
+}

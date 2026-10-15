@@ -1,0 +1,17 @@
+{
+  "type": "moderndelight:grinding",
+  "ingredients": [
+    {
+      "tag": "c:ores/gold"
+    }
+  ],
+  "output": {
+    "item": "minecraft:gold_nugget",
+    "count": 9
+  },
+  "chance": 0.5,
+  "extra": {
+    "item": "minecraft:gold_nugget",
+    "count": 3
+  }
+}

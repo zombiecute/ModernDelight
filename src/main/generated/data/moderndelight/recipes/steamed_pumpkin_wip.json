@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "moderndelight:wooden_plate"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "M": {
+      "tag": "c:foods/raw_meats"
+    },
+    "P": {
+      "item": "minecraft:pumpkin"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "W": {
+      "item": "minecraft:sweet_berries"
+    }
+  },
+  "pattern": [
+    "SWS",
+    "EPE",
+    "MBM"
+  ],
+  "result": {
+    "item": "moderndelight:steamed_pumpkin_wip"
+  },
+  "show_notification": true
+}

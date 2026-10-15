@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:wither_rose"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "moderndelight:empty_cake"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:wither_rose_cake"
+  }
+}

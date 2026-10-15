@@ -1,0 +1,26 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "moderndelight:garlic"
+    }
+  ],
+  "tool": {
+    "type": "farmersdelight:tool",
+    "tag": "c:tools/knives"
+  },
+  "result": [
+    {
+      "item": "moderndelight:garlic_petal",
+      "count": 3
+    }
+  ]
+}

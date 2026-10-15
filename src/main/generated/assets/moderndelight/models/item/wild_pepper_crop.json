@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "moderndelight:block/wild_pepper_crop"
+  }
+}

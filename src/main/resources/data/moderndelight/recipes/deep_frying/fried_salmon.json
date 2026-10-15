@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "minecraft:salmon"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:fried_salmon"
+  }
+}

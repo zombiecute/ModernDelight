@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "G": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "minecraft:chest"
+    },
+    "R": {
+      "item": "moderndelight:redstone_component"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GPG",
+    "GRB"
+  ],
+  "result": {
+    "item": "moderndelight:freezer"
+  },
+  "show_notification": true
+}

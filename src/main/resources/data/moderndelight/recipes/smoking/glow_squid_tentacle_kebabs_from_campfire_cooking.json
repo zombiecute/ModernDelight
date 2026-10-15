@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "moderndelight:raw_glow_squid_tentacle_kebabs"
+  },
+  "result": "moderndelight:glow_squid_tentacle_kebabs"
+}

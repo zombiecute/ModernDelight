@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "layer=1": {
+      "model": "moderndelight:block/bamboo_grate"
+    },
+    "layer=2": {
+      "model": "moderndelight:block/bamboo_grate_2"
+    },
+    "layer=3": {
+      "model": "moderndelight:block/bamboo_grate_3"
+    },
+    "layer=4": {
+      "model": "moderndelight:block/bamboo_grate_4"
+    }
+  }
+}

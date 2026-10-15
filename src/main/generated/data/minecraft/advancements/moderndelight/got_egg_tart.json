@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_oven",
+  "criteria": {
+    "egg_tart": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:egg_tart"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.moderndelight.get_egg_tart_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:egg_tart"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_egg_tart_title"
+    }
+  },
+  "requirements": [
+    [
+      "egg_tart"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

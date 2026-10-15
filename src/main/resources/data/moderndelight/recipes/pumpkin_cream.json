@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:cream"
+    },
+    {
+      "tag": "c:foods/pumpkins"
+    },
+    {
+      "tag": "c:foods/pumpkins"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:pumpkin_cream"
+  }
+}

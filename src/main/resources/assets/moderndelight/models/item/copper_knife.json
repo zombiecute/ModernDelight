@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "moderndelight:item/copper_knife"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "damage": 0.50
+      },
+      "model": "moderndelight:item/copper_knife_01"
+    },
+    {
+      "predicate": {
+        "damage": 0.80
+      },
+      "model": "moderndelight:item/copper_knife_02"
+    }
+  ]
+}

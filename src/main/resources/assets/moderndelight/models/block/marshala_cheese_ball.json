@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"particle": "moderndelight:block/marshala_cheese_ball"
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "type": "moderndelight:steaming",
+  "maxProgress": 9,
+  "ingredients": [
+    {
+      "item": "moderndelight:shaomai_wip"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:shaomai"
+  }
+}

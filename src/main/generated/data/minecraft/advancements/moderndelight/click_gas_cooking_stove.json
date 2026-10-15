@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:moderndelight/got_gas_cooking_stove",
+  "criteria": {
+    "clicking": {
+      "conditions": {
+        "required_clicks": 10,
+        "window_seconds": 3.0
+      },
+      "trigger": "moderndelight:fast_stove_click"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.click_gas_cooking_stove.desc"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "moderndelight:burning_gas_cooking_stove"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.click_gas_cooking_stove.title"
+    }
+  },
+  "requirements": [
+    [
+      "clicking"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

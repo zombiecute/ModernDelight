@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "moderndelight:block/gas_canister",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "moderndelight:block/gas_canister",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "moderndelight:block/gas_canister",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "moderndelight:block/gas_canister",
+      "y": 180
+    }
+  }
+}

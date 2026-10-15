@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:moderndelight/got_gas_cooking_stove",
+  "criteria": {
+    "spatula": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:spatula"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.spatula.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:spatula",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.spatula.title"
+    }
+  },
+  "requirements": [
+    [
+      "spatula"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

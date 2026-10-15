@@ -1,0 +1,24 @@
+{
+  "name": "制作方便面",
+  "icon": "moderndelight:cooked_portable_pot",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:multifunctional_wrapping_paper",
+      "title": "制作方便面",
+      "text": "要制作方便面，首先需要在工作台中放入以下原料：一块油炸面饼，一张多功能包装纸，0-7种食材。接下来你便制作好了包装方便面。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:portable_pot",
+      "text": "准备好一个便携锅，在你的物品栏中使用包装方便面右键便携锅以将其放入锅中。"
+    },
+    {
+      "type": "patchouli:blasting",
+      "recipe": "moderndelight:blasting/quicklime",
+      "text": "煅烧石灰石得到生石灰，再准备一桶水，在你的物品栏中使用生石灰和水右键便携锅以将其放入锅中。然后你就得到煮熟的方便面了。"
+    }
+  ]
+}

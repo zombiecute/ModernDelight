@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,is_working=false": {
+      "model": "moderndelight:block/electric_steamer",
+      "y": 0
+    },
+    "facing=south,is_working=false": {
+      "model": "moderndelight:block/electric_steamer",
+      "y": 180
+    },
+    "facing=west,is_working=false": {
+      "model": "moderndelight:block/electric_steamer",
+      "y": 270
+    },
+    "facing=east,is_working=false": {
+      "model": "moderndelight:block/electric_steamer",
+      "y": 90
+    },
+    "facing=north,is_working=true": {
+      "model": "moderndelight:block/electric_steamer_is_working",
+      "y": 0
+    },
+    "facing=south,is_working=true": {
+      "model": "moderndelight:block/electric_steamer_is_working",
+      "y": 180
+    },
+    "facing=west,is_working=true": {
+      "model": "moderndelight:block/electric_steamer_is_working",
+      "y": 270
+    },
+    "facing=east,is_working=true": {
+      "model": "moderndelight:block/electric_steamer_is_working",
+      "y": 90
+    }
+  }
+}

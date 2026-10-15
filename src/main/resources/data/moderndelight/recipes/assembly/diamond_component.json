@@ -1,0 +1,29 @@
+{
+  "type": "moderndelight:assembly",
+  "mini_game_type": 2,
+  "goal": 1,
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "moderndelight:silicon_component"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:diamond_component",
+    "count": 4
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_battery1",
+  "criteria": {
+    "charging_post": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:charging_post"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.charging_post.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:charging_post"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.charging_post.title"
+    }
+  },
+  "requirements": [
+    [
+      "charging_post"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,29 @@
+{
+  "type": "moderndelight:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:mycelium"
+    },
+    {
+      "item": "minecraft:dirt"
+    },
+    {
+      "item": "minecraft:mycelium"
+    },
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "output": {
+    "item": "minecraft:dirt",
+    "count": 2
+  },
+  "fluid_input": "empty",
+  "fluid_output": "empty",
+  "temperature": 25,
+  "luminosity": 0,
+  "time": 25,
+  "bacteria_input": "null",
+  "bacteria_output": "mucor",
+  "bacteria_output_amount": 300
+}

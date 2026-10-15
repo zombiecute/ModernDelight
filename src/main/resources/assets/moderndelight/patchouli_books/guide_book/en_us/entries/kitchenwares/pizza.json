@@ -1,0 +1,19 @@
+{
+  "name": "Pizza Making",
+  "icon": "moderndelight:pizza",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Pizza Making",
+      "text": "Making pizza is easy, all you need to do is roll out the dough, add cheese, add your favourite foods, add cheese again to get a raw pizza and bake it in the oven."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:kneading_stick",
+      "title": "Keanding Stick",
+      "text": "A keanding stick to roll out the dough flat."
+    }
+  ]
+}

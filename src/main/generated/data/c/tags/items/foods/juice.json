@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
-    "bakingdelight:sweet_berries_juice",
-    "bakingdelight:tomato_juice",
-    "bakingdelight:cherry_milk_tea",
-    "bakingdelight:rose_ice_tea",
-    "bakingdelight:mango_milk_tea",
-    "bakingdelight:sea_salt_lemon",
+    "moderndelight:sweet_berries_juice",
+    "moderndelight:tomato_juice",
+    "moderndelight:cherry_milk_tea",
+    "moderndelight:rose_ice_tea",
+    "moderndelight:mango_milk_tea",
+    "moderndelight:sea_salt_lemon",
     {
       "id": "farmersdelight:apple_cider",
       "required": false

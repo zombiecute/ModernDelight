@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:whisking",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:mashed_potato"
+  }
+}

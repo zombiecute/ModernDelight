@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "moderndelight:block/fan_blade",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "moderndelight:block/fan_blade",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "moderndelight:block/fan_blade",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "moderndelight:block/fan_blade",
+      "y": 90
+    }
+  }
+}

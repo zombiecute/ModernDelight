@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:vegetables/tomato"
+    },
+    {
+      "item": "moderndelight:cheese"
+    },
+    {
+      "tag": "c:foods/raw_meats/raw_beef"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:beef_tomato_cup",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "moderndelight:block/kitchen_utensil_holder", "y": 180,"uvlock": true },
+    "facing=east":  { "model": "moderndelight:block/kitchen_utensil_holder", "y": 270, "uvlock": true },
+    "facing=south": { "model": "moderndelight:block/kitchen_utensil_holder", "uvlock": true },
+    "facing=west":  { "model": "moderndelight:block/kitchen_utensil_holder", "y": 90, "uvlock": true }
+  }
+}

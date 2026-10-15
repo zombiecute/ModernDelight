@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:moderndelight/got_electricians_desk",
+  "criteria": {
+    "tesla_coil": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:tesla_coil"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.moderndelight.tesla_coil.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:tesla_coil"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.tesla_coil.title"
+    }
+  },
+  "requirements": [
+    [
+      "tesla_coil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
