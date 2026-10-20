@@ -1,17 +1,18 @@
-// 1.20.1	2026-10-14T21:08:16.839284	Modern Delight/Tags for minecraft:block
+// 1.20.1	2026-10-20T11:38:50.5341122	Modern Delight/Tags for minecraft:block
 7ee574deec41a2a2977660250ad6275a7d25bb0c data\minecraft\tags\blocks\needs_diamond_tool.json
 744b953f30b1f636b8c0507293ed2cdb0d98c80e data\moderndelight\tags\blocks\temperature_0.json
 0010b7fe31f38bba3c12d8a39d13f4348cafaf7a data\moderndelight\tags\blocks\temperature_40.json
-ed73fe551f0cce1287e4e3ef60f16ff0c58b3909 data\minecraft\tags\blocks\crops.json
-5ce74fc0d3bd9434168a4427d7f4a4180031826e data\minecraft\tags\blocks\maintains_farmland.json
+2be243568a34588df3d72a28dbfa61c3ec2c9a25 data\minecraft\tags\blocks\crops.json
+ab96db1def929ba1573d5679ca04d18cc689d1ae data\minecraft\tags\blocks\maintains_farmland.json
 c30d67f09c400c4b408b3cf7591b8bfb9d81319a data\c\tags\blocks\storage_blocks\cherry.json
 3a7f8c97311f819bc00c87047588a77ec4af4359 data\moderndelight\tags\blocks\temperature_60.json
+99cda340c70d1af085ce84f1737780b3afc62e61 data\minecraft\tags\blocks\flowers.json
 16cc9952ae817f3793d9ab7af72bc82d2b219c62 data\moderndelight\tags\blocks\whisk_mineable.json
 a580a5d94a5826846850bd1b89633d76f4f26f2d data\moderndelight\tags\blocks\danger_blocks.json
 600670c9d6562d483a55449914fd9c79665e5bf5 data\moderndelight\tags\blocks\temperature_minus_10.json
 573b3c89508c818210ca8f5a86cc095f41352411 data\minecraft\tags\blocks\needs_iron_tool.json
 6a2494757ab9aee6a335de7cc7231c21e3640367 data\create\tags\blocks\passive_boiler_heaters.json
-d752fca75f8d406d1dcaaec2f65c3e229fdbd8ce data\minecraft\tags\blocks\small_flowers.json
+3363374cd888658669710341f4c39bfa52e2e73b data\minecraft\tags\blocks\small_flowers.json
 3cc39462211f55dd604f3f865af1c31cbdb49083 data\moderndelight\tags\blocks\can_pick.json
 3710fb053a0115a82e42819fa72f41018a837988 data\c\tags\blocks\storage_blocks\silicon.json
 0c727ac95487011cd1872e758986f8c4241ab5eb data\moderndelight\tags\blocks\crowbar_destroyable.json
@@ -20,11 +21,12 @@ f851a38fb73692314ec58720c6060a4ae3c36c14 data\moderndelight\tags\blocks\temperat
 c4ad63498d6b92256f29b12befe3de108188cc2c data\moderndelight\tags\blocks\temperature_1000.json
 acceb4b2954fc471d7d94ccdd75fe3a3a659d1ef data\create\tags\blocks\wrench_pickup.json
 6e7e8dca605c0fe67bf1898ed1f394356fe52a30 data\moderndelight\tags\blocks\temperature_300.json
-b22add89dc09e309ca55f41e2728d51007874254 data\minecraft\tags\blocks\bee_growables.json
+091a991489ea1eed9ad9acc7eb445171d0972c3e data\minecraft\tags\blocks\bee_growables.json
 9eba6ec40f4bd700139f80950e7178007bbefd9a data\moderndelight\tags\blocks\temperature_80.json
 b9d79adf308a1324ec07f0c8d1054145aa337938 data\moderndelight\tags\blocks\temperature_600.json
 169881c4d58316bd53fe3a8bad95cc180c77d8e9 data\c\tags\blocks\storage_blocks.json
 9f590009988f3f524cc4f150bc38a4ffc804d7df data\moderndelight\tags\blocks\temperature_100.json
+99cda340c70d1af085ce84f1737780b3afc62e61 data\farmersdelight\tags\blocks\wild_crops.json
 408885e9500a6141d8756bd143047bf4115dc5b2 data\minecraft\tags\blocks\needs_stone_tool.json
 774943b25f6a4cff048c74da8c91d322fa8afda1 data\minecraft\tags\blocks\mineable\axe.json
 6a2494757ab9aee6a335de7cc7231c21e3640367 data\farmersdelight\tags\blocks\heat_sources.json

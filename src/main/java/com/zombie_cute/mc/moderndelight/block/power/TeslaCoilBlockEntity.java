@@ -2,8 +2,8 @@ package com.zombie_cute.mc.moderndelight.block.power;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACConsumer;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACGenerateAble;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACGenerateAble;
 import com.zombie_cute.mc.moderndelight.screen.custom.TeslaCoilScreenHandler;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
 import com.zombie_cute.mc.moderndelight.util.ModConfig;
@@ -78,6 +78,7 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
     private final List<BlockEntity> confinedBlockEntities = new ArrayList<>();
     private BlockEntity powerSupply = null;
     private int ticker = 60;
+    private int availableDevices = 0;
     public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient){
             return;
@@ -113,6 +114,7 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
         }
         // 每3秒更新一次
         if (this.ticker % 60 == 0){
+            availableDevices = 0;
             // 电源判定
             switch (state.get(TeslaCoilBlock.FACING)){
                 case UP -> this.powerSupply = this.getPowerSupply(world,pos.up());
@@ -164,6 +166,7 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
                     if (entity instanceof ACConsumer consumer){
                         if (consumer.isWorking()){
                             consumer.energize();
+                            availableDevices++;
                         }
                     }
                 }
@@ -222,5 +225,9 @@ public class TeslaCoilBlockEntity extends BlockEntity implements ExtendedScreenH
             this.efficiency = (int) able.getEfficiency();
             return world.getBlockEntity(pos);
         } else return null;
+    }
+
+    public int getAvailableDevices() {
+        return availableDevices;
     }
 }

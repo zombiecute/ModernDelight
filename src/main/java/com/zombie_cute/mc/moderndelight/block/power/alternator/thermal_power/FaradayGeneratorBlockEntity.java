@@ -2,7 +2,7 @@ package com.zombie_cute.mc.moderndelight.block.power.alternator.thermal_power;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACGenerateAble;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACGenerateAble;
 import com.zombie_cute.mc.moderndelight.screen.custom.FaradayGeneratorScreenHandler;
 import com.zombie_cute.mc.moderndelight.util.ModConfig;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;

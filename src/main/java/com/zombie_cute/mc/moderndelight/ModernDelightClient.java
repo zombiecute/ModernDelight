@@ -16,7 +16,7 @@ import com.zombie_cute.mc.moderndelight.block.food.clay_pot.pork_noodle.PorkNood
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.vegetable_noodle.VegetableNoodleBlockEntityRender;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.FreezerBlockEntityRenderer;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.GlassBowlBlockEntityRenderer;
-import com.zombie_cute.mc.moderndelight.block.kitchenware.clay_pot.ClayPotBlockEntityRender;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.clay_pot.ClayPotBlockEntityRender;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.KitchenUtensilHolderBlockEntityRender;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.WoodenPlateBlockEntityRenderer;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.BakingTrayBlockEntityRenderer;
@@ -36,6 +36,7 @@ import com.zombie_cute.mc.moderndelight.fluid.ModFluid;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import com.zombie_cute.mc.moderndelight.item.food.instant_noodles.CookedPortablePotItem;
 import com.zombie_cute.mc.moderndelight.item.food.instant_noodles.PortablePotItem;
+import com.zombie_cute.mc.moderndelight.item.tools.FermentationTankItem;
 import com.zombie_cute.mc.moderndelight.networking.NetworkHandler;
 import com.zombie_cute.mc.moderndelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.moderndelight.screen.custom.*;
@@ -84,6 +85,10 @@ public class ModernDelightClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_PEPPER_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GARLIC_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_GARLIC, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CHILI_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_CHILI_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SOYBEAN_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WILD_SOYBEAN, RenderLayer.getCutout());
 
         EntityRendererRegistry.register(ModEntities.BUTTER, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHERRY_BOMB, FlyingItemEntityRenderer::new);
@@ -192,10 +197,18 @@ public class ModernDelightClient implements ClientModInitializer {
                 new SimpleFluidRenderHandler(
                         new Identifier("minecraft","block/water_still"),
                         new Identifier("minecraft","block/water_flow"),
-                        0xFFFFFF
+                        0xFFFAF0
                 ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
                 ModFluid.STILL_MILK, ModFluid.FLOWING_MILK);
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluid.STILL_SOY_MILK, ModFluid.FLOWING_SOY_MILK,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft","block/water_still"),
+                        new Identifier("minecraft","block/water_flow"),
+                        0xFFF8DC
+                ));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getSolid(),
+                ModFluid.STILL_SOY_MILK, ModFluid.FLOWING_SOY_MILK);
     }
     public static void registerModelPredicateProviders() {
         ModelPredicateProviderRegistry.register(ModItems.PORTABLE_POT, new Identifier(ModernDelightMain.MOD_ID,"pot_state"), (itemStack, clientWorld, livingEntity, seed) -> {
@@ -217,6 +230,13 @@ public class ModernDelightClient implements ClientModInitializer {
                 return 0.9F;
             }
             return 0.0F;
+        });
+        ModelPredicateProviderRegistry.register(ModItems.FERMENTATION_TANK, Identifier.of(ModernDelightMain.MOD_ID,"tank_state"),
+                (itemStack, clientWorld, livingEntity, seed) -> {
+            if (FermentationTankItem.getFluidAmount(itemStack) != 0){
+                return 0.0F;
+            }
+            return 0.1F;
         });
     }
 }

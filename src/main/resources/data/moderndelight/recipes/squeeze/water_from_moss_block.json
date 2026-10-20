@@ -6,8 +6,9 @@
     }
   ],
   "output": {
-    "item": "minecraft:moss_carpet"
+    "item": "moderndelight:biomass"
   },
+  "chance": 0.6,
   "fluid_output": {
     "fluid": "minecraft:water",
     "amount": 2250

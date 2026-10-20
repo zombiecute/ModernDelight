@@ -195,6 +195,15 @@ public class BakingTrayBlockEntity extends BlockEntity implements ImplementedInv
     public ItemStack getRendererStack4() {
         return this.getStack(3);
     }
+
+    public int getStirFryTimes() {
+        return stir_fry_times;
+    }
+
+    public boolean isHeated() {
+        return world != null && isHeated(world, pos);
+    }
+
     private boolean isFlat(Item item) {
         List<Item> items = new ArrayList<>();
         for (RegistryEntry<Item> registryEntry : Registries.ITEM.iterateEntries(TagKeys.FLAT_ON_BAKING_TRAY)){

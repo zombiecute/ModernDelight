@@ -161,6 +161,19 @@ public class AdvanceFurnaceBlockEntity extends BlockEntity implements ExtendedSc
         return inventory;
     }
 
+    public int getActiveCookingSlots() {
+        int activeSlots = 0;
+        if (progress_1 > 0) activeSlots++;
+        if (progress_2 > 0) activeSlots++;
+        if (progress_3 > 0) activeSlots++;
+        if (progress_4 > 0) activeSlots++;
+        return activeSlots;
+    }
+
+    public int getBurnTime() {
+        return burnTime;
+    }
+
     @Override
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
         buf.writeBlockPos(this.pos);

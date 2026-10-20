@@ -1,5 +1,9 @@
-// 1.20.1	2026-10-14T21:08:16.84731	Modern Delight/moderndelight
-4f5ef3c14abd111621e86af86e54f616b10e4a8b data\moderndelight\worldgen\placed_feature\wild_black_pepper_p.json
+// 1.20.1	2026-10-20T11:38:50.542159	Modern Delight/moderndelight
+56b0ca2cbc926cd55c1abf99824a520d040d75c3 data\moderndelight\worldgen\configured_feature\wild_soybean_cf.json
+f16f500d68c3abcb76de2736f5819d70346db865 data\moderndelight\worldgen\placed_feature\wild_black_pepper_p.json
 d2a49e021ad8a4f94628611f8b7411c4ecc68b97 data\moderndelight\worldgen\configured_feature\wild_garlic_cf.json
+2c0e5be57589a06e1022093a13a0491372c9dfa1 data\moderndelight\worldgen\placed_feature\wild_soybean_p.json
 dca92954153ff264e0aec1d832b50bb0cc377831 data\moderndelight\worldgen\configured_feature\wild_black_pepper_cf.json
 e7b67c9d827e2b3bec726970887c224c62595d45 data\moderndelight\worldgen\placed_feature\wild_garlic_p.json
+940cf3c7741776ef528b9ec11c6003b61b80ac0e data\moderndelight\worldgen\placed_feature\wild_chili_p.json
+caddd98a0a7279b5df087e3ddc446ae2726ad5a0 data\moderndelight\worldgen\configured_feature\wild_chili_cf.json

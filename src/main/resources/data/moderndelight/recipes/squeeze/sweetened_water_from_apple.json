@@ -8,6 +8,7 @@
   "output": {
     "item": "moderndelight:apple_petal"
   },
+  "chance": 0.35,
   "fluid_output": {
     "fluid": "moderndelight:still_sweetened_water",
     "amount": 3375

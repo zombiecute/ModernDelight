@@ -18,6 +18,7 @@ public class TagKeys {
     public static final TagKey<Block> WRENCH_PICKUP = create("wrench_pickup",RegistryKeys.BLOCK,"create");
     // Farmer's Delight
     public static final TagKey<Block> HEAT_SOURCES = create("heat_sources",RegistryKeys.BLOCK,"farmersdelight");
+    public static final TagKey<Block> WILD_CROPS = create("wild_crops",RegistryKeys.BLOCK,"farmersdelight");
     // Common
     public static final TagKey<Item> NETHERITE_SCRAP_NUGGETS = commonItemTag("netherite_scrap_nuggets");
     public static final TagKey<Item> NETHERITE_SCRAP_ORES = commonItemTag("netherite_scrap_ores");
@@ -44,6 +45,7 @@ public class TagKeys {
     public static final TagKey<Item> C_FLOUR = commonItemTag("flour");
     public static final TagKey<Item> C_WHEAT_DOUGH = commonItemTag("wheat_dough");
     public static final TagKey<Item> C_DOUGH = commonItemTag("dough");
+
     public static final TagKey<Item> FOODS = commonItemTag("foods");
         public static final TagKey<Item> FRUITS = commonItemTag("foods/fruits");
             public static final TagKey<Item> MANGO = commonItemTag("foods/fruits/mango");
@@ -51,8 +53,9 @@ public class TagKeys {
             public static final TagKey<Item> APPLE = commonItemTag("foods/fruits/apple");
             public static final TagKey<Item> ORANGE = commonItemTag("foods/fruits/orange");
             public static final TagKey<Item> PEAR = commonItemTag("foods/fruits/pear");
+            public static final TagKey<Item> CHERRY = commonItemTag("foods/fruits/cherry");
 
-        public static final TagKey<Item> JUICE = commonItemTag("foods/juice");
+        public static final TagKey<Item> JUICE = commonItemTag("foods/juices");
         public static final TagKey<Item> COOKED_MEATS = commonItemTag("foods/cooked_meats");
             public static final TagKey<Item> COOKED_PORK = commonItemTag("foods/cooked_meats/cooked_pork");
         public static final TagKey<Item> RAW_MEATS = commonItemTag("foods/raw_meats");
@@ -64,9 +67,8 @@ public class TagKeys {
         public static final TagKey<Item> ICE_CREAMS = commonItemTag("foods/ice_creams");
         public static final TagKey<Item> BOTTLE_VEGETABLE_OIL = commonItemTag("foods/bottle_of_vegetable_oil");
         public static final TagKey<Item> FLOWER_CAKES = commonItemTag("flower_cakes");
-        public static final TagKey<Item> TRUFFLES = commonItemTag("foods/truffles");
+        public static final TagKey<Item> TRUFFLES = commonItemTag("mushrooms/truffle");
         public static final TagKey<Item> PUDDINGS = commonItemTag("foods/puddings");
-        public static final TagKey<Item> FLOURS = commonItemTag("foods/flours");
         public static final TagKey<Item> DOUGHS = commonItemTag("foods/doughs");
             public static final TagKey<Item> DOUGH_WHEAT = commonItemTag("foods/doughs/wheat");
         public static final TagKey<Item> CREAMS = commonItemTag("foods/creams");
@@ -75,8 +77,13 @@ public class TagKeys {
         public static final TagKey<Item> RAW_FISHES = commonItemTag("foods/raw_fishes");
             public static final TagKey<Item> PRAWNS = commonItemTag("foods/raw_fishes/prawn");
             public static final TagKey<Item> SQUIDS = commonItemTag("foods/raw_fishes/squid");
+            public static final TagKey<Item> CRABS = commonItemTag("foods/raw_fishes/crab");
+        public static final TagKey<Item> COOKED_FISHES = commonItemTag("foods/cooked_fishes");
+            public static final TagKey<Item> COOKED_PRAWNS = commonItemTag("foods/cooked_fishes/prawn");
+            public static final TagKey<Item> COOKED_SQUIDS = commonItemTag("foods/cooked_fishes/squid");
+            public static final TagKey<Item> COOKED_CRABS = commonItemTag("foods/cooked_fishes/crab");
         public static final TagKey<Item> CUTTLEBONES = commonItemTag("foods/cuttlebones");
-        public static final TagKey<Item> SAUSAGES = commonItemTag("foods/sausages");
+        public static final TagKey<Item> SAUSAGES = commonItemTag("foods/sausage");
         public static final TagKey<Item> BREADS = commonItemTag("foods/breads");
             public static final TagKey<Item> BREAD_WHEAT = commonItemTag("foods/breads/wheat");
         public static final TagKey<Item> PUMPKINS = commonItemTag("foods/pumpkins");
@@ -84,10 +91,13 @@ public class TagKeys {
         public static final TagKey<Item> TOOLS_KNIVES = commonItemTag("tools/knives");
     public static final TagKey<Item> SEEDS = commonItemTag("seeds");
         public static final TagKey<Item> SEED_BLACK_PEPPERS = commonItemTag("seeds/black_pepper");
+        public static final TagKey<Item> SEED_CHILI_PEPPER = commonItemTag("seeds/chili_pepper");
     public static final TagKey<Item> CROPS = commonItemTag("crops");
         public static final TagKey<Item> CROP_BLACK_PEPPER = commonItemTag("crops/black_pepper");
         public static final TagKey<Item> CROP_GARLIC = commonItemTag("crops/garlic");
-        public static final TagKey<Item> CABBAGE = commonItemTag("crops/cabbage");
+        public static final TagKey<Item> CROP_CABBAGE = commonItemTag("crops/cabbage");
+        public static final TagKey<Item> CROP_CHILI_PEPPER = commonItemTag("crops/chili_pepper");
+        public static final TagKey<Item> CROP_SOYBEAN = commonItemTag("crops/soybean");
 
     public static final TagKey<Item> CARBONATE_ROCKS = commonItemTag("carbonate_rocks");
     public static final TagKey<Item> QUICKLIMES = commonItemTag("quicklimes");

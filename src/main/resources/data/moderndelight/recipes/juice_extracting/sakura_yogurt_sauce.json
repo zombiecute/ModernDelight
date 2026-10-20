@@ -1,0 +1,23 @@
+{
+  "type": "moderndelight:juice_extracting",
+  "progress": 320,
+  "container": "moderndelight:glass_cup",
+  "ingredients": [
+    {
+      "tag": "c:foods/fruits/cherry"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "item": "minecraft:cherry_leaves"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:sakura_yogurt_sauce",
+    "count": 3
+  }
+}

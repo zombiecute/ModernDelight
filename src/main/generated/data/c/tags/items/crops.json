@@ -12,6 +12,14 @@
     {
       "id": "#c:crops/cabbage",
       "required": false
+    },
+    {
+      "id": "#c:crops/chili_pepper",
+      "required": false
+    },
+    {
+      "id": "#c:crops/soybean",
+      "required": false
     }
   ]
 }

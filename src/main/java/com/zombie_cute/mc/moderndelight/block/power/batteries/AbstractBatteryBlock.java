@@ -3,7 +3,7 @@ package com.zombie_cute.mc.moderndelight.block.power.batteries;
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.util.MiscUtil;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.Power;
+import com.zombie_cute.mc.moderndelight.util.power_util.Power;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;

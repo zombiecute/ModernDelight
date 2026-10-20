@@ -81,6 +81,10 @@ public class BiogasDigesterControllerBlockEntity extends BlockEntity implements 
     public int getCurrentSize(){
         return size;
     }
+
+    public int getMaxGasValue() {
+        return maxGasValue;
+    }
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);

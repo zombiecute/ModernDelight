@@ -1,0 +1,13 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "moderndelight:item/fermentation_tank"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "moderndelight:tank_state": 0.1
+      }, "model": "moderndelight:item/fermentation_tank_empty"
+    }
+  ]
+}

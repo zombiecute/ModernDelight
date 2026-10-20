@@ -2,7 +2,7 @@ package com.zombie_cute.mc.moderndelight.block.kitchenware.ice_cream_maker;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACConsumer;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import com.zombie_cute.mc.moderndelight.item.food.CreamItem;
@@ -45,7 +45,7 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
             @Override
             public int get(int index) {
                 return switch (index){
-                    case 0 -> IceCreamMakerBlockEntity.this.isPowered;
+                    case 0 -> IceCreamMakerBlockEntity.this.cachedPower;
                     case 1 -> IceCreamMakerBlockEntity.this.progress;
 
                     case 2 -> IceCreamMakerBlockEntity.this.iceCream1.getFlavor().getId();
@@ -74,7 +74,7 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
     private final PropertyDelegate propertyDelegate;
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     private static final RawAnimation START = RawAnimation.begin().thenPlay("start");
-    private int isPowered = 0;
+    private int cachedPower = 0;
     private final IceCream iceCream1 = new IceCream();
     private final IceCream iceCream2 = new IceCream();
     private final IceCream iceCream3 = new IceCream();
@@ -102,8 +102,8 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
         if (world.isClient){
             return;
         }
-        if (isPowered > 0){
-            this.isPowered--;
+        if (isPowered()){
+            this.cachedPower--;
         } else {
             if (this.progress > 0){
                 progress--;
@@ -167,6 +167,11 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
             markDirty();
         }
     }
+
+    public boolean isPowered() {
+        return cachedPower > 0;
+    }
+
     private int findSameFlavor(CreamFlavor creamFlavor){
         if (this.iceCream1.getFlavor() == creamFlavor && this.iceCream1.getAmount() != 1000){
             return 1;
@@ -192,7 +197,7 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
         return 0;
     }
     private boolean hasRecipe(){
-        return this.isPowered != 0 &&
+        return this.cachedPower != 0 &&
                 this.getStack(1).getItem() == Items.SUGAR &&
                 this.getStack(2).getItem() == Items.EGG;
     }
@@ -241,6 +246,28 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
         return 20;
     }
 
+    public int getProgress() {
+        return 10 - progress;
+    }
+
+    public CreamFlavor getSelectedFlavor(int index) {
+        return switch (index) {
+            case 0 -> iceCream1.isSelected() ? iceCream1.getFlavor() : CreamFlavor.NULL;
+            case 1 -> iceCream2.isSelected() ? iceCream2.getFlavor() : CreamFlavor.NULL;
+            case 2 -> iceCream3.isSelected() ? iceCream3.getFlavor() : CreamFlavor.NULL;
+            default -> CreamFlavor.NULL;
+        };
+    }
+
+    public int getSelectedFlavorAmount(int index) {
+        return switch (index) {
+            case 0 -> iceCream1.isSelected() ? iceCream1.getAmount() : 0;
+            case 1 -> iceCream2.isSelected() ? iceCream2.getAmount() : 0;
+            case 2 -> iceCream3.isSelected() ? iceCream3.getAmount() : 0;
+            default -> 0;
+        };
+    }
+
     @Override
     public boolean isWorking() {
         return true;
@@ -248,7 +275,7 @@ public class IceCreamMakerBlockEntity extends BlockEntity implements GeoBlockEnt
 
     @Override
     public void energize() {
-        this.isPowered = 100;
+        this.cachedPower = 100;
     }
 
     @Override

@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "moderndelight:golden_double_crisp_wip"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:golden_double_crisp"
+  }
+}

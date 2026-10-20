@@ -5,7 +5,7 @@ import com.zombie_cute.mc.moderndelight.networking.packet.ItemStackSyncS2CPacket
 import com.zombie_cute.mc.moderndelight.recipe.custom.JuiceExtractingRecipe;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACConsumer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

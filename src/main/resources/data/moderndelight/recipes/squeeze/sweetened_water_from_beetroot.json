@@ -8,6 +8,7 @@
   "output": {
     "item": "minecraft:beetroot_seeds"
   },
+  "chance": 0.6,
   "fluid_output": {
     "fluid": "moderndelight:still_sweetened_water",
     "amount": 3375

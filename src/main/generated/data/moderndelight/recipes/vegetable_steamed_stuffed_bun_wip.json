@@ -2,22 +2,25 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "A": {
+      "tag": "c:foods/raw_meats"
+    },
     "B": {
       "item": "moderndelight:wooden_plate"
     },
-    "D": {
-      "item": "moderndelight:mixed_dough"
+    "C": {
+      "tag": "c:crops/cabbage"
     },
-    "K": {
-      "item": "minecraft:dried_kelp"
+    "D": {
+      "item": "minecraft:carrot"
     },
     "M": {
-      "tag": "c:crops/cabbage"
+      "tag": "c:mushrooms"
     }
   },
   "pattern": [
-    "KDK",
-    "DMD",
+    "MDM",
+    "CAC",
     "BBB"
   ],
   "result": {

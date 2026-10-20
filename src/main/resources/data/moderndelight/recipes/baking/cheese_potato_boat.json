@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:cheese"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "tag": "c:mushrooms"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:cheese_potato_boat",
+    "count": 1
+  }
+}

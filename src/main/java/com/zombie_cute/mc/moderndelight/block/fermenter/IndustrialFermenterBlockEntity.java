@@ -14,7 +14,7 @@ import com.zombie_cute.mc.moderndelight.util.FluidStack;
 import com.zombie_cute.mc.moderndelight.util.TemperatureUtil;
 import com.zombie_cute.mc.moderndelight.util.block_util.FluidStorageAble;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACConsumer;
 import com.zombie_cute.mc.moderndelight.util.enums.BacteriaType;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
@@ -329,7 +329,7 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
     }
 
     private static void tickPower(IndustrialFermenterBlockEntity be) {
-        if (be.cachedPower > 0) {
+        if (be.isPowered()) {
             be.cachedPower--;
             be.noPowerTicker = 10;
         } else {
@@ -339,6 +339,10 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
                 be.temperatureFix += (be.temperatureFix > 0) ? -1 : 1;
             }
         }
+    }
+
+    public boolean isPowered() {
+        return cachedPower > 0;
     }
 
     private static void tickAnimation(World world, BlockPos pos, BlockState state, IndustrialFermenterBlockEntity be) {
@@ -494,7 +498,7 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
         }
         return secondResult;
     }
-    private BacteriaType getDominantBacteria(){
+    public BacteriaType getDominantBacteria(){
         int max = 0;
         BacteriaType maxResult = null;
         for (int i = 0; i < bacteriaCFUs.length; i++) {
@@ -777,6 +781,14 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
     }
     public int getRealTemperature() {
         return temperature + temperatureFix;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public int getMaxProgress() {
+        return maxProgress;
     }
 
     public void clear() {

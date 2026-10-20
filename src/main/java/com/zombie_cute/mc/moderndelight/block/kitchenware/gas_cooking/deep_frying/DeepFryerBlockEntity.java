@@ -425,6 +425,19 @@ public class DeepFryerBlockEntity extends BlockEntity implements ImplementedInve
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
+
+    public boolean isHeated() {
+        return getCachedState().get(DeepFryerBlock.RUNNING);
+    }
+
+    public int getActiveCookingSlots() {
+        int activeSlots = 0;
+        if (progress1 > 0) activeSlots++;
+        if (progress2 > 0) activeSlots++;
+        if (progress3 > 0) activeSlots++;
+        if (progress4 > 0) activeSlots++;
+        return activeSlots;
+    }
     private boolean isHeated(BlockState state){
         return state.get(DeepFryerBlock.RUNNING);
     }

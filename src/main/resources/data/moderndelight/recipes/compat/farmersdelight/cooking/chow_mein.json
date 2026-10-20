@@ -1,0 +1,40 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 220,
+  "experience": 1.0,
+  "container": {
+    "item": "moderndelight:wooden_plate"
+  },
+  "ingredients": [
+    {
+      "tag": "c:crops/cabbage"
+    },
+    {
+      "tag": "c:foods/pastas"
+    },
+    {
+      "tag": "c:foods/raw_meats"
+    },
+    {
+      "tag": "c:crops/onion"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "moderndelight:sea_salt"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "moderndelight:chow_mein"
+  }
+}

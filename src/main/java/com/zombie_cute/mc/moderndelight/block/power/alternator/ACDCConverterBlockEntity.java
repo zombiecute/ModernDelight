@@ -10,10 +10,10 @@ import com.zombie_cute.mc.moderndelight.block.power.batteries.AbstractBatteryBlo
 import com.zombie_cute.mc.moderndelight.screen.custom.ACDCConverterScreenHandler;
 import com.zombie_cute.mc.moderndelight.util.*;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACConsumer;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACGenerateAble;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.Power;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.PowerStorageAble;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACGenerateAble;
+import com.zombie_cute.mc.moderndelight.util.power_util.Power;
+import com.zombie_cute.mc.moderndelight.util.power_util.PowerStorageAble;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -95,9 +95,9 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
             int max_speed = ModConfig.acdcConverterMaxWorkSpeed;
             if (max_speed >= 1){
                 return max_speed;
-            } else return 20;
+            } else return 50;
         } catch (Throwable ignored){
-            return 20;
+            return 50;
         }
     }
     public void addWorkSpeed(int value) {
@@ -260,6 +260,6 @@ public class ACDCConverterBlockEntity extends BlockEntity implements ExtendedScr
 
     @Override
     public void energize() {
-        addEnergy((long)((double)getWorkSpeed() * 10 * (1.0 - (double) getWorkSpeed() / ((double)getMaxWorkSpeed() * 3.0))) * 3);
+        addEnergy((long)((double)getWorkSpeed() * 10 * (1.0 - (double) getWorkSpeed() / ((double)getMaxWorkSpeed() * 3.0))) * 9);
     }
 }

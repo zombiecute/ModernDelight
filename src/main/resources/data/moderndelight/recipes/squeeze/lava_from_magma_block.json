@@ -10,6 +10,7 @@
   "output": {
     "item": "minecraft:netherrack"
   },
+  "chance": 0.6,
   "fluid_output": {
     "fluid": "minecraft:lava",
     "amount": 9000

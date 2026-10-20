@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "minecraft:brown_mushroom",
-    "minecraft:red_mushroom"
+    "minecraft:red_mushroom",
+    {
+      "id": "#c:mushrooms/truffle",
+      "required": false
+    }
   ]
 }

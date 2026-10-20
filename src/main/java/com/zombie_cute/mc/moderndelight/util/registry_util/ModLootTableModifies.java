@@ -164,6 +164,7 @@ public class ModLootTableModifies {
                     .conditionally(RandomChanceLootCondition.builder(1f))
                     .with(ItemEntry.builder(ModItems.BLACK_PEPPER_CORN))
                     .with(ItemEntry.builder(ModItems.BUTTER))
+                    .with(ItemEntry.builder(ModItems.SOYBEAN))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f,2.5f)).build());
             tableBuilder.pool(poolBuilder.build());
         }
@@ -174,6 +175,7 @@ public class ModLootTableModifies {
                     .with(ItemEntry.builder(ModItems.BLACK_PEPPER_CORN))
                     .with(ItemEntry.builder(ModItems.GARLIC))
                     .with(ItemEntry.builder(ModItems.BUTTER))
+                    .with(ItemEntry.builder(ModItems.CHILI_SEEDS))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f,2.5f)).build());
             tableBuilder.pool(poolBuilder.build());
         }
@@ -210,6 +212,7 @@ public class ModLootTableModifies {
                     .with(ItemEntry.builder(ModItems.GARLIC))
                     .with(ItemEntry.builder(ModItems.GARLIC_PETAL))
                     .with(ItemEntry.builder(ModItems.BUTTER))
+                    .with(ItemEntry.builder(ModItems.SOYBEAN))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.8f,2.5f)).build());
             tableBuilder.pool(poolBuilder.build());
         }
@@ -220,6 +223,7 @@ public class ModLootTableModifies {
                     .with(ItemEntry.builder(ModItems.REDSTONE_COMPONENT))
                     .with(ItemEntry.builder(ModItems.GARLIC_PETAL))
                     .with(ItemEntry.builder(ModItems.SILICON_INGOT))
+                    .with(ItemEntry.builder(ModItems.CHILI_PEPPER))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.8f,2.5f)).build());
             tableBuilder.pool(poolBuilder.build());
         }

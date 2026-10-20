@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:chili_pepper"
+    },
+    {
+      "item": "moderndelight:chili_pepper"
+    },
+    {
+      "item": "moderndelight:seasoning_bottle"
+    },
+    {
+      "item": "moderndelight:seasoning_bottle"
+    },
+    {
+      "item": "moderndelight:seasoning_bottle"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "moderndelight:chili_powder_seasoning"
+  }
+}

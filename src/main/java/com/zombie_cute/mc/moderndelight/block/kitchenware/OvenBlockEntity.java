@@ -379,4 +379,16 @@ public class OvenBlockEntity extends BlockEntity implements ExtendedScreenHandle
     public int getExperience(){
         return experiences;
     }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public int getMaxProgress() {
+        return maxProgress;
+    }
+
+    public int getBurnTime() {
+        return burnTime;
+    }
 }

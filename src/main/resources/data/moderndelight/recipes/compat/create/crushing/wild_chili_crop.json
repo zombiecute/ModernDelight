@@ -1,0 +1,35 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "moderndelight:wild_chili_crop"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "count": 2,
+      "item": "moderndelight:chili_pepper"
+    },
+    {
+      "count": 3,
+      "item": "moderndelight:chili_seeds"
+    },
+    {
+      "chance": 0.6,
+      "item": "minecraft:red_dye"
+    },
+    {
+      "chance": 0.2,
+      "item": "minecraft:lime_dye"
+    }
+  ]
+}

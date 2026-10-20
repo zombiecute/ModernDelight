@@ -112,7 +112,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
                 "一款用于加工或搅拌食材的容器，需要配合搅拌器使用，也可以往其中倒入水来进行与水混合的操作。");
         translationBuilder.add(TextUtil.PGEN,
                 "光伏发电机可以将光能转化为直流电能并将其存储起来，可以在里面接入电池并为其充电，" +
-                        "发电量取决与当前的高度，时间，天气，方块光和天空光等因素。");
+                        "发电量取决与当前的高度，时间，天气，方块光和天空光等因素。同时也会尝试为其后方的直流用电器供能。");
         translationBuilder.add(TextUtil.STERLING_ENGINE,
                 "斯特林引擎需要安装在燃烧中的熔炉，高炉，烟熏炉，高级熔炉或烤炉上才能工作，" +
                         "它需要与法拉第发电机相连接来产生交流电。使用海绵可以让它减小噪音。");
@@ -167,6 +167,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(TextUtil.TRAWLER_BAIT,"此处放置鱼饵（可选）");
         translationBuilder.add(TextUtil.GET_EXP,"点击以获取经验值");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"消除工具");
+        translationBuilder.add(TextUtil.STONE_MORTAR,"一手持待碾磨的物品，另一只手持石臼，按住交互键开始碾磨。");
 
         translationBuilder.add(GlassBowlBlockEntity.WHISK_FAIL, "这东西似乎不是搅拌器能处理的");
         translationBuilder.add(GlassBowlBlockEntity.NEED_PACKAGE, "里面的东西需要特殊的物品取出，需要");
@@ -195,7 +196,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SUNFLOWER_SEED_PEEL, "葵花籽皮");
         translationBuilder.add(ModItems.SUNFLOWER_SEED_PULP, "葵花籽肉");
         translationBuilder.add(ModItems.ROASTED_SUNFLOWER_SEED, "炒葵花籽");
-        translationBuilder.add(ModItems.OIL_IMPURITY, "油渣");
+        translationBuilder.add(ModItems.BIOMASS, "生物质");
         translationBuilder.add(ModItems.VEGETABLE_OIL_BOTTLE, "罐装植物油");
         translationBuilder.add(ModItems.VEGETABLE_OIL_BUCKET, "植物油桶");
 
@@ -253,6 +254,31 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.MATCHA_CREAM, "抹茶奶油");
         translationBuilder.add(ModItems.PUMPKIN_CREAM, "南瓜奶油");
         translationBuilder.add(ModItems.WHIPPING_CREAM, "淡奶油");
+
+        translationBuilder.add(ModItems.COOKED_PRAWN, "熟对虾");
+        translationBuilder.add(ModItems.BUTTER_COOKIE, "黄油曲奇");
+        translationBuilder.add(ModItems.CHEESE_POTATO_BOAT, "芝士土豆船");
+        translationBuilder.add(ModItems.OPERA_CAKE, "歌剧院蛋糕");
+        translationBuilder.add(ModItems.CRYSTAL_DUMPLING_WIP, "水晶虾饺（半成品）");
+        translationBuilder.add(ModItems.DOUBLE_MEAT_BURGER, "双层肉霸堡");
+        translationBuilder.add(ModItems.CRISPY_BARBECUE, "香脆烤肉");
+        translationBuilder.add(ModItems.MIXED_JAM, "混合果酱");
+        translationBuilder.add(ModItems.SEASONING_BOTTLE, "调料瓶");
+        translationBuilder.add(ModItems.CRAB, "螃蟹");
+        translationBuilder.add(ModItems.CRAB_ROE, "蟹黄");
+        translationBuilder.add(ModItems.COOKED_CRAB, "烤螃蟹");
+        translationBuilder.add(ModItems.GOLDEN_DOUBLE_CRISP_WIP, "黄金双环脆（半成品）");
+        translationBuilder.add(ModItems.GOLDEN_DOUBLE_CRISP, "黄金双环脆");
+        translationBuilder.add(ModItems.SAKURA_YOGURT_SAUCE, "樱花酸奶沙司");
+        translationBuilder.add(ModItems.SCOTCH_EGG_WIP, "苏格兰蛋（半成品）");
+        translationBuilder.add(ModItems.SCOTCH_EGG, "苏格兰蛋");
+        translationBuilder.add(ModItems.CHOW_MEIN, "什锦炒面");
+        translationBuilder.add(ModItems.STUFFED_MASHED_POTATO, "夹心土豆泥");
+        translationBuilder.add(ModItems.STEAMED_EGG_CUSTARD, "蒸蛋羹");
+        translationBuilder.add(ModItems.CHILI_SEEDS, "辣椒种子");
+        translationBuilder.add(ModItems.CHILI_PEPPER, "辣椒");
+        translationBuilder.add(ModItems.SOYBEAN, "大豆");
+        translationBuilder.add(ModItems.CHILI_SAUCE, "辣椒酱");
 
         translationBuilder.add(ModItems.MOUSSE_WIP, "慕斯（半成品）");
         translationBuilder.add(ModItems.CREAM_MOUSSE, "奶油慕斯");
@@ -354,7 +380,6 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SQUID_TENTACLE, "鱿鱼须");
         translationBuilder.add(ModItems.RAW_SQUID_TENTACLE_KEBABS, "生鱿鱼须串");
         translationBuilder.add(ModItems.SQUID_TENTACLE_KEBABS, "鱿鱼须串");
-        translationBuilder.add(ModItems.STREAKY_PORK, "生五花肉");
         translationBuilder.add(ModItems.TURNIP, "芜菁甘蓝");
         translationBuilder.add(TextUtil.TURNIP, "来自作者的微微怨念");
         translationBuilder.add(ModItems.RAW_DONUT, "生甜甜圈");
@@ -363,8 +388,6 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.ROAST_STREAKY_PORK, "香烤五花肉");
         translationBuilder.add(ModItems.PORK_CHOP_BURGER, "芝士猪扒堡");
         translationBuilder.add(ModItems.FRIED_COD_NUGGET, "油炸鳕鱼块");
-        translationBuilder.add(ModItems.PORK_RIBS, "猪肋排");
-        translationBuilder.add(ModItems.PORK_HOOF, "猪蹄花");
         translationBuilder.add(ModBlocks.FISH_AND_CHIPS_ITEM, "炸鱼薯条");
         translationBuilder.add(ModBlocks.WILD_PEPPER_CROP, "野生黑胡椒");
         translationBuilder.add(ModItems.GARLIC, "大蒜");
@@ -372,7 +395,10 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.WILD_GARLIC, "野生大蒜");
         translationBuilder.add(ModItems.ELECTRIC_WHISK, "电动搅拌器");
         translationBuilder.add(ModItems.RAW_NOODLES, "生面条");
-
+        translationBuilder.add(ModBlocks.WILD_CHILI_CROP, "野生辣椒");
+        translationBuilder.add(ModBlocks.WILD_SOYBEAN, "野生大豆");
+        translationBuilder.add(ModItems.CHILI_POWDER_SEASONING, "辣椒粉调味罐");
+        translationBuilder.add(ModItems.SOY_MILK_BUCKET, "豆浆桶");
 
         translationBuilder.add(ModEntities.BUTTER,"黄油");
         translationBuilder.add(ModEntities.CHERRY_BOMB,"樱桃");
@@ -500,10 +526,10 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.STEAMED_PUMPKIN, "蒸南瓜");
         translationBuilder.add(ModItems.STEAMED_PUMPKIN_WIP, "蒸南瓜（半成品）");
         translationBuilder.add(ModItems.CHOCOLATE_CRUNCH_ICE_LOLLY, "巧克力脆皮冰棍");
-        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN_WIP, "包子（半成品）");
-        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN, "包子");
-        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP, "蔬菜包子（半成品）");
-        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN, "蔬菜包子");
+        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN_WIP, "小笼包（半成品）");
+        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN, "小笼包");
+        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP, "碧玉白菜包（半成品）");
+        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN, "碧玉白菜包");
         translationBuilder.add(ModItems.SHAOMAI_WIP, "烧卖（半成品）");
         translationBuilder.add(ModItems.SHAOMAI, "烧卖");
         translationBuilder.add(ModItems.BLACK_PEPPER_STEAK, "黑椒牛排");
@@ -534,6 +560,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.ALCOHOL_FLUID_BLOCK, "酒精");
         translationBuilder.add(ModBlocks.VINEGAR_FLUID_BLOCK, "醋");
         translationBuilder.add(ModBlocks.MILK_FLUID_BLOCK, "奶 （发酵中）");
+        translationBuilder.add(ModBlocks.SOY_MILK_FLUID_BLOCK, "豆浆");
 
         translationBuilder.add(ModEnchantments.FINE_GRINDING,"精碾");
         translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","石臼在碾磨时会有额外的产出");
@@ -597,19 +624,61 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("emi.category.moderndelight.grinding","碾磨");
         translationBuilder.add("emi.category.moderndelight.fermenting","发酵");
 
-        translationBuilder.add("config.jade.moderndelight.trawler","拖网");
+        translationBuilder.add("config.jade.moderndelight.machine_details", "机器信息");
         translationBuilder.add("moderndelight.jade.tooltip.trawler.trawler_interval","剩余收获时间：%d 秒");
-        translationBuilder.add("config.jade.moderndelight.sterling_engine","斯特林引擎");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.has_sponge","已降噪");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.no_sponge","未降噪");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.working","运行中");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.not_working","待机");
-        translationBuilder.add("config.jade.moderndelight.ac_generator","交流发电机");
         translationBuilder.add("moderndelight.jade.tooltip.ac_generator.power","当前交流电的发电量：%d EP/s");
-        translationBuilder.add("config.jade.moderndelight.juice_extractor","榨汁机");
-        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.time","剩余时间：%d 秒");
-        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.powered","已通电");
-        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.not_powered","未通电");
+        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.time","剩余榨汁时间：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_device.powered","已通电");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_device.not_powered","未通电");
+        translationBuilder.add("moderndelight.jade.tooltip.industrial_fermenter.temperature", "温度：%d °C");
+        translationBuilder.add("moderndelight.jade.tooltip.industrial_fermenter.dominate", "当前发酵的主导菌：%s");
+        translationBuilder.add("moderndelight.jade.tooltip.industrial_fermenter.progress", "剩余发酵时间：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.electric_steamer.steam", "蒸汽：%d / %d mB");
+        translationBuilder.add("moderndelight.jade.tooltip.electric_steamer.active_slots", "正在工作的蒸制槽：%d");
+        translationBuilder.add("moderndelight.jade.tooltip.ice_cream_maker.progress", "冰淇淋制作进度：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.ice_cream_maker.flavor", "已选口味：%s（%d mB）");
+        translationBuilder.add("moderndelight.jade.tooltip.freezer.cooling_time", "剩余制冷时间：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.freezer.progress", "冷冻进度：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.oven.fuel_time", "剩余燃料时间：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.oven.progress", "剩余烘焙时间：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.advance_furnace.active_slots", "正在工作的烹饪槽：%d");
+        translationBuilder.add("moderndelight.jade.tooltip.advance_furnace.fuel_time", "剩余燃料时间：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.heated", "加热器：%s");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.running", "已开启");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.stopped", "已关闭");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.active_slots", "正在工作的油炸槽：%d");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.stir_fry", "翻炒次数：%d / %d 次");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.heat_source", "热源：%s");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.heated", "正在加热");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.cold", "未加热");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.heat", "热度：%s");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.cover", "顶盖：%s");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.layer", "蒸笼层数：%d / %d");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.active_slots", "正在工作的蒸制槽：%d");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.heated", "已加热");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.cold", "未加热");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.covered", "已加盖");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.uncovered", "未加盖");
+        translationBuilder.add("moderndelight.jade.tooltip.gas_canister.gas", "燃气已填充");
+        translationBuilder.add("moderndelight.jade.tooltip.gas_canister.not_gas", "燃气未填充");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.gas", "沼气：%d / %d mB");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.volume", "发酵室容积：%d 格");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.structure", "结构：%s");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.valid", "有效");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.invalid", "无效");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_io.gas", "沼气：%d mB");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_io.progress", "发酵进度：%d 秒");
+        translationBuilder.add("moderndelight.jade.tooltip.dc_generator.power", "当前直流电的发电量：%d EP/s");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.mode", "输出模式：%s");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.mode_ac", "交流电");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.mode_dc", "直流电");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.speed", "工作速度：%d / %d");
+        translationBuilder.add("moderndelight.jade.tooltip.tesla_coil.efficiency", "当前负载：%d EP");
+        translationBuilder.add("moderndelight.jade.tooltip.tesla_coil.devices", "激活的设备: %d");
 
         translationBuilder.add("sounds.moderndelight.entity_butter_hit", "黄油：击中");
         translationBuilder.add("sounds.moderndelight.entity_butter_shoot", "黄油：发射");

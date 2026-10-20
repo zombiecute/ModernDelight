@@ -17,16 +17,28 @@ import java.util.List;
 public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> WILD_BLACK_PEPPER_PLACED = registerKey("wild_black_pepper_p");
     public static final RegistryKey<PlacedFeature> WILD_GARLIC_PLACED = registerKey("wild_garlic_p");
+    public static final RegistryKey<PlacedFeature> WILD_CHILI_PLACED = registerKey("wild_chili_p");
+    public static final RegistryKey<PlacedFeature> WILD_SOYBEAN_PLACED = registerKey("wild_soybean_p");
 
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var registryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
         register(context,WILD_BLACK_PEPPER_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_BLACK_PEPPER),
-                RarityFilterPlacementModifier.of(2),
+                RarityFilterPlacementModifier.of(1),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BiomePlacementModifier.of());
         register(context, WILD_GARLIC_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_GARLIC),
+                RarityFilterPlacementModifier.of(2),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
+        register(context, WILD_CHILI_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_CHILI),
+                RarityFilterPlacementModifier.of(1),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
+        register(context, WILD_SOYBEAN_PLACED,registryEntryLookup.getOrThrow(ModConfiguredFeatures.WILD_SOYBEAN),
                 RarityFilterPlacementModifier.of(2),
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,

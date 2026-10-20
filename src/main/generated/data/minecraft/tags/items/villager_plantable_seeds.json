@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "moderndelight:black_pepper_corn"
+    "moderndelight:black_pepper_corn",
+    "moderndelight:garlic",
+    "moderndelight:chili_seeds",
+    "moderndelight:soybean"
   ]
 }

@@ -2,7 +2,7 @@
   "type": "moderndelight:freezing",
   "ingredients": [
     {
-      "item": "moderndelight:cherry"
+      "tag": "c:foods/fruits/cherry"
     },
     {
       "item": "moderndelight:pudding_wip_2"

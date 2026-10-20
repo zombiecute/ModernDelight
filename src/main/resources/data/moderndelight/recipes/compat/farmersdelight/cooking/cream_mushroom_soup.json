@@ -1,0 +1,40 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 260,
+  "experience": 1.5,
+  "container": {
+    "item": "moderndelight:clay_pot"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "tag": "c:crops/onion"
+    },
+    {
+      "tag": "c:flour"
+    },
+    {
+      "item": "moderndelight:whipping_cream"
+    },
+    {
+      "item": "moderndelight:whipping_cream"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "moderndelight:cream_mushroom_soup"
+  }
+}

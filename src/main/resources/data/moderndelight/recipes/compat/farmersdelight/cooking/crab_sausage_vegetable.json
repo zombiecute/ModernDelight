@@ -1,0 +1,37 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 260,
+  "experience": 1.5,
+  "container": {
+    "item": "moderndelight:clay_pot"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "tag": "c:crops/cabbage"
+    },
+    {
+      "tag": "c:foods/sausage"
+    },
+    {
+      "item": "moderndelight:crab_roe"
+    },
+    {
+      "item": "moderndelight:whipping_cream"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "moderndelight:crab_sausage_vegetable"
+  }
+}

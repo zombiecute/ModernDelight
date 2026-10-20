@@ -1,0 +1,15 @@
+{
+  "type": "moderndelight:cuisine",
+  "ingredients": [
+    {
+      "item": "moderndelight:crab"
+    },
+    {
+      "item": "moderndelight:jar"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:crab_roe",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:foods/cooked_fishes/prawn",
+      "required": false
+    },
+    {
+      "id": "#c:foods/cooked_fishes/squid",
+      "required": false
+    },
+    {
+      "id": "#c:foods/cooked_fishes/crab",
+      "required": false
+    }
+  ]
+}

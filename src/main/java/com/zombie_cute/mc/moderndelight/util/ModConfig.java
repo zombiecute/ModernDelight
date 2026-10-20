@@ -25,7 +25,7 @@ public final class ModConfig {
     @SerialEntry
     public static String digestate = "minecraft:bone_meal";
     @SerialEntry
-    public static int acdcConverterMaxWorkSpeed = 20;
+    public static int acdcConverterMaxWorkSpeed = 50;
     @SerialEntry
     public static int energyGeneratedByFaradayGenerator = 200;
     @SerialEntry
@@ -106,11 +106,11 @@ public final class ModConfig {
                                                 .name(Text.translatable("config.moderndelight.option.acdcConverterMaxWorkSpeed"))
                                                 .description(OptionDescription.of(Text.translatable("config.moderndelight.option.acdcConverterMaxWorkSpeed.desc")))
                                                 .binding(
-                                                        20,
+                                                        50,
                                                         () -> acdcConverterMaxWorkSpeed,
                                                         value -> acdcConverterMaxWorkSpeed = value
                                                 )
-                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 50).step(1)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 100).step(1)
                                                         .valueFormatter(val -> Text.literal(String.valueOf(val))))
                                                 .build())
                                         .option(Option.<Integer>createBuilder()

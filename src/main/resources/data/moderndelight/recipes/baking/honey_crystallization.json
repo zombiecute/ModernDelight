@@ -5,17 +5,17 @@
       "item": "minecraft:honey_bottle"
     },
     {
-      "item": "minecraft:honey_bottle"
+      "item": "moderndelight:seasoning_bottle"
     },
     {
-      "item": "minecraft:honey_bottle"
+      "item": "moderndelight:seasoning_bottle"
     },
     {
-      "item": "moderndelight:jar"
+      "item": "moderndelight:seasoning_bottle"
     }
   ],
   "output": {
     "item": "moderndelight:honey_crystallization",
-    "count": 1
+    "count": 3
   }
 }

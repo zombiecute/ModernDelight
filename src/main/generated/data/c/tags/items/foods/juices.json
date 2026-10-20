@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "moderndelight:sweet_berries_juice",
+    "moderndelight:tomato_juice",
+    "moderndelight:cherry_milk_tea",
+    "moderndelight:rose_ice_tea",
+    "moderndelight:mango_milk_tea",
+    "moderndelight:sea_salt_lemon",
+    "moderndelight:sakura_yogurt_sauce",
+    {
+      "id": "farmersdelight:apple_cider",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:melon_juice",
+      "required": false
+    },
+    {
+      "id": "create:builders_tea",
+      "required": false
+    }
+  ]
+}

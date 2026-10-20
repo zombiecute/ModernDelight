@@ -188,6 +188,7 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
                     fluidStorage.amount = MAX_FLUID_LEVEL;
                 }
                 ItemStack outputStack = match.get().getOutput(null);
+                float chance = match.get().getChance();
                 int damage = getStack(FILTER_SLOT).getDamage();
                 if (damage < getStack(FILTER_SLOT).getMaxDamage()){
                     getStack(FILTER_SLOT).setDamage(damage+1);
@@ -197,14 +198,16 @@ public class WoodenBasinBlockEntity extends BlockEntity implements ImplementedIn
                 }
                 playSound(SoundEvents.BLOCK_HONEY_BLOCK_BREAK,1.8f,true);
                 removeStack(INGREDIENT_SLOT,1);
-                if (getStack(IMPURITIES_SLOT).isEmpty()){
-                    setStack(IMPURITIES_SLOT,outputStack);
-                } else if (getStack(IMPURITIES_SLOT).getItem().equals(outputStack.getItem()) &&
-                        getStack(IMPURITIES_SLOT).getCount()+outputStack.getCount()<=getStack(IMPURITIES_SLOT).getMaxCount()) {
-                    int count = getStack(IMPURITIES_SLOT).getCount() + outputStack.getCount();
-                    setStack(IMPURITIES_SLOT, new ItemStack(outputStack.getItem(),count));
-                } else {
-                    ItemScatterer.spawn(world,pos.getX(), pos.getY(), pos.getZ(),outputStack.copy());
+                if (world.random.nextFloat() < chance){
+                    if (getStack(IMPURITIES_SLOT).isEmpty()){
+                        setStack(IMPURITIES_SLOT,outputStack);
+                    } else if (getStack(IMPURITIES_SLOT).getItem().equals(outputStack.getItem()) &&
+                            getStack(IMPURITIES_SLOT).getCount()+outputStack.getCount()<=getStack(IMPURITIES_SLOT).getMaxCount()) {
+                        int count = getStack(IMPURITIES_SLOT).getCount() + outputStack.getCount();
+                        setStack(IMPURITIES_SLOT, new ItemStack(outputStack.getItem(),count));
+                    } else {
+                        ItemScatterer.spawn(world,pos.getX(), pos.getY(), pos.getZ(),outputStack.copy());
+                    }
                 }
                 if (match.get().isDanger()){
                     entity.damage(world.getDamageSources().cactus(),1.5f);

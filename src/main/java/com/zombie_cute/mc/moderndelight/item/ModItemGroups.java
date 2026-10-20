@@ -40,9 +40,7 @@ public class ModItemGroups {
                         // Oil Extraction
                         entries.add(ModItems.FILTER);
                         entries.add(ModBlocks.WOODEN_BASIN);
-                        entries.add(ModItems.VEGETABLE_OIL_BOTTLE);
-                        entries.add(ModItems.VEGETABLE_OIL_BUCKET);
-                        entries.add(ModItems.OIL_IMPURITY);
+                        entries.add(ModItems.BIOMASS);
                         entries.add(ModBlocks.DEEP_FRYER);
                         entries.add(ModBlocks.DEEP_FRY_BASKET);
                         entries.add(ModItems.HOLDER);
@@ -51,7 +49,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.BIOGAS_DIGESTER_IO);
                         entries.add(ModBlocks.GAS_CANISTER);
                         entries.add(ModBlocks.GAS_COOKING_STOVE);
-                        entries.add(ModItems.LIQUEFIED_BIOGAS_BUCKET);
                         // Power System
                         entries.add(ModBlocks.ELECTRICIANS_DESK);
                         entries.add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
@@ -92,6 +89,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ROSE_ICE_TEA);
                         entries.add(ModItems.MANGO_MILK_TEA);
                         entries.add(ModItems.SEA_SALT_LEMON);
+                        entries.add(ModItems.SAKURA_YOGURT_SAUCE);
                         // Cuisine & Storage
                         entries.add(ModBlocks.CUISINE_TABLE);
                         entries.add(ModBlocks.DEEPSLATE_CABINET);
@@ -104,9 +102,6 @@ public class ModItemGroups {
                         // Fermenter
                         entries.add(ModBlocks.INDUSTRIAL_FERMENTER);
                         entries.add(ModItems.FERMENTATION_TANK);
-                        entries.add(ModItems.SWEETENED_WATER_BUCKET);
-                        entries.add(ModItems.ALCOHOL_BUCKET);
-                        entries.add(ModItems.VINEGAR_BUCKET);
                         entries.add(ModItems.CHEESE);
                         // Trawler
                         entries.add(ModBlocks.TRAWLER);
@@ -120,6 +115,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PORK_NOODLE);
                         entries.add(ModBlocks.PEPPER_BEEF_RICE);
                         entries.add(ModBlocks.VEGETABLE_NOODLE);
+                        entries.add(ModBlocks.CREAM_OF_MUSHROOM_SOUP);
+                        entries.add(ModItems.STEAMED_EGG_CUSTARD);
                         // Building
                         entries.add(ModBlocks.KITCHEN_UTENSIL_HOLDER);
                         entries.add(ModBlocks.WOODEN_PLATE);
@@ -139,26 +136,48 @@ public class ModItemGroups {
                         entries.add(ModItems.JAR);
                         entries.add(ModItems.CARAMEL);
                         entries.add(ModItems.CHOCOLATE_SAUCE);
-                        // Seasoning Items
+                        entries.add(ModItems.MIXED_JAM);
                         entries.add(ModItems.GARLIC_PUREE);
+                        entries.add(ModItems.CRAB_ROE);
+                        entries.add(ModItems.WHIPPING_CREAM);
+                        entries.add(ModItems.VEGETABLE_OIL_BOTTLE);
+                        entries.add(ModItems.CHILI_SAUCE);
+                        // Seasoning Bottle
+                        entries.add(ModItems.SEASONING_BOTTLE);
                         entries.add(ModItems.HONEY_CRYSTALLIZATION);
                         entries.add(ModItems.SEA_SALT);
                         entries.add(ModItems.MATCHA);
                         entries.add(ModItems.BLACK_PEPPER_SEASONING);
                         entries.add(ModItems.BLACK_TRUFFLE_SEASONING);
                         entries.add(ModItems.WHITE_TRUFFLE_SEASONING);
+                        entries.add(ModItems.CHILI_POWDER_SEASONING);
+                        // Buckets
+                        entries.add(ModItems.LIQUEFIED_BIOGAS_BUCKET);
+                        entries.add(ModItems.VEGETABLE_OIL_BUCKET);
+                        entries.add(ModItems.CREAM_BUCKET);
+                        entries.add(ModItems.SWEETENED_WATER_BUCKET);
+                        entries.add(ModItems.ALCOHOL_BUCKET);
+                        entries.add(ModItems.VINEGAR_BUCKET);
+                        entries.add(ModItems.SOY_MILK_BUCKET);
                         // Truffles
                         entries.add(ModItems.BLACK_TRUFFLE);
                         entries.add(ModItems.WHITE_TRUFFLE);
                         // Wild Crops
                         entries.add(ModBlocks.WILD_PEPPER_CROP);
                         entries.add(ModBlocks.WILD_GARLIC);
+                        entries.add(ModBlocks.WILD_CHILI_CROP);
+                        entries.add(ModBlocks.WILD_SOYBEAN);
                         // Black Pepper
                         entries.add(ModItems.BLACK_PEPPER_CORN);
                         entries.add(ModItems.BLACK_PEPPER_DUST);
                         // Garlic
                         entries.add(ModItems.GARLIC);
                         entries.add(ModItems.GARLIC_PETAL);
+                        // Chili
+                        entries.add(ModItems.CHILI_SEEDS);
+                        entries.add(ModItems.CHILI_PEPPER);
+                        // Soybean
+                        entries.add(ModItems.SOYBEAN);
                         // Starch
                         entries.add(ModItems.POTATO_STARCH);
                         entries.add(ModItems.WHEAT_FLOUR);
@@ -188,7 +207,6 @@ public class ModItemGroups {
                         entries.add(ModItems.PEAR);
                         entries.add(ModItems.LEMON);
                         entries.add(ModItems.MANGO);
-
                         // Snacks
                         entries.add(ModItems.FRIED_MILK_WIP);
                         entries.add(ModItems.FRIED_MILK);
@@ -199,6 +217,7 @@ public class ModItemGroups {
 
                         entries.add(ModItems.BUTTER);
                         entries.add(ModItems.BUTTERFLY_CRISP);
+                        entries.add(ModItems.BUTTER_COOKIE);
 
                         entries.add(ModItems.EGG_TART);
                         entries.add(ModItems.TRUFFLE_EGG_TART);
@@ -242,8 +261,6 @@ public class ModItemGroups {
                         entries.add(ModItems.DONUT);
                         entries.add(ModItems.CHOCOLATE_DONUT);
                         // Creams
-                        entries.add(ModItems.CREAM_BUCKET);
-                        entries.add(ModItems.WHIPPING_CREAM);
                         entries.add(ModItems.CREAM);
                         entries.add(ModItems.APPLE_CREAM);
                         entries.add(ModItems.CHERRY_CREAM);
@@ -258,29 +275,39 @@ public class ModItemGroups {
                         entries.add(ModItems.PUMPKIN_MOUSSE);
                         entries.add(ModItems.GOLDEN_APPLE_MOUSSE);
                         entries.add(ModItems.MATCHA_MOUSSE);
-                        // Dumplings
-                        entries.add(ModItems.CRYSTAL_DUMPLING);
+                        entries.add(ModItems.OPERA_CAKE);
                         // Great Meal
-                        entries.add(ModItems.BEEF_TOMATO_CUP);
                         entries.add(ModItems.CHEESE_BAKED_POTATO);
                         entries.add(ModItems.CHEESE_RICE_BALL);
                         entries.add(ModItems.FRIED_CHICKEN);
                         entries.add(ModItems.CHEESE_BURGER);
                         entries.add(ModItems.PORK_CHOP_BURGER);
+                        entries.add(ModItems.DOUBLE_MEAT_BURGER);
+                        entries.add(ModItems.BEEF_TOMATO_CUP);
                         entries.add(ModBlocks.FISH_AND_CHIPS_ITEM);
                         entries.add(ModItems.BLACK_PEPPER_STEAK);
                         entries.add(ModBlocks.BRITISH_BREAKFAST);
+                        entries.add(ModItems.CHEESE_POTATO_BOAT);
+                        entries.add(ModItems.CRYSTAL_DUMPLING);
+                        entries.add(ModItems.CRISPY_BARBECUE);
+                        entries.add(ModItems.GOLDEN_DOUBLE_CRISP);
+                        entries.add(ModItems.SCOTCH_EGG);
+                        entries.add(ModItems.CHOW_MEIN);
+                        entries.add(ModItems.STUFFED_MASHED_POTATO);
+
                         // Pork
-                        entries.add(ModItems.STREAKY_PORK);
                         entries.add(ModItems.ROAST_STREAKY_PORK);
-                        entries.add(ModItems.PORK_RIBS);
-                        entries.add(ModItems.PORK_HOOF);
                         // Fish
                         entries.add(ModItems.FRIED_COD);
                         entries.add(ModItems.FRIED_COD_NUGGET);
                         entries.add(ModItems.FRIED_SALMON);
+                        // Crab
+                        entries.add(ModItems.CRAB);
+                        entries.add(ModItems.COOKED_CRAB);
+
                         // Shrimp
                         entries.add(ModItems.PRAWN);
+                        entries.add(ModItems.COOKED_PRAWN);
                         entries.add(ModItems.BRAISED_SHRIMP_BALL);
                         entries.add(ModItems.DEEP_FRIED_SHRIMP_CAKE);
                         entries.add(ModItems.SEAWEED_FRIED_SHRIMP_CAKE);
@@ -301,7 +328,7 @@ public class ModItemGroups {
                         // Sausages
                         entries.add(ModItems.SAUSAGE);
                         entries.add(ModItems.SECTIONED_SAUSAGE);
-                        // Cakes
+                        // Flower Cakes
                         entries.add(ModItems.EMPTY_CAKE);
                         entries.add(ModItems.BLUE_ORCHID_FLOWER_CAKE);
                         entries.add(ModItems.CHERRY_CAKE);
@@ -323,6 +350,9 @@ public class ModItemGroups {
                         entries.add(ModItems.STEAMED_PUMPKIN_WIP);
                         entries.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP);
                         entries.add(ModItems.BRAISED_SHRIMP_BALL_WIP);
+                        entries.add(ModItems.CRYSTAL_DUMPLING_WIP);
+                        entries.add(ModItems.GOLDEN_DOUBLE_CRISP_WIP);
+                        entries.add(ModItems.SCOTCH_EGG_WIP);
                         // Unknown
                         entries.add(ModItems.TURNIP);
                     }).build());

@@ -1,0 +1,34 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 260,
+  "experience": 1.5,
+  "container": {
+    "item": "moderndelight:clay_pot"
+  },
+  "ingredients": [
+    {
+      "item": "moderndelight:chili_pepper"
+    },
+    {
+      "tag": "c:foods/raw_fishes"
+    },
+    {
+      "tag": "c:crops/garlic"
+    },
+    {
+      "item": "moderndelight:sea_salt"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "moderndelight:chili_fish"
+  }
+}

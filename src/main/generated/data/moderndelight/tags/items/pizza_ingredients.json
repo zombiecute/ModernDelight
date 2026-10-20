@@ -6,7 +6,7 @@
     "#c:foods/raw_meats",
     "#c:foods/raw_fishes",
     "#c:crops",
-    "#c:foods/sausages",
+    "#c:foods/sausage",
     {
       "id": "#c:crops/cabbage",
       "required": false

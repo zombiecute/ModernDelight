@@ -98,14 +98,33 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         // Crops
         getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.BLACK_PEPPER_CROP);
         getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.GARLIC_CROP);
+        getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.CHILI_CROP);
+        getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.SOYBEAN_CROP);
 
         getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(ModBlocks.GARLIC_CROP);
         getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(ModBlocks.BLACK_PEPPER_CROP);
+        getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(ModBlocks.CHILI_CROP);
+        getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(ModBlocks.SOYBEAN_CROP);
 
         getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.BLACK_PEPPER_CROP);
         getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.WILD_PEPPER_CROP);
         getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.WILD_GARLIC);
         getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.GARLIC_CROP);
+        getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.CHILI_CROP);
+        getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.WILD_CHILI_CROP);
+        getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.SOYBEAN_CROP);
+        getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(ModBlocks.WILD_SOYBEAN);
+
+        getOrCreateTagBuilder(BlockTags.FLOWERS).add(ModBlocks.WILD_CHILI_CROP);
+        getOrCreateTagBuilder(BlockTags.FLOWERS).add(ModBlocks.WILD_GARLIC);
+        getOrCreateTagBuilder(BlockTags.FLOWERS).add(ModBlocks.WILD_PEPPER_CROP);
+        getOrCreateTagBuilder(BlockTags.FLOWERS).add(ModBlocks.WILD_SOYBEAN);
+
+        getOrCreateTagBuilder(TagKeys.WILD_CROPS).add(ModBlocks.WILD_CHILI_CROP);
+        getOrCreateTagBuilder(TagKeys.WILD_CROPS).add(ModBlocks.WILD_GARLIC);
+        getOrCreateTagBuilder(TagKeys.WILD_CROPS).add(ModBlocks.WILD_PEPPER_CROP);
+        getOrCreateTagBuilder(TagKeys.WILD_CROPS).add(ModBlocks.WILD_SOYBEAN);
+
         // Heater
         getOrCreateTagBuilder(TagKeys.PASSIVE_BOILER_HEATERS).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
         getOrCreateTagBuilder(TagKeys.HEAT_SOURCES).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
@@ -150,6 +169,8 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         // Small Flowers
         getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_GARLIC);
         getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_PEPPER_CROP);
+        getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_CHILI_CROP);
+        getOrCreateTagBuilder(BlockTags.SMALL_FLOWERS).add(ModBlocks.WILD_SOYBEAN);
         // Can Pick By Tongs
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.CHEST);
         getOrCreateTagBuilder(TagKeys.CAN_PICK).add(Blocks.FURNACE);

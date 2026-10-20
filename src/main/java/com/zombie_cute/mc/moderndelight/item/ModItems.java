@@ -2,7 +2,6 @@ package com.zombie_cute.mc.moderndelight.item;
 
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
-import com.zombie_cute.mc.moderndelight.block.food.PackagedFoodBlockItem;
 import com.zombie_cute.mc.moderndelight.fluid.ModFluid;
 import com.zombie_cute.mc.moderndelight.item.food.*;
 import com.zombie_cute.mc.moderndelight.item.food.instant_noodles.CookedPortablePotItem;
@@ -74,9 +73,6 @@ public class ModItems {
 
     public static final Item CREAM_MOUSSE = registerItem("cream_mousse", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.6F).build())));
-    public static final Item CRYSTAL_DUMPLING = registerItem("crystal_dumpling",
-            new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings().maxCount(16).recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())
-            .food(new FoodComponent.Builder().hunger(9).saturationModifier(0.6F).snack().meat().build())));
     public static final Item GLOW_SQUID = registerItem("glow_squid", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.2F).meat()
                     .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 400, 0), 1.0F)
@@ -115,11 +111,11 @@ public class ModItems {
     public static final Item PUMPKIN_MOUSSE = registerItem("pumpkin_mousse", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.7F).build())));
     public static final Item ROASTED_GLOW_SQUID = registerItem("roasted_glow_squid", new Item(new FabricItemSettings()
-            .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).meat()
+            .food(new FoodComponent.Builder().hunger(7).saturationModifier(0.6F).meat()
                     .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0), 1.0F)
                     .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION,1200, 0), 1.0F).build())));
     public static final Item ROASTED_SQUID = registerItem("roasted_squid", new Item(new FabricItemSettings()
-            .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).meat().build())));
+            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).meat().build())));
     public static final Item SAUCE_MASHED_POTATO = registerItem("sauce_mashed_potato", new PackagedItem(Items.BOWL,new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.6F).build())
             .recipeRemainder(Items.BOWL)
@@ -239,7 +235,7 @@ public class ModItems {
             super.appendTooltip(stack, world, tooltip, context);
         }
     });
-    public static final Item OIL_IMPURITY = registerItem("oil_impurity",new Item(new FabricItemSettings()));
+    public static final Item BIOMASS = registerItem("biomass",new Item(new FabricItemSettings()));
     public static final Item VEGETABLE_OIL_BOTTLE = registerItem("vegetable_oil_bottle",new Item(new FabricItemSettings()
             .maxCount(16).recipeRemainder(ModItems.JAR)));
     public static final Item VEGETABLE_OIL_BUCKET = registerItem("vegetable_oil_bucket",new BucketItem(ModFluid.STILL_VEGETABLE_OIL,new FabricItemSettings()
@@ -377,8 +373,9 @@ public class ModItems {
     public static final Item JAR = registerItem("jar",new Item(
             new FabricItemSettings().maxCount(16))
     );
-    public static final Item CARAMEL = registerItem("caramel",new PackagedItem(ModItems.JAR,
-            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.JAR).food(new FoodComponent.Builder().hunger(3).saturationModifier(0.2f).build()))
+    public static final Item CARAMEL = registerItem("caramel",new SeasoningItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.JAR),
+            new StatusEffectInstance(StatusEffects.SPEED,8 * 20,1))
     );
     public static final Item CARAMEL_PUDDING = registerItem("caramel_pudding", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.4F).snack().build())));
@@ -386,8 +383,10 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(8).saturationModifier(0.4F).snack().build())));
     public static final Item CHEESE_RICE_BALL = registerItem("cheese_rice_ball", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(9).saturationModifier(0.5F).snack().build())));
-    public static final Item CHOCOLATE_SAUCE = registerItem("chocolate_sauce", new PackagedItem(ModItems.JAR,new FabricItemSettings()
-            .maxCount(16).recipeRemainder(ModItems.JAR).food(new FoodComponent.Builder().hunger(5).saturationModifier(0.3F).build())));
+    public static final Item CHOCOLATE_SAUCE = registerItem("chocolate_sauce", new SeasoningItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.JAR),
+            new StatusEffectInstance(StatusEffects.SPEED,30 * 20,0))
+    );
     public static final Item DEEP_FRIED_SHRIMP_CAKE = registerItem("deep_fried_shrimp_cake", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(9).saturationModifier(0.3F).build())));
     public static final Item SEAWEED_FRIED_SHRIMP_CAKE = registerItem("seaweed_fried_shrimp_cake", new Item(new FabricItemSettings()
@@ -454,9 +453,6 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.2F)
                     .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,10*20,0),1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING,10*20,0),1.0f)
-                    .build())));
-    public static final Item STREAKY_PORK = registerItem("streaky_pork", new Item(new FabricItemSettings()
-            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).meat()
                     .build())));
 
     public static final Item TURNIP = registerItem("turnip",
@@ -527,12 +523,6 @@ public class ModItems {
     public static final Item FRIED_COD_NUGGET = registerItem("fried_cod_nugget", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F)
                     .build())));
-    public static final Item PORK_RIBS = registerItem("pork_ribs", new Item(new FabricItemSettings()
-            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).meat()
-                    .build())));
-    public static final Item PORK_HOOF = registerItem("pork_hoof", new Item(new FabricItemSettings()
-            .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.1F).meat()
-                    .build())));
     public static final Item GARLIC = registerItem("garlic", new AliasedBlockItem(ModBlocks.GARLIC_CROP,
             new FabricItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3f).build())));
     public static final Item GARLIC_PETAL = registerItem("garlic_petal", new Item(
@@ -554,14 +544,16 @@ public class ModItems {
     public static final Item PORTABLE_POT = registerItem("portable_pot",new PortablePotItem());
     public static final Item COOKED_PORTABLE_POT = registerItem("cooked_portable_pot",new CookedPortablePotItem());
     public static final Item DIRTY_WRAPPING_PAPER = registerItem("dirty_wrapping_paper",new Item(new FabricItemSettings()));
-    public static final Item HONEY_CRYSTALLIZATION =  registerItem("honey_crystallization",new SeasoningItem(new FabricItemSettings().recipeRemainder(JAR).maxCount(16),
+    public static final Item HONEY_CRYSTALLIZATION =  registerItem("honey_crystallization",new SeasoningItem(
+            new FabricItemSettings().recipeRemainder(ModItems.SEASONING_BOTTLE).maxCount(16).recipeRemainder(ModItems.SEASONING_BOTTLE),
             new StatusEffectInstance(StatusEffects.REGENERATION,15 * 20,0)));
-    public static final Item SEA_SALT =  registerItem("sea_salt",new SeasoningItem(new FabricItemSettings().recipeRemainder(JAR).maxCount(16),
+    public static final Item SEA_SALT =  registerItem("sea_salt",new SeasoningItem(new FabricItemSettings().recipeRemainder(ModItems.SEASONING_BOTTLE).maxCount(16),
             new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE,30 * 20,0)));
     public static final Item GARLIC_PUREE =  registerItem("garlic_puree",new SeasoningItem(new FabricItemSettings().maxCount(16).recipeRemainder(JAR),
             new StatusEffectInstance(StatusEffects.RESISTANCE,30 * 20,0)));
     public static final Item STONE_MORTAR =  registerItem("stone_mortar",new StoneMortarItem(ModToolMaterials.STONE,new FabricItemSettings()));
-    public static final Item MATCHA =  registerItem("matcha",new SeasoningItem(new FabricItemSettings().maxCount(16).recipeRemainder(JAR),
+    public static final Item MATCHA =  registerItem("matcha",new SeasoningItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.SEASONING_BOTTLE),
             new StatusEffectInstance(StatusEffects.LUCK,30 * 20,0)));
     public static final Item SEA_SALT_LEMON = registerItem("sea_salt_lemon",
             new JuiceItem(5,0.3f,ModBlocks.GLASS_CUP.asItem(),
@@ -586,13 +578,13 @@ public class ModItems {
                     .maxCount(16).food(new FoodComponent.Builder().hunger(3).saturationModifier(0.2f).build())));
     public static final Item STEAMED_STUFFED_BUN = registerItem("steamed_stuffed_bun",
             new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings().recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())
-                    .maxCount(16).food(new FoodComponent.Builder().hunger(7).saturationModifier(0.3f).build())));
+                    .maxCount(16).food(new FoodComponent.Builder().hunger(7).saturationModifier(0.5f).build())));
     public static final Item VEGETABLE_STEAMED_STUFFED_BUN_WIP = registerItem("vegetable_steamed_stuffed_bun_wip",
             new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings().recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())
                     .maxCount(16).food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1f).build())));
     public static final Item VEGETABLE_STEAMED_STUFFED_BUN = registerItem("vegetable_steamed_stuffed_bun",
             new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings().recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())
-                    .maxCount(16).food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3f).build())));
+                    .maxCount(16).food(new FoodComponent.Builder().hunger(9).saturationModifier(0.5f).build())));
     public static final Item SHAOMAI_WIP = registerItem("shaomai_wip",
             new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings().recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())
                     .maxCount(16).food(new FoodComponent.Builder().hunger(3).saturationModifier(0.3f).build())));
@@ -616,14 +608,17 @@ public class ModItems {
     public static final Item DEEP_FRIED_BUN_WIP = registerItem("deep_fried_bun_wip", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(5).saturationModifier(0.2F)
                     .build())));
-    public static final Item WHIPPING_CREAM = registerItem("whipping_cream", new PackagedItem(JAR,new FabricItemSettings().maxCount(16)
-            .food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build()).recipeRemainder(JAR)));
+    public static final Item WHIPPING_CREAM = registerItem("whipping_cream", new SeasoningItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(JAR),
+            new StatusEffectInstance(StatusEffects.HASTE,30 * 20,0)));
     public static final Item GRINDED_LEAVES = registerItem("grinded_leaves", new Item(new FabricItemSettings()));
-    public static final Item BLACK_PEPPER_SEASONING = registerItem("black_pepper_seasoning",new SeasoningItem(new FabricItemSettings().maxCount(16).recipeRemainder(JAR),
+    public static final Item BLACK_PEPPER_SEASONING = registerItem("black_pepper_seasoning",new SeasoningItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.SEASONING_BOTTLE),
             new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE,10 * 20,0)));
-    public static final Item BLACK_TRUFFLE_SEASONING = registerItem("black_truffle_seasoning",new SeasoningItem(new FabricItemSettings().maxCount(16).recipeRemainder(JAR),
+    public static final Item BLACK_TRUFFLE_SEASONING = registerItem("black_truffle_seasoning",new SeasoningItem(new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.SEASONING_BOTTLE),
             new StatusEffectInstance(StatusEffects.ABSORPTION,15 * 20,0)));
-    public static final Item WHITE_TRUFFLE_SEASONING = registerItem("white_truffle_seasoning",new SeasoningItem(new FabricItemSettings().maxCount(16).recipeRemainder(JAR),
+    public static final Item WHITE_TRUFFLE_SEASONING = registerItem("white_truffle_seasoning",new SeasoningItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.SEASONING_BOTTLE),
             new StatusEffectInstance(StatusEffects.ABSORPTION,8 * 20,1)));
     public static final Item FERMENTATION_TANK = registerItem("fermentation_tank",new FermentationTankItem());
     public static final Item CARAMEL_TOAST = registerItem("caramel_toast", new Item(new FabricItemSettings()
@@ -637,9 +632,76 @@ public class ModItems {
             .food(new FoodComponent.Builder().hunger(3).saturationModifier(0.6F).build())));
     public static final Item MANGO = registerItem("mango", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.5F).build())));
-
     public static final Item COOKED_PRAWN = registerItem("cooked_prawn", new Item(new FabricItemSettings()
             .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build())));
+    public static final Item BUTTER_COOKIE = registerItem("butter_cookie", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).saturationModifier(1.0F).build())
+                    .maxCount(16).recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())));
+    public static final Item CHEESE_POTATO_BOAT = registerItem("cheese_potato_boat", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(8).saturationModifier(0.9F).build())
+                    .maxCount(16).recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())));
+    public static final Item OPERA_CAKE = registerItem("opera_cake", new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(10).saturationModifier(0.6F).build())));
+    public static final Item CRYSTAL_DUMPLING = registerItem("crystal_dumpling",
+            new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),new FabricItemSettings().maxCount(16).recipeRemainder(ModBlocks.WOODEN_PLATE.asItem())
+                    .food(new FoodComponent.Builder().hunger(9).saturationModifier(0.6F).meat().build())));
+    public static final Item CRYSTAL_DUMPLING_WIP = registerItem("crystal_dumpling_wip", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.2F).meat().build())));
+    public static final Item DOUBLE_MEAT_BURGER = registerItem("double_meat_burger", new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(13).saturationModifier(0.7F).meat().build())));
+    public static final Item CRISPY_BARBECUE = registerItem("crispy_barbecue", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(14).saturationModifier(0.7F).meat().build())
+                    .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));
+    public static final Item MIXED_JAM = registerItem("mixed_jam", new SeasoningItem(
+            new FabricItemSettings().recipeRemainder(ModItems.JAR).maxCount(16),
+            new StatusEffectInstance(StatusEffects.HASTE,10 * 20,1)));
+    public static final Item SEASONING_BOTTLE = registerItem("seasoning_bottle", new Item(new FabricItemSettings().maxCount(16)));
+    public static final Item CRAB = registerItem("crab", new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.4F).build())));
+    public static final Item CRAB_ROE = registerItem("crab_roe", new SeasoningItem(
+            new FabricItemSettings().recipeRemainder(ModItems.JAR).maxCount(16),
+            new StatusEffectInstance(StatusEffects.SATURATION,5,0)));
+    public static final Item COOKED_CRAB = registerItem("cooked_crab", new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F).build())));
+    public static final Item GOLDEN_DOUBLE_CRISP_WIP = registerItem("golden_double_crisp_wip", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.1F).build())
+                    .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));
+    public static final Item GOLDEN_DOUBLE_CRISP = registerItem("golden_double_crisp", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(11).saturationModifier(0.6F).build())
+                    .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));
+    public static final Item SAKURA_YOGURT_SAUCE = registerItem("sakura_yogurt_sauce", new PackagedItem(ModBlocks.GLASS_CUP.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(8).saturationModifier(0.4F).build())
+                    .recipeRemainder(ModBlocks.GLASS_CUP.asItem()).maxCount(16)));
+    public static final Item SCOTCH_EGG_WIP = registerItem("scotch_egg_wip", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).saturationModifier(0.1F).build())
+                    .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));
+    public static final Item SCOTCH_EGG = registerItem("scotch_egg", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(9).saturationModifier(0.9F).build())
+                    .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));
+    public static final Item CHOW_MEIN = registerItem("chow_mein", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(10).saturationModifier(0.5F).build())
+                    .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));
+    public static final Item STUFFED_MASHED_POTATO = registerItem("stuffed_mashed_potato", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(14).saturationModifier(0.5F).build())
+                    .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));
+    public static final Item STEAMED_EGG_CUSTARD = registerItem("steamed_egg_custard", new PackagedItem(ModBlocks.CLAY_POT_ITEM,
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(9).saturationModifier(0.5F).build())
+                    .recipeRemainder(ModBlocks.CLAY_POT_ITEM).maxCount(16)));
+    public static final Item CHILI_SEEDS = registerItem("chili_seeds", new AliasedBlockItem(ModBlocks.CHILI_CROP,
+            new FabricItemSettings()));
+    public static final Item CHILI_PEPPER = registerItem("chili_pepper", new Item(
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).build())));
+    public static final Item SOYBEAN = registerItem("soybean", new AliasedBlockItem(ModBlocks.SOYBEAN_CROP,
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.5F).build())));
+    public static final Item CHILI_POWDER_SEASONING = registerItem("chili_powder_seasoning",new SeasoningItem(
+            new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.SEASONING_BOTTLE),
+            new StatusEffectInstance(StatusEffects.STRENGTH,30 * 20,0)));
+    public static final Item SOY_MILK_BUCKET = registerItem("soy_milk_bucket",new ModBucketItem(ModFluid.STILL_SOY_MILK,
+            new FabricItemSettings().maxCount(1).recipeRemainder(Items.BUCKET)));
+    public static final Item CHILI_SAUCE = registerItem("chili_sauce",new SeasoningItem(
+            new FabricItemSettings().recipeRemainder(JAR).maxCount(16),
+            new StatusEffectInstance(StatusEffects.STRENGTH,30 * 20,1),
+            new StatusEffectInstance(StatusEffects.HUNGER,30 * 20,0)));
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID,name),item);
     }

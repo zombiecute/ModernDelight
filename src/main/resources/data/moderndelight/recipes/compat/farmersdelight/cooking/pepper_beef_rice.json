@@ -1,0 +1,40 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 260,
+  "experience": 1.5,
+  "container": {
+    "item": "moderndelight:clay_pot"
+  },
+  "ingredients": [
+    {
+      "tag": "c:crops/cabbage"
+    },
+    {
+      "tag": "c:foods/raw_meats/raw_beef"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "c:crops/rice"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    },
+    {
+      "item": "moderndelight:black_pepper_dust"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "moderndelight:pepper_beef_rice"
+  }
+}

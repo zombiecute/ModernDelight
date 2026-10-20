@@ -114,6 +114,7 @@
     }
   },
   "textures": {
-    "particle": "block/juice_extractor"
+    "0": "moderndelight:block/juice_extractor",
+    "particle": "moderndelight:block/juice_extractor"
   }
 }

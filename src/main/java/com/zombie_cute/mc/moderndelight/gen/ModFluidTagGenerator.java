@@ -33,6 +33,8 @@ public class ModFluidTagGenerator extends FabricTagProvider.FluidTagProvider {
         getOrCreateTagBuilder(FluidTags.WATER).add(ModFluid.FLOWING_VINEGAR);
         getOrCreateTagBuilder(FluidTags.WATER).add(ModFluid.STILL_MILK);
         getOrCreateTagBuilder(FluidTags.WATER).add(ModFluid.FLOWING_MILK);
+        getOrCreateTagBuilder(FluidTags.WATER).add(ModFluid.STILL_SOY_MILK);
+        getOrCreateTagBuilder(FluidTags.WATER).add(ModFluid.FLOWING_SOY_MILK);
         // Oil
         getOrCreateTagBuilder(TagKeys.OIL).add(ModFluid.FLOWING_VEGETABLE_OIL);
         getOrCreateTagBuilder(TagKeys.OIL).add(ModFluid.STILL_VEGETABLE_OIL);

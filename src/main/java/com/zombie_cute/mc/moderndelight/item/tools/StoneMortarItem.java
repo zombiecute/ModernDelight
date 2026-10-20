@@ -3,6 +3,9 @@ package com.zombie_cute.mc.moderndelight.item.tools;
 import com.zombie_cute.mc.moderndelight.enchantment.ModEnchantments;
 import com.zombie_cute.mc.moderndelight.recipe.custom.GrindingRecipe;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
+import com.zombie_cute.mc.moderndelight.util.TextUtil;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -18,11 +21,13 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,5 +172,17 @@ public class StoneMortarItem extends ToolItem {
             } catch (Exception ignored){}
         }
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(TextUtil.getShiftText(true));
+            tooltip.add(Text.literal(" "));
+            tooltip.addAll(TextUtil.generateToolTip(Text.translatable(TextUtil.STONE_MORTAR)));
+        }else {
+            tooltip.add(TextUtil.getShiftText(false));
+        }
+        super.appendTooltip(stack, world, tooltip, context);
     }
 }

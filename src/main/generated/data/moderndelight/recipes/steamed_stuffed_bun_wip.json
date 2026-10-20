@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "A": {
+      "item": "moderndelight:black_pepper_dust"
+    },
     "B": {
       "item": "moderndelight:wooden_plate"
     },
@@ -13,7 +16,7 @@
     }
   },
   "pattern": [
-    " D ",
+    " A ",
     "DMD",
     "BBB"
   ],

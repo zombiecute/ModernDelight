@@ -1,0 +1,37 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "cookingtime": 260,
+  "experience": 1.5,
+  "container": {
+    "item": "moderndelight:clay_pot"
+  },
+  "ingredients": [
+    {
+      "item": "moderndelight:black_pepper_dust"
+    },
+    {
+      "tag": "c:flour"
+    },
+    {
+      "item": "moderndelight:cheese"
+    },
+    {
+      "tag": "c:crops/onion"
+    },
+    {
+      "tag": "c:crops/onion"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item": "moderndelight:french_onion_soup"
+  }
+}

@@ -38,6 +38,7 @@
 - [REI](https://modrinth.com/mod/rei) 或 [EMI](https://modrinth.com/mod/emi)：在游戏内浏览配方
 - [Patchouli](https://modrinth.com/mod/patchouli)：游戏内指南书
 - [Yet Another Config Lib](https://modrinth.com/mod/yacl) 和 [Mod Menu](https://modrinth.com/mod/modmenu)：模组配置界面
+- [Jade](https://modrinth.com/mod/jade)：更多信息显示
 
 ## 快速上手
 

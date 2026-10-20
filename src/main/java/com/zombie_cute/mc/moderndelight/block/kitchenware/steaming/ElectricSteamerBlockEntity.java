@@ -6,7 +6,7 @@ import com.zombie_cute.mc.moderndelight.recipe.custom.SteamingRecipe;
 import com.zombie_cute.mc.moderndelight.screen.custom.ElectricSteamerScreenHandler;
 import com.zombie_cute.mc.moderndelight.util.FluidStack;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACConsumer;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -213,6 +213,18 @@ public class ElectricSteamerBlockEntity extends BlockEntity implements ExtendedS
     @Override
     public boolean isWorking() {
         return true;
+    }
+
+    public int getSteam() {
+        return steam;
+    }
+
+    public int getActiveCookingSlots() {
+        int activeSlots = 0;
+        for (int maxProgress : maxProgresses) {
+            if (maxProgress > 0) activeSlots++;
+        }
+        return activeSlots;
     }
 
     @Override

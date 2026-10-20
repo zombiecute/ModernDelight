@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:foods/breads"
+    },
+    {
+      "tag": "c:foods/cooked_meats/cooked_pork"
+    },
+    {
+      "tag": "c:crops/cabbage"
+    },
+    {
+      "tag": "c:foods/cooked_meats/cooked_pork"
+    },
+    {
+      "item": "moderndelight:cheese"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:double_meat_burger",
+    "count": 1
+  }
+}

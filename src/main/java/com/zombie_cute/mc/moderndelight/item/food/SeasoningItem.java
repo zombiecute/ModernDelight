@@ -88,7 +88,7 @@ public class SeasoningItem extends Item {
                         user.sendMessage(Text.translatable(TextUtil.FAILED_SEASONING),true);
                     }
                 }
-                return TypedActionResult.consume(user.getStackInHand(hand));
+                return TypedActionResult.success(user.getStackInHand(hand));
             }
         } else {
             user.sendMessage(Text.translatable(TextUtil.NEED_FOOD),true);

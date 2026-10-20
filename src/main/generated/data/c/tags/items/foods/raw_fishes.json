@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#c:foods/raw_fishes/prawn",
-    "#c:foods/raw_fishes/squid"
+    "#c:foods/raw_fishes/squid",
+    "#c:foods/raw_fishes/crab"
   ]
 }

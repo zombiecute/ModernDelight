@@ -6,17 +6,16 @@ import com.zombie_cute.mc.moderndelight.block.biogas.BiogasDigesterIOBlock;
 import com.zombie_cute.mc.moderndelight.block.biogas.GasCanisterBlock;
 import com.zombie_cute.mc.moderndelight.block.biogas.GasCanisterBlockItem;
 import com.zombie_cute.mc.moderndelight.block.crops.BlackPepperCropBlock;
+import com.zombie_cute.mc.moderndelight.block.crops.ChiliCropBlock;
 import com.zombie_cute.mc.moderndelight.block.crops.GarlicCropBlock;
+import com.zombie_cute.mc.moderndelight.block.crops.SoybeanCropBlock;
+import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlock;
 import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlockItem;
 import com.zombie_cute.mc.moderndelight.block.food.*;
-import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.SteamedPumpkinBlock;
-import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.chicken_rice.ChickenRiceBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.chili_fish.ChiliFishBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.crab_sausage_vegetable.CrabSausageVegetableBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.cream_mushroom_soup.CreamMushroomSoupBlock;
-import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlockItem;
-import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.fish_and_chips.FishAndChipsBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.french_onion_soup.FrenchOnionSoupBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.marshala_cheese_ball.MarshalaCheeseBallBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.pepper_beef_rice.PepperBeefRiceBlock;
@@ -26,8 +25,12 @@ import com.zombie_cute.mc.moderndelight.block.food.pizza.PizzaBlock;
 import com.zombie_cute.mc.moderndelight.block.food.pizza.PizzaWIPBlock;
 import com.zombie_cute.mc.moderndelight.block.food.pizza.RawPizzaBlock;
 import com.zombie_cute.mc.moderndelight.block.food.pizza.WheatDoughBlock;
+import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.SteamedPumpkinBlock;
+import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlock;
+import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlockItem;
+import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.fish_and_chips.FishAndChipsBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.*;
-import com.zombie_cute.mc.moderndelight.block.kitchenware.clay_pot.ClayPotBlock;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.clay_pot.ClayPotBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.CabinetBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.GlassCupBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.KitchenUtensilHolderBlock;
@@ -56,7 +59,6 @@ import com.zombie_cute.mc.moderndelight.block.power.alternator.thermal_power.Ste
 import com.zombie_cute.mc.moderndelight.block.power.alternator.wind_power.FanBladeBlock;
 import com.zombie_cute.mc.moderndelight.block.power.alternator.wind_power.WindTurbineControllerBlock;
 import com.zombie_cute.mc.moderndelight.block.power.batteries.*;
-import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlock;
 import com.zombie_cute.mc.moderndelight.block.trawler.TrawlerBlock;
 import com.zombie_cute.mc.moderndelight.block.trawler.TrawlerBlockItem;
 import com.zombie_cute.mc.moderndelight.fluid.ModFluid;
@@ -92,6 +94,8 @@ public class ModBlocks {
                     .mapColor(MapColor.WHITE).nonOpaque()));
     public static final Block BLACK_PEPPER_CROP = registerBlockWithoutItem("black_pepper_crop",
             new BlackPepperCropBlock(FabricBlockSettings.copyOf(Blocks.POTATOES)));
+    public static final Block CHILI_CROP = registerBlockWithoutItem("chili_crop",
+            new ChiliCropBlock(FabricBlockSettings.copyOf(Blocks.POTATOES)));
     public static final Block OVEN = registerBlock("oven",
             new OvenBlock(FabricBlockSettings.copyOf(Blocks.BRICKS)
                     .luminance(state -> state.get(OvenBlock.OVEN_BURNING) ? 15 : 0)));
@@ -164,9 +168,17 @@ public class ModBlocks {
     public static final Block WILD_PEPPER_CROP = registerBlock("wild_pepper_crop",new PlantBlock(
             FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
     ));
+    public static final Block WILD_CHILI_CROP = registerBlock("wild_chili_crop",new PlantBlock(
+            FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
+    ));
+    public static final Block SOYBEAN_CROP = registerBlockWithoutItem("soybean_crop",
+            new SoybeanCropBlock(FabricBlockSettings.copyOf(Blocks.POTATOES)));
     public static final Block GARLIC_CROP = registerBlockWithoutItem("garlic_crop",
             new GarlicCropBlock(FabricBlockSettings.copyOf(Blocks.POTATOES)));
     public static final Block WILD_GARLIC = registerBlock("wild_garlic",new PlantBlock(
+            FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
+    ));
+    public static final Block WILD_SOYBEAN = registerBlock("wild_soybean",new PlantBlock(
             FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque().noCollision()
     ));
     public static final Block CHARGING_POST = registerBlock("charging_post", new ChargingPostBlock());
@@ -192,6 +204,8 @@ public class ModBlocks {
             new FluidBlock(ModFluid.STILL_VINEGAR,FabricBlockSettings.copyOf(Blocks.WATER)));
     public static final Block ALCOHOL_FLUID_BLOCK = registerBlockWithoutItem("alcohol_fluid",
             new FluidBlock(ModFluid.STILL_ALCOHOL,FabricBlockSettings.copyOf(Blocks.WATER)));
+    public static final Block SOY_MILK_FLUID_BLOCK = registerBlockWithoutItem("soy_milk_fluid",
+            new FluidBlock(ModFluid.STILL_SOY_MILK,FabricBlockSettings.copyOf(Blocks.WATER)));
     public static final Block MILK_FLUID_BLOCK = registerBlockWithoutItem("milk_fluid",
             new FluidBlock(ModFluid.STILL_MILK,FabricBlockSettings.copyOf(Blocks.WATER)));
     public static final Block INDUSTRIAL_FERMENTER = registerBlockWithoutItem("industrial_fermenter",
@@ -230,7 +244,7 @@ public class ModBlocks {
     public static final BlockItem CHILI_FISH_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
             "chili_fish"), new PackagedFoodBlockItem(CHILI_FISH,14,0.3F,CLAY_POT_ITEM));
     public static final BlockItem CRAB_SAUSAGE_VEGETABLE_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
-            "crab_sausage_vegetable"), new PackagedFoodBlockItem(CRAB_SAUSAGE_VEGETABLE,13,0.5F,CLAY_POT_ITEM));
+            "crab_sausage_vegetable"), new PackagedFoodBlockItem(CRAB_SAUSAGE_VEGETABLE,13,0.8F,CLAY_POT_ITEM));
     public static final BlockItem CREAM_OF_MUSHROOM_SOUP_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
             "cream_mushroom_soup"), new PackagedFoodBlockItem(CREAM_OF_MUSHROOM_SOUP,12,0.5F,CLAY_POT_ITEM));
     public static final BlockItem FRENCH_ONION_SOUP_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,

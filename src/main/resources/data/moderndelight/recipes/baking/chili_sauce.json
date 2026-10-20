@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:crops/chili_pepper"
+    },
+    {
+      "item": "moderndelight:sea_salt"
+    },
+    {
+      "tag": "c:crops/chili_pepper"
+    },
+    {
+      "item": "moderndelight:jar"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:chili_sauce",
+    "count": 1
+  }
+}

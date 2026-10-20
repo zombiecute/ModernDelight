@@ -6,7 +6,7 @@
       "item": "minecraft:egg"
     },
     {
-      "item": "minecraft:milk_bucket"
+      "tag": "c:milks"
     },
     {
       "item": "minecraft:sugar"
@@ -16,7 +16,7 @@
     }
   ],
   "result": {
-    "count": 8,
+    "count": 4,
     "item": "moderndelight:pudding_wip_1"
   }
 }

@@ -4,6 +4,10 @@
     "moderndelight:black_pepper_crop",
     "moderndelight:wild_pepper_crop",
     "moderndelight:wild_garlic",
-    "moderndelight:garlic_crop"
+    "moderndelight:garlic_crop",
+    "moderndelight:chili_crop",
+    "moderndelight:wild_chili_crop",
+    "moderndelight:soybean_crop",
+    "moderndelight:wild_soybean"
   ]
 }

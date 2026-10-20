@@ -74,6 +74,27 @@ public class BambooGrateBlockEntity extends BlockEntity implements ImplementedIn
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
+
+    public boolean isCovered() {
+        return isCovered != 0;
+    }
+
+    public boolean isHeated() {
+        return isHeated != 0;
+    }
+
+    public int getCurrentLayer() {
+        return currentLayer;
+    }
+
+    public int getActiveCookingSlots() {
+        int activeSlots = 0;
+        for (int i = 0; i < Math.min(availableSlots, progresses.length); i++) {
+            if (progresses[i] > 0) activeSlots++;
+        }
+        return activeSlots;
+    }
+
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);

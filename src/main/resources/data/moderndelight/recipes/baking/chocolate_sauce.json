@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "tag": "c:milks"
+    },
+    {
+      "item": "moderndelight:jar"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:chocolate_sauce",
+    "count": 1
+  }
+}

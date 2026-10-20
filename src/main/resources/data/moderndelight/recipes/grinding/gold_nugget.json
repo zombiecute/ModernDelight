@@ -2,7 +2,7 @@
   "type": "moderndelight:grinding",
   "ingredients": [
     {
-      "tag": "c:ores/gold"
+      "tag": "minecraft:gold_ores"
     }
   ],
   "output": {

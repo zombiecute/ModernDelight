@@ -26,13 +26,17 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
     private final FluidStack output_fluid;
     private final boolean isDanger;
     private final boolean doCreateFire;
-    public SqueezeRecipe(Identifier id, DefaultedList<Ingredient> ingredients, ItemStack output_item, FluidStack output_fluid, boolean isDanger, boolean doCreateFire){
+    private final float chance;
+
+    public SqueezeRecipe(Identifier id, DefaultedList<Ingredient> ingredients,
+                         ItemStack output_item, FluidStack output_fluid, boolean isDanger, boolean doCreateFire, float chance) {
         this.id = id;
         this.output_item = output_item;
         this.ingredients = ingredients;
         this.output_fluid = output_fluid;
         this.isDanger = isDanger;
         this.doCreateFire = doCreateFire;
+        this.chance = chance;
     }
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
@@ -45,7 +49,9 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
     public boolean isDanger() {
         return isDanger;
     }
-
+    public float getChance() {
+        return chance;
+    }
     public boolean doCreateFire() {
         return doCreateFire;
     }
@@ -120,7 +126,7 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json,"output"));
             JsonArray ingredients = JsonHelper.getArray(json,"ingredients");
             FluidStack fluid = getFluidFromJson(JsonHelper.getObject(json,"fluid_output"));
-
+            float chance = JsonHelper.getFloat(json,"chance",1.0f);
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1,Ingredient.EMPTY);
 
             for(int i=0;i<inputs.size();i++){
@@ -128,7 +134,7 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
             }
             boolean isDanger = JsonHelper.getBoolean(json,"is_danger",false);
             boolean doCreateFire = JsonHelper.getBoolean(json,"do_create_fire",false);
-            return new SqueezeRecipe(id, inputs, output,fluid,isDanger,doCreateFire);
+            return new SqueezeRecipe(id, inputs, output,fluid,isDanger,doCreateFire,chance);
         }
 
         @Override
@@ -143,7 +149,8 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
             int amount = buf.readInt();
             boolean isDanger = buf.readBoolean();
             boolean doCreateFire = buf.readBoolean();
-            return new SqueezeRecipe(id, inputs, output, new FluidStack(FluidVariant.of(fluid),amount),isDanger,doCreateFire);
+            float chance = buf.readFloat();
+            return new SqueezeRecipe(id, inputs, output, new FluidStack(FluidVariant.of(fluid),amount),isDanger,doCreateFire,chance);
         }
 
         @Override
@@ -160,6 +167,7 @@ public class SqueezeRecipe implements Recipe<SimpleInventory> {
             buf.writeInt(amount);
             buf.writeBoolean(recipe.isDanger);
             buf.writeBoolean(recipe.doCreateFire);
+            buf.writeFloat(recipe.getChance());
         }
     }
 }

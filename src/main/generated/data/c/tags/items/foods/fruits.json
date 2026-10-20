@@ -20,6 +20,10 @@
     {
       "id": "#c:foods/fruits/pear",
       "required": false
+    },
+    {
+      "id": "#c:foods/fruits/cherry",
+      "required": false
     }
   ]
 }

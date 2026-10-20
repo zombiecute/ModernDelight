@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "c:flour"
+    },
+    {
+      "tag": "c:foods/sausage"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:scotch_egg_wip"
+  }
+}

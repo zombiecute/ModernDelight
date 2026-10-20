@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "moderndelight:streaky_pork",
-    "moderndelight:pork_ribs",
-    "moderndelight:pork_hoof",
     "minecraft:porkchop"
   ]
 }

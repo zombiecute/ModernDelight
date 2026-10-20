@@ -87,6 +87,7 @@ public class TextUtil {
     public static final String TRAWLER = "moderndelight.tooltips.trawler";
     public static final String TRAWLER_BAIT = "moderndelight.tooltips.trawler_bait";
     public static final String GET_EXP = "tooltips.moderndelight.tooltip.get_exp";
+    public static final String STONE_MORTAR = "tooltips.moderndelight.tooltip.stone_mortar";
 
     public static List<Text> generateToolTip(Text text, Style style){
         List<Text> result = new ArrayList<>();

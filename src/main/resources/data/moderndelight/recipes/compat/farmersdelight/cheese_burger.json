@@ -20,10 +20,10 @@
       "tag": "c:crops/cabbage"
     },
     {
-      "item": "farmersdelight:tomato"
+      "tag": "c:crops/tomato"
     },
     {
-      "item": "farmersdelight:onion"
+      "tag": "c:crops/onion"
     },
     {
       "item": "moderndelight:cheese"

@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:foods/doughs/wheat"
+    },
+    {
+      "item": "moderndelight:chocolate_sauce"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "moderndelight:cream_bucket"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:opera_cake",
+    "count": 1
+  }
+}

@@ -57,6 +57,7 @@
     "moderndelight:pork_noodle",
     "moderndelight:pepper_beef_rice",
     "moderndelight:vegetable_noodle",
+    "moderndelight:opera_cake",
     {
       "id": "#c:foods/ice_lollies",
       "required": false
@@ -66,15 +67,7 @@
       "required": false
     },
     {
-      "id": "#c:foods/truffles",
-      "required": false
-    },
-    {
       "id": "#c:foods/puddings",
-      "required": false
-    },
-    {
-      "id": "#c:foods/flours",
       "required": false
     },
     {
@@ -102,7 +95,7 @@
       "required": false
     },
     {
-      "id": "#c:foods/sausages",
+      "id": "#c:foods/sausage",
       "required": false
     },
     {
@@ -111,13 +104,10 @@
     },
     "moderndelight:black_pepper_corn",
     "moderndelight:black_pepper_dust",
-    "moderndelight:garlic",
-    "moderndelight:garlic_petal",
     "moderndelight:sunflower_seed",
     "moderndelight:mashed_potato",
     "moderndelight:sauce_mashed_potato",
     "moderndelight:apple_petal",
-    "moderndelight:cherry",
     "moderndelight:cheese",
     "moderndelight:egg_tart",
     "moderndelight:truffle_egg_tart",
@@ -140,6 +130,10 @@
       "id": "#c:foods/cooked_meats",
       "required": false
     },
+    {
+      "id": "#c:foods/cooked_fishes",
+      "required": false
+    },
     "moderndelight:pork_chop_burger",
     "moderndelight:fish_and_chips",
     "moderndelight:fired_noodles",
@@ -151,11 +145,22 @@
     "moderndelight:steamed_pumpkin_wip",
     "moderndelight:caramel_toast",
     "moderndelight:braised_shrimp_ball_wip",
+    "moderndelight:butter_cookie",
+    "moderndelight:cheese_potato_boat",
+    "moderndelight:double_meat_burger",
+    "moderndelight:crispy_barbecue",
+    "moderndelight:mixed_jam",
+    "moderndelight:golden_double_crisp",
+    "moderndelight:scotch_egg",
+    "moderndelight:chow_mein",
+    "moderndelight:stuffed_mashed_potato",
+    "moderndelight:steamed_egg_custard",
+    "moderndelight:chili_sauce",
     "#c:foods/pastas",
     {
       "id": "#c:foods/fruits",
       "required": false
     },
-    "#c:foods/juice"
+    "#c:foods/juices"
   ]
 }

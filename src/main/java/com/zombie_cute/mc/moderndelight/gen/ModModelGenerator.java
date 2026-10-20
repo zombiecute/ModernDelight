@@ -3,7 +3,9 @@ package com.zombie_cute.mc.moderndelight.gen;
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.block.crops.BlackPepperCropBlock;
+import com.zombie_cute.mc.moderndelight.block.crops.ChiliCropBlock;
 import com.zombie_cute.mc.moderndelight.block.crops.GarlicCropBlock;
+import com.zombie_cute.mc.moderndelight.block.crops.SoybeanCropBlock;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -37,9 +39,13 @@ public class ModModelGenerator extends FabricModelProvider {
 
         blockStateModelGenerator.registerCrop(ModBlocks.BLACK_PEPPER_CROP, BlackPepperCropBlock.AGE, 0,1,2,3,4,5,6);
         blockStateModelGenerator.registerCrop(ModBlocks.GARLIC_CROP, GarlicCropBlock.AGE, 0,1,2,3,4,5);
+        blockStateModelGenerator.registerCrop(ModBlocks.CHILI_CROP, ChiliCropBlock.AGE, 0,1,2,3,4,5,6,7);
+        blockStateModelGenerator.registerCrop(ModBlocks.SOYBEAN_CROP, SoybeanCropBlock.AGE, 0,1,2,3,4,5,6,7);
 
         blockStateModelGenerator.registerTintableCross(ModBlocks.WILD_PEPPER_CROP, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerTintableCross(ModBlocks.WILD_GARLIC, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBlocks.WILD_CHILI_CROP, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBlocks.WILD_SOYBEAN, BlockStateModelGenerator.TintType.NOT_TINTED);
     }
 
     @Override
@@ -100,10 +106,32 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModBlocks.PORK_NOODLE_ITEM, Models.GENERATED);
         itemModelGenerator.register(ModBlocks.PEPPER_BEEF_RICE_ITEM, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.COOKED_PRAWN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BUTTER_COOKIE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHEESE_POTATO_BOAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.OPERA_CAKE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DOUBLE_MEAT_BURGER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CRISPY_BARBECUE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MIXED_JAM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SEASONING_BOTTLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CRAB, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CRAB_ROE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COOKED_CRAB, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GOLDEN_DOUBLE_CRISP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SAKURA_YOGURT_SAUCE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SCOTCH_EGG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHOW_MEIN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.STUFFED_MASHED_POTATO, Models.GENERATED);
+        itemModelGenerator.register(ModItems.STEAMED_EGG_CUSTARD, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHILI_PEPPER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHILI_POWDER_SEASONING, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SOY_MILK_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHILI_SAUCE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PUDDING_WIP_1, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PUDDING_WIP_2, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.GARLIC_PETAL, Models.GENERATED);
         itemModelGenerator.register(ModBlocks.FISH_AND_CHIPS_ITEM, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PORK_RIBS, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PORK_HOOF, Models.GENERATED);
         itemModelGenerator.register(ModItems.FRIED_COD_NUGGET, Models.GENERATED);
         itemModelGenerator.register(ModItems.PORK_CHOP_BURGER, Models.GENERATED);
         itemModelGenerator.register(ModItems.ROAST_STREAKY_PORK, Models.GENERATED);
@@ -111,7 +139,6 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.CHOCOLATE_DONUT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_DONUT, Models.GENERATED);
         itemModelGenerator.register(ModItems.TURNIP, Models.GENERATED);
-        itemModelGenerator.register(ModItems.STREAKY_PORK, Models.GENERATED);
         itemModelGenerator.register(ModItems.SQUID_TENTACLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_SQUID_TENTACLE_KEBABS, Models.GENERATED);
         itemModelGenerator.register(ModItems.SQUID_TENTACLE_KEBABS, Models.GENERATED);
@@ -181,7 +208,7 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SUNFLOWER_SEED_PEEL, Models.GENERATED);
         itemModelGenerator.register(ModItems.SUNFLOWER_SEED_PULP, Models.GENERATED);
         itemModelGenerator.register(ModItems.ROASTED_SUNFLOWER_SEED, Models.GENERATED);
-        itemModelGenerator.register(ModItems.OIL_IMPURITY, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BIOMASS, Models.GENERATED);
         itemModelGenerator.register(ModItems.VEGETABLE_OIL_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.VEGETABLE_OIL_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.LIQUEFIED_BIOGAS_BUCKET, Models.GENERATED);
@@ -295,7 +322,6 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BLACK_PEPPER_SEASONING, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLACK_TRUFFLE_SEASONING, Models.GENERATED);
         itemModelGenerator.register(ModItems.WHITE_TRUFFLE_SEASONING, Models.GENERATED);
-        itemModelGenerator.register(ModItems.FERMENTATION_TANK, Models.GENERATED);
         itemModelGenerator.register(ModItems.CARAMEL_TOAST, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.PINECONE, Models.GENERATED);

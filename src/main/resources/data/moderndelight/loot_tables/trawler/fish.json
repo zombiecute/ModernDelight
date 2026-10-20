@@ -7,27 +7,32 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:cod",
-          "weight": 10
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:salmon",
           "weight": 8
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 7
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:tropical_fish",
-          "weight": 2
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:pufferfish",
-          "weight": 1
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "moderndelight:prawn",
-          "weight": 9
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "moderndelight:crab",
+          "weight": 12
         }
       ]
     }

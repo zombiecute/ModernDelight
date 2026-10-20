@@ -49,12 +49,12 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
     public static final DirectionProperty FACING = Properties.FACING;
     public static final BooleanProperty SHOW_PARTICLE = BooleanProperty.of("show_particle");
     public static final BooleanProperty IS_OVERLOADED = BooleanProperty.of("is_overloaded");
-    private static final VoxelShape UP = Block.createCuboidShape(5,2,5,11,16,11);
-    private static final VoxelShape DOWN = Block.createCuboidShape(5,0,5,11,14,11);
-    private static final VoxelShape EAST = Block.createCuboidShape(0,5,5,14,11,11);
-    private static final VoxelShape WEST = Block.createCuboidShape(2,5,5,16,11,11);
-    private static final VoxelShape SOUTH = Block.createCuboidShape(5,5,0,11,11,14);
-    private static final VoxelShape NORTH = Block.createCuboidShape(5,5,2,11,11,16);
+    private static final VoxelShape UP = Block.createCuboidShape(5,0,5,11,16,11);
+    private static final VoxelShape DOWN = Block.createCuboidShape(5,0,5,11,16,11);
+    private static final VoxelShape EAST = Block.createCuboidShape(0,5,5,16,11,11);
+    private static final VoxelShape WEST = Block.createCuboidShape(0,5,5,16,11,11);
+    private static final VoxelShape SOUTH = Block.createCuboidShape(5,5,0,11,11,16);
+    private static final VoxelShape NORTH = Block.createCuboidShape(5,5,0,11,11,16);
 
     public TeslaCoilBlock() {
         super(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.NETHERITE).luminance(state -> state.get(IS_OVERLOADED) ? 0 : 7));

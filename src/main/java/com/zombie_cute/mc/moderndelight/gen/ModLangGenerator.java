@@ -127,7 +127,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(TextUtil.PGEN,
                 "A photovoltaic generator converts light energy into DC electrical energy and stores it, " +
                         "batteries can be plugged in and charged, and the amount of power generated depends on " +
-                        "factors such as current altitude, time of day, weather, block light and sky light.");
+                        "factors such as current altitude, time of day, weather, block light and sky light." +
+                        "It will also attempt to supply power to the DC-powered devices located behind it.");
         translationBuilder.add(TextUtil.STERLING_ENGINE,
                 "Mount the Stirling Engine on a lit furnace, blast furnace, smoker, Advanced Furnace or Oven, " +
                         "then connect it to a Faraday Generator to produce AC power. A sponge dampens its noise.");
@@ -188,6 +189,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(TextUtil.TRAWLER_BAIT,"Place bait here (optional)");
         translationBuilder.add(TextUtil.GET_EXP,"Click to gain experiences");
         translationBuilder.add(MiniGame2Screen.TOOLTIP,"Elimination Tool");
+        translationBuilder.add(TextUtil.STONE_MORTAR,"Hold the item to be ground in one hand and the stone mortar in the other," +
+                " then hold down the interaction key to begin grinding.");
 
         translationBuilder.add(GlassBowlBlockEntity.WHISK_FAIL, "This thing doesn't seem to be able to be handled by the whisk.");
         translationBuilder.add(GlassBowlBlockEntity.NEED_PACKAGE, "The contents require special items to be removed, need");
@@ -218,7 +221,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SUNFLOWER_SEED_PEEL, "Sunflower Seed Peel");
         translationBuilder.add(ModItems.SUNFLOWER_SEED_PULP, "Sunflower Seed Pulp");
         translationBuilder.add(ModItems.ROASTED_SUNFLOWER_SEED, "Stir-fried Sunflower Seed");
-        translationBuilder.add(ModItems.OIL_IMPURITY, "Oil Slag");
+        translationBuilder.add(ModItems.BIOMASS, "Biomass");
         translationBuilder.add(ModItems.VEGETABLE_OIL_BOTTLE, "Vegetable Oil Jar");
         translationBuilder.add(ModItems.VEGETABLE_OIL_BUCKET, "Vegetable Oil Bucket");
 
@@ -233,7 +236,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.BLACK_PEPPER_CORN, "Black Pepper Corn");
         translationBuilder.add(ModItems.BLACK_PEPPER_DUST, "Black Pepper Powder");
-        translationBuilder.add(ModItems.BLACK_PEPPER_SEASONING, "Black Pepper Jar");
+        translationBuilder.add(ModItems.BLACK_PEPPER_SEASONING, "Black Pepper Shaker");
 
         translationBuilder.add(ModItems.MASHED_POTATO, "Mashed Potato");
         translationBuilder.add(ModItems.SAUCE_MASHED_POTATO, "Mashed Potatoes with Sauce");
@@ -265,6 +268,33 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.PUMPKIN_CREAM, "Pumpkin Cream");
         translationBuilder.add(ModItems.WHIPPING_CREAM, "Whipping Cream");
 
+        translationBuilder.add(ModItems.COOKED_PRAWN, "Cooked Prawn");
+        translationBuilder.add(ModItems.BUTTER_COOKIE, "Butter Cookie");
+        translationBuilder.add(ModItems.CHEESE_POTATO_BOAT, "Cheese Potato Boat");
+        translationBuilder.add(ModItems.OPERA_CAKE, "Opera Cake");
+        translationBuilder.add(ModItems.CRYSTAL_DUMPLING_WIP, "Crystal Shrimp Dumplings (Work In Progress)");
+        translationBuilder.add(ModItems.DOUBLE_MEAT_BURGER, "Double Meat Burger");
+        translationBuilder.add(ModItems.CRISPY_BARBECUE, "Crispy Barbecue");
+        translationBuilder.add(ModItems.MIXED_JAM, "Mixed Jam");
+        translationBuilder.add(ModItems.SEASONING_BOTTLE, "Seasoning Bottle");
+        translationBuilder.add(ModItems.CRAB, "Crab");
+        translationBuilder.add(ModItems.CRAB_ROE, "Crab Roe");
+        translationBuilder.add(ModItems.COOKED_CRAB, "Cooked Crab");
+        translationBuilder.add(ModItems.GOLDEN_DOUBLE_CRISP_WIP, "Golden Double Crisp (Work In Progress)");
+        translationBuilder.add(ModItems.GOLDEN_DOUBLE_CRISP, "Golden Double Crisp");
+        translationBuilder.add(ModItems.SAKURA_YOGURT_SAUCE, "Sakura Yogurt Sauce");
+        translationBuilder.add(ModItems.SCOTCH_EGG_WIP, "Scotch Egg (Work In Progress)");
+        translationBuilder.add(ModItems.SCOTCH_EGG, "Scotch Egg");
+        translationBuilder.add(ModItems.CHOW_MEIN, "Chow Mein");
+        translationBuilder.add(ModItems.STUFFED_MASHED_POTATO, "Stuffed Massed Potato");
+        translationBuilder.add(ModItems.STEAMED_EGG_CUSTARD, "Steamed Egg Custard");
+        translationBuilder.add(ModItems.CHILI_SEEDS, "Chili Seeds");
+        translationBuilder.add(ModItems.CHILI_PEPPER, "Chili Pepper");
+        translationBuilder.add(ModItems.SOYBEAN, "Soybean");
+        translationBuilder.add(ModItems.CHILI_POWDER_SEASONING, "Chili Powder Shaker");
+        translationBuilder.add(ModItems.SOY_MILK_BUCKET, "Soy Milk Bucket");
+        translationBuilder.add(ModItems.CHILI_SAUCE, "Chili Sauce");
+
         translationBuilder.add(ModItems.MOUSSE_WIP, "Mousse (Work In Progress)");
         translationBuilder.add(ModItems.CREAM_MOUSSE, "Cream Mousse");
         translationBuilder.add(ModItems.CHERRY_MOUSSE, "Cherry Mouse");
@@ -273,7 +303,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.GOLDEN_APPLE_MOUSSE, "Golden Apple Mousse");
         translationBuilder.add(ModItems.MATCHA_MOUSSE, "Matcha Mousse");
 
-        translationBuilder.add(ModItems.CRYSTAL_DUMPLING, "Crystal Dumpling");
+        translationBuilder.add(ModItems.CRYSTAL_DUMPLING, "Crystal Shrimp Dumpling");
 
         translationBuilder.add(ModItems.SQUID, "Squid");
         translationBuilder.add(ModItems.ROASTED_SQUID, "Roasted Squid");
@@ -287,8 +317,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.BLACK_TRUFFLE, "Black Truffle");
         translationBuilder.add(ModItems.WHITE_TRUFFLE, "White Truffle");
-        translationBuilder.add(ModItems.BLACK_TRUFFLE_SEASONING, "Black Truffle Jar");
-        translationBuilder.add(ModItems.WHITE_TRUFFLE_SEASONING, "White Truffle Jar");
+        translationBuilder.add(ModItems.BLACK_TRUFFLE_SEASONING, "Black Truffle Shaker");
+        translationBuilder.add(ModItems.WHITE_TRUFFLE_SEASONING, "White Truffle Shaker");
 
         translationBuilder.add(ModItems.SILICON_INGOT, "Silicon Ingot");
         translationBuilder.add(ModBlocks.SILICON_BLOCK, "Block of Silicon");
@@ -411,7 +441,6 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.SQUID_TENTACLE, "Squid Tentacle");
         translationBuilder.add(ModItems.RAW_SQUID_TENTACLE_KEBABS, "Raw Squid Tentacle Kebab");
         translationBuilder.add(ModItems.SQUID_TENTACLE_KEBABS, "Squid Tentacle Kebab");
-        translationBuilder.add(ModItems.STREAKY_PORK, "Streaky Pork");
         translationBuilder.add(ModItems.TURNIP, "Rutabaga");
         translationBuilder.add(TextUtil.TURNIP, "A slight grudge from the author.");
         translationBuilder.add(ModItems.RAW_DONUT, "Raw Donut");
@@ -420,8 +449,6 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.ROAST_STREAKY_PORK, "Roast Streaky Pork");
         translationBuilder.add(ModItems.PORK_CHOP_BURGER, "Pork Chop Burger");
         translationBuilder.add(ModItems.FRIED_COD_NUGGET, "Deep-fried Cod Nugget");
-        translationBuilder.add(ModItems.PORK_RIBS, "Pork Ribs");
-        translationBuilder.add(ModItems.PORK_HOOF, "Pork Hoof");
         translationBuilder.add(ModBlocks.FISH_AND_CHIPS_ITEM, "Fish and Chips");
         translationBuilder.add(ModBlocks.WILD_PEPPER_CROP, "Wild Black Pepper");
         translationBuilder.add(ModItems.GARLIC, "Garlic");
@@ -429,6 +456,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.WILD_GARLIC, "Wild Garlic");
         translationBuilder.add(ModItems.ELECTRIC_WHISK, "Electric Whisk");
         translationBuilder.add(ModBlocks.CHARGING_POST, "Charging Post");
+        translationBuilder.add(ModBlocks.WILD_CHILI_CROP, "Wild Chili Pepper");
+        translationBuilder.add(ModBlocks.WILD_SOYBEAN, "Wild Soybean");
 
         translationBuilder.add(ModItems.ICE_CREAM_CONE, "Ice Cream Cone");
         translationBuilder.add(ModItems.RAW_ICE_CREAM_CONE, "Ice Cream Cone (Work In Progress)");
@@ -513,10 +542,10 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.STEAMED_PUMPKIN, "Steamed Pumpkin");
         translationBuilder.add(ModItems.STEAMED_PUMPKIN_WIP, "Steamed Pumpkin (Work In Progress)");
         translationBuilder.add(ModItems.CHOCOLATE_CRUNCH_ICE_LOLLY, "Chocolate Crunch Ice Lolly");
-        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN_WIP, "Steamed Stuffed Bun (Work In Progress)");
-        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN, "Steamed Stuffed Bun");
-        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP, "Vegetable Steamed Stuffed Bun (Work In Progress)");
-        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN, "Vegetable Steamed Stuffed Bun");
+        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN_WIP, "Steamed Stuffed Buns (Work In Progress)");
+        translationBuilder.add(ModItems.STEAMED_STUFFED_BUN, "Steamed Stuffed Buns");
+        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP, "Jade Cabbage Buns (Work In Progress)");
+        translationBuilder.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN, "Jade Cabbage Buns");
         translationBuilder.add(ModItems.SHAOMAI_WIP, "Shumai (Work In Progress)");
         translationBuilder.add(ModItems.SHAOMAI, "Shumai");
         translationBuilder.add(ModItems.BLACK_PEPPER_STEAK, "Black Pepper Steak");
@@ -559,6 +588,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.ALCOHOL_FLUID_BLOCK, "Alcohol");
         translationBuilder.add(ModBlocks.VINEGAR_FLUID_BLOCK, "Vinegar");
         translationBuilder.add(ModBlocks.MILK_FLUID_BLOCK, "Milk (Fermenting)");
+        translationBuilder.add(ModBlocks.SOY_MILK_FLUID_BLOCK, "Soy Milk");
 
         translationBuilder.add(ModEnchantments.FINE_GRINDING,"Precision Grinding");
         translationBuilder.add(ModEnchantments.FINE_GRINDING.getTranslationKey()+".desc","The stone mortar will have additional output when grinding.");
@@ -623,19 +653,61 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("emi.category.moderndelight.grinding","Grinding");
         translationBuilder.add("emi.category.moderndelight.fermenting","Fermenting");
 
-        translationBuilder.add("config.jade.moderndelight.trawler","Trawler");
-        translationBuilder.add("moderndelight.jade.tooltip.trawler.trawler_interval","Harvest time remaining: %d second(s)");
-        translationBuilder.add("config.jade.moderndelight.sterling_engine","Sterling Engine");
+        translationBuilder.add("config.jade.moderndelight.machine_details", "Machine Details");
+        translationBuilder.add("moderndelight.jade.tooltip.trawler.trawler_interval","Harvest time remaining: %d seconds");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.has_sponge","Noise has been reduced");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.no_sponge","Noise has not been reduced");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.working","Working");
         translationBuilder.add("moderndelight.jade.tooltip.sterling_engine.not_working","Standby");
-        translationBuilder.add("config.jade.moderndelight.ac_generator","AC Generator");
         translationBuilder.add("moderndelight.jade.tooltip.ac_generator.power","Current AC power generation: %d EP/s");
-        translationBuilder.add("config.jade.moderndelight.juice_extractor","Juice Extractor");
-        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.time","Time Remaining: %d second(s)");
-        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.powered","Powered on");
-        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.not_powered","Not powered on");
+        translationBuilder.add("moderndelight.jade.tooltip.juice_extractor.time","Juicing time remaining: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_device.powered","Powered on");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_device.not_powered","Not powered on");
+        translationBuilder.add("moderndelight.jade.tooltip.industrial_fermenter.temperature", "Temperature: %d °C");
+        translationBuilder.add("moderndelight.jade.tooltip.industrial_fermenter.dominate", "Current dominate bacteria: %s");
+        translationBuilder.add("moderndelight.jade.tooltip.industrial_fermenter.progress", "Fermentation time remaining: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.electric_steamer.steam", "Steam: %d / %d mB");
+        translationBuilder.add("moderndelight.jade.tooltip.electric_steamer.active_slots", "Active steaming slots: %d");
+        translationBuilder.add("moderndelight.jade.tooltip.ice_cream_maker.progress", "Ice cream production progress: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.ice_cream_maker.flavor", "Selected flavor: %s (%d mB)");
+        translationBuilder.add("moderndelight.jade.tooltip.freezer.cooling_time", "Cooling time remaining: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.freezer.progress", "Freezing progress: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.oven.fuel_time", "Fuel remaining: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.oven.progress", "Baking time remaining: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.advance_furnace.active_slots", "Active cooking slots: %d");
+        translationBuilder.add("moderndelight.jade.tooltip.advance_furnace.fuel_time", "Fuel remaining: %d seconds");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.heated", "Heater: %s");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.running", "On");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.stopped", "Off");
+        translationBuilder.add("moderndelight.jade.tooltip.deep_fryer.active_slots", "Active frying slots: %d");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.stir_fry", "Stirring: %d / %d times");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.heat_source", "Heat source: %s");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.heated", "Heated");
+        translationBuilder.add("moderndelight.jade.tooltip.baking_tray.cold", "Not heated");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.heat", "Heat: %s");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.cover", "Cover: %s");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.layer", "Layer: %d / %d");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.active_slots", "Active steaming slots: %d");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.heated", "Heated");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.cold", "Not heated");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.covered", "Covered");
+        translationBuilder.add("moderndelight.jade.tooltip.bamboo_grate.uncovered", "Uncovered");
+        translationBuilder.add("moderndelight.jade.tooltip.gas_canister.gas", "Gas has been filled");
+        translationBuilder.add("moderndelight.jade.tooltip.gas_canister.not_gas", "Gas Not Filled");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.gas", "Biogas: %d / %d mB");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.volume", "Tank volume: %d blocks");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.structure", "Structure: %s");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.valid", "Valid");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_controller.invalid", "Invalid");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_io.gas", "Biogas: %d mB");
+        translationBuilder.add("moderndelight.jade.tooltip.biogas_digester_io.progress", "Fermentation progress: %d ticks");
+        translationBuilder.add("moderndelight.jade.tooltip.dc_generator.power", "Current DC power generation: %d EP/s");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.mode", "Output mode: %s");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.mode_ac", "AC");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.mode_dc", "DC");
+        translationBuilder.add("moderndelight.jade.tooltip.ac_dc_converter.speed", "Work speed: %d / %d");
+        translationBuilder.add("moderndelight.jade.tooltip.tesla_coil.efficiency", "Current load: %d EP");
+        translationBuilder.add("moderndelight.jade.tooltip.tesla_coil.devices", "Activated devices: %d");
 
 
         translationBuilder.add("sounds.moderndelight.entity_butter_hit", "Butter: Hit");

@@ -3,8 +3,8 @@ package com.zombie_cute.mc.moderndelight.block.power.alternator;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.power.batteries.AbstractBatteryBlock;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.Power;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.PowerStorageAble;
+import com.zombie_cute.mc.moderndelight.util.power_util.Power;
+import com.zombie_cute.mc.moderndelight.util.power_util.PowerStorageAble;
 import com.zombie_cute.mc.moderndelight.screen.custom.PhotovoltaicGeneratorScreenHandler;
 import com.zombie_cute.mc.moderndelight.util.ModConfig;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -26,6 +26,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import team.reborn.energy.api.EnergyStorage;
+import team.reborn.energy.api.EnergyStorageUtil;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, PowerStorageAble {
@@ -70,57 +72,68 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
     private int isWorking = 0;
     private int slowMode = 0;
     public static final String PHOTOVOLTAIC_GENERATOR_NAME = "display_name.moderndelight.photovoltaic_generator_name";
-    public void tick(World world, PhotovoltaicGeneratorBlockEntity blockEntity) {
+    private int efficiency = 0;
+    public void tick(World world, BlockState state ,PhotovoltaicGeneratorBlockEntity blockEntity) {
         if (world.isClient){
             return;
         }
+        int efficiency = 0;
         if (world.getTime() % 20L == 0L){
             ItemStack itemStack = blockEntity.getStack(0);
             blockEntity.setStack(0,
                     AbstractBatteryBlock.changeBatteryPower(itemStack,energyStorage, 80, true));
             int light = world.getLightLevel(LightType.BLOCK,pos) / 3 - 1;
             if (light > 0){
+                efficiency += light;
                 blockEntity.addEnergy(light * 10L);
                 blockEntity.slowMode = 1;
             } else blockEntity.slowMode = 0;
             if (isInOpenAir(world)){
                 if (isEarlyMorningOrTwilight(world)){
-                    blockEntity.addPowerAndCheck(1,world);
+                    efficiency += blockEntity.addPowerAndCheck(1,world);
                     if (world.isThundering() || world.isRaining()) blockEntity.isWorking = 0;
                     else blockEntity.isWorking = 1;
                 } else if (isMorningOrAfternoon(world)) {
-                    blockEntity.addPowerAndCheck(2,world);
+                    efficiency += blockEntity.addPowerAndCheck(2,world);
                     if (world.isThundering()) blockEntity.isWorking = 0;
                     else blockEntity.isWorking = 1;
                 } else if (isNoon(world)) {
-                    blockEntity.addPowerAndCheck(3,world);
+                    efficiency += blockEntity.addPowerAndCheck(3,world);
                     blockEntity.isWorking = 1;
                 } else blockEntity.isWorking = 0;
             } else blockEntity.isWorking = 0;
             markDirty();
+            this.efficiency = efficiency;
+            BlockPos target = pos.offset(state.get(PhotovoltaicGeneratorBlock.FACING).getOpposite());
+            EnergyStorage targetStorage = EnergyStorage.SIDED.find(world, target, state.get(PhotovoltaicGeneratorBlock.FACING));
+            if (targetStorage != null && targetStorage.supportsInsertion() && energyStorage.amount > 0) {
+                EnergyStorageUtil.move(energyStorage, targetStorage, 10000L, null);
+            }
         }
         setPower(getEnergyStorage().amount / 10);
     }
 
-    private void addPowerAndCheck(int multiplier, World world){
+    private int addPowerAndCheck(int multiplier, World world){
         int y = pos.getY() / 2;
-        double var = multiplier * getMultiplier() * 20;
+        double var = multiplier * getMultiplier() * 5;
         if (var <= 0){
-            return;
+            return 0;
         }
         if (world.isThundering()){
             if (var - 3 >= 0){
                 var -= 3;
             } else {
-                return;
+                return 0;
             }
         } else if (world.isRaining()) {
             var--;
         }
         if (y / 10 > 0){
             this.addEnergy((long) (var * y));
+            return (int) (var * y) / 10;
         } else {
             this.addEnergy((long) (var * 10));
+            return (int) var;
         }
     }
     private boolean isInOpenAir(World world){
@@ -184,6 +197,9 @@ public class PhotovoltaicGeneratorBlockEntity extends BlockEntity implements Ext
         return power;
     }
 
+    public int getEfficiency() {
+        return efficiency;
+    }
     @Override
     public SimpleEnergyStorage getEnergyStorage() {
         return energyStorage;

@@ -1,0 +1,16 @@
+{
+  "type": "moderndelight:squeeze",
+  "ingredients": [
+    {
+      "item": "moderndelight:soybean"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:biomass"
+  },
+  "chance": 0.2,
+  "fluid_output": {
+    "fluid": "moderndelight:still_soy_milk",
+    "amount": 8100
+  }
+}

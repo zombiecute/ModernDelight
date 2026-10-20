@@ -1,8 +1,8 @@
 package com.zombie_cute.mc.moderndelight.block.power.batteries;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.Power;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.PowerStorageAble;
+import com.zombie_cute.mc.moderndelight.util.power_util.Power;
+import com.zombie_cute.mc.moderndelight.util.power_util.PowerStorageAble;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;

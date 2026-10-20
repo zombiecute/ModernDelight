@@ -121,6 +121,7 @@
     }
   },
   "textures": {
-    "particle": "moderndelight:item/trawler"
+    "0": "moderndelight:block/trawler",
+    "particle": "moderndelight:block/trawler"
   }
 }

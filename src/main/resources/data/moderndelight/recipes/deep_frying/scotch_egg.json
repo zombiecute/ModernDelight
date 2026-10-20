@@ -1,0 +1,11 @@
+{
+  "type": "moderndelight:deep_frying",
+  "ingredients": [
+    {
+      "item": "moderndelight:scotch_egg_wip"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:scotch_egg"
+  }
+}

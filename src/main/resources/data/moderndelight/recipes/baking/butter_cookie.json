@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:foods/doughs/wheat"
+    },
+    {
+      "item": "moderndelight:butter"
+    },
+    {
+      "item": "moderndelight:pinecone"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:butter_cookie",
+    "count": 1
+  }
+}

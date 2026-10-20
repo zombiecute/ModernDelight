@@ -1,0 +1,12 @@
+{
+  "type": "moderndelight:steaming",
+  "maxProgress": 10,
+  "ingredients": [
+    {
+      "item": "moderndelight:crystal_dumpling_wip"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:crystal_dumpling"
+  }
+}

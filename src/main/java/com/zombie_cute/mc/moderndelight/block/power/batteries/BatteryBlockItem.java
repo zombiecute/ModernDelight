@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.power.batteries;
 
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.DCConsumer;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.Power;
+import com.zombie_cute.mc.moderndelight.util.power_util.DCConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.Power;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.BlockItem;
@@ -42,7 +42,7 @@ public class BatteryBlockItem extends BlockItem implements DCConsumer {
             if (nbtCompound.contains("battery.power")) {
                 long power = nbtCompound.getLong("battery.power");
                 long maxPower = nbtCompound.getLong("battery.maxPower");
-                return (int) Math.min(12 * power / maxPower, 13);
+                return (int) Math.min(1 + 12 * power / maxPower, 13);
             }
         }
         return 0;

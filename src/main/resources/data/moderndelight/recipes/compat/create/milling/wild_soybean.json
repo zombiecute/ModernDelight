@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "moderndelight:wild_soybean"
+    }
+  ],
+  "processingTime": 35,
+  "results": [
+    {
+      "count": 1,
+      "item": "moderndelight:soybean"
+    },
+    {
+      "chance": 0.7,
+      "item": "moderndelight:soybean"
+    },
+    {
+      "chance": 0.2,
+      "item": "moderndelight:soybean"
+    }
+  ]
+}

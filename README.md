@@ -38,6 +38,7 @@ These are optional, but add useful integrations:
 - [REI](https://modrinth.com/mod/rei) or [EMI](https://modrinth.com/mod/emi) to browse recipes in-game
 - [Patchouli](https://modrinth.com/mod/patchouli) for the in-game guide book
 - [Yet Another Config Lib](https://modrinth.com/mod/yacl) and [Mod Menu](https://modrinth.com/mod/modmenu) for the configuration screen
+- [Jade](https://modrinth.com/mod/jade) for more information display
 
 ## Getting Started
 

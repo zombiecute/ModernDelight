@@ -7,8 +7,10 @@
     }
   ],
   "output": {
-    "item": "minecraft:sugar"
+    "item": "moderndelight:biomass"
   },
+
+  "chance": 0.2,
   "fluid_output": {
     "fluid": "moderndelight:still_sweetened_water",
     "amount": 2250

@@ -22,6 +22,8 @@ public class ModFluid {
     public static final FlowableFluid STILL_ALCOHOL = registerFluid("still_alcohol", new AlcoholFluid.Still());
     public static final FlowableFluid FLOWING_MILK = registerFluid("flowing_milk", new MilkFluid.Flowing());
     public static final FlowableFluid STILL_MILK = registerFluid("still_milk", new MilkFluid.Still());
+    public static final FlowableFluid FLOWING_SOY_MILK = registerFluid("flowing_soy_milk", new SoyMilkFluid.Flowing());
+    public static final FlowableFluid STILL_SOY_MILK = registerFluid("still_soy_milk", new SoyMilkFluid.Still());
     public static FlowableFluid registerFluid(String name, FlowableFluid fluid){
          return Registry.register(Registries.FLUID, new Identifier(ModernDelightMain.MOD_ID,name),fluid);
     }

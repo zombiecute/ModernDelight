@@ -8,7 +8,7 @@ import com.zombie_cute.mc.moderndelight.screen.custom.FreezerScreenHandler;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
 import com.zombie_cute.mc.moderndelight.tag.TagKeys;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.ACConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.ACConsumer;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -59,6 +59,7 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
     private int progress = 0;
     private int maxProgress = 400;
     private int coolTime = 0;
+    private int cachedPower = 0;
     private int maxCoolTime = 1;
     private int experiences = 0;
     public FreezerBlockEntity(BlockPos pos, BlockState state) {
@@ -159,6 +160,12 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
         if (world.isClient){
             return;
         }
+        if (isPowered()){
+            if (!isCool()){
+                coolTime = 60;
+            }
+            cachedPower--;
+        }
         if (isCool()){
             --coolTime;
             if (world.getTime() % 100L == 0L){
@@ -205,6 +212,10 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
                 this.removeStack(ICE_SLOT,1);
             }
         }
+    }
+
+    public boolean isPowered() {
+        return cachedPower > 0;
     }
 
 
@@ -346,6 +357,18 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
         return experiences;
     }
 
+    public int getProgress() {
+        return progress;
+    }
+
+    public int getMaxProgress() {
+        return maxProgress;
+    }
+
+    public int getCoolTime() {
+        return Math.max(coolTime, 0);
+    }
+
     @Override
     public void markDirty() {
         ItemStackSyncS2CPacket.send(pos,getItems(),world);
@@ -364,8 +387,6 @@ public class FreezerBlockEntity extends BlockEntity implements ExtendedScreenHan
 
     @Override
     public void energize() {
-        if (!this.isCool()){
-            this.coolTime = 60;
-        }
+        cachedPower = 60;
     }
 }

@@ -7,9 +7,9 @@ import com.zombie_cute.mc.moderndelight.networking.packet.ItemStackSyncS2CPacket
 import com.zombie_cute.mc.moderndelight.screen.custom.ChargingPostScreenHandler;
 import com.zombie_cute.mc.moderndelight.util.ModConfig;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.DCConsumer;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.Power;
-import com.zombie_cute.mc.moderndelight.util.block_util.power_util.PowerStorageAble;
+import com.zombie_cute.mc.moderndelight.util.power_util.DCConsumer;
+import com.zombie_cute.mc.moderndelight.util.power_util.Power;
+import com.zombie_cute.mc.moderndelight.util.power_util.PowerStorageAble;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

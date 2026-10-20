@@ -2,13 +2,13 @@
   "type": "moderndelight:freezing",
   "ingredients": [
     {
-      "item": "moderndelight:cherry"
+      "tag": "c:foods/fruits/cherry"
     },
     {
       "item": "moderndelight:mousse_wip"
     },
     {
-      "item": "moderndelight:cherry"
+      "tag": "c:foods/fruits/cherry"
     }
   ],
   "output": {

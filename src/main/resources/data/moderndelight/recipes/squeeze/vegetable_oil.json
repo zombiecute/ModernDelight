@@ -6,8 +6,9 @@
     }
   ],
   "output": {
-    "item": "moderndelight:oil_impurity"
+    "item": "moderndelight:biomass"
   },
+  "chance": 0.2,
   "fluid_output": {
     "fluid": "moderndelight:still_vegetable_oil",
     "amount": 9000

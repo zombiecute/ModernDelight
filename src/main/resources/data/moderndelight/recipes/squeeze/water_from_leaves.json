@@ -6,8 +6,9 @@
     }
   ],
   "output": {
-    "item": "minecraft:stick"
+    "item": "moderndelight:biomass"
   },
+  "chance": 0.1,
   "fluid_output": {
     "fluid": "minecraft:water",
     "amount": 1125

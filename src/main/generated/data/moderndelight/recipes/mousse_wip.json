@@ -15,14 +15,14 @@
       "item": "moderndelight:butter"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:flour"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:flour"
     }
   ],
   "result": {
-    "count": 12,
+    "count": 6,
     "item": "moderndelight:mousse_wip"
   }
 }

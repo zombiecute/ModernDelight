@@ -227,6 +227,27 @@ public class BiogasDigesterIOBlockEntity extends BlockEntity implements Implemen
     public boolean isFood(Item item){
         return item.isFood();
     }
+
+    public boolean isChecked() {
+        return checked != 0;
+    }
+
+    public int getGasValue() {
+        return gasValue;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public int getMaxProgress() {
+        return maxProgress;
+    }
+
+    public boolean isCrafting() {
+        return isCrafting;
+    }
+
     public static Item getDigestate(){
         try {
             String value = ModConfig.digestate;

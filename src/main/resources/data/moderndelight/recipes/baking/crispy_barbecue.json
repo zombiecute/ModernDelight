@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "item": "moderndelight:whipping_cream"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "tag": "c:foods/raw_meats/raw_pork"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:crispy_barbecue",
+    "count": 1
+  }
+}

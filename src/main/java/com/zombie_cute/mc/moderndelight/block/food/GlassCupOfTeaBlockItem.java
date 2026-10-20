@@ -26,7 +26,7 @@ import java.util.List;
 
 public class GlassCupOfTeaBlockItem extends BlockItem implements Drinkable {
     public GlassCupOfTeaBlockItem(Block block) {
-        super(block, new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3f).build()));
+        super(block, new FabricItemSettings().maxCount(16).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3f).build()));
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext options) {

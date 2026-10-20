@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "R": {
+      "item": "moderndelight:redstone_component"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CGC",
+    "RBR"
+  ],
+  "result": {
+    "item": "moderndelight:fermentation_tank"
+  },
+  "show_notification": true
+}

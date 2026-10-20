@@ -12,6 +12,8 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?,?>> WILD_BLACK_PEPPER = registerKey("wild_black_pepper_cf");
     public static final RegistryKey<ConfiguredFeature<?,?>> WILD_GARLIC = registerKey("wild_garlic_cf");
+    public static final RegistryKey<ConfiguredFeature<?,?>> WILD_CHILI = registerKey("wild_chili_cf");
+    public static final RegistryKey<ConfiguredFeature<?,?>> WILD_SOYBEAN = registerKey("wild_soybean_cf");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?,?>> context){
         register(context, WILD_BLACK_PEPPER, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(
@@ -22,6 +24,16 @@ public class ModConfiguredFeatures {
         register(context, WILD_GARLIC, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(
                 20, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,new SimpleBlockFeatureConfig(
                         BlockStateProvider.of(ModBlocks.WILD_GARLIC)
+                ))
+        ));
+        register(context, WILD_CHILI, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(
+                24, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,new SimpleBlockFeatureConfig(
+                        BlockStateProvider.of(ModBlocks.WILD_CHILI_CROP)
+                ))
+        ));
+        register(context, WILD_SOYBEAN, Feature.FLOWER, ConfiguredFeatures.createRandomPatchFeatureConfig(
+                16, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,new SimpleBlockFeatureConfig(
+                        BlockStateProvider.of(ModBlocks.WILD_SOYBEAN)
                 ))
         ));
     }

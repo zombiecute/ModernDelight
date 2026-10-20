@@ -100,6 +100,28 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
                         .conditionally(WITH_SILK_TOUCH_OR_SHEARS)
                         .with(ItemEntry.builder(ModBlocks.WILD_GARLIC))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())));
+        addDrop(ModBlocks.WILD_CHILI_CROP,block -> new LootTable.Builder()
+                .pool(LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
+                        .with(ItemEntry.builder(ModItems.CHILI_SEEDS))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build()))
+                .pool(LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(WITH_SILK_TOUCH_OR_SHEARS)
+                        .with(ItemEntry.builder(ModBlocks.WILD_CHILI_CROP))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())));
+        addDrop(ModBlocks.WILD_SOYBEAN,block -> new LootTable.Builder()
+                .pool(LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
+                        .with(ItemEntry.builder(ModItems.SOYBEAN))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build()))
+                .pool(LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(WITH_SILK_TOUCH_OR_SHEARS)
+                        .with(ItemEntry.builder(ModBlocks.WILD_SOYBEAN))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())));
 
         this.addDrop(ModBlocks.BLACK_PEPPER_CROP,
                 this.cropDrops(ModBlocks.BLACK_PEPPER_CROP, Items.STICK, ModItems.BLACK_PEPPER_CORN,
@@ -111,5 +133,15 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
                         BlockStatePropertyLootCondition.builder(ModBlocks.GARLIC_CROP)
                         .properties(StatePredicate.Builder.create()
                                 .exactMatch(BlackPepperCropBlock.AGE, 5))));
+        this.addDrop(ModBlocks.CHILI_CROP,
+                this.cropDrops(ModBlocks.CHILI_CROP, ModItems.CHILI_PEPPER, ModItems.CHILI_SEEDS,
+                        BlockStatePropertyLootCondition.builder(ModBlocks.CHILI_CROP)
+                                .properties(StatePredicate.Builder.create()
+                                        .exactMatch(BlackPepperCropBlock.AGE, 7))));
+        this.addDrop(ModBlocks.SOYBEAN_CROP,
+                this.cropDrops(ModBlocks.SOYBEAN_CROP, ModItems.SOYBEAN, ModItems.SOYBEAN,
+                        BlockStatePropertyLootCondition.builder(ModBlocks.SOYBEAN_CROP)
+                                .properties(StatePredicate.Builder.create()
+                                        .exactMatch(BlackPepperCropBlock.AGE, 7))));
     }
 }
