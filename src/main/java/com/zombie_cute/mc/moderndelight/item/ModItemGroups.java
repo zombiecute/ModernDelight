@@ -134,13 +134,13 @@ public class ModItemGroups {
                         entries.add(ModItems.GRINDED_LEAVES);
                         // Jars
                         entries.add(ModItems.JAR);
+                        entries.add(ModItems.VEGETABLE_OIL_BOTTLE);
                         entries.add(ModItems.CARAMEL);
                         entries.add(ModItems.CHOCOLATE_SAUCE);
                         entries.add(ModItems.MIXED_JAM);
                         entries.add(ModItems.GARLIC_PUREE);
                         entries.add(ModItems.CRAB_ROE);
                         entries.add(ModItems.WHIPPING_CREAM);
-                        entries.add(ModItems.VEGETABLE_OIL_BOTTLE);
                         entries.add(ModItems.CHILI_SAUCE);
                         // Seasoning Bottle
                         entries.add(ModItems.SEASONING_BOTTLE);
@@ -243,6 +243,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.STEAMED_PUMPKIN);
                         entries.add(ModItems.STEAMED_PUMPKIN_IN_BOWL);
                         // Puddings
+                        entries.add(ModItems.PUDDING_WIP_1);
+                        entries.add(ModItems.PUDDING_WIP_2);
                         entries.add(ModItems.APPLE_PUDDING);
                         entries.add(ModItems.MATCHA_PUDDING);
                         entries.add(ModItems.CARAMEL_PUDDING);
@@ -341,8 +343,6 @@ public class ModItemGroups {
                         entries.add(ModItems.WHITE_TULIP_CAKE);
                         entries.add(ModItems.WITHER_ROSE_CAKE);
                         // WIP Item (Not unfinished items, but rather unfinished items crafted by players)
-                        entries.add(ModItems.PUDDING_WIP_1);
-                        entries.add(ModItems.PUDDING_WIP_2);
                         entries.add(ModItems.MOUSSE_WIP);
                         entries.add(ModItems.SHAOMAI_WIP);
                         entries.add(ModItems.DEEP_FRIED_BUN_WIP);

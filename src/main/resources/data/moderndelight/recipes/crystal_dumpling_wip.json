@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "moderndelight:prawn"
+    },
+    {
+      "item": "moderndelight:prawn"
+    },
+    {
+      "tag": "c:crops/rice"
+    },
+    {
+      "tag": "c:crops/rice"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:crystal_dumpling_wip",
+    "count": 1
+  }
+}

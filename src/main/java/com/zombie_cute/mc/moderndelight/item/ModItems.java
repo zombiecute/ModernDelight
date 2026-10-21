@@ -236,6 +236,10 @@ public class ModItems {
         }
     });
     public static final Item BIOMASS = registerItem("biomass",new Item(new FabricItemSettings()));
+    public static final Item JAR = registerItem("jar",new Item(
+            new FabricItemSettings().maxCount(16))
+    );
+    public static final Item SEASONING_BOTTLE = registerItem("seasoning_bottle", new Item(new FabricItemSettings().maxCount(16)));
     public static final Item VEGETABLE_OIL_BOTTLE = registerItem("vegetable_oil_bottle",new Item(new FabricItemSettings()
             .maxCount(16).recipeRemainder(ModItems.JAR)));
     public static final Item VEGETABLE_OIL_BUCKET = registerItem("vegetable_oil_bucket",new BucketItem(ModFluid.STILL_VEGETABLE_OIL,new FabricItemSettings()
@@ -370,9 +374,6 @@ public class ModItems {
     public static final Item BUTTERFLY_CRISP = registerItem("butterfly_crisp",new Item(
             new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.1f).snack().build())
     ));
-    public static final Item JAR = registerItem("jar",new Item(
-            new FabricItemSettings().maxCount(16))
-    );
     public static final Item CARAMEL = registerItem("caramel",new SeasoningItem(
             new FabricItemSettings().maxCount(16).recipeRemainder(ModItems.JAR),
             new StatusEffectInstance(StatusEffects.SPEED,8 * 20,1))
@@ -655,7 +656,6 @@ public class ModItems {
     public static final Item MIXED_JAM = registerItem("mixed_jam", new SeasoningItem(
             new FabricItemSettings().recipeRemainder(ModItems.JAR).maxCount(16),
             new StatusEffectInstance(StatusEffects.HASTE,10 * 20,1)));
-    public static final Item SEASONING_BOTTLE = registerItem("seasoning_bottle", new Item(new FabricItemSettings().maxCount(16)));
     public static final Item CRAB = registerItem("crab", new Item(
             new FabricItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.4F).build())));
     public static final Item CRAB_ROE = registerItem("crab_roe", new SeasoningItem(

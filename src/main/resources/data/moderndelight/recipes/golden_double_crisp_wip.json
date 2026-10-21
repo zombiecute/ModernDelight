@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "c:crops/onion"
+    },
+    {
+      "tag": "c:foods/raw_meats/raw_chicken"
+    },
+    {
+      "tag": "c:flour"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:golden_double_crisp_wip",
+    "count": 1
+  }
+}

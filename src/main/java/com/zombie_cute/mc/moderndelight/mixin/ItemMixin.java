@@ -6,11 +6,9 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.Registries;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,20 +21,11 @@ import java.util.List;
 public class ItemMixin {
     @Inject(method = "appendTooltip", at = @At("HEAD"))
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
-        NbtCompound seasoning = stack.getSubNbt("modern_delight_seasoning");
-        if (seasoning != null){
+        List<Item> seasonings = SeasoningItem.getSeasonings(stack);
+        if (!seasonings.isEmpty()) {
             tooltip.add(Text.translatable(TextUtil.SEASONING_ADDED).formatted(Formatting.DARK_GRAY));
-            for (int i = 1; i <= SeasoningItem.getMaxSeasoning(); i++){
-                if (seasoning.contains("seasoning_"+i)){
-                    String registerKey = seasoning.getString("seasoning_"+i);
-                    Item item = null;
-                    try {
-                        item = Registries.ITEM.get(new Identifier(registerKey));
-                    } catch (Exception ignored){}
-                    if (item != null){
-                        tooltip.addAll(TextUtil.generateToolTip(Text.translatable(item.getTranslationKey()),11184810));
-                    }
-                }
+            for (Item seasoning : seasonings) {
+                tooltip.addAll(TextUtil.generateToolTip(Text.translatable(seasoning.getTranslationKey()), 11184810));
             }
         }
         NbtCompound quality = stack.getNbt();

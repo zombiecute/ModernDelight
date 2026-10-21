@@ -10,13 +10,9 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MiscUtil {
     public static boolean isPlayerHoldingCrowbar(PlayerEntity player) {
@@ -37,25 +33,17 @@ public class MiscUtil {
         return false;
     }
     public static void applyFoodEffects(ItemStack stack, LivingEntity targetEntity) {
-        NbtCompound nbt = stack.getSubNbt("modern_delight_seasoning");
-        if (nbt != null) {
-            try {
-                List<Item> seasoning = new ArrayList<>();
-                for (int i = 1; i <= SeasoningItem.getMaxSeasoning(); i++) {
-                    if (nbt.contains("seasoning_" + i)) {
-                        String name = nbt.getString("seasoning_" + i);
-                        seasoning.add(Registries.ITEM.get(new Identifier(name)));
-                    }
+        // SeasoningItem#getSeasonings skips invalid individual entries instead of
+        // aborting the whole list, so one broken id cannot disable every effect.
+        for (Item item : SeasoningItem.getSeasonings(stack)) {
+            if (!(item instanceof SeasoningItem seasoning)) {
+                continue;
+            }
+            for (StatusEffectInstance effect : seasoning.getEffects()) {
+                if (effect != null) {
+                    targetEntity.addStatusEffect(new StatusEffectInstance(effect));
                 }
-                for (Item i : seasoning) {
-                    if (i instanceof SeasoningItem s) {
-                        List<StatusEffectInstance> effects = s.getEffects();
-                        for (StatusEffectInstance effect : effects) {
-                            targetEntity.addStatusEffect(new StatusEffectInstance(effect));
-                        }
-                    }
-                }
-            } catch (Exception ignored) {}
+            }
         }
     }
 
