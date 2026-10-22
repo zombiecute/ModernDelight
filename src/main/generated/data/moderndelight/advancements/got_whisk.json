@@ -1,0 +1,54 @@
+{
+  "parent": "moderndelight:root",
+  "criteria": {
+    "glass_bowl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:glass_bowl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "iron_whisk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:iron_whisk"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.got_whisk.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:iron_whisk",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.got_whisk.title"
+    }
+  },
+  "requirements": [
+    [
+      "iron_whisk"
+    ],
+    [
+      "glass_bowl"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,116 @@
+{
+  "parent": "moderndelight:got_cuisine_table",
+  "criteria": {
+    "andesite_cabinet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:andesite_cabinet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "basalt_cabinet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:basalt_cabinet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "blackstone_cabinet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:blackstone_cabinet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "deepslate_cabinet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:deepslate_cabinet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diorite_cabinet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:diorite_cabinet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "granite_cabinet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:granite_cabinet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "obsidian_cabinet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:obsidian_cabinet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.cabinet.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:andesite_cabinet"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.cabinet.title"
+    }
+  },
+  "requirements": [
+    [
+      "andesite_cabinet",
+      "diorite_cabinet",
+      "granite_cabinet",
+      "deepslate_cabinet",
+      "blackstone_cabinet",
+      "basalt_cabinet",
+      "obsidian_cabinet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

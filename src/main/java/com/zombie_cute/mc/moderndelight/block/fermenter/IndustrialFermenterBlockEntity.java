@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.fermenter;
 
+import com.zombie_cute.mc.moderndelight.advancement.ModCriteria;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.fluid.ModFluid;
@@ -418,6 +419,12 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
         // 发酵完成，减少部分CFU
         if (dominant != null) {
             setCFU(dominant, (int)(getCFU(dominant) * 0.8));
+        }
+        // 让附近的玩家获得发酵进度。
+        PlayerEntity nearbyPlayer = world.getClosestPlayer(
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16.0, false);
+        if (nearbyPlayer instanceof ServerPlayerEntity serverPlayer) {
+            ModCriteria.FERMENT.trigger(serverPlayer, recipe.getOutputFluid(), resultItem);
         }
         markDirty();
     }

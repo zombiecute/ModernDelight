@@ -1,0 +1,32 @@
+{
+  "parent": "moderndelight:got_trawler",
+  "criteria": {
+    "crab": {
+      "conditions": {
+        "item": "moderndelight:crab"
+      },
+      "trigger": "moderndelight:trawler_catch"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.crab.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:crab"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.crab.title"
+    }
+  },
+  "requirements": [
+    [
+      "crab"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

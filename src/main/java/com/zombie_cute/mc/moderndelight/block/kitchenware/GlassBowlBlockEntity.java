@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware;
 
 import com.google.common.collect.Lists;
+import com.zombie_cute.mc.moderndelight.advancement.ModCriteria;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.moderndelight.util.block_util.ImplementedInventory;
@@ -27,6 +28,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -159,6 +161,9 @@ public class GlassBowlBlockEntity extends BlockEntity implements ImplementedInve
                                             packagedItem.getPackageItem().getDefaultStack());
                                 }
                                 craft(world);
+                                if (player instanceof ServerPlayerEntity serverPlayer) {
+                                    ModCriteria.WHISK.trigger(serverPlayer, outputStack);
+                                }
                                 player.getMainHandStack().damage(1, (LivingEntity) player, playerEntity -> playerEntity.sendToolBreakStatus(Hand.MAIN_HAND));
                                 setStack(0, ItemStack.EMPTY);
                                 playSound(ModSounds.BLOCK_GLASS_BOWL_WHISKING, 1.5F);

@@ -1,0 +1,32 @@
+{
+  "parent": "moderndelight:got_industrial_fermenter",
+  "criteria": {
+    "cheese": {
+      "conditions": {
+        "item": "moderndelight:cheese"
+      },
+      "trigger": "moderndelight:ferment"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_cheese.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:cheese"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_cheese.title"
+    }
+  },
+  "requirements": [
+    [
+      "cheese"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

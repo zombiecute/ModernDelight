@@ -1,0 +1,30 @@
+{
+  "parent": "moderndelight:root",
+  "criteria": {
+    "explode": {
+      "conditions": {},
+      "trigger": "moderndelight:cherry_bomb_explode"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.got_cherry_bomb.desc"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "moderndelight:cherry_bomb"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.got_cherry_bomb.title"
+    }
+  },
+  "requirements": [
+    [
+      "explode"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

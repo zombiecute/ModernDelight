@@ -1,0 +1,32 @@
+{
+  "parent": "moderndelight:got_industrial_fermenter",
+  "criteria": {
+    "alcohol": {
+      "conditions": {
+        "fluid": "moderndelight:still_alcohol"
+      },
+      "trigger": "moderndelight:ferment"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.alcohol.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:alcohol_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.alcohol.title"
+    }
+  },
+  "requirements": [
+    [
+      "alcohol"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

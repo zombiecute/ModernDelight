@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.juice_extractor;
 
+import com.zombie_cute.mc.moderndelight.advancement.ModCriteria;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.networking.packet.ItemStackSyncS2CPacket;
 import com.zombie_cute.mc.moderndelight.recipe.custom.JuiceExtractingRecipe;
@@ -21,6 +22,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.BooleanProperty;
@@ -167,6 +169,9 @@ public class JuiceExtractorBlockEntity extends BlockEntity implements GeoBlockEn
             // isFull 检测
             if (world.getBlockState(pos).get(JuiceExtractorBlock.IS_FULL)){
                 if (player.getStackInHand(hand).getItem() == tempContainer){
+                    if (player instanceof ServerPlayerEntity serverPlayer) {
+                        ModCriteria.JUICE_EXTRACT.trigger(serverPlayer, getStack(OUTPUT));
+                    }
                     if (player.getStackInHand(hand).getCount() == 1){
                         player.setStackInHand(Hand.MAIN_HAND,getStack(OUTPUT).copyWithCount(1));
                     } else {

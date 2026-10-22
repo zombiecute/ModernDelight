@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:got_black_pepper",
+  "criteria": {
+    "chili_pepper": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:chili_pepper"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.chili.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:chili_pepper"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.chili.title"
+    }
+  },
+  "requirements": [
+    [
+      "chili_pepper"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "moderndelight:got_oven",
+  "criteria": {
+    "chocolate_donut": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:chocolate_donut"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "donut": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:donut"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.donut.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:donut"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.donut.title"
+    }
+  },
+  "requirements": [
+    [
+      "donut",
+      "chocolate_donut"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

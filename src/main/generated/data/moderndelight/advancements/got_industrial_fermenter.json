@@ -1,0 +1,41 @@
+{
+  "parent": "moderndelight:wind",
+  "criteria": {
+    "industrial_fermenter": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:industrial_fermenter"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.industrial_fermenter.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:industrial_fermenter"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.industrial_fermenter.title"
+    }
+  },
+  "requirements": [
+    [
+      "industrial_fermenter"
+    ]
+  ],
+  "rewards": {
+    "experience": 120
+  },
+  "sends_telemetry_event": true
+}

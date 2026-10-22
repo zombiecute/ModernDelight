@@ -1,0 +1,39 @@
+{
+  "parent": "moderndelight:got_cheese",
+  "criteria": {
+    "double_meat_burger": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:double_meat_burger"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.double_burger.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:double_meat_burger"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.double_burger.title"
+    }
+  },
+  "requirements": [
+    [
+      "double_meat_burger"
+    ]
+  ],
+  "rewards": {
+    "experience": 300
+  },
+  "sends_telemetry_event": true
+}

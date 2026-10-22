@@ -186,14 +186,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(ModItems.VEGETABLE_OIL_BOTTLE),
                         FabricRecipeProvider.conditionsFromItem(ModItems.VEGETABLE_OIL_BOTTLE))
                 .offerTo(exporter);
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.EMPTY_CAKE, 4)
-                .input(TagKeys.DOUGHS)
-                .input(TagKeys.DOUGHS)
-                .input(TagKeys.DOUGHS)
-                .input(TagKeys.MILKS)
-                .criterion(FabricRecipeProvider.hasItem(Items.MILK_BUCKET),
-                        FabricRecipeProvider.conditionsFromItem(Items.MILK_BUCKET))
-                .offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BLUE_ORCHID_FLOWER_CAKE)
                 .input(Items.BLUE_ORCHID)
                 .input(Items.SUGAR)

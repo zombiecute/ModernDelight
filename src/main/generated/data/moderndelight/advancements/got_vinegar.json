@@ -1,0 +1,32 @@
+{
+  "parent": "moderndelight:got_industrial_fermenter",
+  "criteria": {
+    "vinegar": {
+      "conditions": {
+        "fluid": "moderndelight:still_vinegar"
+      },
+      "trigger": "moderndelight:ferment"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.vinegar.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:vinegar_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.vinegar.title"
+    }
+  },
+  "requirements": [
+    [
+      "vinegar"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

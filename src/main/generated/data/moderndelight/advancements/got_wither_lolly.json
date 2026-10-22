@@ -1,0 +1,39 @@
+{
+  "parent": "moderndelight:got_all_ice_lolly",
+  "criteria": {
+    "wither_ice_lolly": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:wither_ice_lolly"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.wither_lolly.desc"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "moderndelight:wither_ice_lolly"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.wither_lolly.title"
+    }
+  },
+  "requirements": [
+    [
+      "wither_ice_lolly"
+    ]
+  ],
+  "rewards": {
+    "experience": 150
+  },
+  "sends_telemetry_event": true
+}

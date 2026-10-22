@@ -1,0 +1,39 @@
+{
+  "parent": "moderndelight:got_oven",
+  "criteria": {
+    "opera_cake": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:opera_cake"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.opera_cake.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:opera_cake"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.opera_cake.title"
+    }
+  },
+  "requirements": [
+    [
+      "opera_cake"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

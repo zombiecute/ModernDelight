@@ -1,9 +1,11 @@
 package com.zombie_cute.mc.moderndelight.block.trawler;
 
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
+import com.zombie_cute.mc.moderndelight.advancement.ModCriteria;
 import com.zombie_cute.mc.moderndelight.util.ModConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootDataType;
@@ -12,6 +14,7 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -97,6 +100,17 @@ public final class TrawlerFishingLoot {
             if (!currentBait.isEmpty()) {
                 currentBait.decrement(1);
                 be.markDirty();
+            }
+        }
+
+        // 让拖网附近的玩家获得“亲眼见证收获”的进度。
+        PlayerEntity nearbyPlayer = world.getClosestPlayer(
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16.0, false);
+        if (nearbyPlayer instanceof ServerPlayerEntity serverPlayer) {
+            for (ItemStack stack : loot) {
+                if (!stack.isEmpty()) {
+                    ModCriteria.TRAWLER_CATCH.trigger(serverPlayer, stack);
+                }
             }
         }
 

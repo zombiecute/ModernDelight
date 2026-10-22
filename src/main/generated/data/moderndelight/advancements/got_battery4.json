@@ -1,0 +1,41 @@
+{
+  "parent": "moderndelight:got_battery",
+  "criteria": {
+    "dimension_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:dimension_battery"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.battery4.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:dimension_battery"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.battery4.title"
+    }
+  },
+  "requirements": [
+    [
+      "dimension_battery"
+    ]
+  ],
+  "rewards": {
+    "experience": 300
+  },
+  "sends_telemetry_event": true
+}

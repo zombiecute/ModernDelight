@@ -1,0 +1,39 @@
+{
+  "parent": "moderndelight:got_whisk",
+  "criteria": {
+    "amethyst_knife": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:amethyst_knife"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.got_amethyst.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:amethyst_knife",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.got_amethyst.title"
+    }
+  },
+  "requirements": [
+    [
+      "amethyst_knife"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

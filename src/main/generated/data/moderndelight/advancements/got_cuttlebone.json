@@ -1,0 +1,51 @@
+{
+  "parent": "moderndelight:got_amethyst",
+  "criteria": {
+    "cuttlebone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:cuttlebone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "glow_cuttlebone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:glow_cuttlebone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.got_cuttlebone.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:cuttlebone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.got_cuttlebone.title"
+    }
+  },
+  "requirements": [
+    [
+      "cuttlebone",
+      "glow_cuttlebone"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

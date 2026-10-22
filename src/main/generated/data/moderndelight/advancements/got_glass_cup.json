@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:got_juice_extractor",
+  "criteria": {
+    "glass_cup": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:glass_cup"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.glass_cup.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:glass_cup"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.glass_cup.title"
+    }
+  },
+  "requirements": [
+    [
+      "glass_cup"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

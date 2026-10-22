@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:got_battery",
+  "criteria": {
+    "photovoltaic_generator": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:photovoltaic_generator"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.pg.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:photovoltaic_generator"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.pg.title"
+    }
+  },
+  "requirements": [
+    [
+      "photovoltaic_generator"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

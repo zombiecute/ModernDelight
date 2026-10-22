@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:got_advance_furnace",
+  "criteria": {
+    "oven": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:oven"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_oven.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:oven"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_oven.title"
+    }
+  },
+  "requirements": [
+    [
+      "oven"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

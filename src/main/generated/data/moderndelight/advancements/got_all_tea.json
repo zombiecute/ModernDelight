@@ -1,0 +1,53 @@
+{
+  "parent": "moderndelight:got_glass_cup",
+  "criteria": {
+    "cherry_milk_tea": {
+      "conditions": {
+        "item": "moderndelight:cherry_milk_tea"
+      },
+      "trigger": "moderndelight:juice_extract"
+    },
+    "mango_milk_tea": {
+      "conditions": {
+        "item": "moderndelight:mango_milk_tea"
+      },
+      "trigger": "moderndelight:juice_extract"
+    },
+    "rose_ice_tea": {
+      "conditions": {
+        "item": "moderndelight:rose_ice_tea"
+      },
+      "trigger": "moderndelight:juice_extract"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.all_tea.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:cherry_milk_tea"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.all_tea.title"
+    }
+  },
+  "requirements": [
+    [
+      "cherry_milk_tea"
+    ],
+    [
+      "rose_ice_tea"
+    ],
+    [
+      "mango_milk_tea"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

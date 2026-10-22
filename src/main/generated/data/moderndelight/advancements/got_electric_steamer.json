@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:got_bamboo_steamer",
+  "criteria": {
+    "electric_steamer": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:electric_steamer"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.electric_steamer.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:electric_steamer"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.electric_steamer.title"
+    }
+  },
+  "requirements": [
+    [
+      "electric_steamer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

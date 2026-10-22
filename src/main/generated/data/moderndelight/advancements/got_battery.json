@@ -1,0 +1,64 @@
+{
+  "parent": "moderndelight:got_silicon_ingot",
+  "criteria": {
+    "advance_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:advance_battery"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "intermediate_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:intermediate_battery"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "simple_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:simple_battery"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.battery.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:simple_battery"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.battery.title"
+    }
+  },
+  "requirements": [
+    [
+      "simple_battery",
+      "intermediate_battery",
+      "advance_battery"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

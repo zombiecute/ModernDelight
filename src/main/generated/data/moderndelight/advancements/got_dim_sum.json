@@ -1,0 +1,86 @@
+{
+  "parent": "moderndelight:got_steamed_bun",
+  "criteria": {
+    "crystal_dumpling": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:crystal_dumpling"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "shaomai": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:shaomai"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "steamed_stuffed_bun": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:steamed_stuffed_bun"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "vegetable_steamed_stuffed_bun": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:vegetable_steamed_stuffed_bun"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.dim_sum.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:shaomai"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.dim_sum.title"
+    }
+  },
+  "requirements": [
+    [
+      "shaomai"
+    ],
+    [
+      "crystal_dumpling"
+    ],
+    [
+      "steamed_stuffed_bun"
+    ],
+    [
+      "vegetable_steamed_stuffed_bun"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

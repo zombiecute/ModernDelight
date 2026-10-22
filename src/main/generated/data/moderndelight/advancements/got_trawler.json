@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:root",
+  "criteria": {
+    "trawler": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:trawler"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.trawler.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:trawler"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.trawler.title"
+    }
+  },
+  "requirements": [
+    [
+      "trawler"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

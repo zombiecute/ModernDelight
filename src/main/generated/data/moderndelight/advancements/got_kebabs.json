@@ -1,0 +1,51 @@
+{
+  "parent": "moderndelight:got_cuttlebone",
+  "criteria": {
+    "glow_kebabs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:glow_squid_tentacle_kebabs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "kebabs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:squid_tentacle_kebabs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.got_kebabs.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:squid_tentacle_kebabs"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.got_kebabs.title"
+    }
+  },
+  "requirements": [
+    [
+      "kebabs",
+      "glow_kebabs"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

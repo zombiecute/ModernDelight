@@ -1,0 +1,32 @@
+{
+  "parent": "moderndelight:got_whisk",
+  "criteria": {
+    "cream": {
+      "conditions": {
+        "item": "moderndelight:cream_bucket"
+      },
+      "trigger": "moderndelight:whisk"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_cream.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:cream_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_cream.title"
+    }
+  },
+  "requirements": [
+    [
+      "cream"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

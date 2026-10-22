@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:got_wooden_basin",
+  "criteria": {
+    "soy_milk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:soy_milk_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.soy_milk.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:soy_milk_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.soy_milk.title"
+    }
+  },
+  "requirements": [
+    [
+      "soy_milk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

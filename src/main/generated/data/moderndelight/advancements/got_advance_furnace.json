@@ -1,0 +1,53 @@
+{
+  "parent": "moderndelight:root",
+  "criteria": {
+    "advance_furnace": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:advance_furnace"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "baking_tray": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:baking_tray"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_advance_furnace.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:advance_furnace"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_advance_furnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "advance_furnace"
+    ],
+    [
+      "baking_tray"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

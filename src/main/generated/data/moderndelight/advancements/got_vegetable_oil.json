@@ -1,0 +1,69 @@
+{
+  "parent": "moderndelight:got_wooden_basin",
+  "criteria": {
+    "bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:vegetable_oil_bottle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:vegetable_oil_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "filter": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:filter"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.vegetable_oil.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:vegetable_oil_bottle"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.vegetable_oil.title"
+    }
+  },
+  "requirements": [
+    [
+      "filter"
+    ],
+    [
+      "bottle",
+      "bucket"
+    ]
+  ],
+  "rewards": {
+    "experience": 60
+  },
+  "sends_telemetry_event": true
+}

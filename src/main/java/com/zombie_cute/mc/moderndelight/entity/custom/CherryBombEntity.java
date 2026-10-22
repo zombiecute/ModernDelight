@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.entity.custom;
 
+import com.zombie_cute.mc.moderndelight.advancement.ModCriteria;
 import com.zombie_cute.mc.moderndelight.entity.ModEntities;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -48,6 +50,9 @@ public class CherryBombEntity extends ThrownItemEntity {
     @Override
     protected void onCollision(HitResult hitResult) {
         if (!this.getWorld().isClient) {
+            if (this.getOwner() instanceof ServerPlayerEntity serverPlayer) {
+                ModCriteria.CHERRY_BOMB_EXPLODE.trigger(serverPlayer);
+            }
             this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.2f, false, World.ExplosionSourceType.MOB);
             playSound(ModSounds.ENTITY_CHERRY_BOMB_EXPLOSION, 4.0f, (random.nextFloat() - random.nextFloat()) * 2.f + 1.f);
             this.discard();

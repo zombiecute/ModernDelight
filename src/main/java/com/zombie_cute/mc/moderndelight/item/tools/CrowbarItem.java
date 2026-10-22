@@ -2,6 +2,7 @@ package com.zombie_cute.mc.moderndelight.item.tools;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.zombie_cute.mc.moderndelight.advancement.ModCriteria;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
 import com.zombie_cute.mc.moderndelight.tag.TagKeys;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -24,6 +25,7 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -98,6 +100,9 @@ public class CrowbarItem extends ToolItem {
                             SoundCategory.BLOCKS,
                             0.3f, world.random.nextFloat()+2.0f);
                     world.breakBlock(blockPos, true, context.getPlayer());
+                    if (context.getPlayer() instanceof ServerPlayerEntity serverPlayer) {
+                        ModCriteria.CROWBAR_PRY.trigger(serverPlayer);
+                    }
                 } else {
                     world.playSound(null,blockPos.getX(),blockPos.getY(),blockPos.getZ(),
                             ModSounds.ITEM_CROWBAR_HIT,

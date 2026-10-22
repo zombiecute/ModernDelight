@@ -1,0 +1,35 @@
+{
+  "parent": "moderndelight:got_cream",
+  "criteria": {
+    "butter": {
+      "conditions": {
+        "item": "moderndelight:butter"
+      },
+      "trigger": "moderndelight:whisk"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.get_butter.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:butter"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.get_butter.title"
+    }
+  },
+  "requirements": [
+    [
+      "butter"
+    ]
+  ],
+  "rewards": {
+    "experience": 60
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "moderndelight:got_industrial_fermenter",
+  "criteria": {
+    "fermentation_tank": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:fermentation_tank"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.fermentation_tank.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:fermentation_tank"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.fermentation_tank.title"
+    }
+  },
+  "requirements": [
+    [
+      "fermentation_tank"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,101 @@
+{
+  "parent": "moderndelight:got_freezer",
+  "criteria": {
+    "cherry_ice_lolly": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:cherry_ice_lolly"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chocolate_crunch_ice_lolly": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:chocolate_crunch_ice_lolly"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ice_lolly": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:ice_lolly"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "matcha_ice_lolly": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:matcha_ice_lolly"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wither_ice_lolly": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:wither_ice_lolly"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.all_ice_lolly.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:ice_lolly"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.all_ice_lolly.title"
+    }
+  },
+  "requirements": [
+    [
+      "ice_lolly"
+    ],
+    [
+      "cherry_ice_lolly"
+    ],
+    [
+      "matcha_ice_lolly"
+    ],
+    [
+      "chocolate_crunch_ice_lolly"
+    ],
+    [
+      "wither_ice_lolly"
+    ]
+  ],
+  "rewards": {
+    "experience": 150
+  },
+  "sends_telemetry_event": true
+}

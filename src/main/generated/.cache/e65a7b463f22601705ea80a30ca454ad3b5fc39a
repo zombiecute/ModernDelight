@@ -1,4 +1,4 @@
-// 1.20.1	2026-10-20T11:38:50.5381536	Modern Delight/Model Definitions
+// 1.20.1	2026-10-21T20:16:03.0939809	Modern Delight/Model Definitions
 402db2760620dfaf0862af08823b3e60e6c823bf assets\moderndelight\models\item\fried_cod_nugget.json
 a7244d9c3e24fe7400707b8fc7a72a6777d379fb assets\moderndelight\blockstates\baking_tray.json
 a634561bc571f867f370b0b04656954c2df67034 assets\moderndelight\models\item\wheat_flour.json
@@ -119,8 +119,8 @@ f085da9503f8236f3e5e532f3bb93e7dafff0680 assets\moderndelight\models\item\pizza.
 3d6e2cc09d064d124a2cf959a971ae9903d1f7f4 assets\moderndelight\models\item\double_meat_burger.json
 878409076231c9142de2dcd4247b42f05903d678 assets\moderndelight\models\item\electricians_desk.json
 3929a4caccb5019a89387e494bc68487216edcc3 assets\moderndelight\models\block\garlic_crop_stage2.json
-11aa58d12212f5ad6d2f7fa573a90f07eaa65dcc assets\moderndelight\models\item\dimension_battery.json
 e74dfc630227202d08c9a2c7da0e3cab6eee2680 assets\moderndelight\models\item\shaomai.json
+11aa58d12212f5ad6d2f7fa573a90f07eaa65dcc assets\moderndelight\models\item\dimension_battery.json
 52c24505380eb6467cd9bf7f36006d8c568ecdac assets\moderndelight\models\item\raw_squid_tentacle_kebabs.json
 d210fe72f0c492dad5cf9a0685e95a1a7204c482 assets\moderndelight\models\item\white_tulip_cake.json
 0b656a1671ce6c308aded31d2806617fa8df03cd assets\moderndelight\models\item\black_truffle.json
@@ -189,8 +189,8 @@ ad0f537afd3598d6f0244def09346b1b9ad9b550 assets\moderndelight\models\item\orange
 d748457958bfba07dc115885191ef59774343294 assets\moderndelight\models\item\chow_mein.json
 4632d093c6ae18be0c184b1d88d71dbd3228939f assets\moderndelight\models\item\fried_salmon.json
 6d5e5225dba826d7670b26e60eb463086c441718 assets\moderndelight\models\item\garlic_puree.json
-f9b748eb96a5ce8fac0ac2686e0db2f5758eea81 assets\moderndelight\models\block\soybean_crop_stage4.json
 88e3782324da627b3b5fd7c9898037dc59131b05 assets\moderndelight\models\item\apple_cream.json
+f9b748eb96a5ce8fac0ac2686e0db2f5758eea81 assets\moderndelight\models\block\soybean_crop_stage4.json
 da6b3017374a51934c453bf4347325e1d44a3f17 assets\moderndelight\models\item\seaweed_fried_shrimp_cake.json
 6a9cd24e49bfa4b2c472757c79a6e9d54b5f6dc7 assets\moderndelight\blockstates\dimension_battery.json
 68d9a0e77a786b06b74fad3abdc6045cbc244c4a assets\moderndelight\models\item\pinecone.json
@@ -298,8 +298,8 @@ e4668761e238d0e47a9edebd3a0fd88f086a3880 assets\moderndelight\models\item\french
 85d00ea555dc9d5401ce85e45fa914191233dec4 assets\moderndelight\models\item\black_pepper_dust.json
 56e978cf66b6c37b4d220a70b02847dadfe1f100 assets\moderndelight\models\item\mixed_jam.json
 55591176f46dc6fa3923b13a09ad8317bf703abb assets\moderndelight\models\item\potato_chip.json
-a640ae507f61f5f8492831761d3b5b415800017a assets\moderndelight\blockstates\boxed_cherries.json
 fac4bd72c3ae6d8bfc5a0ec23ce9cc9bd6bd8f66 assets\moderndelight\blockstates\wild_garlic.json
+a640ae507f61f5f8492831761d3b5b415800017a assets\moderndelight\blockstates\boxed_cherries.json
 217db2264ca95777bd0eab1b6c75a37fca794da4 assets\moderndelight\models\item\apple_petal.json
 9e153b2af42644e54a314fd646b28cbca10bdbc7 assets\moderndelight\models\item\garlic.json
 ebe0b1c2a9d37cd6db54310697d1c68802ca3103 assets\moderndelight\models\item\cheese_potato_boat.json

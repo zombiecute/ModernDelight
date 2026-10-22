@@ -1,0 +1,161 @@
+{
+  "parent": "moderndelight:got_egg_tart",
+  "criteria": {
+    "blue_orchid_flower_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:blue_orchid_flower_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cherry_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:cherry_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lilac_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:lilac_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "orange_tulip_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:orange_tulip_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "oxeye_daisy_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:oxeye_daisy_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pink_tulip_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:pink_tulip_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "rose_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:rose_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sunflower_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:sunflower_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "white_tulip_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:white_tulip_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.all_cake.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:blue_orchid_flower_cake"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.all_cake.title"
+    }
+  },
+  "requirements": [
+    [
+      "blue_orchid_flower_cake"
+    ],
+    [
+      "cherry_cake"
+    ],
+    [
+      "lilac_cake"
+    ],
+    [
+      "orange_tulip_cake"
+    ],
+    [
+      "oxeye_daisy_cake"
+    ],
+    [
+      "pink_tulip_cake"
+    ],
+    [
+      "rose_cake"
+    ],
+    [
+      "sunflower_cake"
+    ],
+    [
+      "white_tulip_cake"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

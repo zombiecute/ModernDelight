@@ -1,0 +1,21 @@
+{
+  "type": "moderndelight:oven_baking",
+  "ingredients": [
+    {
+      "tag": "c:foods/doughs"
+    },
+    {
+      "tag": "c:foods/doughs"
+    },
+    {
+      "tag": "c:foods/doughs"
+    },
+    {
+      "tag": "c:milks"
+    }
+  ],
+  "output": {
+    "item": "moderndelight:empty_cake",
+    "count": 4
+  }
+}

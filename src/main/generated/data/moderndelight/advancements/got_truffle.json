@@ -1,0 +1,51 @@
+{
+  "parent": "moderndelight:got_whisk",
+  "criteria": {
+    "black_truffle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:black_truffle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "white_truffle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "moderndelight:white_truffle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.got_truffle.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:black_truffle"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.got_truffle.title"
+    }
+  },
+  "requirements": [
+    [
+      "black_truffle",
+      "white_truffle"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

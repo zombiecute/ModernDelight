@@ -1,0 +1,39 @@
+{
+  "parent": "moderndelight:got_egg_tart",
+  "criteria": {
+    "truffle_egg_tart": {
+      "conditions": {
+        "item": {
+          "items": [
+            "moderndelight:truffle_egg_tart"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.truffle_egg_tart.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "moderndelight:truffle_egg_tart"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.truffle_egg_tart.title"
+    }
+  },
+  "requirements": [
+    [
+      "truffle_egg_tart"
+    ]
+  ],
+  "rewards": {
+    "experience": 80
+  },
+  "sends_telemetry_event": true
+}
