@@ -318,6 +318,5 @@ public class ModBlocks {
                 new BlockItem(block, new FabricItemSettings()));
     }
     public static void registerModBlocks(){
-        ModernDelightMain.LOGGER.info("Registering Mod Blocks for " + ModernDelightMain.MOD_ID);
     }
 }

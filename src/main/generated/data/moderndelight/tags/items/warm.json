@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "moderndelight:pork_noodle",
+    "moderndelight:vegetable_noodle",
+    "moderndelight:crystal_dumpling",
+    "moderndelight:shaomai",
+    "moderndelight:steamed_bun",
+    "moderndelight:steamed_cherry_egg",
+    "moderndelight:steamed_fish_egg",
+    "moderndelight:steamed_pumpkin_in_bowl",
+    "moderndelight:steamed_stuffed_bun",
+    "moderndelight:vegetable_steamed_stuffed_bun",
+    "moderndelight:black_pepper_steak",
+    "moderndelight:beef_tomato_cup",
+    "moderndelight:cooked_portable_pot",
+    "moderndelight:chow_mein",
+    "moderndelight:steamed_egg_custard"
+  ]
+}

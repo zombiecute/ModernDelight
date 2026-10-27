@@ -357,6 +357,5 @@ public class ModItemGroups {
                         entries.add(ModItems.TURNIP);
                     }).build());
     public static void registerItemGroup(){
-        ModernDelightMain.LOGGER.info("Registering Item Group for " + ModernDelightMain.MOD_ID);
     }
 }

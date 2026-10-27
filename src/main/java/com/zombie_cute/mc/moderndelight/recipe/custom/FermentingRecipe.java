@@ -3,7 +3,7 @@ package com.zombie_cute.mc.moderndelight.recipe.custom;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.util.FluidStack;
 import com.zombie_cute.mc.moderndelight.util.enums.BacteriaType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.SimpleInventory;
@@ -156,8 +156,8 @@ public class FermentingRecipe implements Recipe<SimpleInventory> {
             String bacteria_input = JsonHelper.getString(json,"bacteria_input","null");
             String bacteria_output = JsonHelper.getString(json,"bacteria_output","null");
             int bacteria_output_amount = JsonHelper.getInt(json,"bacteria_output_amount", 300);
-            return new FermentingRecipe(id, inputs, MiscUtil.getFluidFromString(fluid_input), min_fluid_amount,
-                    output, MiscUtil.getFluidFromString(fluid_output),
+            return new FermentingRecipe(id, inputs, FluidStack.getFluidFromString(fluid_input), min_fluid_amount,
+                    output, FluidStack.getFluidFromString(fluid_output),
                     temperature, luminosity, time,
                     bacteria_input, bacteria_output,bacteria_output_amount);
         }
@@ -176,8 +176,8 @@ public class FermentingRecipe implements Recipe<SimpleInventory> {
             String bacteria_input = buf.readString();
             String bacteria_output = buf.readString();
             int bacteria_output_amount = buf.readInt();
-            return new FermentingRecipe(id, inputs, MiscUtil.getFluidFromString(input_fluid), min_fluid_amount,
-                    output, MiscUtil.getFluidFromString(output_fluid),
+            return new FermentingRecipe(id, inputs, FluidStack.getFluidFromString(input_fluid), min_fluid_amount,
+                    output, FluidStack.getFluidFromString(output_fluid),
                     temperature, luminosity, time,
                     bacteria_input, bacteria_output,bacteria_output_amount);
         }

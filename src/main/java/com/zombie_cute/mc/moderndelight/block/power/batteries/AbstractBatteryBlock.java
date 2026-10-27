@@ -2,7 +2,7 @@ package com.zombie_cute.mc.moderndelight.block.power.batteries;
 
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.power_util.Power;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -263,7 +263,7 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
-        if (MiscUtil.isPlayerHoldingCrowbar(player) && player.isSneaking()){
+        if (CrowbarItem.isPlayerHoldingCrowbar(player) && player.isSneaking()){
             world.breakBlock(pos,true);
         }
         return ActionResult.CONSUME;

@@ -29,7 +29,8 @@ public class ModCriteria {
     public static final SimpleActionCriterion CHERRY_BOMB_EXPLODE =
             Criteria.register(new SimpleActionCriterion("cherry_bomb_explode"));
 
+    public static final SimpleActionCriterion NOT_SPICY =
+            Criteria.register(new SimpleActionCriterion("not_spicy"));
     public static void register() {
-        ModernDelightMain.LOGGER.info("Registering Mod Criteria for " + ModernDelightMain.MOD_ID);
     }
 }

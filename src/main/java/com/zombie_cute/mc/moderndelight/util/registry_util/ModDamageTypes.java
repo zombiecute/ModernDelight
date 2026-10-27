@@ -15,6 +15,8 @@ public class ModDamageTypes {
             RegistryKeys.DAMAGE_TYPE, new Identifier(ModernDelightMain.MOD_ID, "turned_to_ashes"));
     public static final RegistryKey<DamageType> SCALDED = RegistryKey.of(
             RegistryKeys.DAMAGE_TYPE, new Identifier(ModernDelightMain.MOD_ID, "scalded"));
+    public static final RegistryKey<DamageType> MOUTH_AFIRE = RegistryKey.of(
+            RegistryKeys.DAMAGE_TYPE, new Identifier(ModernDelightMain.MOD_ID, "mouth_afire"));
     public static DamageSource of(World world, RegistryKey<DamageType> key) {
         return new DamageSource(world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(key));
     }

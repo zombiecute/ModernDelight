@@ -3,11 +3,12 @@ package com.zombie_cute.mc.moderndelight.screen.custom;
 import com.zombie_cute.mc.moderndelight.block.power.ElectriciansDeskBlockEntity;
 import com.zombie_cute.mc.moderndelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.moderndelight.screen.util.OnlyExtractSlot;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.tag.TagKeys;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
@@ -51,6 +52,11 @@ public class ElectriciansDeskScreenHandler extends ScreenHandler {
 
         addProperties(arrayPropertyDelegate);
     }
+
+    public static boolean isInk(Item item) {
+        return item.getRegistryEntry().isIn(TagKeys.INKS);
+    }
+
     public boolean canCraft(){
         return this.propertyDelegate.get(0) != 0 ;
     }
@@ -68,7 +74,7 @@ public class ElectriciansDeskScreenHandler extends ScreenHandler {
                 if (!this.insertItem(originalStack, this.inventory.size()-1, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (MiscUtil.isInk(originalStack.getItem())){
+            } else if (isInk(originalStack.getItem())){
                 if (!this.insertItem(originalStack, 7, 8, false)) {
                     return ItemStack.EMPTY;
                 }

@@ -1,0 +1,33 @@
+{
+  "parent": "moderndelight:got_chili",
+  "criteria": {
+    "not_spicy": {
+      "conditions": {},
+      "trigger": "moderndelight:not_spicy"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.moderndelight.not_spicy.desc"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "moderndelight:chili_powder_seasoning"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.moderndelight.not_spicy.title"
+    }
+  },
+  "requirements": [
+    [
+      "not_spicy"
+    ]
+  ],
+  "rewards": {
+    "experience": 60
+  },
+  "sends_telemetry_event": true
+}

@@ -2,7 +2,6 @@ package com.zombie_cute.mc.moderndelight.item.tools;
 
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import com.zombie_cute.mc.moderndelight.util.FluidStack;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import com.zombie_cute.mc.moderndelight.util.enums.BacteriaType;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -45,7 +44,7 @@ public class FermentationTankItem extends Item {
             NbtCompound nbt = stack.getNbt();
             if (nbt != null && nbt.contains("fermentation_fluid") && nbt.contains("fermentation_fluid_amount")) {
                 return new FluidStack(
-                        FluidVariant.of(MiscUtil.getFluidFromString(nbt.getString("fermentation_fluid"))),
+                        FluidVariant.of(FluidStack.getFluidFromString(nbt.getString("fermentation_fluid"))),
                         nbt.getLong("fermentation_fluid_amount"));
             }
         }

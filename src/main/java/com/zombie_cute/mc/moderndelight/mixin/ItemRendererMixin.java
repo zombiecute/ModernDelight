@@ -18,25 +18,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(ItemRenderer.class)
 public class ItemRendererMixin {
-    @Inject(
-            method = "renderItem(Lnet/minecraft/item/ItemStack;" +
+    @Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;" +
                     "Lnet/minecraft/client/render/model/json/ModelTransformationMode;" +
                     "ZLnet/minecraft/client/util/math/MatrixStack;" +
                     "Lnet/minecraft/client/render/VertexConsumerProvider;" +
                     "IILnet/minecraft/client/render/model/BakedModel;)V",
-            at = @At("RETURN")
-    )
-    public void onRenderItem(
-            ItemStack stack,
-            ModelTransformationMode renderMode,
-            boolean leftHanded,
-            MatrixStack matrices,
-            VertexConsumerProvider vertexConsumers,
-            int light,
-            int overlay,
-            BakedModel model,
-            CallbackInfo ci
-    ) {
+            at = @At("RETURN"))
+    public void moderndelight$onRenderItem(
+            ItemStack stack, ModelTransformationMode renderMode,
+            boolean leftHanded, MatrixStack matrices,
+            VertexConsumerProvider vertexConsumers, int light, int overlay,
+            BakedModel model, CallbackInfo ci) {
         ItemRenderer itemRenderer = (ItemRenderer) (Object) this;
         if (stack.getItem() == ModItems.STONE_MORTAR) {
             ItemStack insideStack = StoneMortarItem.getInsideStack(stack);

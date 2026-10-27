@@ -15,7 +15,7 @@
   },
   "ingredients": [
     {
-      "item": "moderndelight:chili_pepper"
+      "tag": "c:crops/chili"
     },
     {
       "tag": "c:foods/raw_fishes"

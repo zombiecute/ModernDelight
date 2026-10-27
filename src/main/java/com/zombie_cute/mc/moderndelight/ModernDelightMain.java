@@ -8,6 +8,8 @@ import com.zombie_cute.mc.moderndelight.block.biogas.GasCanisterBlock;
 import com.zombie_cute.mc.moderndelight.block.biogas.GasCanisterBlockEntity;
 import com.zombie_cute.mc.moderndelight.block.trawler.TrawlerBaitManager;
 import com.zombie_cute.mc.moderndelight.effects.ModEffectsAndPotions;
+import com.zombie_cute.mc.moderndelight.effects.custom.CrunchEffect;
+import com.zombie_cute.mc.moderndelight.effects.custom.FrostCoatEffect;
 import com.zombie_cute.mc.moderndelight.enchantment.ModEnchantments;
 import com.zombie_cute.mc.moderndelight.entity.ModEntities;
 import com.zombie_cute.mc.moderndelight.entity.custom.ButterEntity;
@@ -19,6 +21,7 @@ import com.zombie_cute.mc.moderndelight.networking.NetworkHandler;
 import com.zombie_cute.mc.moderndelight.recipe.ModRecipes;
 import com.zombie_cute.mc.moderndelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
+import com.zombie_cute.mc.moderndelight.util.EffectScheduler;
 import com.zombie_cute.mc.moderndelight.util.ModConfig;
 import com.zombie_cute.mc.moderndelight.util.TemperatureUtil;
 import com.zombie_cute.mc.moderndelight.util.registry_util.ModBrewingRecipe;
@@ -27,18 +30,23 @@ import com.zombie_cute.mc.moderndelight.util.registry_util.ModFuels;
 import com.zombie_cute.mc.moderndelight.util.registry_util.ModLootTableModifies;
 import com.zombie_cute.mc.moderndelight.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPointer;
@@ -79,20 +87,39 @@ public class ModernDelightMain implements ModInitializer {
 		} catch (Throwable throwable){
 			LOGGER.warn("It is recommended to install Yet Another Config Lib to configure {} more easily.", MOD_ID);
 		}
-		dispenserBlockBehavior();
-		events();
+		registerDispenserBlockBehavior();
+		registerModEvents();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new TrawlerBaitManager());
+		LOGGER.info("ModernDelight initialized!");
 	}
 
-	private static void events() {
+	private static void registerModEvents() {
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+			// 撬棍音效
 			ItemStack itemStack = player.getStackInHand(hand);
 			if (itemStack.getItem().equals(ModItems.CROWBAR)){
 				world.playSound(null,entity.getBlockPos(),
 						ModSounds.ITEM_CROWBAR_ATTACK, SoundCategory.PLAYERS,
 						0.4f,world.random.nextFloat()/2+0.8f);
 			}
+			// 冰霜护体攻击效果与酥脆增加消耗度
+			if (!world.isClient() && world instanceof ServerWorld serverWorld
+					&& entity instanceof LivingEntity target
+					&& target.isAlive() && !player.isSpectator()) {
+				FrostCoatEffect.applyFrostCoatEffect(player, target, serverWorld);
+				FrostCoatEffect.applyFrostCoatEffect(target, player, serverWorld);
+				CrunchEffect.consumeHunger(player, target, serverWorld);
+			}
 			return ActionResult.PASS;
+		});
+		// 状态效果的自然结束/受伤打断统一延迟到 END_SERVER_TICK
+		ServerTickEvents.END_SERVER_TICK.register(EffectScheduler::tick);
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
+			if (amount > 0.0F && entity instanceof ServerPlayerEntity player
+					&& player.hasStatusEffect(ModEffectsAndPotions.FOOD_COMA)) {
+				EffectScheduler.scheduleComaBreak(player);
+			}
+			return true;
 		});
 		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> {
 			if (success) {
@@ -104,7 +131,7 @@ public class ModernDelightMain implements ModInitializer {
 		});
 	}
 
-	private static void dispenserBlockBehavior() {
+	private static void registerDispenserBlockBehavior() {
 		DispenserBlock.registerBehavior(ModItems.BUTTER, new ProjectileDispenserBehavior() {
 			@Override
 			protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {

@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.ice_cream_maker;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -90,7 +90,7 @@ public class IceCreamMakerBlock extends BlockWithEntity {
                 player.openHandledScreen(entity);
             } else if (hit.getSide().equals(state.get(FACING))) {
                 entity.tryStart(state, world, player);
-            } else if (MiscUtil.isPlayerHoldingCrowbar(player)){
+            } else if (CrowbarItem.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);
                 switch (dir){
                     case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

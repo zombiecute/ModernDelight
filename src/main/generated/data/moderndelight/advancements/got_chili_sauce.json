@@ -34,8 +34,5 @@
       "chili_sauce"
     ]
   ],
-  "rewards": {
-    "experience": 60
-  },
   "sends_telemetry_event": true
 }

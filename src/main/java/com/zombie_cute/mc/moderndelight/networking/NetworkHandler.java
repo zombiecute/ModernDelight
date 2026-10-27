@@ -17,14 +17,12 @@ public class NetworkHandler {
     public static final Identifier FLUID_SYNC = new Identifier(ModernDelightMain.MOD_ID,"fluid_sync");
 
     public static void registerC2SPacket(){
-        ModernDelightMain.LOGGER.info("Registering C2S receivers for {}", ModernDelightMain.MOD_ID);
         ServerPlayNetworking.registerGlobalReceiver(UPDATE_INVENTORY_PACKET_ID, UpdateInventoryC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(SPAWN_XP_PACKET_ID, SpawnXPC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(CHANGE_BLOCK_ENTITY_DATA_PACKET_ID, ChangeBlockEntityDataC2SPacket::receive);
     }
     @Environment(EnvType.CLIENT)
     public static void registerS2CPacket(){
-        ModernDelightMain.LOGGER.info("Registering S2C receivers for {}", ModernDelightMain.MOD_ID);
         ClientPlayNetworking.registerGlobalReceiver(ITEM_SYNC, ItemStackSyncS2CPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(INTEGER_SYNC, IntegerSyncS2CPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(FLUID_SYNC, FluidSyncS2CPacket::receive);

@@ -1,4 +1,4 @@
-// 1.20.1	2026-10-21T20:16:03.0975418	Modern Delight/Block Loot Tables
+// 1.20.1	2026-10-27T09:13:36.9134421	Modern Delight/Block Loot Tables
 7f2a4041d1b94257b8ff7adb21acffc5144a6beb data\moderndelight\loot_tables\blocks\deep_fryer.json
 ea5744ec9920f16a6aa3e089bc30a466c2b2cb19 data\moderndelight\loot_tables\blocks\gas_cooking_stove.json
 ca84269e4d64e84bd7a6215905fad0167763b18c data\moderndelight\loot_tables\blocks\silicon_block.json
@@ -43,8 +43,8 @@ a3a818420f72f87168034b5d18241677f0f8ac20 data\moderndelight\loot_tables\blocks\b
 1f1d36575bf9421bcdfe7ad0c9a1d19b1ca09158 data\moderndelight\loot_tables\blocks\cherry_milk_tea.json
 788dd3d5420b9d4ec63dd30f63e9cac2066905c3 data\moderndelight\loot_tables\blocks\chili_crop.json
 051e73ab1963baed289ebbae58812b6cbd020a0e data\moderndelight\loot_tables\blocks\wheat_dough.json
-59291ec55e1072d1e9b32d2e20de885890d463bd data\moderndelight\loot_tables\blocks\crab_sausage_vegetable.json
 71b62bd5e26c0eecb349e9f43515fdb00b7f7109 data\moderndelight\loot_tables\blocks\blackstone_cabinet.json
+59291ec55e1072d1e9b32d2e20de885890d463bd data\moderndelight\loot_tables\blocks\crab_sausage_vegetable.json
 9bc0d3e452d4b20c2c34a892a3882409eba1d35b data\moderndelight\loot_tables\blocks\juice_extractor.json
 e02710b1d1bccc89740f9da90b2ae2fe47ebd5e6 data\moderndelight\loot_tables\blocks\faraday_generator.json
 35abd61df9cc28559c63839743401a953bb874ff data\moderndelight\loot_tables\blocks\trawler.json

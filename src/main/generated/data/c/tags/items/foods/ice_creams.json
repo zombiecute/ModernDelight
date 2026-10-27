@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "moderndelight:raw_ice_cream_cone",
-    "moderndelight:ice_cream_cone",
     "moderndelight:ice_cream"
   ]
 }

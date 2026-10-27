@@ -267,6 +267,5 @@ public class ModBlockEntities {
                 ((GasCanisterBlockEntity)blockEntity).fluidStorage),GAS_CANISTER_BLOCK_ENTITY);
         FluidStorage.SIDED.registerForBlockEntities(((blockEntity, context) ->
                 ((IndustrialFermenterBlockEntity)blockEntity).fluidStorage), INDUSTRIAL_FERMENTER_BLOCK_ENTITY);
-        ModernDelightMain.LOGGER.info("Registering Mod Block Entities for " + ModernDelightMain.MOD_ID);
     }
 }

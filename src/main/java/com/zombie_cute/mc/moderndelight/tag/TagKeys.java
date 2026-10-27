@@ -115,6 +115,15 @@ public class TagKeys {
     public static final TagKey<Item> INKS = create("inks",RegistryKeys.ITEM);
     public static final TagKey<Item> COLD_ITEMS = create("cold_items", RegistryKeys.ITEM);
     public static final TagKey<Item> PIZZA_INGREDIENTS = create("pizza_ingredients",RegistryKeys.ITEM);
+    public static final TagKey<Item> UMAMI = create("umami",RegistryKeys.ITEM);
+    public static final TagKey<Item> DAIRY = create("dairy",RegistryKeys.ITEM);
+    public static final TagKey<Item> WARM = create("warm",RegistryKeys.ITEM);
+    public static final TagKey<Item> FRIED = create("fried",RegistryKeys.ITEM);
+    public static final TagKey<Item> CITRUS = create("citrus",RegistryKeys.ITEM);
+    public static final TagKey<Item> FERMENTED = create("fermented",RegistryKeys.ITEM);
+    public static final TagKey<Item> SPICY = create("spicy",RegistryKeys.ITEM);
+    public static final TagKey<Item> COOLS_MOUTH = create("cools_mouth",RegistryKeys.ITEM);
+    public static final TagKey<Item> NO_FOOD_COMA = create("no_food_coma",RegistryKeys.ITEM);
 
     public static final TagKey<Fluid> OIL = create("oil",RegistryKeys.FLUID);
     public static final TagKey<Fluid> CREAM = create("cream",RegistryKeys.FLUID);

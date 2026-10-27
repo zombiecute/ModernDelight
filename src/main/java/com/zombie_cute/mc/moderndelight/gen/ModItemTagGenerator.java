@@ -131,8 +131,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModBlocks.VEGETABLE_NOODLE.asItem());
         getOrCreateTagBuilder(TagKeys.FOODS).add(ModItems.OPERA_CAKE);
 
-        getOrCreateTagBuilder(TagKeys.ICE_CREAMS).add(ModItems.RAW_ICE_CREAM_CONE);
-        getOrCreateTagBuilder(TagKeys.ICE_CREAMS).add(ModItems.ICE_CREAM_CONE);
         getOrCreateTagBuilder(TagKeys.ICE_CREAMS).add(ModItems.ICE_CREAM);
 
         getOrCreateTagBuilder(TagKeys.FOODS).addOptionalTag(TagKeys.ICE_LOLLIES);
@@ -415,10 +413,99 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.INKS).add(Items.BLACK_DYE);
         // Leaves
         getOrCreateTagBuilder(ItemTags.LEAVES).add(ModItems.GRINDED_LEAVES);
-
+        // Umami
+        getOrCreateTagBuilder(TagKeys.UMAMI).add(ModItems.TRUFFLE_EGG_TART);
+        // moderndelight:crab_roe related
+        getOrCreateTagBuilder(TagKeys.UMAMI).add(ModBlocks.CRAB_SAUSAGE_VEGETABLE_ITEM); // Block
+        // Dairy
+        getOrCreateTagBuilder(TagKeys.DAIRY).addTag(TagKeys.CREAMS);
+        getOrCreateTagBuilder(TagKeys.DAIRY).add(ModItems.CHEESE);
+        getOrCreateTagBuilder(TagKeys.DAIRY).add(ModItems.SAKURA_YOGURT_SAUCE);
+        getOrCreateTagBuilder(TagKeys.DAIRY).addOptionalTag(TagKeys.MILKS);
+        // moderndelight:butter related
+        getOrCreateTagBuilder(TagKeys.DAIRY).add(ModItems.BUTTER_BREAD_SLICE);
+        getOrCreateTagBuilder(TagKeys.DAIRY).add(ModItems.CHEESE_BAKED_POTATO);
+        getOrCreateTagBuilder(TagKeys.DAIRY).add(ModItems.CARAMEL_TOAST);
+        getOrCreateTagBuilder(TagKeys.DAIRY).add(ModItems.BUTTERFLY_CRISP);
+        getOrCreateTagBuilder(TagKeys.DAIRY).add(ModItems.BUTTER_COOKIE);
+        getOrCreateTagBuilder(TagKeys.DAIRY).addTag(TagKeys.PUDDINGS);
+        getOrCreateTagBuilder(TagKeys.DAIRY).addTag(TagKeys.MOUSSES);
+        // Warm
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModBlocks.PORK_NOODLE_ITEM); // Block
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModBlocks.VEGETABLE_NOODLE_ITEM); // Block
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.CRYSTAL_DUMPLING);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.SHAOMAI);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.STEAMED_BUN);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.STEAMED_CHERRY_EGG);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.STEAMED_FISH_EGG);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.STEAMED_PUMPKIN_IN_BOWL);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.STEAMED_STUFFED_BUN);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.BLACK_PEPPER_STEAK);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.BEEF_TOMATO_CUP);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.COOKED_PORTABLE_POT);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.CHOW_MEIN);
+        getOrCreateTagBuilder(TagKeys.WARM).add(ModItems.STEAMED_EGG_CUSTARD);
+        // Fried
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.BRAISED_SHRIMP_BALL);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.CHICKEN_FILLET);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.DEEP_FRIED_BUN);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.DEEP_FRIED_POTATO_CHIPS);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_NOODLES);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_APPLE);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_BROWN_MUSHROOM);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_CHICKEN);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_COD);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_DOUGH_STICK);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_MILK);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_RED_MUSHROOM);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRIED_SALMON);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.GOLDEN_DOUBLE_CRISP);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.POTATO_CHIP);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.SCOTCH_EGG);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModItems.FRENCH_FRIES);
+        getOrCreateTagBuilder(TagKeys.FRIED).add(ModBlocks.FISH_AND_CHIPS_ITEM); // Block
+        getOrCreateTagBuilder(TagKeys.FRIED).addOptional(Identifier.of("casualness_delight","fried_chicken_chip"));
+        getOrCreateTagBuilder(TagKeys.FRIED).addOptional(Identifier.of("casualness_delight","fried_dumpling"));
+        getOrCreateTagBuilder(TagKeys.FRIED).addOptional(Identifier.of("casualness_delight","potato_chip"));
+        getOrCreateTagBuilder(TagKeys.FRIED).addOptional(Identifier.of("casualness_delight","spring_roll"));
+        getOrCreateTagBuilder(TagKeys.FRIED).addOptional(Identifier.of("casualness_delight","tonkatsu"));
+        // Citrus
+        getOrCreateTagBuilder(TagKeys.CITRUS).add(ModItems.ORANGE);
+        getOrCreateTagBuilder(TagKeys.CITRUS).add(ModItems.MANGO);
+        getOrCreateTagBuilder(TagKeys.CITRUS).add(ModItems.LEMON);
+        getOrCreateTagBuilder(TagKeys.CITRUS).add(ModItems.SEA_SALT_LEMON);
+        getOrCreateTagBuilder(TagKeys.CITRUS).add(ModItems.MANGO_MILK_TEA);
+        getOrCreateTagBuilder(TagKeys.CITRUS).add(ModItems.TOMATO_JUICE);
+        getOrCreateTagBuilder(TagKeys.CITRUS).add(ModItems.SWEET_BERRIES_JUICE);
+        // Fermented (Unfinished)
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.SAKURA_YOGURT_SAUCE);
+        // moderndelight:cheese related
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.CHEESE);
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.CHEESE_POTATO_BOAT);
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.CHEESE_BAKED_POTATO);
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.CHEESE_BURGER);
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.BEEF_TOMATO_CUP);
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModBlocks.FRENCH_ONION_SOUP_ITEM); // Block
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModBlocks.MARSHALA_CHEESE_BALL_ITEM); // Block
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.DOUBLE_MEAT_BURGER);
+        getOrCreateTagBuilder(TagKeys.FERMENTED).add(ModItems.PORK_CHOP_BURGER);
+        getOrCreateTagBuilder(TagKeys.FRIED).addOptional(Identifier.of("brewinandchewin","flaxen_cheese_wedge"));
+        // Spicy
+        getOrCreateTagBuilder(TagKeys.SPICY).addTag(TagKeys.CROP_CHILI_PEPPER);
+        // moderndelight:chili_pepper(c:crops/chili) related
+        getOrCreateTagBuilder(TagKeys.SPICY).add(ModBlocks.CHILI_FISH_ITEM); // Block
+        // Cools Mouth
+        getOrCreateTagBuilder(TagKeys.COOLS_MOUTH).addTag(TagKeys.DAIRY);
+        getOrCreateTagBuilder(TagKeys.COOLS_MOUTH).add(ModItems.ICE_CREAM);
+        getOrCreateTagBuilder(TagKeys.COOLS_MOUTH).addTag(TagKeys.ICE_LOLLIES);
+        // No Food Coma
+        getOrCreateTagBuilder(TagKeys.NO_FOOD_COMA).add(ModItems.GOLDEN_APPLE_CREAM);
+        getOrCreateTagBuilder(TagKeys.NO_FOOD_COMA).add(ModItems.GOLDEN_APPLE_MOUSSE);
+        getOrCreateTagBuilder(TagKeys.NO_FOOD_COMA).add(ModItems.WITHER_ICE_LOLLY);
+        getOrCreateTagBuilder(TagKeys.NO_FOOD_COMA).add(ModItems.WITHER_ROSE_CAKE);
         // Optional compatibility tags
         getOrCreateTagBuilder(TagKeys.CROP_CABBAGE).addOptionalTag(new Identifier("forge","crops/cabbage"));
-        getOrCreateTagBuilder(TagKeys.CROP_CABBAGE).addOptional(new Identifier("farmersdelight", "cabbage"));
         getOrCreateTagBuilder(TagKeys.MANGO).addOptionalTag(new Identifier("forge:fruits/mango"));
         getOrCreateTagBuilder(TagKeys.LEMON).addOptionalTag(new Identifier("forge:fruits/lemon"));
         getOrCreateTagBuilder(TagKeys.ORANGE).addOptionalTag(new Identifier("forge:fruits/orange"));

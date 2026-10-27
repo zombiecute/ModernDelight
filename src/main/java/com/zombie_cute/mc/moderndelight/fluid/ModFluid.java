@@ -28,6 +28,5 @@ public class ModFluid {
          return Registry.register(Registries.FLUID, new Identifier(ModernDelightMain.MOD_ID,name),fluid);
     }
     public static void registerModFluid(){
-         ModernDelightMain.LOGGER.info("Registering Mod Fluid for " + ModernDelightMain.MOD_ID);
     }
 }

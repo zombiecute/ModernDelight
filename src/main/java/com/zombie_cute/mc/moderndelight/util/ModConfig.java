@@ -46,6 +46,8 @@ public final class ModConfig {
     public static int maxSeasonings = 5;
     @SerialEntry
     public static int baseFishingIntervals = 1200;
+    @SerialEntry
+    public static int heartyMealThreshold = 10;
 
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> builder
@@ -180,6 +182,17 @@ public final class ModConfig {
                                                         value -> maxSeasonings = value
                                                 )
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 15).step(1)
+                                                        .valueFormatter(val -> Text.literal(String.valueOf(val))))
+                                                .build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.moderndelight.option.heartyMealThreshold.title"))
+                                                .description(OptionDescription.of(Text.translatable("config.moderndelight.option.heartyMealThreshold.desc")))
+                                                .binding(
+                                                        10,
+                                                        () -> heartyMealThreshold,
+                                                        value -> heartyMealThreshold = value
+                                                )
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 20).step(1)
                                                         .valueFormatter(val -> Text.literal(String.valueOf(val))))
                                                 .build())
                                         .build())

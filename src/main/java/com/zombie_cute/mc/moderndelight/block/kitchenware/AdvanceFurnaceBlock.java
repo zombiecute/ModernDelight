@@ -2,7 +2,7 @@ package com.zombie_cute.mc.moderndelight.block.kitchenware;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -115,7 +115,7 @@ public class AdvanceFurnaceBlock extends BlockWithEntity implements BlockEntityP
             NamedScreenHandlerFactory screenHandlerFactory = ((AdvanceFurnaceBlockEntity) world.getBlockEntity(pos));
             if (isBakingTrayBlock(player)){
                 ((AdvanceFurnaceBlockEntity) Objects.requireNonNull(world.getBlockEntity(pos))).onUse(world,state);
-            } else if (MiscUtil.isPlayerHoldingCrowbar(player)){
+            } else if (CrowbarItem.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);
                 switch (dir){
                     case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

@@ -16,8 +16,8 @@ import java.util.List;
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperEnhancementMixin {
     @Inject(method = "getPossibleEntries", at = @At("RETURN"))
-    private static void getPossibleEntriesEnhanced(int power, ItemStack stack, boolean treasureAllowed,
-                                                   CallbackInfoReturnable<List<EnchantmentLevelEntry>> returnCallback) {
+    private static void moderndelight$getPossibleEntriesEnhanced(int power, ItemStack stack, boolean treasureAllowed,
+                                                                 CallbackInfoReturnable<List<EnchantmentLevelEntry>> returnCallback) {
         List<EnchantmentLevelEntry> possibleEnchantmentList = returnCallback.getReturnValue();
 
         if (stack.getItem() instanceof WhiskItem) {

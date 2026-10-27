@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Enchantment.class)
 public class EnchantmentEnhancementMixin {
     @Inject(method = "isAcceptableItem", at = @At("RETURN"), cancellable = true)
-    private void getPossibleEntriesEnhanced(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+    private void moderndelight$getPossibleEntriesEnhanced(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         boolean canBeEnchanted = false;
 
         if (stack.getItem() instanceof WhiskItem) {

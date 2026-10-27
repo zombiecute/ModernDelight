@@ -76,6 +76,5 @@ public class ModScreenHandlers {
             Registry.register(Registries.SCREEN_HANDLER, Identifier.of(ModernDelightMain.MOD_ID, "trawler_screen"),
                     new ExtendedScreenHandlerType<>(TrawlerScreenHandler::new));
     public static void registerScreenHandlers(){
-        ModernDelightMain.LOGGER.info("Registering Screen Handlers for " + ModernDelightMain.MOD_ID);
     }
 }

@@ -1,6 +1,6 @@
 package com.zombie_cute.mc.moderndelight.item.food;
 
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.util.FoodEffectDispatcher;
 import com.zombie_cute.mc.moderndelight.util.block_util.Drinkable;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.LivingEntity;
@@ -48,7 +48,7 @@ public class JuiceItem extends Item implements Drinkable {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        MiscUtil.applyFoodEffects(stack,user);
+        FoodEffectDispatcher.applyFoodEffects(stack,user);
         if (user instanceof PlayerEntity player && !world.isClient()){
             drink(world,player);
             player.giveItemStack(juice_container.getDefaultStack());

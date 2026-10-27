@@ -552,6 +552,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("death.attack.moderndelight_turned_to_ashes","%1$s 化为了灰烬");
         translationBuilder.add("death.attack.moderndelight_turned_to_ashes.player","%1$s 化为了灰烬");
         translationBuilder.add("death.attack.moderndelight_scalded","%1$s 被烫死了");
+        translationBuilder.add("death.attack.moderndelight_mouth_afire","%1$s 因口腔着火而死");
 
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "奶油");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "植物油");
@@ -567,6 +568,28 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModEffectsAndPotions.STICKY,"黏糊糊");
         translationBuilder.add(ModEffectsAndPotions.STICKY.getTranslationKey() + ".description","大幅度降低移动速度，同时无法跳跃。");
+        translationBuilder.add(ModEffectsAndPotions.UMAMI,"鲜味停留");
+        translationBuilder.add(ModEffectsAndPotions.UMAMI.getTranslationKey() + ".description","下一口食物能够恢复更多饥饿值。新获得的增益buff时长将会延长。");
+        translationBuilder.add(ModEffectsAndPotions.MOUTH_AFIRE,"口腔着火");
+        translationBuilder.add(ModEffectsAndPotions.MOUTH_AFIRE.getTranslationKey() + ".description","嘴里着了火。奶油、冰淇淋或牛奶能缓解。");
+        translationBuilder.add(ModEffectsAndPotions.CREAM_COAT,"奶香护体");
+        translationBuilder.add(ModEffectsAndPotions.CREAM_COAT.getTranslationKey() + ".description","护甲值得到了提升，大幅减少摔落伤害。");
+        translationBuilder.add(ModEffectsAndPotions.FROST_COAT,"冰霜涂层");
+        translationBuilder.add(ModEffectsAndPotions.FROST_COAT.getTranslationKey() + ".description","近战命中使目标缓慢。");
+        translationBuilder.add(ModEffectsAndPotions.WARM_BELLY,"暖胃");
+        translationBuilder.add(ModEffectsAndPotions.WARM_BELLY.getTranslationKey() + ".description","不再被细雪冻伤。");
+        translationBuilder.add(ModEffectsAndPotions.VITAMIN_C,"维C活力");
+        translationBuilder.add(ModEffectsAndPotions.VITAMIN_C.getTranslationKey() + ".description","清除并免疫中毒与凋零。");
+        translationBuilder.add(ModEffectsAndPotions.CRUNCH,"酥脆");
+        translationBuilder.add(ModEffectsAndPotions.CRUNCH.getTranslationKey() + ".description","增加近战攻击伤害，但是每次攻击时会消耗更多饥饿值。");
+        translationBuilder.add(ModEffectsAndPotions.WELL_FED,"饱足");
+        translationBuilder.add(ModEffectsAndPotions.WELL_FED.getTranslationKey() + ".description","增加最大生命值，期间同时缓慢恢复生命值。");
+        translationBuilder.add(ModEffectsAndPotions.FOOD_COMA,"食困");
+        translationBuilder.add(ModEffectsAndPotions.FOOD_COMA.getTranslationKey() + ".description","吃得太撑，无法疾跑。受到伤害会打断。");
+        translationBuilder.add(ModEffectsAndPotions.GUT_FLORA,"肠胃益生");
+        translationBuilder.add(ModEffectsAndPotions.GUT_FLORA.getTranslationKey() + ".description","饥饿值消耗降低，吃大餐不易犯困。");
+        translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE,"冰头痛");
+        translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE.getTranslationKey() + ".description","动作变慢。");
 
         translationBuilder.add("item.minecraft.potion.effect.sticky_potion","黏脚药水");
         translationBuilder.add("item.minecraft.potion.effect.sticky_long_potion","黏脚药水");
@@ -739,6 +762,8 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("config.moderndelight.trawler.title","拖网配置");
         translationBuilder.add("config.moderndelight.option.base_fishing_intervals.title","拖网的默认捕鱼时间（秒）");
         translationBuilder.add("config.moderndelight.option.base_fishing_intervals.desc","配置拖网的默认捕鱼时长。");
+        translationBuilder.add("config.moderndelight.option.heartyMealThreshold.title","丰盛一餐的阈值");
+        translationBuilder.add("config.moderndelight.option.heartyMealThreshold.desc","调节判定为“丰盛一餐”的饥饿度阈值。");
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"现代乐事指南");
         translationBuilder.add("patchouli.moderndelight.book.name","现代乐事指南");
@@ -886,7 +911,9 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.moderndelight.crab.title", "蟹老板");
         translationBuilder.add("advancement.moderndelight.crab.desc", "用拖网捕获一只螃蟹。");
         translationBuilder.add("advancement.moderndelight.wither_rose_cake.title", "绽放与终结");
-        translationBuilder.add("advancement.moderndelight.wither_rose_cake.desc", "吃下凋灵玫瑰饼，然后安静地坐着，思考你的人生。");
+        translationBuilder.add("advancement.moderndelight.wither_rose_cake.desc", "吃下凋灵玫瑰饼，然后安静地坐着，思考你的人生。（隐藏进度）");
+        translationBuilder.add("advancement.moderndelight.not_spicy.title", "嘶...不辣");
+        translationBuilder.add("advancement.moderndelight.not_spicy.desc", "通过不断吃辣来让自己获得口腔着火V。 （隐藏进度）");
 
     }
 }

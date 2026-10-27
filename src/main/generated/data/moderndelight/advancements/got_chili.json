@@ -1,5 +1,5 @@
 {
-  "parent": "moderndelight:got_black_pepper",
+  "parent": "moderndelight:got_stone_mortar",
   "criteria": {
     "chili_pepper": {
       "conditions": {

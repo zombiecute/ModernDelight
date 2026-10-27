@@ -24,6 +24,5 @@ public class ModEntities {
                     .trackRangeBlocks(4).trackedUpdateRate(10).build());
 
     public static void registerModEntities(){
-        ModernDelightMain.LOGGER.info("Registering Mod Entities for " + ModernDelightMain.MOD_ID);
     }
 }

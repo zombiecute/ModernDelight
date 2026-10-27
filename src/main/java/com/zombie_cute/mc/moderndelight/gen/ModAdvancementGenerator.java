@@ -136,14 +136,18 @@ public class ModAdvancementGenerator extends FabricAdvancementProvider {
                 .criterion("black_pepper", InventoryChangedCriterion.Conditions.items(ModItems.BLACK_PEPPER_CORN))
                 .build(consumer, ModernDelightMain.MOD_ID + ":got_black_pepper");
 
-        Advancement getChili = advancement(getBlackPepper, ModItems.CHILI_PEPPER, "chili", AdvancementFrame.TASK)
+        Advancement getChili = advancement(getStoneMortar, ModItems.CHILI_PEPPER, "chili", AdvancementFrame.TASK)
                 .criterion("chili_pepper", InventoryChangedCriterion.Conditions.items(ModItems.CHILI_PEPPER))
                 .build(consumer, ModernDelightMain.MOD_ID + ":got_chili");
 
         Advancement getChiliSauce = advancement(getChili, ModItems.CHILI_SAUCE, "chili_sauce", AdvancementFrame.GOAL)
-                .rewards(AdvancementRewards.Builder.experience(60))
                 .criterion("chili_sauce", InventoryChangedCriterion.Conditions.items(ModItems.CHILI_SAUCE))
                 .build(consumer, ModernDelightMain.MOD_ID + ":got_chili_sauce");
+
+        Advancement notSpicy = hiddenAdvancement(getChili, ModItems.CHILI_POWDER_SEASONING, "not_spicy", AdvancementFrame.TASK)
+                .rewards(AdvancementRewards.Builder.experience(60))
+                .criterion("not_spicy", ModCriteria.NOT_SPICY.conditions())
+                .build(consumer, ModernDelightMain.MOD_ID + ":not_spicy");
 
         Advancement getGarlic = advancement(getStoneMortar, ModItems.GARLIC, "garlic", AdvancementFrame.TASK)
                 .criterion("garlic", InventoryChangedCriterion.Conditions.items(ModItems.GARLIC))

@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -89,7 +89,7 @@ public class OvenBlock extends BlockWithEntity implements BlockEntityProvider {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient){
             NamedScreenHandlerFactory screenHandlerFactory = ((OvenBlockEntity) world.getBlockEntity(pos));
-            if (MiscUtil.isPlayerHoldingCrowbar(player)){
+            if (CrowbarItem.isPlayerHoldingCrowbar(player)){
                 if (world.getBlockEntity(pos) instanceof OvenBlockEntity container) {
                     container.onUse(state, world);
                     return ActionResult.SUCCESS;

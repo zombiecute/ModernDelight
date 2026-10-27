@@ -580,6 +580,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("death.attack.moderndelight_turned_to_ashes","%1$s turned to ashes");
         translationBuilder.add("death.attack.moderndelight_turned_to_ashes.player","%1$s turned to ashes");
         translationBuilder.add("death.attack.moderndelight_scalded","%1$s scalded to death");
+        translationBuilder.add("death.attack.moderndelight_mouth_afire","%1$s died from the fire in their mouth");
 
         translationBuilder.add(ModBlocks.CREAM_FLUID_BLOCK, "Cream");
         translationBuilder.add(ModBlocks.VEGETABLE_OIL_FLUID_BLOCK, "Vegetable Oil");
@@ -595,7 +596,28 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModEffectsAndPotions.STICKY,"Sticky");
         translationBuilder.add(ModEffectsAndPotions.STICKY.getTranslationKey() + ".description","Drastically reduces movement speed while being unable to jump.");
-
+        translationBuilder.add(ModEffectsAndPotions.UMAMI,"Savory depth");
+        translationBuilder.add(ModEffectsAndPotions.UMAMI.getTranslationKey() + ".description","Your next meal restores extra hunger. The duration of newly acquired buffs will be extended.");
+        translationBuilder.add(ModEffectsAndPotions.MOUTH_AFIRE,"Mouth Afire");
+        translationBuilder.add(ModEffectsAndPotions.MOUTH_AFIRE.getTranslationKey() + ".description","Your mouth is on fire. Cream, ice cream, or milk helps.");
+        translationBuilder.add(ModEffectsAndPotions.CREAM_COAT,"Cream Coat");
+        translationBuilder.add(ModEffectsAndPotions.CREAM_COAT.getTranslationKey() + ".description","Armor has been improved, significantly reducing fall damage.");
+        translationBuilder.add(ModEffectsAndPotions.FROST_COAT,"Frost Coat");
+        translationBuilder.add(ModEffectsAndPotions.FROST_COAT.getTranslationKey() + ".description","Melee hits slow the target.");
+        translationBuilder.add(ModEffectsAndPotions.WARM_BELLY,"Warm Belly");
+        translationBuilder.add(ModEffectsAndPotions.WARM_BELLY.getTranslationKey() + ".description","Immune to powder snow freezing.");
+        translationBuilder.add(ModEffectsAndPotions.VITAMIN_C,"Vitamin C");
+        translationBuilder.add(ModEffectsAndPotions.VITAMIN_C.getTranslationKey() + ".description","Cures and prevents poison and wither.");
+        translationBuilder.add(ModEffectsAndPotions.CRUNCH,"Crunch");
+        translationBuilder.add(ModEffectsAndPotions.CRUNCH.getTranslationKey() + ".description","Increases melee attack damage, but each attack consumes more hunger.");
+        translationBuilder.add(ModEffectsAndPotions.WELL_FED,"Well Fed");
+        translationBuilder.add(ModEffectsAndPotions.WELL_FED.getTranslationKey() + ".description","Increases maximum health and slowly restores health over time.");
+        translationBuilder.add(ModEffectsAndPotions.FOOD_COMA,"Food Coma");
+        translationBuilder.add(ModEffectsAndPotions.FOOD_COMA.getTranslationKey() + ".description","Too full to sprint. Taking damage snaps you out of it.");
+        translationBuilder.add(ModEffectsAndPotions.GUT_FLORA,"Gut Flora");
+        translationBuilder.add(ModEffectsAndPotions.GUT_FLORA.getTranslationKey() + ".description","Slower hunger drain and no food coma from hearty meals.");
+        translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE,"Brain Freeze");
+        translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE.getTranslationKey() + ".description","Slowed for a moment.");
 
         translationBuilder.add("item.minecraft.potion.effect.sticky_potion","Potion of Sticky");
         translationBuilder.add("item.minecraft.potion.effect.sticky_long_potion","Potion of Sticky");
@@ -769,6 +791,9 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("config.moderndelight.trawler.title","Trawler Config");
         translationBuilder.add("config.moderndelight.option.base_fishing_intervals.title","Default Trawling Time (seconds)");
         translationBuilder.add("config.moderndelight.option.base_fishing_intervals.desc","Configure the default trawling duration.");
+        translationBuilder.add("config.moderndelight.option.heartyMealThreshold.title","The Threshold for a Hearty Meal");
+        translationBuilder.add("config.moderndelight.option.heartyMealThreshold.desc","Adjust the hunger threshold at which a meal is classified as a hearty meal.");
+
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"Modern Delight Guide");
         translationBuilder.add("patchouli.moderndelight.book.name","Modern Delight Guide");
@@ -917,6 +942,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("advancement.moderndelight.crab.desc", "Catch a crab with the Trawler. No music required, but strongly recommended.");
         translationBuilder.add("advancement.moderndelight.wither_rose_cake.title", "Bloom & Doom");
         translationBuilder.add("advancement.moderndelight.wither_rose_cake.desc", "Eat the Wither Rose Cake, then sit quietly and think about your life. (Hidden advancement)");
+        translationBuilder.add("advancement.moderndelight.not_spicy.title", "Whoa... it's not spicy");
+        translationBuilder.add("advancement.moderndelight.not_spicy.desc", "By constantly eating spicy food, and getting Mouth Afire V. (Hidden advancement)");
 
     }
 }

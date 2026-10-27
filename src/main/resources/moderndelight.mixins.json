@@ -5,11 +5,15 @@
   "mixins": [
     "EnchantmentEnhancementMixin",
     "EnchantmentHelperEnhancementMixin",
+    "FallDamageMixin",
+    "FoodEffectMixin",
     "ItemMixin",
-    "LivingEntityMixin"
+    "PlayerExhaustionMixin",
+    "StatusEffectInstanceAccessor",
+    "StatusEffectMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+    "defaultRequire": 0
   },
   "client": [
     "ItemRendererMixin"

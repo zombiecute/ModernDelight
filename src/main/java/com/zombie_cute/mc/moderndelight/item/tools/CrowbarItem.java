@@ -18,10 +18,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.ToolItem;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
@@ -54,6 +52,12 @@ public class CrowbarItem extends ToolItem {
                         "Weapon modifier", attackSpeed, EntityAttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
     }
+
+    public static boolean isPlayerHoldingCrowbar(PlayerEntity player) {
+        Item item = player.getMainHandStack().getItem();
+        return item.getRegistryEntry().isIn(TagKeys.CROWBARS);
+    }
+
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
         if(Screen.hasShiftDown()){
             tooltip.add(TextUtil.getShiftText(true));

@@ -6,7 +6,6 @@ import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.networking.packet.ChangeBlockEntityDataC2SPacket;
 import com.zombie_cute.mc.moderndelight.networking.packet.UpdateInventoryC2SPacket;
 import com.zombie_cute.mc.moderndelight.recipe.custom.AssemblyRecipe;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -104,7 +103,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
     }
     private boolean hasPaperAndInk(){
         return handler.blockEntity.getStack(6).getItem().equals(Items.PAPER) &&
-                MiscUtil.isInk(handler.blockEntity.getStack(7).getItem());
+                ElectriciansDeskScreenHandler.isInk(handler.blockEntity.getStack(7).getItem());
     }
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {

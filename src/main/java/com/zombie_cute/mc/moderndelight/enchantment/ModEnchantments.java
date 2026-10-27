@@ -13,6 +13,5 @@ public class ModEnchantments {
         return Registry.register(Registries.ENCHANTMENT,new Identifier(ModernDelightMain.MOD_ID,name),enchant);
     }
     public static void registerModEnchantments(){
-        ModernDelightMain.LOGGER.info("Registering Mod Enchantments for " + ModernDelightMain.MOD_ID);
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 @Mixin(Item.class)
 public class ItemMixin {
     @Inject(method = "appendTooltip", at = @At("HEAD"))
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
+    public void moderndelight$appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
         List<Item> seasonings = SeasoningItem.getSeasonings(stack);
         if (!seasonings.isEmpty()) {
             tooltip.add(Text.translatable(TextUtil.SEASONING_ADDED).formatted(Formatting.DARK_GRAY));

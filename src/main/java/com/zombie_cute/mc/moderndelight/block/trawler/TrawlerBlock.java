@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.trawler;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -123,7 +123,7 @@ public class TrawlerBlock extends BlockWithEntity {
             return ActionResult.SUCCESS;
         }
         if (world.getBlockEntity(pos) instanceof TrawlerBlockEntity entity){
-            if (MiscUtil.isPlayerHoldingCrowbar(player)){
+            if (CrowbarItem.isPlayerHoldingCrowbar(player)){
                 Direction dir = state.get(FACING);
                 switch (dir){
                     case EAST -> world.setBlockState(pos,state.with(FACING,Direction.SOUTH));

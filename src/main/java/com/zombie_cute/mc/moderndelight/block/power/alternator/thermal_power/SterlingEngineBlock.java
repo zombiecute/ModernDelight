@@ -3,7 +3,7 @@ package com.zombie_cute.mc.moderndelight.block.power.alternator.thermal_power;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.AdvanceFurnaceBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.OvenBlock;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -141,7 +141,7 @@ public class SterlingEngineBlock extends BlockWithEntity {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (MiscUtil.isPlayerHoldingCrowbar(player)){
+        if (CrowbarItem.isPlayerHoldingCrowbar(player)){
             if (world.isClient){
                 return ActionResult.SUCCESS;
             }

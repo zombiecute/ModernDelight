@@ -2,7 +2,7 @@ package com.zombie_cute.mc.moderndelight.block.biogas;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -135,7 +135,7 @@ public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
                 if (world.getBlockEntity(pos) instanceof GasCanisterBlockEntity container) {
                     container.onUse(player, world);
                 }
-            } else if (MiscUtil.isPlayerHoldingCrowbar(player)){
+            } else if (CrowbarItem.isPlayerHoldingCrowbar(player)){
                 world.breakBlock(pos,true);
             } else {
                 NamedScreenHandlerFactory screenHandlerFactory = ((GasCanisterBlockEntity) world.getBlockEntity(pos));

@@ -1,0 +1,47 @@
+{
+  "replace": false,
+  "values": [
+    "moderndelight:braised_shrimp_ball",
+    "moderndelight:chicken_fillet",
+    "moderndelight:deep_fried_bun",
+    "moderndelight:deep_fried_potato_chips",
+    "moderndelight:fired_noodles",
+    "moderndelight:fried_apple",
+    "moderndelight:fried_brown_mushroom",
+    "moderndelight:fried_chicken",
+    "moderndelight:fried_cod",
+    "moderndelight:fried_dough_stick",
+    "moderndelight:fried_milk",
+    "moderndelight:fried_red_mushroom",
+    "moderndelight:fried_salmon",
+    "moderndelight:golden_double_crisp",
+    "moderndelight:potato_chip",
+    "moderndelight:scotch_egg",
+    "moderndelight:french_fries",
+    "moderndelight:fish_and_chips",
+    {
+      "id": "casualness_delight:fried_chicken_chip",
+      "required": false
+    },
+    {
+      "id": "casualness_delight:fried_dumpling",
+      "required": false
+    },
+    {
+      "id": "casualness_delight:potato_chip",
+      "required": false
+    },
+    {
+      "id": "casualness_delight:spring_roll",
+      "required": false
+    },
+    {
+      "id": "casualness_delight:tonkatsu",
+      "required": false
+    },
+    {
+      "id": "brewinandchewin:flaxen_cheese_wedge",
+      "required": false
+    }
+  ]
+}

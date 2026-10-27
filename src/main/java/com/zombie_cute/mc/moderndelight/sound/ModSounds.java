@@ -37,6 +37,5 @@ public class ModSounds {
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
     public static void registerModSounds(){
-        ModernDelightMain.LOGGER.info("Registering Mod Sounds for " + ModernDelightMain.MOD_ID);
     }
 }

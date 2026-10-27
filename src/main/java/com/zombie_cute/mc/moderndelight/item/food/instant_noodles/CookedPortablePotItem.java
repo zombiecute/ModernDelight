@@ -1,7 +1,7 @@
 package com.zombie_cute.mc.moderndelight.item.food.instant_noodles;
 
 import com.zombie_cute.mc.moderndelight.item.ModItems;
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.util.FoodEffectDispatcher;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import com.zombie_cute.mc.moderndelight.util.enums.SpecialIngredient;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -75,7 +75,7 @@ public class CookedPortablePotItem extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        MiscUtil.applyFoodEffects(stack,user);
+        FoodEffectDispatcher.applyFoodEffects(stack,user);
         if (user instanceof PlayerEntity player){
             if (!world.isClient()) {
                 NbtCompound nbt = stack.getNbt();

@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.moderndelight.item.food;
 
-import com.zombie_cute.mc.moderndelight.util.MiscUtil;
+import com.zombie_cute.mc.moderndelight.effects.ModEffectsAndPotions;
+import com.zombie_cute.mc.moderndelight.util.FoodEffectDispatcher;
 import com.zombie_cute.mc.moderndelight.util.enums.CreamFlavor;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
@@ -59,7 +60,7 @@ public class IceCreamItem extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        MiscUtil.applyFoodEffects(stack,user);
+        FoodEffectDispatcher.applyFoodEffects(stack,user);
         if (user instanceof PlayerEntity player){
             if (!world.isClient()) {
                 world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_GENERIC_EAT,
@@ -68,6 +69,11 @@ public class IceCreamItem extends Item {
                 int hunger = CreamFlavor.getHungerFromFlavorNBT(nbt);
                 if (nbt != null && nbt.contains("flavor")){
                     int[] array = nbt.getIntArray("flavor");
+                    int level = array.length;
+                    if (level > 0) {
+                        player.addStatusEffect(new StatusEffectInstance(ModEffectsAndPotions.FROST_COAT,
+                                40 * 20 + (level * 20) * 20, level - 1));
+                    }
                     for(int i : array){
                         CreamFlavor creamFlavor = CreamFlavor.getFlavorByID(i);
                         if (creamFlavor == CreamFlavor.GOLDEN_APPLE){

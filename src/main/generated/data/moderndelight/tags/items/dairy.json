@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "#c:foods/creams",
+    "moderndelight:cheese",
+    "moderndelight:sakura_yogurt_sauce",
+    {
+      "id": "#c:milks",
+      "required": false
+    },
+    "moderndelight:butter_bread_slice",
+    "moderndelight:cheese_baked_potato",
+    "moderndelight:caramel_toast",
+    "moderndelight:butterfly_crisp",
+    "moderndelight:butter_cookie",
+    "#c:foods/puddings",
+    "#c:foods/mousses"
+  ]
+}
