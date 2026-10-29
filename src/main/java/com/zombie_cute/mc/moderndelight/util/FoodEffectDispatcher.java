@@ -59,7 +59,7 @@ public final class FoodEffectDispatcher {
         // 食困
         if (effectiveHunger >= getHeartyMealThreshold() && !stack.isIn(TagKeys.NO_FOOD_COMA)) {
             if (player.hasStatusEffect(ModEffectsAndPotions.GUT_FLORA)) {
-                player.addStatusEffect(new StatusEffectInstance(ModEffectsAndPotions.WELL_FED, 120 * 20));
+                applyWellFed(player);
             } else if (!player.hasStatusEffect(ModEffectsAndPotions.FOOD_COMA)) {
                 player.addStatusEffect(new StatusEffectInstance(ModEffectsAndPotions.FOOD_COMA, 8 * 20));
             }
@@ -104,6 +104,11 @@ public final class FoodEffectDispatcher {
                 applyCreamCoat(player, 30 * 20, 0);
             }
         }
+    }
+
+    private static void applyWellFed(PlayerEntity player) {
+        int level = Math.min(getLevel(player, ModEffectsAndPotions.WELL_FED),4);
+        player.addStatusEffect(new StatusEffectInstance(ModEffectsAndPotions.WELL_FED, 120 * 20, level));
     }
 
     public static void applyCreamCoat(PlayerEntity player, int duration, int amplifier) {

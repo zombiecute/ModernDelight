@@ -8,6 +8,7 @@
     "FallDamageMixin",
     "FoodEffectMixin",
     "ItemMixin",
+    "MovementEffectMixin",
     "PlayerExhaustionMixin",
     "StatusEffectInstanceAccessor",
     "StatusEffectMixin"

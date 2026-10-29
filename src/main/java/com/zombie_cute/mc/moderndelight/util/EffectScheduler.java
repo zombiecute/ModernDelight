@@ -73,7 +73,8 @@ public final class EffectScheduler {
             }
             ServerPlayerEntity current = server.getPlayerManager().getPlayer(uuid);
             if (current != null && !current.hasStatusEffect(ModEffectsAndPotions.FOOD_COMA)) {
-                current.addStatusEffect(new StatusEffectInstance(ModEffectsAndPotions.WELL_FED, 120 * 20, 0));
+                int level = Math.min(FoodEffectDispatcher.getLevel(player, ModEffectsAndPotions.WELL_FED),4);
+                current.addStatusEffect(new StatusEffectInstance(ModEffectsAndPotions.WELL_FED, 120 * 20, level));
             }
         });
     }
