@@ -1,19 +1,40 @@
 {
-  "name": "Pizza Making",
+  "name": "Making Pizza",
   "icon": "moderndelight:pizza",
   "category": "moderndelight:kitchenwares",
-  "sortnum": 1,
+  "sortnum": 8,
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Pizza Making",
-      "text": "Making pizza is easy, all you need to do is roll out the dough, add cheese, add your favourite foods, add cheese again to get a raw pizza and bake it in the oven."
+      "title": "Make the Dough",
+      "text": "First make a piece of $(thing)Wheat Dough$(): put wheat flour into a glass bowl of water.$(br2)Set the dough on the ground and right-click it with a $(thing)Kneading Stick$(); each hit has a 40%% chance to flatten it one stage, three stages in all, and every hit uses 1 durability.$(br2)Once it is as flat as it goes, right-click it with $(thing)Cheese$() and the dough becomes $(thing)pizza (unfinished)$()."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:kneading_stick",
-      "title": "Keanding Stick",
-      "text": "A keanding stick to roll out the dough flat."
+      "title": "Kneading Stick",
+      "text": "Right-click the unfinished pizza with it to add one topping at a time, up to $(thing)five$(). Valid toppings include: butter, pumpkin, raw meat, raw fish, vegetables, sausages, plus cabbage, tomato, onion and so on."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:raw_pizza"
+      },
+      "title": "Cover With Cheese",
+      "text": "Once all five toppings are in, right-click once more with $(thing)Cheese$() and a $(thing)Raw Pizza$() drops out while the unfinished block disappears.$(br2)The raw pizza's tooltip lists every topping you chose.$(br2)It can also be placed down: it is a block, and breaking it returns the pizza with its toppings intact."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Into the Oven",
+      "text": "Put the $(thing)Raw Pizza$() into an $(thing)Oven$() with the four slots loaded in order:$(li)Black Pepper Powder$(li)Sugar$(li)Black Pepper Powder$(li)Raw Pizza$(br2)The oven consumes all four ingredients at once and produces one whole $(thing)pizza$() block. The order matters — the pizza recipe matches by slot."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:pizza"
+      },
+      "title": "Enjoy",
+      "text": "A pizza block holds $(thing)seven slices$(); right-click for one slice, and each slice restores hunger equal to $(thing)the total hunger of the five toppings ÷ 3$() with 0.3 saturation.$(br2)In other words, the heartier the toppings, the more filling the pizza."
     }
   ]
 }

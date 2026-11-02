@@ -1,0 +1,19 @@
+{
+  "name": "Cabinet",
+  "icon": "moderndelight:andesite_cabinet",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:andesite_cabinet",
+      "title": "Cabinet",
+      "text": "A single cabinet already has $(thing)36 slots$().$(br2)Unlike chests, it does not merge with a neighbouring cabinet, so you can line a whole wall with them and each one stays a big independent cupboard.$(br2)Ideal for a full wall of kitchen storage."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Seven Materials",
+      "text": "There are seven materials; the recipe and function are identical and only the look changes:$(br)$(li)Andesite$(li)Diorite$(li)Granite$(li)Deepslate$(li)Blackstone$(li)Basalt$(li)Obsidian$(br2)Mix a row of them and the kitchen gets its atmosphere.$(br2)Note that everything inside drops out when you break a cabinet, so empty it before moving house."
+    }
+  ]
+}

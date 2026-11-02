@@ -1,28 +1,35 @@
 {
-  "name": "Gas Heater",
+  "name": "Gas Heating Devices",
   "icon": "moderndelight:gas_cooking_stove",
   "category": "moderndelight:biogas_sys",
   "sortnum": 1,
   "pages": [
     {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:gas_cooking_stove",
+      "title": "Gas Cooking Stove",
+      "text": "Right-clicking a gas cooking stove has a $(thing)50%%$() chance to light it; on a miss it just clicks, so try again.$(br2)Once lit it gives light level 12 and keeps consuming gas from an adjacent gas canister; when the gas runs out it turns back into a cold stove and must be lit again.$(br2)A cold stove has no block entity at all, so no heating check ever succeeds."
+    },
+    {
       "type": "patchouli:text",
-      "title": "Summary",
-      "text": "A number of devices in this mod require gas heaters for heating."
+      "title": "Connecting the Canister",
+      "text": "A lit stove checks the $(thing)four horizontal directions$(); if one of them holds a $(thing)Gas Canister$() whose $(thing)front faces the stove$(), it gets a steady supply.$(br2)The canister's front is the face that pointed at you when you placed it; if it is the wrong way round, just rotate the canister.$(br2)Right-click a lit stove to put it out."
     },
     {
       "type": "patchouli:image",
       "title": "Example",
-      "images": ["moderndelight:guide_images/guide_gas_cooking.png"]
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "moderndelight:gas_cooking_stove",
-      "title": "Gas Cooking Stove",
-      "text": "When connected by a gas canister containing gas, the right-click will have a probability to activate a gas cooking stove, and the activated gas cooking stove will continuously consume gas and heat the equipment above it."
+      "images": ["moderndelight:guide_images/guide_gas_cooking.png"],
+      "text": "The device sits on the stove, the canister beside it with its front facing the stove."
     },
     {
       "type": "patchouli:text",
-      "text": "Devices that can currently be heated: Baking Tray, Advance Furnace, Oven, Water Cauldron."
+      "title": "What It Can Heat",
+      "text": "All heating only affects $(thing)the block directly above$():$(li)$(thing)Baking Tray$(): becomes ready to stir-fry$(li)$(thing)Oven$(): bakes without fuel$(li)$(thing)Advanced Furnace$(): burns continuously, no fuel$(li)$(thing)Cauldron with water$(): every 12 seconds it has a 15%% chance to drop one level$(br2)$(thing)The Deep Fryer does not use a gas cooking stove$() — its gas canister goes in the block behind it."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Safety Notes",
+      "text": "$(li)Standing on a lit stove sets you $(thing)on fire and deals 2 damage$()$(li)A gas canister explodes when dangerous blocks (fire, magma blocks and the like) are nearby$(li)A lit stove also counts as a passive boiler heat source for $(thing)Create$() and as a heat source for the $(thing)Farmer's Delight$() heat-source tag, so those mods' devices can recognise it"
     }
   ]
 }

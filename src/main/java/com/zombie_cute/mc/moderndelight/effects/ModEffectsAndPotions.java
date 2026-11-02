@@ -23,6 +23,7 @@ public class ModEffectsAndPotions {
     public static final StatusEffect FOOD_COMA = registerEffect("food_coma",new FoodComaEffect());
     public static final StatusEffect GUT_FLORA = registerEffect("gut_flora",new GutFloraEffect());
     public static final StatusEffect BRAIN_FREEZE = registerEffect("brain_freeze",new BrainFreezeEffect());
+    public static final StatusEffect MAGNETIC = registerEffect("magnetic",new MagneticEffect());
 
     public static final Potion STICKY_POTION = registerPotion("sticky_potion", new Potion(
             new StatusEffectInstance(STICKY, 22 * 20, 0)));

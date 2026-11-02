@@ -1,18 +1,24 @@
 {
-  "name": "Stir Frying",
+  "name": "Stir-Frying",
   "icon": "moderndelight:spatula",
   "category": "moderndelight:biogas_sys",
   "sortnum": 2,
   "pages": [
     {
-      "type": "patchouli:text",
-      "title": "Baking tray with spatula",
-      "text": "When heated by gas cooking stove, the baking tray will enter stir-fry mode(becomes a skillet), where you can holding an item and right-click to place it on top of it. Holding a spatula and right clicking on it will allow you to stir-fry the item on the baking tray, compatible with all Campfire recipes."
-    },
-    {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:baking_tray",
-      "recipe2": "moderndelight:spatula"
+      "recipe2": "moderndelight:spatula",
+      "title": "Baking Tray and Spatula"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stir-Frying",
+      "text": "The baking tray has $(thing)four slots$(), so four portions can fry at once. It only works while sitting $(thing)directly on a lit gas cooking stove$() — a cold stove gives no heat.$(br2)Right-click the top of the tray with food to put it in; $(thing)sneak and right-click with an empty hand$() ejects the topmost portion first.$(br2)It uses the vanilla $(thing)campfire cooking$() recipes, so anything you can cook on a campfire you can stir-fry on the tray."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stir-Frying",
+      "text": "Right-click the tray while holding a $(thing)Spatula$(); each hit advances the frying progress, and $(thing)five hits$() finish the batch.$(br2)Every hit also rotates the items in the slots one place along, and the spatula loses 1 durability.$(br2)When it is done the results pop out and drop beside the tray."
     }
   ]
 }

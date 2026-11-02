@@ -1,0 +1,61 @@
+{
+  "name": "Seasonings",
+  "icon": "moderndelight:black_pepper_seasoning",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "tag": "moderndelight:condiments"
+      },
+      "title": "Seasonings",
+      "text": "Hold the food in your $(thing)off hand$() and the seasoning in your main hand, then right-click to \"cure\" the seasoning into the food.$(br2)One dish can hold up to $(thing)five$() seasonings (changeable in the config), and the same one cannot be added twice.$(br2)A seasoning only writes into the food's $(thing)data$() and does not change the food itself; when you eat it, every seasoning's effect $(thing)takes hold at once$().$(br2)You can season a whole stack at once, using one seasoning per portion."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Seasonings (1)",
+      "text": "$(li)$(thing)Black Pepper$(): Fire Resistance 10 seconds$(li)$(thing)Chili Powder$(): Strength 60 seconds + Mouth Afire 12 seconds$(li)$(thing)Black Truffle$(): Savory depth 240 seconds + Absorption$(li)$(thing)White Truffle$(): Savory depth II 180 seconds + Absorption II$(li)$(thing)Sea Salt$(): Dolphin's Grace 30 seconds$(li)$(thing)Garlic Powder$(): Resistance 30 seconds"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Seasonings (2)",
+      "text": "$(li)$(thing)Matcha$(): Luck 30 seconds$(li)$(thing)Whipping Cream$(): Cream Coat 45 seconds$(li)$(thing)Honey Crystal$(): Regeneration 15 seconds$(li)$(thing)Cuttlebone$(): Regeneration + Water Breathing 30 seconds$(li)$(thing)Glow Cuttlebone$(): Regeneration II + Water Breathing 45 seconds + Glowing 180 seconds$(li)$(thing)Caramel$(): Speed II 8 seconds"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Seasonings (3)",
+      "text": "$(li)$(thing)Chocolate Sauce$(): Speed 30 seconds$(li)$(thing)Mixed Jam$(): Haste II 10 seconds$(li)$(thing)Crab Roe$(): Saturation 0.05 seconds + Savory depth 200 seconds$(li)$(thing)Chili Sauce$(): Strength II 40 seconds + Mouth Afire 12 seconds"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Special Status Effects",
+      "text": "$(li)$(thing)Magnetic$(): while it lasts you pull in dropped items within 5 blocks; the level makes no difference. Obtained from $(thing)Copper Tofu$().$(li)$(thing)Savory depth$(): every meal eaten while it lasts restores $(thing)2 × level$() extra hunger and $(thing)1 × level$() extra saturation, and extends the duration of $(thing)newly gained positive buffs$() by $(thing)25%% × level$() (up to 100%%). Mostly from truffle dishes, truffle seasoning and crab roe seasoning."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Special Status Effects",
+      "text": "$(li)$(thing)Cream Coat$(): armor $(thing)+1 × level$() while it lasts, and fall damage is reduced by $(thing)80%%$() (plus 5%% per extra level, up to 100%%). If you gain it while under $(thing)Mouth Afire$(), the level you get is higher and the Mouth Afire is cured. Mostly from dairy products.$(li)$(thing)Warm Belly$(): immunity to the $(thing)freezing$() debuff; the level makes no difference. From certain hot foods."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Special Status Effects",
+      "text": "$(li)$(thing)Frost Coat$(): when you land a $(thing)melee$() hit, the target gets Slowness II for $(thing)2 × level$() seconds and a few snowflake particles appear. Only from ice cream, with the strength set by how many flavors it has.$(li)$(thing)Vitamin C$(): on gaining it, any existing $(thing)Poison and Wither$() is removed, and while it lasts $(thing)new$() Poison and Wither cannot be applied; the level makes no difference. From certain fruit products."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Special Status Effects",
+      "text": "$(li)$(thing)Crunch$(): attack damage $(thing)+2 × level$() (an attribute modifier, stacking with Strength); each hit costs $(thing)2.0 × level$() extra saturation. From all kinds of fried food.$(li)$(thing)Gut Flora$(): hunger drain $(thing)× 0.75$() (another 0.05 less per level, down to 0.5); when eating a big meal you skip $(thing)Food Coma$() and get $(thing)Well Fed$() directly. From cheese and fermented foods."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Special Status Effects",
+      "text": "$(li)$(thing)Mouth Afire$(): deals $(thing)1 × level$() damage every 3 seconds and keeps flame and smoke particles going. Every new dose $(thing)stacks the level$(), up to 5. From chili products.$(li)$(thing)Brain Freeze$(): while it lasts you have Slowness II and Nausea I. When it ends you get $(thing)30 × level$() seconds of Fire Resistance. Triggered by eating various ice lollies: 100%% in hot dimensions such as the Nether, 35%% elsewhere."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Special Status Effects",
+      "text": "$(li)$(thing)Food Coma$(): you cannot sprint while it lasts; the level makes no difference. Taking any damage ends it immediately and you do not get $(thing)Well Fed$(). If it simply runs out you get $(thing)Well Fed$() for 120 seconds. Triggered by a single meal restoring 10 or more hunger (changeable in the config; Golden Apple Mousse and Wither Rose Cake are excluded), always lasting 8 seconds.$(li)$(thing)Well Fed$(): maximum health $(thing)+2 × level$() and Regeneration I for $(thing)3 × level$() seconds; gaining it again $(thing)stacks the level$(), up to 5. Only obtained when Food Coma ends naturally."
+    }
+  ]
+}

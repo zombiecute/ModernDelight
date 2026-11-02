@@ -1,0 +1,19 @@
+{
+  "name": "橱柜",
+  "icon": "moderndelight:andesite_cabinet",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:andesite_cabinet",
+      "title": "橱柜",
+      "text": "单个橱柜就有 $(thing)36 格$()。$(br2)它不会像箱子那样和相邻橱柜合并，所以你可以沿着墙摆一长排，每个都是独立的大柜子。$(br2)适合拿来做厨房的整面储物墙。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "七种材质",
+      "text": "共有 7 种材质，配方与功能完全一样，只换外观：$(br)$(li)安山岩$(li)闪长岩$(li)花岗岩$(li)深板岩$(li)黑石$(li)玄武岩$(li)黑曜石$(br2)混着摆一排，厨房的气氛就出来了。$(br2)注意打掉橱柜时里面的东西会全部掉出来，搬家前先清空。"
+    }
+  ]
+}

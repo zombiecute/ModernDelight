@@ -1,5 +1,5 @@
 {
-  "name": "厨具介绍",
+  "name": "小厨具",
   "icon": "moderndelight:crowbar",
   "category": "moderndelight:kitchenwares",
   "sortnum": 0,
@@ -8,7 +8,7 @@
       "type": "patchouli:crafting",
       "recipe": "moderndelight:glass_bowl",
       "title": "玻璃碗",
-      "text": "你可以在玻璃碗放入物品，然后使用搅拌器对其中的物品的搅拌或打发。你也可以用水桶或水瓶往其中装入水，拿着一些物品右键玻璃瓶来实现与水混合的操作。"
+      "text": "往碗里放一件物品，再手持$(thing)搅拌器$()右键，就能完成搅拌或打发的配方。$(br2)用水桶或水瓶右键可以往碗里装水，之后手持材料右键就能做$(thing)与水混合$()的配方。$(br2)做好的成品如果是包装类，需要手持对应的$(thing)包装$()才能取走。"
     },
     {
       "type": "patchouli:spotlight",
@@ -16,77 +16,39 @@
         "tag": "moderndelight:whisks"
       },
       "title": "搅拌器",
-      "text": "可以快速破坏部分泥土类方块，主要还是用于和玻璃碗互动。"
+      "text": "主要用途是和$(thing)玻璃碗$()互动，每次搅拌消耗 1 点耐久。$(br2)它也能快速破坏一些柔软的泥土类方块，但别拿它当铲子用。"
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:electric_whisk",
+      "recipe": "moderndelight:electric_whisk",
       "title": "电动搅拌器",
-      "text": "它可以直接和地上的掉落物进行互动，实现物品的批量搅拌或打发。"
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": {
-        "item": "moderndelight:charging_post"
-      },
-      "title": "充电桩",
-      "text": "右键打开GUI，可以缓存1000EP直流电，左侧的两个槽位放电池，右侧放待充电的物品。"
+      "text": "内存 $(thing)500 EP$()，可以在$(l:moderndelight:power_sys/charging_post)充电桩$()里充电。$(br2)手持右键，会把面前 5 格内、正对着你的一整堆掉落物$(thing)批量搅拌$()，每件消耗 2 EP，一次处理整组。$(br2)它也可以在玻璃碗里用，每次消耗 2 EP。"
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:crowbar",
-      "title": "撬棍",
-      "text": "类似于扳手一样的存在，可以旋转本模组的一些机器，潜行右键可以快速破坏各种方块。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:cuisine_table",
-      "title": "料理台",
-      "text": "类似于砧板，往里面放入工具和物品即可开始加工。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:stone_mortar",
+      "recipe": "moderndelight:stone_mortar",
       "title": "石臼",
-      "text": "副手持待加工的物品，主手持石臼，按住右键即可开始碾磨加工。可以通过图书管理员获得精碾附魔（最高3级），从而提高产率。"
+      "text": "把要磨的东西拿在$(thing)副手$()，主手持石臼按住右键，2 秒后完成研磨。$(br2)附魔$(thing)精碾$()（最高 3 级，图书管理员处可得）有 20%% / 40%% / 60%% 的概率让主产物与副产物各多出 1~2 / 1~3 / 1~4 个。"
     },
     {
       "type": "patchouli:spotlight",
       "item": {
-        "tag": "moderndelight:condiments"
+        "tag": "c:tools/knives"
       },
-      "title": "调味品",
-      "text": "副手持任意食物，主手持调味品，右键即可为该食物调味，不同的调味品将提供不同的效果。"
+      "title": "刀具",
+      "text": "两把刀：$(br)$(li)$(thing)铜刀$()：171 耐久，1.5 伤害$(li)$(thing)紫水晶刀$()：720 耐久，2.0 + 0.5 伤害，挖掘等级 3，附魔能力 10$(br2)它们同属 $(thing)c:tools/knives$() 标签，在$(l:moderndelight:kitchenwares/cuisine_table)料理台$()里可以互换使用，配方没有区别，不过紫水晶刀击杀鱿鱼会有特殊掉落物。"
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:freezer",
-      "title": "冰柜",
-      "text": "冰柜有两种启动方式，一种是直接用冰作为“燃料”，一种是为其提供交流电。它可以冷加工一些物品，也可以存储15种不同的物品。"
+      "recipe": "moderndelight:crowbar",
+      "title": "撬棍",
+      "text": "相当于扳手：右键可以$(thing)旋转$()本模组的各种机器与方块（冰柜门、油炸锅、熔炉等）。$(br2)$(thing)潜行右键$()则是快速破坏方块。$(br2)手持撬棍右键$(thing)烤炉$()，可以把它拆回高级熔炉，并掉出 1 个烤盘。"
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:electric_steamer",
-      "title": "电蒸笼",
-      "text": "与传统蒸笼一样，电蒸笼可以蒸制一些物品，不过你需要为其提供水和交流电。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:ice_cream_maker",
-      "title": "冰淇淋机",
-      "text": "使用潜行加右键打开GUI，为其提供交流电，任意口味的奶油，糖，蛋即可开始制作冰淇淋，最多可以缓存3种不同口味的冰淇淋，你可以自由选择，选好口味后手持冰淇淋脆桶右键即可取出冰淇淋。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:juice_extractor",
-      "title": "榨汁机",
-      "text": "需要交流电才能工作，手持物品右键榨汁机即可往其中放入原料，放入4种原料后再次右键即可启动榨汁机。"
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:kitchen_utensil_holder",
-      "recipe2":"moderndelight:wooden_plate",
-      "title": "另类物品展示框"
+      "recipe": "moderndelight:kitchen_utensil_holder",
+      "title": "厨具架",
+      "text": "可放 $(thing)4 件$()物品。$(br2)手持物品右键放入 1 个；空手右键取出最上面那一个。$(br2)它不挑物品，锅铲、刀、勺子都能插上去当装饰。"
     }
   ]
 }

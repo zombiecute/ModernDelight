@@ -1,0 +1,20 @@
+{
+  "name": "Wooden Plates and Glass Cups",
+  "icon": "moderndelight:wooden_plate",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:wooden_plate",
+      "title": "Wooden Plate",
+      "text": "The wooden plate is $(thing)for display$(): right-click with a food to set it on the plate, sneak and right-click empty-handed to turn it 45°, and right-click empty-handed to pop the food back out.$(br2)Some items — potatoes, berries, raw and cooked fish, apples, golden apples and others — get their own models."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:glass_cup",
+      "title": "Glass Cup",
+      "text": "Up to $(thing)four cups can stack in one block$(); placing them one at a time stacks them up, and breaking them returns the right number."
+    }
+  ]
+}

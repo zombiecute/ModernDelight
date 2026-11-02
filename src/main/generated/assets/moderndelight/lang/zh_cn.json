@@ -737,7 +737,7 @@
   "modmenu.descriptionTranslation.moderndelight": "让Minecraft拥有更丰富的食材处理方式。",
   "modmenu.nameTranslation.moderndelight": "现代乐事",
   "modmenu.summaryTranslation.moderndelight": "更现代的食材处理方式",
-  "patchouli.moderndelight.book.landing_text": "向你介绍：现代乐事。这本书将会告诉你如何更好的游玩这个模组。",
+  "patchouli.moderndelight.book.landing_text": "向你介绍：现代乐事。$(br2)全书分为五章：$(thing)燃气$()、$(thing)电力$()、$(thing)厨房$()、$(thing)发酵$()、$(thing)农业与捕捞$()。第一章讲怎么把沼气烧起来，最后一章讲怎么种地。按顺序读，就能从点火一路走到量产。",
   "patchouli.moderndelight.book.name": "现代乐事指南",
   "sounds.moderndelight.block_food_frying": "食物: 煎炸",
   "sounds.moderndelight.block_freezer_close": "冰箱：关闭",

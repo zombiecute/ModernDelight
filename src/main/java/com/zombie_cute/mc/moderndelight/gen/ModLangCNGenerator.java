@@ -590,6 +590,8 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModEffectsAndPotions.GUT_FLORA.getTranslationKey() + ".description","饥饿值消耗降低，吃大餐不易犯困。");
         translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE,"冰头痛");
         translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE.getTranslationKey() + ".description","动作变慢。");
+        translationBuilder.add(ModEffectsAndPotions.MAGNETIC,"磁性");
+        translationBuilder.add(ModEffectsAndPotions.MAGNETIC.getTranslationKey() + ".description","持续吸引附近的掉落物 。");
 
         translationBuilder.add("item.minecraft.potion.effect.sticky_potion","黏脚药水");
         translationBuilder.add("item.minecraft.potion.effect.sticky_long_potion","黏脚药水");
@@ -767,7 +769,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"现代乐事指南");
         translationBuilder.add("patchouli.moderndelight.book.name","现代乐事指南");
-        translationBuilder.add("patchouli.moderndelight.book.landing_text","向你介绍：现代乐事。这本书将会告诉你如何更好的游玩这个模组。");
+        translationBuilder.add("patchouli.moderndelight.book.landing_text","向你介绍：现代乐事。$(br2)全书分为五章：$(thing)燃气$()、$(thing)电力$()、$(thing)厨房$()、$(thing)发酵$()、$(thing)农业与捕捞$()。第一章讲怎么把沼气烧起来，最后一章讲怎么种地。按顺序读，就能从点火一路走到量产。");
 
         translationBuilder.add("advancement.moderndelight.get_start_desc", "一份简单的模组指南，从这里开始。");
         translationBuilder.add("advancement.moderndelight.got_whisk.title", "工欲善其事");

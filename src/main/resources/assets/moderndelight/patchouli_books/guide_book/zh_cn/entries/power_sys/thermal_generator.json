@@ -2,16 +2,32 @@
   "name": "火力发电",
   "icon": "moderndelight:faraday_generator",
   "category": "moderndelight:power_sys",
-  "sortnum": 3,
+  "sortnum": 6,
   "pages": [
     {
       "type": "patchouli:text",
       "title": "简介",
-      "text": "火力发电是一种强有力的发电方式，建造一台简易的火力发电机来快速解决电力不足的问题。"
+      "text": "火力发电是最“稳”的交流电源：只要炉子还在烧，法拉第发电机就会持续输出，默认 200 EP/s。它由两件设备组成——放在炉子上的$(item)斯特林引擎$()，以及把机械能变成电的$(item)法拉第发电机$()。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:sterling_engine"
+      },
+      "title": "斯特林引擎",
+      "text": "引擎必须放在$(l)正在燃烧$()的熔炉、高炉、烟熏炉、烤炉或高级熔炉$(l)正上方$()，否则会直接掉落。$(br2)把海绵用在引擎上可以显著降噪；用撬棍右键可以取回海绵。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:faraday_generator"
+      },
+      "title": "法拉第发电机",
+      "text": "把机械能转成交流电，默认 200 EP/s（可在配置里调整）。它本身不储电，也不连机器：必须让特斯拉线圈贴着它取电，或用交流/直流转换器把电存进电池。$(br2)点燃炉子后引擎只认“正在燃烧”状态，炉子烧完就会停止发电。"
     },
     {
       "type": "patchouli:multiblock",
-      "name": "火力发电机的搭建",
+      "name": "火力发电机组示例",
       "multiblock": {
         "pattern": [
           [
@@ -34,28 +50,12 @@
           ]
         ],
         "mapping": {
-            "A": "moderndelight:advance_furnace",
-            "S": "moderndelight:sterling_engine[facing=north]",
-            "F": "moderndelight:faraday_generator[facing=west]",
-            "C": "moderndelight:ac_dc_converter[facing=north]"
+          "A": "moderndelight:advance_furnace",
+          "S": "moderndelight:sterling_engine[facing=north]",
+          "F": "moderndelight:faraday_generator[facing=west]",
+          "C": "moderndelight:ac_dc_converter[facing=north]"
         }
       }
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": {
-        "item": "moderndelight:sterling_engine"
-      },
-      "title": "斯特林引擎",
-      "text": "一台将热能转化为机械能的装置，可以放置在任意的炉子上面（熔炉，高炉，烟熏炉，高级熔炉，烤炉），对其使用海绵以降噪。"
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": {
-        "item": "moderndelight:faraday_generator"
-      },
-      "title": "法拉第发电机",
-      "text": "一台将机械能转化为电能的装置，可以搭配斯特林引擎使用来产生交流电。"
     }
   ]
 }

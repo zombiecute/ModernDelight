@@ -2,23 +2,39 @@
   "name": "制作方便面",
   "icon": "moderndelight:cooked_portable_pot",
   "category": "moderndelight:kitchenwares",
-  "sortnum": 2,
+  "sortnum": 9,
   "pages": [
     {
-      "type": "patchouli:crafting",
-      "recipe": "moderndelight:multifunctional_wrapping_paper",
-      "title": "制作方便面",
-      "text": "要制作方便面，首先需要在工作台中放入以下原料：一块油炸面饼，一张多功能包装纸，0-7种食材。接下来你便制作好了包装方便面。"
+      "type": "patchouli:text",
+      "title": "先炸面饼",
+      "text": "方便面的第一步是 $(thing)油炸面饼$()：$(li)在 $(thing)料理台$() 上把面团和刀放一起，得到 2 份 $(thing)生面条$()$(li)把生面条放进 $(thing)油炸锅$() 炸成 $(thing)油炸面饼$()（油炸锅需要油和燃气罐）$(br2)油炸面饼本身也能吃，但它只是半成品。"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "moderndelight:portable_pot",
-      "text": "准备好一个便携锅，在你的物品栏中使用包装方便面右键便携锅以将其放入锅中。"
+      "recipe": "moderndelight:multifunctional_wrapping_paper",
+      "title": "多功能包装纸",
+      "text": "包装纸由纸和蜜脾合成。$(br2)把 $(thing)油炸面饼$() + $(thing)多功能包装纸$() + $(thing)任意 0~7 种食材$() 一起放进工作台（无序合成），就能得到 $(thing)包装方便面$()。$(br2)配方不限制食材种类——放什么进去都会被记下来。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "三种有名有姓的面",
+      "text": "如果配料刚好凑齐下面的组合，方便面会变成专属口味：$(br)$(li)$(thing)红烧牛肉面$()：生牛肉 + 胡萝卜 + 卷心菜$(li)$(thing)香菇炖鸡面$()：棕蘑菇 + 鸡肉 + 卷心菜$(li)$(thing)豚骨拉面$()：生猪肉 + 干海带 + 蛋$(br2)其它组合都是普通方便面；而如果你塞了 $(thing)非食物$() 进去，它会变成 $(thing)奇怪的方便面$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "便携锅",
+      "text": "在物品栏里用 $(thing)包装方便面$() 右键 $(thing)便携锅$()，把它塞进锅里。$(br2)再放两样东西：$(li)$(thing)生石灰$()：同样在物品栏里右键塞入$(li)$(thing)水$()：手持水桶右键锅，或拿着锅直接右键水源方块$(br2)三样齐了会立刻煮好，变成 $(thing)煮熟的方便面$()，并返还一张 $(thing)脏包装纸$()。"
     },
     {
       "type": "patchouli:blasting",
       "recipe": "moderndelight:blasting/quicklime",
-      "text": "煅烧石灰石得到生石灰，再准备一桶水，在你的物品栏中使用生石灰和水右键便携锅以将其放入锅中。然后你就得到煮熟的方便面了。"
+      "title": "生石灰",
+      "text": "把 $(thing)碳酸盐岩石$() 放进高炉煅烧 20 秒就能得到生石灰。$(br2)生石灰遇水放热——这是这碗面唯一的“加热”来源，不需要任何燃料或锅灶。$(br2)所以一碗方便面的成本是：油炸锅 + 高炉 + 一趟水源。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "食用",
+      "text": "吃一碗基础回复 3 饥饿、0.1 饱和度；随后：$(li)三种专属口味：额外 +8 饥饿、1.5 饱和度$(li)普通方便面：锅里的 $(thing)每种食物食材$() 会被依次吃掉，食材越多越顶饱$(li)含非食物：反胃 10 秒 + 饥饿 15 秒$(br2)吃完会把 $(thing)便携锅$() 还给你，可以接着煮下一碗。"
     }
   ]
 }

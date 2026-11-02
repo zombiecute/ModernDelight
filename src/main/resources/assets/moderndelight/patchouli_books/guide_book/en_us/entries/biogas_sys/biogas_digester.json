@@ -6,26 +6,56 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Summary",
-      "text": "The Biogas Digester allows you to ferment any food to produce biogas. To build a digester, you will need a biogas digester controller, a biogas digester input & output, and a cuboid area that is a complete and totally closed and less than 11x5x11 in size."
+      "title": "Build a Fermentation Chamber",
+      "text": "A fermentation chamber is a $(thing)fully enclosed cavity$() made of a shell with air inside.$(br2)Size: at most $(thing)11 × 5 × 11$() (605 blocks), at least 1×1×1.$(br2)The shell must be $(thing)opaque full blocks$() — stone, dirt and planks all work; glass, leaves, slabs and fences do not.$(br)The inside must be pure air. It needs $(thing)no water$() and no light."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:biogas_digester_controller",
-      "title": "Digester Controller",
-      "text": "The core that controls the entire digester can determine the current digester situation from information in its GUI. When there is a cuboid area that is a complete and totally closed and less than 11x5x11 in size, this area is determined to be the digester's fermentation chamber. Leakage may result in an explosion."
+      "title": "Biogas Digester Controller",
+      "text": "The controller is not mounted on a wall but is $(thing)one block of the ceiling$(): the block directly below it must be air (that is, chamber interior), and the whole ceiling plane may hold only $(thing)one$() controller — a second one invalidates the entire chamber."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Biogas Digester Controller",
+      "text": "Right-click to open the interface, where you can see three numbers: $(thing)volume$() (in blocks), $(thing)current biogas$() (mB) and $(thing)capacity$() (mB).$(br2)The structure is re-checked every 3 seconds, and is marked invalid the moment it is broken."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:biogas_digester_io",
-      "title": "Input & Output Port",
-      "text": "It must be placed on top of the biogas digester controller to facilitate the feeding of food into the digester or the extraction of digestate, and a gas canister can be attached to its side to extract the biogas from the digester."
+      "title": "I/O Port",
+      "text": "The Biogas Digester I/O port must be placed $(thing)directly above the controller$() — the check is that the block below it is a validated controller."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "I/O Port",
+      "text": "The port has no facing and accepts hoppers on any side:$(li)Top and sides accept items into $(thing)the nine slots on the left$() (food)$(li)$(thing)The three slots on the right$() only output digestate$(br2)Place a $(thing)Gas Canister$() against the port with its front facing the port and biogas will be pumped into the canister."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Anything Ferments",
+      "text": "$(thing)Any food$() works; there is no whitelist.$(br2)Gas per item: $(br)$(thing)hunger × 30 + saturation modifier × 10$() (mB)$(br2)For example: cookie 61, golden carrot 192, cooked beef 248.$(br2)Time per item = $(thing)chamber volume in ticks$(), so a 1-block chamber does one item per tick and a 605-block one takes about 30 seconds per item — a bigger chamber is slower, but each item still yields the same gas."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Digestate and Yield",
+      "text": "Each finished item adds $(thing)0~4$() to an internal counter; when it reaches 32 a piece of $(thing)digestate$() is produced and the counter resets.$(br2)On average about $(thing)16 items = 1 digestate$()$(br2)Digestate is $(thing)bone meal$() by default and can be changed in the config; if the output slots are full, it drops on top of the port.$(br2)$(thing)A small chamber produces gas faster$(); a big one only holds more."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Overpressure and Explosions",
+      "text": "Capacity = volume × 1 000 mB$(br)$(thing)When the gas exceeds the capacity$(), or the $(thing)controller is broken$(), it tries to explode, and how violent that is depends on how much gas there is:$(li)1000 mB or more: it explodes. Below 6000 mB it places 2 blocks of liquefied biogas around itself with strength 3.5; at 6000 mB and above it places 7 with strength 6.0$(li)500~999 mB: one block of liquefied biogas leaks out directly below, no explosion$(li)Less than 500 mB: nothing happens$(br2)Breaking the controller is just as dangerous, so drain the chamber before you move it."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:gas_canister",
       "title": "Gas Canister",
-      "text": "It can store any 6 Buckets of fluid, but of course it is mainly used for storing or utilising liquefied biogas, be careful not to store it too full or a serious explosion will occur!"
+      "text": "Default capacity $(thing)6000 mB$() (changeable in the config).$(br2)It is really a general single-fluid tank, but only fluids in the $(thing)moderndelight:gas$() tag count as gas."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Gas Canister",
+      "text": "There is only one way to fill it: point its front at the I/O port and draw gas at $(thing)100 mB per second$(), so a full canister takes about 60 seconds.$(br2)$(thing)It explodes the moment it fills up$() (strength 6.0), so never leave one filling unattended.$(br2)Right-clicking it with flint and steel detonates it immediately, and being caught in another explosion sets off a further blast of strength 3.0."
     }
   ]
 }

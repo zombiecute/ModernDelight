@@ -2,23 +2,23 @@
   "name": "Wind Power",
   "icon": "moderndelight:fan_blade",
   "category": "moderndelight:power_sys",
-  "sortnum": 2,
+  "sortnum": 5,
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Summary",
-      "text": "Wind power is the simplest form of electricity generation, requiring only a wind turbine controller and wind turbine blades to build a wind turbine."
+      "title": "Overview",
+      "text": "Wind power is the easiest AC source to build early on: one $(item)Wind Turbine Controller$() plus one $(item)Wind Turbine Blades$() is all you need. No fuel, no items consumed.$(br2)Its output depends only on the $(l)height of the controller$() and the weather, so build the tower as high as you can."
     },
     {
       "type": "patchouli:image",
       "images": ["moderndelight:guide_images/guide_wind_turbine.png"],
-      "text": "Example of a wind turbine"
+      "text": "A wind turbine example: the controller faces the blades."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:fan_blade",
       "title": "Wind Turbine Blades",
-      "text": "It can be placed on the side of any block."
+      "text": "The blades must be attached to the side of a block (they need a block behind them for support)."
     },
     {
       "type": "patchouli:spotlight",
@@ -26,7 +26,17 @@
         "item": "moderndelight:wind_turbine_controller"
       },
       "title": "Wind Turbine Controller",
-      "text": "The core of the wind turbine, right clicking opens the GUI to view the status of power generation."
+      "text": "The controller checks the block it faces: it must be Wind Turbine Blades, and the blades' facing must match the controller's.$(br2)A controller accepts only one set of blades; extra ones, or blades one block off, generate nothing. Right-click to open the interface and see the current height and output."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Output",
+      "text": "In clear weather: output ≈ controller height ÷ 5 × multiplier (multiplier defaults to 2.0).$(br)$(li)Y = 64: about 25 EP/s$(li)Y = 128: about 51 EP/s$(li)Y = 200: about 80 EP/s$(br2)There is a minimum output even at negative heights (deep sea, caves).$(br2)Rain and thunderstorms change the output noticeably. The EP/s shown in the interface is the live value."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Practical Tips",
+      "text": "$(li)The controller and the blades can be rotated with a Crowbar; no need to break them if they face the wrong way.$(li)Above Y ≥ 200 the blades spin faster, but that is only cosmetic — output still follows the formula.$(li)A wind controller is an AC source: attach it straight to the Tesla Coil's intake face, or feed it into an AC/DC Converter to charge batteries."
     }
   ]
 }

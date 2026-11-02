@@ -2,18 +2,39 @@
   "name": "制作披萨",
   "icon": "moderndelight:pizza",
   "category": "moderndelight:kitchenwares",
-  "sortnum": 1,
+  "sortnum": 8,
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "制作披萨",
-      "text": "制作披萨很简单，你只需要将面团擀平，加入奶酪，添加自己喜欢的食物，再涂上奶酪得到生披萨，再放到烤炉中烘焙即可。"
+      "title": "准备面团",
+      "text": "先做一块 $(thing)小麦面团$()：把小麦粉放进装水的玻璃碗中。$(br2)把小麦面团放在地面上，手持 $(thing)擀面杖$()右键它，每次有 40%% 概率把面团压扁一级，共 3 级，每下消耗 1 点耐久。$(br2)压到最扁之后再右键 $(thing)奶酪$()，面团就变成了 $(thing)披萨（半成品）$()。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:kneading_stick",
       "title": "擀面杖",
-      "text": "一个可以将面团擀平的擀面杖。"
+      "text": "拿着它对披萨半成品右键，每次放入 1 种配料，最多 $(thing)5 种$()。可用配料包括：黄油、南瓜、生肉、生鱼、蔬菜、香肠，以及卷心菜、番茄、洋葱等。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:raw_pizza"
+      },
+      "title": "盖上奶酪",
+      "text": "5 种配料加满后，再用 $(thing)奶酪$() 右键一次，就会掉出一张 $(thing)生披萨$()，同时半成品方块消失。$(br2)生披萨的物品提示里会列出你选的全部配料。$(br2)生披萨也可以直接放置：它是方块，破坏时会带着配料一起掉回物品形态。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "放进烤炉",
+      "text": "把 $(thing)生披萨$() 放进 $(thing)烤炉$()，四个槽依次放：$(li)黑胡椒粉$(li)糖$(li)黑胡椒粉$(li)生披萨$(br2)烤炉一次消耗 4 种原料，产出一个完整的 $(thing)披萨$() 方块。顺序不能乱——披萨配方是按槽位匹配的。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:pizza"
+      },
+      "title": "享用",
+      "text": "披萨方块共 $(thing)7 块$()，右键吃一块，每人每口回复的饥饿值 = $(thing)所选 5 种配料饥饿值总和 ÷ 3$()，饱和度固定 0.3。$(br2)也就是说配料越扎实，披萨越顶饱。"
     }
   ]
 }

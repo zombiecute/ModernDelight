@@ -1,0 +1,52 @@
+{
+  "name": "电力厨具",
+  "icon": "moderndelight:freezer",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:freezer",
+      "title": "冰柜",
+      "text": "共 $(thing)20 格$()：右上的 3 格放原料、右下靠左的放冰、最右下的出成品，剩下的左侧 15 个槽位当普通储物格用。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "冰柜的使用",
+      "text": "两种制冷方式，任选其一：$(li)放$(thing)冰$()：冰块 1 秒、雪 0.5 秒、雪块 0.75 秒、浮冰 9.5 秒、蓝冰 91.5 秒、细雪桶 20 秒$(li)接$(thing)交流电$()：每秒 15 EP$(br2)一次冷冻需要 20 秒的时间；$(thing)既没有电也没有冰时进度会倒退$()。$(br2)开门时，门所朝向的那一格与斜前方那格$(thing)必须是空气$()，否则打不开。$(br2)$(thing)潜行右键$()关门；手持$(thing)撬棍$()右键可以转向。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:electric_steamer",
+      "title": "电蒸笼",
+      "text": "共 $(thing)13 格$()：12 格放食材，1 格放水桶。$(br2)水箱 $(thing)1000 mB$()，工作时每 3 秒消耗 50 mB 水与 80 点蒸汽，每点进度消耗 5 蒸汽，每秒耗电 10 EP。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "电蒸笼",
+      "text": "一桶水大约能蒸 $(thing)32 件$()普通配方，蒸好后食材$(thing)在原位$()变成成品，不需要另设输出格。$(br2)它支持 9 条蒸制配方，包括包子、烧麦、水晶饺与蒸蛋等。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:ice_cream_maker",
+      "title": "冰淇淋机",
+      "text": "共 4 个槽：左侧 3 个原料槽分别放奶油、糖、蛋，最左侧 1 个槽输出空碗。还有一个未在 GUI 中显示的格子用来缓存成品"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "冰淇淋机",
+      "text": "接上交流电（每秒 20 EP）后开始工作，每 10 秒产出一份冰淇淋，塞进三个$(thing)风味罐$()中的对应罐子，每罐上限 1000 单位。$(thing)潜行右键$()开 GUI 选择口味，最多同时选 3 种；每球冰淇淋从每个选中的罐子扣 50 单位，也就是每罐能做 20 球。$(br2)选好后手持$(thing)冰淇淋脆桶$()右键，就能取出并弹出一份冰淇淋。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:juice_extractor",
+      "title": "榨汁机",
+      "text": "共 5 格：4 个放原料，1 个出成品。$(br2)接交流电（每秒 10 EP），手持物品右键放入原料，放满后再次右键启动。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "榨汁机",
+      "text": "关键：成品必须$(thing)手持配方要求的容器$()才能取走。$(br2)如果放进没有配方的物品，且这个物品比较坚硬，它会尖叫并$(thing)爆炸$()，爆炸威力 1.5，别乱塞。"
+    }
+  ]
+}

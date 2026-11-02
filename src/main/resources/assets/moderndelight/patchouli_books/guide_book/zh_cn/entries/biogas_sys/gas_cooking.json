@@ -5,25 +5,31 @@
   "sortnum": 1,
   "pages": [
     {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:gas_cooking_stove",
+      "title": "燃气灶",
+      "text": "右键燃气灶有 $(thing)50%%$() 的概率点燃它；没点燃只会响一声，可以再点。$(br2)点燃后亮度 12，会持续消耗相邻燃气罐里的气；气烧光后自动变回冷灶，想接着用要重新点。$(br2)冷灶没有方块实体，任何加热判定都不成立。"
+    },
+    {
       "type": "patchouli:text",
-      "title": "简介",
-      "text": "模组中有不少设备需要燃气加热装置来进行加热。"
+      "title": "怎么接罐子",
+      "text": "点燃的燃气灶会检查 $(thing)东南西北四个方向$()，只要其中一格是 $(thing)燃气罐$()，并且罐子的 $(thing)正面正对着灶$()，就能持续供气。$(br2)罐子的正面 = 放置时朝向玩家的那一面；放错了就把罐子转个方向。$(br2)点燃状态下再右键可以主动熄灭。"
     },
     {
       "type": "patchouli:image",
       "title": "示例",
-      "images": ["moderndelight:guide_images/guide_gas_cooking.png"]
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "moderndelight:gas_cooking_stove",
-      "title": "燃气灶",
-      "text": "当被一个装有燃气的燃气罐连接时，右键将有概率启动燃气灶，启动的燃气灶会不断消耗燃气并加热其上方的设备。"
+      "images": ["moderndelight:guide_images/guide_gas_cooking.png"],
+      "text": "灶上放设备，旁边放罐子，罐子正面朝向灶。"
     },
     {
       "type": "patchouli:text",
-      "title": "目前可被加热的设备",
-      "text": "烤盘，高级熔炉，烤炉，炼药锅"
+      "title": "能加热什么",
+      "text": "所有加热都只作用于 $(thing)正上方那一格$()：$(li)$(thing)烤盘$()：直接进入可翻炒状态$(li)$(thing)烤炉$()：免燃料烘烤$(li)$(thing)高级熔炉$()：恒定燃烧、免燃料$(li)$(thing)装有水的炼药锅$()：每 12 秒都有 15%% 概率降一级$(br2)$(thing)油炸锅不用燃气灶$()，它的燃气罐是放在自己背后那一格。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "安全须知",
+      "text": "$(li)踩在点燃的燃气灶上会 $(thing)着火并受到 2 点伤害$()$(li)燃气罐附近有危险方块（火焰、岩浆块等）时会爆炸$(li)点燃的灶同时属于 $(thing)机械动力$() 的被动锅炉热源与 $(thing)农夫乐事$() 模组的热源标签，可以被那些模组的设备识别"
     }
   ]
 }

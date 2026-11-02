@@ -2,23 +2,39 @@
   "name": "Making Instant Noodles",
   "icon": "moderndelight:cooked_portable_pot",
   "category": "moderndelight:kitchenwares",
-  "sortnum": 2,
+  "sortnum": 9,
   "pages": [
     {
-      "type": "patchouli:crafting",
-      "recipe": "moderndelight:multifunctional_wrapping_paper",
-      "title": "Making Instant Noodles",
-      "text": "To make instant noodles, you first need to put the following ingredients in your crafting table: deep fried noodles, a multifunctional wrapper pappeer, 0-7 ingredients. Next you make packaged instant noodles."
+      "type": "patchouli:text",
+      "title": "Fry the Noodle Cake",
+      "text": "The first step of instant noodles is the $(thing)Fried Noodles$():$(li)Put dough and a knife together at the $(thing)Cuisine Table$() to get 2 $(thing)Raw Noodles$()$(li)Fry the raw noodles in a $(thing)Deep Fryer$() into $(thing)Fried Noodles$() (the fryer needs oil and a gas canister)$(br2)Fried noodles can be eaten on their own, but they are only half the job."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "moderndelight:portable_pot",
-      "text": "Prepare a Portable Pot and use the Packaged Instant Noodles in your inventory to right-click on the Portable Pot in order to place it in the pot."
+      "recipe": "moderndelight:multifunctional_wrapping_paper",
+      "title": "Multifunctional Wrapping Paper",
+      "text": "Wrapping paper is made from paper and honeycomb.$(br2)Put $(thing)Fried Noodles$() + $(thing)Multifunctional Wrapping Paper$() + $(thing)any 0~7 ingredients$() into a crafting table (shapeless) to get $(thing)Packaged Instant Noodles$().$(br2)There is no restriction on the ingredients — whatever you put in is recorded."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Three Famous Bowls",
+      "text": "If the toppings happen to match one of these combinations, the noodles become a named flavor:$(br)$(li)$(thing)Braised Beef Noodle Soup$(): raw beef + carrot + cabbage$(li)$(thing)Stew Chicken Noodle With Mushroom$(): brown mushroom + chicken + cabbage$(li)$(thing)Tonkotsu Ramen$(): raw pork + dried kelp + egg$(br2)Any other combination makes ordinary instant noodles; but if you slip in $(thing)something that is not food$(), it becomes $(thing)Weird Instant Noodles$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Portable Pot",
+      "text": "In your inventory, right-click the $(thing)Portable Pot$() with $(thing)Packaged Instant Noodles$() to stuff them in.$(br2)Then add two more things:$(li)$(thing)Quicklime$(): also right-clicked in from the inventory$(li)$(thing)Water$(): right-click the pot with a water bucket, or right-click a water source block with the pot$(br2)With all three in, it cooks at once into $(thing)Cooked Instant Noodles$() and returns one $(thing)Dirty Wrapping Paper$()."
     },
     {
       "type": "patchouli:blasting",
       "recipe": "moderndelight:blasting/quicklime",
-      "text": "Calcine the limestone to get quicklime, prepare a bucket of water and right click on the portable pot using quicklime and water in your inventory to place it in the pot. Then you get cooked instant noodles."
+      "title": "Quicklime",
+      "text": "Roast $(thing)carbonate rocks$() in a blast furnace for 20 seconds to get quicklime.$(br2)Quicklime releases heat when it meets water — that is the only \"heating\" this bowl of noodles gets, with no fuel or stove needed.$(br2)So the cost of a bowl is: a deep fryer + a blast furnace + a trip to water."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Eating",
+      "text": "A bowl restores 3 hunger and 0.1 saturation to start, then:$(li)The three named flavors: a further +8 hunger and 1.5 saturation$(li)Ordinary instant noodles: $(thing)every food ingredient$() in the pot is eaten in turn, so the more you packed the more filling it is$(li)With non-food inside: Nausea 10 seconds + Hunger 15 seconds$(br2)When you finish, the $(thing)Portable Pot$() comes back so you can cook the next bowl."
     }
   ]
 }

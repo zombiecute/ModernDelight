@@ -1,5 +1,5 @@
 {
-  "name": "Kitchenware",
+  "name": "Small Utensils",
   "icon": "moderndelight:crowbar",
   "category": "moderndelight:kitchenwares",
   "sortnum": 0,
@@ -8,85 +8,47 @@
       "type": "patchouli:crafting",
       "recipe": "moderndelight:glass_bowl",
       "title": "Glass Bowl",
-      "text": "You can put items in a glass bowl and then use a whisk to stir or whip the items in it. You can also fill it with water using a water bucket or a water bottle, and hold some items and right-click on the glass bottle to mix them with water."
+      "text": "Put an item in the bowl, then right-click with a $(thing)whisk$() to finish a whisking or beating recipe.$(br2)Right-click with a water bucket or water bottle to fill the bowl with water; then right-click with ingredients to make $(thing)mix with water$() recipes.$(br2)If the result is a packaged food, you must hold the matching $(thing)wrapper$() to take it out."
     },
     {
       "type": "patchouli:spotlight",
       "item": {
         "tag": "moderndelight:whisks"
       },
-      "title": "Whisks",
-      "text": "You can quickly destroy some of the soil blocks, which are still mainly used to interact with the glass bowl."
+      "title": "Whisk",
+      "text": "Mostly used on the $(thing)Glass Bowl$(), using 1 durability per stir.$(br2)It can also break soft soil-type blocks quickly, but do not treat it as a shovel."
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:electric_whisk",
+      "recipe": "moderndelight:electric_whisk",
       "title": "Electric Whisk",
-      "text": "It can interact directly with drops on the ground for batch mixing or whipping of items."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": {
-        "item": "moderndelight:charging_post"
-      },
-      "title": "Charging Post",
-      "text": "Right-click to open the GUI. It cache 1000 EP DC, two slots on the left for batteries, and the right for items to be charged."
+      "text": "Holds $(thing)500 EP$() and can be recharged in a $(l:moderndelight:power_sys/charging_post)Charging Post$().$(br2)Right-click to $(thing)whisk a whole pile at once$(): every dropped item within 5 blocks that you are facing gets processed, 2 EP per item, an entire stack in one go.$(br2)It also works in the Glass Bowl, at 2 EP per use."
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:crowbar",
-      "title": "Crowbar",
-      "text": "A wrench-like presence that can rotate some of the machines in this mod, and a sneaky right-click to quickly destroy various blocks."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:cuisine_table",
-      "title": "Cuisine Table",
-      "text": "Similar to a cutting board, put tools and items into it to start processing."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:stone_mortar",
+      "recipe": "moderndelight:stone_mortar",
       "title": "Stone Mortar",
-      "text": "The off hand holds the item to be processed, the main hand holds the stone mortar, and holding down the right click will start the grinding process. You can get the Precision Grinding Enchantment (up to level 3) through the Librarian, which increases the yield."
+      "text": "Hold what you want to grind in your $(thing)off hand$(), hold the mortar in your main hand and hold right-click; grinding finishes after 2 seconds.$(br2)The $(thing)Fine Grinding$() enchantment (up to level 3, from librarians) has a 20%% / 40%% / 60%% chance to add 1~2 / 1~3 / 1~4 extra of both the main and by-products."
     },
     {
       "type": "patchouli:spotlight",
       "item": {
-        "tag": "moderndelight:condiments"
+        "tag": "c:tools/knives"
       },
-      "title": "Seasoning",
-      "text": "Hold any food in the off hand and seasoning in the main hand and right click to season that food, different seasonings will provide different effects."
+      "title": "Knives",
+      "text": "Two knives:$(br)$(li)$(thing)Copper Knife$(): 171 durability, 1.5 damage$(li)$(thing)Amethyst Knife$(): 720 durability, 2.0 + 0.5 damage, mining level 3, enchantability 10$(br2)Both are in the $(thing)c:tools/knives$() tag and are interchangeable at the $(l:moderndelight:kitchenwares/cuisine_table)Cuisine Table$() — the recipes do not care which you use. The amethyst knife does have a special drop when it kills a squid."
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:freezer",
-      "title": "Freezer",
-      "text": "The freezer can be activated in two ways, either by using ice directly as ‘fuel’ or by supplying it with AC power. It can cold process a number of items and store up to 15 different items."
+      "recipe": "moderndelight:crowbar",
+      "title": "Crowbar",
+      "text": "A wrench in all but name: right-click to $(thing)rotate$() this mod's machines and blocks (freezer door, deep fryer, furnaces and so on).$(br2)$(thing)Sneak and right-click$() breaks blocks quickly instead.$(br2)Right-click an $(thing)Oven$() with a crowbar to turn it back into an Advanced Furnace, dropping one baking tray."
     },
     {
       "type": "patchouli:crafting",
-      "recipe":"moderndelight:electric_steamer",
-      "title": "Electric Steamer",
-      "text": "Like the traditional steamer, the electric steamer can steam some items, but you need to supply it with water and AC power."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:ice_cream_maker",
-      "title": "Ice Cream Maker",
-      "text": "Sneak and right click to open the GUI, provide it with AC power, any flavour of cream, sugar, egg and you can start making ice cream, up to 3 different flavours of ice cream can be cached, you are free to choose, after choosing the flavour hold the ice cream cone and right click to extract the ice cream."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:juice_extractor",
-      "title": "Juice Extractor",
-      "text": "It requires AC power to work, right click on the juice extractor with the item in hand to put ingredients into it, right click again to start it after putting in 4 ingredients."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe":"moderndelight:kitchen_utensil_holder",
-      "recipe2":"moderndelight:wooden_plate",
-      "title": "Alternative Item Frames"
+      "recipe": "moderndelight:kitchen_utensil_holder",
+      "title": "Kitchen Utensil Holder",
+      "text": "Holds $(thing)four$() items.$(br2)Right-click with an item to put one in; right-click empty-handed to take the topmost one out.$(br2)It is not picky — spatulas, knives and spoons all look fine in it."
     }
   ]
 }

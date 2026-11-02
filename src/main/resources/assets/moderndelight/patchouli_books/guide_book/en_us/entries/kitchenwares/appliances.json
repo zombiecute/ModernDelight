@@ -1,0 +1,52 @@
+{
+  "name": "Electric Kitchen Appliances",
+  "icon": "moderndelight:freezer",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:freezer",
+      "title": "Freezer",
+      "text": "Twenty slots in all: the three at the top right hold ingredients, the one at the bottom right of that row takes ice, the bottom right corner is the output, and the fifteen slots on the left work as ordinary storage."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Using the Freezer",
+      "text": "Two ways to chill it, either will do:$(li)Add $(thing)ice$(): ice 1 second, snow 0.5 seconds, snow block 0.75 seconds, packed ice 9.5 seconds, blue ice 91.5 seconds, powder snow bucket 20 seconds$(li)Connect $(thing)AC power$(): 15 EP per second$(br2)One freeze takes 20 seconds; $(thing)with neither power nor ice, progress runs backwards$().$(br2)To open the door, the block it faces and the block diagonally in front of it $(thing)must be air$(), or it will not open.$(br2)$(thing)Sneak and right-click$() closes it; right-click with a $(thing)Crowbar$() to turn it round."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:electric_steamer",
+      "title": "Electric Steamer",
+      "text": "Thirteen slots: twelve for ingredients and one for the water bucket.$(br2)The tank holds $(thing)1000 mB$(). While working it consumes 50 mB of water and 80 steam every 3 seconds, 5 steam per point of progress, and 10 EP of power per second."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Electric Steamer",
+      "text": "One bucket of water steams about $(thing)32 portions$() of an ordinary recipe; the finished food $(thing)transforms in place$(), so no separate output slot is needed.$(br2)It supports 9 steaming recipes, including buns, shumai, crystal dumplings and steamed egg."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:ice_cream_maker",
+      "title": "Ice Cream Maker",
+      "text": "Four slots: the three on the left take cream, sugar and eggs, and the leftmost one outputs empty bowls. One more slot, not shown in the interface, buffers the finished ice cream."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Ice Cream Maker",
+      "text": "Once connected to AC power (20 EP per second) it starts working, producing one serving every 10 seconds into the matching one of the three $(thing)flavor tanks$(), each holding up to 1 000 units. $(thing)Sneak and right-click$() opens the interface to pick flavors, up to three at once; each scoop takes 50 units from each selected tank, so a full tank makes 20 scoops.$(br2)With the flavors chosen, right-click holding an $(thing)Ice Cream Cone$() to take a serving out."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:juice_extractor",
+      "title": "Juice Extractor",
+      "text": "Five slots: four for ingredients and one for the product.$(br2)Connect AC power (10 EP per second), right-click with items to load ingredients, then right-click again to start once it is loaded."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Juice Extractor",
+      "text": "The catch: you must $(thing)hold the container the recipe asks for$() to take the product out.$(br2)If you put in something with no recipe and it happens to be hard, it will scream and $(thing)explode$() with strength 1.5 — do not stuff in just anything."
+    }
+  ]
+}

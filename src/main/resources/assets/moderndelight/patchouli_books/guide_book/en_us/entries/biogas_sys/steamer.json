@@ -1,23 +1,35 @@
 {
-  "name": "Steamer Basket",
+  "name": "Steamer",
   "icon": "moderndelight:bamboo_grate",
   "category": "moderndelight:biogas_sys",
   "sortnum": 3,
   "pages": [
     {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:bamboo_grate",
+      "recipe2": "moderndelight:bamboo_cover",
+      "title": "Basket Drawer and Cover"
+    },
+    {
       "type": "patchouli:text",
-      "title": "Traditional Steamer",
-      "text": "When a water cauldron is heated by gas cooking stove, the water inside gradually turns into water vapour. You can steam your food by building a steamer, which consists of a number of drawers and a cover, on top of the heated cauldron."
+      "title": "Steamer",
+      "text": "The steamer is $(thing)a multi-block structure$().$(br2)Right-click it with a $(thing)Bamboo Steamer Basket Drawer$() to add a layer, up to $(thing)four layers$() and up to $(thing)three blocks tall$(); each layer provides $(thing)four processing slots$(), so a full stack is 4 × 4 × 3 = 48 slots.$(br2)Right-click with a $(thing)Bamboo Steamer Cover$() to put the lid on; sneak and right-click with a Crowbar to take the lid off or remove a layer.$(br2)Right-click with an empty hand to open the interface and see how far each slot has got."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How It Gets Heat",
+      "text": "The steamer does not burn anything itself — it needs $(thing)water and a gas cooking stove$():$(li)Put a $(thing)cauldron filled with water$() directly below the steamer$(li)Put a $(thing)lit gas cooking stove$() directly below the cauldron$(br2)It must be \"stove → water cauldron → steamer\" stacked vertically adjacent; with several layers, heat travels up from the bottom layer.$(br2)Without the cover it is an open pot and steaming does not progress."
     },
     {
       "type": "patchouli:image",
       "title": "Example",
-      "images": ["moderndelight:guide_images/guide_steamer.png"]
+      "images": ["moderndelight:guide_images/guide_steamer.png"],
+      "text": "Stove at the bottom, water cauldron in the middle, steamer on top with the cover on."
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "moderndelight:bamboo_grate",
-      "recipe2": "moderndelight:bamboo_cover"
+      "type": "patchouli:text",
+      "title": "Steaming and Batching",
+      "text": "Each slot advances once per second, and a full progress turns the item into its result in place (the count stays the same).$(br2)Batching rule: when a slot holds $(thing)up to four items the recipe time is used$(); above four the time becomes $(thing)recipe time × count ÷ 4$() — so a stack of 64 takes 16 times as long. Split the load across slots to go faster.$(br2)Available slots and heat are re-checked every second; hoppers can insert and extract on any side."
     }
   ]
 }

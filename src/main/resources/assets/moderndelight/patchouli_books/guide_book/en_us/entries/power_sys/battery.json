@@ -1,0 +1,36 @@
+{
+  "name": "Batteries",
+  "icon": "moderndelight:simple_battery",
+  "category": "moderndelight:power_sys",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:simple_battery"
+      },
+      "title": "Overview",
+      "text": "Batteries are the only way to \"store\" direct current. There are four tiers, with capacities of:$(br)$(li)$(item)Simple Battery$(): 5 000 EP$(li)$(item)Intermediate Battery$(): 15 000 EP$(li)$(item)Advanced Battery$(): 50 000 EP$(li)$(item)Dimension Battery$(): 300 000 EP$(br2)All of them are assembled at the Electrician's Desk with the assembly mini-game."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How Full Is It?",
+      "text": "Battery blocks $(l)have no interface$(). The charge bar and tooltip in your inventory (formatted like 3 200/5 000EP) show the current charge; when placed in the world, a comparator reads it out as a redstone signal, strength = charge ratio × 15.$(br2)Charge is stored in the item itself, so breaking the battery, carrying it away and placing it again does not lose it."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Batteries Are the \"Cables\"",
+      "text": "There are no cables or energy pipes in this mod. A battery's job is to be a courier: charge it on the generating side, carry it over and discharge it on the consuming side."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stay Safe",
+      "text": "If a battery is destroyed by an explosion, it sets off a strength 2.0 blast centred on itself, drops $(l)no items at all$(), and its charge is lost with it."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Devices That Work With Batteries",
+      "text": "$(li)$(item)Charging Post$(): charges batteries, and also the Electric Whisk.$(li)$(item)AC/DC Converter$(): turns battery DC into AC, or charges a battery with AC.$(li)$(item)Photovoltaic Generator$(): has a battery slot and charges it all day.$(br2)All these battery slots accept battery items only; anything else does nothing."
+    }
+  ]
+}

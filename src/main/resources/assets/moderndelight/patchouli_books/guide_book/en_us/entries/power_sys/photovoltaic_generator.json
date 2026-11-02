@@ -1,15 +1,31 @@
 {
-  "name": "Photovoltaic Power",
+  "name": "Solar Power",
   "icon": "moderndelight:photovoltaic_generator",
   "category": "moderndelight:power_sys",
-  "sortnum": 4,
+  "sortnum": 7,
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": {
         "item": "moderndelight:photovoltaic_generator"
       },
-      "text": "The biggest difference between photovoltaic power and wind or thermal power is that it produces DC power directly, which can be used to charge batteries directly, and if you want to use it to power AC appliances, then you will need an AC/DC converter for further operation."
+      "title": "Solar Power",
+      "text": "The Photovoltaic Generator turns sunlight straight into $(thing)direct current$() and buffers up to $(thing)3 000 EP$() inside. It is the only generator that needs no fuel at all; the price is that it only works during the day.$(br2)Its first slot accepts a $(l:moderndelight:power_sys/battery)battery$() and charges it at $(thing)80 EP$() per second."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Output",
+      "text": "The generator settles once per second; output depends on $(thing)time of day$(), $(thing)weather$() and $(thing)height$():$(br)$(li)Dawn and dusk ×1$(li)Morning and afternoon ×2$(li)Noon (tick 4283~7700) ×3$(br2)The higher the better: at Y=64 on a clear noon it makes about $(thing)96 EP/s$(), and at Y=200 about $(thing)300 EP/s$().$(br2)Rain cuts the output a little, thunderstorms cut it a lot; even at noon, rain never shuts it down."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Two Working Modes",
+      "text": "$(li)$(bold)High-efficiency mode$(): the sky light at its position is 13 or more, there is no full solid block directly above, and the dimension is not one without a day-night cycle, such as the Nether or the End. Only then does it generate according to the time of day.$(li)$(bold)Low-efficiency mode$(): triggered by enough $(thing)block light$() around it (torches, lanterns and so on). Each extra point of block light is worth only about $(thing)1 EP/s$() — better than nothing.$(br2)Note that the two modes do not conflict: in the open during the day, both are settled together."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How to Use It",
+      "text": "The photovoltaic generator $(thing)outputs from its back$() — that is, the side opposite its facing — up to 1 000 EP per second. To hook up a consumer, point the back at whatever should receive the power.$(br2)It produces only direct current, so it can charge batteries directly or supply a $(l:moderndelight:power_sys/charging_post)Charging Post$(); to feed AC machines it must go through an $(l:moderndelight:power_sys/ac_and_dc)AC/DC Converter$().$(br2)The Nether and the End have no day-night cycle, so solar panels there generate $(thing)nothing at all$()."
     }
   ]
 }

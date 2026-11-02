@@ -1,0 +1,41 @@
+{
+  "name": "Industrial Fermenter",
+  "icon": "moderndelight:industrial_fermenter",
+  "category": "moderndelight:fermentation",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:industrial_fermenter"
+      },
+      "title": "Industrial Fermenter",
+      "text": "The Industrial Fermenter turns liquids such as $(thing)sugar water, milk and alcohol$(), plus a little $(thing)culture$(), into $(thing)cheese, vinegar, alcohol$() and even new cultures — provided the temperature and light are right.$(br2)It only consumes power: once powered, it works three times as fast. It still ferments without power, just slowly.$(br2)The real workers inside are invisible $(l:moderndelight:fermentation/bacteria)cultures$() — not items, but a set of numbers stored in the machine."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Where the Heat Comes From",
+      "text": "Fermentation temperature is decided by two things:$(br)$(li)$(thing)Biome and height$() set the base temperature — about 21°C in plains, 45°C in deserts, -5°C in snowy plains, and it keeps dropping above Y=81$(li)$(thing)Heat sources within 7×7×7$() raise it: blue ice -20°C, a working blast furnace 80°C, lava 1000°C and so on$(br2)The nearest heat source counts in full and the others only add 20%%, so nestle the heat source against the machine."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Slots and Interface",
+      "text": "The machine has seven slots:$(li)four ingredient slots$(li)one output slot$(li)one bucket slot$(li)one bucket output slot$(br2)Inside there is also a $(thing)5000 mB$() tank for sugar water, milk, alcohol and the like. Shift-right-clicking the tank $(thing)empties it$() on the spot."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Temperature Knob and Power",
+      "text": "Once the machine is connected to $(l:moderndelight:power_sys/ac_and_dc)AC power$(), the $(thing)− / +$() buttons in the interface light up, letting you nudge the temperature between $(thing)-30 and +30°C$(); without power it drifts back towards 0 by 1°C every second.$(br2)Powered operation costs $(thing)30 EP$() per second (plus 1 EP per degree the knob is off), and multiplies efficiency by 3.$(br2)Note that it $(thing)draws power even while idling$(). Cut the power and the knob falls back to zero by itself, so keep a steady supply if you need precise control."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Light",
+      "text": "Every culture has a $(thing)light ceiling$(), and the light level at the machine must stay at or below it.$(br2)That means $(thing)night lowers the light level$(), while daylight through a window can push it over — to grow light-sensitive cultures, keep the machine in a dark room.$(br2)Mold (mucor) is especially shy of light, with a ceiling of only 4."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Efficiency and Quality",
+      "text": "Progress speed depends on how close the temperature and light are to what the recipe wants: $(thing)base efficiency = 30/(30+|Δtemperature|) × 9/(9+|Δlight|)$(). On top of that:$(br)$(li)Acetobacter making vinegar ×2.0, yeast making alcohol ×1.5, mucor ×1.3$(li)Lactobacillus in charge with 100 or more yeast ×1.3$(li)Too many contaminants gives a ×0.5 penalty$(li)Powered operation ×3.0$(br2)Products carry a $(thing)quality$(): $(thing)toxic / poor / normal / excellent$(). Quality depends on temperature, light, culture purity and whether each culture sits in its sweet spot, and travels with the item."
+    }
+  ]
+}

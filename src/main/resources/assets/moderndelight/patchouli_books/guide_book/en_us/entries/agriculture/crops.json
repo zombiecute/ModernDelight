@@ -1,0 +1,28 @@
+{
+  "name": "Crops",
+  "icon": "moderndelight:chili_pepper",
+  "category": "moderndelight:agriculture",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Crops",
+      "text": "This mod adds new crops that grow on $(thing)farmland$() just like vanilla ones:$(br)$(li)$(thing)Black Pepper$(): the seed is a Black Pepper Corn$(li)$(thing)Chili Pepper$(): the seed is Chili Seeds$(li)$(thing)Garlic$(): the seed is Garlic$(li)$(thing)Soybean$(): the seed is Soybean"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Harvest by Right-Clicking",
+      "text": "Once ripe you can $(thing)right-click$() to harvest: no tool needed, no durability lost, and Fortune has no effect.$(br2)Except for black pepper, the other three reset to their first stage and have to grow again."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Breaking Gives More",
+      "text": "Breaking a ripe crop $(thing)whole$() with a tool or a bare hand drops more than right-clicking, and it $(thing)benefits from Fortune$().$(br2)Break the whole plant if you want seeds or a big haul, and right-click to keep harvesting."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What They Are For",
+      "text": "$(li)Black pepper corns are ground into black pepper powder with a $(l:moderndelight:kitchenwares/utils)Stone Mortar$(), then bottled into a shaker$(li)Chilies can be eaten, made into a chili powder shaker, or simmered into $(thing)Chili Sauce$() in an oven$(li)Garlic can be sliced into cloves with a knife, or made into garlic powder$(li)Soybeans can be turned into soy milk, tofu and more"
+    }
+  ]
+}

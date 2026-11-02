@@ -1,0 +1,26 @@
+{
+  "name": "Charging Post",
+  "icon": "moderndelight:charging_post",
+  "category": "moderndelight:power_sys",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:charging_post"
+      },
+      "title": "Overview",
+      "text": "The Charging Post charges $(l)items$(): it only buffers 1 000 EP of direct current, then pours that into a battery or an Electric Whisk.$(br2)It cannot generate power itself — give it an external DC supply, or simply drop in a charged battery."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Three Slots",
+      "text": "The interface has three slots: the two on the left are $(item)battery slots$(), the upper one is used first and then the lower one; the slot on the right is the $(item)charging slot$(), which accepts only batteries and the Electric Whisk."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Charging Speed",
+      "text": "Normally it feeds about 27 EP per second into the item, while pulling 100 EP per second out of the battery (drawn in 100 → 10 → 1 EP steps, so a nearly empty battery slows down on its own).$(br2)If the item is less than 30 EP from full, the post switches to topping it up at just 1 EP per second — so don't let the battery run dry if you want a quick charge.$(br2)The Electric Whisk holds at most 500 EP and takes about 19 seconds to fill."
+    }
+  ]
+}

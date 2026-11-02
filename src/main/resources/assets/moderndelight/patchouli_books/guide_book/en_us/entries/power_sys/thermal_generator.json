@@ -1,17 +1,33 @@
 {
-  "name": "Thermal Power",
+  "name": "Fuel Power",
   "icon": "moderndelight:faraday_generator",
   "category": "moderndelight:power_sys",
-  "sortnum": 3,
+  "sortnum": 6,
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Summary",
-      "text": "Thermal power is a powerful way of generating electricity, building a simple thermal generator to quickly solve power shortages."
+      "title": "Overview",
+      "text": "Fuel power is the most dependable AC source: as long as the furnace keeps burning, the Faraday Generator keeps outputting, 200 EP/s by default. It is made of two devices — a $(item)Stirling Engine$() sitting on the furnace, and a $(item)Faraday Generator$() that turns the mechanical energy into electricity."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:sterling_engine"
+      },
+      "title": "Stirling Engine",
+      "text": "The engine must sit $(l)directly above$() a $(l)burning$() furnace, blast furnace, smoker, oven or advanced furnace, otherwise it pops straight off.$(br2)Using a sponge on the engine quiets it down considerably; right-click with a Crowbar to get the sponge back."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:faraday_generator"
+      },
+      "title": "Faraday Generator",
+      "text": "Turns mechanical energy into AC, 200 EP/s by default (adjustable in the config). It stores nothing and connects to nothing: a Tesla Coil must draw from it directly, or an AC/DC Converter must bank its power into a battery.$(br2)The engine only recognises the \"burning\" state, so when the furnace burns out the output stops."
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Thermal Generator",
+      "name": "Fuel Power Setup Example",
       "multiblock": {
         "pattern": [
           [
@@ -34,28 +50,12 @@
           ]
         ],
         "mapping": {
-            "A": "moderndelight:advance_furnace",
-            "S": "moderndelight:sterling_engine[facing=north]",
-            "F": "moderndelight:faraday_generator[facing=west]",
-            "C": "moderndelight:ac_dc_converter[facing=north]"
+          "A": "moderndelight:advance_furnace",
+          "S": "moderndelight:sterling_engine[facing=north]",
+          "F": "moderndelight:faraday_generator[facing=west]",
+          "C": "moderndelight:ac_dc_converter[facing=north]"
         }
       }
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": {
-        "item": "moderndelight:sterling_engine"
-      },
-      "title": "Sterling Engine",
-      "text": "A device that converts heat energy into mechanical energy can be placed on top of any furnace (Furnace, Blast Furnace, Smoker, Advance Furnace, Oven), and a sponge is used on it to reduce noise."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": {
-        "item": "moderndelight:faraday_generator"
-      },
-      "title": "Faraday Generator",
-      "text": "A device that converts mechanical energy into electrical energy and can be used with the Stirling Engine to generate AC power."
     }
   ]
 }

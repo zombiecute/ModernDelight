@@ -1,40 +1,47 @@
 {
-  "name": "Deep Fried Food",
+  "name": "Deep-Fried Food",
   "icon": "moderndelight:deep_fryer",
   "category": "moderndelight:biogas_sys",
   "sortnum": 4,
   "pages": [
     {
-      "type": "patchouli:text",
-      "title": "Oil Extraction",
-      "text": "Before making deep fried food, you need to be prepared to squeeze some vegetable oil first. Place a filter and a few stir-fried sunflower seeds in a wooden basin and start extracting the oil by standing and jumping on the basin, you can use a bucket or glass bottle to extract the oil from the basin."
-    },
-    {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:wooden_basin",
-      "recipe2": "moderndelight:filter"
+      "recipe2": "moderndelight:filter",
+      "title": "Wooden Basin and Filter"
     },
     {
       "type": "patchouli:text",
-      "title": "Start Deep Frying",
-      "text": "Place a gas canister behind the deep fryer, right click on the top of the fryer with a bottle or bucket of vegetable oil to add oil, right click on the top of the fryer with the item you want to fry to put the food in it, right click on the front of the fryer to start the fryer, sneak and right click on the fryer to see how the fryer is frying, but you cannot insert or extract the item."
+      "title": "Press the Oil First",
+      "text": "Deep-frying needs $(thing)vegetable oil$(), and the oil is pressed in a $(thing)Wooden Basin$():$(br2)The basin has five slots:$(li)raw ingredient (oilseed) slot$(li)filter slot$(li)waste slot$(li)bottle-filling slot$(li)bottle output slot$(br2)Load the ingredient and the filter, then $(thing)stand on the basin and jump$() to press once: it consumes 1 ingredient and 1 point of filter durability."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Press the Oil First",
+      "text": "Vegetable oil comes out at about 111 mB per press, so three presses (≈333 mB) fill one $(thing)bottle of vegetable oil$(); the basin holds up to 1 000 mB, enough to fill a bucket directly.$(br2)The basin also presses $(thing)water, sugar water, soy milk$() and more: soy milk comes from pressing soybeans, sugar water from apples, beetroot, cactus, melon slices, sugar cane, berries and the like.$(br2)Pressing $(thing)magma blocks$() gives lava and hurts you, setting you on fire.$(br2)After pressing, put an empty bottle or bucket in the filling slot to draw the liquid out."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:deep_fryer",
-      "text": "When the frying is over, right-click on the top of the fryer with the tongs in your hand to take out the deep fried item, if you grab it with your bare hands, you will get burned."
+      "title": "Deep Fryer",
+      "text": "The deep fryer has $(thing)four slots$() and holds $(thing)1 000 mB of oil$(); each finished portion uses $(thing)50 mB$() and takes $(thing)15 seconds$().$(br2)Oiling: right-click the $(thing)top$() with a $(thing)bottle of vegetable oil$() or a $(thing)bucket of oil$().$(br)Fuel: put a $(thing)Gas Canister$() in $(thing)the block behind$() the fryer with its front facing the fryer — a gas cooking stove does nothing here."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Operation",
+      "text": "$(li)Right-click $(thing)the top$(): add or remove ingredients / add oil$(li)Right-click $(thing)the front$(): start or stop frying$(li)Right-click any other face, or sneak and right-click: open the interface$(li)Crowbar right-click: rotate$(br2)While running it burns gas at 6.67 mB/s, so a full 6 000 mB canister lasts about 15 minutes.$(br2)The interface shows the progress of all four slots and the oil level. But you cannot reach in directly."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:deep_fry_basket",
       "title": "Deep Fry Basket",
-      "text": "Right-click on the basket with your hand to insert items, and right-click on the basket with your empty hand to extract items. When the basket is destroyed, the items inside will be kept in the basket instead of falling out."
+      "text": "The $(thing)Deep Fry Basket$() holds four items at once. Breaking it does not spill the contents — they are stored in the item, making it a small shulker box of sorts."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:holder",
       "title": "Tongs",
-      "text": "Tongs not only help you safely extract food from the deep fryer, but also make it easier to insert or extract items from other containers. Right-click to hold an item in your off hand or take down a holding item. Sneaking and right clicking on a container will allow you to insert or extract items."
+      "text": "$(br2)$(thing)Tongs$() are the only safe way to take food out: reaching into a working fryer with your bare hands $(thing)burns$() you, while putting the tongs in the oil first makes it harmless."
     }
   ]
 }

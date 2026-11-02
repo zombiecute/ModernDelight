@@ -1,13 +1,13 @@
 {
-  "name": "AC and DC",
+  "name": "AC, DC and the Converter",
   "icon": "moderndelight:ac_dc_converter",
   "category": "moderndelight:power_sys",
-  "sortnum": 5,
+  "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Summary",
-      "text": "There are two different types of electricity in this mod, one is AC and the other is DC. AC power can only be used now and cannot be stored. DC power can be stored, used by other mods or supplied by other mods."
+      "title": "Two Kinds of Power",
+      "text": "There are two kinds of power in this mod:$(br)$(li)$(item)Alternating current (AC)$(): generated and used on the spot, measured in EP/s. It is a rate, not a store of energy; every machine that needs to be powered runs on it.$(li)$(item)Direct current (DC)$(): stored in batteries and carried by items, measured in EP. It can charge batteries and the Electric Whisk, or be converted into AC."
     },
     {
       "type": "patchouli:spotlight",
@@ -15,7 +15,27 @@
         "item": "moderndelight:ac_dc_converter"
       },
       "title": "AC/DC Converter",
-      "text": "This is a device that converts AC and DC power to each other, note that this conversion process is lossy. In addition, it can cache 3000 EP of DC power, or you can put a battery internally. Right clicking on it opens its GUI, you can adjust its working speed at the adjustment bar, the faster it works the more lossy it will be."
+      "text": "This machine converts between the two kinds of power. It has an internal buffer of 3 000 EP of direct current and a battery slot.$(br2)Conversion: 1 EP = 10 FE (which is what other mods see as RF, AE and so on)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mode One: AC to DC",
+      "text": "The default mode. The converter scans one block to each of its $(l)left and right sides$() (the two directions perpendicular to its facing); if it finds an AC generator there, such as a Faraday Generator or a Wind Turbine Controller, it harvests their AC, subtracts the loss and stores the result in its buffer or in the battery slot to the right.$(br2)In this mode it can also take supply from a Tesla Coil to produce DC."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mode Two: DC to AC",
+      "text": "Switch the mode button to DC-to-AC and the converter pulls power from the battery (or its own buffer) and turns it into AC that a Tesla Coil can use.$(br2)It consumes $(thing)working speed × 10 EP$() of DC per second and outputs the same EP/s. A speed of 50 therefore means 500 EP/s of AC output.$(br2)The AC it makes must be taken by a Tesla Coil right next to it — otherwise it goes nowhere."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Speed and Loss",
+      "text": "Working speed decides the conversion efficiency: the higher the speed the greater the absolute power, but the $(l)proportional loss$() grows too. What actually arrives is generation × (1 − speed ÷ (3 × maximum speed)).$(br2)The maximum speed is 50 by default (changeable in the config), so speed 0 loses nothing, speed 20 keeps 86.7%% and speed 50 keeps only 66.7%%.$(br2)Click the buttons in the interface to change it by 1, or hold Shift to change it by 5."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "When to Use It",
+      "text": "$(li)To power electric appliances from solar panels: they make only DC, so it must be converted to AC and handed to a Tesla Coil.$(li)To \"bank\" a power grid: convert AC to DC to fill batteries, then switch back to DC-to-AC when you need it."
     }
   ]
 }

@@ -2,21 +2,45 @@
   "name": "Tesla Coil",
   "icon": "moderndelight:tesla_coil",
   "category": "moderndelight:power_sys",
-  "sortnum": 1,
+  "sortnum": 3,
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": {
         "item": "moderndelight:tesla_coil"
       },
-      "title": "Summary",
-      "text": "Tesla Coil allows you to wirelessly transmit the AC power produced by an alternator(Faraday generators, wind turbine controllers or AC/DC converters in DC to AC mode), right-click to open the GUI where you can turn on a visualisation option."
+      "title": "Overview",
+      "text": "The Tesla Coil is the mod's only wireless power tower. It stores no power itself and never connects directly to a machine: every AC appliance (industrial fermenter, freezer, ice cream maker, juice extractor, electric steamer) depends on it to run.$(br2)The coil draws power from the side $(l)opposite its facing$(): put a Faraday Generator, a Wind Turbine Controller, or an AC/DC Converter in DC-to-AC mode against that face. Each extra coil in the chain weakens the power, so keep generators right next to the coil."
     },
     {
       "type": "patchouli:image",
-      "title": "Instruction",
-      "images": ["moderndelight:guide_images/guide_tesla_coil.png"],
-      "text": "All AC appliances or Tesla coils within the particle effect become energized."
+      "title": "Diagram",
+      "images": ["moderndelight:guide_images/guide_tesla_coil.png"]
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Range",
+      "text": "The coil reaches 8 blocks in each of the six directions — up and down, front and back, left and right — forming a cross-shaped supply area of 48 positions.$(br2)Every working appliance inside is charged for one second at a time; machines tucked diagonally in a corner get nothing."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Overload",
+      "text": "The coil settles accounts every 3 seconds: it totals the draw of every appliance in range, subtracts that from its available power, and only what is left actually gets delivered.$(br2)If the result is zero or less the coil overloads — it stops glowing and stops supplying power, and the power readout in its interface turns red. Run fewer machines at once, or hook up a stronger generator."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Chained Coils",
+      "text": "If a coil has no generator attached, it tries to draw from the most efficient coil in range instead, but it only receives 80%% of that coil's output (the transfer efficiency can be changed in the config).$(br2)Every extra link in the chain loses another share of the power."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stay Safe",
+      "text": "A working coil keeps throwing sparks and shocks every creature within about 1.2 blocks, with damage scaling with its current power. Players are hurt too — do not stand next to a working coil.$(br2)Right-click to open the interface and turn on the particle display to see the 48-block supply area for yourself."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Placement Tips",
+      "text": "The coil's facing decides which side it draws from: the block $(l)behind$() its facing must touch an AC generator. Once placed, right-click it with a Crowbar to rotate it — no need to break and re-place."
     }
   ]
 }

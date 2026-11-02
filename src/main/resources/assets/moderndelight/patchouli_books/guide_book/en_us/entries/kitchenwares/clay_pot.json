@@ -1,0 +1,14 @@
+{
+  "name": "Clay Pot",
+  "icon": "moderndelight:clay_pot",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:clay_pot",
+      "title": "Clay Pot",
+      "text": "For now the clay pot is only a $(thing)decorative block$() that serves as the container for a few special dishes. (It will be overhauled in the future.)"
+    }
+  ]
+}

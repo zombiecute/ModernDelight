@@ -1,0 +1,22 @@
+{
+  "name": "炉灶",
+  "icon": "moderndelight:oven",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:advance_furnace",
+      "title": "高级熔炉",
+      "text": "共 9 格：上方 4 格放原料、下方 4 格出成品、左侧的槽位放燃料。$(br2)四个槽$(thing)同时烧$()，燃料消耗速度是普通熔炉的 4 倍——也就是说它能烧的东西是普通熔炉的 4 倍。$(br2)它只认原版$(thing)熔炼$()配方。$(br2)$(thing)正下方是燃烧中的燃气灶$()时不消耗燃料，将一直保持燃烧状态。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:oven"
+      },
+      "title": "烤炉",
+      "text": "手持$(thing)烤盘$()右键高级熔炉，就能把它改造成烤炉（消耗 1 个烤盘）；反过来用撬棍右键烤炉，会拆回高级熔炉并退回 1 个烤盘。$(br2)烤炉$(thing)一次消耗掉 4 份原料$()、需要 10 秒的时间出一份成品。$(br2)它还能做$(thing)披萨$()：生披萨加配料后放进烤炉即可。$(br2)下方是燃烧中的燃气灶时同样不需要燃料。"
+    }
+  ]
+}

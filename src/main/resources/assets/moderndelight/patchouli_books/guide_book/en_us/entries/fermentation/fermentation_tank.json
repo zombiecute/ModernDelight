@@ -1,0 +1,31 @@
+{
+  "name": "Fermentation Tank",
+  "icon": "moderndelight:fermentation_tank",
+  "category": "moderndelight:fermentation",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:fermentation_tank"
+      },
+      "title": "Fermentation Tank",
+      "text": "The Fermentation Tank is a small can holding $(thing)five buckets$() of liquid, and the only thing that can move $(thing)cultures$() from one machine to another.$(br2)It saves its $(thing)liquid, the CFU of all five cultures and the fermentation quality$() together, so a filled tank is effectively a save file for a fermenter."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How to Use It",
+      "text": "Put the tank in the $(thing)bucket slot$() of the $(l:moderndelight:fermentation/industrial_fermenter)Industrial Fermenter$():$(br)$(li)Tank has something in it → the liquid and cultures are $(thing)poured into the machine$() and the tank is emptied$(li)Tank is empty → the machine's liquid and cultures $(thing)go into the tank$()$(br2)The emptied tank stays in the bucket output slot for you to take."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How It Differs From a Bucket",
+      "text": "A normal bucket carries one bucket of liquid and nothing else; the tank carries $(thing)five buckets$() and $(thing)takes the cultures along$().$(br2)That is its whole reason to exist: fill one somewhere else and you are carrying a fermenter ready to start work."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Quality and Moving Around",
+      "text": "Fermented products carry a $(thing)quality$() (toxic / poor / normal / excellent). Filling a normal bucket writes the quality into the bucket so it travels along; when liquid of different qualities is poured back into the machine, the machine's quality becomes the average of the two.$(br2)So if you want to keep a $(thing)excellent$() product, do not mix it with the cheap stuff.$(br2)Hold $(thing)Ctrl$() over the tank to see the liquid and the CFU of all five cultures; the durability bar in your inventory shows how full it is."
+    }
+  ]
+}

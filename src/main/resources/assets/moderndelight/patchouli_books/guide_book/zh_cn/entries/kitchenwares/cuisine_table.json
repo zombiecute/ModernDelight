@@ -1,0 +1,19 @@
+  {
+  "name": "料理台",
+  "icon": "moderndelight:cuisine_table",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:cuisine_table",
+      "title": "料理台",
+      "text": "共 3 格：左下的槽位放$(thing)食材$()、左上的槽位放$(thing)工具$()、右侧的槽位出成品。$(br2)拿出成品时会消耗 1 份食材，并让工具掉 1 点耐久；工具耐久耗尽会直接损坏。$(br2)它同时只能$(thing)一个人$()使用，别人打开会提示被占用；关掉界面时成品格会被清空。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "和砧板的区别",
+      "text": "类似 $(thing)切石机$()，它可以处理 $(thing)同种输入多种输出$() 情况下所造成的 $(thing)配方冲突$() 问题，而砧板只允许 1 种输入对应 1种输出。"
+    }
+  ]
+}

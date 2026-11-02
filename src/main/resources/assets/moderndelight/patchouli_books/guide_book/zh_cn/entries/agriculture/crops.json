@@ -1,0 +1,28 @@
+{
+  "name": "作物",
+  "icon": "moderndelight:chili_pepper",
+  "category": "moderndelight:agriculture",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "作物",
+      "text": "本模组新增的可以种植的作物，它们和原版作物一样长在$(thing)耕地$()上：$(br)$(li)$(thing)黑胡椒$()：种子是黑胡椒粒$(li)$(thing)辣椒$()：种子是辣椒种子$(li)$(thing)大蒜$()：种子是大蒜$(li)$(thing)大豆$()：种子是大豆"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "右键收获",
+      "text": "长熟之后$(thing)直接右键$()就能收获，不需要工具、不掉耐久、也不受时运影响$(br2)除了黑胡椒，其余三种收完都会退回初始阶段，要重新长。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "直接打掉会更多",
+      "text": "用工具或空手把成熟作物$(thing)整株打掉$()，掉落物比右键更多，而且吃$(thing)时运$()加成$(br2)想留种或收大头就整株打掉，想持续收获就右键。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "用途",
+      "text": "$(li)黑胡椒粒用$(l:moderndelight:kitchenwares/utils)石臼$()研磨成黑胡椒粉，再装瓶成调味罐$(li)辣椒可以直接吃、做辣椒粉调味罐，或用烤炉熬成$(thing)辣椒酱$()$(li)大蒜用刀切出蒜瓣，或做成蒜蓉调味品$(li)大豆可以制取豆浆和豆腐等"
+    }
+  ]
+}

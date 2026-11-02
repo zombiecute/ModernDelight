@@ -6,32 +6,42 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Electrician's Desk",
-      "text": "The electrician's desk is the gateway that opens the electrical system, and is required to craft almost all electricity facilities."
+      "title": "Power Starts Here",
+      "text": "The Electrician's Desk is where the power system begins: generators, batteries, Tesla Coils, charging posts, AC/DC converters, the industrial fermenter — almost every electric device is \"assembled\" right here.$(br2)Right-click to open the interface. It has nine slots: the six on the left hold the ingredients ($(l)the order must be right$()), paper and ink go top-right, and the finished item appears on the far right."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:electricians_desk",
-      "text": "Once the shaped recipe is put in the designated order on the electrician's desk as instructed by EMI or REI, you don't immediately get the output you want, but need to complete a series of mini-games to do so."
+      "text": "The desk itself is crafted at a crafting table. Laying out the materials is not the same as finishing the craft — click the lit button on the right and it first spends 1 paper and 1 ink, then starts a mini-game."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Two Steps to Craft",
+      "text": "Once the mini-game is cleared the button lights up again, and only $(l)one more click$() actually consumes the ingredients and produces the item. In other words, every craft costs 1 paper + 1 ink and one cleared mini-game.$(br2)The ingredient order must follow exactly what EMI or REI shows."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Do Not Walk Away",
+      "text": "Mini-game progress lives on the client only: once you close the interface, or step more than 7 blocks away from the desk, that round is void and the paper and ink are not refunded.$(br2)Only one player can use a desk at a time."
     },
     {
       "type": "patchouli:text",
       "title": "2048",
-      "text": "This mini-game requires you to perform movement actions and synthesise larger numbers by pressing WASD or buttons in the GUI, the goal being to synthesise the number specified in the target bar."
+      "text": "Slide the tiles with WASD or the on-screen buttons; equal numbers merge into a bigger number, and the goal is the number shown in the target field.$(br2)Each craft randomly picks one of four mini-games; when 2048 comes up the goal is usually 64, 128 or 256."
     },
     {
       "type": "patchouli:image",
-      "title": "Example",
-      "images": ["moderndelight:guide_images/mini_game_1.png","moderndelight:guide_images/mini_game_1_done.png"]
+      "title": "2048 Example",
+      "images": ["moderndelight:guide_images/mini_game_1.png", "moderndelight:guide_images/mini_game_1_done.png"]
     },
     {
       "type": "patchouli:text",
-      "title": "Circuit Reproduction",
-      "text": "This mini-game requires you to replicate the pattern located in the ‘?’ button in the blue background screen to the green background screen at the beginning, try to reproduce the pattern using the tools provided."
+      "title": "Circuit Replica",
+      "text": "Click the '?' button to see a blue target pattern, then rebuild the circuit board from the green starting board to match it: click to rotate a component, use the tools to remove or move them, press Space to switch to move mode, and press R to reset.$(br2)Some recipes ask for one board, others ask for three boards in a row."
     },
     {
       "type": "patchouli:image",
-      "title": "Example",
+      "title": "Circuit Replica Example",
       "images": [
         "moderndelight:guide_images/mini_game_2.png",
         "moderndelight:guide_images/mini_game_2_help.png",
@@ -41,13 +51,18 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Hanoi Tower",
-      "text": "This mini-game requires you to move the left tower to the right and the short blocks can only be placed on top of the long blocks."
+      "title": "Tower of Hanoi",
+      "text": "Move every disc from the left peg to the right peg; a shorter disc can only rest on a longer one. Press Enter at any time to finish.$(br2)The number of discs is set by the recipe, usually 3 to 6: six discs take at least 63 moves."
     },
     {
       "type": "patchouli:image",
-      "title": "Example",
-      "images": ["moderndelight:guide_images/mini_game_3.png","moderndelight:guide_images/mini_game_3_done.png"]
+      "title": "Tower of Hanoi Example",
+      "images": ["moderndelight:guide_images/mini_game_3.png", "moderndelight:guide_images/mini_game_3_done.png"]
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Prepare the Parts First",
+      "text": "Most electric devices need three kinds of \"component\" as intermediate parts: $(item)Redstone Component$(), $(item)Silicon Component$() and $(item)Diamond Component$(), four per craft.$(br2)The redstone component is the common part of every electric kitchen appliance (electric steamer, ice cream maker, electric whisk, juice extractor, advanced furnace), so make a batch of them. Silicon ingots are made by smelting quartz in a blast furnace."
     }
   ]
 }

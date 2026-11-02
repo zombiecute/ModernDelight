@@ -1,0 +1,19 @@
+{
+  "name": "Cuisine Table",
+  "icon": "moderndelight:cuisine_table",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:cuisine_table",
+      "title": "Cuisine Table",
+      "text": "Three slots: the bottom-left takes $(thing)ingredients$(), the top-left takes a $(thing)tool$(), and the right side gives the product.$(br2)Taking the product consumes one portion of ingredients and costs the tool 1 durability; a tool that runs out breaks.$(br2)Only $(thing)one player$() can use it at a time — anyone else is told it is occupied — and the product slot is emptied when the interface is closed."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How It Differs From a Cutting Board",
+      "text": "Like the $(thing)stonecutter$(), it resolves the $(thing)recipe conflicts$() you get when $(thing)one input has several outputs$(), while a cutting board only allows one output per input."
+    }
+  ]
+}

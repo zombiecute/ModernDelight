@@ -6,32 +6,42 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "电工台",
-      "text": "电工台是打开本模组电力系统的大门，几乎所有的电力设施均需要电工台来合成。"
+      "title": "电力从这里开始",
+      "text": "电工台是电力系统的起点：发电机、电池、特斯拉线圈、充电桩、交流/直流转换器、工业发酵机等几乎所有电力设备，都要在这里“组装”出来。$(br2)右键打开界面，里面共有 9 个格子：左侧 6 格是的原料槽（$(l)顺序不能错$()），右上放纸和墨，最右侧是成品格。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:electricians_desk",
-      "text": "当按照EMI或REI的指示在电工台上摆好配方后，你并不能立即得到你所想要的产品，而需要完成一系列的小游戏才行。"
+      "text": "电工台本身可以在工作台合成。摆好材料并不等于合成完成——点击右侧亮起的按钮，会先消耗 1 张纸和 1 份墨，然后进入一个小游戏。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "两步合成",
+      "text": "小游戏通关后，按钮会再次亮起，$(l)再点一次$()才会真正消耗原料并产出成品。也就是说每合成一次，都要付出 1 张纸 + 1 份墨，并通关一次小游戏。$(br2)电工台的材料顺序必须按 EMI 或 REI 显示的位置原样摆放。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "别中途走开",
+      "text": "小游戏的进度只存在客户端：一旦关闭界面，或者离开电工台超过 7 格，这局小游戏就会作废，纸和墨也不会退还。$(br2)同一台电工台同时只能被一位玩家使用。"
     },
     {
       "type": "patchouli:text",
       "title": "2048",
-      "text": "这个小游戏需要你通过按下WASD或GUI中的按钮来进行移动操作，并合成更大的数字，目标是合成出目标栏所指定的数字。"
+      "text": "这个小游戏需要你通过按下 WASD 或界面中的按钮来移动方块，相同的数字会合并成更大的数字，目标是合成出目标栏所指数字。$(br2)每次合成只在四种小游戏中随机抽到一种，抽到 2048 时目标通常是 64、128 或 256。"
     },
     {
       "type": "patchouli:image",
-      "title": "示例",
-      "images": ["moderndelight:guide_images/mini_game_1.png","moderndelight:guide_images/mini_game_1_done.png"]
+      "title": "2048 示例",
+      "images": ["moderndelight:guide_images/mini_game_1.png", "moderndelight:guide_images/mini_game_1_done.png"]
     },
     {
       "type": "patchouli:text",
       "title": "电路复刻",
-      "text": "这个小游戏需要你将位于'?'按钮中蓝底界面的图案复刻到最开始的绿底界面中，尝试使用提供的工具来复刻图案。"
+      "text": "点开 '?' 按钮可以看到一张蓝底的目标图案，请把最初绿底界面里的电路板复刻成一样：点击可以旋转元件，用工具可以拆除或移动，空格键切换移动模式，R 键重置。$(br2)有的配方要求复刻 1 块板，有的要求连续复刻 3 块板。"
     },
     {
       "type": "patchouli:image",
-      "title": "示例",
+      "title": "电路复刻示例",
       "images": [
         "moderndelight:guide_images/mini_game_2.png",
         "moderndelight:guide_images/mini_game_2_help.png",
@@ -42,12 +52,17 @@
     {
       "type": "patchouli:text",
       "title": "汉诺塔",
-      "text": "这个小游戏需要你将左侧的塔移动到右侧去，且短块只能放置在长块的上面。"
+      "text": "把左侧柱子上的圆盘全部移到右侧柱子上，短盘只能放在长盘上面。按下回车键可以随时结束。$(br2)圆盘数量由配方决定，通常是 3 到 6 个：6 个盘最少需要 63 步。"
     },
     {
       "type": "patchouli:image",
-      "title": "示例",
-      "images": ["moderndelight:guide_images/mini_game_3.png","moderndelight:guide_images/mini_game_3_done.png"]
+      "title": "汉诺塔示例",
+      "images": ["moderndelight:guide_images/mini_game_3.png", "moderndelight:guide_images/mini_game_3_done.png"]
+    },
+    {
+      "type": "patchouli:text",
+      "title": "先准备零件",
+      "text": "大多数电力设备都需要三种“组件”作为中间料：$(item)红石组件$()、$(item)硅组件$() 与 $(item)钻石组件$()，每次合成产出 4 个。$(br2)其中红石组件是所有电动厨具（电蒸笼、冰淇淋机、电动打蛋器、榨汁机、高级熔炉）的通用零件，建议一次性多做一些。硅锭由石英在高炉中烧制得到。"
     }
   ]
 }

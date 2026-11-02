@@ -5,19 +5,31 @@
   "sortnum": 3,
   "pages": [
     {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:bamboo_grate",
+      "recipe2": "moderndelight:bamboo_cover",
+      "title": "笼屉与笼盖"
+    },
+    {
       "type": "patchouli:text",
-      "title": "传统蒸笼",
-      "text": "当有一个装有水的炼药锅被加热时，里面的水会逐渐变成水蒸汽。你可以在这个被加热的炼药锅上面搭建蒸笼来蒸食物，蒸笼由若干笼屉和一个笼盖组成。"
+      "title": "蒸笼",
+      "text": "蒸笼是 $(thing)一个多方快结构$()，$(br2)手持 $(thing)笼屉$() 右键它，可以往上加一层，最多 $(thing)4 层$()，最高可以叠 $(thing)3 格高$()；每层提供 $(thing)4 个加工槽$()，满层就是 4 × 4 × 3 = 48 格。$(br2)手持 $(thing)笼盖$() 右键可以盖盖；潜行 + 撬棍右键则会取下笼盖或拆掉一层。$(br2)空手右键打开界面，看看每格蒸到哪一步了。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "怎么加热",
+      "text": "蒸笼自己不会烧火，需要 $(thing)水 + 燃气灶$()：$(li)蒸笼正下方放 $(thing)装有水的炼药锅$()$(li)炼药锅正下方是 $(thing)点燃的燃气灶$()$(br2)必须是“灶 → 水炼药锅 → 蒸笼”竖直相邻；叠了多层的蒸笼，热量从底层往上传递。$(br2)没有笼盖相当于敞口，蒸制不会进行。"
     },
     {
       "type": "patchouli:image",
       "title": "示例",
-      "images": ["moderndelight:guide_images/guide_steamer.png"]
+      "images": ["moderndelight:guide_images/guide_steamer.png"],
+      "text": "灶在最下，水炼药锅居中，蒸笼在上面，盖上笼盖。"
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "moderndelight:bamboo_grate",
-      "recipe2": "moderndelight:bamboo_cover"
+      "type": "patchouli:text",
+      "title": "蒸制与批量",
+      "text": "每一格每秒推进一次进度，进度满了原地变成成品（数量不变）。$(br2)批量规则：单格物品数 $(thing)≤ 4 时按配方时间$()；超过 4 个时耗时变成 $(thing)配方时间 × 数量 ÷ 4$()——所以一组 64 个要 16 倍时间，想快就分格放。$(br2)每秒都会刷新一次可用槽数与加热状态；漏斗可以任意面塞入和抽取。"
     }
   ]
 }

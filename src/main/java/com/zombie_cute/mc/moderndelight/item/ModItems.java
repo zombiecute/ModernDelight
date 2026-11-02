@@ -707,6 +707,8 @@ public class ModItems {
             new FabricItemSettings().recipeRemainder(JAR).maxCount(16),
             new StatusEffectInstance(StatusEffects.STRENGTH,40 * 20,1),
             new StatusEffectInstance(ModEffectsAndPotions.MOUTH_AFIRE, 12 * 20,0)));
+
+
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(ModernDelightMain.MOD_ID,name),item);
     }

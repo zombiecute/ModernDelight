@@ -1,0 +1,18 @@
+{
+  "name": "Wild Crops",
+  "icon": "moderndelight:black_pepper_corn",
+  "category": "moderndelight:agriculture",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Where to Look",
+      "text": "The world generates $(thing)wild variants$() of this mod's crops, and finding them is how you start farming:$(br)$(li)$(thing)Wild Black Pepper$(): jungle$(li)$(thing)Wild Chili Pepper$(): savanna, wooded badlands$(li)$(thing)Wild Garlic$(): forest, mountains, taiga$(li)$(thing)Wild Soybean$(): plains, forest"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How to Harvest",
+      "text": "$(li)$(thing)Without Silk Touch or shears$(): drops 0~2 seed items,$(li)$(thing)With Silk Touch or shears$(): drops the block itself, so you can carry the whole plant home"
+    }
+  ]
+}

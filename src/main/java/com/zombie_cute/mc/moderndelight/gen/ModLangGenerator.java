@@ -618,6 +618,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModEffectsAndPotions.GUT_FLORA.getTranslationKey() + ".description","Slower hunger drain and no food coma from hearty meals.");
         translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE,"Brain Freeze");
         translationBuilder.add(ModEffectsAndPotions.BRAIN_FREEZE.getTranslationKey() + ".description","Slowed for a moment.");
+        translationBuilder.add(ModEffectsAndPotions.MAGNETIC,"Magnetic");
+        translationBuilder.add(ModEffectsAndPotions.MAGNETIC.getTranslationKey() + ".description","Continuously attract nearby item.");
 
         translationBuilder.add("item.minecraft.potion.effect.sticky_potion","Potion of Sticky");
         translationBuilder.add("item.minecraft.potion.effect.sticky_long_potion","Potion of Sticky");
@@ -797,7 +799,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"Modern Delight Guide");
         translationBuilder.add("patchouli.moderndelight.book.name","Modern Delight Guide");
-        translationBuilder.add("patchouli.moderndelight.book.landing_text","Introducing you: Modern Delight. This book will show you how to play this mod better.");
+        translationBuilder.add("patchouli.moderndelight.book.landing_text","Introducing you: Modern Delight.$(br2)This book has five chapters: $(thing)gas$(), $(thing)power$(), $(thing)kitchen$(), $(thing)fermentation$(), and $(thing)farming and fishing$(). The first one is about lighting biogas, the last one about growing crops. Read them in order to go from your first flame to full production.");
 
         translationBuilder.add("advancement.moderndelight.get_start_desc", "A simple mod guide begins here. Let's get cooking!");
         translationBuilder.add("advancement.moderndelight.got_whisk.title", "The Truth Is It's a Whisk");

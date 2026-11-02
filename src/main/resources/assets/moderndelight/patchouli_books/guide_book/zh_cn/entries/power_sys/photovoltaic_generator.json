@@ -2,14 +2,30 @@
   "name": "光伏发电",
   "icon": "moderndelight:photovoltaic_generator",
   "category": "moderndelight:power_sys",
-  "sortnum": 4,
+  "sortnum": 7,
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": {
         "item": "moderndelight:photovoltaic_generator"
       },
-      "text": "光伏发电与风力和火力发电最大的不同之处就是它直接产生直流电，它可以直接给电池充能，如果你想用它给交流用电器供能，那么你就需要一个交流直流转换器来实现进一步的操作。"
+      "title": "光伏发电",
+      "text": "光伏发电机把阳光直接变成$(thing)直流电$()，内部最多缓存 $(thing)3000 EP$()。它是唯一不需要任何燃料的发电机，代价是只能在白天工作。$(br2)它的第 1 格可以放$(l:moderndelight:power_sys/battery)电池$()，每秒为电池充入 $(thing)80 EP$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "发电量",
+      "text": "发电机每秒结算一次，产量取决于$(thing)时段$()、$(thing)天气$()和$(thing)高度$()：$(br)$(li)黎明与黄昏 ×1$(li)上午与下午 ×2$(li)正午（4283~7700 tick）×3$(br2)高度越高产量越大，Y=64 时正午晴天约 $(thing)96 EP/s$()，Y=200 时约 $(thing)300 EP/s$()。$(br2)下雨每小时减少产量，雷暴减少得更多；正午既使下雨也不会停机。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "两种工作模式",
+      "text": "$(li)$(bold)高效率模式$()：所在格的天光 ≥ 13、正上方没有完整实心方块、且不是下界或末地这类没有昼夜的维度。只有这时才会根据时段发电。$(li)$(bold)低效率模式$()：周围有足够$(thing)方块光$()（火把、灯笼等）时触发，每点额外的方块光只换来约 $(thing)1 EP/s$()，聊胜于无。$(br2)注意低效率模式与高效率模式互不冲突：白天露天时两者会一起结算。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "使用方法",
+      "text": "光伏发电机$(thing)把电从背面输出$()——也就是朝向的反方向，每秒最多输出 1000 EP。想给它接上用电设备，请把背面对准能量的接收方。$(br2)它只产生直流电，可以直接给电池充电、给$(l:moderndelight:power_sys/charging_post)充电桩$()供能；要给交流机器供电，必须经过$(l:moderndelight:power_sys/ac_and_dc)交流直流转换器$()。$(br2)下界与末地没有昼夜循环，光伏在那里 $(thing)完全不发电$()。"
     }
   ]
 }

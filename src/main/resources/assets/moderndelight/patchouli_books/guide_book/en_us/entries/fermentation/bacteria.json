@@ -1,0 +1,53 @@
+{
+  "name": "Cultures and Fermentation",
+  "icon": "moderndelight:cheese",
+  "category": "moderndelight:fermentation",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Cultures Are Not Items",
+      "text": "Five kinds of $(thing)culture$() live in the Industrial Fermenter at once, each measured by a $(thing)CFU$() number. They cannot be bottled and can only move home inside a $(l:moderndelight:fermentation/fermentation_tank)Fermentation Tank$().$(br2)The most numerous one, provided it has at least $(thing)1 000 CFU$(), is the $(thing)dominant culture$(), and only the dominant culture decides what can be fermented next.$(br2)The ceiling is 163835; above 50 000 growth slows down noticeably. Each finished fermentation costs the dominant culture 20%%."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How to Make It Grow",
+      "text": "Cultures settle $(thing)once per second$() and only grow when three conditions are met:$(li)Temperature within the culture's $(thing)optimum ± tolerance$()$(li)Light level at the machine no higher than the culture's $(thing)light ceiling$()$(li)There is $(thing)liquid$() in the tank$(br2)If any of them fails, the population drops by $(thing)1%% per second$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How Fast It Grows",
+      "text": "Light does not affect speed as long as it stays under the ceiling; temperature is what really matters: exactly at the optimum ×2.0, within half the tolerance ×1.5, anywhere else only ×0.3.$(br2)Once the dominant culture passes 50 000, growth follows a curve and flattens out as it approaches the 163835 ceiling."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Five Cultures",
+      "text": "$(li)$(thing)Yeast$(): 28°C ±12, 2000~30000, light ≤7$(li)$(thing)Lactobacillus$(): 35°C ±15, 5000~20000, light ≤7$(li)$(thing)Acetobacter$(): 32°C ±10, 3000~100000, light ≤13$(li)$(thing)Mucor$(): 25°C ±5, 4000~10000, light ≤4$(li)$(thing)Escherichia$(): 37°C ±3, 8000~10000, light ≤4$(br2)\"2000~30000\" is that culture's $(thing)sweet spot$(); landing outside it lowers product quality. The ± figure is the temperature range it tolerates — beyond that it starts dying."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Starting From Scratch: Liquid Cultures",
+      "text": "To get your first culture, the machine must have $(thing)no dominant culture at all$() — that is, drain both the internal liquid and the tank. Then the \"culture\" recipes become available:$(br)$(li)$(thing)Yeast$(): 10 mB sugar water, target 28°C, light 4, 18 seconds$(li)$(thing)Lactobacillus$(): 10 mB milk, target 32°C, light 4, 24 seconds$(li)$(thing)Acetobacter$(): 10 mB alcohol, target 32°C, light 15, 15 seconds$(br2)Each only gives $(thing)50 CFU$(), and then you wait for it to grow."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Starting From Scratch: Solid Cultures",
+      "text": "The other two skip the liquid and grow in the item slots:$(br)$(li)$(thing)Mucor$(): mycelium + dirt + mycelium + dirt, target 25°C, light 0, 25 seconds$(li)$(thing)Escherichia$(): rotten flesh + dirt + rotten flesh + sugar, target 37°C, light 4, 20 seconds$(br2)Mucor gives $(thing)300 CFU$() and Escherichia $(thing)500 CFU$(), along with a bonus of bone meal.$(br2)Escherichia is also the source of $(thing)vitamin K$(): let it dominate and keep it in its sweet spot to get an excellent product."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Fermentation Recipes",
+      "text": "With a dominant culture in place, only recipes matching it can run:$(br)$(li)$(thing)Alcohol$(): sugar water → alcohol, yeast, target 28°C / light 2, 176 seconds$(li)$(thing)Vinegar$(): sugar water or alcohol → vinegar, acetobacter, target 32°C / light 8, 240 seconds$(li)$(thing)Cheese$(): milk → cheese, lactobacillus, target 35°C / light 2, 142 seconds$(br2)When recipes $(thing)collide$(), the machine picks the one whose temperature and light are closest."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Contaminants and Spoilage",
+      "text": "Impure cultures cost you quality:$(li)More than 300 Escherichia that is not dominant: quality -2$(li)More than 500 mucor: quality -1$(li)More than 1000 acetobacter: quality -1$(br2)The environment invites contaminants too: at 30°C or above, light 7 or above, and with less than 1000 acetobacter, there is a 1%% chance per second for $(thing)acetobacter$() to appear out of nowhere, possibly bringing $(thing)Escherichia$() with it."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Vitamin K Exception",
+      "text": "Not every contaminant is bad. If you let $(thing)Escherichia dominate$() and keep it in its sweet spot, the product comes out $(thing)excellent$() — supposedly rich in vitamin K.$(br2)So think twice before scrubbing a tank completely clean."
+    }
+  ]
+}

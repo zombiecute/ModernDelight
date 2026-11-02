@@ -1,0 +1,20 @@
+{
+  "name": "木盘与玻璃杯",
+  "icon": "moderndelight:wooden_plate",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:wooden_plate",
+      "title": "木盘",
+      "text": "木盘是$(thing)展示用$()的盘子：右键放入一件食物，它会显示在盘子里；空手潜行右键可以让它转 45°，空手右键则把食物弹出来。$(br2)部分物品如马铃薯、浆果、生鱼、熟鱼、苹果、金苹果等会显示其独特的模型。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:glass_cup",
+      "title": "玻璃杯",
+      "text": "玻璃杯可以$(thing)同格叠 4 个$()，逐个放下会叠起来；打掉时按数量退回。"
+    }
+  ]
+}

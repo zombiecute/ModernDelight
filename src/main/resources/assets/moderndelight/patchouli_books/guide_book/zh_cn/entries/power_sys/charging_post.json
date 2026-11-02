@@ -1,0 +1,26 @@
+{
+  "name": "充电桩",
+  "icon": "moderndelight:charging_post",
+  "category": "moderndelight:power_sys",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:charging_post"
+      },
+      "title": "简介",
+      "text": "充电桩是给$(l)物品$()充电的设备：它内部只缓存 1 000 EP 直流电，然后把这些电灌进电池或电动搅拌器里。$(br2)它自己不会发电，需要额外的直流电源给它供电，或者直接塞一块有电的电池进去。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "三个格子",
+      "text": "界面里共有三个槽：左侧两个是$(item)电池槽$()，优先消耗上面的、再消耗下面的；右侧是$(item)待充电物品槽$()，只接受电池与电动搅拌器。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "充电速度",
+      "text": "正常状态下每秒给物品充入约 27 EP，同时从电池里抽取 100 EP/秒（每次抽取按 100 → 10 → 1 EP 分档，所以电池快空时会自动减慢）。$(br2)如果物品只差不到 30 EP 就充满了，充电桩会改成每秒只补 1 EP —— 想快点充满就别让电池见底。$(br2)电动搅拌器最多存 500 EP，充满需要约 19 秒。"
+    }
+  ]
+}

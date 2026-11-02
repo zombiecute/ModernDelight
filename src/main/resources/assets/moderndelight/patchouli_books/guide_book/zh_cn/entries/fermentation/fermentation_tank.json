@@ -1,0 +1,31 @@
+{
+  "name": "发酵液储罐",
+  "icon": "moderndelight:fermentation_tank",
+  "category": "moderndelight:fermentation",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:fermentation_tank"
+      },
+      "title": "发酵液储罐",
+      "text": "发酵液储罐是一个能装 $(thing)5 桶$() 液体的小罐子，也是唯一能把$(thing)菌种$()从一台机器搬到另一台机器的东西。$(br2)罐子会连同里面的$(thing)液体、五种菌的 CFU、以及发酵品质$() 一起被保存，所以装满的罐子本身就是一台“发酵机存档”。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "怎么用",
+      "text": "把罐子放进$(l:moderndelight:fermentation/industrial_fermenter)工业发酵机$()的 $(thing)装桶槽$()：$(br)$(li)罐子里有东西 → 液体与菌种$(thing)倒进机器$()，罐子空出来$(li)罐子是空的 → 机器的液体与菌种$(thing)装进罐子$()$(br2)抽干后的罐子会留在装桶输出槽，可以再拿走。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "和桶的区别",
+      "text": "普通桶一次只能带 1 桶液体，别的什么都带不了；储罐能带 $(thing)5 桶$()，而且$(thing)把菌种一起带走$()。$(br2)这才是它存在的意义：在别处灌满一罐，就等于带着一台可以立刻开动的发酵机过去。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "品质与搬运",
+      "text": "发酵产物带有一份$(thing)品质$()（有毒 / 劣质 / 正常 / 优质）。用普通桶灌液体时，品质会写进桶里一起流转；把不同品质的液体倒回机器时，机器的品质取两者的平均值。$(br2)所以想保住一瓶$(thing)优质$()的产物，别把它和劣质货混在一起。$(br2)对着罐子按住 $(thing)Ctrl$() 可以查看里面装的液体与五种菌各自的 CFU；物品栏里的耐久条则显示液体装了多少。"
+    }
+  ]
+}

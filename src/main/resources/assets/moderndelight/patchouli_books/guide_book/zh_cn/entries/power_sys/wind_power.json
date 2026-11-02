@@ -2,23 +2,23 @@
   "name": "风力发电",
   "icon": "moderndelight:fan_blade",
   "category": "moderndelight:power_sys",
-  "sortnum": 2,
+  "sortnum": 5,
   "pages": [
     {
       "type": "patchouli:text",
       "title": "简介",
-      "text": "风力发电是最简单的发电方式，只需要风力发电机控制器和风力发电机叶片即可建造风力发电机。"
+      "text": "风力发电是前期最容易搭建的交流电源：一台$(item)风力发电机控制器$()加上一片$(item)风力发电机叶片$()就够了，不需要燃料，也不消耗任何物品。$(br2)它的发电量只与$(l)控制器所在的高度$()和天气有关，所以把塔盖得越高越好。"
     },
     {
       "type": "patchouli:image",
       "images": ["moderndelight:guide_images/guide_wind_turbine.png"],
-      "text": "一台风力发电机的示例"
+      "text": "一台风力发电机的示例：控制器正对着叶片。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:fan_blade",
       "title": "风力发电机叶片",
-      "text": "可以放置在任意方块的侧面上。"
+      "text": "叶片要贴在某个方块的侧面上（背后必须有方块支撑）。"
     },
     {
       "type": "patchouli:spotlight",
@@ -26,7 +26,17 @@
         "item": "moderndelight:wind_turbine_controller"
       },
       "title": "风力发电机控制器",
-      "text": "风力发电机的核心，右键可以打开GUI以查看发电状况。"
+      "text": "控制器会检查它朝向的那一格：那里必须是一片风力发电机叶片，而且叶片的朝向要和控制器一致。$(br2)一台控制器只认一片叶片，多放或错开一格都不会发电。右键可以打开界面查看当前高度与输出。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "发电量",
+      "text": "晴朗天气下：发电量 ≈ 控制器高度 ÷ 5 × 倍率（倍率默认 2.0）。$(br)$(li)Y = 64：约 25 EP/s$(li)Y = 128：约 51 EP/s$(li)Y = 200：约 80 EP/s$(br2)高度为负（深海、洞穴）时也有保底输出。$(br2)同时在雨天时和雷雨天气发电量会显著提升。界面上显示的 EP/S 是实时值。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "实用技巧",
+      "text": "$(li)控制器与叶片的朝向可以用撬棍右键旋转，装反了不用拆。$(li)叶片在 Y≥200 时转动动画会加快，但那只是好看，发电量仍按公式计算。$(li)风力控制器属于交流电源，直接贴在特斯拉线圈的取电面即可，或接到交流/直流转换器上给电池充电。"
     }
   ]
 }

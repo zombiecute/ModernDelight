@@ -420,7 +420,7 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
         if (dominant != null) {
             setCFU(dominant, (int)(getCFU(dominant) * 0.8));
         }
-        // 让附近的玩家获得发酵进度。
+        // 让附近的玩家获得发酵进度
         PlayerEntity nearbyPlayer = world.getClosestPlayer(
                 pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16.0, false);
         if (nearbyPlayer instanceof ServerPlayerEntity serverPlayer) {
@@ -647,6 +647,7 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
         nbt.putLong("industrial_fermenter.fluid_amount", fluidStorage.amount);
         nbt.put("industrial_fermenter.fluid_variant", fluidStorage.variant.toNbt());
         nbt.putInt("industrial_fermenter.temperatureFix", temperatureFix);
+        nbt.putInt("industrial_fermenter.cachedPower", cachedPower);
         nbt.putInt("industrial_fermenter.progress", progress);
         nbt.putInt("industrial_fermenter.max_progress", maxProgress);
         nbt.putInt("industrial_fermenter.closingAnimationTick", closingAnimationTick);
@@ -667,6 +668,7 @@ public class IndustrialFermenterBlockEntity extends BlockEntity implements GeoBl
             fluidStorage.amount = 0;
         }
         temperatureFix = nbt.getInt("industrial_fermenter.temperatureFix");
+        cachedPower = nbt.getInt("industrial_fermenter.cachedPower");
         progress = nbt.getInt("industrial_fermenter.progress");
         maxProgress = nbt.getInt("industrial_fermenter.max_progress");
         closingAnimationTick = nbt.getInt("industrial_fermenter.closingAnimationTick");

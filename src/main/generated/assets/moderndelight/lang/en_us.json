@@ -737,7 +737,7 @@
   "modmenu.descriptionTranslation.moderndelight": "Allow Minecraft to have a more enriched way of processing ingredients.",
   "modmenu.nameTranslation.moderndelight": "Modern Delight",
   "modmenu.summaryTranslation.moderndelight": "A more modern approach to ingredients.",
-  "patchouli.moderndelight.book.landing_text": "Introducing you: Modern Delight. This book will show you how to play this mod better.",
+  "patchouli.moderndelight.book.landing_text": "Introducing you: Modern Delight.$(br2)This book has five chapters: $(thing)gas$(), $(thing)power$(), $(thing)kitchen$(), $(thing)fermentation$(), and $(thing)farming and fishing$(). The first one is about lighting biogas, the last one about growing crops. Read them in order to go from your first flame to full production.",
   "patchouli.moderndelight.book.name": "Modern Delight Guide",
   "sounds.moderndelight.block_food_frying": "Food: Frying",
   "sounds.moderndelight.block_freezer_close": "Freezer: Close",

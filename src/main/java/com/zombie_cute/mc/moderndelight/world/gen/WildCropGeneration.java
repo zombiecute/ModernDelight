@@ -19,8 +19,7 @@ public class WildCropGeneration {
                         .or(BiomeSelectors.includeByKey(BiomeKeys.WOODED_BADLANDS)),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.WILD_CHILI_PLACED);
         BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.VILLAGE_PLAINS_HAS_STRUCTURE)
-                        .or(BiomeSelectors.tag(BiomeTags.IS_FOREST))
-                        .or(BiomeSelectors.includeByKey(BiomeKeys.WOODED_BADLANDS)),
+                        .or(BiomeSelectors.tag(BiomeTags.IS_FOREST)),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.WILD_SOYBEAN_PLACED);
     }
 }

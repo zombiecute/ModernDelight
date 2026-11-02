@@ -407,6 +407,12 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.MATCHA);
         getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.CHILI_POWDER_SEASONING);
         getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.WHIPPING_CREAM);
+        getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.CARAMEL);
+        getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.CHOCOLATE_SAUCE);
+        getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.MIXED_JAM);
+        getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.CRAB_ROE);
+        getOrCreateTagBuilder(TagKeys.CONDIMENTS).add(ModItems.CHILI_SAUCE);
+
         // Inks
         getOrCreateTagBuilder(TagKeys.INKS).add(Items.INK_SAC);
         getOrCreateTagBuilder(TagKeys.INKS).add(Items.GLOW_INK_SAC);

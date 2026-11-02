@@ -1,0 +1,14 @@
+{
+  "name": "砂锅",
+  "icon": "moderndelight:clay_pot",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:clay_pot",
+      "title": "砂锅",
+      "text": "砂锅目前只是$(thing)装饰方块$()，可以作为一些特殊菜品的容器。（未来会大改）"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Stoves and Ovens",
+  "icon": "moderndelight:oven",
+  "category": "moderndelight:kitchenwares",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "moderndelight:advance_furnace",
+      "title": "Advanced Furnace",
+      "text": "Nine slots: the four above take ingredients, the four below give products, and the slot on the left takes fuel.$(br2)It smelts in $(thing)four slots at once$(), burning fuel four times as fast as a normal furnace — which is to say it smelts four times as much.$(br2)It only accepts vanilla $(thing)smelting$() recipes.$(br2)While $(thing)a lit gas cooking stove sits directly below$() it needs no fuel and burns forever."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:oven"
+      },
+      "title": "Oven",
+      "text": "Right-click an Advanced Furnace with a $(thing)Baking Tray$() to convert it into an Oven (using one tray); the reverse works too — right-click the oven with a crowbar to get an Advanced Furnace back, along with the tray.$(br2)The oven $(thing)consumes four portions of ingredients at once$() and takes 10 seconds per product.$(br2)It also bakes $(thing)pizza$(): top a raw pizza and put it in.$(br2)A lit gas cooking stove below it likewise means no fuel."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Trawler",
+  "icon": "moderndelight:trawler",
+  "category": "moderndelight:agriculture",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "moderndelight:trawler"
+      },
+      "title": "Trawler",
+      "text": "Set the trawler on the water surface and right-click it to cast or haul the net; it gathers fish and shrimp for you.$(br2)Each haul takes $(thing)60 seconds$() by default, and it has $(thing)19 slots$(): the top slot in the interface holds bait, the rest collect the catch.$(br2)Right-click to cast or haul — casting takes 2 seconds, hauling 3 — and $(thing)it only counts time while the net is down$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How to Place It",
+      "text": "The block $(thing)directly below the trawler must be a still water source block$().$(br2)If you cast it while standing on the bank and aiming at the water, it mounts itself on top of the source block; if water flows in from the side, the trawler $(thing)falls straight off$() — so keep it away from waterfalls and streams.$(br2)When the output slots are full it pauses, so come back regularly."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Bait",
+      "text": "Bait can go in the bait slot, and each kind has its own $(thing)haul interval and consumption chance$():$(br)$(li)Seeds (c:seeds): 10 seconds, 60%% chance to be consumed$(li)Fruit (c:foods/fruits): 5 seconds, 30%% chance to be consumed$(li)Ancient Debris: 50 seconds, 2%% chance to be consumed$(li)Amethyst Shard: 500 seconds, always consumed$(br2)With no bait it falls back to the default 60 seconds."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What the Bait Brings",
+      "text": "$(li)Seeds and fruit: haul in all sorts of fish and shrimp$(li)Ancient Debris and Amethyst Shards: use the $(thing)treasure table$(), which can bring up rare finds$(br2)The catch: $(thing)bait only works in open water$() — drop anything into a dead pond and you only get junk."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Open Water",
+      "text": "The $(thing)5×5×3$() area below the trawler must be all water, and the $(thing)sky light$() above it must be at least 12.$(br2)When that holds, even without bait there is roughly a $(thing)89%%$() chance to roll the vanilla fish table and $(thing)11%%$() to bring up junk; when it does not hold you $(thing)only get junk$().$(br2)So moor it in the middle of a large lake or the sea, not in a one-block-wide channel."
+    }
+  ]
+}

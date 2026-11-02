@@ -5,14 +5,20 @@
   "sortnum": 2,
   "pages": [
     {
-      "type": "patchouli:text",
-      "title": "烤盘与锅铲",
-      "text": "在被加热时会进入炒菜模式，手持物品右键可以将物品放置在其上面。这时手持锅铲右键便可以对烤盘上的物品进行翻炒，兼容所有的营火加工配方。"
-    },
-    {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:baking_tray",
-      "recipe2": "moderndelight:spatula"
+      "recipe2": "moderndelight:spatula",
+      "title": "烤盘与锅铲"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "翻炒",
+      "text": "烤盘有 $(thing)4 个槽$()，可以同时炒 4 份。它必须放在 $(thing)点燃的燃气灶正上方$()才会工作——冷灶不加热。$(br2)手持食材右键烤盘顶部即可放入；$(thing)空手潜行右键$()会从最上面一份开始弹出。$(br2)它用的是原版 $(thing)营火烹饪$() 配方，所以营火上能烤的，烤盘上都能炒。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "翻炒",
+      "text": "手持 $(thing)锅铲$() 右键烤盘，每下推进一次翻炒进度，$(thing)共 5 下$()即可炒好。$(br2)每翻炒一下会把槽里的物品轮转一格，锅铲掉 1 点耐久。$(br2)炒好后成品会自动弹出并掉在烤盘旁边。"
     }
   ]
 }

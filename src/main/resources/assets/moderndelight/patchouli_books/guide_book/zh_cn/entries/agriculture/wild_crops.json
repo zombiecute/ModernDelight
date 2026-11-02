@@ -1,0 +1,18 @@
+{
+  "name": "野生作物",
+  "icon": "moderndelight:black_pepper_corn",
+  "category": "moderndelight:agriculture",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "去哪里找",
+      "text": "野外会自然生成本模组新增作物的$(thing)野生变体$()，找到它们才能开始种植：$(br)$(li)$(thing)野生黑胡椒$()：丛林$(li)$(thing)野生辣椒$()：热带草原、疏林恶地$(li)$(thing)野生大蒜$()：森林、山地、针叶林$(li)$(thing)野生大豆$()：平原、森林"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "怎么采",
+      "text": "$(li)$(thing)没有精准采集或剪刀$()：掉落 0~2 个种子类物品，$(li)$(thing)带精准采集或剪刀$()：直接掉落方块本体，可以整株搬回家"
+    }
+  ]
+}
