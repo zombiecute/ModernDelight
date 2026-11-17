@@ -26,26 +26,15 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public abstract class ClayPotFoodBlock extends BlockWithEntity {
-    private final int hunger;
-    private final float saturation;
-    public ClayPotFoodBlock(int hunger, float saturation) {
+    public ClayPotFoodBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER)
                 .mapColor(MapColor.BROWN).nonOpaque());
-        this.hunger = hunger;
-        this.saturation = saturation;
     }
     private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,5,16);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, options);
-    }
-    public int getHunger() {
-        return hunger;
-    }
-
-    public float getSaturation() {
-        return saturation;
     }
 
     @Override
@@ -65,14 +54,15 @@ public abstract class ClayPotFoodBlock extends BlockWithEntity {
         if (world.isClient) {
             return ActionResult.SUCCESS;
         }
-        return tryEat(world, pos, player, hunger, saturation);
+        return tryEat(world, pos, player);
     }
-    private static ActionResult tryEat(WorldAccess world, BlockPos pos, PlayerEntity player, int hunger, float saturation) {
+    private static ActionResult tryEat(WorldAccess world, BlockPos pos, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
         } else {
             player.incrementStat(Stats.EAT_CAKE_SLICE);
-            player.getHungerManager().add(hunger, saturation);
+            ItemStack blockItem = world.getBlockState(pos).getBlock().asItem().getDefaultStack();
+            player.eatFood((World) world, blockItem);
             world.emitGameEvent(player, GameEvent.EAT, pos);
             world.playSound(player,pos, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS,2.3f,world.getRandom().nextFloat()+0.6f);
             world.setBlockState(pos, ModBlocks.CLAY_POT.getDefaultState(),3);

@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ChiliFishBlock extends ClayPotFoodBlock {
     public ChiliFishBlock(int hunger, float saturation){
-        super(hunger, saturation);
+        super();
     }
 
     @Override

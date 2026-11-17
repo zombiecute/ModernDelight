@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CrabSausageVegetableBlock extends ClayPotFoodBlock {
     public CrabSausageVegetableBlock(int hunger, float saturation){
-        super(hunger, saturation);
+        super();
     }
 
     @Override

@@ -25,28 +25,18 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
+import snownee.jade.util.TechRebornEnergyCompat;
 
 import java.util.List;
 
 public abstract class WoodenPlateFoodBlock extends BlockWithEntity {
-    public final int hunger;
-    public final float saturation;
-    public WoodenPlateFoodBlock(int hunger, float saturation) {
+    public WoodenPlateFoodBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER).sounds(BlockSoundGroup.WOOD));
-        this.hunger = hunger;
-        this.saturation = saturation;
-    }
-
-    public int getHunger() {
-        return hunger;
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, options);
-    }
-    public float getSaturation() {
-        return saturation;
     }
 
     private static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,3,15);
@@ -63,14 +53,15 @@ public abstract class WoodenPlateFoodBlock extends BlockWithEntity {
         if (world.isClient) {
             return ActionResult.SUCCESS;
         }
-        return tryEat(world, pos, player, hunger, saturation);
+        return tryEat(world, pos, player);
     }
-    private static ActionResult tryEat(WorldAccess world, BlockPos pos, PlayerEntity player, int hunger, float saturation) {
+    private static ActionResult tryEat(WorldAccess world, BlockPos pos, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
         } else {
             player.incrementStat(Stats.EAT_CAKE_SLICE);
-            player.getHungerManager().add(hunger, saturation);
+            ItemStack blockItem = world.getBlockState(pos).getBlock().asItem().getDefaultStack();
+            player.eatFood((World) world, blockItem);
             world.emitGameEvent(player, GameEvent.EAT, pos);
             world.playSound(player,pos, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS,2.3f,world.getRandom().nextFloat()+0.6f);
             world.setBlockState(pos,ModBlocks.WOODEN_PLATE.getDefaultState(),3);

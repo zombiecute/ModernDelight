@@ -287,6 +287,8 @@
   "effect.moderndelight.frost_coat.description": "Melee hits slow the target.",
   "effect.moderndelight.gut_flora": "Gut Flora",
   "effect.moderndelight.gut_flora.description": "Slower hunger drain and no food coma from hearty meals.",
+  "effect.moderndelight.magnetic": "Magnetic",
+  "effect.moderndelight.magnetic.description": "Continuously attract nearby item.",
   "effect.moderndelight.mouth_afire": "Mouth Afire",
   "effect.moderndelight.mouth_afire.description": "Your mouth is on fire. Cream, ice cream, or milk helps.",
   "effect.moderndelight.sticky": "Sticky",

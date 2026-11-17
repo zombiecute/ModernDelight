@@ -236,10 +236,13 @@ public class ModItemGroups {
                         entries.add(ModItems.STEAMED_CHERRY_EGG);
                         entries.add(ModItems.FISH_EGG);
                         entries.add(ModItems.STEAMED_FISH_EGG);
+                        entries.add(ModItems.STEAMED_STUFFED_BUN_WIP);
                         entries.add(ModItems.STEAMED_STUFFED_BUN);
+                        entries.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP);
                         entries.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN);
+                        entries.add(ModItems.SHAOMAI_WIP);
                         entries.add(ModItems.SHAOMAI);
-
+                        entries.add(ModItems.STEAMED_PUMPKIN_WIP);
                         entries.add(ModBlocks.STEAMED_PUMPKIN);
                         entries.add(ModItems.STEAMED_PUMPKIN_IN_BOWL);
                         // Puddings
@@ -344,11 +347,7 @@ public class ModItemGroups {
                         entries.add(ModItems.WITHER_ROSE_CAKE);
                         // WIP Item (Not unfinished items, but rather unfinished items crafted by players)
                         entries.add(ModItems.MOUSSE_WIP);
-                        entries.add(ModItems.SHAOMAI_WIP);
                         entries.add(ModItems.DEEP_FRIED_BUN_WIP);
-                        entries.add(ModItems.STEAMED_STUFFED_BUN_WIP);
-                        entries.add(ModItems.STEAMED_PUMPKIN_WIP);
-                        entries.add(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP);
                         entries.add(ModItems.BRAISED_SHRIMP_BALL_WIP);
                         entries.add(ModItems.CRYSTAL_DUMPLING_WIP);
                         entries.add(ModItems.GOLDEN_DOUBLE_CRISP_WIP);

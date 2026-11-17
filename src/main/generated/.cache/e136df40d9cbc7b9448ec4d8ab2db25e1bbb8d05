@@ -1,4 +1,4 @@
-// 1.20.1	2026-10-27T09:13:36.9084425	Modern Delight/Tags for minecraft:item
+// 1.20.1	2026-11-17T08:44:45.3244028	Modern Delight/Tags for minecraft:item
 64030387f8828bca2824f0caa345c2103000d5e9 data\c\tags\items\foods\raw_meats\raw_beef.json
 824564742bc3748698ec90b63acde559fe8a2704 data\c\tags\items\foods\fruits\cherry.json
 993fe87dcf3f9931b57c5ae68616195fcfb45285 data\c\tags\items\foods\raw_meats\raw_mutton.json
@@ -62,7 +62,7 @@ d91e9e3cc83f6bfba8c174cbbdafddaee8657619 data\create\tags\items\upright_on_belt.
 12d31f2be806526ce8c326e5d5b18c040d8d40ea data\c\tags\items\foods\breads\wheat.json
 d791df5971e4df1ae26cd4ff310a0112fc8fbc21 data\c\tags\items\foods\raw_fishes\prawn.json
 75fa2796e98dbaa08a6518ad3632c261966f455c data\c\tags\items\netherite_scrap_ores.json
-d02ae27c80072220168e1fe2cadb3e484fd5aa52 data\moderndelight\tags\items\condiments.json
+8733ee0b90a78f3bdb1f21c156d81d58fd8ac74b data\moderndelight\tags\items\condiments.json
 2d452562e936c3f13030f94f3c6bfe3202529261 data\c\tags\items\seeds.json
 7afa1076966f4761f5f40f3eb94f5be141ab497f data\c\tags\items\foods\raw_fishes\crab.json
 376fdcd04af4bfa7985585a753e94360e3031940 data\moderndelight\tags\items\oil_plants.json
@@ -85,8 +85,8 @@ d85b9014710d36ce788f99cb724726b87a23dab0 data\moderndelight\tags\items\spicy.jso
 5205c68eab059bdff0f64b3223c6e234c6d0c88e data\c\tags\items\foods\raw_fishes.json
 974acfe39fcf82a38b3ab1cd1e0b30124315d9bb data\c\tags\items\seeds\chili_pepper.json
 4d69cf057142420867d186293fe8133031a6ebf1 data\moderndelight\tags\items\pizza_ingredients.json
-4057195400a1c7f81ba64c7bbc7cfd918b23d067 data\c\tags\items\foods\bottle_of_vegetable_oil.json
 c30d67f09c400c4b408b3cf7591b8bfb9d81319a data\c\tags\items\storage_blocks\cherry.json
+4057195400a1c7f81ba64c7bbc7cfd918b23d067 data\c\tags\items\foods\bottle_of_vegetable_oil.json
 144de304d4aed7c2a4df1da6f25875cdcde26b39 data\c\tags\items\foods.json
 5e1371131b59737e36d2fa533451c7708eabba00 data\c\tags\items\flower_cakes.json
 2e607f24a4be700ffc0db1b4ae74df690dd33184 data\c\tags\items\foods\cooked_fishes\prawn.json

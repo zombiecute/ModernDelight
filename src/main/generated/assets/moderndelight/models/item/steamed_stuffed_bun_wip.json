@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "moderndelight:item/wip_item"
+    "layer0": "moderndelight:item/steamed_stuffed_bun_wip"
   }
 }
