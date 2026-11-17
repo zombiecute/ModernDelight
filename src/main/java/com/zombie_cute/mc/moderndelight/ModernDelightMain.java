@@ -18,6 +18,7 @@ import com.zombie_cute.mc.moderndelight.fluid.ModFluid;
 import com.zombie_cute.mc.moderndelight.item.ModItemGroups;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import com.zombie_cute.mc.moderndelight.networking.NetworkHandler;
+import com.zombie_cute.mc.moderndelight.networking.packet.TrawlerBaitsS2CPacket;
 import com.zombie_cute.mc.moderndelight.recipe.ModRecipes;
 import com.zombie_cute.mc.moderndelight.screen.ModScreenHandlers;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
@@ -94,6 +95,7 @@ public class ModernDelightMain implements ModInitializer {
 	}
 
 	private static void registerModEvents() {
+		ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register((player, joined) -> TrawlerBaitsS2CPacket.send(player));
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
 			// 撬棍音效
 			ItemStack itemStack = player.getStackInHand(hand);

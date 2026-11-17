@@ -676,6 +676,19 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add("emi.category.moderndelight.instant_noodles_making","Making Instant Noodles");
         translationBuilder.add("emi.category.moderndelight.grinding","Grinding");
         translationBuilder.add("emi.category.moderndelight.fermenting","Fermenting");
+        translationBuilder.add("emi.category.moderndelight.trawler", "Trawler Fishing");
+        translationBuilder.add("moderndelight.compat.trawler.open_water", "Open water");
+        translationBuilder.add("moderndelight.compat.trawler.restricted_water", "Restricted water");
+        translationBuilder.add("moderndelight.compat.trawler.interval", "Haul interval: %s s");
+        translationBuilder.add("moderndelight.compat.trawler.consumption", "Bait consumption: %s%%");
+        translationBuilder.add("moderndelight.compat.trawler.no_bait", "No bait");
+        translationBuilder.add("moderndelight.compat.trawler.no_outputs", "No listed loot");
+        translationBuilder.add("moderndelight.compat.trawler.outputs", "Possible loot (%s/%s)");
+        translationBuilder.add("moderndelight.compat.trawler.water_requirement", "Open water: water in the 5×5×3 area below, sky light ≥ 12 above.");
+        translationBuilder.add("moderndelight.compat.trawler.possible_loot", "Possible results, not guaranteed; loot conditions still apply.");
+        translationBuilder.add("moderndelight.compat.trawler.modifiers", "Counts, enchantments and other loot modifiers are not previewed.");
+        translationBuilder.add("moderndelight.compat.trawler.consume_on_catch", "Bait is only consumed after a catch is successfully stored.");
+        translationBuilder.add("moderndelight.compat.trawler.incomplete", "Some special loot entries or item transformations cannot be previewed.");
 
         translationBuilder.add("config.jade.moderndelight.machine_details", "Machine Details");
         translationBuilder.add("moderndelight.jade.tooltip.trawler.trawler_interval","Harvest time remaining: %d seconds");
@@ -799,7 +812,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"Modern Delight Guide");
         translationBuilder.add("patchouli.moderndelight.book.name","Modern Delight Guide");
-        translationBuilder.add("patchouli.moderndelight.book.landing_text","Introducing you: Modern Delight.$(br2)This book has five chapters: $(thing)gas$(), $(thing)power$(), $(thing)kitchen$(), $(thing)fermentation$(), and $(thing)farming and fishing$(). The first one is about lighting biogas, the last one about growing crops. Read them in order to go from your first flame to full production.");
+        translationBuilder.add("patchouli.moderndelight.book.landing_text","Introducing you: Modern Delight.");
 
         translationBuilder.add("advancement.moderndelight.get_start_desc", "A simple mod guide begins here. Let's get cooking!");
         translationBuilder.add("advancement.moderndelight.got_whisk.title", "The Truth Is It's a Whisk");

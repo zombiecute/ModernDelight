@@ -2,6 +2,7 @@ package com.zombie_cute.mc.moderndelight.compat.emi;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.compat.emi.recipe.*;
+import com.zombie_cute.mc.moderndelight.compat.trawler.TrawlerClientData;
 import com.zombie_cute.mc.moderndelight.recipe.CuisineRecipes;
 import com.zombie_cute.mc.moderndelight.recipe.custom.*;
 import dev.emi.emi.api.EmiPlugin;
@@ -36,6 +37,11 @@ public class EMIPlugin implements EmiPlugin {
         registry.addCategory(EMIInstantNoodlesMakingRecipe.CATEGORY);
         registry.addCategory(EMIGrindingRecipe.CATEGORY);
         registry.addCategory(EMIFermentingRecipe.CATEGORY);
+        registry.addCategory(EMITrawlerRecipe.CATEGORY);
+        registry.addWorkstation(EMITrawlerRecipe.CATEGORY, EMITrawlerRecipe.WORKSTATION);
+        for (var preview : TrawlerClientData.getPreviews()) {
+            registry.addRecipe(new EMITrawlerRecipe(preview));
+        }
 
         registry.addWorkstation(EMIMixWithWaterRecipe.CATEGORY, EMIMixWithWaterRecipe.WORKSTATION);
 

@@ -648,6 +648,19 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
         translationBuilder.add("emi.category.moderndelight.instant_noodles_making","制作方便面");
         translationBuilder.add("emi.category.moderndelight.grinding","碾磨");
         translationBuilder.add("emi.category.moderndelight.fermenting","发酵");
+        translationBuilder.add("emi.category.moderndelight.trawler", "拖网捕捞");
+        translationBuilder.add("moderndelight.compat.trawler.open_water", "开阔水域");
+        translationBuilder.add("moderndelight.compat.trawler.restricted_water", "非开阔水域");
+        translationBuilder.add("moderndelight.compat.trawler.interval", "收获间隔：%s 秒");
+        translationBuilder.add("moderndelight.compat.trawler.consumption", "鱼饵消耗概率：%s%%");
+        translationBuilder.add("moderndelight.compat.trawler.no_bait", "无鱼饵");
+        translationBuilder.add("moderndelight.compat.trawler.no_outputs", "无可预览产物");
+        translationBuilder.add("moderndelight.compat.trawler.outputs", "可能收获（%s/%s）");
+        translationBuilder.add("moderndelight.compat.trawler.water_requirement", "开阔水域：下方 5×5×3 区域全是水，上方天光 ≥ 12。");
+        translationBuilder.add("moderndelight.compat.trawler.possible_loot", "仅展示可能产物，并非必得；仍须满足战利品条件。");
+        translationBuilder.add("moderndelight.compat.trawler.modifiers", "数量、附魔及其他战利品修饰效果不在预览中展示。");
+        translationBuilder.add("moderndelight.compat.trawler.consume_on_catch", "只有成功存入收获物后，才会尝试消耗鱼饵。");
+        translationBuilder.add("moderndelight.compat.trawler.incomplete", "部分特殊战利品条目或物品转换无法预览。");
 
         translationBuilder.add("config.jade.moderndelight.machine_details", "机器信息");
         translationBuilder.add("moderndelight.jade.tooltip.trawler.trawler_interval","剩余收获时间：%d 秒");
@@ -769,7 +782,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"现代乐事指南");
         translationBuilder.add("patchouli.moderndelight.book.name","现代乐事指南");
-        translationBuilder.add("patchouli.moderndelight.book.landing_text","向你介绍：现代乐事。$(br2)全书分为五章：$(thing)燃气$()、$(thing)电力$()、$(thing)厨房$()、$(thing)发酵$()、$(thing)农业与捕捞$()。第一章讲怎么把沼气烧起来，最后一章讲怎么种地。按顺序读，就能从点火一路走到量产。");
+        translationBuilder.add("patchouli.moderndelight.book.landing_text","向你介绍：现代乐事。");
 
         translationBuilder.add("advancement.moderndelight.get_start_desc", "一份简单的模组指南，从这里开始。");
         translationBuilder.add("advancement.moderndelight.got_whisk.title", "工欲善其事");

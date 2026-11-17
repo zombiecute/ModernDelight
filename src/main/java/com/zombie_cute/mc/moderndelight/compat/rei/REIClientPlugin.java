@@ -41,6 +41,9 @@ import com.zombie_cute.mc.moderndelight.compat.rei.transform.OvenTransformCatego
 import com.zombie_cute.mc.moderndelight.compat.rei.transform.OvenTransformDisplay;
 import com.zombie_cute.mc.moderndelight.compat.rei.wooden_basin.WoodenBasinCategory;
 import com.zombie_cute.mc.moderndelight.compat.rei.wooden_basin.WoodenBasinDisplay;
+import com.zombie_cute.mc.moderndelight.compat.rei.trawler.TrawlerCategory;
+import com.zombie_cute.mc.moderndelight.compat.rei.trawler.TrawlerDisplay;
+import com.zombie_cute.mc.moderndelight.compat.trawler.TrawlerClientData;
 import com.zombie_cute.mc.moderndelight.recipe.CuisineRecipes;
 import com.zombie_cute.mc.moderndelight.recipe.custom.*;
 import com.zombie_cute.mc.moderndelight.screen.custom.*;
@@ -78,7 +81,8 @@ public class REIClientPlugin implements me.shedaniel.rei.api.client.plugins.REIC
                 new JuiceExtractingCategory(),
                 new InstantNoodlesMakingCategory(),
                 new GrindingCategory(),
-                new FermentingCategory()
+                new FermentingCategory(),
+                new TrawlerCategory()
         );
         registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.OVEN));
         registry.addWorkstations(OvenBakingCategory.OVEN_BAKING, EntryStacks.of(ModBlocks.GAS_CANISTER));
@@ -112,10 +116,14 @@ public class REIClientPlugin implements me.shedaniel.rei.api.client.plugins.REIC
         registry.addWorkstations(JuiceExtractingCategory.JUICE_EXTRACTING, EntryStacks.of(ModBlocks.JUICE_EXTRACTOR));
         registry.addWorkstations(InstantNoodlesMakingCategory.INSTANT_NOODLES_MAKING, EntryStacks.of(Blocks.CRAFTING_TABLE));
         registry.addWorkstations(FermentingCategory.FERMENTING, EntryStacks.of(ModBlocks.INDUSTRIAL_FERMENTER_ITEM));
+        registry.addWorkstations(TrawlerCategory.TRAWLER, EntryStacks.of(ModBlocks.TRAWLER_ITEM));
     }
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
+        for (var preview : TrawlerClientData.getPreviews()) {
+            registry.add(new TrawlerDisplay(preview));
+        }
         registry.registerRecipeFiller(BakingRecipe.class, BakingRecipe.Type.INSTANCE, OvenBakingDisplay::new);
         registry.registerRecipeFiller(FreezingRecipe.class, FreezingRecipe.Type.INSTANCE, FreezerFreezingDisplay::new);
         registry.registerRecipeFiller(WhiskingRecipe.class, WhiskingRecipe.Type.INSTANCE, GlassBowlWhiskingDisplay::new);

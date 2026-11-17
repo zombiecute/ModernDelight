@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.moderndelight.networking;
 
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
+import com.zombie_cute.mc.moderndelight.compat.trawler.TrawlerClientData;
 import com.zombie_cute.mc.moderndelight.networking.packet.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,6 +16,7 @@ public class NetworkHandler {
     public static final Identifier ITEM_SYNC = new Identifier(ModernDelightMain.MOD_ID,"item_sync");
     public static final Identifier INTEGER_SYNC = new Identifier(ModernDelightMain.MOD_ID,"integer_sync");
     public static final Identifier FLUID_SYNC = new Identifier(ModernDelightMain.MOD_ID,"fluid_sync");
+    public static final Identifier TRAWLER_BAITS_SYNC = new Identifier(ModernDelightMain.MOD_ID,"trawler_baits_sync");
 
     public static void registerC2SPacket(){
         ServerPlayNetworking.registerGlobalReceiver(UPDATE_INVENTORY_PACKET_ID, UpdateInventoryC2SPacket::receive);
@@ -23,6 +25,7 @@ public class NetworkHandler {
     }
     @Environment(EnvType.CLIENT)
     public static void registerS2CPacket(){
+        TrawlerClientData.register();
         ClientPlayNetworking.registerGlobalReceiver(ITEM_SYNC, ItemStackSyncS2CPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(INTEGER_SYNC, IntegerSyncS2CPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(FLUID_SYNC, FluidSyncS2CPacket::receive);

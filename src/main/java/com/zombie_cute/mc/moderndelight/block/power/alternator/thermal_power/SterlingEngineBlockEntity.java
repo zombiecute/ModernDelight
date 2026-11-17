@@ -80,7 +80,7 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
                 if (small_sound){
                     world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 0.05f, 1.0f);
                 } else {
-                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 2.3f, 1.0f);
+                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 1.5f, 1.0f);
                 }
             }
             hasStart = true;
@@ -91,17 +91,17 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
                     }
                 } else {
                     if (world.getTime() % 3L == 0){
-                        world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE, SoundCategory.BLOCKS, 2.3f, 1.0f);
+                        world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE, SoundCategory.BLOCKS, 1.5f, 1.0f);
                     }
                 }
             } else ticker--;
         } else {
             if (hasStart){
                 if (small_sound){
-                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_STOP, SoundCategory.BLOCKS, 0.15f, 1.0f);
+                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_STOP, SoundCategory.BLOCKS, 0.05f, 1.0f);
 
                 } else {
-                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_STOP, SoundCategory.BLOCKS, 2.3f, 1.0f);
+                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_STOP, SoundCategory.BLOCKS, 1.5f, 1.0f);
                 }
             }
             hasStart = false;
