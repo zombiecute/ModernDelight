@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class WoodenBasinDisplay extends BasicDisplay {
+    private final float chance;
     public WoodenBasinDisplay(SqueezeRecipe recipe){
         super(EntryIngredients.ofIngredients(recipe.getIngredients()),
                 List.of(
@@ -20,7 +21,13 @@ public class WoodenBasinDisplay extends BasicDisplay {
                         )
                 ),
                 Optional.ofNullable(recipe.getId()));
+        this.chance = recipe.getChance();
     }
+
+    public float getChance() {
+        return chance;
+    }
+
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
         return WoodenBasinCategory.WOODEN_BASIN;

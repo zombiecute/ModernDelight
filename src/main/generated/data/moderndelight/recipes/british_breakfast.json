@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:foods/breads"
+    },
+    {
+      "item": "moderndelight:fried_cod_nugget"
+    },
+    {
+      "item": "moderndelight:fried_cod_nugget"
+    },
+    {
+      "item": "moderndelight:fried_brown_mushroom"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "moderndelight:wooden_plate"
+    }
+  ],
+  "result": {
+    "item": "moderndelight:british_breakfast"
+  }
+}

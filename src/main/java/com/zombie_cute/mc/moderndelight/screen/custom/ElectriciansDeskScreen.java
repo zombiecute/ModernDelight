@@ -86,10 +86,7 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
                     array[0] = 5;
                     ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
                 } else {
-                    context.drawTexture(TEXTURE, x + 112, y + 24, 176, 0, 20 ,20);
-                    if (b){
-                        context.drawTexture(TEXTURE,x + 112,y + 24, 196, 0, 20, 20);
-                    }
+                    UpdateInventoryC2SPacket.send(handler.syncId, handler.blockEntity.getPos(), null);
                 }
             } else {
                 if (this.hasPaperAndInk() && this.hasRecipe() && handler.blockEntity.getStack(8).isEmpty()){
@@ -110,37 +107,26 @@ public class ElectriciansDeskScreen extends HandledScreen<ElectriciansDeskScreen
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         boolean b = mouseX >= x + 112 && mouseY >= y + 24 && mouseX <= x + 131 && mouseY <= y + 43;
-        if (b){
-            if (handler.canCraft()){
-
-                int[] array = new int[1];
-                array[0] = 2;
-                UpdateInventoryC2SPacket.send(handler.blockEntity.getPos(),this.outputItem);
-                ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
+        if (b && !getScreenHandler().canCraft()){
+            if (this.hasRecipe() && this.hasPaperAndInk() && handler.blockEntity.getStack(8).isEmpty() && !handler.isOccupied()){
                 MinecraftClient.getInstance().getSoundManager()
                         .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-                return true;
-            } else {
-                if (this.hasRecipe() && this.hasPaperAndInk() && handler.blockEntity.getStack(8).isEmpty() && !handler.isOccupied()){
-                    MinecraftClient.getInstance().getSoundManager()
-                            .play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-                    Screen currentScreen = MinecraftClient.getInstance().currentScreen;
-                    int [] array = new int[1];
-                    array[0] = 3;
-                    ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
-                    switch (this.miniGmeType){
-                        case 1 -> MinecraftClient.getInstance().setScreen(
-                                new MiniGame1Screen(ModBlocks.ELECTRICIANS_DESK.getName(),
-                                currentScreen,handler.blockEntity,goal));
-                        case 2 -> MinecraftClient.getInstance().setScreen(
-                                new MiniGame2Screen(ModBlocks.ELECTRICIANS_DESK.getName(),
-                                        currentScreen,handler.blockEntity,goal));
-                        case 3 -> MinecraftClient.getInstance().setScreen(
-                                new MiniGame3Screen(ModBlocks.ELECTRICIANS_DESK.getName(),
-                                        currentScreen,handler.blockEntity,goal));
-                    }
-                    return true;
+                Screen currentScreen = MinecraftClient.getInstance().currentScreen;
+                int [] array = new int[1];
+                array[0] = 3;
+                ChangeBlockEntityDataC2SPacket.send(handler.blockEntity.getPos(),array);
+                switch (this.miniGmeType){
+                    case 1 -> MinecraftClient.getInstance().setScreen(
+                            new MiniGame1Screen(ModBlocks.ELECTRICIANS_DESK.getName(),
+                                    currentScreen,handler.blockEntity,goal));
+                    case 2 -> MinecraftClient.getInstance().setScreen(
+                            new MiniGame2Screen(ModBlocks.ELECTRICIANS_DESK.getName(),
+                                    currentScreen,handler.blockEntity,goal));
+                    case 3 -> MinecraftClient.getInstance().setScreen(
+                            new MiniGame3Screen(ModBlocks.ELECTRICIANS_DESK.getName(),
+                                    currentScreen,handler.blockEntity,goal));
                 }
+                return true;
             }
         }
         return super.mouseClicked(mouseX, mouseY, button);

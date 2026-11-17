@@ -309,6 +309,7 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SHAOMAI_WIP, Models.GENERATED);
         itemModelGenerator.register(ModItems.VEGETABLE_STEAMED_STUFFED_BUN_WIP, Models.GENERATED);
         itemModelGenerator.register(ModItems.STEAMED_PUMPKIN_WIP, Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.BRITISH_BREAKFAST_ITEM, Models.GENERATED);
 
     }
     private static Model registerItemBlockModel(Block parent, TextureKey ... requiredTextureKeys) {

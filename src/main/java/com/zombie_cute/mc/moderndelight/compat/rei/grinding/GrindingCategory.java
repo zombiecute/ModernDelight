@@ -9,6 +9,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
@@ -52,8 +53,11 @@ public class GrindingCategory implements DisplayCategory<GrindingDisplay> {
 
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 100,startPoint.y + 17))
                 .markOutput().entries(display.getOutputEntries().get(0)));
+        EntryIngredient chanceOutput = display.getOutputEntries().get(1);
+        chanceOutput.forEach(entry -> entry.tooltip(Text.literal(
+                String.format(java.util.Locale.ROOT, "%.1f%%", display.getChance() * 100.0F))));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 118,startPoint.y + 17))
-                .markOutput().entries(display.getOutputEntries().get(1)));
+                .markOutput().entries(chanceOutput));
 
         return widgets;
     }

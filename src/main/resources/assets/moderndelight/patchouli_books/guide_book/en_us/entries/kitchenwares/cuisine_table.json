@@ -7,13 +7,27 @@
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:cuisine_table",
-      "title": "Cuisine Table",
-      "text": "Three slots: the bottom-left takes $(thing)ingredients$(), the top-left takes a $(thing)tool$(), and the right side gives the product.$(br2)Taking the product consumes one portion of ingredients and costs the tool 1 durability; a tool that runs out breaks.$(br2)Only $(thing)one player$() can use it at a time — anyone else is told it is occupied — and the product slot is emptied when the interface is closed."
+      "title": "Cuisine Table"
     },
     {
       "type": "patchouli:text",
-      "title": "How It Differs From a Cutting Board",
-      "text": "Like the $(thing)stonecutter$(), it resolves the $(thing)recipe conflicts$() you get when $(thing)one input has several outputs$(), while a cutting board only allows one output per input."
+      "title": "Using the Table",
+      "text": "Put an $(thing)ingredient$() at the bottom left and a $(thing)tool$() above it. Choose a recipe in the middle, then take the result from the right.$(br2)Native recipes consume one ingredient and one tool durability, or one tool if it has no durability.$(br2)Choose between recipes like a $(thing)stonecutter$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Sharing the Table",
+      "text": "Only $(thing)one player$() can use a table at a time. Other players are told it is occupied.$(br2)The right slot previews the result. Materials are consumed when you take it. Closing the interface clears the preview."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Farmer's Delight",
+      "text": "With $(thing)Farmer's Delight$() installed, the table accepts loaded cutting board recipes, including mod and data pack recipes.$(br2)Use the required ingredient and tool. Counts, chances and Fortune follow the cutting board.$(br2)Farmer's Delight is optional."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Cutting Board Results",
+      "text": "The right slot previews the main result. Outputs roll only when taken.$(br2)All rolled outputs are delivered together. Extras enter your inventory or drop if full.$(br2)Unbreaking works. Tools without durability are kept."
     }
   ]
 }

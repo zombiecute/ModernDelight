@@ -2,6 +2,7 @@ package com.zombie_cute.mc.moderndelight.compat.emi;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.compat.emi.recipe.*;
+import com.zombie_cute.mc.moderndelight.recipe.CuisineRecipes;
 import com.zombie_cute.mc.moderndelight.recipe.custom.*;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
@@ -91,7 +92,7 @@ public class EMIPlugin implements EmiPlugin {
             registry.addRecipe(new EMIBakingTrayRecipe(recipe));
         }
         registry.addRecipe(new EMIBiogasFermentationRecipe());
-        for (CuisineRecipe recipe : manager.listAllOfType(CuisineRecipe.Type.INSTANCE)) {
+        for (CuisineRecipe recipe : CuisineRecipes.getAll(manager)) {
             registry.addRecipe(new EMICuisineRecipe(recipe));
         }
         for (DeepFryingRecipe recipe : manager.listAllOfType(DeepFryingRecipe.Type.INSTANCE)) {

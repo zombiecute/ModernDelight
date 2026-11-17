@@ -7,15 +7,21 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 public class CuisineDisplay extends BasicDisplay {
+    private final List<Float> chances;
+
     public CuisineDisplay(CuisineRecipe recipe){
         super(EntryIngredients.ofIngredients(recipe.getIngredients()),
-                Collections.singletonList(EntryIngredients.of(recipe.getOutput(null))),
+                recipe.getOutputs().stream().map(result -> EntryIngredients.of(result.stack())).toList(),
                 Optional.ofNullable(recipe.getId()));
+        this.chances = recipe.getOutputs().stream().map(CuisineRecipe.Output::chance).toList();
+    }
+
+    public float getChance(int index) {
+        return chances.get(index);
     }
     @Override
     public List<EntryIngredient> getInputEntries() {

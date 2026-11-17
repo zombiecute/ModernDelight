@@ -1,4 +1,4 @@
-// 1.20.1	2026-11-17T08:44:45.320414	Modern Delight/Recipes
+// 1.20.1	2026-11-17T15:08:54.2218901	Modern Delight/Recipes
 f06b082fe8f106e68ffca6d2e62004df7d3d5558 data\moderndelight\advancements\recipes\food\oxeye_daisy_cake.json
 b425bd069cd5ab2aef09699e9958a5069552643d data\moderndelight\advancements\recipes\misc\gas_cooking_stove.json
 edcded212086813645f8be6d69101cd484c3d28c data\moderndelight\advancements\recipes\food\orange_tulip_cake.json
@@ -55,6 +55,7 @@ b90bd76de1f88575dd61db6361c610fd36db7eff data\moderndelight\recipes\blackstone_c
 d4a056f8b59ea5f327c93a527fb5be3fb3f290d3 data\moderndelight\recipes\seasoning_bottle.json
 e40844f2f729ee2653fbac393d3c2a623101e771 data\moderndelight\advancements\recipes\misc\multifunctional_wrapping_paper.json
 38a6728f6aee78df2c46f0595e538b9b886196b2 data\moderndelight\advancements\recipes\food\raw_ice_cream_cone.json
+fa480f4242bf67d2b8c214b8c1dbb99e9f770927 data\moderndelight\advancements\recipes\food\british_breakfast.json
 2c3f72c9ba37019133c8d78e029f02330adec1d9 data\moderndelight\advancements\recipes\tools\crowbar.json
 6f6cba8b598044db912e3f35232352ebb5e26100 data\moderndelight\advancements\recipes\misc\advance_furnace.json
 e71606aad4a29abd10d1fdd80ab4b0d7407c2acf data\moderndelight\recipes\steamed_pumpkin_wip.json
@@ -88,8 +89,8 @@ ba5488a5e6f7a2b52f1e6e87846b2f87f5d0a1e2 data\moderndelight\advancements\recipes
 8ac3ab8ba7c6da39515c0bf2ab958786a74839fc data\moderndelight\advancements\recipes\food\white_truffle_seasoning.json
 137756adab69f9da83ac88530b051e7d8d9b91a4 data\moderndelight\recipes\basalt_cabinet.json
 7ba4237347b5985eaba2971ce227df0d57f7523c data\moderndelight\advancements\recipes\misc\electricians_desk.json
-4d65d2fc57acd8aa2d353e4ad0a02e16c25472df data\moderndelight\recipes\french_fries.json
 f10d94cf44b2902d9204cbc4147147d09034a590 data\moderndelight\advancements\recipes\food\raw_squid_tentacle_kebabs.json
+4d65d2fc57acd8aa2d353e4ad0a02e16c25472df data\moderndelight\recipes\french_fries.json
 59a92a270f26748679214e6fcab1ee3d7ae3239f data\moderndelight\recipes\baking_tray.json
 b9880539155b926a0504141ce0d893b128384fb5 data\moderndelight\recipes\fish_and_chips.json
 08ebaa9cd000036926d629e07420ed4ffd095088 data\moderndelight\advancements\recipes\misc\glass_bowl.json
@@ -106,6 +107,7 @@ f508ceaf5a4aee00d397fa61f062790050330030 data\moderndelight\recipes\copper_knife
 49b60ee433f39eea331b86fd5b637a14cb9ccd13 data\moderndelight\recipes\electric_whisk.json
 d9a9535e8317135d90b3044e8391e741061b41ac data\moderndelight\recipes\cuisine_table.json
 c53e0c2b614121b8d96e3a2401467118347c0246 data\moderndelight\recipes\fried_milk_wip.json
+4cd367b5a3ac69984900ec463f2ce3020d3078e6 data\moderndelight\recipes\british_breakfast.json
 3f69f3f003ca6b9a198031f528371fb2edb11981 data\moderndelight\advancements\recipes\tools\seasoning_bottle.json
 70ab183f0fcb63dfd9505df25263841c3c273ec2 data\moderndelight\advancements\recipes\food\rose_cake.json
 fecdbf3d162ce30264531c2784b8b6d4108eee9b data\moderndelight\advancements\recipes\food\cherry_cake.json

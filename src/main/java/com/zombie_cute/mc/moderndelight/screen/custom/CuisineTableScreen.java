@@ -3,7 +3,9 @@ package com.zombie_cute.mc.moderndelight.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
 import com.zombie_cute.mc.moderndelight.networking.packet.ChangeBlockEntityDataC2SPacket;
+import com.zombie_cute.mc.moderndelight.networking.packet.UpdateInventoryC2SPacket;
 import com.zombie_cute.mc.moderndelight.recipe.custom.CuisineRecipe;
+import com.zombie_cute.mc.moderndelight.recipe.CuisineRecipes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -13,7 +15,6 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -21,7 +22,6 @@ import org.apache.commons.compress.utils.Lists;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler> {
@@ -33,6 +33,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
     private int totalPage;
     private boolean prePageBtn;
     private boolean nextPageBtn;
+    private Identifier sentRecipeId;
     public CuisineTableScreen(CuisineTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.selectedRecipe = -1;
@@ -73,14 +74,8 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
         for (int i=0;i<tempINV.size();i++){
             tempINV.setStack(i,handler.blockEntity.getStack(i));
         }
-        Optional<CuisineRecipe> match = Objects.requireNonNull(handler.blockEntity.getWorld()).getRecipeManager()
-                .getFirstMatch(CuisineRecipe.Type.INSTANCE, tempINV, handler.blockEntity.getWorld());
-        if (match.isPresent()){
-            this.availableRecipes = Objects.requireNonNull(handler.blockEntity.getWorld())
-                    .getRecipeManager().getAllMatches(
-                            CuisineRecipe.Type.INSTANCE, tempINV, handler.blockEntity.getWorld());
-            return true;
-        } else return false;
+        this.availableRecipes = CuisineRecipes.getMatches(tempINV, Objects.requireNonNull(handler.blockEntity.getWorld()));
+        return !availableRecipes.isEmpty();
     }
     private void renderMouseSelectSlot(DrawContext context, int x, int y, int mouseX,int mouseY) {
         int count = this.getAvailableRecipeCounts() - 8 * index;
@@ -119,7 +114,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
         this.prePageBtn = false;
         this.index = 0;
         this.totalPage = 0;
-        handler.populateResult(ItemStack.EMPTY);
+        requestRecipe(null);
     }
     private void renderRecipeItem(DrawContext context,int x,int y){
         int count = this.getAvailableRecipeCounts() - 8 * index;
@@ -152,12 +147,18 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
     private void popRes(){
         if (this.getSelectedRecipe() >= 0){
             if (isInBounds(this.getSelectedRecipe() + 8 * index)){
-                handler.populateResult(this.getAvailableRecipes().get(this.getSelectedRecipe() + 8 * index).getOutput(null).copy());
+                requestRecipe(this.getAvailableRecipes().get(this.getSelectedRecipe() + 8 * index).getId());
             } else {
                 resetAll();
             }
         } else {
-            handler.populateResult(ItemStack.EMPTY);
+            requestRecipe(null);
+        }
+    }
+    private void requestRecipe(Identifier recipeId) {
+        if (!Objects.equals(sentRecipeId, recipeId)) {
+            UpdateInventoryC2SPacket.send(handler.syncId, handler.blockEntity.getPos(), recipeId);
+            sentRecipeId = recipeId;
         }
     }
     private void renderMouseHoverFlipButton(DrawContext context, int x,int y, int mouseX, int mouseY){
@@ -170,7 +171,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
     }
     private void renderFlipButton(DrawContext context, int x, int y) {
         if (this.getAvailableRecipeCounts()>8){
-            this.totalPage = this.getAvailableRecipeCounts() / 8;
+            this.totalPage = (this.getAvailableRecipeCounts() - 1) / 8;
             if (index == 0) {
                 context.drawTexture(TEXTURE,x + 122,y + 15,96,166,21,11);
                 this.prePageBtn = false;
@@ -206,7 +207,7 @@ public class CuisineTableScreen extends HandledScreen<CuisineTableScreenHandler>
                             .play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
                     this.selectedRecipe = i;
                     if (isInBounds(i + 8 * index)){
-                        handler.populateResult(this.getAvailableRecipes().get(i + 8 * index).getOutput(null).copy());
+                        requestRecipe(this.getAvailableRecipes().get(i + 8 * index).getId());
                     } else resetAll();
                     return true;
                 }

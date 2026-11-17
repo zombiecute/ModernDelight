@@ -33,7 +33,8 @@ public class EMICuisineRecipe implements EmiRecipe {
             inputs.add(EmiIngredient.of(ingredient));
         }
         this.input = inputs;
-        this.output = List.of(EmiStack.of(recipe.getOutput(null)));
+        this.output = recipe.getOutputs().stream()
+                .map(result -> EmiStack.of(result.stack()).setChance(result.chance())).toList();
     }
     @Override
     public EmiRecipeCategory getCategory() {
@@ -71,7 +72,9 @@ public class EMICuisineRecipe implements EmiRecipe {
         widgets.addSlot(input.get(0), 39, 28);
         widgets.addSlot(input.get(1), 39, 7);
 
-        widgets.addSlot(output.get(0), 94, 28).recipeContext(this);
+        for (int i = 0; i < output.size(); i++) {
+            widgets.addSlot(output.get(i), 94 + (i % 3) * 18, 28 - (i / 3) * 18).recipeContext(this);
+        }
     }
 
 }

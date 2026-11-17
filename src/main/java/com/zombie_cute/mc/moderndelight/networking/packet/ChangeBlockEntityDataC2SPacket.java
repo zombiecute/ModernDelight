@@ -7,6 +7,7 @@ import com.zombie_cute.mc.moderndelight.block.power.ElectriciansDeskBlockEntity;
 import com.zombie_cute.mc.moderndelight.block.power.TeslaCoilBlockEntity;
 import com.zombie_cute.mc.moderndelight.block.power.alternator.ACDCConverterBlockEntity;
 import com.zombie_cute.mc.moderndelight.networking.NetworkHandler;
+import com.zombie_cute.mc.moderndelight.screen.custom.ElectriciansDeskScreenHandler;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,15 +18,22 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 
 public class ChangeBlockEntityDataC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
         BlockPos pos = buf.readBlockPos();
         int[] array = buf.readIntArray();
+        if (array.length == 0) {
+            return;
+        }
         server.execute(() -> {
+            // Desk actions must belong to the currently open menu, including minigame callbacks.
+            if (player.currentScreenHandler instanceof ElectriciansDeskScreenHandler screen
+                    && screen.blockEntity.getPos().equals(pos)) {
+                screen.handleAction(player, array[0]);
+                return;
+            }
             BlockEntity blockEntity = player.getWorld().getBlockEntity(pos);
             if (blockEntity instanceof TeslaCoilBlockEntity teslaCoilBlockEntity){
                 switch (array[0]){
@@ -44,24 +52,6 @@ public class ChangeBlockEntityDataC2SPacket {
                     case 2 -> acdc.setACMode(true);
                 }
                 acdc.markDirty();
-            } else if (blockEntity instanceof ElectriciansDeskBlockEntity electriciansDeskBlockEntity) {
-                switch (array[0]){
-                    case 1 -> electriciansDeskBlockEntity.setCanCraft(true);
-                    case 2 -> {
-                        electriciansDeskBlockEntity.setCanCraft(false);
-                        for (int i = 0;i<6;i++){
-                            electriciansDeskBlockEntity.removeStack(i,1);
-                        }
-                        player.getWorld().playSound(null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    }
-                    case 3 -> {
-                        electriciansDeskBlockEntity.removeStack(6, 1);
-                        electriciansDeskBlockEntity.removeStack(7, 1);
-                        electriciansDeskBlockEntity.setOccupied(true);
-                    }
-                    case 4 -> electriciansDeskBlockEntity.setOccupied(false);
-                    case 5 -> electriciansDeskBlockEntity.setCanCraft(false);
-                }
             } else if (blockEntity instanceof IceCreamMakerBlockEntity iceCreamMakerBlockEntity) {
                 switch (array[0]){
                     case 1 -> iceCreamMakerBlockEntity.changeIceCream1();

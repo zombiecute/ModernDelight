@@ -73,12 +73,6 @@ public class GrindingRecipe implements Recipe<SimpleInventory> {
     public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return output;
     }
-    public List<ItemStack> getOutputs(){
-        List<ItemStack> list = new ArrayList<>(2);
-        list.add(output.copy());
-        list.add(chancedOutput.copy());
-        return list;
-    }
     @Override
     public DefaultedList<Ingredient> getIngredients() {
         DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());

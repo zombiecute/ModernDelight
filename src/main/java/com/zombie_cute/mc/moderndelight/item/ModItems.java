@@ -666,7 +666,7 @@ public class ModItems {
             new StatusEffectInstance(StatusEffects.SATURATION,1,0),
             new StatusEffectInstance(ModEffectsAndPotions.UMAMI,200 * 20,0)));
     public static final Item COOKED_CRAB = registerItem("cooked_crab", new Item(
-            new FabricItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.3F).build())));
+            new FabricItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build())));
     public static final Item GOLDEN_DOUBLE_CRISP_WIP = registerItem("golden_double_crisp_wip", new PackagedItem(ModBlocks.WOODEN_PLATE.asItem(),
             new FabricItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.1F).build())
                     .recipeRemainder(ModBlocks.WOODEN_PLATE.asItem()).maxCount(16)));

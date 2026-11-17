@@ -41,6 +41,7 @@ import com.zombie_cute.mc.moderndelight.compat.rei.transform.OvenTransformCatego
 import com.zombie_cute.mc.moderndelight.compat.rei.transform.OvenTransformDisplay;
 import com.zombie_cute.mc.moderndelight.compat.rei.wooden_basin.WoodenBasinCategory;
 import com.zombie_cute.mc.moderndelight.compat.rei.wooden_basin.WoodenBasinDisplay;
+import com.zombie_cute.mc.moderndelight.recipe.CuisineRecipes;
 import com.zombie_cute.mc.moderndelight.recipe.custom.*;
 import com.zombie_cute.mc.moderndelight.screen.custom.*;
 import me.shedaniel.math.Rectangle;
@@ -51,6 +52,7 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.block.Blocks;
 import net.minecraft.recipe.CampfireCookingRecipe;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 
 public class REIClientPlugin implements me.shedaniel.rei.api.client.plugins.REIClientPlugin {
@@ -126,6 +128,15 @@ public class REIClientPlugin implements me.shedaniel.rei.api.client.plugins.REIC
         registry.add(new BiogasFermentationDisplay());
         registry.registerRecipeFiller(DeepFryingRecipe.class, DeepFryingRecipe.Type.INSTANCE, DeepFryingDisplay::new);
         registry.registerRecipeFiller(CuisineRecipe.class, CuisineRecipe.Type.INSTANCE, CuisineDisplay::new);
+        registry.registerFiller(Object.class,
+                object -> object instanceof Recipe<?> recipe && CuisineRecipes.fromCuttingRecipe(recipe) != null,
+                object -> {
+                    CuisineRecipe recipe = CuisineRecipes.fromCuttingRecipe((Recipe<?>) object);
+                    if (recipe != null) {
+                        return new CuisineDisplay(recipe);
+                    }
+                    return null;
+                });
         registry.registerRecipeFiller(AssemblyRecipe.class, AssemblyRecipe.Type.INSTANCE, AssemblyDisplay::new);
         registry.registerRecipeFiller(SteamingRecipe.class, SteamingRecipe.Type.INSTANCE, SteamingDisplay::new);
         registry.registerRecipeFiller(SteamingRecipe.class, SteamingRecipe.Type.INSTANCE, SteamingElectricDisplay::new);

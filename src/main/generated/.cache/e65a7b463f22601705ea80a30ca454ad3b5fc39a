@@ -1,4 +1,4 @@
-// 1.20.1	2026-11-17T08:44:45.3274027	Modern Delight/Model Definitions
+// 1.20.1	2026-11-17T15:08:54.2248904	Modern Delight/Model Definitions
 402db2760620dfaf0862af08823b3e60e6c823bf assets\moderndelight\models\item\fried_cod_nugget.json
 a7244d9c3e24fe7400707b8fc7a72a6777d379fb assets\moderndelight\blockstates\baking_tray.json
 a634561bc571f867f370b0b04656954c2df67034 assets\moderndelight\models\item\wheat_flour.json
@@ -33,8 +33,8 @@ bdd3d9443016493c2b8764b26dc5a4bda5724695 assets\moderndelight\models\item\filter
 8fdcaa5428ca3e5707c62a9167c1a32948a45927 assets\moderndelight\models\item\pudding_wip_2.json
 bf6135fb5803735bda6505cd961cca396790aa88 assets\moderndelight\models\item\steamed_pumpkin_in_bowl.json
 3538e2b5ed89dd9cedb119c5ff6818613771462b assets\moderndelight\models\item\butter.json
-1711b60ada68443fd28cb3fa3df8c113cf722a46 assets\moderndelight\models\item\kitchen_utensil_holder.json
 e97b5d10b19ab827a5f63691e2ebb24f45df8a8e assets\moderndelight\models\item\steamed_pumpkin_wip.json
+1711b60ada68443fd28cb3fa3df8c113cf722a46 assets\moderndelight\models\item\kitchen_utensil_holder.json
 1c7c14614fee68a416cceba331dfff70cfd900b0 assets\moderndelight\models\item\prawn.json
 911ddd204e8221d0fce57b61e0a0dd4aaeac1eb3 assets\moderndelight\models\item\wild_garlic.json
 d7151aeb5114ac837949a1ba3a021aa5e157f25b assets\moderndelight\models\item\lilac_cake.json
@@ -118,9 +118,9 @@ a4fd4a58a326cb60549f3e4cfee1dc7aab28be37 assets\moderndelight\blockstates\biogas
 953e02ee27e6117eb136934c1d1a8b53ae60a01d assets\moderndelight\models\block\chili_crop_stage3.json
 27cd6b50fdebeb49c2b0378b72ce38c466279984 assets\moderndelight\models\item\fish_egg.json
 2a755c3dfe46dcb9308b3c1336a6c2978a9aeb9c assets\moderndelight\models\item\vinegar_bucket.json
+d932a6602ea3640bac3f681458c12cc960bb4d31 assets\moderndelight\models\item\shaomai_wip.json
 f085da9503f8236f3e5e532f3bb93e7dafff0680 assets\moderndelight\models\item\pizza.json
 3d6e2cc09d064d124a2cf959a971ae9903d1f7f4 assets\moderndelight\models\item\double_meat_burger.json
-d932a6602ea3640bac3f681458c12cc960bb4d31 assets\moderndelight\models\item\shaomai_wip.json
 878409076231c9142de2dcd4247b42f05903d678 assets\moderndelight\models\item\electricians_desk.json
 3929a4caccb5019a89387e494bc68487216edcc3 assets\moderndelight\models\block\garlic_crop_stage2.json
 e74dfc630227202d08c9a2c7da0e3cab6eee2680 assets\moderndelight\models\item\shaomai.json
@@ -193,6 +193,7 @@ ad0f537afd3598d6f0244def09346b1b9ad9b550 assets\moderndelight\models\item\orange
 d748457958bfba07dc115885191ef59774343294 assets\moderndelight\models\item\chow_mein.json
 4632d093c6ae18be0c184b1d88d71dbd3228939f assets\moderndelight\models\item\fried_salmon.json
 6d5e5225dba826d7670b26e60eb463086c441718 assets\moderndelight\models\item\garlic_puree.json
+8d28637f17e4e175640f5dbd5a8425b82e5c5873 assets\moderndelight\models\item\british_breakfast.json
 f9b748eb96a5ce8fac0ac2686e0db2f5758eea81 assets\moderndelight\models\block\soybean_crop_stage4.json
 88e3782324da627b3b5fd7c9898037dc59131b05 assets\moderndelight\models\item\apple_cream.json
 da6b3017374a51934c453bf4347325e1d44a3f17 assets\moderndelight\models\item\seaweed_fried_shrimp_cake.json

@@ -29,9 +29,8 @@ public class EMIGrindingRecipe implements EmiRecipe {
         this.id = recipe.getId();
         this.input = List.of(EmiIngredient.of(recipe.getIngredients().get(0)),EmiIngredient.of(Ingredient.ofItems(ModItems.STONE_MORTAR)));
         List<EmiStack> stacks = new ArrayList<>();
-        for (ItemStack item : recipe.getOutputs()){
-            stacks.add(EmiStack.of(item));
-        }
+        stacks.add(EmiStack.of(recipe.getOutput(null)));
+        stacks.add(EmiStack.of(recipe.getChancedOutput()).setChance(recipe.getChance()));
         this.output = stacks;
     }
     @Override

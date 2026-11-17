@@ -27,7 +27,6 @@ import com.zombie_cute.mc.moderndelight.block.food.pizza.RawPizzaBlock;
 import com.zombie_cute.mc.moderndelight.block.food.pizza.WheatDoughBlock;
 import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.SteamedPumpkinBlock;
 import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlock;
-import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlockItem;
 import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.fish_and_chips.FishAndChipsBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.*;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.clay_pot.ClayPotBlock;
@@ -236,7 +235,7 @@ public class ModBlocks {
                 }
             });
     public static final BlockItem BRITISH_BREAKFAST_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
-                    "british_breakfast"), new BritishBreakfastBlockItem(12,0.8F));
+                    "british_breakfast"), new PackagedFoodBlockItem(BRITISH_BREAKFAST,12,0.8F,WOODEN_PLATE.asItem()));
     public static final BlockItem MARSHALA_CHEESE_BALL_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,
                     "marshala_cheese_ball"), new PackagedFoodBlockItem(MARSHALA_CHEESE_BALL,10,1.0F,CLAY_POT_ITEM));
     public static final BlockItem CHICKEN_RICE_ITEM = Registry.register(Registries.ITEM,Identifier.of(ModernDelightMain.MOD_ID,

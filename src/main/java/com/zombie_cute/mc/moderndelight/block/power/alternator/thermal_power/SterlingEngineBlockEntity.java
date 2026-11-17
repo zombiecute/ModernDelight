@@ -78,7 +78,7 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
             if (!hasStart){
                 ticker = 30;
                 if (small_sound){
-                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 0.15f, 1.0f);
+                    world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 0.05f, 1.0f);
                 } else {
                     world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE_START, SoundCategory.BLOCKS, 2.3f, 1.0f);
                 }
@@ -87,7 +87,7 @@ public class SterlingEngineBlockEntity extends BlockEntity implements GeoBlockEn
             if (ticker == 0){
                 if (small_sound){
                     if (world.getTime() % 3L == 0){
-                        world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE, SoundCategory.BLOCKS, 0.15f, 1.0f);
+                        world.playSound(null, pos, ModSounds.BLOCK_STERLING_ENGINE, SoundCategory.BLOCKS, 0.05f, 1.0f);
                     }
                 } else {
                     if (world.getTime() % 3L == 0){

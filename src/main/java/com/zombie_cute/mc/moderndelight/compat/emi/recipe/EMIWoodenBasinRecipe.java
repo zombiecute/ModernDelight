@@ -26,7 +26,7 @@ public class EMIWoodenBasinRecipe implements EmiRecipe {
     public EMIWoodenBasinRecipe(SqueezeRecipe recipe) {
         this.input = List.of(EmiIngredient.of(recipe.getIngredients().get(0)));
         this.output = List.of(
-                EmiStack.of(recipe.getOutput(null)),
+                EmiStack.of(recipe.getOutput(null)).setChance(recipe.getChance()),
                 EmiStack.of(recipe.getOutputFluid().getFluidVariant().getFluid(),recipe.getOutputFluid().getAmount()));
         this.id = recipe.getId();
     }

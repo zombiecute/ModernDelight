@@ -62,6 +62,14 @@ repositories {
 
 fabricApi {
 	configureDataGeneration()
+	// Run the server-side security regression tests with ./gradlew -PgameTests build.
+	if (providers.gradleProperty('gameTests').isPresent()) {
+		configureTests {
+			createSourceSet = true
+			modId = 'moderndelight_tests'
+			enableClientGameTests = false
+		}
+	}
 }
 
 loom {
@@ -111,6 +119,17 @@ dependencies {
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 	// Jade
 	modImplementation "maven.modrinth:jade:${project.jade_version}"
+	// Optional cutting board compatibility; never bundled or required at runtime.
+	modCompileOnly "maven.modrinth:farmers-delight-refabricated:${project.farmers_delight_version}"
+	// Use -PfarmersDelight to exercise compatibility in development and GameTests.
+	if (providers.gradleProperty('farmersDelight').isPresent()) {
+		modLocalRuntime "maven.modrinth:farmers-delight-refabricated:${project.farmers_delight_version}"
+		// Loom does not load nested jars from Maven mods in development runs.
+		for (module in ['base', 'config', 'lazy_registration', 'loot', 'networking', 'recipe_book_categories']) {
+			modLocalRuntime "io.github.fabricators_of_create.Porting-Lib:${module}:2.3.15+1.20.1"
+		}
+		modLocalRuntime "com.github.Chocohead:Fabric-ASM:v2.3"
+	}
 	// Local Runtime
 	// REI
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"

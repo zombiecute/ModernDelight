@@ -1,7 +1,7 @@
 {
   "name": "patchouli.moderndelight.book.name",
   "landing_text": "patchouli.moderndelight.book.landing_text",
-  "version": 2,
+  "version": 3,
   "creative_tab": "moderndelight:moderndelight_itemgroup",
   "model": "moderndelight:guide_book",
   "index_icon": "moderndelight:guide_book",

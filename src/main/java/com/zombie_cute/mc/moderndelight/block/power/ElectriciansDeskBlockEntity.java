@@ -80,14 +80,14 @@ public class ElectriciansDeskBlockEntity extends BlockEntity implements Extended
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt,inventory);
-        nbt.putInt("electricians_desk.canCraft",this.canCraft);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt,inventory);
-        this.canCraft = nbt.getInt("electricians_desk.canCraft");
+        this.canCraft = 0;
+        this.isOccupied = 0;
     }
     @Override
     public NbtCompound toInitialChunkDataNbt() {

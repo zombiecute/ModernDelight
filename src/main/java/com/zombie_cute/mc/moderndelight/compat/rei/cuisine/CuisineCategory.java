@@ -49,8 +49,16 @@ public class CuisineCategory implements DisplayCategory<CuisineDisplay> {
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 39,startPoint.y + 7))
                 .entries(display.getInputEntries().get(1)));
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 94,startPoint.y + 28))
-                .markOutput().entries(display.getOutputEntries().get(0)));
+        for (int i = 0; i < display.getOutputEntries().size(); i++) {
+            var slot = Widgets.createSlot(new Point(startPoint.x + 94 + (i % 3) * 18,
+                    startPoint.y + 28 - (i / 3) * 18)).markOutput().entries(display.getOutputEntries().get(i));
+            float chance = display.getChance(i);
+            if (chance < 1.0F) {
+                slot.getEntries().forEach(entry -> entry.tooltip(Text.literal(
+                        String.format(java.util.Locale.ROOT, "%.1f%%", chance * 100.0F))));
+            }
+            widgets.add(slot);
+        }
 
         return widgets;
     }

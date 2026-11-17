@@ -336,6 +336,12 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(FabricRecipeProvider.hasItem(ModItems.CHILI_PEPPER),
                         FabricRecipeProvider.conditionsFromItem(ModItems.CHILI_PEPPER))
                 .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModBlocks.BRITISH_BREAKFAST,1)
+                .input(TagKeys.BREADS).input(ModItems.FRIED_COD_NUGGET).input(ModItems.FRIED_COD_NUGGET)
+                .input(ModItems.FRIED_BROWN_MUSHROOM).input(Items.EGG).input(ModBlocks.WOODEN_PLATE)
+                .criterion(FabricRecipeProvider.hasItem(ModItems.FRIED_COD_NUGGET),
+                        FabricRecipeProvider.conditionsFromItem(ModItems.FRIED_COD_NUGGET))
+                .offerTo(exporter);
         // Shaped
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.FERMENTATION_TANK)
                 .pattern("CCC")

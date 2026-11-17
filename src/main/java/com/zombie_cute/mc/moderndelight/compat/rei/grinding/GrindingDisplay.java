@@ -15,18 +15,24 @@ import java.util.List;
 import java.util.Optional;
 
 public class GrindingDisplay extends BasicDisplay {
+    private final float chance;
     public GrindingDisplay(GrindingRecipe recipe){
         super(EntryIngredients.ofIngredients(recipe.getIngredients()),
                 getOutputs(recipe),
                 Optional.ofNullable(recipe.getId()));
+        this.chance = recipe.getChance();
     }
     private static List<EntryIngredient> getOutputs(GrindingRecipe recipe){
         List<EntryIngredient> outputs = new ArrayList<>();
-        for (ItemStack item : recipe.getOutputs()){
-            outputs.add(EntryIngredient.of(EntryStacks.of(item)));
-        }
+        outputs.add(EntryIngredient.of(EntryStacks.of(recipe.getOutput(null))));
+        outputs.add(EntryIngredient.of(EntryStacks.of(recipe.getChancedOutput())));
         return outputs;
     }
+
+    public float getChance() {
+        return chance;
+    }
+
     @Override
     public List<EntryIngredient> getInputEntries() {
         List<EntryIngredient> inputEntryList = new ArrayList<>(super.getInputEntries());

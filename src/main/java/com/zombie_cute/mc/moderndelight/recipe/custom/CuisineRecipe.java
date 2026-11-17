@@ -3,15 +3,19 @@ package com.zombie_cute.mc.moderndelight.recipe.custom;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
+import com.zombie_cute.mc.moderndelight.sound.ModSounds;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class CuisineRecipe implements Recipe<SimpleInventory> {
     private final Identifier id;
@@ -34,7 +38,26 @@ public class CuisineRecipe implements Recipe<SimpleInventory> {
     }
     @Override
     public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
-        return output;
+        return output.copy();
+    }
+
+    public boolean requiresOutputRoll() {
+        return false;
+    }
+
+    public List<Output> getOutputs() {
+        return List.of(new Output(output.copy(), 1.0F));
+    }
+
+    public List<ItemStack> rollOutputs(SimpleInventory inventory, World world) {
+        return List.of(craft(inventory, world.getRegistryManager()));
+    }
+
+    public SoundEvent getCraftingSound() {
+        return ModSounds.ITEM_STONE_MORTAR_WORKING;
+    }
+
+    public record Output(ItemStack stack, float chance) {
     }
 
     @Override
