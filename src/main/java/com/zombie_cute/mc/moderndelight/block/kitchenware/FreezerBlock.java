@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
@@ -37,19 +38,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
 
-public class FreezerBlock extends BlockWithEntity implements BlockEntityProvider {
+public class FreezerBlock extends LargeMachineBlock implements BlockEntityProvider {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty IS_OPEN = BooleanProperty.of("is_open");
-    private static final VoxelShape TYPE_WEST = Block.createCuboidShape(2,0,0,15,16,16);
-    private static final VoxelShape TYPE_EAST = Block.createCuboidShape(1,0,0,14,16,16);
-    private static final VoxelShape TYPE_SOUTH = Block.createCuboidShape(0,0,1,16,16,14);
-    private static final VoxelShape TYPE_NORTH = Block.createCuboidShape(0,0,2,16,16,15);
     public static final String FAIL_TO_OPEN = "moderndelight.freezer_message.fail_to_open";
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite())
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite())
                 .with(IS_OPEN,false);
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
@@ -91,33 +89,7 @@ public class FreezerBlock extends BlockWithEntity implements BlockEntityProvider
     public FreezerBlock(Settings settings) {
         super(settings);
     }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST){
-            return TYPE_WEST;
-        } else if (direction == Direction.EAST) {
-            return TYPE_EAST;
-        } else if (direction == Direction.NORTH){
-            return TYPE_NORTH;
-        } else {
-            return TYPE_SOUTH;
-        }
-    }
 
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST){
-            return TYPE_WEST;
-        } else if (direction == Direction.EAST) {
-            return TYPE_EAST;
-        } else if (direction == Direction.NORTH){
-            return TYPE_NORTH;
-        } else {
-            return TYPE_SOUTH;
-        }
-    }
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -145,12 +117,15 @@ public class FreezerBlock extends BlockWithEntity implements BlockEntityProvider
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        world.setBlockState(pos, state.with(IS_OPEN, false));
+        super.scheduledTick(state, world, pos, random);
+        if (!isClearForMachine(world, getSideBlock(state, pos), pos)) {
+            world.setBlockState(pos, state.with(IS_OPEN, false));
+        }
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (!world.getBlockState(getSideBlock(state, pos)).isAir() && state.get(IS_OPEN)){
+        if (!isClearForMachine(world, getSideBlock(state, pos), pos) && state.get(IS_OPEN)){
             world.scheduleBlockTick(pos,this,1);
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -194,14 +169,14 @@ public class FreezerBlock extends BlockWithEntity implements BlockEntityProvider
                         break;
                     }
                 }
-                if (!world.getBlockState(getSideBlock(state, pos)).isAir()){
+                if (!isClearForMachine(world, getSideBlock(state, pos), pos)){
                     world.setBlockState(pos, state.with(IS_OPEN, false));
                     player.sendMessage(Text.translatable(FAIL_TO_OPEN),true);
                 }
                 if (state.get(IS_OPEN)){
-                    if (world.getBlockState(facingBlock).isAir()){
+                    if (isClearForMachine(world, facingBlock, pos)){
                         if (player.isSneaking()){
-                            if (world.getBlockState(sideBlock).isAir()){
+                            if (isClearForMachine(world, sideBlock, pos)){
                                 world.setBlockState(pos,state.with(IS_OPEN, false));
                                 Objects.requireNonNull(world).playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, ModSounds.BLOCK_FREEZER_CLOSE, SoundCategory.BLOCKS, 1.7f, world.random.nextFloat()+0.8f);
                             } else {
@@ -217,7 +192,7 @@ public class FreezerBlock extends BlockWithEntity implements BlockEntityProvider
                         player.sendMessage(Text.translatable(FAIL_TO_OPEN),true);
                     }
                 } else {
-                    if (world.getBlockState(facingBlock).isAir() && world.getBlockState(sideBlock).isAir()){
+                    if (isClearForMachine(world, facingBlock, pos) && isClearForMachine(world, sideBlock, pos)){
                         world.setBlockState(pos,state.with(IS_OPEN, true));
                         Objects.requireNonNull(world).playSound(null, pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f, ModSounds.BLOCK_FREEZER_OPEN, SoundCategory.BLOCKS, 1.0f, world.random.nextFloat()+0.8f);
                     } else {

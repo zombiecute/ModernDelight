@@ -1,8 +1,9 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.ice_cream_maker;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -20,31 +21,26 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class IceCreamMakerBlock extends BlockWithEntity {
+public class IceCreamMakerBlock extends LargeMachineBlock {
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.geo()
+            .filterCubes((bone, origin) -> !bone.equals("cup") && !bone.equals("cream"))
+            .build();
+
     public IceCreamMakerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(COLLISION_PROFILE);
         setDefaultState(this.getStateManager().getDefaultState().with(START,false));
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty START = BooleanProperty.of("start");
-    private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,16,14);
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()){

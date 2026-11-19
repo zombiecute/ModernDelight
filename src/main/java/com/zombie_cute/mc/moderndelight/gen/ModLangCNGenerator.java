@@ -40,6 +40,8 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(@NotNull TranslationBuilder translationBuilder) {
+        translationBuilder = LargeMachineTranslations.includeParts(translationBuilder);
+
         translationBuilder.add(TextUtil.HOLD_A_KEY, "按住 ");
         translationBuilder.add(TextUtil.SHIFT_END, " 以查看概要");
         translationBuilder.add(TextUtil.CTRL_END, " 以查看流体信息");
@@ -782,7 +784,7 @@ public class ModLangCNGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"现代乐事指南");
         translationBuilder.add("patchouli.moderndelight.book.name","现代乐事指南");
-        translationBuilder.add("patchouli.moderndelight.book.landing_text","向你介绍：现代乐事。");
+        translationBuilder.add("patchouli.moderndelight.book.landing_text","向你介绍：现代乐事。$(br2)全书分为五章：$(thing)燃气$()、$(thing)电力$()、$(thing)厨房$()、$(thing)发酵$()、$(thing)农业与捕捞$()。第一章讲怎么把沼气烧起来，最后一章讲怎么种地。按顺序读，就能从点火一路走到量产。");
 
         translationBuilder.add("advancement.moderndelight.get_start_desc", "一份简单的模组指南，从这里开始。");
         translationBuilder.add("advancement.moderndelight.got_whisk.title", "工欲善其事");

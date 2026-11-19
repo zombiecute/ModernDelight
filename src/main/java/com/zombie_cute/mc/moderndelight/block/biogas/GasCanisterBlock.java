@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.biogas;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
@@ -34,7 +35,7 @@ import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
 
-public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
+public class GasCanisterBlock extends LargeMachineBlock implements Waterloggable {
     public GasCanisterBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque().pistonBehavior(PistonBehavior.DESTROY));
         setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED,false));
@@ -44,15 +45,6 @@ public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
     @Override
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, WATERLOGGED);
-    }
-    private static final VoxelShape SHAPED = Block.createCuboidShape(3,0,3,13,16,13);
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
     }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
@@ -108,8 +100,9 @@ public class GasCanisterBlock extends BlockWithEntity implements Waterloggable {
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
-        return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER)
+        BlockState placement = getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER)
                 .with(FACING, context.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, context) ? placement : null;
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos,

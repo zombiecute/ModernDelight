@@ -1,9 +1,10 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.juice_extractor;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -28,7 +29,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
@@ -36,9 +37,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class JuiceExtractorBlock extends BlockWithEntity {
+public class JuiceExtractorBlock extends LargeMachineBlock {
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.horizontal(VoxelShapes.union(
+            createCuboidShape(2, 0, 3, 14, 6, 13), createCuboidShape(3, 0, 2, 13, 6, 14),
+            createCuboidShape(3, 6, 3, 13, 18, 13), createCuboidShape(6, 3, .5, 10, 7, 3)).simplify());
+
     public JuiceExtractorBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(COLLISION_PROFILE);
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(IS_FULL, false).with(FACING,Direction.NORTH).with(IS_WORKING, false));
     }
@@ -46,7 +51,6 @@ public class JuiceExtractorBlock extends BlockWithEntity {
     public static final BooleanProperty IS_WORKING = BooleanProperty.of("is_working");
     public static final BooleanProperty IS_FULL = BooleanProperty.of("is_full");
 
-    private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,18,14);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
@@ -77,7 +81,7 @@ public class JuiceExtractorBlock extends BlockWithEntity {
             if (direction.getAxis().isHorizontal()) {
                 Direction direction2 = direction.getOpposite();
                 blockState = blockState.with(FACING, direction2);
-                if (blockState.canPlaceAt(worldView, blockPos)) {
+                if (canPlaceMachine(blockState, ctx)) {
                     return blockState;
                 }
             }
@@ -85,15 +89,6 @@ public class JuiceExtractorBlock extends BlockWithEntity {
         return null;
     }
 
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));

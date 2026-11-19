@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.power;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -28,12 +29,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ElectriciansDeskBlock extends BlockWithEntity {
+public class ElectriciansDeskBlock extends LargeMachineBlock {
     public ElectriciansDeskBlock() {
         super(FabricBlockSettings.copyOf(Blocks.CHERRY_PLANKS).nonOpaque());
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,14,16);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
@@ -46,15 +46,7 @@ public class ElectriciansDeskBlock extends BlockWithEntity {
         }
         super.appendTooltip(stack, world, tooltip, options);
     }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
 
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (world.isClient){
@@ -78,7 +70,8 @@ public class ElectriciansDeskBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

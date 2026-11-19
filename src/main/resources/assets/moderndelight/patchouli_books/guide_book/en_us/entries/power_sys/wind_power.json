@@ -11,14 +11,20 @@
     },
     {
       "type": "patchouli:image",
-      "images": ["moderndelight:guide_images/guide_wind_turbine.png"],
+      "images": [
+        "moderndelight:guide_images/guide_wind_turbine.png"
+      ],
       "text": "A wind turbine example: the controller faces the blades."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:fan_blade",
-      "title": "Wind Turbine Blades",
-      "text": "The blades must be attached to the side of a block (they need a block behind them for support)."
+      "title": "Wind Turbine Blades"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Blade Clearance",
+      "text": "Mount the blades on a supported block side. Allow roughly a $(thing)5×5$() area around the hub, keeping blocks and fluids out of the circular swept volume. The outer square corners stay clear.$(br2)Rotating blades use a stable disk collision envelope. Targeting or breaking the rim acts on the whole rotor; removing its backing also detaches it."
     },
     {
       "type": "patchouli:spotlight",
@@ -36,7 +42,7 @@
     {
       "type": "patchouli:text",
       "title": "Practical Tips",
-      "text": "$(li)The controller and the blades can be rotated with a Crowbar; no need to break them if they face the wrong way.$(li)Above Y ≥ 200 the blades spin faster, but that is only cosmetic — output still follows the formula.$(li)A wind controller is an AC source: attach it straight to the Tesla Coil's intake face, or feed it into an AC/DC Converter to charge batteries."
+      "text": "$(li)Use a Crowbar to rotate the controller or blades.$(li)Above Y ≥ 200 the blades spin faster; output still follows the formula.$(li)Place a Tesla Coil directly against the controller's back, with its intake facing the controller. An AC/DC Converter can bank the power into batteries instead."
     }
   ]
 }

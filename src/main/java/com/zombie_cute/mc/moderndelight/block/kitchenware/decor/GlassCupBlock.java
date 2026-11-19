@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.decor;
 
+import com.zombie_cute.mc.moderndelight.util.block_util.ModelShapes;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -24,6 +26,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.*;
 import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
@@ -32,17 +35,35 @@ import java.util.List;
 import java.util.Objects;
 
 public class GlassCupBlock extends Block implements Waterloggable {
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.vanilla()
+            // Each stem locates one cup; simplify that cup without filling the space between cups.
+            .filterElements(element -> element.width() == 1 && element.height() == 2
+                    && element.depth() == 1 && element.y() == 1)
+            .simplifyElements(GlassCupBlock::solidCups)
+            .build();
+
+    private static VoxelShape solidCups(List<ShapeProfile.Element> stems) {
+        VoxelShape result = VoxelShapes.empty();
+        for (var stem : stems) {
+            float x = stem.x() + .5f, z = stem.z() + .5f;
+            result = VoxelShapes.union(result,
+                    createCuboidShape(x - 2.5, 0, z - 2.5, x + 2.5, 1, z + 2.5),
+                    createCuboidShape(x - .5, 1, z - .5, x + .5, 3, z + .5),
+                    createCuboidShape(x - 3, 3, z - 3, x + 3, 10, z + 3));
+        }
+        return result.simplify();
+    }
+
+    public static VoxelShape singleCupShape() {
+        return ModelShapes.get(ModBlocks.GLASS_CUP.getDefaultState(), COLLISION_PROFILE);
+    }
+
     public GlassCupBlock() {
         super(FabricBlockSettings.copyOf(ModBlocks.GLASS_BOWL));
         this.setDefaultState(getStateManager().getDefaultState().with(CUPS, 1).with(WATERLOGGED, false));
     }
-    public static final IntProperty CUPS;
-    public static final BooleanProperty WATERLOGGED;
-    protected static final VoxelShape ONE_CUP_SHAPE;
-    protected static final VoxelShape TWO_CUPS_SHAPE;
-    protected static final VoxelShape THREE_CUPS_SHAPE;
-    protected static final VoxelShape FOUR_CUPS_SHAPE;
-
+    public static final IntProperty CUPS = IntProperty.of("cups", 1, 4);
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient()){
@@ -97,22 +118,12 @@ public class GlassCupBlock extends Block implements Waterloggable {
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(CUPS)) {
-            default -> ONE_CUP_SHAPE;
-            case 2 -> TWO_CUPS_SHAPE;
-            case 3 -> THREE_CUPS_SHAPE;
-            case 4 -> FOUR_CUPS_SHAPE;
-        };
+        return ModelShapes.get(state, COLLISION_PROFILE);
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(CUPS)) {
-            default -> ONE_CUP_SHAPE;
-            case 2 -> TWO_CUPS_SHAPE;
-            case 3 -> THREE_CUPS_SHAPE;
-            case 4 -> FOUR_CUPS_SHAPE;
-        };
+        return ModelShapes.get(state, COLLISION_PROFILE);
     }
     @Override
     public FluidState getFluidState(BlockState state) {
@@ -123,12 +134,4 @@ public class GlassCupBlock extends Block implements Waterloggable {
         builder.add(CUPS, WATERLOGGED);
     }
 
-    static {
-        CUPS = IntProperty.of("cups",1,4);
-        WATERLOGGED = Properties.WATERLOGGED;
-        ONE_CUP_SHAPE = Block.createCuboidShape(5.0, 0.0, 5.0, 11, 10, 11);
-        TWO_CUPS_SHAPE = Block.createCuboidShape(1, 0.0, 5, 15, 10, 11);
-        THREE_CUPS_SHAPE = Block.createCuboidShape(1, 0.0, 1, 15, 10, 15);
-        FOUR_CUPS_SHAPE = Block.createCuboidShape(1, 0.0, 1, 15, 10, 15);
-    }
 }

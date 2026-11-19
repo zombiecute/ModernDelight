@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.food.pizza;
 
+import com.zombie_cute.mc.moderndelight.util.block_util.ModelShapes;
 import com.google.common.collect.Lists;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
@@ -35,7 +36,7 @@ import static com.zombie_cute.mc.moderndelight.block.food.pizza.PizzaWIPBlockEnt
 public class WheatDoughBlock extends Block {
     public static final IntProperty CRAFT_STATE = IntProperty.of("craft_state",0,3);
     public WheatDoughBlock(Settings settings) {
-        super(settings);
+        super(settings.dynamicBounds());
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(CRAFT_STATE, 0));
     }
@@ -44,36 +45,13 @@ public class WheatDoughBlock extends Block {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(CRAFT_STATE);
     }
-    private static final VoxelShape SHAPE_0 = Block.createCuboidShape(3,0,3,13,6,13);
-    private static final VoxelShape SHAPE_1 = Block.createCuboidShape(3,0,3,13,4,13);
-    private static final VoxelShape SHAPE_2 = Block.createCuboidShape(2,0,2,14,2,14);
-    private static final VoxelShape SHAPE_3 = Block.createCuboidShape(1,0,1,15,1,15);
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int s = state.get(CRAFT_STATE);
-        if (s == 1){
-            return SHAPE_1;
-        } else if (s == 2) {
-            return SHAPE_2;
-        } else if (s == 3) {
-            return SHAPE_3;
-        } else {
-            return SHAPE_0;
-        }
+        return ModelShapes.get(state);
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int s = state.get(CRAFT_STATE);
-        if (s == 1){
-            return SHAPE_1;
-        } else if (s == 2) {
-            return SHAPE_2;
-        } else if (s == 3) {
-            return SHAPE_3;
-        } else {
-            return SHAPE_0;
-        }
+        return ModelShapes.get(state);
     }
 
     @Override

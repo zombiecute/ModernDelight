@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.gas_cooking_stove.BurningGasCookingStoveBlockEntity;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -37,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
+public class BakingTrayBlock extends LargeMachineBlock implements Waterloggable{
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public BakingTrayBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_TRAPDOOR));
@@ -47,18 +48,6 @@ public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED);
-    }
-
-    private static final VoxelShape SHAPE = Block.createCuboidShape(0,0,0,16,4,16);
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
     }
 
     @Nullable
@@ -89,7 +78,8 @@ public class BakingTrayBlock extends BlockWithEntity implements Waterloggable{
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
-        return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState placement = getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        return canPlaceMachine(placement, context) ? placement : null;
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {

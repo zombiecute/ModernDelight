@@ -11,6 +11,7 @@ import com.zombie_cute.mc.moderndelight.block.crops.GarlicCropBlock;
 import com.zombie_cute.mc.moderndelight.block.crops.SoybeanCropBlock;
 import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlock;
 import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlockItem;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.food.*;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.chicken_rice.ChickenRiceBlock;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.chili_fish.ChiliFishBlock;
@@ -317,5 +318,6 @@ public class ModBlocks {
                 new BlockItem(block, new FabricItemSettings()));
     }
     public static void registerModBlocks(){
+        LargeMachineBlock.registerParts();
     }
 }

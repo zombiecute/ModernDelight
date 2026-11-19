@@ -1,8 +1,12 @@
 package com.zombie_cute.mc.moderndelight.block.fermenter;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
+import com.zombie_cute.mc.moderndelight.block.ModBlocks;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ModelShapes;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachinePartBlock;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -29,16 +33,24 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class IndustrialFermenterBlock extends BlockWithEntity {
+public class IndustrialFermenterBlock extends LargeMachineBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final VoxelShape TYPE_WEST_EAST = Block.createCuboidShape(2,0,-4,14,35,20);
-    private static final VoxelShape TYPE_NORTH_SOUTH = Block.createCuboidShape(-4,0,2,20,35,14);
     public static final BooleanProperty IS_OPENING = BooleanProperty.of("is_opening");
     public static final BooleanProperty IS_CLOSING = BooleanProperty.of("is_closing");
     public static final BooleanProperty IS_RUNNING = BooleanProperty.of("is_running");
 
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.geo()
+            // Keep the articulated lid and use solid geometry for the tank and its side frame.
+            .filterCubes((bone, origin) -> bone.equals("cap"))
+            .poseWhen(state -> state.get(IS_OPENING),
+                    (bone, pivot, transform) -> ModelShapes.geoRotation(pivot, -80, 0, 0).mul(transform))
+            .addBox(8, 0, 2, 20, 23, 14)
+            .addBox(-4, 0, 7, 8, 22, 9)
+            .useCubeBounds()
+            .build();
+
     public IndustrialFermenterBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(COLLISION_PROFILE);
         setDefaultState(getStateManager().getDefaultState().with(IS_OPENING, false).with(IS_RUNNING, false).with(IS_CLOSING,false));
     }
     @Override
@@ -62,26 +74,9 @@ public class IndustrialFermenterBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite())
+        BlockState state = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite())
                 .with(IS_OPENING,false).with(IS_RUNNING,false).with(IS_CLOSING,false);
-    }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST || direction == Direction.EAST) {
-            return TYPE_WEST_EAST;
-        } else {
-            return TYPE_NORTH_SOUTH;
-        }
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST || direction == Direction.EAST) {
-            return TYPE_WEST_EAST;
-        } else {
-            return TYPE_NORTH_SOUTH;
-        }
+        return canPlaceMachine(state, ctx) ? state : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.food.clay_pot;
 
+import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.clay_pot.ClayPotBlock;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -25,26 +27,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class ClayPotFoodBlock extends BlockWithEntity {
+public abstract class ClayPotFoodBlock extends LargeMachineBlock {
     public ClayPotFoodBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER)
-                .mapColor(MapColor.BROWN).nonOpaque());
+                .mapColor(MapColor.BROWN).nonOpaque(), ClayPotBlock.COLLISION_PROFILE);
     }
-    private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,5,16);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         tooltip.add(Text.translatable(TextUtil.CAN_PLACE).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, options);
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;

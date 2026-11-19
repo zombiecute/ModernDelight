@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.decor;
 
+ import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -18,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CabinetBlock extends BlockWithEntity {
+public class CabinetBlock extends LargeMachineBlock {
     public CabinetBlock() {
         super(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).sounds(BlockSoundGroup.STONE).nonOpaque());
     }
@@ -29,7 +30,8 @@ public class CabinetBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

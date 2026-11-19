@@ -1,12 +1,15 @@
 package com.zombie_cute.mc.moderndelight.gen;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.tag.TagKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
@@ -32,69 +35,70 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.MYCELIUM);
         getOrCreateTagBuilder(TagKeys.WHISK_MINEABLE).add(Blocks.PODZOL);
         // Mineable Pickaxe
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.OVEN);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.FREEZER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.DEEP_FRYER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.BAKING_TRAY);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.ADVANCE_FURNACE);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.GAS_CANISTER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.BIOGAS_DIGESTER_IO);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.GAS_COOKING_STOVE);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.KITCHEN_UTENSIL_HOLDER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.CUISINE_TABLE);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.ANDESITE_CABINET);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.DIORITE_CABINET);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.GRANITE_CABINET);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.BASALT_CABINET);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.DEEPSLATE_CABINET);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.BLACKSTONE_CABINET);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.OBSIDIAN_CABINET);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.AC_DC_CONVERTER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.FAN_BLADE);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.WIND_TURBINE_CONTROLLER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.SIMPLE_BATTERY);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.INTERMEDIATE_BATTERY);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.ADVANCE_BATTERY);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.DIMENSION_BATTERY);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.STERLING_ENGINE);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.FARADAY_GENERATOR);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.TESLA_COIL);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.SILICON_BLOCK);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.ELECTRIC_STEAMER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.ICE_CREAM_MAKER);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.CHARGING_POST);
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.JUICE_EXTRACTOR);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.OVEN);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.FREEZER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.DEEP_FRYER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.BAKING_TRAY);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.ADVANCE_FURNACE);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.GAS_CANISTER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.BIOGAS_DIGESTER_IO);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.GAS_COOKING_STOVE);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.BURNING_GAS_COOKING_STOVE);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.KITCHEN_UTENSIL_HOLDER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.CUISINE_TABLE);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.ANDESITE_CABINET);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.DIORITE_CABINET);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.GRANITE_CABINET);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.BASALT_CABINET);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.DEEPSLATE_CABINET);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.BLACKSTONE_CABINET);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.OBSIDIAN_CABINET);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.PHOTOVOLTAIC_GENERATOR);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.AC_DC_CONVERTER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.FAN_BLADE);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.INDUSTRIAL_FERMENTER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.WIND_TURBINE_CONTROLLER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.SIMPLE_BATTERY);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.INTERMEDIATE_BATTERY);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.ADVANCE_BATTERY);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.DIMENSION_BATTERY);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.STERLING_ENGINE);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.FARADAY_GENERATOR);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.TESLA_COIL);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.SILICON_BLOCK);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.ELECTRIC_STEAMER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.ICE_CREAM_MAKER);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.CHARGING_POST);
+        addToolTag(BlockTags.PICKAXE_MINEABLE, ModBlocks.JUICE_EXTRACTOR);
         // Mineable Axe
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.WOODEN_BASIN);
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.ELECTRICIANS_DESK);
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.BOXED_CHERRIES);
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.BAMBOO_COVER);
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(ModBlocks.BAMBOO_GRATE);
+        addToolTag(BlockTags.AXE_MINEABLE, ModBlocks.WOODEN_BASIN);
+        addToolTag(BlockTags.AXE_MINEABLE, ModBlocks.ELECTRICIANS_DESK);
+        addToolTag(BlockTags.AXE_MINEABLE, ModBlocks.BOXED_CHERRIES);
+        addToolTag(BlockTags.AXE_MINEABLE, ModBlocks.BAMBOO_COVER);
+        addToolTag(BlockTags.AXE_MINEABLE, ModBlocks.BAMBOO_GRATE);
         // Need Stone Tool
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.CHARGING_POST);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ICE_CREAM_MAKER);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ELECTRIC_STEAMER);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.SILICON_BLOCK);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.FARADAY_GENERATOR);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.INTERMEDIATE_BATTERY);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.FAN_BLADE);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.WIND_TURBINE_CONTROLLER);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.FREEZER);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.BAKING_TRAY);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.GAS_CANISTER);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.BIOGAS_DIGESTER_IO);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.GAS_COOKING_STOVE);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.BURNING_GAS_COOKING_STOVE);
-        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.PHOTOVOLTAIC_GENERATOR);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.CHARGING_POST);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.ICE_CREAM_MAKER);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.ELECTRIC_STEAMER);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.SILICON_BLOCK);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.FARADAY_GENERATOR);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.INTERMEDIATE_BATTERY);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.FAN_BLADE);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.WIND_TURBINE_CONTROLLER);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.FREEZER);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.BAKING_TRAY);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.GAS_CANISTER);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.BIOGAS_DIGESTER_IO);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.GAS_COOKING_STOVE);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.BURNING_GAS_COOKING_STOVE);
+        addToolTag(BlockTags.NEEDS_STONE_TOOL, ModBlocks.PHOTOVOLTAIC_GENERATOR);
         // Need Iron Tool
-        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL).add(ModBlocks.ADVANCE_BATTERY);
+        addToolTag(BlockTags.NEEDS_IRON_TOOL, ModBlocks.ADVANCE_BATTERY);
         // Need Diamond Tool
-        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.OBSIDIAN_CABINET);
-        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.DIMENSION_BATTERY);
+        addToolTag(BlockTags.NEEDS_DIAMOND_TOOL, ModBlocks.OBSIDIAN_CABINET);
+        addToolTag(BlockTags.NEEDS_DIAMOND_TOOL, ModBlocks.DIMENSION_BATTERY);
         // Crops
         getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.BLACK_PEPPER_CROP);
         getOrCreateTagBuilder(BlockTags.CROPS).add(ModBlocks.GARLIC_CROP);
@@ -228,5 +232,14 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         // 1000 ℃
         getOrCreateTagBuilder(TagKeys.TEMPERATURE_1000).add(Blocks.LAVA);
         getOrCreateTagBuilder(TagKeys.TEMPERATURE_1000).add(Blocks.LAVA_CAULDRON);
+
     }
+    /** Add each tool requirement once, alongside the invisible cells of the same machine. */
+    private void addToolTag(TagKey<Block> tag, Block block) {
+        var builder = getOrCreateTagBuilder(tag).add(block);
+        if (block instanceof LargeMachineBlock machine && machine.getPartBlock() != null) {
+            builder.add(machine.getPartBlock());
+        }
+    }
+
 }

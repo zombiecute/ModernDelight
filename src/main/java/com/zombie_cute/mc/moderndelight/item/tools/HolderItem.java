@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.item.tools;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachinePartBlock;
 import com.zombie_cute.mc.moderndelight.tag.TagKeys;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -38,7 +39,7 @@ public class HolderItem extends Item {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
-        BlockPos blockPos = context.getBlockPos();
+        BlockPos blockPos = LargeMachinePartBlock.resolveMachinePos(world, context.getBlockPos());
         ItemStack holder = context.getStack();
         PlayerEntity player = context.getPlayer();
         Block aimedBlock = world.getBlockState(blockPos).getBlock();

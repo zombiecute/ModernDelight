@@ -1,7 +1,6 @@
 package com.zombie_cute.mc.moderndelight.compat.jade;
 
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
-import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.block.biogas.*;
 import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.*;
@@ -18,6 +17,7 @@ import com.zombie_cute.mc.moderndelight.block.kitchenware.steaming.ElectricSteam
 import com.zombie_cute.mc.moderndelight.block.kitchenware.steaming.ElectricSteamerBlockEntity;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.steaming.BambooGrateBlockEntity;
 import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlockEntity;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachinePartBlock;
 import com.zombie_cute.mc.moderndelight.block.power.ChargingPostBlock;
 import com.zombie_cute.mc.moderndelight.block.power.ChargingPostBlockEntity;
 import com.zombie_cute.mc.moderndelight.block.power.TeslaCoilBlock;
@@ -37,10 +37,14 @@ import com.zombie_cute.mc.moderndelight.block.trawler.TrawlerBlock;
 import com.zombie_cute.mc.moderndelight.block.trawler.TrawlerBlockEntity;
 import com.zombie_cute.mc.moderndelight.compat.jade.provider.MachineDetailsComponentProvider;
 import net.minecraft.util.Identifier;
+import snownee.jade.api.Accessor;
+import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IWailaClientRegistration;
 import snownee.jade.api.IWailaCommonRegistration;
 import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
+
+import java.util.function.Supplier;
 
 @WailaPlugin
 public class JadePlugin implements IWailaPlugin {
@@ -73,6 +77,8 @@ public class JadePlugin implements IWailaPlugin {
 
     @Override
     public void registerClient(IWailaClientRegistration registration) {
+        registration.addRayTraceCallback((hit, accessor, original) ->
+                redirectMachinePart(accessor, registration::blockAccessor));
         registration.registerBlockComponent(MachineDetailsComponentProvider.INSTANCE, TrawlerBlock.class);
         registration.registerBlockComponent(MachineDetailsComponentProvider.INSTANCE, SterlingEngineBlock.class);
         registration.registerBlockComponent(MachineDetailsComponentProvider.INSTANCE, FaradayGeneratorBlock.class);
@@ -94,5 +100,25 @@ public class JadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(MachineDetailsComponentProvider.INSTANCE, ACDCConverterBlock.class);
         registration.registerBlockComponent(MachineDetailsComponentProvider.INSTANCE, TeslaCoilBlock.class);
 
+    }
+
+    static Accessor<?> redirectMachinePart(Accessor<?> accessor, Supplier<BlockAccessor.Builder> builder) {
+        if (!(accessor instanceof BlockAccessor block) || !(block.getBlock() instanceof LargeMachinePartBlock part)) {
+            return accessor;
+        }
+        var world = block.getLevel();
+        var partPos = block.getPosition();
+        var rootPos = part.getMachinePos(block.getBlockState(), partPos);
+        if (!world.isChunkLoaded(rootPos)) return accessor;
+        var rootState = part.findMachine(world, partPos, block.getBlockState());
+        if (rootState == null) return accessor;
+
+        // Jade uses the accessor's hit position to request server data and its state to select providers.
+        return builder.get().from(block)
+                .hit(block.getHitResult().withBlockPos(rootPos))
+                .blockState(rootState)
+                .blockEntity(() -> world.getBlockEntity(rootPos))
+                .requireVerification()
+                .build();
     }
 }

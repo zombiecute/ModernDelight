@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.power.alternator.thermal_power;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -30,37 +31,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FaradayGeneratorBlock extends BlockWithEntity {
+public class FaradayGeneratorBlock extends LargeMachineBlock {
+    @Override
+    protected boolean occupiesCell(BlockState state, BlockPos offset) {
+        // The one-pixel rear plug enters the engine's shaft cell; leave that cell to the engine.
+        return !offset.equals(BlockPos.ORIGIN.offset(state.get(FACING).getOpposite()));
+    }
+
     public FaradayGeneratorBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
-    private static final VoxelShape SHAPED_SOUTH = Block.createCuboidShape(2,0,0,14,16,16);
-    private static final VoxelShape SHAPED_NORTH = Block.createCuboidShape(2,0,0,14,16,16);
-    private static final VoxelShape SHAPED_EAST = Block.createCuboidShape(0,0,2,16,16,14);
-    private static final VoxelShape SHAPED_WEST = Block.createCuboidShape(0,0,2,16,16,14);
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction dir = state.get(FACING);
-        return switch (dir) {
-            case SOUTH -> SHAPED_SOUTH;
-            case EAST -> SHAPED_EAST;
-            case WEST -> SHAPED_WEST;
-            default -> SHAPED_NORTH;
-        };
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction dir = state.get(FACING);
-        return switch (dir) {
-            case SOUTH -> SHAPED_SOUTH;
-            case EAST -> SHAPED_EAST;
-            case WEST -> SHAPED_WEST;
-            default -> SHAPED_NORTH;
-        };
-    }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
@@ -82,7 +64,8 @@ public class FaradayGeneratorBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

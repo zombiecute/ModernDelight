@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.decor;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +22,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-public class KitchenUtensilHolderBlock extends BlockWithEntity{
+public class KitchenUtensilHolderBlock extends LargeMachineBlock{
 
     public KitchenUtensilHolderBlock(Settings settings) {
         super(settings);
@@ -29,36 +30,12 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
     }
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final VoxelShape SHAPED_SOUTH = Block.createCuboidShape(1,8,0,15,12,3);
-    private static final VoxelShape SHAPED_NORTH = Block.createCuboidShape(1,8,13,15,12,16);
-    private static final VoxelShape SHAPED_EAST = Block.createCuboidShape(0,8,1,3,12,15);
-    private static final VoxelShape SHAPED_WEST = Block.createCuboidShape(13,8,1,16,12,15);
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction direction = state.get(FACING);
         BlockPos blockPos = pos.offset(direction.getOpposite());
         BlockState blockState = world.getBlockState(blockPos);
-        return blockState.isSideSolidFullSquare(world, blockPos, direction);
-    }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction dir = state.get(FACING);
-        return switch (dir) {
-            case SOUTH -> SHAPED_SOUTH;
-            case EAST -> SHAPED_EAST;
-            case WEST -> SHAPED_WEST;
-            default -> SHAPED_NORTH;
-        };
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction dir = state.get(FACING);
-        return switch (dir) {
-            case SOUTH -> SHAPED_SOUTH;
-            case EAST -> SHAPED_EAST;
-            case WEST -> SHAPED_WEST;
-            default -> SHAPED_NORTH;
-        };
+        return super.canPlaceAt(state, world, pos) && (blockState.isSideSolidFullSquare(world, blockPos, direction));
     }
 
     @Nullable
@@ -72,7 +49,7 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
             if (direction.getAxis().isHorizontal()) {
                 Direction direction2 = direction.getOpposite();
                 blockState = blockState.with(FACING, direction2);
-                if (blockState.canPlaceAt(worldView, blockPos)) {
+                if (canPlaceMachine(blockState, ctx)) {
                     return blockState;
                 }
             }
@@ -92,7 +69,6 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING,rotation.rotate(state.get(FACING)));
     }
-
 
     @Nullable
     @Override
@@ -122,9 +98,6 @@ public class KitchenUtensilHolderBlock extends BlockWithEntity{
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }
-
-
-
 
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;

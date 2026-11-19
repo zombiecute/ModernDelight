@@ -1,7 +1,10 @@
 package com.zombie_cute.mc.moderndelight.block.power.alternator.wind_power;
 
+import com.zombie_cute.mc.moderndelight.block.ModBlocks;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachinePartBlock;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.Screen;
@@ -24,14 +27,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FanBladeBlock extends BlockWithEntity {
+public class FanBladeBlock extends LargeMachineBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final VoxelShape SHAPED_SOUTH = Block.createCuboidShape(-24,-24,0,40,40,9);
-    private static final VoxelShape SHAPED_NORTH = Block.createCuboidShape(-24,-24,7,40,40,16);
-    private static final VoxelShape SHAPED_EAST = Block.createCuboidShape(0,-24,-24,9,40,40);
-    private static final VoxelShape SHAPED_WEST = Block.createCuboidShape(7,-24,-24,16,40,40);
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.geo()
+            // Keep the shaft and replace the animated blades and hub with their swept volumes.
+            .filterCubes((bone, origin) -> !bone.equals("bone"))
+            .addDiskInXY(8, 8.5f, 34, 7.5f, 9.5f)
+            .addDiskInXY(8, 8.5f, 5, 6.5f, 10.5f)
+            .build();
+
     public FanBladeBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(COLLISION_PROFILE);
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
@@ -48,50 +54,36 @@ public class FanBladeBlock extends BlockWithEntity {
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockState blockState = this.getDefaultState();
-        WorldView worldView = ctx.getWorld();
-        BlockPos blockPos = ctx.getBlockPos();
         Direction[] directions = ctx.getPlacementDirections();
         for (Direction direction : directions) {
             if (direction.getAxis().isHorizontal()) {
                 Direction direction2 = direction.getOpposite();
                 blockState = blockState.with(FACING, direction2);
-                if (blockState.canPlaceAt(worldView, blockPos)) {
+                if (canPlaceMachine(blockState, ctx)) {
                     return blockState;
                 }
             }
         }
         return null;
     }
+
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction dir = state.get(FACING);
-        return switch (dir) {
-            case SOUTH -> SHAPED_SOUTH;
-            case EAST -> SHAPED_EAST;
-            case WEST -> SHAPED_WEST;
-            default -> SHAPED_NORTH;
-        };
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction dir = state.get(FACING);
-        return switch (dir) {
-            case SOUTH -> SHAPED_SOUTH;
-            case EAST -> SHAPED_EAST;
-            case WEST -> SHAPED_WEST;
-            default -> SHAPED_NORTH;
-        };
+    protected boolean occupiesCell(BlockState state, BlockPos offset) {
+        // The mounting shaft embeds half a model pixel into its backing block.
+        return !offset.equals(BlockPos.ORIGIN.offset(state.get(FACING).getOpposite()));
     }
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction direction = state.get(FACING);
         BlockPos blockPos = pos.offset(direction.getOpposite());
         BlockState blockState = world.getBlockState(blockPos);
-        return !blockState.isAir();
+        return !blockState.isAir() && !(blockState.getBlock() instanceof LargeMachinePartBlock)
+                && super.canPlaceAt(state, world, pos);
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return direction.getOpposite() == state.get(FACING) && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
+        // Only losing the backing block detaches the blades. Part placement also sends neighbor updates.
+        return direction.getOpposite() == state.get(FACING) && neighborState.isAir() ? Blocks.AIR.getDefaultState() : state;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

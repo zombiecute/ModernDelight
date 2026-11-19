@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.power.alternator.wind_power;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -30,35 +32,25 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class WindTurbineControllerBlock extends BlockWithEntity {
+public class WindTurbineControllerBlock extends LargeMachineBlock {
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.vanilla()
+            // Leave the rear cell free for the Tesla coil.
+            .filterElements(element -> element.z() < 16)
+            .build();
+
     public WindTurbineControllerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque());
+        super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), COLLISION_PROFILE);
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
-    }
-    private static final VoxelShape X = Block.createCuboidShape(1,0,0,15,16,16);
-    private static final VoxelShape Z = Block.createCuboidShape(0,0,1,16,16,15);
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(FACING)){
-            case NORTH, SOUTH -> Z;
-            default -> X;
-        };
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(FACING)){
-            case NORTH, SOUTH -> Z;
-            default -> X;
-        };
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

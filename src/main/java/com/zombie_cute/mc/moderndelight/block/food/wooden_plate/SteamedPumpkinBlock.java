@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.food.wooden_plate;
 
+import com.zombie_cute.mc.moderndelight.util.block_util.ModelShapes;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -37,19 +38,18 @@ import java.util.List;
 
 public class SteamedPumpkinBlock extends Block {
     public SteamedPumpkinBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.CAKE).sounds(BlockSoundGroup.WOOD));
+        super(FabricBlockSettings.copyOf(Blocks.CAKE).dynamicBounds().sounds(BlockSoundGroup.WOOD));
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(BITES, 0));
     }
     public static final IntProperty BITES = IntProperty.of("bites",0,3);
-    private static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,8,15);
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
+        return ModelShapes.get(state);
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
+        return ModelShapes.get(state);
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.power.batteries;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,15 +26,6 @@ public class AdvanceBatteryBlock extends AbstractBatteryBlock {
         return ModBlocks.ADVANCE_BATTERY;
     }
 
-    private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,16,14);
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {

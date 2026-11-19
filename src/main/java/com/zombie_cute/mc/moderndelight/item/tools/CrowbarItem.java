@@ -3,6 +3,7 @@ package com.zombie_cute.mc.moderndelight.item.tools;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.zombie_cute.mc.moderndelight.advancement.ModCriteria;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachinePartBlock;
 import com.zombie_cute.mc.moderndelight.sound.ModSounds;
 import com.zombie_cute.mc.moderndelight.tag.TagKeys;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -74,7 +75,7 @@ public class CrowbarItem extends ToolItem {
         if (world.isClient){
             return ActionResult.SUCCESS;
         }
-        BlockPos blockPos = context.getBlockPos();
+        BlockPos blockPos = LargeMachinePartBlock.resolveMachinePos(world, context.getBlockPos());
         Block target = world.getBlockState(blockPos).getBlock();
         context.getStack().damage(1, Objects.requireNonNull(context.getPlayer()),
                 (player) -> player.sendToolBreakStatus(player.getActiveHand()));

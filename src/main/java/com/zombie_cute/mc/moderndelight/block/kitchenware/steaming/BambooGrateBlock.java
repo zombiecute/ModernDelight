@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.steaming;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
@@ -35,19 +37,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BambooGrateBlock extends BlockWithEntity {
+public class BambooGrateBlock extends LargeMachineBlock {
+    public static final IntProperty LAYER = IntProperty.of("layer", 1, 4);
+    public static final BooleanProperty COVERED = BooleanProperty.of("covered");
+
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.byState(state ->
+            createCuboidShape(1, 0, 1, 15, 4 * (state.get(LAYER) + (state.get(COVERED) ? 1 : 0)), 15));
+
     public BambooGrateBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque());
+        super(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque(), COLLISION_PROFILE);
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(LAYER, 1).with(COVERED,false));
     }
-    public static final IntProperty LAYER = IntProperty.of("layer",1,4);
-    public static final BooleanProperty COVERED = BooleanProperty.of("covered");
-    public static final VoxelShape SHAPED_1 = Block.createCuboidShape(1,0,1,15,4,15);
-    public static final VoxelShape SHAPED_2 = Block.createCuboidShape(1,0,1,15,8,15);
-    public static final VoxelShape SHAPED_3 = Block.createCuboidShape(1,0,1,15,12,15);
-    public static final VoxelShape SHAPED_4 = Block.createCuboidShape(1,0,1,15,16,15);
-    public static final VoxelShape SHAPED_5 = Block.createCuboidShape(1,0,1,15,20,15);
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LAYER,COVERED);
@@ -67,44 +68,6 @@ public class BambooGrateBlock extends BlockWithEntity {
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
-    }
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(COVERED)){
-            return switch (state.get(LAYER)){
-                case 2 -> SHAPED_3;
-                case 3 -> SHAPED_4;
-                case 4 -> SHAPED_5;
-                default -> SHAPED_2;
-            };
-        } else {
-            return switch (state.get(LAYER)){
-                case 2 -> SHAPED_2;
-                case 3 -> SHAPED_3;
-                case 4 -> SHAPED_4;
-                default -> SHAPED_1;
-            };
-        }
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(COVERED)){
-            return switch (state.get(LAYER)){
-                case 2 -> SHAPED_3;
-                case 3 -> SHAPED_4;
-                case 4 -> SHAPED_5;
-                default -> SHAPED_2;
-            };
-        } else {
-            return switch (state.get(LAYER)){
-                case 2 -> SHAPED_2;
-                case 3 -> SHAPED_3;
-                case 4 -> SHAPED_4;
-                default -> SHAPED_1;
-            };
-        }
     }
 
     @Override
@@ -132,7 +95,8 @@ public class BambooGrateBlock extends BlockWithEntity {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(LAYER) == 4 && state.get(COVERED) && !world.getBlockState(pos.up()).isAir()){
+        super.scheduledTick(state, world, pos, random);
+        if (state.get(LAYER) == 4 && state.get(COVERED) && !isClearForMachine(world, pos.up(), pos)){
             if (world.getBlockState(pos.up()).getBlock().equals(ModBlocks.BAMBOO_COVER)){
                 world.setBlockState(pos,state.with(COVERED,true));
                 world.setBlockState(pos.up(),Blocks.AIR.getDefaultState());
@@ -189,7 +153,7 @@ public class BambooGrateBlock extends BlockWithEntity {
                     }
                 } else if (player.getStackInHand(hand).getItem().equals(ModBlocks.BAMBOO_GRATE.asItem())) {
                     if (state.get(LAYER) < 4){
-                        if (state.get(LAYER) == 3 && !world.getBlockState(pos.up()).isAir() && state.get(COVERED)){
+                        if (state.get(LAYER) == 3 && !isClearForMachine(world, pos.up(), pos) && state.get(COVERED)){
                             return ActionResult.SUCCESS;
                         }
                         world.setBlockState(pos,state.with(LAYER,state.get(LAYER) + 1));

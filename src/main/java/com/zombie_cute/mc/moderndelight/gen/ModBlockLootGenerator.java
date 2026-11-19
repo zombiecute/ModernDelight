@@ -48,6 +48,7 @@ public class ModBlockLootGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PHOTOVOLTAIC_GENERATOR);
         addDrop(ModBlocks.AC_DC_CONVERTER);
         addDrop(ModBlocks.FAN_BLADE);
+        addDrop(ModBlocks.INDUSTRIAL_FERMENTER);
         addDrop(ModBlocks.WIND_TURBINE_CONTROLLER);
         addDrop(ModBlocks.STERLING_ENGINE);
         addDrop(ModBlocks.FARADAY_GENERATOR);

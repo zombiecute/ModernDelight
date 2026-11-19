@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.gas_cooking_stove;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.FluidState;
@@ -21,13 +22,12 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractGasCookingStoveBlock extends BlockWithEntity implements Waterloggable {
+public abstract class AbstractGasCookingStoveBlock extends LargeMachineBlock implements Waterloggable {
     public AbstractGasCookingStoveBlock(Settings settings) {
         super(settings);
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(WATERLOGGED,false).with(HAS_BRACKET, false));
     }
-    private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,16,14);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final BooleanProperty HAS_BRACKET = BooleanProperty.of("has_bracket");
 
@@ -43,7 +43,7 @@ public abstract class AbstractGasCookingStoveBlock extends BlockWithEntity imple
     }
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP);
+        return super.canPlaceAt(state, world, pos) && (world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP));
     }
 
     @Override
@@ -60,7 +60,8 @@ public abstract class AbstractGasCookingStoveBlock extends BlockWithEntity imple
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
-        return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState placement = getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        return canPlaceMachine(placement, context) ? placement : null;
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos,
@@ -77,14 +78,6 @@ public abstract class AbstractGasCookingStoveBlock extends BlockWithEntity imple
         return Boolean.TRUE.equals(state.get(WATERLOGGED)) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;

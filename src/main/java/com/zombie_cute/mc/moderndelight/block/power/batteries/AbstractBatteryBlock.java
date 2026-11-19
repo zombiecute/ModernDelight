@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.power.batteries;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.ModernDelightMain;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public abstract class AbstractBatteryBlock extends BlockWithEntity {
+public abstract class AbstractBatteryBlock extends LargeMachineBlock {
     public AbstractBatteryBlock(Settings settings) {
         super(settings);
     }
@@ -246,7 +247,7 @@ public abstract class AbstractBatteryBlock extends BlockWithEntity {
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (world.getBlockEntity(pos) instanceof BatteryBlockEntity blockEntity) {
+        if (!newState.isOf(this) && world.getBlockEntity(pos) instanceof BatteryBlockEntity blockEntity) {
             if (!world.isClient) {
                 ItemStack itemStack = new ItemStack(getBlock());
                 blockEntity.setStackNbt(itemStack);

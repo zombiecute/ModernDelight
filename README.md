@@ -50,6 +50,11 @@ These are optional, but add useful integrations:
 
 Modern Delight is under active development. Back up your worlds before updating, and report problems through [GitHub Issues](https://github.com/zombiecute/ModernDelight/issues).
 
+Development Documentation (Chinese)：
+- [Block Collision Maintenance](docs/block-collision-maintenance.md)
+- [Fermentation System](docs/fermentation-system.md)
+- [Status Effects](docs/status-effects.md)
+
 ## Links
 
 [GitHub](https://github.com/zombiecute/ModernDelight) · [Issues](https://github.com/zombiecute/ModernDelight/issues) · [Discord](https://discord.com/invite/b3RrpnWWYk) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/modern-delight) · [Modrinth](https://modrinth.com/mod/modern-delight)

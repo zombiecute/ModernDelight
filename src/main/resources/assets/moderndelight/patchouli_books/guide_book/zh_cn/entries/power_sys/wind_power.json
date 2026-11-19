@@ -11,14 +11,20 @@
     },
     {
       "type": "patchouli:image",
-      "images": ["moderndelight:guide_images/guide_wind_turbine.png"],
+      "images": [
+        "moderndelight:guide_images/guide_wind_turbine.png"
+      ],
       "text": "一台风力发电机的示例：控制器正对着叶片。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "moderndelight:fan_blade",
-      "title": "风力发电机叶片",
-      "text": "叶片要贴在某个方块的侧面上（背后必须有方块支撑）。"
+      "title": "风力发电机叶片"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "叶片安装空间",
+      "text": "叶片要贴在方块侧面，背后必须有支撑。围绕中心预留约$(thing)5×5 格$()的空间，让圆形扫掠范围避开方块和液体；圆形外侧的角落不参与碰撞。$(br2)转动时使用稳定的圆盘碰撞。选中、拆除叶片边缘也会作用于整片叶片；拆掉背后的支撑，叶片同样会掉落。"
     },
     {
       "type": "patchouli:spotlight",
@@ -36,7 +42,7 @@
     {
       "type": "patchouli:text",
       "title": "实用技巧",
-      "text": "$(li)控制器与叶片的朝向可以用撬棍右键旋转，装反了不用拆。$(li)叶片在 Y≥200 时转动动画会加快，但那只是好看，发电量仍按公式计算。$(li)风力控制器属于交流电源，直接贴在特斯拉线圈的取电面即可，或接到交流/直流转换器上给电池充电。"
+      "text": "$(li)控制器与叶片的朝向可以用撬棍右键旋转，装反了不用拆。$(li)叶片在 Y≥200 时转动动画会加快，但那只是好看，发电量仍按公式计算。$(li)特斯拉线圈可以紧贴控制器背面安装，取电面朝向控制器；也可接交流/直流转换器给电池充电。"
     }
   ]
 }

@@ -6,6 +6,7 @@ import com.zombie_cute.mc.moderndelight.block.crops.BlackPepperCropBlock;
 import com.zombie_cute.mc.moderndelight.block.crops.ChiliCropBlock;
 import com.zombie_cute.mc.moderndelight.block.crops.GarlicCropBlock;
 import com.zombie_cute.mc.moderndelight.block.crops.SoybeanCropBlock;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -22,6 +23,10 @@ public class ModModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        LargeMachineBlock.getRegisteredParts().values().forEach(part ->
+                blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(part,
+                        BlockStateVariant.create().put(VariantSettings.MODEL,
+                                Identifier.of(ModernDelightMain.MOD_ID, "block/large_machine_part")))));
         blockStateModelGenerator.registerSimpleState(ModBlocks.BIOGAS_DIGESTER_CONTROLLER);
         blockStateModelGenerator.registerSimpleState(ModBlocks.BIOGAS_DIGESTER_IO);
         blockStateModelGenerator.registerSimpleState(ModBlocks.BAKING_TRAY);

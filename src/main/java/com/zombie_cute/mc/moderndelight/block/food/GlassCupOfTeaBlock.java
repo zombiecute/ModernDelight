@@ -1,6 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.food;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
+import com.zombie_cute.mc.moderndelight.block.kitchenware.decor.GlassCupBlock;
 import com.zombie_cute.mc.moderndelight.util.block_util.Drinkable;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -29,17 +30,16 @@ import java.util.List;
 
 public class GlassCupOfTeaBlock extends Block implements Drinkable {
     public GlassCupOfTeaBlock(int hunger, float saturationModifier, StatusEffectInstance... effects) {
-        super(FabricBlockSettings.copyOf(Blocks.REPEATER).sounds(BlockSoundGroup.GLASS));
+        super(FabricBlockSettings.copyOf(Blocks.REPEATER).dynamicBounds().sounds(BlockSoundGroup.GLASS));
         this.hunger = hunger;
         this.saturationModifier = saturationModifier;
         this.effects = Arrays.asList(effects.clone());
     }
     public GlassCupOfTeaBlock(int hunger, float saturationModifier) {
-        super(FabricBlockSettings.copyOf(Blocks.REPEATER).sounds(BlockSoundGroup.GLASS));
+        super(FabricBlockSettings.copyOf(Blocks.REPEATER).dynamicBounds().sounds(BlockSoundGroup.GLASS));
         this.hunger = hunger;
         this.saturationModifier = saturationModifier;
     }
-    protected static final VoxelShape SHAPED = Block.createCuboidShape(5.0, 0.0, 5.0, 11, 10, 11);;
     public List<StatusEffectInstance> effects = null;
     public int hunger;
     public float saturationModifier;
@@ -54,12 +54,12 @@ public class GlassCupOfTeaBlock extends Block implements Drinkable {
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
+        return GlassCupBlock.singleCupShape();
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
+        return GlassCupBlock.singleCupShape();
     }
 
     @Override

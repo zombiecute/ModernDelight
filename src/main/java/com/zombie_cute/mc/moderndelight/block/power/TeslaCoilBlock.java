@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.power;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -44,18 +45,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
+public class TeslaCoilBlock extends LargeMachineBlock implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final DirectionProperty FACING = Properties.FACING;
     public static final BooleanProperty SHOW_PARTICLE = BooleanProperty.of("show_particle");
     public static final BooleanProperty IS_OVERLOADED = BooleanProperty.of("is_overloaded");
-    private static final VoxelShape UP = Block.createCuboidShape(5,0,5,11,16,11);
-    private static final VoxelShape DOWN = Block.createCuboidShape(5,0,5,11,16,11);
-    private static final VoxelShape EAST = Block.createCuboidShape(0,5,5,16,11,11);
-    private static final VoxelShape WEST = Block.createCuboidShape(0,5,5,16,11,11);
-    private static final VoxelShape SOUTH = Block.createCuboidShape(5,5,0,11,11,16);
-    private static final VoxelShape NORTH = Block.createCuboidShape(5,5,0,11,11,16);
-
     public TeslaCoilBlock() {
         super(FabricBlockSettings.copyOf(Blocks.STONE).sounds(BlockSoundGroup.NETHERITE).luminance(state -> state.get(IS_OVERLOADED) ? 0 : 7));
         setDefaultState(this.getStateManager().getDefaultState()
@@ -76,29 +70,6 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
     @Override
     public FluidState getFluidState(BlockState state) {
         return Boolean.TRUE.equals(state.get(WATERLOGGED)) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
-    }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)){
-            case EAST -> {
-                return EAST;
-            }
-            case SOUTH -> {
-                return SOUTH;
-            }
-            case WEST -> {
-                return WEST;
-            }
-            case NORTH -> {
-                return NORTH;
-            }
-            case UP -> {
-                return UP;
-            }
-            default -> {
-                return DOWN;
-            }
-        }
     }
 
     @Override
@@ -142,29 +113,6 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)){
-            case EAST -> {
-                return EAST;
-            }
-            case SOUTH -> {
-                return SOUTH;
-            }
-            case WEST -> {
-                return WEST;
-            }
-            case NORTH -> {
-                return NORTH;
-            }
-            case UP -> {
-                return UP;
-            }
-            default -> {
-                return DOWN;
-            }
-        }
-    }
-    @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
@@ -187,7 +135,7 @@ public class TeslaCoilBlock extends BlockWithEntity implements Waterloggable {
             } else {
                 blockState = blockState.with(FACING, direction);
             }
-            if (blockState.canPlaceAt(worldView, blockPos)) {
+            if (canPlaceMachine(blockState, ctx)) {
                 return blockState.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             }
         }

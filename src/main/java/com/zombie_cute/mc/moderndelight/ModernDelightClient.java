@@ -2,6 +2,7 @@ package com.zombie_cute.mc.moderndelight;
 
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineOutlineRenderer;
 import com.zombie_cute.mc.moderndelight.block.fermenter.IndustrialFermenterBlockEntityRenderer;
 import com.zombie_cute.mc.moderndelight.block.food.wooden_plate.british_breakfast.BritishBreakfastBlockEntityRender;
 import com.zombie_cute.mc.moderndelight.block.food.clay_pot.chicken_rice.ChickenRiceBlockEntityRender;
@@ -62,6 +63,7 @@ public class ModernDelightClient implements ClientModInitializer {
     public static final String ORE_UI_BRIGHT = "moderndelight.builtInResourcePack.ore_ui_bright";
     @Override
     public void onInitializeClient() {
+        LargeMachineOutlineRenderer.register();
         NetworkHandler.registerS2CPacket();
 
         ResourceManagerHelper.registerBuiltinResourcePack(

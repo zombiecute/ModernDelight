@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.food.pizza;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -22,19 +23,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class AbstractPizzaBlock extends BlockWithEntity {
+public abstract class AbstractPizzaBlock extends LargeMachineBlock {
     public AbstractPizzaBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER).burnable().sounds(BlockSoundGroup.HONEY)
                 .jumpVelocityMultiplier(0.5f).mapColor(MapColor.YELLOW).nonOpaque());
-    }
-    private static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,1,15);
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
     }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
@@ -43,7 +35,7 @@ public abstract class AbstractPizzaBlock extends BlockWithEntity {
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP);
+        return super.canPlaceAt(state, world, pos) && (world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP));
     }
 
     @Override

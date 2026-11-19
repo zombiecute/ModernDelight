@@ -26,6 +26,11 @@
       "type": "patchouli:text",
       "title": "Open Water",
       "text": "The $(thing)5×5×3$() area below the trawler must be all water, and the $(thing)sky light$() above it must be at least 12.$(br2)When that holds, even without bait there is roughly a $(thing)89%%$() chance to roll the vanilla fish table and $(thing)11%%$() to bring up junk; when it does not hold you $(thing)only get junk$().$(br2)So moor it in the middle of a large lake or the sea, not in a one-block-wide channel."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Frame and Net Clearance",
+      "text": "The upright and winch extend more than two blocks above the water. Leave room for the whole assembly.$(br2)The lowered net extends underwater while preserving source water. Hauling or removing it restores the water it occupied.$(br2)The upright and net can both be targeted, used and broken as parts of the same trawler."
     }
   ]
 }

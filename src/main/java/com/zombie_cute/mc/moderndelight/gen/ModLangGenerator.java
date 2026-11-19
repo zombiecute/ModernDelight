@@ -39,6 +39,8 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
+        translationBuilder = LargeMachineTranslations.includeParts(translationBuilder);
+
         translationBuilder.add(TextUtil.HOLD_A_KEY, "Hold ");
         translationBuilder.add(TextUtil.SHIFT_END, " for summary");
         translationBuilder.add(TextUtil.CTRL_END, " to view fluid information");
@@ -812,7 +814,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.GUIDE_BOOK,"Modern Delight Guide");
         translationBuilder.add("patchouli.moderndelight.book.name","Modern Delight Guide");
-        translationBuilder.add("patchouli.moderndelight.book.landing_text","Introducing you: Modern Delight.");
+        translationBuilder.add("patchouli.moderndelight.book.landing_text","Introducing you: Modern Delight.$(br2)This book has five chapters: $(thing)gas$(), $(thing)power$(), $(thing)kitchen$(), $(thing)fermentation$(), and $(thing)farming and fishing$(). The first one is about lighting biogas, the last one about growing crops. Read them in order to go from your first flame to full production.");
 
         translationBuilder.add("advancement.moderndelight.get_start_desc", "A simple mod guide begins here. Let's get cooking!");
         translationBuilder.add("advancement.moderndelight.got_whisk.title", "The Truth Is It's a Whisk");

@@ -1,5 +1,8 @@
 package com.zombie_cute.mc.moderndelight.block.power.alternator.thermal_power;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachinePartBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.AdvanceFurnaceBlock;
 import com.zombie_cute.mc.moderndelight.block.kitchenware.OvenBlock;
@@ -26,11 +29,13 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -39,15 +44,27 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SterlingEngineBlock extends BlockWithEntity {
+public class SterlingEngineBlock extends LargeMachineBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,3,16);
     public static final BooleanProperty SMALL_SOUND = BooleanProperty.of("small_sound");
     public static final BooleanProperty IS_WORKING = BooleanProperty.of("is_working");
 
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.geo()
+            // The heating collar fits inside its furnace; only the disk's axle details are retained.
+            .filterCubes((bone, origin) -> switch (bone) {
+                case "bb_main" -> !(origin.y() < 0 && origin.z() >= -10);
+                case "disk" -> origin.x() >= -3;
+                default -> true;
+            })
+            .sweepAnimation("sterling_engine", "idle", 0.5f, 32, bone -> !bone.equals("disk"))
+            // Include the entire wheel. canSharePartCell handles any floor below the engine.
+            .addDiskInYZ(-40, -5, 22, 17, 20)
+            .useCubeBounds()
+            .build();
+
     public SterlingEngineBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
-        getStateManager().getDefaultState().with(SMALL_SOUND, false).with(IS_WORKING,false);
+        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS), COLLISION_PROFILE);
+        setDefaultState(getStateManager().getDefaultState().with(SMALL_SOUND, false).with(IS_WORKING,false));
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
@@ -112,22 +129,53 @@ public class SterlingEngineBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite()).with(SMALL_SOUND,false).with(IS_WORKING,false);
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite()).with(SMALL_SOUND,false).with(IS_WORKING,false);
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
+
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Block block = world.getBlockState(pos.down()).getBlock();
-        return block instanceof AbstractFurnaceBlock ||
+        return super.canPlaceAt(state, world, pos) && (block instanceof AbstractFurnaceBlock ||
                 block instanceof OvenBlock ||
-                block instanceof AdvanceFurnaceBlock;
+                block instanceof AdvanceFurnaceBlock);
+    }
+
+    @Override
+    protected boolean canSharePartCell(BlockState state, WorldView world, BlockPos pos, BlockPos offset) {
+        if (offset.getY() >= -1) return false;
+        BlockPos target = pos.add(offset);
+        BlockState floor = world.getBlockState(target);
+        // A wheel embedded in solid ground needs no extra block there. Never reuse another machine's parts.
+        return !(floor.getBlock() instanceof LargeMachinePartBlock) && floor.getFluidState().isEmpty()
+                && !VoxelShapes.matchesAnywhere(getPartShape(state, offset), floor.getCollisionShape(world, target),
+                BooleanBiFunction.ONLY_FIRST);
+    }
+
+    private void repairExposedFlywheel(World world, BlockPos pos, BlockState state) {
+        if (world.isClient || world.getTime() % 20L != 0) return;
+        // If ground is removed, restore only the newly exposed lower cells. Avoid repeated full-machine scans.
+        for (BlockPos offset : getPartShapes(state).keySet()) {
+            BlockPos target = pos.add(offset);
+            if (offset.getY() < -1 && world.isChunkLoaded(target) && world.getBlockState(target).isAir()) {
+                world.scheduleBlockTick(pos, this, 1);
+                return;
+            }
+        }
+    }
+
+    @Override
+    protected boolean occupiesCell(BlockState state, BlockPos offset) {
+        // The heating jacket surrounds the supporting furnace; that cell remains the furnace.
+        BlockRotation rotation = switch (state.get(FACING)) {
+            case EAST -> BlockRotation.CLOCKWISE_90;
+            case SOUTH -> BlockRotation.CLOCKWISE_180;
+            case WEST -> BlockRotation.COUNTERCLOCKWISE_90;
+            default -> BlockRotation.NONE;
+        };
+        // The output shaft ends inside the Faraday generator's designed attachment cell.
+        BlockPos generator = new BlockPos(-1, -1, -3).rotate(rotation);
+        return !offset.equals(new BlockPos(0, -1, 0)) && !offset.equals(generator);
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
@@ -194,6 +242,9 @@ public class SterlingEngineBlock extends BlockWithEntity {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, ModBlockEntities.STERLING_ENGINE_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+                (world1, pos, state1, blockEntity) -> {
+                    blockEntity.tick(world1, pos, state1);
+                    repairExposedFlywheel(world1, pos, state1);
+                });
     }
 }

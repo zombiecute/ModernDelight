@@ -50,6 +50,11 @@
 
 现代乐事仍在积极开发中。更新前请先备份存档，遇到问题请通过 [GitHub Issues](https://github.com/zombiecute/ModernDelight/issues) 反馈。
 
+开发维护文档：
+- [方块碰撞说明](docs/block-collision-maintenance.md)
+- [发酵系统](docs/fermentation-system.md)
+- [状态效果说明](docs/status-effects.md)
+
 ## 相关链接
 
 [GitHub](https://github.com/zombiecute/ModernDelight) · [Issues](https://github.com/zombiecute/ModernDelight/issues) · [Discord](https://discord.com/invite/b3RrpnWWYk) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/modern-delight) · [Modrinth](https://modrinth.com/mod/modern-delight)

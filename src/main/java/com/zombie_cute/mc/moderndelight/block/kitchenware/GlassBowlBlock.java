@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.item.food.PackagedItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.minecraft.block.*;
@@ -34,7 +35,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
+public class GlassBowlBlock extends LargeMachineBlock implements Waterloggable{
     public static final BooleanProperty HAS_ITEM = BooleanProperty.of("has_item");
     public static final BooleanProperty HAS_WATER = BooleanProperty.of("has_water");
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
@@ -57,15 +58,6 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     @Override
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HAS_ITEM, WATERLOGGED, HAS_WATER);
-    }
-    private static final VoxelShape SHAPED = Block.createCuboidShape(3,0,3,13,5,13);
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
     }
     @Nullable
     @Override
@@ -116,7 +108,8 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     public BlockState getPlacementState(ItemPlacementContext context) {
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
         boolean isInWater = fluidState.getFluid() == Fluids.WATER;
-        return getDefaultState().with(WATERLOGGED, isInWater).with(HAS_WATER, isInWater);
+        BlockState placement = getDefaultState().with(WATERLOGGED, isInWater).with(HAS_WATER, isInWater);
+        return canPlaceMachine(placement, context) ? placement : null;
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos,
@@ -186,6 +179,6 @@ public class GlassBowlBlock extends BlockWithEntity implements Waterloggable{
     }
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP);
+        return super.canPlaceAt(state, world, pos) && (world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP));
     }
 }

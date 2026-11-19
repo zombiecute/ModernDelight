@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "moderndelight_tests",
+  "version": "1.0.0",
+  "name": "Modern Delight Security Tests",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-gametest": [
+      "com.zombie_cute.mc.moderndelight.networking.WorkstationPacketTests",
+      "com.zombie_cute.mc.moderndelight.compat.CuisineCompatibilityTests",
+      "com.zombie_cute.mc.moderndelight.block.trawler.TrawlerPreviewTests",
+      "com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineTests",
+      "com.zombie_cute.mc.moderndelight.block.multiblock.ModelShapeTests",
+      "com.zombie_cute.mc.moderndelight.compat.jade.JadeMachineTests"
+    ]
+  },
+  "depends": {
+    "moderndelight": "*",
+    "fabric-gametest-api-v1": "*"
+  }
+}

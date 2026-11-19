@@ -3,19 +3,25 @@
   "values": [
     "moderndelight:charging_post",
     "moderndelight:ice_cream_maker",
+    "moderndelight:ice_cream_maker_part",
     "moderndelight:electric_steamer",
+    "moderndelight:electric_steamer_part",
     "moderndelight:silicon_block",
     "moderndelight:faraday_generator",
+    "moderndelight:faraday_generator_part",
     "moderndelight:intermediate_battery",
     "moderndelight:fan_blade",
+    "moderndelight:fan_blade_part",
     "moderndelight:wind_turbine_controller",
     "moderndelight:freezer",
+    "moderndelight:freezer_part",
     "moderndelight:baking_tray",
     "moderndelight:gas_canister",
     "moderndelight:biogas_digester_controller",
     "moderndelight:biogas_digester_io",
     "moderndelight:gas_cooking_stove",
     "moderndelight:burning_gas_cooking_stove",
-    "moderndelight:photovoltaic_generator"
+    "moderndelight:photovoltaic_generator",
+    "moderndelight:photovoltaic_generator_part"
   ]
 }

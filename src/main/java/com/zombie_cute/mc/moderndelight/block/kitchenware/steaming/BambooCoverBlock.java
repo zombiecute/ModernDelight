@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.steaming;
 
+import com.zombie_cute.mc.moderndelight.util.block_util.ModelShapes;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -24,7 +25,6 @@ public class BambooCoverBlock extends Block {
     public BambooCoverBlock() {
         super(FabricBlockSettings.copyOf(Blocks.BAMBOO_PLANKS).nonOpaque());
     }
-    public static final VoxelShape SHAPED = Block.createCuboidShape(1,0,1,15,4,15);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
@@ -38,12 +38,12 @@ public class BambooCoverBlock extends Block {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
+        return ModelShapes.get(state);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
+        return ModelShapes.get(state);
     }
 
     @Override

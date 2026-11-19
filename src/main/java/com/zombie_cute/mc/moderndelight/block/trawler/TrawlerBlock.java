@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.trawler;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -37,20 +39,27 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TrawlerBlock extends BlockWithEntity {
-    public TrawlerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque());
-        setDefaultState(getStateManager().getDefaultState().with(UP, true).with(RISING,false).with(FALLING,false));
-    }
+public class TrawlerBlock extends LargeMachineBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty UP = BooleanProperty.of("up");
     public static final BooleanProperty RISING = BooleanProperty.of("rising");
     public static final BooleanProperty FALLING = BooleanProperty.of("falling");
 
-    private static final VoxelShape SHAPED = Block.createCuboidShape(0,-3,0,16,10,16);
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.geo()
+            .poseWhen(state -> !state.get(UP),
+                    (bone, pivot, transform) -> bone.equals("body") ? transform : transform.translateLocal(0, -21, 0))
+            .useModelBounds()
+            .build();
+
+    public TrawlerBlock() {
+        super(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL).nonOpaque(), COLLISION_PROFILE);
+        setDefaultState(getStateManager().getDefaultState().with(UP, true).with(RISING,false).with(FALLING,false));
+    }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
@@ -63,14 +72,7 @@ public class TrawlerBlock extends BlockWithEntity {
         }
         super.appendTooltip(stack, world, tooltip, options);
     }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()){
@@ -108,8 +110,11 @@ public class TrawlerBlock extends BlockWithEntity {
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos below = pos.down();
-        return world.getFluidState(below).isOf(Fluids.WATER) && world.getFluidState(below).isStill();
+        return super.canPlaceAt(state, world, pos) && (world.getFluidState(below).isOf(Fluids.WATER) && world.getFluidState(below).isStill());
     }
+
+    @Override
+    protected boolean allowsWaterParts() { return true; }
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {

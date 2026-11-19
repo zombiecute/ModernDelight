@@ -1,5 +1,7 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.gas_cooking.deep_frying;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlocks;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -36,46 +38,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DeepFryBasketBlock extends BlockWithEntity {
+public class DeepFryBasketBlock extends LargeMachineBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.vanilla()
+            .replaceModel(createCuboidShape(-12, 0, 1, 16, 9, 15))
+            .build();
+
     public DeepFryBasketBlock() {
         super(FabricBlockSettings.copyOf(Blocks.DIRT)
-                .nonOpaque().breakInstantly().sounds(BlockSoundGroup.LANTERN));
-    }
-    private static final VoxelShape TYPE_WEST = Block.createCuboidShape(1,0,1,16,8,15);
-    private static final VoxelShape TYPE_EAST = Block.createCuboidShape(0,0,1,15,8,15);
-    private static final VoxelShape TYPE_SOUTH = Block.createCuboidShape(1,0,0,15,8,15);
-    private static final VoxelShape TYPE_NORTH = Block.createCuboidShape(1,0,1,15,8,16);
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST){
-            return TYPE_WEST;
-        } else if (direction == Direction.EAST) {
-            return TYPE_EAST;
-        } else if (direction == Direction.NORTH){
-            return TYPE_NORTH;
-        } else {
-            return TYPE_SOUTH;
-        }
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST){
-            return TYPE_WEST;
-        } else if (direction == Direction.EAST) {
-            return TYPE_EAST;
-        } else if (direction == Direction.NORTH){
-            return TYPE_NORTH;
-        } else {
-            return TYPE_SOUTH;
-        }
+                .nonOpaque().breakInstantly().sounds(BlockSoundGroup.LANTERN), COLLISION_PROFILE);
     }
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

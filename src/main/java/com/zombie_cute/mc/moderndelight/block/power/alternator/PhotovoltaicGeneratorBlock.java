@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.power.alternator;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -31,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PhotovoltaicGeneratorBlock extends BlockWithEntity {
+public class PhotovoltaicGeneratorBlock extends LargeMachineBlock {
     public PhotovoltaicGeneratorBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK)
                 .sounds(BlockSoundGroup.LANTERN));
@@ -40,19 +41,11 @@ public class PhotovoltaicGeneratorBlock extends BlockWithEntity {
 
     private final VoxelShape SHAPED = Block.createCuboidShape(0,0,0,16,9,16);
 
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

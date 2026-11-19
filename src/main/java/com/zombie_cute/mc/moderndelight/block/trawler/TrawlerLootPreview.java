@@ -57,9 +57,9 @@ public final class TrawlerLootPreview {
         return List.copyOf(previews);
     }
 
-    static void addPages(List<TrawlerBaitPreview> previews, String path, List<ItemStack> baits,
-                                 int interval, float consumeChance, Identifier customTable,
-                                 Function<Identifier, JsonObject> lookup) {
+    public static void addPages(List<TrawlerBaitPreview> previews, String path, List<ItemStack> baits,
+                                int interval, float consumeChance, Identifier customTable,
+                                Function<Identifier, JsonObject> lookup) {
         for (boolean openWater : new boolean[]{true, false}) {
             List<Identifier> tables;
             if (!openWater) {
@@ -83,7 +83,7 @@ public final class TrawlerLootPreview {
         }
     }
 
-    static Result collect(List<Identifier> tables, Function<Identifier, JsonObject> lookup) {
+    public static Result collect(List<Identifier> tables, Function<Identifier, JsonObject> lookup) {
         Collector collector = new Collector(lookup);
         Set<Item> items = new LinkedHashSet<>();
         for (Identifier table : tables) {

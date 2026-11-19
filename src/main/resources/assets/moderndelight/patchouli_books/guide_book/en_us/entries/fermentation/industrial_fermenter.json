@@ -14,6 +14,11 @@
     },
     {
       "type": "patchouli:text",
+      "title": "Placement and Interaction",
+      "text": "The machine is about 2.2 blocks tall and slightly wider than one block. Leave $(thing)three blocks of headroom$() and clearance on both sides. Its footprint must be free of other blocks and liquids.$(br2)Right-clicking the upper body or either side opens the same machine. Mining any part with a pickaxe removes the whole machine and drops it along with its stored items."
+    },
+    {
+      "type": "patchouli:text",
       "title": "Where the Heat Comes From",
       "text": "Fermentation temperature is decided by two things:$(br)$(li)$(thing)Biome and height$() set the base temperature — about 21°C in plains, 45°C in deserts, -5°C in snowy plains, and it keeps dropping above Y=81$(li)$(thing)Heat sources within 7×7×7$() raise it: blue ice -20°C, a working blast furnace 80°C, lava 1000°C and so on$(br2)The nearest heat source counts in full and the others only add 20%%, so nestle the heat source against the machine."
     },

@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.biogas;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -34,12 +35,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BiogasDigesterIOBlock extends BlockWithEntity implements Waterloggable{
+public class BiogasDigesterIOBlock extends LargeMachineBlock implements Waterloggable{
     public BiogasDigesterIOBlock() {
         super(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK).nonOpaque());
         setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED,false));
     }
-    private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,16,14);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     @Override
@@ -73,7 +73,8 @@ public class BiogasDigesterIOBlock extends BlockWithEntity implements Waterlogga
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
-        return getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState placement = getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        return canPlaceMachine(placement, context) ? placement : null;
     }
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos,
@@ -89,14 +90,6 @@ public class BiogasDigesterIOBlock extends BlockWithEntity implements Waterlogga
         return Boolean.TRUE.equals(state.get(WATERLOGGED)) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;

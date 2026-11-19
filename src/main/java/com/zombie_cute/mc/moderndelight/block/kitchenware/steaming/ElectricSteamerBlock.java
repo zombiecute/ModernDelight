@@ -1,9 +1,10 @@
 package com.zombie_cute.mc.moderndelight.block.kitchenware.steaming;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
+import com.zombie_cute.mc.moderndelight.util.block_util.ShapeProfile;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -26,21 +27,22 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ElectricSteamerBlock extends BlockWithEntity {
+public class ElectricSteamerBlock extends LargeMachineBlock {
+    private static final ShapeProfile COLLISION_PROFILE = ShapeProfile.horizontal(
+            createCuboidShape(2, 0, 2, 14, 17, 14));
+
     public ElectricSteamerBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
+        super(COLLISION_PROFILE);
         setDefaultState(this.getStateManager().getDefaultState().with(IS_WORKING,false));
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty IS_WORKING = BooleanProperty.of("is_working");
-    private static final VoxelShape SHAPED = Block.createCuboidShape(2,0,2,14,16,14);
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
@@ -60,19 +62,11 @@ public class ElectricSteamerBlock extends BlockWithEntity {
         super.appendTooltip(stack, world, tooltip, options);
     }
 
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPED;
-    }
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

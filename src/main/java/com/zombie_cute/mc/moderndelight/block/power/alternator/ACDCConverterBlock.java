@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.power.alternator;
 
+import com.zombie_cute.mc.moderndelight.block.multiblock.LargeMachineBlock;
 import com.zombie_cute.mc.moderndelight.block.ModBlockEntities;
 import com.zombie_cute.mc.moderndelight.item.tools.CrowbarItem;
 import com.zombie_cute.mc.moderndelight.util.TextUtil;
@@ -30,26 +31,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ACDCConverterBlock extends BlockWithEntity {
+public class ACDCConverterBlock extends LargeMachineBlock {
     public ACDCConverterBlock() {
         super(FabricBlockSettings.copyOf(Blocks.IRON_BARS));
     }
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final VoxelShape TYPE_X = Block.createCuboidShape(2,0,0,14,14,16);
-    private static final VoxelShape TYPE_Z = Block.createCuboidShape(0,0,2,16,14,14);
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST){
-            return TYPE_X;
-        } else if (direction == Direction.EAST) {
-            return TYPE_X;
-        } else if (direction == Direction.NORTH){
-            return TYPE_Z;
-        } else {
-            return TYPE_Z;
-        }
-    }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
@@ -67,19 +53,6 @@ public class ACDCConverterBlock extends BlockWithEntity {
             tooltip.add(TextUtil.getAltText(false));
         }
         super.appendTooltip(stack, world, tooltip, options);
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        if (direction == Direction.WEST){
-            return TYPE_X;
-        } else if (direction == Direction.EAST) {
-            return TYPE_X;
-        } else if (direction == Direction.NORTH){
-            return TYPE_Z;
-        } else {
-            return TYPE_Z;
-        }
     }
 
     @Override
@@ -107,7 +80,8 @@ public class ACDCConverterBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        BlockState placement = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return canPlaceMachine(placement, ctx) ? placement : null;
     }
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {

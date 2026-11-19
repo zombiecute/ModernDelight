@@ -1,5 +1,6 @@
 package com.zombie_cute.mc.moderndelight.block.food;
 
+import com.zombie_cute.mc.moderndelight.util.block_util.ModelShapes;
 import com.zombie_cute.mc.moderndelight.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -23,7 +24,7 @@ import net.minecraft.world.event.GameEvent;
 
 public class MashedPotatoBlock extends Block {
     public MashedPotatoBlock(Settings settings) {
-        super(settings);
+        super(settings.dynamicBounds());
         setDefaultState(this.getStateManager().getDefaultState()
                 .with(LEVEL, 9));
     }
@@ -33,44 +34,13 @@ public class MashedPotatoBlock extends Block {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LEVEL);
     }
-    private static final VoxelShape LEVEL_9 = Block.createCuboidShape(0,0,0,16,16,16);
-    private static final VoxelShape LEVEL_8 = Block.createCuboidShape(0,0,0,16,14,16);
-    private static final VoxelShape LEVEL_7 = Block.createCuboidShape(0,0,0,16,12,16);
-    private static final VoxelShape LEVEL_6 = Block.createCuboidShape(0,0,0,16,10,16);
-    private static final VoxelShape LEVEL_5 = Block.createCuboidShape(0,0,0,16,8,16);
-    private static final VoxelShape LEVEL_4 = Block.createCuboidShape(0,0,0,16,6,16);
-    private static final VoxelShape LEVEL_3 = Block.createCuboidShape(0,0,0,16,4,16);
-    private static final VoxelShape LEVEL_2 = Block.createCuboidShape(0,0,0,16,2,16);
-    private static final VoxelShape LEVEL_1 = Block.createCuboidShape(0,0,0,16,1,16);
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int s = state.get(LEVEL);
-        return switch (s){
-            case 8 -> LEVEL_8;
-            case 7 -> LEVEL_7;
-            case 6 -> LEVEL_6;
-            case 5 -> LEVEL_5;
-            case 4 -> LEVEL_4;
-            case 3 -> LEVEL_3;
-            case 2 -> LEVEL_2;
-            case 1 -> LEVEL_1;
-            default -> LEVEL_9;
-        };
+        return ModelShapes.get(state);
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int s = state.get(LEVEL);
-        return switch (s){
-            case 8 -> LEVEL_8;
-            case 7 -> LEVEL_7;
-            case 6 -> LEVEL_6;
-            case 5 -> LEVEL_5;
-            case 4 -> LEVEL_4;
-            case 3 -> LEVEL_3;
-            case 2 -> LEVEL_2;
-            case 1 -> LEVEL_1;
-            default -> LEVEL_9;
-        };
+        return ModelShapes.get(state);
     }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
